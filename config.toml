@@ -8,7 +8,7 @@ enableRobotsTXT = true
 buildDrafts = false
 buildFuture = false
 buildExpired = false
-googleAnalytics = "G-XXXXXXXXXX"  # Replace with your GA4 tracking ID
+# googleAnalytics = "G-XXXXXXXXXX"  # Replace with your GA4 tracking ID when you have one
 enableEmoji = true
 
 [minify]
