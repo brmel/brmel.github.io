@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://brmel.github.io/sitemap.xml

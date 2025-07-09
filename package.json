@@ -1,34 +1,28 @@
 {
   "name": "mastering-image-processing",
   "version": "1.0.0",
-  "description": "Industrial Image Processing Course Website",
-  "main": "index.js",
+  "description": "Industrial Image Processing Educational Website",
   "scripts": {
     "start": "hugo server -D",
     "build": "hugo --gc --minify",
-    "dev": "hugo server -D --bind 0.0.0.0",
-    "new-post": "./scripts/new-post.sh",
-    "optimize-images": "./scripts/optimize-images.sh",
-    "deploy": "./scripts/deploy.sh"
+    "dev": "hugo server -D",
+    "new-post": "./scripts/new-post.sh"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/brmel/ibraverse_web.git"
+    "url": "git+https://github.com/brmel/brmel.github.io.git"
   },
   "keywords": [
     "hugo",
-    "blog",
     "image-processing",
     "computer-vision",
-    "industrial-automation"
+    "industrial-automation",
+    "education"
   ],
   "author": "Brahim Mellal",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/brmel/ibraverse_web/issues"
+    "url": "https://github.com/brmel/brmel.github.io/issues"
   },
-  "homepage": "https://github.com/brmel/ibraverse_web#readme",
-  "devDependencies": {
-    "hugo-extended": "^0.121.0"
-  }
+  "homepage": "https://ibraverse.ca"
 }
