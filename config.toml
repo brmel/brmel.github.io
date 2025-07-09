@@ -1,0 +1,179 @@
+baseURL = "https://ibraverse.ca"
+languageCode = "en-us"
+title = "Mastering Industrial Image Processing"
+theme = "PaperMod"
+[pagination]
+  pagerSize = 10
+enableRobotsTXT = true
+buildDrafts = false
+buildFuture = false
+buildExpired = false
+googleAnalytics = "G-XXXXXXXXXX"  # Replace with your GA4 tracking ID
+enableEmoji = true
+
+[minify]
+  disableXML = true
+  minifyOutput = true
+
+[params]
+  env = "production"
+  title = "Mastering Industrial Image Processing"
+  description = "Learn industrial computer vision and image processing with MIL, OpenCV, and practical tutorials"
+  keywords = ["image processing", "computer vision", "MIL", "Matrox", "industrial automation", "OpenCV"]
+  author = "Your Name"
+  images = ["images/profile.jpg"]
+  DateFormat = "January 2, 2006"
+  defaultTheme = "auto"
+  disableThemeToggle = false
+  ShowReadingTime = true
+  ShowShareButtons = true
+  ShowPostNavLinks = true
+  ShowBreadCrumbs = true
+  ShowCodeCopyButtons = true
+  ShowWordCount = true
+  ShowRssButtonInSectionTermList = true
+  UseHugoToc = true
+  disableSpecial1stPost = false
+  disableScrollToTop = false
+  comments = false
+  hidemeta = false
+  hideSummary = false
+  showtoc = false
+  tocopen = false
+
+  [params.assets]
+    favicon = "favicon.ico"
+    favicon16x16 = "favicon-16x16.png"
+    favicon32x32 = "favicon-32x32.png"
+    apple_touch_icon = "apple-touch-icon.png"
+    safari_pinned_tab = "safari-pinned-tab.svg"
+
+  [params.label]
+    text = "Mastering Industrial Image Processing"
+    icon = "favicon.ico"
+    iconHeight = 35
+
+  [params.profileMode]
+    enabled = true
+    title = "Master Industrial Image Processing"
+    subtitle = "Learn computer vision and image processing for industrial applications with practical tutorials and real-world examples."
+    imageUrl = "images/profile.jpg"
+    imageWidth = 120
+    imageHeight = 120
+    imageTitle = "Profile"
+    [[params.profileMode.buttons]]
+      name = "Articles"
+      url = "/posts/"
+    [[params.profileMode.buttons]]
+      name = "About"
+      url = "/about/"
+    [[params.profileMode.buttons]]
+      name = "Contact"
+      url = "/contact/"
+
+  [params.homeInfoParams]
+    Title = "Welcome to Industrial Image Processing"
+    Content = "Learn cutting-edge computer vision techniques for industrial applications. From fundamentals to advanced MIL programming, build your expertise with practical tutorials and real-world projects."
+
+  [[params.socialIcons]]
+    name = "github"
+    url = "https://github.com/brmel"
+  [[params.socialIcons]]
+    name = "linkedin"
+    url = "https://linkedin.com/in/yourprofile"
+  [[params.socialIcons]]
+    name = "twitter"
+    url = "https://twitter.com/yourhandle"
+  [[params.socialIcons]]
+    name = "email"
+    url = "mailto:your.email@example.com"
+
+  [params.analytics.google]
+    SiteVerificationTag = "XYZabc"  # Replace with your Google Search Console verification tag
+
+  [params.analytics.bing]
+    SiteVerificationTag = "XYZabc"  # Replace with your Bing Webmaster verification tag
+
+  [params.analytics.yandex]
+    SiteVerificationTag = "XYZabc"  # Replace with your Yandex verification tag
+
+  [params.cover]
+    hidden = true
+    hiddenInList = true
+    hiddenInSingle = true
+
+  [params.editPost]
+    URL = "https://github.com/yourusername/your-repo/tree/main/content"
+    Text = "Suggest Changes"
+    appendFilePath = true
+
+  [params.fuseOpts]
+    isCaseSensitive = false
+    shouldSort = true
+    location = 0
+    distance = 1000
+    threshold = 0.4
+    minMatchCharLength = 0
+    keys = ["title", "permalink", "summary", "content"]
+
+  [params.newsletter]
+    enabled = true
+    provider = "buttondown"
+    buttondown_username = "ibraverse"
+    title = "Stay Updated with Industrial Vision Tutorials"
+    description = "Get the latest tutorials, tips, and insights on industrial image processing delivered to your inbox."
+    placeholder = "Enter your email address"
+    button_text = "Subscribe"
+
+[menu]
+  [[menu.main]]
+    identifier = "home"
+    name = "Home"
+    url = "/"
+    weight = 10
+  [[menu.main]]
+    identifier = "posts"
+    name = "Articles"
+    url = "/posts/"
+    weight = 20
+  [[menu.main]]
+    identifier = "categories"
+    name = "Categories"
+    url = "/categories/"
+    weight = 30
+  [[menu.main]]
+    identifier = "tags"
+    name = "Tags"
+    url = "/tags/"
+    weight = 40
+  [[menu.main]]
+    identifier = "about"
+    name = "About"
+    url = "/about/"
+    weight = 50
+  [[menu.main]]
+    identifier = "search"
+    name = "Search"
+    url = "/search/"
+    weight = 60
+
+[markup]
+  [markup.highlight]
+    anchorLineNos = false
+    codeFences = true
+    guessSyntax = true
+    lineNos = false
+    lineNumbersInTable = false
+    noClasses = false
+    style = "github"
+    tabWidth = 4
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+  page = ["HTML"]
+  section = ["HTML", "RSS"]
+
+[taxonomies]
+  category = "categories"
+  tag = "tags"
+  series = "series"

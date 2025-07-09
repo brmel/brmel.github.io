@@ -1,0 +1,155 @@
+/* Custom styles for code blocks */
+.highlight {
+    margin: 1.5em 0;
+    border-radius: 8px;
+}
+
+/* Image styling */
+.post-content img {
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    margin: 1em 0;
+}
+
+/* Table styling for better readability */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1em 0;
+}
+
+table th, table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+table th {
+    background-color: #f2f2f2;
+}
+
+/* Newsletter Signup Styling */
+.newsletter-signup {
+    background: var(--theme);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 2rem;
+    margin: 2rem 0;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.newsletter-container {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.newsletter-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--primary);
+}
+
+.newsletter-description {
+    color: var(--secondary);
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.newsletter-form {
+    margin-bottom: 1rem;
+}
+
+.newsletter-input-group {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.newsletter-input {
+    flex: 1;
+    min-width: 250px;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--theme);
+    color: var(--primary);
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.newsletter-input:focus {
+    outline: none;
+    border-color: var(--tertiary);
+    box-shadow: 0 0 0 2px rgba(var(--tertiary-rgb), 0.1);
+}
+
+.newsletter-button {
+    padding: 0.75rem 1.5rem;
+    background: var(--tertiary);
+    color: var(--theme);
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.newsletter-button:hover {
+    background: var(--tertiary-hover, var(--tertiary));
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.newsletter-privacy {
+    color: var(--secondary);
+    margin-top: 1rem;
+}
+
+.newsletter-privacy a {
+    color: var(--tertiary);
+    text-decoration: none;
+}
+
+.newsletter-privacy a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive design for newsletter */
+@media (max-width: 600px) {
+    .newsletter-signup {
+        padding: 1.5rem;
+        margin: 1rem 0;
+    }
+    
+    .newsletter-input-group {
+        flex-direction: column;
+    }
+    
+    .newsletter-input {
+        min-width: 100%;
+    }
+    
+    .newsletter-button {
+        width: 100%;
+    }
+}
+
+/* Dark mode adjustments */
+.dark .newsletter-signup {
+    background: var(--entry);
+    border-color: var(--border);
+}
+
+.dark .newsletter-input {
+    background: var(--theme);
+    border-color: var(--border);
+}
+
+.dark .newsletter-input:focus {
+    border-color: var(--tertiary);
+}

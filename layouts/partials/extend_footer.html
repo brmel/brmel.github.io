@@ -1,0 +1,5 @@
+{{- if .Site.Params.newsletter.enabled }}
+<div class="newsletter-footer">
+    {{- partial "newsletter.html" . }}
+</div>
+{{- end }}
