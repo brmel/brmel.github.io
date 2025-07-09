@@ -1,6 +1,6 @@
 baseURL = "https://ibraverse.ca"
 languageCode = "en-us"
-title = "Mastering Industrial Image Processing"
+title = "Ibraverse"
 theme = "PaperMod"
 [pagination]
   pagerSize = 10
@@ -17,10 +17,10 @@ enableEmoji = true
 
 [params]
   env = "production"
-  title = "Mastering Industrial Image Processing"
-  description = "Learn industrial computer vision and image processing with OpenCV and practical tutorials"
-  keywords = ["image processing", "computer vision", "industrial automation", "OpenCV"]
-  author = "Your Name"
+  title = "Ibraverse"
+  description = "Passionate about image processing, C++ programming, control theory, robotics, and artificial intelligence"
+  keywords = ["image processing", "computer vision", "industrial automation", "OpenCV", "C++", "control theory", "robotics", "AI"]
+  author = "Ibraverse"
   images = ["images/profile.jpg"]
   DateFormat = "January 2, 2006"
   defaultTheme = "auto"
@@ -49,14 +49,14 @@ enableEmoji = true
     safari_pinned_tab = "safari-pinned-tab.svg"
 
   [params.label]
-    text = "Mastering Industrial Image Processing"
+    text = "Ibraverse"
     icon = "favicon.ico"
     iconHeight = 35
 
   [params.profileMode]
     enabled = true
-    title = "Master Industrial Image Processing"
-    subtitle = "Learn computer vision and image processing for industrial applications with practical tutorials and real-world examples."
+    title = "Ibraverse"
+    subtitle = "I am passionate about image processing, C++ programming, control theory, robotics, and artificial intelligence. I enjoy solving physical and mathematical problems."
     imageUrl = "images/profile.jpg"
     imageWidth = 120
     imageHeight = 120
@@ -65,15 +65,15 @@ enableEmoji = true
       name = "Articles"
       url = "/posts/"
     [[params.profileMode.buttons]]
+      name = "Categories"
+      url = "/categories/"
+    [[params.profileMode.buttons]]
       name = "About"
       url = "/about/"
-    [[params.profileMode.buttons]]
-      name = "Contact"
-      url = "/contact/"
 
   [params.homeInfoParams]
-    Title = "Welcome to Industrial Image Processing"
-    Content = "Learn cutting-edge computer vision techniques for industrial applications. From fundamentals to advanced programming, build your expertise with practical tutorials and real-world projects."
+    Title = "Welcome to Ibraverse"
+    Content = "I am passionate about image processing, C++ programming, control theory, robotics, and artificial intelligence. I enjoy solving physical and mathematical problems. While working at Matrox and Zebra Technology, I designed and implemented image processing algorithms with industry standards, employing complex mathematics, physics, and machine learning. Additionally, during my Master's degree studies, I developed several control systems, both linear and nonlinear, such as Adaptive Cruise Control for autonomous vehicles, a nonlinear control system for the inverted pendulum, and a digital controller robust to the loss of information to control robots' displacement with a distributed system."
 
   [[params.socialIcons]]
     name = "github"
@@ -81,9 +81,6 @@ enableEmoji = true
   [[params.socialIcons]]
     name = "linkedin"
     url = "https://linkedin.com/in/yourprofile"
-  [[params.socialIcons]]
-    name = "twitter"
-    url = "https://twitter.com/yourhandle"
   [[params.socialIcons]]
     name = "email"
     url = "mailto:contact@ibraverse.ca"
@@ -116,15 +113,6 @@ enableEmoji = true
     minMatchCharLength = 0
     keys = ["title", "permalink", "summary", "content"]
 
-  [params.newsletter]
-    enabled = true
-    provider = "buttondown"
-    buttondown_username = "ibraverse"
-    title = "Stay Updated with Industrial Vision Tutorials"
-    description = "Get the latest tutorials, tips, and insights on industrial image processing delivered to your inbox."
-    placeholder = "Enter your email address"
-    button_text = "Subscribe"
-
 [menu]
   [[menu.main]]
     identifier = "home"
@@ -142,20 +130,10 @@ enableEmoji = true
     url = "/categories/"
     weight = 30
   [[menu.main]]
-    identifier = "tags"
-    name = "Tags"
-    url = "/tags/"
-    weight = 40
-  [[menu.main]]
     identifier = "about"
     name = "About"
     url = "/about/"
-    weight = 50
-  [[menu.main]]
-    identifier = "search"
-    name = "Search"
-    url = "/search/"
-    weight = 60
+    weight = 40
 
 [markup]
   [markup.highlight]
@@ -169,11 +147,9 @@ enableEmoji = true
     tabWidth = 4
 
 [outputs]
-  home = ["HTML", "RSS", "JSON"]
+  home = ["HTML", "RSS"]
   page = ["HTML"]
   section = ["HTML", "RSS"]
 
 [taxonomies]
   category = "categories"
-  tag = "tags"
-  series = "series"

@@ -1,45 +1,44 @@
 ---
 title: "About"
 date: 2025-01-08
-description: "Learn more about our mission to teach industrial image processing"
+description: "Learn more about my background in image processing, control theory, and robotics"
 ---
 
-# About Mastering Industrial Image Processing
+# About Me
 
-Welcome to our comprehensive resource for industrial image processing and computer vision education. Our mission is to bridge the gap between theoretical knowledge and practical implementation in industrial environments.
+I am passionate about image processing, C++ programming, control theory, robotics, and artificial intelligence. I enjoy solving physical and mathematical problems that bridge theory and practical applications.
 
-## Our Mission
+## Professional Experience
 
-We believe that industrial image processing is a critical skill in today's automated manufacturing world. Our goal is to provide:
+### Industrial Image Processing
+While working at **Matrox** and **Zebra Technology**, I designed and implemented image processing algorithms with industry standards, employing complex mathematics, physics, and machine learning. My work focused on:
 
-- **Practical tutorials** that you can apply immediately
-- **Real-world examples** from industrial applications
-- **Step-by-step guides** for complex image processing tasks
-- **Best practices** learned from years of experience
+- Developing robust computer vision solutions for industrial applications
+- Implementing real-time image processing algorithms in C++
+- Applying machine learning techniques to improve algorithm performance
+- Ensuring compliance with industry standards and requirements
 
-## What Makes Us Different
+## Academic Background
 
-### Industry Focus
-Unlike general computer vision resources, we focus specifically on industrial applications where reliability, speed, and accuracy are paramount.
+During my Master's degree studies, I developed several control systems, both linear and nonlinear, including:
 
-### Hands-On Learning
-Every tutorial includes practical examples and code that you can run and modify to understand the concepts better.
+### Autonomous Vehicle Systems
+- **Adaptive Cruise Control** for autonomous vehicles - designed and implemented control algorithms that adapt to varying driving conditions
 
-### Modern Tools
-We cover modern open-source tools like OpenCV and other industry-standard libraries, helping you choose the right tool for your project.
+### Robotics Control
+- **Nonlinear control system for the inverted pendulum** - developed advanced control strategies for unstable systems
+- **Digital controller robust to information loss** - created distributed control systems for robot displacement that maintain performance even with communication failures
 
-## Topics We Cover
+## Areas of Expertise
 
-- **OpenCV for Industry** - Applying open-source computer vision to industrial problems
-- **Image Analysis** - Histograms, filtering, segmentation, and feature detection
-- **Quality Control** - Defect detection and measurement applications
-- **System Integration** - Connecting vision systems to manufacturing processes
-- **Computer Vision Fundamentals** - Essential concepts and practical applications
+- **Image Processing & Computer Vision**: Industrial applications, algorithm optimization, real-time processing
+- **C++ Programming**: High-performance computing, algorithm implementation, system-level programming
+- **Control Theory**: Linear and nonlinear control systems, adaptive control, robust control
+- **Robotics**: Control systems, path planning, distributed systems
+- **Artificial Intelligence**: Machine learning applications in image processing and control systems
 
-## Get Started
+## Technical Interests
 
-Ready to dive in? Explore our tutorials to begin your journey into industrial image processing.
+I'm particularly interested in the intersection of these fields, where mathematical rigor meets practical engineering challenges. Whether it's developing vision systems for quality control, implementing control algorithms for autonomous systems, or solving complex optimization problems, I thrive on tackling multidisciplinary challenges.
 
-## Contact
-
-Have questions or suggestions? Feel free to reach out through our contact form or social media channels.
+Feel free to explore my articles to learn more about these topics and see practical implementations of the concepts I work with.
