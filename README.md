@@ -12,16 +12,14 @@ This website is dedicated to teaching **industrial image processing** and **comp
 
 ### What You'll Learn
 
-- **Machine Imaging Library (MIL)**: Master Matrox's powerful imaging toolkit
-- **OpenCV**: Open-source computer vision techniques  
+- **OpenCV**: Open-source computer vision techniques and applications
 - **Industrial Applications**: Real-world case studies and implementations
 - **Image Processing Fundamentals**: From basics to advanced algorithms
+- **Computer Vision**: Practical techniques for automation and quality control
 
 ## 🚀 Featured Content
 
-- [Introduction to MIL](content/posts/introduction-to-mil/) - Getting started with Matrox Imaging Library
-- [Setting up MIL Projects](content/posts/setup-mil-project/) - Project configuration and best practices  
-- [Image Histograms](content/posts/image-histograms/) - Understanding and analyzing image data
+**Coming Soon:** Comprehensive tutorials on industrial image processing and computer vision techniques.
 
 ## 🛠️ Built With
 

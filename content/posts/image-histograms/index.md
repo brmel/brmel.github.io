@@ -3,9 +3,9 @@ title: "Understanding Image Histograms in Industrial Vision"
 date: 2025-01-08
 draft: false
 author: "Ibraverse Team"
-tags: ["Image Processing", "Histograms", "Analysis", "MIL", "OpenCV"]
+tags: ["Image Processing", "Histograms", "Analysis", "OpenCV"]
 categories: ["Tutorials", "Image Analysis"]
-description: "Master image histogram analysis for industrial applications using MIL and OpenCV"
+description: "Master image histogram analysis for industrial applications using OpenCV"
 cover:
     image: "images/histogram-cover.png"
     alt: "Image Histogram Analysis"

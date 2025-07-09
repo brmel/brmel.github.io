@@ -1,7 +1,7 @@
 ---
 title: "Welcome to Mastering Industrial Image Processing"
 date: 2025-01-08
-description: "Learn industrial computer vision and image processing with MIL, OpenCV, and practical tutorials"
+description: "Learn industrial computer vision and image processing with OpenCV and practical tutorials"
 ---
 
 # Welcome to Mastering Industrial Image Processing
@@ -10,10 +10,10 @@ Welcome to your comprehensive guide to industrial image processing and computer 
 
 ## What You'll Learn
 
-- **Machine Imaging Library (MIL)**: Master Matrox's powerful imaging toolkit
 - **OpenCV**: Open-source computer vision library techniques
 - **Industrial Applications**: Real-world case studies and implementations
 - **Image Processing Fundamentals**: From basic concepts to advanced algorithms
+- **Computer Vision**: Practical techniques for automation and quality control
 
 {{< newsletter >}}
 
@@ -23,7 +23,7 @@ Explore our latest tutorials and guides to enhance your image processing skills.
 
 ## Getting Started
 
-If you're new to industrial image processing, start with our [Introduction to MIL](/posts/introduction-to-mil/) guide to get familiar with the fundamentals.
+If you're new to industrial image processing, explore our tutorials to get familiar with the fundamentals.
 
 ## About This Site
 

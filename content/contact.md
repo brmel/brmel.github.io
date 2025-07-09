@@ -11,14 +11,13 @@ Have questions about industrial image processing, computer vision, or any of the
 
 ## Get in Touch
 
-- **Email**: [your.email@example.com](mailto:your.email@example.com)
+- **Email**: [contact@ibraverse.ca](mailto:contact@ibraverse.ca)
 - **LinkedIn**: [Your LinkedIn Profile](https://linkedin.com/in/yourprofile)
 - **GitHub**: [brmel](https://github.com/brmel)
 
 ## What I Can Help With
 
 - Industrial computer vision projects
-- MIL (Matrox Imaging Library) implementation
 - OpenCV integration and optimization
 - Image processing algorithm development
 - System architecture for vision applications

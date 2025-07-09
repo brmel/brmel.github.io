@@ -26,19 +26,19 @@ Unlike general computer vision resources, we focus specifically on industrial ap
 Every tutorial includes practical examples and code that you can run and modify to understand the concepts better.
 
 ### Modern Tools
-We cover both established tools like Matrox MIL and modern open-source alternatives like OpenCV, helping you choose the right tool for your project.
+We cover modern open-source tools like OpenCV and other industry-standard libraries, helping you choose the right tool for your project.
 
 ## Topics We Cover
 
-- **Machine Imaging Library (MIL)** - Comprehensive tutorials on Matrox's industrial imaging toolkit
 - **OpenCV for Industry** - Applying open-source computer vision to industrial problems
 - **Image Analysis** - Histograms, filtering, segmentation, and feature detection
 - **Quality Control** - Defect detection and measurement applications
 - **System Integration** - Connecting vision systems to manufacturing processes
+- **Computer Vision Fundamentals** - Essential concepts and practical applications
 
 ## Get Started
 
-Ready to dive in? Check out our [Introduction to MIL](/posts/introduction-to-mil/) to begin your journey into industrial image processing.
+Ready to dive in? Explore our tutorials to begin your journey into industrial image processing.
 
 ## Contact
 

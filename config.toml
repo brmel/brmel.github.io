@@ -18,8 +18,8 @@ enableEmoji = true
 [params]
   env = "production"
   title = "Mastering Industrial Image Processing"
-  description = "Learn industrial computer vision and image processing with MIL, OpenCV, and practical tutorials"
-  keywords = ["image processing", "computer vision", "MIL", "Matrox", "industrial automation", "OpenCV"]
+  description = "Learn industrial computer vision and image processing with OpenCV and practical tutorials"
+  keywords = ["image processing", "computer vision", "industrial automation", "OpenCV"]
   author = "Your Name"
   images = ["images/profile.jpg"]
   DateFormat = "January 2, 2006"
@@ -73,7 +73,7 @@ enableEmoji = true
 
   [params.homeInfoParams]
     Title = "Welcome to Industrial Image Processing"
-    Content = "Learn cutting-edge computer vision techniques for industrial applications. From fundamentals to advanced MIL programming, build your expertise with practical tutorials and real-world projects."
+    Content = "Learn cutting-edge computer vision techniques for industrial applications. From fundamentals to advanced programming, build your expertise with practical tutorials and real-world projects."
 
   [[params.socialIcons]]
     name = "github"
@@ -86,7 +86,7 @@ enableEmoji = true
     url = "https://twitter.com/yourhandle"
   [[params.socialIcons]]
     name = "email"
-    url = "mailto:your.email@example.com"
+    url = "mailto:contact@ibraverse.ca"
 
   [params.analytics.google]
     SiteVerificationTag = "XYZabc"  # Replace with your Google Search Console verification tag
