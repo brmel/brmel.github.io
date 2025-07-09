@@ -1,255 +1,329 @@
 ---
-title: "Understanding Image Histograms in Industrial Vision"
+title: "Edge Measurement in Industrial Vision: Counting Saw Blade Teeth"
 date: 2025-01-08
 draft: false
 author: "Ibraverse"
-tags: ["Image Processing", "Histograms", "Analysis", "OpenCV"]
+tags: ["Edge Detection", "Measurement", "Industrial Vision", "Image Processing"]
 categories: ["Tutorials", "Image Analysis"]
-description: "Master image histogram analysis for industrial applications using OpenCV"
+description: "Learn edge measurement techniques through a practical saw blade teeth counting application"
 cover:
-    image: "images/histogram-cover.png"
-    alt: "Image Histogram Analysis"
-    caption: "Understanding image histograms for industrial vision"
+    image: "blades.png"
+    alt: "Saw Blade Edge Detection"
+    caption: "Edge measurement for counting saw blade teeth"
 ShowToc: true
 TocOpen: false
 ---
 
-# Understanding Image Histograms in Industrial Vision
+# Edge Measurement in Industrial Vision: Counting Saw Blade Teeth
 
-Image histograms are fundamental tools in industrial image processing, providing crucial insights into image quality, lighting conditions, and feature characteristics. This tutorial will teach you how to effectively use histograms for industrial vision applications.
+Edge measurement is a fundamental technique in industrial vision systems, enabling precise detection and analysis of object boundaries. This tutorial demonstrates edge measurement principles through a practical application: automatically counting the teeth on a saw blade.
 
-## What is an Image Histogram?
+## Understanding Edge Measurement
 
-An image histogram is a graphical representation of the distribution of pixel intensities in an image. It shows:
+Edge measurement involves detecting transitions in pixel intensity that correspond to physical edges in objects. In industrial applications, this technique is crucial for:
 
-- **X-axis**: Pixel intensity values (0-255 for 8-bit images)
-- **Y-axis**: Number of pixels with each intensity value
-- **Shape**: Information about image characteristics
+- **Quality control**: Verifying part dimensions and features
+- **Counting operations**: Detecting repetitive features like teeth, holes, or ridges
+- **Defect detection**: Finding missing or damaged edges
+- **Alignment**: Using edges as reference points for positioning
 
-## Why Histograms Matter in Industrial Vision
+## The Challenge: Counting Saw Teeth
 
-### Quality Control
-Histograms help identify:
-- Lighting inconsistencies
-- Under or overexposed images
-- Contrast problems
-- Image noise levels
+Our objective is to create an application that automatically counts the number of teeth on a circular saw blade from a single image.
 
-### Process Monitoring
-Use histograms to:
-- Monitor lighting conditions over time
-- Detect camera exposure drift
-- Validate image acquisition consistency
-- Trigger alerts for poor image quality
+{{< figure src="blades.png" alt="Saw Blade Challenge" caption="Example saw blade image - our goal is to automatically count the teeth around the perimeter" align="center" width="50%" >}}
 
-### Feature Analysis
-Histograms reveal:
-- Object-background separation potential
-- Optimal thresholding values
-- Multi-modal distributions indicating multiple materials
+### Input Requirements
+- Single image of a saw blade
+- Clear visibility of the mounting hole and teeth
+- Adequate lighting to distinguish teeth from background
 
-## Histogram Types
+### Expected Output
+- Accurate count of blade teeth
+- Robust performance across different blade types
 
-### Single Channel Histograms
-For grayscale images or individual color channels:
+### Key Observations
+- Teeth are distributed evenly around the mounting hole
+- The central mounting point provides a reference for circular scanning
+- Teeth create dark-to-light transitions that can be detected as stripes
+
+## Solution Approach
+
+### Step 1: Locate the Central Reference Point
+
+The mounting hole serves as our coordinate system origin. We use circle detection to find this reference:
 
 ```cpp
-// MIL Example - Calculate grayscale histogram
-MIL_ID MilHist;
-MbufAlloc1d(MilSystem, 256, 32+M_UNSIGNED, M_ARRAY, &MilHist);
-MimHistogram(MilImage, MilHist, M_DEFAULT, M_DEFAULT, M_DEFAULT, M_DEFAULT, M_DEFAULT);
+// Detect the central mounting hole
+DetectSingleCircle(inputImage, expectedRadius, detectedCircle);
+Point2D centerPoint = detectedCircle.Center;
 ```
 
-### Multi-Channel Histograms
-For RGB color images:
+**Key Parameters:**
+- **Expected Radius**: Measure manually or estimate based on blade specifications
+- **ROI Optimization**: Restrict search to the central region for better performance
+- **Detection Confidence**: Ensure reliable circle detection before proceeding
+
+### Step 2: Define the Scanning Path
+
+Create a circular path around the center at the appropriate radius to intersect all teeth:
 
 ```cpp
-// OpenCV Example - Calculate RGB histograms
-cv::Mat image = cv::imread("sample.jpg");
-std::vector<cv::Mat> channels;
-cv::split(image, channels);
+// Create circular scanning path
+Circle scanCircle = {
+    center: centerPoint,
+    radius: teethRadius  // Distance from center to teeth tips
+};
 
-cv::Mat hist_b, hist_g, hist_r;
-cv::calcHist(&channels[0], 1, 0, cv::Mat(), hist_b, 1, &histSize, &histRange);
-cv::calcHist(&channels[1], 1, 0, cv::Mat(), hist_g, 1, &histSize, &histRange);
-cv::calcHist(&channels[2], 1, 0, cv::Mat(), hist_r, 1, &histSize, &histRange);
+CreateCirclePath(scanCircle, pointCount, scanPath);
 ```
 
-## Interpreting Histograms
+**Critical Considerations:**
+- **Point Count**: Must be sufficient to detect each tooth individually
+- **Radius Selection**: Position path to cross all teeth consistently
+- **Path Density**: Balance between detection accuracy and processing speed
 
-### Well-Exposed Images
-- Smooth distribution across intensity range
-- No clipping at 0 or 255
-- Good contrast without extreme peaks
+### Step 3: Scan for Edge Transitions
 
-### Underexposed Images
-- Histogram concentrated on the left (dark values)
-- Little to no data in bright regions
-- Poor detail in shadow areas
-
-### Overexposed Images
-- Histogram concentrated on the right (bright values)
-- Clipping at maximum intensity
-- Lost detail in highlights
-
-### High Contrast Images
-- Bi-modal distribution
-- Clear separation between dark and bright regions
-- Good for binary thresholding
-
-### Low Contrast Images
-- Narrow distribution in middle range
-- Poor feature separation
-- May need contrast enhancement
-
-## Practical Applications
-
-### Automatic Threshold Selection
-
-Use histogram analysis to find optimal threshold values:
+Use stripe scanning along the circular path to detect teeth edges:
 
 ```cpp
-// MIL - Find threshold using histogram
-MIL_INT64 ThresholdValue;
-MimHistogramEqualizeAdaptive(MilImage, MilProcessedImage, 
-    M_UNIFORM, M_DEFAULT, M_DEFAULT, M_DEFAULT, M_DEFAULT);
-MimBinarize(MilProcessedImage, MilBinaryImage, 
-    M_BIMODAL + M_GREATER_OR_EQUAL, M_NULL, &ThresholdValue);
+// Scan for multiple stripes (teeth) along the path
+ScanMultipleStripes(
+    inputImage,
+    scanPath,
+    stripeParameters,
+    detectedStripes
+);
+
+int toothCount = detectedStripes.Count;
 ```
 
-### Lighting Verification
+**Stripe Detection Parameters:**
+- **Polarity**: Set to "Dark" since teeth appear darker than background
+- **Width Tolerance**: Account for varying tooth sizes
+- **Contrast Threshold**: Ensure sufficient edge strength for reliable detection
 
-Monitor histogram characteristics to ensure consistent lighting:
+## Implementation Details
+
+### Image Preprocessing
+
+Before edge detection, ensure optimal image quality:
 
 ```cpp
-// Calculate histogram statistics
-MIL_DOUBLE Mean, StdDev;
-MimHistogramStat(MilHist, M_MEAN, &Mean);
-MimHistogramStat(MilHist, M_STANDARD_DEVIATION, &StdDev);
-
-// Check if lighting is within acceptable range
-if (Mean < MIN_BRIGHTNESS || Mean > MAX_BRIGHTNESS) {
-    // Trigger lighting adjustment
-    AdjustLighting(Mean);
+// Enhance contrast if needed
+if (imageContrast < minimumThreshold) {
+    EnhanceContrast(inputImage, enhancedImage);
+} else {
+    enhancedImage = inputImage;
 }
 ```
 
-### Multi-Material Detection
+### Robust Circle Detection
 
-Identify different materials based on histogram modes:
-
-```cpp
-// Find peaks in histogram for material identification
-MIL_ID PeakArray;
-MbufAlloc1d(MilSystem, MAX_PEAKS, 32+M_UNSIGNED, M_ARRAY, &PeakArray);
-MimHistogramStat(MilHist, M_FIND_PEAKS, PeakArray);
-```
-
-## Advanced Histogram Techniques
-
-### Cumulative Histograms
-Useful for percentile calculations and equalization:
+Improve mounting hole detection reliability:
 
 ```cpp
-// Calculate cumulative histogram
-MIL_ID CumulativeHist;
-MbufAlloc1d(MilSystem, 256, 32+M_UNSIGNED, M_ARRAY, &CumulativeHist);
-MimHistogramStat(MilHist, M_CUMULATIVE, CumulativeHist);
+// Set detection parameters
+CircleDetectionParams params = {
+    radiusRange: {minRadius, maxRadius},
+    edgeThreshold: adaptiveThreshold,
+    centerTolerance: searchTolerance
+};
+
+// Detect with validation
+if (DetectSingleCircle(image, params, circle)) {
+    if (ValidateCircleQuality(circle)) {
+        // Proceed with scanning
+    } else {
+        // Handle detection failure
+    }
+}
 ```
 
-### Histogram Equalization
-Improve contrast by redistributing intensity values:
+### Adaptive Scanning
+
+Optimize scanning parameters based on detected circle:
 
 ```cpp
-// MIL - Histogram equalization
-MimHistogramEqualize(MilImage, MilEnhancedImage, M_UNIFORM, M_DEFAULT, M_DEFAULT);
+// Calculate optimal scanning radius
+double scanRadius = circle.Radius * TEETH_RADIUS_RATIO;
 
-// OpenCV - Histogram equalization
-cv::Mat enhanced;
-cv::equalizeHist(image, enhanced);
+// Adjust point count based on expected tooth count
+int estimatedTeeth = EstimateToothCount(scanRadius);
+int pointCount = estimatedTeeth * POINTS_PER_TOOTH;
 ```
 
-### Local Histogram Analysis
-Analyze histograms in specific regions of interest:
+## Practical Implementation Example
+
+To see this edge measurement technique in action, here's a demonstration using industrial vision software to solve the blade counting challenge:
+
+{{< youtube uJoLyFe7R1g >}}
+
+This video demonstrates the practical application of the edge measurement principles we've discussed, showing how circular scanning and stripe detection can be implemented in a real vision system.
+
+## Advanced Techniques
+
+### Multi-Scale Detection
+
+For blades with varying tooth sizes:
 
 ```cpp
-// MIL - ROI histogram
-MIL_ID MilROI;
-MbufChild2d(MilImage, 100, 100, 200, 200, &MilROI);
-MimHistogram(MilROI, MilROIHist, M_DEFAULT, M_DEFAULT, M_DEFAULT, M_DEFAULT, M_DEFAULT);
+// Scan at multiple radii
+vector<int> toothCounts;
+for (double radius = minRadius; radius <= maxRadius; radius += step) {
+    CreateCirclePath(center, radius, pointCount, path);
+    int count = ScanMultipleStripes(image, path, params).Count;
+    toothCounts.push_back(count);
+}
+
+// Select most consistent result
+int finalCount = FindConsistentCount(toothCounts);
 ```
+
+### Validation and Quality Control
+
+Implement checks to ensure measurement reliability:
+
+```cpp
+bool ValidateToothCount(int count, Circle blade) {
+    // Check reasonable count range
+    if (count < MIN_TEETH || count > MAX_TEETH) return false;
+    
+    // Verify even distribution
+    double expectedSpacing = (2 * PI * scanRadius) / count;
+    return ValidateSpacing(detectedStripes, expectedSpacing);
+}
+```
+
+### Error Handling
+
+Robust applications handle edge cases:
+
+```cpp
+MeasurementResult CountBladeTooth(Image input) {
+    try {
+        // Main processing pipeline
+        Circle hole = DetectMountingHole(input);
+        Path scanPath = CreateScanningPath(hole);
+        StripeArray teeth = ScanForTeeth(input, scanPath);
+        
+        if (ValidateResults(teeth)) {
+            return {success: true, count: teeth.Count};
+        } else {
+            return {success: false, error: "Invalid detection"};
+        }
+    } catch (const VisionException& e) {
+        return {success: false, error: e.message};
+    }
+}
+```
+
+## Performance Optimization
+
+### Region of Interest (ROI)
+
+Limit processing to relevant image areas:
+
+```cpp
+// Restrict circle detection to central region
+Rectangle centerROI = {
+    x: imageWidth/4,
+    y: imageHeight/4,
+    width: imageWidth/2,
+    height: imageHeight/2
+};
+
+SetROI(centerROI);
+DetectSingleCircle(image, params, circle);
+ResetROI();
+```
+
+### Parallel Processing
+
+For real-time applications:
+
+```cpp
+// Process multiple scan radii in parallel
+#pragma omp parallel for
+for (int i = 0; i < radiusCount; i++) {
+    results[i] = ScanAtRadius(image, radii[i]);
+}
+```
+
+## Applications and Extensions
+
+### Quality Control
+
+- **Tooth uniformity**: Measure individual tooth dimensions
+- **Damage detection**: Identify broken or worn teeth
+- **Spacing verification**: Check even distribution
+
+### Different Blade Types
+
+- **Circular saws**: Standard tooth counting
+- **Band saws**: Linear stripe detection
+- **Specialty blades**: Adaptive parameter selection
+
+### Integration with Manufacturing
+
+- **Automated sorting**: Route blades based on tooth count
+- **Process monitoring**: Track blade quality over time
+- **Batch verification**: Ensure specification compliance
 
 ## Best Practices
 
-### Industrial Environment Considerations
+### Lighting Considerations
 
-1. **Consistent Lighting**: Maintain stable illumination for repeatable histograms
-2. **Calibration**: Regular histogram-based calibration checks
-3. **Temperature Compensation**: Account for camera sensor drift
-4. **Noise Management**: Filter noise before histogram analysis
+- **Uniform illumination**: Prevent shadows that could be mistaken for teeth
+- **Contrast optimization**: Ensure clear tooth-to-background separation
+- **Reflection management**: Avoid specular reflections on metal surfaces
 
-### Performance Optimization
+### Parameter Tuning
 
-1. **ROI Processing**: Calculate histograms only in relevant regions
-2. **Binning**: Use appropriate bin sizes for your application
-3. **Caching**: Store reference histograms for comparison
-4. **Parallel Processing**: Use multi-threading for real-time applications
+- **Start with manual measurements**: Establish baseline parameters
+- **Use test datasets**: Validate across different blade types
+- **Implement adaptive algorithms**: Adjust parameters based on image characteristics
 
-### Troubleshooting Common Issues
+### System Integration
 
-**Problem**: Inconsistent histogram shapes
-**Solution**: Check lighting stability and camera settings
+- **Calibration procedures**: Regular system validation
+- **Error reporting**: Clear feedback on measurement failures
+- **Data logging**: Track measurements for quality analysis
 
-**Problem**: Poor threshold selection
-**Solution**: Use adaptive thresholding or multi-modal analysis
+## Troubleshooting Common Issues
 
-**Problem**: Slow processing
-**Solution**: Optimize ROI size and use hardware acceleration
+**Problem**: Inconsistent tooth counting
+**Solution**: Verify lighting consistency and adjust contrast thresholds
 
-## Integration with Vision Systems
+**Problem**: Missing mounting hole detection
+**Solution**: Check expected radius range and edge detection parameters
 
-### Real-Time Monitoring
+**Problem**: False tooth detections
+**Solution**: Increase stripe contrast threshold and validate tooth spacing
 
-```cpp
-// Continuous histogram monitoring
-while (system_running) {
-    AcquireImage(MilImage);
-    MimHistogram(MilImage, MilHist, M_DEFAULT, M_DEFAULT, M_DEFAULT, M_DEFAULT, M_DEFAULT);
-    
-    if (!ValidateHistogram(MilHist)) {
-        TriggerAlert("Image quality issue detected");
-    }
-    
-    ProcessImage(MilImage);
-}
-```
+**Problem**: Varying counts across similar blades
+**Solution**: Implement multi-scale scanning and result validation
 
-### Quality Metrics
+## Conclusion
 
-Use histogram-derived metrics for quality assessment:
+Edge measurement through stripe scanning provides a robust solution for counting saw blade teeth. This technique demonstrates key principles applicable to many industrial vision challenges:
 
-```cpp
-double CalculateImageQuality(MIL_ID histogram) {
-    MIL_DOUBLE mean, stddev, entropy;
-    MimHistogramStat(histogram, M_MEAN, &mean);
-    MimHistogramStat(histogram, M_STANDARD_DEVIATION, &stddev);
-    MimHistogramStat(histogram, M_ENTROPY, &entropy);
-    
-    // Combine metrics for overall quality score
-    return CalculateQualityScore(mean, stddev, entropy);
-}
-```
+- **Reference point establishment**: Using geometric features for coordinate systems
+- **Systematic scanning**: Following defined paths for comprehensive analysis
+- **Edge detection optimization**: Tuning parameters for specific applications
+- **Result validation**: Implementing quality checks for reliable measurements
+
+The methods shown here can be adapted for counting other repetitive features like gear teeth, holes in perforated materials, or ridges in textured surfaces.
 
 ## Next Steps
 
-Ready to apply these concepts? Try our next tutorial on [Setting Up Your First MIL Project](/posts/setup-mil-project/) where you'll implement histogram analysis in a complete vision system.
-
-## Resources
-
-- [MIL Histogram Functions Reference](https://www.matrox.com/imaging)
-- [OpenCV Histogram Documentation](https://docs.opencv.org/master/d1/db7/tutorial_py_histogram_begins.html)
-- [Industrial Vision Best Practices](https://www.matrox.com/imaging/en/support/technical-library/)
+Ready to implement edge measurement in your applications? Try adapting these techniques for:
+- Gear tooth counting and analysis
+- PCB via hole detection
+- Textile thread counting
+- Surface texture analysis
 
 ---
 
-*Continue your learning journey with our [MIL Project Setup Guide](/posts/setup-mil-project/) to build a complete industrial vision application.*
+*Master more industrial vision techniques with our upcoming tutorials on geometric matching and measurement calibration.*

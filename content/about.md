@@ -1,44 +1,39 @@
 ---
 title: "About"
 date: 2025-01-08
-description: "Learn more about my background in image processing, control theory, and robotics"
+description: "Senior Software Developer specializing in Machine Vision, Image Processing, and Control Systems"
+hideFooter: false
+disableShare: true
+ShowShareButtons: false
 ---
 
-# About Me
+I'm a **Senior Software Developer** at **Zebra Technologies** with 5+ years of experience in machine vision and image processing. I specialize in developing advanced algorithms that combine classical computer vision with cutting-edge AI.
 
-I am passionate about image processing, C++ programming, control theory, robotics, and artificial intelligence. I enjoy solving physical and mathematical problems that bridge theory and practical applications.
+## Current Role
+At Zebra Technologies, I design and implement machine vision algorithms in C++ using Matrox Imaging Library. I lead the development of the **Advanced Geometric Matcher (AGM) API** and maintain critical modules like Model Finder, Edge Finder, and Measurement systems. My work involves solving complex mathematical problems with geometry, algebra, and nonlinear optimizations.
 
-## Professional Experience
+Previously at Matrox Imaging (2019-2022), I built the foundation of my industrial experience developing robust machine vision algorithms and the Random Forest Classifier for object classification.
 
-### Industrial Image Processing
-While working at **Matrox** and **Zebra Technology**, I designed and implemented image processing algorithms with industry standards, employing complex mathematics, physics, and machine learning. My work focused on:
+## Education
+**Master's in Control Systems Engineering** from Polytechnique Montreal (2019) with a 3.87/4 GPA. I graduated **top 1% nationally** in Algeria (5/1400) and received the prestigious **Al Ghurair Foundation Scholarship** (1 of 100 from 15,000+ applicants).
 
-- Developing robust computer vision solutions for industrial applications
-- Implementing real-time image processing algorithms in C++
-- Applying machine learning techniques to improve algorithm performance
-- Ensuring compliance with industry standards and requirements
+**Bachelor's in Electrical Engineering** from École Nationale Polytechnique, Algeria (2017) with a 17.5/20 GPA.
 
-## Academic Background
+## Technical Skills
+**Programming**: C++, C, Python, Flutter/Dart, MATLAB, VHDL  
+**Tools**: Git/GitHub, ROS, MATLAB/Simulink, QNX, Unity-Pro  
+**Specializations**: Real-time systems, Computer vision, Machine learning, Control theory
 
-During my Master's degree studies, I developed several control systems, both linear and nonlinear, including:
+## Notable Projects
+- **AGM API Development**: Next-generation pattern matching technology for industrial applications
+- **Adaptive Cruise Control**: Advanced ACC system for autonomous vehicles during my Master's
+- **Distributed Robot Control**: Multi-robot coordination using consensus algorithms
+- **Memory Tracker**: Open-source C++ library for process memory monitoring
 
-### Autonomous Vehicle Systems
-- **Adaptive Cruise Control** for autonomous vehicles - designed and implemented control algorithms that adapt to varying driving conditions
+## What Drives Me
+I'm passionate about solving engineering challenges that bridge theory and practice. Whether developing vision systems for quality control, implementing control algorithms for autonomous systems, or optimizing real-time performance, I thrive at the intersection of mathematics, physics, and technology.
 
-### Robotics Control
-- **Nonlinear control system for the inverted pendulum** - developed advanced control strategies for unstable systems
-- **Digital controller robust to information loss** - created distributed control systems for robot displacement that maintain performance even with communication failures
+My experience spans academic research to production-ready solutions, giving me a unique perspective on translating concepts into robust systems that solve real-world problems.
 
-## Areas of Expertise
+---
 
-- **Image Processing & Computer Vision**: Industrial applications, algorithm optimization, real-time processing
-- **C++ Programming**: High-performance computing, algorithm implementation, system-level programming
-- **Control Theory**: Linear and nonlinear control systems, adaptive control, robust control
-- **Robotics**: Control systems, path planning, distributed systems
-- **Artificial Intelligence**: Machine learning applications in image processing and control systems
-
-## Technical Interests
-
-I'm particularly interested in the intersection of these fields, where mathematical rigor meets practical engineering challenges. Whether it's developing vision systems for quality control, implementing control algorithms for autonomous systems, or solving complex optimization problems, I thrive on tackling multidisciplinary challenges.
-
-Feel free to explore my articles to learn more about these topics and see practical implementations of the concepts I work with.

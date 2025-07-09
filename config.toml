@@ -1,6 +1,6 @@
 baseURL = "https://ibraverse.ca"
 languageCode = "en-us"
-title = "Ibraverse"
+title = "Welcome to Ibraverse"
 theme = "PaperMod"
 [pagination]
   pagerSize = 10
@@ -17,26 +17,26 @@ enableEmoji = true
 
 [params]
   env = "production"
-  title = "Ibraverse"
-  description = "Passionate about image processing, C++ programming, control theory, robotics, and artificial intelligence"
-  keywords = ["image processing", "computer vision", "industrial automation", "OpenCV", "C++", "control theory", "robotics", "AI"]
+  title = "Welcome to Ibraverse"
+  description = "Senior Software Developer at Zebra Technologies specializing in Machine Vision, Image Processing, and Control Systems. 5+ years of industrial experience in C++, AI, and real-time systems."
+  keywords = ["machine vision", "image processing", "computer vision", "industrial algorithms", "OpenCV", "C++", "control theory", "robotics", "AI", "Zebra Technologies", "Matrox", "real-time systems", "AGM", "geometric matching"]
   author = "Ibraverse"
   images = ["images/profile.jpg"]
   DateFormat = "January 2, 2006"
   defaultTheme = "auto"
   disableThemeToggle = false
-  ShowReadingTime = true
+  ShowReadingTime = false
   ShowShareButtons = true
   ShowPostNavLinks = true
   ShowBreadCrumbs = true
   ShowCodeCopyButtons = true
-  ShowWordCount = true
+  ShowWordCount = false
   ShowRssButtonInSectionTermList = true
   UseHugoToc = true
   disableSpecial1stPost = false
   disableScrollToTop = false
   comments = false
-  hidemeta = false
+  hidemeta = true
   hideSummary = false
   showtoc = false
   tocopen = false
@@ -55,8 +55,8 @@ enableEmoji = true
 
   [params.profileMode]
     enabled = true
-    title = "Ibraverse"
-    subtitle = "I am passionate about image processing, C++ programming, control theory, robotics, and artificial intelligence. I enjoy solving physical and mathematical problems."
+    title = "Brahim Redouane Mellah"
+    subtitle = "Senior Software Developer at Zebra Technologies | 6+ Years Machine Vision & AI | Passionate about Robotics, Control Theory & Physics"
     imageUrl = "images/profile.jpg"
     imageWidth = 120
     imageHeight = 120
@@ -73,17 +73,20 @@ enableEmoji = true
 
   [params.homeInfoParams]
     Title = "Welcome to Ibraverse"
-    Content = "I am passionate about image processing, C++ programming, control theory, robotics, and artificial intelligence. I enjoy solving physical and mathematical problems. While working at Matrox and Zebra Technology, I designed and implemented image processing algorithms with industry standards, employing complex mathematics, physics, and machine learning. Additionally, during my Master's degree studies, I developed several control systems, both linear and nonlinear, such as Adaptive Cruise Control for autonomous vehicles, a nonlinear control system for the inverted pendulum, and a digital controller robust to the loss of information to control robots' displacement with a distributed system."
+    Content = "Welcome to my technical blog! I'm a **Senior Software Developer** at **Zebra Technologies** with 5+ years of experience in industrial **machine vision** and **image processing**. I specialize in developing advanced algorithms that combine classical computer vision with cutting-edge AI.\n\n**What I Do:**\n• Lead development of **Advanced Geometric Matcher (AGM) API** at Zebra Technologies\n• Design production-ready machine vision algorithms in **C++** using Matrox Imaging Library\n• Solve complex mathematical problems involving geometry, algebra, and nonlinear optimization\n• Bridge the gap between theoretical research and industrial applications\n\n**Background:**\n• **Master's in Control Systems** from Polytechnique Montreal (GPA: 3.87/4)\n• **Top 1% nationally** in Algeria (5/1400)\n• **Al Ghurair Foundation Scholar** (1 of 100 from 15,000+ applicants)\n\nHere you'll find practical insights from my work in **industrial automation**, **real-time systems**, **robotics control**, and **AI applications** - sharing knowledge gained from developing solutions used by customers worldwide.\n\n*Ready to dive into the world of industrial image processing and control systems?*"
 
   [[params.socialIcons]]
     name = "github"
     url = "https://github.com/brmel"
   [[params.socialIcons]]
     name = "linkedin"
-    url = "https://linkedin.com/in/yourprofile"
+    url = "https://www.linkedin.com/in/brahim-redouane-mellah/"
+  [[params.socialIcons]]
+    name = "x"
+    url = "https://x.com/BrmelB"
   [[params.socialIcons]]
     name = "email"
-    url = "mailto:contact@ibraverse.ca"
+    url = "mailto:mellah.brahim.redouane@gmail.com"
 
   [params.analytics.google]
     SiteVerificationTag = "XYZabc"  # Replace with your Google Search Console verification tag
@@ -100,7 +103,7 @@ enableEmoji = true
     hiddenInSingle = true
 
   [params.editPost]
-    URL = "https://github.com/yourusername/your-repo/tree/main/content"
+    URL = "mailto:mellah.brahim.redouane@gmail.com?subject=Suggestion for"
     Text = "Suggest Changes"
     appendFilePath = true
 

@@ -1,6 +1,6 @@
-# Mastering Industrial Image Processing
+# Welcome to Ibraverse
 
-> A comprehensive educational resource for industrial computer vision and image processing
+> Personal technical blog focused on image processing, control theory, robotics, and AI
 
 [![Live Site](https://img.shields.io/badge/Live%20Site-ibraverse.ca-blue)](https://ibraverse.ca)
 [![Hugo](https://img.shields.io/badge/Built%20with-Hugo-ff4088)](https://gohugo.io/)
@@ -8,14 +8,14 @@
 
 ## 🎯 About
 
-This website is dedicated to teaching **industrial image processing** and **computer vision** with a focus on practical applications. Whether you're working with manufacturing automation, quality control systems, or machine vision, you'll find hands-on tutorials and real-world examples.
+This website shares insights from my work in **image processing**, **control theory**, **robotics**, and **artificial intelligence**. It features practical applications from my professional experience at Matrox and Zebra Technology, as well as research from my academic projects.
 
-### What You'll Learn
+### Topics Covered
 
-- **OpenCV**: Open-source computer vision techniques and applications
-- **Industrial Applications**: Real-world case studies and implementations
-- **Image Processing Fundamentals**: From basics to advanced algorithms
-- **Computer Vision**: Practical techniques for automation and quality control
+- **Image Processing & Computer Vision**: Industrial algorithms and OpenCV applications
+- **Control Theory**: Linear and nonlinear control systems for robotics and autonomous vehicles
+- **C++ Programming**: High-performance computing and algorithm implementation
+- **Robotics**: Control systems, path planning, and distributed systems
 
 ## 🚀 Featured Content
 
