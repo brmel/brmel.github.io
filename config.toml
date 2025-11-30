@@ -133,7 +133,7 @@ theme = "PaperMod"
 enableRobotsTXT = true
 buildDrafts = false
 buildFuture = false
-# googleAnalytics = "G-XXXXXXXXXX"  # Replace with your GA4 tracking ID when you have one
+googleAnalytics = "G-CHFGS2DHF6"
 enableEmoji = true
 
 [minify]
