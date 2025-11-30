@@ -1,0 +1,10 @@
+<div class="timeline-container">
+    {{ .Inner }}
+</div>
+
+<div id="lightbox">
+    <img id="lightbox-img" src="" alt="Lightbox Image">
+</div>
+
+{{ $js := resources.Get "js/timeline.js" | resources.Minify | resources.Fingerprint }}
+<script src="{{ $js.RelPermalink }}" defer></script>

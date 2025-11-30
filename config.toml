@@ -1,13 +1,138 @@
 baseURL = "https://ibraverse.ca"
-languageCode = "en-us"
-title = "Welcome to Ibraverse"
+defaultContentLanguage = "en"
+defaultContentLanguageInSubdir = false
 theme = "PaperMod"
+
+[languages]
+  [languages.en]
+    languageName = "English"
+    weight = 1
+    title = "Ibraverse"
+    [languages.en.params]
+      author = "Ibraverse"
+      description = "Senior Software Developer at Zebra Technologies specializing in Machine Vision, Image Processing, and Control Systems."
+      keywords = ["machine vision", "image processing", "computer vision", "industrial algorithms", "OpenCV", "C++", "control theory", "robotics", "AI", "Zebra Technologies", "Matrox", "real-time systems", "AGM", "geometric matching"]
+    [languages.en.params.profileMode]
+      enabled = true
+      title = "Brahim Redouane Mellah"
+      subtitle = "Software Engineer passionate about Image Processing, Mathematics, C++, and AI.\n\nSenior Software Developer at Zebra Technologies with 6+ years of experience. I specialize in developing advanced classical image processing and machine learning algorithms, optimized and packaged to work in real industry applications."
+      imageUrl = "images/MyPhoto.png"
+      imageWidth = 380
+      imageTitle = "Brahim Redouane Mellah"
+    [[languages.en.menu.main]]
+      identifier = "home"
+      name = "Home"
+      url = "/"
+      weight = 1
+    [[languages.en.menu.main]]
+      identifier = "adventures"
+      name = "Adventures"
+      url = "/adventures/"
+      weight = 10
+    [[languages.en.menu.main]]
+      identifier = "work"
+      name = "Work"
+      url = "/work/"
+      weight = 20
+    [[languages.en.menu.main]]
+      identifier = "thoughts"
+      name = "Thoughts"
+      url = "/thoughts/"
+      weight = 30
+    [[languages.en.menu.main]]
+      identifier = "timeline"
+      name = "Timeline"
+      url = "/timeline/"
+      weight = 5
+
+  [languages.fr]
+    languageName = "Français"
+    weight = 2
+    title = "Ibraverse"
+    [languages.fr.params]
+      author = "Ibraverse"
+      description = "Développeur logiciel senior chez Zebra Technologies, spécialisé en vision industrielle, traitement d'images et systèmes de contrôle."
+      keywords = ["vision industrielle", "traitement d'images", "vision par ordinateur", "algorithmes industriels", "OpenCV", "C++", "théorie du contrôle", "robotique", "IA", "Zebra Technologies", "Matrox", "systèmes temps réel", "AGM", "appariement géométrique"]
+    [languages.fr.params.profileMode]
+      enabled = true
+      title = "Brahim Redouane Mellah"
+      subtitle = "Ingénieur Logiciel passionné par le Traitement d'Images, les Mathématiques, le C++ et l'IA.\n\nDéveloppeur Logiciel Senior chez Zebra Technologies avec plus de 6 ans d'expérience. Je suis spécialisé dans le développement d'algorithmes avancés de traitement d'images et d'apprentissage automatique, optimisés pour des applications industrielles réelles."
+      imageUrl = "images/MyPhoto.png"
+      imageWidth = 380
+      imageTitle = "Brahim Redouane Mellah"
+    [[languages.fr.menu.main]]
+      identifier = "home"
+      name = "Accueil"
+      url = "/"
+      weight = 1
+    [[languages.fr.menu.main]]
+      identifier = "adventures"
+      name = "Aventures"
+      url = "/adventures/"
+      weight = 10
+    [[languages.fr.menu.main]]
+      identifier = "work"
+      name = "Travail"
+      url = "/work/"
+      weight = 20
+    [[languages.fr.menu.main]]
+      identifier = "thoughts"
+      name = "Pensées"
+      url = "/thoughts/"
+      weight = 30
+    [[languages.fr.menu.main]]
+      identifier = "timeline"
+      name = "Parcours"
+      url = "/timeline/"
+      weight = 5
+
+  [languages.ar]
+    languageName = "العربية"
+    languageDirection = "rtl"
+    weight = 3
+    title = "إبرافرس"
+    [languages.ar.params]
+      author = "إبرافرس"
+      description = "مطور برمجيات أول في Zebra Technologies متخصص في الرؤية الآلية ومعالجة الصور وأنظمة التحكم."
+      keywords = ["الرؤية الآلية", "معالجة الصور", "رؤية الكمبيوتر", "الخوارزميات الصناعية", "OpenCV", "C++", "نظرية التحكم", "الروبوتات", "الذكاء الاصطناعي", "Zebra Technologies", "Matrox", "أنظمة الوقت الحقيقي", "AGM", "المطابقة الهندسية"]
+    [languages.ar.params.profileMode]
+      enabled = true
+      title = "إبراهيم رضوان ملاح"
+      subtitle = "مهندس برمجيات شغوف بمعالجة الصور والرياضيات وبرمجة C++ والذكاء الاصطناعي.\n\nمطور برمجيات أول في Zebra Technologies بخبرة تزيد عن 6 سنوات. متخصص في تطوير خوارزميات معالجة الصور المتقدمة والتعلم الآلي، وتحسينها للعمل بكفاءة في التطبيقات الصناعية."
+      imageUrl = "images/MyPhoto.png"
+      imageWidth = 380
+      imageTitle = "إبراهيم رضوان ملاح"
+    [[languages.ar.menu.main]]
+      identifier = "home"
+      name = "الرئيسية"
+      url = "/"
+      weight = 1
+    [[languages.ar.menu.main]]
+      identifier = "adventures"
+      name = "مغامرات"
+      url = "/adventures/"
+      weight = 10
+    [[languages.ar.menu.main]]
+      identifier = "work"
+      name = "أعمالي"
+      url = "/work/"
+      weight = 20
+    [[languages.ar.menu.main]]
+      identifier = "thoughts"
+      name = "أفكار"
+      url = "/thoughts/"
+      weight = 30
+    [[languages.ar.menu.main]]
+      identifier = "timeline"
+      name = "مسيرتي"
+      url = "/timeline/"
+      weight = 5
+
 [pagination]
   pagerSize = 10
 enableRobotsTXT = true
 buildDrafts = false
 buildFuture = false
-buildExpired = false
 # googleAnalytics = "G-XXXXXXXXXX"  # Replace with your GA4 tracking ID when you have one
 enableEmoji = true
 
@@ -53,28 +178,6 @@ enableEmoji = true
     icon = "favicon.ico"
     iconHeight = 35
 
-  [params.profileMode]
-    enabled = true
-    title = "Brahim Redouane Mellah"
-    subtitle = "Senior Software Developer at Zebra Technologies | 6+ Years Machine Vision & AI | Passionate about Robotics, Control Theory & Physics"
-    imageUrl = "images/profile.jpg"
-    imageWidth = 120
-    imageHeight = 120
-    imageTitle = "Profile"
-    [[params.profileMode.buttons]]
-      name = "Articles"
-      url = "/posts/"
-    [[params.profileMode.buttons]]
-      name = "Categories"
-      url = "/categories/"
-    [[params.profileMode.buttons]]
-      name = "About"
-      url = "/about/"
-
-  [params.homeInfoParams]
-    Title = "Welcome to Ibraverse"
-    Content = "Welcome to my technical blog! I'm a **Senior Software Developer** at **Zebra Technologies** with 5+ years of experience in industrial **machine vision** and **image processing**. I specialize in developing advanced algorithms that combine classical computer vision with cutting-edge AI.\n\n**What I Do:**\n• Lead development of **Advanced Geometric Matcher (AGM) API** at Zebra Technologies\n• Design production-ready machine vision algorithms in **C++** using Matrox Imaging Library\n• Solve complex mathematical problems involving geometry, algebra, and nonlinear optimization\n• Bridge the gap between theoretical research and industrial applications\n\n**Background:**\n• **Master's in Control Systems** from Polytechnique Montreal (GPA: 3.87/4)\n• **Top 1% nationally** in Algeria (5/1400)\n• **Al Ghurair Foundation Scholar** (1 of 100 from 15,000+ applicants)\n\nHere you'll find practical insights from my work in **industrial automation**, **real-time systems**, **robotics control**, and **AI applications** - sharing knowledge gained from developing solutions used by customers worldwide.\n\n*Ready to dive into the world of industrial image processing and control systems?*"
-
   [[params.socialIcons]]
     name = "github"
     url = "https://github.com/brmel"
@@ -87,6 +190,12 @@ enableEmoji = true
   [[params.socialIcons]]
     name = "email"
     url = "mailto:mellah.brahim.redouane@gmail.com"
+  [[params.socialIcons]]
+    name = "facebook"
+    url = "https://www.facebook.com/mellah.brahim.redouane"
+  [[params.socialIcons]]
+    name = "instagram"
+    url = "https://www.instagram.com/mellahredouane/"
 
   [params.analytics.google]
     SiteVerificationTag = "XYZabc"  # Replace with your Google Search Console verification tag
@@ -115,28 +224,6 @@ enableEmoji = true
     threshold = 0.4
     minMatchCharLength = 0
     keys = ["title", "permalink", "summary", "content"]
-
-[menu]
-  [[menu.main]]
-    identifier = "home"
-    name = "Home"
-    url = "/"
-    weight = 10
-  [[menu.main]]
-    identifier = "posts"
-    name = "Articles"
-    url = "/posts/"
-    weight = 20
-  [[menu.main]]
-    identifier = "categories"
-    name = "Categories"
-    url = "/categories/"
-    weight = 30
-  [[menu.main]]
-    identifier = "about"
-    name = "About"
-    url = "/about/"
-    weight = 40
 
 [markup]
   [markup.highlight]
