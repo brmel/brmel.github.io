@@ -1,42 +1,57 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const images = document.querySelectorAll('.timeline-body img');
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
-
-    if (!lightbox || !lightboxImg) return;
-
-    const videoThumbnails = document.querySelectorAll('.video-thumbnail');
     const lightboxVideo = document.getElementById('lightbox-video');
+    const timelineContainer = document.querySelector('.timeline-container');
 
-    if (!lightbox || !lightboxImg || !lightboxVideo) return;
+    if (!lightbox || !lightboxImg || !lightboxVideo || !timelineContainer) return;
 
-    // Handle Images
-    images.forEach(img => {
-        if (img.classList.contains('video-thumbnail')) return; // Skip video thumbnails
-        img.addEventListener('click', function () {
-            lightboxImg.src = this.src;
-            lightboxImg.style.display = 'block';
-            lightboxVideo.style.display = 'none';
-            lightboxVideo.src = ''; // Stop video if playing
-            lightbox.classList.add('active');
-        });
-    });
+    // Event Delegation: Handle clicks on images and video thumbnails
+    timelineContainer.addEventListener('click', function (e) {
+        const target = e.target;
 
-    // Handle Videos
-    videoThumbnails.forEach(img => {
-        img.addEventListener('click', function () {
-            const videoSrc = this.getAttribute('data-video-src');
+        // Handle Video Thumbnails
+        if (target.classList.contains('video-thumbnail')) {
+            const videoSrc = target.getAttribute('data-video-src');
             if (videoSrc) {
                 lightboxVideo.src = videoSrc;
                 lightboxVideo.style.display = 'block';
                 lightboxImg.style.display = 'none';
-                lightbox.classList.add('active');
+                openLightbox();
             }
-        });
+            return;
+        }
+
+        // Handle Regular Images
+        if (target.tagName === 'IMG' && target.closest('.timeline-body')) {
+            lightboxImg.src = target.src;
+            lightboxImg.style.display = 'block';
+            lightboxVideo.style.display = 'none';
+            lightboxVideo.src = ''; // Stop video if playing
+            openLightbox();
+        }
     });
 
-    lightbox.addEventListener('click', function () {
-        lightbox.classList.remove('active');
-        lightboxVideo.src = ''; // Stop video
+    // Close Lightbox
+    lightbox.addEventListener('click', closeLightbox);
+
+    // Keyboard Support (Escape key)
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+            closeLightbox();
+        }
     });
+
+    function openLightbox() {
+        lightbox.classList.add('active');
+        lightbox.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden'; // Prevent scrolling
+    }
+
+    function closeLightbox() {
+        lightbox.classList.remove('active');
+        lightbox.setAttribute('aria-hidden', 'true');
+        lightboxVideo.src = ''; // Stop video
+        document.body.style.overflow = ''; // Restore scrolling
+    }
 });

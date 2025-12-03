@@ -72,4 +72,3 @@ I built a strong engineering foundation through diverse projects. I developed an
 {{< /timeline_item >}}
 
 {{< /timeline >}}
-```
