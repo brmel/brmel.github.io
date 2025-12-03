@@ -3,7 +3,10 @@
 </div>
 
 <div id="lightbox">
-    <img id="lightbox-img" src="" alt="Lightbox Image">
+    <img id="lightbox-img" src="" alt="Lightbox Image" style="display: none;">
+    <iframe id="lightbox-video" src="" frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen
+        style="display: none;"></iframe>
 </div>
 
 {{ $js := resources.Get "js/timeline.js" | resources.Minify | resources.Fingerprint }}

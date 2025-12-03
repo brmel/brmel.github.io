@@ -149,7 +149,7 @@ enableEmoji = true
   author = "Ibraverse"
   images = ["images/profile.jpg"]
   DateFormat = "January 2, 2006"
-  defaultTheme = "auto"
+  defaultTheme = "light"
   disableThemeToggle = false
   ShowReadingTime = false
   ShowShareButtons = true
@@ -236,6 +236,10 @@ enableEmoji = true
     noClasses = false
     style = "github"
     tabWidth = 4
+
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
 
 [outputs]
   home = ["HTML", "RSS"]

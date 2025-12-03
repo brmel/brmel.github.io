@@ -2,7 +2,7 @@
     <div class="timeline-marker"></div>
     <div class="timeline-content">
         <div class="timeline-date">{{ .Get "date" }}</div>
-        <h3 class="timeline-title">{{ .Get "title" }}</h3>
+        <h3 class="timeline-title">{{ .Get "title" | markdownify }}</h3>
         <div class="timeline-body">
             {{ .Inner | markdownify | replaceRE "<img " " <img loading=\"lazy\" " | safeHTML }}
         </div>

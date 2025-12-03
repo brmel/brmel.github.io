@@ -76,12 +76,19 @@
     line-height: 1.6;
 }
 
+.timeline-body p {
+    margin-left: 150px;
+    /* Prevent wrapping under image (130px + 20px margin) */
+}
+
 .timeline-body h4 {
     margin-top: 0;
     margin-bottom: 10px;
     color: var(--primary);
     font-size: 1.2rem;
     font-weight: bold;
+    margin-left: 150px;
+    /* Prevent wrapping under image (130px + 20px margin) */
 }
 
 .timeline-body hr {
@@ -110,6 +117,27 @@
     transform: scale(1.05);
 }
 
+.timeline-body iframe {
+    display: none;
+    /* Hide inline iframes if any remain */
+}
+
+.video-thumbnail {
+    border-radius: 8px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    margin-right: 20px;
+    width: 130px;
+    height: auto;
+    float: left;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.video-thumbnail:hover {
+    transform: scale(1.05);
+}
+
 /* Lightbox */
 #lightbox {
     display: none;
@@ -129,11 +157,18 @@
     display: flex;
 }
 
-#lightbox img {
+#lightbox img,
+#lightbox iframe {
     max-width: 90%;
     max-height: 90%;
     border-radius: 8px;
     object-fit: contain;
+}
+
+#lightbox iframe {
+    width: 800px;
+    height: 450px;
+    background: #000;
 }
 
 /* RTL Support */
