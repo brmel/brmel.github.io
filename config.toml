@@ -161,7 +161,8 @@ enableEmoji = true
   disableSpecial1stPost = false
   disableScrollToTop = false
   comments = false
-  hidemeta = true
+  hidemeta = false
+  hideAuthor = true
   hideSummary = false
   showtoc = false
   tocopen = false
@@ -208,7 +209,7 @@ enableEmoji = true
 
   [params.cover]
     hidden = true
-    hiddenInList = true
+    hiddenInList = false
     hiddenInSingle = true
 
   [params.editPost]

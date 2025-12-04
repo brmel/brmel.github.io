@@ -7,8 +7,55 @@
 /* Image styling */
 .post-content img {
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     margin: 1em 0;
+}
+
+/* Entry Cover as Icon in List View */
+.entry-cover {
+    display: table-cell;
+    vertical-align: middle;
+    padding-right: 20px;
+    width: 100px;
+    /* Fixed width for icon feel */
+}
+
+.entry-cover img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    /* Maintain aspect ratio */
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Adjust entry-header to flow nicely with the icon */
+.entry-header {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+/* Ensure the article container handles the table-cell layout if needed, 
+   or just float/flex. PaperMod usually uses flex or block. 
+   Let's try a safer flex approach for the container if possible, 
+   but modifying existing classes might be tricky without seeing HTML.
+   
+   Alternative: Float the image.
+*/
+.entry-cover {
+    float: left;
+    margin-right: 20px;
+    margin-bottom: 10px;
+    display: block;
+    /* Reset table-cell if not using table layout */
+}
+
+/* RTL Support for Arabic */
+[dir="rtl"] .entry-cover {
+    float: right;
+    margin-right: 0;
+    margin-left: 20px;
+    padding-right: 0;
 }
 
 /* Table styling for better readability */
@@ -18,7 +65,8 @@ table {
     margin: 1em 0;
 }
 
-table th, table td {
+table th,
+table td {
     border: 1px solid #ddd;
     padding: 8px;
     text-align: left;
@@ -125,15 +173,15 @@ table th {
         padding: 1.5rem;
         margin: 1rem 0;
     }
-    
+
     .newsletter-input-group {
         flex-direction: column;
     }
-    
+
     .newsletter-input {
         min-width: 100%;
     }
-    
+
     .newsletter-button {
         width: 100%;
     }
