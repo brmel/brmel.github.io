@@ -4,7 +4,6 @@ defaultContentLanguageInSubdir = false
 theme = "PaperMod"
 googleAnalytics = "G-CHFGS2DHF6"
 
-[languages]
   [languages.en]
     languageName = "English"
     weight = 1
@@ -16,7 +15,7 @@ googleAnalytics = "G-CHFGS2DHF6"
     [languages.en.params.profileMode]
       enabled = true
       title = "Brahim Redouane Mellah"
-      subtitle = "Software Engineer passionate about Image Processing, Mathematics, C++, and AI.\n\nSenior Software Developer at Zebra Technologies with 6+ years of experience. I specialize in developing advanced classical image processing and machine learning algorithms, optimized and packaged to work in real industry applications."
+      subtitle = "Software Engineer passionate about Image Processing, Mathematics, C++, and AI.\n\nI am currently working at Zebra Technologies. I specialize in developing advanced classical image processing and machine learning algorithms, optimized and packaged to work in real industry applications."
       imageUrl = "images/MyPhoto.png"
       imageWidth = 380
       imageTitle = "Brahim Redouane Mellah"
@@ -26,24 +25,24 @@ googleAnalytics = "G-CHFGS2DHF6"
       url = "/"
       weight = 1
     [[languages.en.menu.main]]
+      identifier = "timeline"
+      name = "Timeline"
+      url = "/timeline/"
+      weight = 2
+    [[languages.en.menu.main]]
+      identifier = "tech"
+      name = "Tech"
+      url = "/tech/"
+      weight = 3
+    [[languages.en.menu.main]]
       identifier = "adventures"
       name = "Adventures"
       url = "/adventures/"
-      weight = 10
-    [[languages.en.menu.main]]
-      identifier = "work"
-      name = "Work"
-      url = "/work/"
-      weight = 20
+      weight = 4
     [[languages.en.menu.main]]
       identifier = "thoughts"
       name = "Thoughts"
       url = "/thoughts/"
-      weight = 30
-    [[languages.en.menu.main]]
-      identifier = "timeline"
-      name = "Timeline"
-      url = "/timeline/"
       weight = 5
 
   [languages.fr]
@@ -57,7 +56,7 @@ googleAnalytics = "G-CHFGS2DHF6"
     [languages.fr.params.profileMode]
       enabled = true
       title = "Brahim Redouane Mellah"
-      subtitle = "Ingénieur Logiciel passionné par le Traitement d'Images, les Mathématiques, le C++ et l'IA.\n\nDéveloppeur Logiciel Senior chez Zebra Technologies avec plus de 6 ans d'expérience. Je suis spécialisé dans le développement d'algorithmes avancés de traitement d'images et d'apprentissage automatique, optimisés pour des applications industrielles réelles."
+      subtitle = "Ingénieur Logiciel passionné par le Traitement d'Images, les Mathématiques, le C++ et l'IA.\n\nJe travaille actuellement chez Zebra Technologies. Je suis spécialisé dans le développement d'algorithmes avancés de traitement d'images et d'apprentissage automatique, optimisés pour des applications industrielles réelles."
       imageUrl = "images/MyPhoto.png"
       imageWidth = 380
       imageTitle = "Brahim Redouane Mellah"
@@ -67,24 +66,24 @@ googleAnalytics = "G-CHFGS2DHF6"
       url = "/"
       weight = 1
     [[languages.fr.menu.main]]
-      identifier = "adventures"
-      name = "Aventures"
-      url = "/adventures/"
-      weight = 10
-    [[languages.fr.menu.main]]
-      identifier = "work"
-      name = "Travail"
-      url = "/work/"
-      weight = 20
-    [[languages.fr.menu.main]]
-      identifier = "thoughts"
-      name = "Pensées"
-      url = "/thoughts/"
-      weight = 30
-    [[languages.fr.menu.main]]
       identifier = "timeline"
       name = "Parcours"
       url = "/timeline/"
+      weight = 2
+    [[languages.fr.menu.main]]
+      identifier = "tech"
+      name = "Tech"
+      url = "/tech/"
+      weight = 3
+    [[languages.fr.menu.main]]
+      identifier = "adventures"
+      name = "Aventures"
+      url = "/adventures/"
+      weight = 4
+    [[languages.fr.menu.main]]
+      identifier = "thoughts"
+      name = "Réflexions"
+      url = "/thoughts/"
       weight = 5
 
   [languages.ar]
@@ -99,7 +98,7 @@ googleAnalytics = "G-CHFGS2DHF6"
     [languages.ar.params.profileMode]
       enabled = true
       title = "إبراهيم رضوان ملاح"
-      subtitle = "مهندس برمجيات شغوف بمعالجة الصور والرياضيات وبرمجة C++ والذكاء الاصطناعي.\n\nمطور برمجيات أول في Zebra Technologies بخبرة تزيد عن 6 سنوات. متخصص في تطوير خوارزميات معالجة الصور المتقدمة والتعلم الآلي، وتحسينها للعمل بكفاءة في التطبيقات الصناعية."
+      subtitle = "مهندس برمجيات شغوف بمعالجة الصور والرياضيات وبرمجة C++ والذكاء الاصطناعي.\n\nأعمل حاليًا في Zebra Technologies. متخصص في تطوير خوارزميات معالجة الصور المتقدمة والتعلم الآلي، وتحسينها للعمل بكفاءة في التطبيقات الصناعية."
       imageUrl = "images/MyPhoto.png"
       imageWidth = 380
       imageTitle = "إبراهيم رضوان ملاح"
@@ -109,24 +108,24 @@ googleAnalytics = "G-CHFGS2DHF6"
       url = "/"
       weight = 1
     [[languages.ar.menu.main]]
+      identifier = "timeline"
+      name = "مسيرتي"
+      url = "/timeline/"
+      weight = 2
+    [[languages.ar.menu.main]]
+      identifier = "tech"
+      name = "تقنية"
+      url = "/tech/"
+      weight = 3
+    [[languages.ar.menu.main]]
       identifier = "adventures"
       name = "مغامرات"
       url = "/adventures/"
-      weight = 10
-    [[languages.ar.menu.main]]
-      identifier = "work"
-      name = "أعمالي"
-      url = "/work/"
-      weight = 20
+      weight = 4
     [[languages.ar.menu.main]]
       identifier = "thoughts"
       name = "أفكار"
       url = "/thoughts/"
-      weight = 30
-    [[languages.ar.menu.main]]
-      identifier = "timeline"
-      name = "مسيرتي"
-      url = "/timeline/"
       weight = 5
 
 [pagination]
