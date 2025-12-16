@@ -1,3 +1,9 @@
+/* Override PaperMod default width - change this value to adjust content width globally */
+:root {
+    --main-width: 1000px;
+    /* Default is 720px */
+}
+
 /* Custom styles for code blocks */
 .highlight {
     margin: 1.5em 0;
