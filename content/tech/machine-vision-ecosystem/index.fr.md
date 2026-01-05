@@ -175,6 +175,7 @@ Le marché de la vision industrielle n'est pas un bloc monolithique : c'est un *
 
     .mv-table {
         width: 100%;
+        table-layout: auto;
         text-align: left;
         font-size: 0.875rem;
         border-collapse: collapse;
@@ -190,6 +191,7 @@ Le marché de la vision industrielle n'est pas un bloc monolithique : c'est un *
         text-transform: uppercase;
         letter-spacing: 0.05em;
         color: var(--secondary, #64748B);
+        white-space: nowrap;
     }
     .mv-table td {
         padding: 1rem 1.5rem;
@@ -283,10 +285,6 @@ Le marché de la vision industrielle n'est pas un bloc monolithique : c'est un *
 
 <p class="mv-section-subtitle">Cliquez sur chaque étape pour comprendre sa fonction, sa dynamique de marché et son contexte opérationnel.</p>
 
-<div style="margin: 2rem 0; text-align: center;">
-    <img src="/tech/machine-vision-ecosystem/value_chain.jpg" alt="Chaîne de valeur" style="max-width: 100%; width: 100%; border-radius: 0.75rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
-</div>
-
 <div class="mv-grid-5">
     <button data-stage="components" onclick="mvUpdateChain('components')" class="mv-chain-step">
         <div class="mv-step-label">Niveau 1</div>
@@ -325,10 +323,6 @@ Le marché de la vision industrielle n'est pas un bloc monolithique : c'est un *
 
 <p class="mv-section-subtitle">Classement des acteurs dominants dans le matériel, les logiciels et l'intégration de systèmes.</p>
 
-<div style="margin: 2rem 0; text-align: center;">
-    <img src="/tech/machine-vision-ecosystem/market_leaders.jpg" alt="Leaders du marché" style="max-width: 100%; width: 100%; border-radius: 0.75rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
-</div>
-
 <div class="mv-tab-container">
     <button onclick="mvShowLeaders('hardware')" id="mv-tab-hardware" class="mv-tab-btn active">Matériel</button>
     <button onclick="mvShowLeaders('software')" id="mv-tab-software" class="mv-tab-btn">Logiciels</button>
@@ -337,7 +331,13 @@ Le marché de la vision industrielle n'est pas un bloc monolithique : c'est un *
 
 <div class="mv-card" style="padding: 0; overflow: hidden;">
     <div style="overflow-x: auto;">
-        <table class="mv-table">
+        <table class="mv-table" style="min-width: 100%;">
+            <colgroup>
+                <col style="width: 25%;">
+                <col style="width: 15%;">
+                <col style="width: 25%;">
+                <col style="width: 35%;">
+            </colgroup>
             <thead>
                 <tr>
                     <th>Entreprise</th>

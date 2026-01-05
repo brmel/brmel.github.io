@@ -175,6 +175,7 @@ The Machine Vision market is not a monolith; it is a highly specialized, **tier-
 
     .mv-table {
         width: 100%;
+        table-layout: auto;
         text-align: left;
         font-size: 0.875rem;
         border-collapse: collapse;
@@ -190,6 +191,7 @@ The Machine Vision market is not a monolith; it is a highly specialized, **tier-
         text-transform: uppercase;
         letter-spacing: 0.05em;
         color: var(--secondary, #64748B);
+        white-space: nowrap;
     }
     .mv-table td {
         padding: 1rem 1.5rem;
@@ -283,10 +285,6 @@ The Machine Vision market is not a monolith; it is a highly specialized, **tier-
 
 <p class="mv-section-subtitle">Click any stage to understand its specific function, market dynamics, and operational context.</p>
 
-<div style="margin: 2rem 0; text-align: center;">
-    <img src="value_chain.jpg" alt="Machine Vision Value Chain" style="max-width: 100%; width: 100%; border-radius: 0.75rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
-</div>
-
 <div class="mv-grid-5">
     <button data-stage="components" onclick="mvUpdateChain('components')" class="mv-chain-step">
         <div class="mv-step-label">Step 1</div>
@@ -325,10 +323,6 @@ The Machine Vision market is not a monolith; it is a highly specialized, **tier-
 
 <p class="mv-section-subtitle">Neutral ranking of the dominant players in Hardware, Software, and System Integration.</p>
 
-<div style="margin: 2rem 0; text-align: center;">
-    <img src="market_leaders.jpg" alt="Machine Vision Market Leaders" style="max-width: 100%; width: 100%; border-radius: 0.75rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
-</div>
-
 <div class="mv-tab-container">
     <button onclick="mvShowLeaders('hardware')" id="mv-tab-hardware" class="mv-tab-btn active">Hardware</button>
     <button onclick="mvShowLeaders('software')" id="mv-tab-software" class="mv-tab-btn">Software</button>
@@ -337,7 +331,13 @@ The Machine Vision market is not a monolith; it is a highly specialized, **tier-
 
 <div class="mv-card" style="padding: 0; overflow: hidden;">
     <div style="overflow-x: auto;">
-        <table class="mv-table">
+        <table class="mv-table" style="min-width: 100%;">
+            <colgroup>
+                <col style="width: 25%;">
+                <col style="width: 15%;">
+                <col style="width: 25%;">
+                <col style="width: 35%;">
+            </colgroup>
             <thead>
                 <tr>
                     <th>Company</th>

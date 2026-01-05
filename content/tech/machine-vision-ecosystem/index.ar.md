@@ -175,6 +175,7 @@ cover:
 
     .mv-table {
         width: 100%;
+        table-layout: auto;
         text-align: right;
         font-size: 0.875rem;
         border-collapse: collapse;
@@ -190,6 +191,7 @@ cover:
         text-transform: uppercase;
         letter-spacing: 0.05em;
         color: var(--secondary, #64748B);
+        white-space: nowrap;
     }
     .mv-table td {
         padding: 1rem 1.5rem;
@@ -283,10 +285,6 @@ cover:
 
 <p class="mv-section-subtitle">انقر على أي مرحلة لفهم وظيفتها وديناميكياتها السوقية وسياقها التشغيلي.</p>
 
-<div style="margin: 2rem 0; text-align: center;">
-    <img src="/tech/machine-vision-ecosystem/value_chain.jpg" alt="سلسلة القيمة" style="max-width: 100%; width: 100%; border-radius: 0.75rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
-</div>
-
 <div class="mv-grid-5">
     <button data-stage="components" onclick="mvUpdateChain('components')" class="mv-chain-step">
         <div class="mv-step-label">المستوى ١</div>
@@ -325,10 +323,6 @@ cover:
 
 <p class="mv-section-subtitle">تصنيف اللاعبين الرئيسيين في المعدات والبرمجيات وتكامل الأنظمة.</p>
 
-<div style="margin: 2rem 0; text-align: center;">
-    <img src="/tech/machine-vision-ecosystem/market_leaders.jpg" alt="رواد السوق" style="max-width: 100%; width: 100%; border-radius: 0.75rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
-</div>
-
 <div class="mv-tab-container">
     <button onclick="mvShowLeaders('hardware')" id="mv-tab-hardware" class="mv-tab-btn active">المعدات</button>
     <button onclick="mvShowLeaders('software')" id="mv-tab-software" class="mv-tab-btn">البرمجيات</button>
@@ -337,7 +331,13 @@ cover:
 
 <div class="mv-card" style="padding: 0; overflow: hidden;">
     <div style="overflow-x: auto;">
-        <table class="mv-table">
+        <table class="mv-table" style="min-width: 100%;">
+            <colgroup>
+                <col style="width: 25%;">
+                <col style="width: 15%;">
+                <col style="width: 25%;">
+                <col style="width: 35%;">
+            </colgroup>
             <thead>
                 <tr>
                     <th>الشركة</th>
