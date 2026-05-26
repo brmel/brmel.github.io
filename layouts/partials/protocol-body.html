@@ -182,6 +182,56 @@
         </div>
       </div>
 
+      <figure class="chronochart" aria-label="24-hour cortisol and melatonin curves">
+        <figcaption class="chronochart__title">Cortisol · melatonin · core temperature, 24 h</figcaption>
+        <svg class="chronochart__svg" viewBox="0 0 800 280" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+          <defs>
+            <linearGradient id="cgrad" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0%" stop-color="var(--accent)" stop-opacity="0.18"/>
+              <stop offset="100%" stop-color="var(--accent)" stop-opacity="0"/>
+            </linearGradient>
+            <linearGradient id="mgrad" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0%" stop-color="var(--ink)" stop-opacity="0.14"/>
+              <stop offset="100%" stop-color="var(--ink)" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+          <g stroke="var(--rule)" stroke-width="1">
+            <line x1="40" y1="50"  x2="780" y2="50"/>
+            <line x1="40" y1="125" x2="780" y2="125"/>
+            <line x1="40" y1="220" x2="780" y2="220"/>
+          </g>
+          <g font-family="JetBrains Mono, monospace" font-size="10" fill="var(--ink-mute)" letter-spacing="1">
+            <text x="40"  y="245">00</text>
+            <text x="194" y="245">06</text>
+            <text x="348" y="245">12</text>
+            <text x="502" y="245">18</text>
+            <text x="656" y="245">24</text>
+          </g>
+          <path d="M 40 195 L 780 195" stroke="var(--accent)" stroke-width="2" stroke-dasharray="4 6" opacity="0"/>
+          <path d="M 40 200 C 100 200, 160 80, 220 60 C 280 50, 340 110, 400 150 C 460 175, 520 195, 580 200 C 640 205, 720 210, 780 215"
+                fill="none" stroke="var(--accent)" stroke-width="2.5"/>
+          <path d="M 40 200 C 100 200, 160 80, 220 60 C 280 50, 340 110, 400 150 C 460 175, 520 195, 580 200 C 640 205, 720 210, 780 215 L 780 220 L 40 220 Z"
+                fill="url(#cgrad)" stroke="none"/>
+          <path d="M 40 90 C 120 110, 200 200, 280 215 C 360 218, 420 218, 500 215 C 560 210, 620 165, 700 90 C 740 60, 770 50, 780 50"
+                fill="none" stroke="var(--ink)" stroke-width="2" opacity="0.75"/>
+          <path d="M 40 90 C 120 110, 200 200, 280 215 C 360 218, 420 218, 500 215 C 560 210, 620 165, 700 90 C 740 60, 770 50, 780 50 L 780 220 L 40 220 Z"
+                fill="url(#mgrad)" stroke="none"/>
+          <g stroke="var(--ink-mute)" stroke-width="1" stroke-dasharray="2 4">
+            <line x1="194" y1="20" x2="194" y2="220"/>
+            <line x1="606" y1="20" x2="606" y2="220"/>
+          </g>
+          <g font-family="JetBrains Mono, monospace" font-size="10" fill="var(--accent)" letter-spacing="1.5">
+            <text x="200" y="32">06:00 WAKE</text>
+            <text x="612" y="32">22:00 SLEEP</text>
+          </g>
+        </svg>
+        <div class="chronochart__legend">
+          <span><i class="swatch-c"></i> Cortisol</span>
+          <span><i class="swatch-m"></i> Melatonin</span>
+          <span><i class="swatch-a"></i> Sleep / wake markers</span>
+        </div>
+      </figure>
+
       <div class="countdown" role="list" aria-label="10-3-2-1-0 sleep rule">
         <div class="countdown__cell" role="listitem">
           <div class="countdown__num">10</div>
@@ -690,10 +740,8 @@
       </div>
 
       <!-- Full Daily Postural Correction Schedule -->
-      <h3 style="font-family:var(--serif);font-weight:400;font-size:32px;margin:48px 0 8px;letter-spacing:-0.01em;color:var(--ink);">
-        Daily routine · <em style="color:var(--accent);font-style:italic">exact reps.</em>
-      </h3>
-      <p style="font-size:15px;color:var(--ink-soft);max-width:720px;margin:0 0 24px;line-height:1.55;">
+      <h3 class="h-sub">Daily routine · <em>exact reps.</em></h3>
+      <p class="lede-sm">
         Performed daily — ideally during the mid-day break from software development or
         immediately prior to the primary training session. Twelve minutes, every weekday.
       </p>
@@ -825,7 +873,52 @@
         </div>
       </div>
 
-      <!-- Interference-effect prose -->
+      <ol class="weekgrid" aria-label="Weekly training split at a glance">
+        <li class="weekday">
+          <div class="weekday__dow">Mon</div>
+          <div class="weekday__intensity" aria-hidden="true"><i class="is-on"></i><i class="is-on"></i><i class="is-on"></i><i></i></div>
+          <div class="weekday__title">Lower body</div>
+          <div class="weekday__tag">Hypertrophy</div>
+        </li>
+        <li class="weekday">
+          <div class="weekday__dow">Tue</div>
+          <div class="weekday__intensity" aria-hidden="true"><i class="is-on"></i><i class="is-on"></i><i class="is-on"></i><i></i></div>
+          <div class="weekday__title">Upper body</div>
+          <div class="weekday__tag">Pull-volume bias</div>
+        </li>
+        <li class="weekday is-rest">
+          <div class="weekday__dow">Wed</div>
+          <div class="weekday__intensity" aria-hidden="true"><i class="is-on"></i><i></i><i></i><i></i></div>
+          <div class="weekday__title">Active recovery</div>
+          <div class="weekday__tag">Mobility</div>
+        </li>
+        <li class="weekday">
+          <div class="weekday__dow">Thu</div>
+          <div class="weekday__intensity" aria-hidden="true"><i class="is-on"></i><i class="is-on"></i><i class="is-on"></i><i class="is-on"></i></div>
+          <div class="weekday__title">Speed &amp; power</div>
+          <div class="weekday__tag">Rate of force</div>
+        </li>
+        <li class="weekday">
+          <div class="weekday__dow">Fri</div>
+          <div class="weekday__intensity" aria-hidden="true"><i class="is-on"></i><i class="is-on"></i><i></i><i></i></div>
+          <div class="weekday__title">Full body</div>
+          <div class="weekday__tag">Accessory</div>
+        </li>
+        <li class="weekday">
+          <div class="weekday__dow">Sat</div>
+          <div class="weekday__intensity" aria-hidden="true"><i class="is-on"></i><i class="is-on"></i><i class="is-on"></i><i class="is-on"></i></div>
+          <div class="weekday__title">Field session</div>
+          <div class="weekday__tag">FIFA 11+ → match</div>
+        </li>
+        <li class="weekday is-rest">
+          <div class="weekday__dow">Sun</div>
+          <div class="weekday__intensity" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+          <div class="weekday__title">Total recovery</div>
+          <div class="weekday__tag">Glycogen restoration</div>
+        </li>
+      </ol>
+
+      <div class="prose-deep">
       <div class="prose-deep">
         <h3>The <em>interference</em> effect</h3>
         <p>
@@ -1053,7 +1146,7 @@
 
       <!-- Force-velocity curve -->
       <div class="fv-chart">
-        <h4 style="font-family:var(--mono);font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--ink-mute);margin:0 0 16px;">Force–velocity spectrum &nbsp;·&nbsp; the full training range</h4>
+        <h4 class="h-eyebrow">Force–velocity spectrum &nbsp;·&nbsp; the full training range</h4>
         <svg viewBox="0 0 800 280" fill="none" aria-hidden="true">
           <!-- Axes -->
           <line x1="60" y1="240" x2="760" y2="240" stroke="currentColor" stroke-width="1" opacity="0.4"/>
@@ -1465,7 +1558,7 @@
         </div>
       </div>
 
-      <h3 style="font-family:var(--serif);font-weight:400;font-size:28px;margin:48px 0 16px;letter-spacing:-0.01em">WeCook · the friction-free fallback</h3>
+      <h3 class="h-sub">WeCook · the friction-free fallback</h3>
       <p class="hero__lede" style="margin-bottom:32px;">
         Premium ready-to-eat meals delivered across Montreal. Side dishes customise per day:
         rice and veggies on a Monday lower-body session; quinoa on a field day; veggies-only on Sunday.
@@ -1491,7 +1584,7 @@
       </div>
 
       <!-- Concrete WeCook menu picks -->
-      <h4 style="font-family:var(--mono);font-size:11.5px;letter-spacing:0.18em;text-transform:uppercase;color:var(--ink-mute);margin:32px 0 16px;">Menu picks · rotation</h4>
+      <h4 class="h-eyebrow" style="margin-top:32px">Menu picks · rotation</h4>
       <div class="cards">
         <div class="card">
           <div class="card__name">Spicy Peanut Chicken <span class="card__tag">Lunch</span></div>
@@ -1600,12 +1693,42 @@
         </div>
       </div>
 
-      <!-- =================== Stack A · Ocular =================== -->
-      <div style="margin-bottom:72px;">
+      <figure class="suppline" aria-label="Supplement timing across the day">
+        <figcaption class="suppline__title">Precise dosing window · 12:00 → 17:00</figcaption>
+        <div class="suppline__track">
+          <div class="suppline__mark" style="left:5%">
+            <span class="suppline__time">12:00</span>
+            <span class="suppline__what">Ocular stack</span>
+            <span class="suppline__dose">Astaxanthin · Lutein · Zeaxanthin</span>
+            <span class="suppline__dot" aria-hidden="true"></span>
+          </div>
+          <div class="suppline__mark" style="left:55%">
+            <span class="suppline__time">16:00</span>
+            <span class="suppline__what">Collagen + Vit C</span>
+            <span class="suppline__dose">15 g + 100 mg in 300 mL</span>
+            <span class="suppline__dot" aria-hidden="true"></span>
+          </div>
+          <div class="suppline__mark" style="left:67%">
+            <span class="suppline__time">16:30</span>
+            <span class="suppline__what">Pre-workout</span>
+            <span class="suppline__dose">Banana / rice cakes</span>
+            <span class="suppline__dot" aria-hidden="true"></span>
+          </div>
+          <div class="suppline__mark" style="left:95%">
+            <span class="suppline__time">17:00</span>
+            <span class="suppline__what">Mechanical load</span>
+            <span class="suppline__dose">Tendon-prime window</span>
+            <span class="suppline__dot" aria-hidden="true"></span>
+          </div>
+        </div>
+        <div class="suppline__hours" aria-hidden="true">
+          <span>12:00</span><span>14:00</span><span>16:00</span><span>17:00</span><span>18:00</span>
+        </div>
+      </figure>
+
+      <div class="stack">
         <div class="kicker">Stack A · Ocular health</div>
-        <h3 style="font-family:var(--serif);font-weight:400;font-size:44px;line-height:1.05;margin:14px 0 18px;letter-spacing:-0.015em;color:var(--ink);">
-          For the developer's <em style="color:var(--accent);font-style:italic">eyes.</em>
-        </h3>
+        <h3 class="h-section">For the developer's <em>eyes.</em></h3>
 
         <div class="prose-deep">
           <p>
@@ -1715,9 +1838,7 @@
       <!-- =================== Stack B · Tendons =================== -->
       <div>
         <div class="kicker">Stack B · Connective tissue</div>
-        <h3 style="font-family:var(--serif);font-weight:400;font-size:44px;line-height:1.05;margin:14px 0 18px;letter-spacing:-0.015em;color:var(--ink);">
-          For the <em style="color:var(--accent);font-style:italic">avascular</em> tissue.
-        </h3>
+        <h3 class="h-section">For the <em>avascular</em> tissue.</h3>
 
         <div class="prose-deep">
           <p>
@@ -1818,7 +1939,7 @@
         </div>
 
         <!-- 4-step tendon protocol -->
-        <h4 style="font-family:var(--mono);font-size:11.5px;letter-spacing:0.18em;text-transform:uppercase;color:var(--ink-mute);margin:48px 0 16px;">The Baar tendon protocol</h4>
+        <h4 class="h-eyebrow" style="margin-top:48px">The Baar tendon protocol</h4>
         <div class="steps">
           <div class="steps__item">
             <span class="l">Compound</span>
@@ -1883,9 +2004,7 @@
   <section class="pillar" id="execution">
     <div class="wrap wrap--narrow">
       <div class="kicker">Execution</div>
-      <h2 style="font-family:var(--serif);font-weight:400;font-size:48px;line-height:1.05;letter-spacing:-0.015em;margin:14px 0 24px;">
-        Flawless execution is the <em style="color:var(--accent);font-style:italic">only</em> variable.
-      </h2>
+      <h2 class="h-display">Flawless execution is the <em>only</em> variable.</h2>
       <div class="prose-deep">
         <p>
           The successful integration of a high-stress cognitive career with elite-level physical

@@ -469,3 +469,191 @@
   width: 12px; height: 1px;
   background: var(--accent);
 }
+
+/* ============================================================
+   New editorial diagrams — circadian, weekly heatmap, supp line
+   ============================================================ */
+
+.chronochart {
+  margin: 48px 0 16px;
+  border: 1px solid var(--rule);
+  background: var(--bg);
+  padding: 32px 32px 24px;
+}
+.chronochart__title {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  margin: 0 0 16px;
+}
+.chronochart__svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.chronochart__legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 22px;
+  margin-top: 18px;
+  padding-top: 18px;
+  border-top: 1px solid var(--rule);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+}
+.chronochart__legend span { display: inline-flex; align-items: center; gap: 8px; }
+.chronochart__legend i {
+  display: inline-block; width: 18px; height: 2px; border-radius: 1px;
+}
+.chronochart__legend .swatch-c { background: var(--accent); }
+.chronochart__legend .swatch-m { background: var(--ink); }
+.chronochart__legend .swatch-a { background: var(--ink-mute); }
+
+.weekgrid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+  margin: 32px 0 24px;
+}
+@media (max-width: 720px) { .weekgrid { grid-template-columns: repeat(2, 1fr); } }
+.weekday {
+  background: var(--bg);
+  padding: 20px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: relative;
+  min-height: 180px;
+}
+.weekday__dow {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+}
+.weekday__intensity {
+  position: absolute;
+  top: 20px;
+  right: 18px;
+  display: flex;
+  gap: 3px;
+}
+.weekday__intensity i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--rule);
+}
+.weekday__intensity i.is-on { background: var(--accent); }
+.weekday__title {
+  font-family: var(--serif);
+  font-size: 22px;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  margin-top: 4px;
+}
+.weekday__tag {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-top: auto;
+}
+.weekday.is-rest { background: var(--bg-alt); }
+.weekday.is-rest .weekday__title { color: var(--ink-mute); font-style: italic; }
+.weekday.is-rest .weekday__tag { color: var(--ink-mute); }
+
+.suppline {
+  margin: 40px 0 16px;
+  border: 1px solid var(--rule);
+  background: var(--bg);
+  padding: 28px 32px 32px;
+}
+.suppline__title {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  margin: 0 0 24px;
+}
+.suppline__track {
+  position: relative;
+  height: 4px;
+  background: var(--rule);
+  margin: 64px 0 12px;
+}
+.suppline__hours {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  color: var(--ink-mute);
+}
+.suppline__mark {
+  position: absolute;
+  top: -56px;
+  transform: translateX(-50%);
+  width: 180px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  text-align: center;
+}
+.suppline__mark::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  width: 1px;
+  height: 12px;
+  background: var(--accent);
+  transform: translateX(-50%);
+}
+.suppline__dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--accent);
+  position: absolute;
+  bottom: -19px;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 3px solid var(--bg);
+  box-sizing: content-box;
+}
+.suppline__time {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: var(--accent);
+}
+.suppline__what {
+  font-family: var(--serif);
+  font-size: 17px;
+  line-height: 1.15;
+  color: var(--ink);
+}
+.suppline__dose {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  color: var(--ink-mute);
+  text-transform: uppercase;
+}
+@media (max-width: 760px) {
+  .suppline__mark { width: 120px; }
+  .suppline__what { font-size: 14px; }
+}

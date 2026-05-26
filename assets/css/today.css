@@ -100,10 +100,10 @@
 .now__title {
   font-family: var(--serif);
   font-weight: 400;
-  font-size: clamp(80px, 16vw, 220px);
+  font-size: clamp(96px, 18vw, 260px);
   line-height: 0.86;
   letter-spacing: -0.035em;
-  margin: 0 0 24px;
+  margin: 0 0 28px;
   color: var(--ink);
 }
 .now__title em { font-style: italic; color: var(--accent); }
@@ -111,11 +111,11 @@
 .now__action {
   font-family: var(--serif);
   font-style: italic;
-  font-size: clamp(22px, 3vw, 36px);
+  font-size: clamp(24px, 3.2vw, 40px);
   line-height: 1.25;
   color: var(--ink-soft);
-  max-width: 900px;
-  margin: 0 0 40px;
+  max-width: 920px;
+  margin: 0 0 44px;
 }
 
 .now__progress {
@@ -154,13 +154,13 @@
 
 /* ----- Today's training card ----- */
 .session {
-  margin: 40px 0 0;
-  padding: 32px;
+  margin: 48px 0 0;
+  padding: 36px 40px;
   border: 1px solid var(--rule);
   background: var(--bg-alt);
   display: grid;
-  grid-template-columns: 220px 1fr;
-  gap: 32px;
+  grid-template-columns: 260px 1fr;
+  gap: 40px;
   align-items: start;
 }
 .session__label {
@@ -278,10 +278,13 @@
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--ink-mute);
+}
+.today__footer-inner {
   display: flex;
   justify-content: space-between;
   gap: 16px;
   flex-wrap: wrap;
+  width: 100%;
 }
 .today__footer a { color: var(--ink-mute); text-decoration: none; }
 .today__footer a:hover { color: var(--accent); }
@@ -337,9 +340,9 @@
   margin-bottom: 2px;
 }
 .day-card__icon {
-  width: 40px;
-  height: 40px;
-  flex: 0 0 40px;
+  width: 48px;
+  height: 48px;
+  flex: 0 0 48px;
   color: var(--accent);
   display: flex;
   align-items: center;
@@ -397,14 +400,14 @@
 }
 .day-card__label {
   font-family: var(--serif);
-  font-size: 34px;
-  line-height: 1.05;
+  font-size: 38px;
+  line-height: 1.04;
   color: var(--ink);
   letter-spacing: -0.015em;
   margin: 4px 0 0;
 }
 .day-card__action {
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.55;
   color: var(--ink-soft);
 }

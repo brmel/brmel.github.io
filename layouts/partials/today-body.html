@@ -1,6 +1,5 @@
 <main class="protocol today">
 
-  <!-- Top bar (reuses the manual's chrome, but with the page switch flipped) -->
   <header class="topbar">
     <div class="wrap topbar__inner">
       <a class="topbar__brand" href="{{ "/adventures/operating-protocol/today/" | relURL }}">The Operating <em>Protocol</em></a>
@@ -15,9 +14,6 @@
 
   <div class="today__body">
 
-    <!-- =========================================================
-         Header: day name + live clock
-         ========================================================= -->
     <section class="today__head">
       <div class="wrap">
         <div class="today__head-grid">
@@ -33,9 +29,6 @@
       </div>
     </section>
 
-    <!-- =========================================================
-         NOW — what to do right now
-         ========================================================= -->
     <section class="now">
       <div class="wrap">
         <div class="now__eyebrow">
@@ -56,18 +49,10 @@
           <span data-now-next>—</span>
         </div>
 
-        <!-- Today's training session -->
-        <div class="session" data-session>
-          <!-- Filled by today.js -->
-        </div>
+        <div class="session" data-session></div>
       </div>
     </section>
 
-    <!-- =========================================================
-         Full day — interactive card grid. Each card doubles as a
-         checkbox: tap to mark done; state persists per-day via
-         localStorage and resets at midnight.
-         ========================================================= -->
     <section class="rail" aria-label="The day, slot by slot">
       <div class="wrap">
         <div class="rail__head">
@@ -77,16 +62,14 @@
             <span class="rail__counter" data-day-count><strong>0</strong>&nbsp;/&nbsp;13&nbsp;done</span>
           </div>
         </div>
-        <ol class="day-grid" data-day-grid>
-          <!-- Cards populated by today.js -->
-        </ol>
+        <ol class="day-grid" data-day-grid></ol>
       </div>
     </section>
 
   </div>
 
   <footer class="today__footer">
-    <div class="wrap" style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;width:100%;">
+    <div class="wrap today__footer-inner">
       <span>The Operating Protocol · v1.0</span>
       <span><a href="{{ "/adventures/operating-protocol/" | relURL }}">Open the full manual →</a></span>
     </div>
