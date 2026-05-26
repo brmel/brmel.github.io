@@ -1,0 +1,42 @@
+<!doctype html>
+{{- /*
+  Layout: protocol-single
+  Renders The Operating Protocol Manual as a standalone page that
+  intentionally bypasses PaperMod's header/sidebar/footer — the
+  design ships its own chrome (topbar + theme toggle) via the
+  protocol-body partial. CSS is loaded explicitly via Hugo Pipes
+  so it stays scoped to this page rather than being bundled into
+  PaperMod's global stylesheet.
+*/ -}}
+<html lang="{{ .Site.LanguageCode | default "en" }}" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{ .Title }} — {{ .Site.Title }}</title>
+  <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Summary }}{{ end }}" />
+  <link rel="canonical" href="{{ .Permalink }}" />
+
+  {{- partial "protocol-fonts.html" . }}
+
+  {{- $protocolCSS := resources.Get "css/protocol.css" | minify | fingerprint }}
+  {{- with $protocolCSS }}
+  <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}">
+  {{- end }}
+  {{- $visualsCSS := resources.Get "css/visuals.css" | minify | fingerprint }}
+  {{- with $visualsCSS }}
+  <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}">
+  {{- end }}
+
+  {{- partial "google_analytics.html" . }}
+</head>
+<body>
+
+  {{- partial "protocol-body.html" . }}
+
+  {{- $protocolJS := resources.Get "js/protocol.js" | minify | fingerprint }}
+  {{- with $protocolJS }}
+  <script src="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}"></script>
+  {{- end }}
+
+</body>
+</html>

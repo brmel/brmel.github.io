@@ -1,0 +1,44 @@
+<!doctype html>
+{{- /*
+  Layout: today-single
+  Renders the Operating Protocol "Today" dashboard as a standalone
+  page. The visitor's local clock drives the live tick, the active
+  slot in the day grid, and the per-day rituals localStorage key,
+  so no server-side rendering is required.
+*/ -}}
+<html lang="{{ .Site.LanguageCode | default "en" }}" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{ .Title }} — {{ .Site.Title }}</title>
+  <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}What to do right now, what's next, and the whole day.{{ end }}" />
+  <link rel="canonical" href="{{ .Permalink }}" />
+
+  {{- partial "protocol-fonts.html" . }}
+
+  {{- $protocolCSS := resources.Get "css/protocol.css" | minify | fingerprint }}
+  {{- with $protocolCSS }}
+  <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}">
+  {{- end }}
+  {{- $todayCSS := resources.Get "css/today.css" | minify | fingerprint }}
+  {{- with $todayCSS }}
+  <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}">
+  {{- end }}
+
+  {{- partial "google_analytics.html" . }}
+</head>
+<body>
+
+  {{- partial "today-body.html" . }}
+
+  {{- $protocolJS := resources.Get "js/protocol.js" | minify | fingerprint }}
+  {{- with $protocolJS }}
+  <script src="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}"></script>
+  {{- end }}
+  {{- $todayJS := resources.Get "js/today.js" | minify | fingerprint }}
+  {{- with $todayJS }}
+  <script src="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}"></script>
+  {{- end }}
+
+</body>
+</html>

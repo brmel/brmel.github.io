@@ -1,0 +1,95 @@
+<main class="protocol today">
+
+  <!-- Top bar (reuses the manual's chrome, but with the page switch flipped) -->
+  <header class="topbar">
+    <div class="wrap topbar__inner">
+      <a class="topbar__brand" href="{{ "/adventures/operating-protocol/today/" | relURL }}">The Operating <em>Protocol</em></a>
+      <nav class="topbar__nav" aria-label="Page switch">
+        <a href="{{ "/adventures/operating-protocol/today/" | relURL }}" class="topbar__pageswitch is-active" aria-current="page">Today</a>
+        <a href="{{ "/adventures/operating-protocol/" | relURL }}" class="topbar__pageswitch">Manual</a>
+        <a href="{{ "/adventures/" | relURL }}" class="topbar__pageswitch" title="Back to Adventures">← Adventures</a>
+        <button class="theme-toggle is-keep" data-theme-toggle aria-label="Toggle theme">☾</button>
+      </nav>
+    </div>
+  </header>
+
+  <div class="today__body">
+
+    <!-- =========================================================
+         Header: day name + live clock
+         ========================================================= -->
+    <section class="today__head">
+      <div class="wrap">
+        <div class="today__head-grid">
+          <div>
+            <h1 class="today__day" data-day>Today</h1>
+            <div class="today__sub">
+              <span><span class="dot" aria-hidden="true"></span> <strong data-train-badge>Session</strong></span>
+              <span data-date>—</span>
+            </div>
+          </div>
+          <div class="today__clock" data-clock aria-label="Current time">--:--<span class="sec">:--</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         NOW — what to do right now
+         ========================================================= -->
+    <section class="now">
+      <div class="wrap">
+        <div class="now__eyebrow">
+          <span class="dot" aria-hidden="true"></span>
+          <span>Now</span>
+          <span class="slot" data-now-slot>—</span>
+        </div>
+
+        <h2 class="now__title" data-now-title>—</h2>
+        <p class="now__action" data-now-action>—</p>
+
+        <div class="now__progress" aria-hidden="true">
+          <div class="now__progress-bar" data-now-bar></div>
+        </div>
+
+        <div class="now__meta">
+          <span data-now-remain>—</span>
+          <span data-now-next>—</span>
+        </div>
+
+        <!-- Today's training session -->
+        <div class="session" data-session>
+          <!-- Filled by today.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         Full day — interactive card grid. Each card doubles as a
+         checkbox: tap to mark done; state persists per-day via
+         localStorage and resets at midnight.
+         ========================================================= -->
+    <section class="rail" aria-label="The day, slot by slot">
+      <div class="wrap">
+        <div class="rail__head">
+          <h2 class="rail__title">The whole <em>day.</em></h2>
+          <div class="rail__meta">
+            <span class="rail__hint">Tap a card to mark it done</span>
+            <span class="rail__counter" data-day-count><strong>0</strong>&nbsp;/&nbsp;13&nbsp;done</span>
+          </div>
+        </div>
+        <ol class="day-grid" data-day-grid>
+          <!-- Cards populated by today.js -->
+        </ol>
+      </div>
+    </section>
+
+  </div>
+
+  <footer class="today__footer">
+    <div class="wrap" style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;width:100%;">
+      <span>The Operating Protocol · v1.0</span>
+      <span><a href="{{ "/adventures/operating-protocol/" | relURL }}">Open the full manual →</a></span>
+    </div>
+  </footer>
+
+</main>

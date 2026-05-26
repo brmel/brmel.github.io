@@ -1,0 +1,471 @@
+/* ============================================================
+   Visuals extension — glyphs, diagrams, logos, charts, callouts
+   Layered on top of protocol.css for the Manual page.
+   ============================================================ */
+
+/* ---------- Section glyph ---------- */
+.glyph {
+  width: 88px;
+  height: 88px;
+  display: block;
+  margin-bottom: 18px;
+  color: var(--accent);
+}
+.glyph svg { width: 100%; height: 100%; display: block; }
+.glyph--small { width: 48px; height: 48px; }
+
+/* Pillar head with glyph */
+.pillar__head--glyph {
+  grid-template-columns: 220px 1fr;
+}
+.pillar__head--glyph .pillar__num {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* ---------- Logomark ---------- */
+.logomark {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+.logomark svg { width: 36px; height: 36px; color: var(--accent); }
+.logomark__text {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+/* ---------- Body diagrams ---------- */
+.body-diagram {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 40px;
+  padding: 32px;
+  background: var(--bg-alt);
+  border: 1px solid var(--rule);
+  margin: 24px 0;
+  align-items: center;
+}
+.body-diagram__svg {
+  background: var(--bg);
+  border: 1px solid var(--rule);
+  padding: 20px;
+  aspect-ratio: 3 / 4;
+}
+.body-diagram__svg svg { width: 100%; height: 100%; display: block; }
+.body-diagram__title {
+  font-family: var(--serif);
+  font-size: 28px;
+  margin: 0 0 8px;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+.body-diagram__title em { font-style: italic; color: var(--accent); }
+.body-diagram__crossed {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  margin-bottom: 14px;
+}
+.body-diagram__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  font-size: 13.5px;
+  color: var(--ink-soft);
+  line-height: 1.5;
+}
+.body-diagram__list li { padding-left: 18px; position: relative; }
+.body-diagram__list li::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 0.5em;
+  width: 10px; height: 1px;
+  background: var(--accent);
+}
+.body-diagram__list strong { color: var(--ink); font-weight: 500; display: block; font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 4px; color: var(--ink-mute); }
+@media (max-width: 720px) {
+  .body-diagram { grid-template-columns: 1fr; padding: 20px; }
+  .body-diagram__list { grid-template-columns: 1fr; }
+}
+
+/* ---------- Macro donut + breakdown ---------- */
+.macro-viz {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 48px;
+  align-items: center;
+  margin: 32px 0;
+  padding: 32px;
+  border: 1px solid var(--rule);
+  background: var(--bg-alt);
+}
+.donut {
+  width: 220px;
+  height: 220px;
+  display: block;
+  margin: 0 auto;
+}
+.donut__center {
+  text-align: center;
+  margin-top: -130px;
+  margin-bottom: 30px;
+  pointer-events: none;
+}
+.donut__center .v {
+  font-family: var(--serif);
+  font-size: 40px;
+  line-height: 1;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+.donut__center .l {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.16em;
+  color: var(--ink-mute);
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+.macro-bars { display: flex; flex-direction: column; gap: 18px; }
+.macro-bar__head {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  margin-bottom: 6px;
+}
+.macro-bar__head strong { color: var(--ink); font-weight: 500; }
+.macro-bar__track {
+  height: 8px;
+  background: var(--rule-soft);
+  position: relative;
+  overflow: hidden;
+}
+.macro-bar__fill {
+  position: absolute; inset: 0 auto 0 0;
+  background: var(--accent);
+}
+.macro-bar:nth-child(2) .macro-bar__fill { background: var(--accent-soft); }
+.macro-bar:nth-child(3) .macro-bar__fill { background: var(--ink); }
+.macro-bar:nth-child(4) .macro-bar__fill { background: var(--ink-soft); }
+.macro-bar__note { font-size: 13px; color: var(--ink-soft); margin-top: 6px; line-height: 1.5; }
+@media (max-width: 820px) {
+  .macro-viz { grid-template-columns: 1fr; padding: 24px; gap: 32px; }
+}
+
+/* ---------- Source / brand cards with logo monograms ---------- */
+.sources {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+  margin: 24px 0;
+}
+@media (max-width: 1080px) { .sources { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px)  { .sources { grid-template-columns: 1fr; } }
+.source {
+  background: var(--bg);
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.source:hover { background: var(--bg-alt); }
+.source__logo {
+  width: 56px; height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--rule);
+  background: var(--bg-alt);
+  color: var(--accent);
+}
+.source__logo svg { width: 32px; height: 32px; display: block; }
+.source__name {
+  font-family: var(--serif);
+  font-size: 22px;
+  letter-spacing: -0.005em;
+  color: var(--ink);
+  line-height: 1.1;
+}
+.source__tag {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-top: 4px;
+}
+.source__meta {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+}
+.source__body { font-size: 14px; line-height: 1.55; color: var(--ink-soft); }
+.source__cred {
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 1px solid var(--rule);
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.source__cred span { color: var(--ink-mute); border: 1px solid var(--rule); padding: 3px 8px; border-radius: 999px; }
+
+/* ---------- Compound molecule cards ---------- */
+.compound-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+  margin: 24px 0;
+}
+@media (max-width: 820px) { .compound-grid { grid-template-columns: 1fr; } }
+.compound {
+  background: var(--bg);
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.compound__svg {
+  width: 84px;
+  height: 84px;
+  color: var(--accent);
+}
+.compound__svg svg { width: 100%; height: 100%; display: block; }
+.compound__name {
+  font-family: var(--serif);
+  font-size: 26px;
+  color: var(--ink);
+  letter-spacing: -0.005em;
+  line-height: 1;
+}
+.compound__dose {
+  font-family: var(--mono);
+  font-size: 14px;
+  color: var(--accent);
+  letter-spacing: 0.04em;
+}
+.compound__effect { font-size: 14px; line-height: 1.55; color: var(--ink-soft); }
+
+/* ---------- Tendon-sponge diagram ---------- */
+.tendon-diag {
+  border: 1px solid var(--rule);
+  background: var(--bg-alt);
+  padding: 32px;
+  margin: 28px 0;
+}
+.tendon-diag__title {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  margin-bottom: 18px;
+}
+.tendon-diag__svg { width: 100%; height: auto; display: block; }
+
+/* ---------- Anatomy schematic - 24h ring ---------- */
+.ring-day {
+  width: 100%;
+  max-width: 460px;
+  margin: 24px auto 32px;
+  display: block;
+}
+
+/* ---------- Big callout strip ---------- */
+.callout {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 24px;
+  padding: 28px;
+  background: var(--bg-alt);
+  border: 1px solid var(--rule);
+  margin: 28px 0;
+  align-items: start;
+}
+.callout__icon {
+  width: 60px; height: 60px;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.callout__icon svg { width: 28px; height: 28px; display: block; }
+.callout__title {
+  font-family: var(--serif);
+  font-size: 22px;
+  color: var(--ink);
+  margin: 0 0 6px;
+  letter-spacing: -0.005em;
+}
+.callout__body { font-size: 14.5px; line-height: 1.6; color: var(--ink-soft); }
+@media (max-width: 600px) {
+  .callout { grid-template-columns: 1fr; }
+}
+
+/* ---------- Steps row (numbered process) ---------- */
+.steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin: 28px 0;
+  counter-reset: step;
+}
+@media (max-width: 720px) { .steps { grid-template-columns: repeat(2, 1fr); } }
+.steps__item {
+  border-top: 1px solid var(--ink);
+  padding-top: 16px;
+  counter-increment: step;
+}
+.steps__item::before {
+  content: counter(step, decimal-leading-zero);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: var(--accent);
+  display: block;
+  margin-bottom: 8px;
+}
+.steps__item .l {
+  font-family: var(--serif);
+  font-size: 22px;
+  color: var(--ink);
+  letter-spacing: -0.005em;
+  display: block;
+  margin-bottom: 6px;
+}
+.steps__item .n { font-size: 13.5px; color: var(--ink-soft); line-height: 1.5; }
+
+/* ---------- Inline data emphasis numbers ---------- */
+.big-stat {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  font-family: var(--serif);
+  font-size: 56px;
+  line-height: 1;
+  color: var(--accent);
+  letter-spacing: -0.02em;
+}
+.big-stat sub {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+}
+
+/* ---------- Section divider with glyph ---------- */
+.divider-glyph {
+  text-align: center;
+  margin: 56px auto;
+  color: var(--ink-mute);
+}
+.divider-glyph svg { width: 32px; height: 32px; display: inline-block; }
+
+/* ---------- Visual sleep countdown (staircase) ---------- */
+.staircase {
+  margin: 24px 0;
+  border: 1px solid var(--rule);
+  background: var(--bg-alt);
+  padding: 32px;
+}
+.staircase__title {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  margin-bottom: 24px;
+}
+.staircase__svg { width: 100%; max-width: 900px; height: auto; display: block; margin: 0 auto; }
+
+/* ---------- Force-velocity chart ---------- */
+.fv-chart {
+  border: 1px solid var(--rule);
+  padding: 24px;
+  background: var(--bg);
+  margin: 24px 0;
+}
+.fv-chart svg { width: 100%; height: auto; display: block; }
+.fv-chart__caption {
+  margin-top: 16px;
+  font-size: 13px;
+  color: var(--ink-mute);
+  line-height: 1.5;
+}
+
+/* ---------- Long-form prose extras ---------- */
+.prose-deep { margin: 24px 0 32px; }
+.prose-deep p {
+  font-size: 16.5px;
+  line-height: 1.7;
+  color: var(--ink-soft);
+  margin: 0 0 18px;
+}
+.prose-deep p strong { color: var(--ink); font-weight: 500; }
+.prose-deep h3 {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 30px;
+  margin: 48px 0 14px;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+.prose-deep h3 em { font-style: italic; color: var(--accent); }
+.prose-deep h4 {
+  font-family: var(--mono);
+  font-size: 11.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  margin: 28px 0 12px;
+  font-weight: 500;
+}
+.prose-deep ul {
+  padding-left: 0;
+  list-style: none;
+  margin: 16px 0 24px;
+}
+.prose-deep ul li {
+  padding-left: 22px;
+  position: relative;
+  margin-bottom: 10px;
+  font-size: 15px;
+  color: var(--ink-soft);
+  line-height: 1.6;
+}
+.prose-deep ul li::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 0.7em;
+  width: 12px; height: 1px;
+  background: var(--accent);
+}
