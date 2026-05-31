@@ -8,7 +8,7 @@ cover:
     alt: "Machine Vision Market Overview"
     relative: true
 customCSS: ["css/machine-vision.css"]
-customJS: ["js/machine-vision.js"]
+customJS: ["js/machine-vision.data.en.js", "js/machine-vision.js"]
 ---
 
 The Machine Vision market is not a monolith; it is a highly specialized, **tier-based ecosystem** designed to convert raw light into actionable industrial data.

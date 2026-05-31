@@ -8,7 +8,7 @@ cover:
     alt: "نظرة عامة على السوق"
     relative: false
 customCSS: ["css/machine-vision.css"]
-customJS: ["js/machine-vision.js"]
+customJS: ["js/machine-vision.data.ar.js", "js/machine-vision.js"]
 ---
 
 سوق الرؤية الآلية ليس كتلة واحدة متجانسة، بل هو **منظومة متخصصة للغاية ومُهيكلة على مستويات**، صُمّمت لتحويل الضوء الخام إلى بيانات صناعية قابلة للتنفيذ.

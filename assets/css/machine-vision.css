@@ -49,7 +49,7 @@
         border: 1px solid var(--border, #e2e8f0);
         border-radius: 0.5rem;
         padding: 1rem;
-        text-align: left;
+        text-align: start;
         cursor: pointer;
         position: relative;
         transition: all 0.2s;
@@ -126,8 +126,8 @@
         font-weight: 700;
         color: var(--content, #1e293b);
         margin-bottom: 0.5rem;
-        border-left: 4px solid var(--primary, #2563EB);
-        padding-left: 1rem;
+        border-inline-start: 4px solid var(--primary, #2563EB);
+        padding-inline-start: 1rem;
     }
 
     .mv-section-subtitle {
@@ -167,7 +167,7 @@
     .mv-table {
         width: 100%;
         table-layout: auto;
-        text-align: left;
+        text-align: start;
         font-size: 0.875rem;
         border-collapse: collapse;
     }
@@ -230,7 +230,7 @@
     }
     .mv-dynamics-list .dot {
         color: var(--primary, #2563EB);
-        margin-right: 0.75rem;
+        margin-inline-end: 0.75rem;
         margin-top: 0.25rem;
     }
 
@@ -330,4 +330,10 @@
     font-size: 0.875rem;
     font-weight: 500;
     line-height: 1.6;
+}
+
+/* RTL: mirror the large-screen flow arrow (glyph + position cannot use
+   logical properties). Scoped to >=768px so the mobile down-arrow is kept. */
+@media (min-width: 768px) {
+    [dir="rtl"] .mv-chain-step::after { content: '\2190'; right: auto; left: -14px; }
 }

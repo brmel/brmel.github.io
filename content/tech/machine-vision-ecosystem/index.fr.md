@@ -8,7 +8,7 @@ cover:
     alt: "Vue d'ensemble du marché"
     relative: false
 customCSS: ["css/machine-vision.css"]
-customJS: ["js/machine-vision.js"]
+customJS: ["js/machine-vision.data.fr.js", "js/machine-vision.js"]
 ---
 
 Le marché de la vision industrielle n'est pas un bloc monolithique : c'est un **écosystème hautement spécialisé et structuré en niveaux**, conçu pour transformer la lumière brute en données industrielles exploitables.
