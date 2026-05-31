@@ -1,0 +1,246 @@
+/* Machine Vision Ecosystem — interactive article styles.
+   Layer: presentation. Loaded per-page via the customCSS front-matter
+   hook (layouts/partials/extend_head.html), not bundled globally.
+   All selectors are namespaced .mv-* so nothing leaks to other pages. */
+
+    .mv-tab-active {
+        border-bottom: 2px solid var(--primary, #2563EB);
+        color: var(--content, #1E293B);
+        font-weight: 600;
+    }
+    .mv-tab-inactive {
+        color: var(--secondary, #64748B);
+        border-bottom: 2px solid transparent;
+    }
+    .mv-tab-inactive:hover {
+        color: var(--content, #334155);
+    }
+
+    /* Flow Connector Logic for large screens */
+    @media (min-width: 768px) {
+        .mv-chain-step::after {
+            content: '→';
+            position: absolute;
+            right: -14px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 24px;
+            color: var(--border, #CBD5E1);
+            z-index: 10;
+        }
+        .mv-chain-step:last-child::after {
+            display: none;
+        }
+    }
+
+    .mv-card {
+        background: var(--entry, #fff);
+        padding: 1.5rem;
+        border-radius: 0.75rem;
+        border: 1px solid var(--border, #e2e8f0);
+        transition: box-shadow 0.2s;
+    }
+    .mv-card:hover {
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+
+    .mv-chain-step {
+        background: var(--entry, #fff);
+        border: 1px solid var(--border, #e2e8f0);
+        border-radius: 0.5rem;
+        padding: 1rem;
+        text-align: left;
+        cursor: pointer;
+        position: relative;
+        transition: all 0.2s;
+    }
+    .mv-chain-step:hover {
+        border-color: var(--primary, #2563EB);
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+    .mv-chain-step.active {
+        border-color: var(--primary, #2563EB);
+        box-shadow: 0 0 0 2px var(--primary, #2563EB);
+        background: color-mix(in srgb, var(--primary, #2563EB) 5%, var(--entry, #fff));
+    }
+
+    .mv-panel {
+        background: var(--entry, #fff);
+        border-radius: 0.75rem;
+        border: 1px solid var(--border, #e2e8f0);
+        padding: 2rem;
+        min-height: 300px;
+    }
+
+    .mv-grid-3 {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 1.5rem;
+        margin-top: 1.5rem;
+    }
+    @media (min-width: 768px) {
+        .mv-grid-3 {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+
+    .mv-grid-5 {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+    }
+    @media (min-width: 768px) {
+        .mv-grid-5 {
+            grid-template-columns: repeat(5, 1fr);
+        }
+    }
+
+    .mv-icon {
+        font-size: 1.5rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .mv-step-label {
+        font-size: 0.65rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--secondary, #64748B);
+        margin-bottom: 0.25rem;
+    }
+
+    .mv-step-title {
+        font-weight: 700;
+        color: var(--content, #1e293b);
+    }
+
+    .mv-step-subtitle {
+        font-size: 0.75rem;
+        color: var(--secondary, #64748B);
+        margin-top: 0.5rem;
+    }
+
+    .mv-section-title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--content, #1e293b);
+        margin-bottom: 0.5rem;
+        border-left: 4px solid var(--primary, #2563EB);
+        padding-left: 1rem;
+    }
+
+    .mv-section-subtitle {
+        font-size: 0.875rem;
+        color: var(--secondary, #64748B);
+        margin-bottom: 1.5rem;
+    }
+
+    .mv-tab-container {
+        display: flex;
+        gap: 0.5rem;
+        background: var(--code-bg, #f1f5f9);
+        padding: 0.25rem;
+        border-radius: 0.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .mv-tab-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.875rem;
+        border-radius: 0.375rem;
+        transition: all 0.2s;
+        font-weight: 500;
+        border: none;
+        cursor: pointer;
+        background: transparent;
+        color: var(--secondary, #64748B);
+    }
+    .mv-tab-btn:hover {
+        background: var(--border, #e2e8f0);
+    }
+    .mv-tab-btn.active {
+        background: var(--primary, #2563EB);
+        color: white;
+    }
+
+    .mv-table {
+        width: 100%;
+        table-layout: auto;
+        text-align: left;
+        font-size: 0.875rem;
+        border-collapse: collapse;
+    }
+    .mv-table thead {
+        background: var(--code-bg, #f8fafc);
+        border-bottom: 1px solid var(--border, #e2e8f0);
+    }
+    .mv-table th {
+        padding: 1rem 1.5rem;
+        font-weight: 600;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--secondary, #64748B);
+        white-space: nowrap;
+    }
+    .mv-table td {
+        padding: 1rem 1.5rem;
+        border-bottom: 1px solid var(--border, #f1f5f9);
+    }
+    .mv-table tbody tr:hover {
+        background: var(--code-bg, #f8fafc);
+    }
+
+    .mv-badge {
+        display: inline-flex;
+        align-items: center;
+        padding: 0.25rem 0.75rem;
+        border-radius: 9999px;
+        font-size: 0.75rem;
+        font-weight: 500;
+        background: color-mix(in srgb, var(--primary, #2563EB) 15%, transparent);
+        color: var(--primary, #2563EB);
+    }
+
+    .mv-actors-box {
+        background: var(--code-bg, #f8fafc);
+        padding: 1.25rem;
+        border-radius: 0.5rem;
+        border: 1px solid var(--border, #e2e8f0);
+    }
+    .mv-actors-label {
+        font-size: 0.7rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--secondary, #64748B);
+        margin-bottom: 0.5rem;
+    }
+
+    .mv-dynamics-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    .mv-dynamics-list li {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 1rem;
+    }
+    .mv-dynamics-list .dot {
+        color: var(--primary, #2563EB);
+        margin-right: 0.75rem;
+        margin-top: 0.25rem;
+    }
+
+    .mv-content-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    @media (min-width: 768px) {
+        .mv-content-grid {
+            grid-template-columns: 1fr 1fr;
+        }
+    }

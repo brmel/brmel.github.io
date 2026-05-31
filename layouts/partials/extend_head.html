@@ -1,0 +1,27 @@
+{{- /*
+  extend_head — per-page asset hook (overrides PaperMod's empty stub).
+
+  Lets any page pull in its own stylesheet(s) and script(s) via front
+  matter instead of inlining <style>/<script> blocks, keeping content,
+  presentation, and behavior in separate layers:
+
+      customCSS: ["css/machine-vision.css"]
+      customJS:  ["js/machine-vision.js"]
+
+  Paths resolve from the assets/ directory. Assets are minified and
+  fingerprinted through Hugo Pipes and scoped to just the pages that ask
+  for them, so other pages don't download them. Scripts are deferred so
+  they run after the document is parsed.
+*/ -}}
+{{- range .Params.customCSS }}
+{{- with resources.Get . }}
+{{- $css := . | minify | fingerprint }}
+<link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
+{{- end }}
+{{- end }}
+{{- range .Params.customJS }}
+{{- with resources.Get . }}
+{{- $js := . | minify | fingerprint }}
+<script defer src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}"></script>
+{{- end }}
+{{- end }}
