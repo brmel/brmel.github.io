@@ -16,25 +16,25 @@ customJS: ["js/machine-vision.js"]
 
 ## نظرة عامة على هيكل السوق
 
-<div style="margin: 2rem 0; text-align: center;">
-    <img src="/tech/machine-vision-ecosystem/market_overview.jpg" alt="نظرة عامة على السوق" style="max-width: 100%; width: 100%; border-radius: 0.75rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
+<div class="mv-figure">
+    <img src="/tech/machine-vision-ecosystem/market_overview.jpg" alt="نظرة عامة على السوق">
 </div>
 
 <div class="mv-grid-3">
     <div class="mv-card">
         <div class="mv-icon">⚗️</div>
-        <h3 style="font-weight: 700; margin-bottom: 0.5rem;">التجزئة والتخصص</h3>
-        <p style="font-size: 0.875rem; color: var(--secondary);">على عكس الإلكترونيات الاستهلاكية، لا توجد شركة واحدة تمتلك سلسلة القيمة بأكملها. خبير العدسات (مثل Fujinon) نادراً ما يصنع البرمجيات، وخبير البرمجيات (مثل MVTec) نادراً ما يبني الروبوتات. هذا يستلزم شبكة قوية من <strong>الشراكات والتكامل</strong>.</p>
+        <h3>التجزئة والتخصص</h3>
+        <p>على عكس الإلكترونيات الاستهلاكية، لا توجد شركة واحدة تمتلك سلسلة القيمة بأكملها. خبير العدسات (مثل Fujinon) نادراً ما يصنع البرمجيات، وخبير البرمجيات (مثل MVTec) نادراً ما يبني الروبوتات. هذا يستلزم شبكة قوية من <strong>الشراكات والتكامل</strong>.</p>
     </div>
     <div class="mv-card">
         <div class="mv-icon">🧩</div>
-        <h3 style="font-weight: 700; margin-bottom: 0.5rem;">تحدي التكامل</h3>
-        <p style="font-size: 0.875rem; color: var(--secondary);">أنظمة الرؤية ليست "وصّل وشغّل" مثل كاميرا الويب. تتطلب إضاءة دقيقة، ومعايرة، وبرمجة منطقية. هذا التعقيد يخلق سوقاً ضخماً <strong>لمتكاملي الأنظمة</strong> الذين يربطون بين مصنعي المعدات والمصانع.</p>
+        <h3>تحدي التكامل</h3>
+        <p>أنظمة الرؤية ليست "وصّل وشغّل" مثل كاميرا الويب. تتطلب إضاءة دقيقة، ومعايرة، وبرمجة منطقية. هذا التعقيد يخلق سوقاً ضخماً <strong>لمتكاملي الأنظمة</strong> الذين يربطون بين مصنعي المعدات والمصانع.</p>
     </div>
     <div class="mv-card">
         <div class="mv-icon">⚙️</div>
-        <h3 style="font-weight: 700; margin-bottom: 0.5rem;">من البكسل إلى القرار</h3>
-        <p style="font-size: 0.875rem; color: var(--secondary);">تتحرك سلسلة القيمة بشكل خطي: <strong>المكوّن</strong> (الالتقاط) ← <strong>النظام</strong> (المعالجة) ← <strong>التطبيق</strong> (القرار). تنتقل الصناعة حالياً من تسليع الأجهزة نحو ذكاء البرمجيات والذكاء الاصطناعي.</p>
+        <h3>من البكسل إلى القرار</h3>
+        <p>تتحرك سلسلة القيمة بشكل خطي: <strong>المكوّن</strong> (الالتقاط) ← <strong>النظام</strong> (المعالجة) ← <strong>التطبيق</strong> (القرار). تنتقل الصناعة حالياً من تسليع الأجهزة نحو ذكاء البرمجيات والذكاء الاصطناعي.</p>
     </div>
 </div>
 
@@ -88,14 +88,14 @@ customJS: ["js/machine-vision.js"]
     <button onclick="mvShowLeaders('integrators')" id="mv-tab-integrators" class="mv-tab-btn">المتكاملون</button>
 </div>
 
-<div class="mv-card" style="padding: 0; overflow: hidden;">
-    <div style="overflow-x: auto;">
-        <table class="mv-table" style="min-width: 100%;">
+<div class="mv-card mv-card--flush">
+    <div class="mv-table-scroll">
+        <table class="mv-table">
             <colgroup>
-                <col style="width: 25%;">
-                <col style="width: 15%;">
-                <col style="width: 25%;">
-                <col style="width: 35%;">
+                <col>
+                <col>
+                <col>
+                <col>
             </colgroup>
             <thead>
                 <tr>

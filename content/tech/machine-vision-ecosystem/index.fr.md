@@ -16,25 +16,25 @@ Le marché de la vision industrielle n'est pas un bloc monolithique : c'est un *
 
 ## Vue d'ensemble du marché
 
-<div style="margin: 2rem 0; text-align: center;">
-    <img src="/tech/machine-vision-ecosystem/market_overview.jpg" alt="Vue d'ensemble du marché" style="max-width: 100%; width: 100%; border-radius: 0.75rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
+<div class="mv-figure">
+    <img src="/tech/machine-vision-ecosystem/market_overview.jpg" alt="Vue d'ensemble du marché">
 </div>
 
 <div class="mv-grid-3">
     <div class="mv-card">
         <div class="mv-icon">⚗️</div>
-        <h3 style="font-weight: 700; margin-bottom: 0.5rem;">Fragmentation et spécialisation</h3>
-        <p style="font-size: 0.875rem; color: var(--secondary);">Contrairement à l'électronique grand public, aucune entreprise ne maîtrise l'ensemble de la chaîne. Un expert en optique (ex. Fujinon) fabrique rarement des logiciels, et un spécialiste logiciel (ex. MVTec) construit rarement des robots. Cela nécessite un solide réseau de <strong>partenariats et d'intégration</strong>.</p>
+        <h3>Fragmentation et spécialisation</h3>
+        <p>Contrairement à l'électronique grand public, aucune entreprise ne maîtrise l'ensemble de la chaîne. Un expert en optique (ex. Fujinon) fabrique rarement des logiciels, et un spécialiste logiciel (ex. MVTec) construit rarement des robots. Cela nécessite un solide réseau de <strong>partenariats et d'intégration</strong>.</p>
     </div>
     <div class="mv-card">
         <div class="mv-icon">🧩</div>
-        <h3 style="font-weight: 700; margin-bottom: 0.5rem;">Le défi de l'intégration</h3>
-        <p style="font-size: 0.875rem; color: var(--secondary);">Les systèmes de vision ne sont pas « plug and play » comme une webcam. Ils nécessitent un éclairage précis, une calibration et une programmation logique. Cette complexité crée un marché considérable pour les <strong>intégrateurs de systèmes</strong> qui font le lien entre les fabricants de matériel et les usines.</p>
+        <h3>Le défi de l'intégration</h3>
+        <p>Les systèmes de vision ne sont pas « plug and play » comme une webcam. Ils nécessitent un éclairage précis, une calibration et une programmation logique. Cette complexité crée un marché considérable pour les <strong>intégrateurs de systèmes</strong> qui font le lien entre les fabricants de matériel et les usines.</p>
     </div>
     <div class="mv-card">
         <div class="mv-icon">⚙️</div>
-        <h3 style="font-weight: 700; margin-bottom: 0.5rem;">Des pixels aux décisions</h3>
-        <p style="font-size: 0.875rem; color: var(--secondary);">La chaîne de valeur suit un flux linéaire : <strong>Composant</strong> (Capture) → <strong>Système</strong> (Traitement) → <strong>Application</strong> (Décision). L'industrie transfère actuellement la valeur de la commoditisation du matériel vers l'intelligence logicielle et l'IA.</p>
+        <h3>Des pixels aux décisions</h3>
+        <p>La chaîne de valeur suit un flux linéaire : <strong>Composant</strong> (Capture) → <strong>Système</strong> (Traitement) → <strong>Application</strong> (Décision). L'industrie transfère actuellement la valeur de la commoditisation du matériel vers l'intelligence logicielle et l'IA.</p>
     </div>
 </div>
 
@@ -88,14 +88,14 @@ Le marché de la vision industrielle n'est pas un bloc monolithique : c'est un *
     <button onclick="mvShowLeaders('integrators')" id="mv-tab-integrators" class="mv-tab-btn">Intégrateurs</button>
 </div>
 
-<div class="mv-card" style="padding: 0; overflow: hidden;">
-    <div style="overflow-x: auto;">
-        <table class="mv-table" style="min-width: 100%;">
+<div class="mv-card mv-card--flush">
+    <div class="mv-table-scroll">
+        <table class="mv-table">
             <colgroup>
-                <col style="width: 25%;">
-                <col style="width: 15%;">
-                <col style="width: 25%;">
-                <col style="width: 35%;">
+                <col>
+                <col>
+                <col>
+                <col>
             </colgroup>
             <thead>
                 <tr>

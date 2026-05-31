@@ -114,22 +114,22 @@ function mvUpdateChain(stageKey) {
     }
 
     panel.innerHTML = `
-        <div style="border-bottom: 1px solid var(--border, #e2e8f0); padding-bottom: 1rem; margin-bottom: 1.5rem;">
-            <h4 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem;">${data.title}</h4>
-            <p style="color: var(--primary, #2563EB); font-weight: 500; font-style: italic; margin-bottom: 0.75rem;">${data.headline}</p>
-            <p style="color: var(--secondary, #64748B); line-height: 1.6;">${data.desc}</p>
+        <div class="mv-panel-head">
+            <h4 class="mv-panel-title">${data.title}</h4>
+            <p class="mv-panel-headline">${data.headline}</p>
+            <p class="mv-panel-desc">${data.desc}</p>
         </div>
 
         <div class="mv-content-grid">
             <div>
-                <h5 style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--secondary, #64748B); margin-bottom: 1rem;">Market Dynamics</h5>
+                <h5 class="mv-dynamics-title">Market Dynamics</h5>
                 <ul class="mv-dynamics-list">
                     ${data.dynamics.map(d => `
                         <li>
                             <span class="dot">●</span>
                             <div>
-                                <span style="font-weight: 600; display: block; font-size: 0.875rem;">${d.label}</span>
-                                <span style="font-size: 0.875rem; color: var(--secondary, #64748B);">${d.text}</span>
+                                <span class="mv-dyn-label">${d.label}</span>
+                                <span class="mv-dyn-text">${d.text}</span>
                             </div>
                         </li>
                     `).join('')}
@@ -138,7 +138,7 @@ function mvUpdateChain(stageKey) {
             
             <div class="mv-actors-box">
                 <div class="mv-actors-label">Key Global Actors</div>
-                <p style="font-size: 0.875rem; font-weight: 500; line-height: 1.6;">${data.actors}</p>
+                <p class="mv-actors-text">${data.actors}</p>
             </div>
         </div>
     `;
@@ -161,9 +161,9 @@ function mvShowLeaders(type) {
     mvLeadersData[type].forEach(item => {
         const row = `
             <tr>
-                <td style="font-weight: 700;">${item.name}</td>
-                <td style="font-size: 0.875rem;">${item.hq}</td>
-                <td style="font-size: 0.875rem;">${item.spec}</td>
+                <td>${item.name}</td>
+                <td>${item.hq}</td>
+                <td>${item.spec}</td>
                 <td><span class="mv-badge">${item.focus}</span></td>
             </tr>
         `;

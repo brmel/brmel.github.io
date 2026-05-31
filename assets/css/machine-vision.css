@@ -244,3 +244,90 @@
             grid-template-columns: 1fr 1fr;
         }
     }
+
+/* --- Helpers replacing former inline style= attributes (layer purity).
+   These cover both the markup in index*.md and the HTML injected by
+   machine-vision.js, so no presentation lives in the content/behavior
+   layers anymore. --- */
+
+.mv-figure {
+    margin: 2rem 0;
+    text-align: center;
+}
+.mv-figure img {
+    max-width: 100%;
+    width: 100%;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.mv-card h3 {
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+.mv-card p {
+    font-size: 0.875rem;
+    color: var(--secondary, #64748B);
+}
+
+/* Card variant that lets a full-bleed table reach the card edges */
+.mv-card--flush {
+    padding: 0;
+    overflow: hidden;
+}
+
+.mv-table-scroll {
+    overflow-x: auto;
+}
+
+/* Leaders table: min width + column proportions (was inline <col style>) */
+.mv-table { min-width: 100%; }
+.mv-table colgroup col:nth-child(1) { width: 25%; }
+.mv-table colgroup col:nth-child(2) { width: 15%; }
+.mv-table colgroup col:nth-child(3) { width: 25%; }
+.mv-table colgroup col:nth-child(4) { width: 35%; }
+.mv-table tbody td:first-child { font-weight: 700; }
+
+/* Chain detail panel — markup injected by machine-vision.js */
+.mv-panel-head {
+    border-bottom: 1px solid var(--border, #e2e8f0);
+    padding-bottom: 1rem;
+    margin-bottom: 1.5rem;
+}
+.mv-panel-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+.mv-panel-headline {
+    color: var(--primary, #2563EB);
+    font-weight: 500;
+    font-style: italic;
+    margin-bottom: 0.75rem;
+}
+.mv-panel-desc {
+    color: var(--secondary, #64748B);
+    line-height: 1.6;
+}
+.mv-dynamics-title {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--secondary, #64748B);
+    margin-bottom: 1rem;
+}
+.mv-dyn-label {
+    font-weight: 600;
+    display: block;
+    font-size: 0.875rem;
+}
+.mv-dyn-text {
+    font-size: 0.875rem;
+    color: var(--secondary, #64748B);
+}
+.mv-actors-text {
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1.6;
+}

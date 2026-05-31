@@ -16,25 +16,25 @@ The Machine Vision market is not a monolith; it is a highly specialized, **tier-
 
 ## Market Structure Overview
 
-<div style="margin: 2rem 0; text-align: center;">
-    <img src="market_overview.jpg" alt="Machine Vision Market Overview" style="max-width: 100%; width: 100%; border-radius: 0.75rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
+<div class="mv-figure">
+    <img src="market_overview.jpg" alt="Machine Vision Market Overview">
 </div>
 
 <div class="mv-grid-3">
     <div class="mv-card">
         <div class="mv-icon">⚗️</div>
-        <h3 style="font-weight: 700; margin-bottom: 0.5rem;">Fragmentation & Specialization</h3>
-        <p style="font-size: 0.875rem; color: var(--secondary);">Unlike consumer electronics, no single company owns the entire stack. A lens expert (e.g., Fujinon) rarely makes software, and a software expert (e.g., MVTec) rarely builds robots. This necessitates a strong network of <strong>partnerships and integration</strong>.</p>
+        <h3>Fragmentation & Specialization</h3>
+        <p>Unlike consumer electronics, no single company owns the entire stack. A lens expert (e.g., Fujinon) rarely makes software, and a software expert (e.g., MVTec) rarely builds robots. This necessitates a strong network of <strong>partnerships and integration</strong>.</p>
     </div>
     <div class="mv-card">
         <div class="mv-icon">🧩</div>
-        <h3 style="font-weight: 700; margin-bottom: 0.5rem;">The Integration Gap</h3>
-        <p style="font-size: 0.875rem; color: var(--secondary);">Vision systems are not "plug and play" like a webcam. They require precise lighting, calibration, and logic programming. This complexity creates a massive market for <strong>System Integrators (SIs)</strong> who bridge the gap between hardware makers and factories.</p>
+        <h3>The Integration Gap</h3>
+        <p>Vision systems are not "plug and play" like a webcam. They require precise lighting, calibration, and logic programming. This complexity creates a massive market for <strong>System Integrators (SIs)</strong> who bridge the gap between hardware makers and factories.</p>
     </div>
     <div class="mv-card">
         <div class="mv-icon">⚙️</div>
-        <h3 style="font-weight: 700; margin-bottom: 0.5rem;">From Pixels to Decisions</h3>
-        <p style="font-size: 0.875rem; color: var(--secondary);">The value chain moves linearly: <strong>Component</strong> (Capture) → <strong>System</strong> (Process) → <strong>Application</strong> (Decide). The industry is currently shifting value from hardware commoditization to software/AI intelligence.</p>
+        <h3>From Pixels to Decisions</h3>
+        <p>The value chain moves linearly: <strong>Component</strong> (Capture) → <strong>System</strong> (Process) → <strong>Application</strong> (Decide). The industry is currently shifting value from hardware commoditization to software/AI intelligence.</p>
     </div>
 </div>
 
@@ -88,14 +88,14 @@ The Machine Vision market is not a monolith; it is a highly specialized, **tier-
     <button onclick="mvShowLeaders('integrators')" id="mv-tab-integrators" class="mv-tab-btn">Integrators</button>
 </div>
 
-<div class="mv-card" style="padding: 0; overflow: hidden;">
-    <div style="overflow-x: auto;">
-        <table class="mv-table" style="min-width: 100%;">
+<div class="mv-card mv-card--flush">
+    <div class="mv-table-scroll">
+        <table class="mv-table">
             <colgroup>
-                <col style="width: 25%;">
-                <col style="width: 15%;">
-                <col style="width: 25%;">
-                <col style="width: 35%;">
+                <col>
+                <col>
+                <col>
+                <col>
             </colgroup>
             <thead>
                 <tr>
