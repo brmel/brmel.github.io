@@ -21,7 +21,7 @@ function mvUpdateChain(stageKey) {
 
         <div class="mv-content-grid">
             <div>
-                <h5 class="mv-dynamics-heading">${mvLabels.dynamics}</h5>
+                <h5 class="mv-dynamics-title">${mvLabels.dynamics}</h5>
                 <ul class="mv-dynamics-list">
                     ${data.dynamics.map(d => `
                         <li>
@@ -52,9 +52,9 @@ function mvShowLeaders(type) {
     if (!tbody || !mvLeadersData[type]) return;
     tbody.innerHTML = mvLeadersData[type].map(item => `
         <tr>
-            <td class="mv-td-name">${item.name}</td>
-            <td class="mv-td-sm">${item.hq}</td>
-            <td class="mv-td-sm">${item.spec}</td>
+            <td>${item.name}</td>
+            <td>${item.hq}</td>
+            <td>${item.spec}</td>
             <td><span class="mv-badge">${item.focus}</span></td>
         </tr>
     `).join('');

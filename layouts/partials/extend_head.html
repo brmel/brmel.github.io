@@ -12,7 +12,16 @@
   fingerprinted through Hugo Pipes and scoped to just the pages that ask
   for them, so other pages don't download them. Scripts are deferred so
   they run after the document is parsed.
+
+  Also sets the document writing direction from the site's configured
+  languageDirection. PaperMod's baseof emits <html dir="auto">, which is
+  unreliable for laying out RTL boxes; making it explicit lets CSS logical
+  properties (margin-inline-*, text-align: start/end) flip correctly on
+  Arabic pages. Runs during head parse, so there is no layout flash.
 */ -}}
+{{- if eq site.Language.LanguageDirection "rtl" }}
+<script>document.documentElement.setAttribute("dir", "rtl");</script>
+{{- end }}
 {{- range .Params.customCSS }}
 {{- with resources.Get . }}
 {{- $css := . | minify | fingerprint }}
