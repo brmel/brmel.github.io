@@ -17,6 +17,10 @@ yarn-error.log*
 *.swp
 *.swo
 
+# Claude Code local/runtime files
+.claude/settings.local.json
+.claude/scheduled_tasks.lock
+
 # macOS
 .DS_Store
 
@@ -26,3 +30,6 @@ yarn-error.log*
 
 # Hugo cache
 .hugo_cache/
+
+# Claude Code session/cron state
+.claude/
