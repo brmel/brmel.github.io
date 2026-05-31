@@ -1,0 +1,110 @@
+/* Short-form video reviews ("reels" shortcode) + map embeds ("gmap" shortcode).
+   Auto-bundled by PaperMod via resources.Match "css/**.css". */
+
+.reels {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+  margin: 1.75rem 0;
+}
+
+.reel-card {
+  position: relative;
+  flex: 0 0 auto;
+  width: min(300px, 80vw);
+  aspect-ratio: 9 / 16;        /* vertical short-form video */
+  margin: 0;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #0b0b0f;
+  box-shadow: 0 6px 22px rgba(0, 0, 0, .18);
+}
+
+.reel-card iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+.reel-play {
+  all: unset;
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  cursor: pointer;
+}
+
+.reel-thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.reel-thumb--ph {
+  background: linear-gradient(135deg, #1f2937, #374151);
+}
+
+.reel-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, .55);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  padding-left: 3px;           /* optically centre the ► glyph */
+  transition: transform .15s ease, background .15s ease;
+}
+
+.reel-play:hover .reel-icon,
+.reel-play:focus-visible .reel-icon {
+  transform: translate(-50%, -50%) scale(1.08);
+  background: rgba(0, 0, 0, .72);
+}
+
+.reel-badge {
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  padding: 3px 9px;
+  border-radius: 999px;
+  font: 600 12px/1 system-ui, -apple-system, sans-serif;
+  color: #fff;
+  background: rgba(0, 0, 0, .6);
+}
+
+.reel-youtube   .reel-badge { background: #ff0000; }
+.reel-instagram .reel-badge { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+.reel-tiktok    .reel-badge { background: #000; border: 1px solid #25f4ee; }
+
+/* Map embeds */
+.gmap {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  margin: 1.75rem 0;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 6px 22px rgba(0, 0, 0, .12);
+}
+
+.gmap iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+@media (max-width: 560px) {
+  .reels { gap: 12px; }
+  .reel-card { width: min(46vw, 300px); }
+}

@@ -1,4 +1,4 @@
 ---
 title: "Aventures"
-description: "Mes voyages et aventures à travers le monde."
+description: "Carnet de Montréal et d'ailleurs — lieux, cuisine et recommandations honnêtes, chaque article s'ouvrant sur une courte vidéo."
 ---

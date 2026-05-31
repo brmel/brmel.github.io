@@ -1,4 +1,4 @@
 ---
 title: "Adventures"
-description: "My travels and adventures around the world."
+description: "Field notes from Montreal and beyond — places, food, and honest recommendations, each article opening with a short video review."
 ---
