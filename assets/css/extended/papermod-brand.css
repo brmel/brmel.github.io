@@ -74,3 +74,38 @@ a:focus-visible,button:focus-visible{
   font-family:var(--font-mono);font-size:var(--t-eyebrow);letter-spacing:var(--track-eyebrow);
   text-transform:uppercase;color:var(--ink-mute);margin:0;
 }
+
+/* ---- article footer: tags · suggest-changes · share — small & discreet ---- */
+/* Reusable across every post type. One quiet hairline row, mono micro-type,
+   accent only on hover. */
+.post-footer{
+  margin-top:var(--space-8);padding-top:var(--space-4);
+  border-top:var(--hairline) solid var(--rule);
+  display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-2) var(--space-4);
+  font-family:var(--font-mono);font-size:11px;
+}
+.post-footer .post-tags{
+  margin:0;padding:0;list-style:none;flex:1 1 60%;
+  display:flex;flex-wrap:wrap;gap:var(--space-2);
+}
+.post-footer .post-tags li a{
+  display:inline-block;padding:2px 9px;border:var(--hairline) solid var(--rule);
+  border-radius:var(--radius-pill);color:var(--ink-mute);
+  text-transform:uppercase;letter-spacing:.07em;font-size:11px;
+  transition:color var(--dur-1) var(--ease-standard),border-color var(--dur-1) var(--ease-standard);
+}
+.post-footer .post-tags li a:hover{color:var(--accent);border-color:var(--accent)}
+/* "Suggest Changes" — a discreet mono link, not a button */
+.post-footer a[rel~="edit"]{
+  color:var(--ink-mute);text-transform:uppercase;letter-spacing:.07em;font-size:11px;
+  text-decoration:none;border-bottom:var(--hairline) solid var(--rule);padding-bottom:1px;
+  transition:color var(--dur-1) var(--ease-standard),border-color var(--dur-1) var(--ease-standard);
+}
+.post-footer a[rel~="edit"]:hover{color:var(--accent);border-color:var(--accent)}
+/* share icons — smaller, muted, accent on hover */
+.post-footer .share-buttons{margin:0;gap:var(--space-2)}
+.post-footer .share-buttons li a svg{
+  height:20px;width:20px;color:var(--ink-mute);
+  transition:color var(--dur-1) var(--ease-standard);
+}
+.post-footer .share-buttons li a:hover svg{color:var(--accent)}

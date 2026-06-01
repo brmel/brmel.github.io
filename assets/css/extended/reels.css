@@ -20,11 +20,11 @@
    Load AFTER tokens.css.
    ========================================================================== */
 
-.reels{margin:var(--space-9) 0 var(--space-7);}
+.reels{margin:var(--space-7) 0 var(--space-7);}
 
 .reels__title{
   font-family:var(--font-serif);font-weight:400;font-size:var(--t-display-s);
-  line-height:1.1;color:var(--ink);margin:0 0 var(--space-2);
+  line-height:1.1;color:var(--ink);margin:0 0 var(--space-1);   /* tighter to the sub */
   display:flex;align-items:center;gap:var(--space-3);
 }
 .reels__title::before{                       /* tiny compass tick */
@@ -33,7 +33,7 @@
 }
 .reels__sub{
   font-family:var(--font-mono);font-size:var(--t-eyebrow);letter-spacing:var(--track-eyebrow);
-  text-transform:uppercase;color:var(--ink-mute);margin:0 0 var(--space-5);
+  text-transform:uppercase;color:var(--ink-mute);margin:0 0 var(--space-3);  /* tighter to the row */
 }
 
 /* ONE row, three equal vertical cards — stays one row at every width, smaller */

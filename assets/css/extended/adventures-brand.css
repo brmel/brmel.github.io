@@ -77,14 +77,30 @@
 }
 .adventures .post-meta b{color:var(--ink-soft);font-weight:500}
 
-/* ---------- cover photo (14px frame) ---------- */
+/* ---------- cover photo (14px frame) + in-body images ---------- */
 .adventures .post-cover,
 .adventures .entry-cover img,
 .post-single .post-content img{
   border-radius:var(--radius-md);
   box-shadow:var(--shadow-photo);
+  display:block;margin-inline:auto;          /* centre */
+  max-width:100%;width:auto;height:auto;
+  max-height:60vh;                            /* cap big vertical shots */
 }
-.adventures figure{margin:var(--space-7) 0}
+.adventures figure{margin:var(--space-7) 0;text-align:center}
+/* in-body photos ~30% smaller than the text column on wider screens
+   (the cover hero stays full-bleed) */
+@media (min-width:768px){
+  .adventures .post-content img{max-width:70%}
+}
+
+/* ---------- map embed (gmap shortcode) — restored + enlarged ~3× ---------- */
+.gmap{
+  position:relative;aspect-ratio:4/3;margin:var(--space-7) 0;
+  border-radius:var(--radius-md);overflow:hidden;
+  box-shadow:var(--shadow-photo);border:var(--hairline) solid var(--rule);
+}
+.gmap iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block}
 .adventures figure figcaption{
   font-family:var(--font-sans);font-style:italic;font-size:var(--t-caption);
   color:var(--ink-soft);margin-top:var(--space-3);
