@@ -1,0 +1,84 @@
+/* ==========================================================================
+   IBRAVERSE — COLOR TOKENS  (03-color/tokens.css)
+   Drop-in for the Operating Protocol. Variable names match protocol.css:
+   --bg, --bg-alt, --ink, --ink-soft, --ink-mute, --rule, --accent, --accent-soft
+   --------------------------------------------------------------------------
+   Theme:    :root = LIGHT (primary)  ·  [data-theme="dark"] = DARK
+   Category: [data-category="…"] swaps ONLY --accent / --accent-soft
+   One accent per asset. Accent appears on: mark · the · dots · category bar · links.
+   ========================================================================== */
+
+:root{
+  /* ---- Neutrals (light, primary) ---- */
+  --bg:        #faf9f6;   /* paper — page background            */
+  --bg-alt:    #f2f0e9;   /* paper-alt — raised band / card     */
+  --ink:       #181715;   /* primary text & titles  17.0:1 AAA  */
+  --ink-soft:  #4a4843;   /* secondary text          8.68:1 AAA */
+  --ink-mute:  #8a877f;   /* captions/meta ≥16px     3.41:1 ⚠   */
+  --rule:      #d9d6cb;   /* hairlines (non-text)               */
+
+  /* aliases for clarity (same values) */
+  --paper:     #faf9f6;
+  --paper-alt: #f2f0e9;
+
+  /* ---- Accent: master = Restaurant rust (default) ---- */
+  --accent:      #a8431a; /* on paper 5.73:1 ✓ AA               */
+  --accent-soft: #c96b3e; /* hover/secondary 3.53:1 ⚠ large/UI  */
+
+  /* ---- Category accent register (light values) ---- */
+  --cat-restaurant:      #a8431a;  --cat-restaurant-soft: #c96b3e;
+  --cat-hike:            #3f6b3a;  --cat-hike-soft:       #5d8a52;
+  --cat-spa:             #2f6b6b;  --cat-spa-soft:        #4f9a9a;
+  --cat-event:           #6b3a5d;  --cat-event-soft:      #9a5d86;
+  --cat-city:            #3a5a6b;  --cat-city-soft:       #5d86a0;
+
+  /* ---- Borders / radii / shadow (paper brand) ---- */
+  --category-bar: 4px;            /* the one accent rule weight   */
+  --hairline: 1px;
+  --radius-md: 14px;              /* the photo frame              */
+  --shadow-photo: 0 2px 8px rgba(24,23,21,.08);
+  --shadow-card:  0 1px 2px rgba(24,23,21,.04), 0 2px 8px rgba(24,23,21,.06);
+}
+
+/* ============================ DARK THEME ================================= */
+[data-theme="dark"]{
+  --bg:        #14130f;   /* warm near-black, never #000        */
+  --bg-alt:    #1c1b16;
+  --ink:       #ece8dc;   /* 15.2:1 AAA                         */
+  --ink-soft:  #b8b3a2;   /* 8.86:1 AAA                         */
+  --ink-mute:  #807c70;   /* 4.46:1 AA(large)                   */
+  --rule:      #2c2a23;
+  --paper:     #14130f;
+  --paper-alt: #1c1b16;
+
+  --accent:      #d97757; /* on bg 5.95:1 ✓ AA                  */
+  --accent-soft: #e89878; /* 8.14:1 ✓ AAA                       */
+
+  /* dark category values */
+  --cat-restaurant:      #d97757;  --cat-restaurant-soft: #e89878;
+  --cat-hike:            #5d8a52;  --cat-hike-soft:       #7aa86f;
+  --cat-spa:             #4f9a9a;  --cat-spa-soft:        #6fb6b6;
+  --cat-event:           #9a5d86;  --cat-event-soft:      #b87da6;
+  --cat-city:            #5d86a0;  --cat-city-soft:       #7da6c0;
+
+  --shadow-photo: 0 2px 8px rgba(0,0,0,.4);
+  --shadow-card:  0 1px 2px rgba(0,0,0,.3), 0 2px 8px rgba(0,0,0,.4);
+}
+
+/* ====================== CATEGORY ACCENT SWAP ============================
+   Apply to <html>, <article>, or any asset root. Swaps ONLY the accent;
+   paper, ink, rule, and type are untouched. Works in light AND dark
+   because each maps to the theme-correct token above.
+   ======================================================================= */
+[data-category="restaurant"]{ --accent: var(--cat-restaurant); --accent-soft: var(--cat-restaurant-soft); }
+[data-category="hike"]      { --accent: var(--cat-hike);       --accent-soft: var(--cat-hike-soft); }
+[data-category="spa"]       { --accent: var(--cat-spa);        --accent-soft: var(--cat-spa-soft); }
+[data-category="event"]     { --accent: var(--cat-event);      --accent-soft: var(--cat-event-soft); }
+[data-category="city"]      { --accent: var(--cat-city);       --accent-soft: var(--cat-city-soft); }
+
+/* ======================= ACCENT ACCESSIBILITY ==========================
+   Event dark accent (#9a5d86) is 3.79:1 — AA for large/UI/dots/bar, but
+   below AA for normal inline links on dark. Site-wide safety rule: links on
+   dark are always underlined, so the underline (not the hue) is the affordance.
+   ======================================================================= */
+[data-theme="dark"] a{ text-decoration: underline; text-underline-offset: 2px; }

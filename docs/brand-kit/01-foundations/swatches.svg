@@ -1,0 +1,173 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1264" height="1090" viewBox="0 0 1264 1090" font-family="sans-serif">
+<defs></defs>
+<rect width="1264" height="1090" fill="#faf9f6"></rect>
+<g transform="translate(48,52) scale(0.8333333333333334)">
+    <circle cx="24" cy="24" r="18" fill="none" stroke="#a8431a" stroke-width="1.6"></circle>
+    <circle cx="24" cy="24" r="11" fill="none" stroke="#a8431a" stroke-width="1.6"></circle>
+    <circle cx="24" cy="24" r="3" fill="#a8431a"></circle>
+    <g stroke="#a8431a" stroke-width="1.6" stroke-linecap="round">
+      <line x1="24" y1="3" x2="24" y2="11"></line>
+      <line x1="24" y1="37" x2="24" y2="45"></line>
+      <line x1="3" y1="24" x2="11" y2="24"></line>
+      <line x1="37" y1="24" x2="45" y2="24"></line>
+    </g></g><text x="104" y="62" font-family="&#39;Instrument Serif&#39;,serif" font-size="34" fill="#181715">Ibraverse</text><text x="104" y="82" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="11" letter-spacing="1.4" fill="#8a877f">FOUNDATIONS · COLOR SYSTEM</text><text x="1216" y="62" text-anchor="end" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="11" letter-spacing="1.4" fill="#8a877f">v1.0 · LIGHT + DARK · WCAG AA</text><line x1="48" y1="108" x2="1216" y2="108" stroke="#d9d6cb" stroke-width="1"></line><text x="48" y="140" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="12" letter-spacing="1.6" fill="#a8431a">01</text><text x="82" y="140" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="12" letter-spacing="1.6" fill="#181715">LIGHT THEME — NEUTRALS</text><g>
+    <rect x="48" y="160" width="181" height="186" rx="10" fill="#ffffff" stroke="#e9e6dd" stroke-width="1"></rect>
+    <rect x="60" y="172" width="157" height="74" rx="6" fill="#faf9f6" stroke="#00000010" stroke-width="1"></rect>
+    <text x="62" y="268" font-family="&#39;Inter Tight&#39;,sans-serif" font-weight="600" font-size="14" fill="#181715">paper</text>
+    <text x="62" y="286" font-family="&#39;Inter Tight&#39;,sans-serif" font-size="11.5" fill="#8a877f">Page bg</text>
+    <text x="62" y="310" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="11" fill="#181715">#faf9f6</text>
+    <text x="62" y="325" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="9.5" fill="#8a877f">250 249 246</text>
+    <text x="62" y="338" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="9.5" fill="#8a877f">45 29 97</text>
+    <text x="215" y="338" text-anchor="end" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="9.5" fill="#8a877f">— surface</text>
+  </g><g>
+    <rect x="245" y="160" width="181" height="186" rx="10" fill="#ffffff" stroke="#e9e6dd" stroke-width="1"></rect>
+    <rect x="257" y="172" width="157" height="74" rx="6" fill="#f2f0e9" stroke="#00000010" stroke-width="1"></rect>
+    <text x="259" y="268" font-family="&#39;Inter Tight&#39;,sans-serif" font-weight="600" font-size="14" fill="#181715">paper-alt</text>
+    <text x="259" y="286" font-family="&#39;Inter Tight&#39;,sans-serif" font-size="11.5" fill="#8a877f">Raised band</text>
+    <text x="259" y="310" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="11" fill="#181715">#f2f0e9</text>
+    <text x="259" y="325" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="9.5" fill="#8a877f">242 240 233</text>
+    <text x="259" y="338" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="9.5" fill="#8a877f">47 26 93</text>
+    <text x="412" y="338" text-anchor="end" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="9.5" fill="#8a877f">1.08 surf</text>
+  </g><g>
+    <rect x="442" y="160" width="181" height="186" rx="10" fill="#ffffff" stroke="#e9e6dd" stroke-width="1"></rect>
+    <rect x="454" y="172" width="157" height="74" rx="6" fill="#181715" stroke="#00000010" stroke-width="1"></rect>
+    <text x="456" y="268" font-family="&#39;Inter Tight&#39;,sans-serif" font-weight="600" font-size="14" fill="#181715">ink</text>
+    <text x="456" y="286" font-family="&#39;Inter Tight&#39;,sans-serif" font-size="11.5" fill="#8a877f">Primary text</text>
+    <text x="456" y="310" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="11" fill="#181715">#181715</text>
+    <text x="456" y="325" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="9.5" fill="#8a877f">24 23 21</text>
+    <text x="456" y="338" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="9.5" fill="#8a877f">40 7 9</text>
+    <text x="609" y="338" text-anchor="end" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="9.5" fill="#8a877f">17.0 AAA</text>
+  </g><g>
+    <rect x="639" y="160" width="181" height="186" rx="10" fill="#ffffff" stroke="#e9e6dd" stroke-width="1"></rect>
+    <rect x="651" y="172" width="157" height="74" rx="6" fill="#4a4843" stroke="#00000010" stroke-width="1"></rect>
+    <text x="653" y="268" font-family="&#39;Inter Tight&#39;,sans-serif" font-weight="600" font-size="14" fill="#181715">ink-soft</text>
+    <text x="653" y="286" font-family="&#39;Inter Tight&#39;,sans-serif" font-size="11.5" fill="#8a877f">Secondary</text>
+    <text x="653" y="310" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="11" fill="#181715">#4a4843</text>
+    <text x="653" y="325" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="9.5" fill="#8a877f">74 72 67</text>
+    <text x="653" y="338" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="9.5" fill="#8a877f">43 5 28</text>
+    <text x="806" y="338" text-anchor="end" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="9.5" fill="#8a877f">8.68 AAA</text>
+  </g><g>
+    <rect x="836" y="160" width="181" height="186" rx="10" fill="#ffffff" stroke="#e9e6dd" stroke-width="1"></rect>
+    <rect x="848" y="172" width="157" height="74" rx="6" fill="#8a877f" stroke="#00000010" stroke-width="1"></rect>
+    <text x="850" y="268" font-family="&#39;Inter Tight&#39;,sans-serif" font-weight="600" font-size="14" fill="#181715">ink-mute</text>
+    <text x="850" y="286" font-family="&#39;Inter Tight&#39;,sans-serif" font-size="11.5" fill="#8a877f">Captions</text>
+    <text x="850" y="310" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="11" fill="#181715">#8a877f</text>
+    <text x="850" y="325" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="9.5" fill="#8a877f">138 135 127</text>
+    <text x="850" y="338" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="9.5" fill="#8a877f">44 4 52</text>
+    <text x="1003" y="338" text-anchor="end" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="9.5" fill="#8a877f">3.41 large</text>
+  </g><g>
+    <rect x="1033" y="160" width="181" height="186" rx="10" fill="#ffffff" stroke="#e9e6dd" stroke-width="1"></rect>
+    <rect x="1045" y="172" width="157" height="74" rx="6" fill="#d9d6cb" stroke="#00000010" stroke-width="1"></rect>
+    <text x="1047" y="268" font-family="&#39;Inter Tight&#39;,sans-serif" font-weight="600" font-size="14" fill="#181715">rule</text>
+    <text x="1047" y="286" font-family="&#39;Inter Tight&#39;,sans-serif" font-size="11.5" fill="#8a877f">Hairline</text>
+    <text x="1047" y="310" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="11" fill="#181715">#d9d6cb</text>
+    <text x="1047" y="325" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="9.5" fill="#8a877f">217 214 203</text>
+    <text x="1047" y="338" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="9.5" fill="#8a877f">47 16 82</text>
+    <text x="1200" y="338" text-anchor="end" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="9.5" fill="#8a877f">non-text</text>
+  </g><text x="48" y="390" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="12" letter-spacing="1.6" fill="#a8431a">02</text><text x="82" y="390" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="12" letter-spacing="1.6" fill="#181715">DARK THEME — NEUTRALS</text><g>
+    <rect x="48" y="410" width="181" height="186" rx="10" fill="#1c1b16" stroke="#2c2a23" stroke-width="1"></rect>
+    <rect x="60" y="422" width="157" height="74" rx="6" fill="#14130f" stroke="#2c2a23" stroke-width="1"></rect>
+    <text x="62" y="518" font-family="&#39;Inter Tight&#39;,sans-serif" font-weight="600" font-size="14" fill="#ece8dc">bg</text>
+    <text x="62" y="536" font-family="&#39;Inter Tight&#39;,sans-serif" font-size="11.5" fill="#807c70">Page bg</text>
+    <text x="62" y="560" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="11" fill="#ece8dc">#14130f</text>
+    <text x="62" y="575" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="9.5" fill="#807c70">20 19 15</text>
+    <text x="62" y="588" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="9.5" fill="#807c70">48 14 7</text>
+    <text x="215" y="588" text-anchor="end" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="9.5" fill="#807c70">— surface</text>
+  </g><g>
+    <rect x="245" y="410" width="181" height="186" rx="10" fill="#1c1b16" stroke="#2c2a23" stroke-width="1"></rect>
+    <rect x="257" y="422" width="157" height="74" rx="6" fill="#1c1b16" stroke="#2c2a23" stroke-width="1"></rect>
+    <text x="259" y="518" font-family="&#39;Inter Tight&#39;,sans-serif" font-weight="600" font-size="14" fill="#ece8dc">bg-alt</text>
+    <text x="259" y="536" font-family="&#39;Inter Tight&#39;,sans-serif" font-size="11.5" fill="#807c70">Raised band</text>
+    <text x="259" y="560" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="11" fill="#ece8dc">#1c1b16</text>
+    <text x="259" y="575" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="9.5" fill="#807c70">28 27 22</text>
+    <text x="259" y="588" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="9.5" fill="#807c70">50 12 10</text>
+    <text x="412" y="588" text-anchor="end" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="9.5" fill="#807c70">1.08 surf</text>
+  </g><g>
+    <rect x="442" y="410" width="181" height="186" rx="10" fill="#1c1b16" stroke="#2c2a23" stroke-width="1"></rect>
+    <rect x="454" y="422" width="157" height="74" rx="6" fill="#ece8dc" stroke="#2c2a23" stroke-width="1"></rect>
+    <text x="456" y="518" font-family="&#39;Inter Tight&#39;,sans-serif" font-weight="600" font-size="14" fill="#ece8dc">ink</text>
+    <text x="456" y="536" font-family="&#39;Inter Tight&#39;,sans-serif" font-size="11.5" fill="#807c70">Primary text</text>
+    <text x="456" y="560" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="11" fill="#ece8dc">#ece8dc</text>
+    <text x="456" y="575" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="9.5" fill="#807c70">236 232 220</text>
+    <text x="456" y="588" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="9.5" fill="#807c70">45 30 89</text>
+    <text x="609" y="588" text-anchor="end" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="9.5" fill="#807c70">15.2 AAA</text>
+  </g><g>
+    <rect x="639" y="410" width="181" height="186" rx="10" fill="#1c1b16" stroke="#2c2a23" stroke-width="1"></rect>
+    <rect x="651" y="422" width="157" height="74" rx="6" fill="#b8b3a2" stroke="#2c2a23" stroke-width="1"></rect>
+    <text x="653" y="518" font-family="&#39;Inter Tight&#39;,sans-serif" font-weight="600" font-size="14" fill="#ece8dc">ink-soft</text>
+    <text x="653" y="536" font-family="&#39;Inter Tight&#39;,sans-serif" font-size="11.5" fill="#807c70">Secondary</text>
+    <text x="653" y="560" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="11" fill="#ece8dc">#b8b3a2</text>
+    <text x="653" y="575" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="9.5" fill="#807c70">184 179 162</text>
+    <text x="653" y="588" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="9.5" fill="#807c70">46 13 68</text>
+    <text x="806" y="588" text-anchor="end" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="9.5" fill="#807c70">8.86 AAA</text>
+  </g><g>
+    <rect x="836" y="410" width="181" height="186" rx="10" fill="#1c1b16" stroke="#2c2a23" stroke-width="1"></rect>
+    <rect x="848" y="422" width="157" height="74" rx="6" fill="#807c70" stroke="#2c2a23" stroke-width="1"></rect>
+    <text x="850" y="518" font-family="&#39;Inter Tight&#39;,sans-serif" font-weight="600" font-size="14" fill="#ece8dc">ink-mute</text>
+    <text x="850" y="536" font-family="&#39;Inter Tight&#39;,sans-serif" font-size="11.5" fill="#807c70">Captions</text>
+    <text x="850" y="560" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="11" fill="#ece8dc">#807c70</text>
+    <text x="850" y="575" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="9.5" fill="#807c70">128 124 112</text>
+    <text x="850" y="588" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="9.5" fill="#807c70">45 7 47</text>
+    <text x="1003" y="588" text-anchor="end" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="9.5" fill="#807c70">4.46 AA*</text>
+  </g><g>
+    <rect x="1033" y="410" width="181" height="186" rx="10" fill="#1c1b16" stroke="#2c2a23" stroke-width="1"></rect>
+    <rect x="1045" y="422" width="157" height="74" rx="6" fill="#2c2a23" stroke="#2c2a23" stroke-width="1"></rect>
+    <text x="1047" y="518" font-family="&#39;Inter Tight&#39;,sans-serif" font-weight="600" font-size="14" fill="#ece8dc">rule</text>
+    <text x="1047" y="536" font-family="&#39;Inter Tight&#39;,sans-serif" font-size="11.5" fill="#807c70">Hairline</text>
+    <text x="1047" y="560" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="11" fill="#ece8dc">#2c2a23</text>
+    <text x="1047" y="575" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="9.5" fill="#807c70">44 42 35</text>
+    <text x="1047" y="588" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="9.5" fill="#807c70">47 11 15</text>
+    <text x="1200" y="588" text-anchor="end" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="9.5" fill="#807c70">non-text</text>
+  </g><text x="48" y="640" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="12" letter-spacing="1.6" fill="#a8431a">03</text><text x="82" y="640" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="12" letter-spacing="1.6" fill="#181715">CATEGORY ACCENTS — SWAP ONLY THIS</text><g>
+    <text x="48" y="692" font-family="&#39;Instrument Serif&#39;,serif" font-size="22" fill="#181715">Restaurant (master)</text>
+    <text x="48" y="712" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="10" letter-spacing="1" fill="#8a877f">CATEGORY</text><rect x="308" y="662" width="300" height="60" rx="8" fill="#faf9f6" stroke="#e9e6dd"></rect>
+    <rect x="320" y="674" width="36" height="36" rx="6" fill="#a8431a"></rect>
+    <circle cx="382" cy="684" r="3.5" fill="#a8431a"></circle><text x="394" y="688" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="13" fill="#181715">#a8431a</text>
+    <text x="370" y="706" font-family="&#39;Inter Tight&#39;,sans-serif" font-size="11" fill="#4a4843">on paper · 5.73:1 ✓ AA</text>
+    <text x="568" y="684" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="9.5" text-anchor="end" fill="#8a877f">LIGHT</text><rect x="628" y="662" width="300" height="60" rx="8" fill="#14130f" stroke="#2c2a23"></rect>
+    <rect x="640" y="674" width="36" height="36" rx="6" fill="#d97757"></rect>
+    <circle cx="702" cy="684" r="3.5" fill="#d97757"></circle><text x="714" y="688" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="13" fill="#ece8dc">#d97757</text>
+    <text x="690" y="706" font-family="&#39;Inter Tight&#39;,sans-serif" font-size="11" fill="#b8b3a2">on bg · 5.95:1 ✓ AA</text>
+    <text x="888" y="684" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="9.5" text-anchor="end" fill="#807c70">DARK</text><g>
+    <text x="48" y="764" font-family="&#39;Instrument Serif&#39;,serif" font-size="22" fill="#181715">Hike</text>
+    <text x="48" y="784" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="10" letter-spacing="1" fill="#8a877f">CATEGORY</text><rect x="308" y="734" width="300" height="60" rx="8" fill="#faf9f6" stroke="#e9e6dd"></rect>
+    <rect x="320" y="746" width="36" height="36" rx="6" fill="#3f6b3a"></rect>
+    <circle cx="382" cy="756" r="3.5" fill="#3f6b3a"></circle><text x="394" y="760" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="13" fill="#181715">#3f6b3a</text>
+    <text x="370" y="778" font-family="&#39;Inter Tight&#39;,sans-serif" font-size="11" fill="#4a4843">on paper · 5.91:1 ✓ AA</text>
+    <text x="568" y="756" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="9.5" text-anchor="end" fill="#8a877f">LIGHT</text><rect x="628" y="734" width="300" height="60" rx="8" fill="#14130f" stroke="#2c2a23"></rect>
+    <rect x="640" y="746" width="36" height="36" rx="6" fill="#5d8a52"></rect>
+    <circle cx="702" cy="756" r="3.5" fill="#5d8a52"></circle><text x="714" y="760" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="13" fill="#ece8dc">#5d8a52</text>
+    <text x="690" y="778" font-family="&#39;Inter Tight&#39;,sans-serif" font-size="11" fill="#b8b3a2">on bg · 4.62:1 ✓ AA</text>
+    <text x="888" y="756" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="9.5" text-anchor="end" fill="#807c70">DARK</text><g>
+    <text x="48" y="836" font-family="&#39;Instrument Serif&#39;,serif" font-size="22" fill="#181715">Spa / Stay</text>
+    <text x="48" y="856" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="10" letter-spacing="1" fill="#8a877f">CATEGORY</text><rect x="308" y="806" width="300" height="60" rx="8" fill="#faf9f6" stroke="#e9e6dd"></rect>
+    <rect x="320" y="818" width="36" height="36" rx="6" fill="#2f6b6b"></rect>
+    <circle cx="382" cy="828" r="3.5" fill="#2f6b6b"></circle><text x="394" y="832" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="13" fill="#181715">#2f6b6b</text>
+    <text x="370" y="850" font-family="&#39;Inter Tight&#39;,sans-serif" font-size="11" fill="#4a4843">on paper · 5.80:1 ✓ AA</text>
+    <text x="568" y="828" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="9.5" text-anchor="end" fill="#8a877f">LIGHT</text><rect x="628" y="806" width="300" height="60" rx="8" fill="#14130f" stroke="#2c2a23"></rect>
+    <rect x="640" y="818" width="36" height="36" rx="6" fill="#4f9a9a"></rect>
+    <circle cx="702" cy="828" r="3.5" fill="#4f9a9a"></circle><text x="714" y="832" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="13" fill="#ece8dc">#4f9a9a</text>
+    <text x="690" y="850" font-family="&#39;Inter Tight&#39;,sans-serif" font-size="11" fill="#b8b3a2">on bg · 5.68:1 ✓ AA</text>
+    <text x="888" y="828" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="9.5" text-anchor="end" fill="#807c70">DARK</text><g>
+    <text x="48" y="908" font-family="&#39;Instrument Serif&#39;,serif" font-size="22" fill="#181715">Event</text>
+    <text x="48" y="928" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="10" letter-spacing="1" fill="#8a877f">CATEGORY</text><rect x="308" y="878" width="300" height="60" rx="8" fill="#faf9f6" stroke="#e9e6dd"></rect>
+    <rect x="320" y="890" width="36" height="36" rx="6" fill="#6b3a5d"></rect>
+    <circle cx="382" cy="900" r="3.5" fill="#6b3a5d"></circle><text x="394" y="904" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="13" fill="#181715">#6b3a5d</text>
+    <text x="370" y="922" font-family="&#39;Inter Tight&#39;,sans-serif" font-size="11" fill="#4a4843">on paper · 8.35:1 ✓ AA</text>
+    <text x="568" y="900" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="9.5" text-anchor="end" fill="#8a877f">LIGHT</text><rect x="628" y="878" width="300" height="60" rx="8" fill="#14130f" stroke="#2c2a23"></rect>
+    <rect x="640" y="890" width="36" height="36" rx="6" fill="#9a5d86"></rect>
+    <circle cx="702" cy="900" r="3.5" fill="#9a5d86"></circle><text x="714" y="904" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="13" fill="#ece8dc">#9a5d86</text>
+    <text x="690" y="922" font-family="&#39;Inter Tight&#39;,sans-serif" font-size="11" fill="#9a5d86">on bg · 3.79:1 ⚠ large</text>
+    <text x="888" y="900" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="9.5" text-anchor="end" fill="#807c70">DARK</text><g>
+    <text x="48" y="980" font-family="&#39;Instrument Serif&#39;,serif" font-size="22" fill="#181715">City / Walk</text>
+    <text x="48" y="1000" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="10" letter-spacing="1" fill="#8a877f">CATEGORY</text><rect x="308" y="950" width="300" height="60" rx="8" fill="#faf9f6" stroke="#e9e6dd"></rect>
+    <rect x="320" y="962" width="36" height="36" rx="6" fill="#3a5a6b"></rect>
+    <circle cx="382" cy="972" r="3.5" fill="#3a5a6b"></circle><text x="394" y="976" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="13" fill="#181715">#3a5a6b</text>
+    <text x="370" y="994" font-family="&#39;Inter Tight&#39;,sans-serif" font-size="11" fill="#4a4843">on paper · 6.99:1 ✓ AA</text>
+    <text x="568" y="972" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="9.5" text-anchor="end" fill="#8a877f">LIGHT</text><rect x="628" y="950" width="300" height="60" rx="8" fill="#14130f" stroke="#2c2a23"></rect>
+    <rect x="640" y="962" width="36" height="36" rx="6" fill="#5d86a0"></rect>
+    <circle cx="702" cy="972" r="3.5" fill="#5d86a0"></circle><text x="714" y="976" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="13" fill="#ece8dc">#5d86a0</text>
+    <text x="690" y="994" font-family="&#39;Inter Tight&#39;,sans-serif" font-size="11" fill="#b8b3a2">on bg · 4.76:1 ✓ AA</text>
+    <text x="888" y="972" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="9.5" text-anchor="end" fill="#807c70">DARK</text><line x1="48" y1="1046" x2="1216" y2="1046" stroke="#d9d6cb"></line>
+  <text x="48" y="1070" font-family="&#39;Inter Tight&#39;,sans-serif" font-size="12" fill="#8a877f">One accent per asset · Accent only on mark, · dots, category bar, links · Add a hue: light ≥4.5:1 on paper, dark ≥4.5:1 on bg (else large/UI-only).</text>
+</g></g></g></g></g></svg>

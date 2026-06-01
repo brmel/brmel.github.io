@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1350" viewBox="0 0 1080 1350"><rect width="1080" height="1350" fill="#faf9f6"></rect><g transform="translate(80,88) scale(1.15)">
+      <circle cx="24" cy="24" r="18" fill="none" stroke="#a8431a" stroke-width="1.6"></circle>
+      <circle cx="24" cy="24" r="11" fill="none" stroke="#a8431a" stroke-width="1.6"></circle>
+      <circle cx="24" cy="24" r="3" fill="#a8431a"></circle>
+      <g stroke="#a8431a" stroke-width="1.6" stroke-linecap="round">
+        <line x1="24" y1="3" x2="24" y2="11"></line><line x1="24" y1="37" x2="24" y2="45"></line>
+        <line x1="3" y1="24" x2="11" y2="24"></line><line x1="37" y1="24" x2="45" y2="24"></line>
+      </g></g><g><circle cx="948" cy="112" r="4" fill="#d9d6cb"></circle><circle cx="974" cy="112" r="6" fill="#a8431a"></circle><circle cx="1000" cy="112" r="4" fill="#d9d6cb"></circle></g><text x="80" y="180" font-family="&#39;JetBrains Mono&#39;,ui-monospace,monospace" font-weight="500" font-size="20" letter-spacing="2.40" fill="#181715">FIELD NOTE № 004<tspan fill="#a8431a"> · </tspan><tspan fill="#181715">RESTAURANT</tspan><tspan fill="#a8431a"> · </tspan><tspan fill="#8a877f">OLD MONTREAL</tspan></text><text x="80" y="278" font-family="&#39;Instrument Serif&#39;,Georgia,serif" font-size="60" fill="#181715" letter-spacing="-0.72" text-anchor="start"><tspan x="80">What I found</tspan></text><g>
+      <rect x="80" y="338" width="920" height="420" rx="14" fill="#eceadf"></rect>
+      <g transform="translate(516,490) scale(1.0)" opacity="0.16"><g transform="translate(0,0) scale(1)">
+      <circle cx="24" cy="24" r="18" fill="none" stroke="#181715" stroke-width="1.6"></circle>
+      <circle cx="24" cy="24" r="11" fill="none" stroke="#181715" stroke-width="1.6"></circle>
+      <circle cx="24" cy="24" r="3" fill="#181715"></circle>
+      <g stroke="#181715" stroke-width="1.6" stroke-linecap="round">
+        <line x1="24" y1="3" x2="24" y2="11"></line><line x1="24" y1="37" x2="24" y2="45"></line>
+        <line x1="3" y1="24" x2="11" y2="24"></line><line x1="37" y1="24" x2="45" y2="24"></line>
+      </g></g></g>
+      <text x="540" y="558" text-anchor="middle" font-family="&#39;JetBrains Mono&#39;,ui-monospace,monospace" font-weight="500" font-size="19" letter-spacing="3" fill="#8a877f">‹ PHOTO ›</text>
+      <text x="540" y="586" text-anchor="middle" font-family="&#39;JetBrains Mono&#39;,ui-monospace,monospace" font-size="13" letter-spacing="0.5" fill="#8a877f">4:5</text>
+      <text x="540" y="610" text-anchor="middle" font-family="&#39;Inter Tight&#39;,system-ui,-apple-system,sans-serif" font-style="italic" font-size="14" fill="#8a877f">golden hour · the dining room</text>
+      <g stroke="#a8431a" stroke-width="2" stroke-linecap="round" opacity="0.85">
+        <path d="M98 368 V356 H110"></path>
+        <path d="M970 356 H982 V368"></path>
+        <path d="M98 728 V740 H110"></path>
+        <path d="M970 740 H982 V728"></path>
+      </g></g><g transform="translate(80,802)"><g transform="translate(0,-2) scale(0.9)" fill="none" stroke="#a8431a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3 V9 a2 2 0 0 0 4 0 V3 M9 9 V21"></path><path d="M16 3 c-2 1 -2 6 0 7 V21"></path></g></g><text x="120" y="822" font-family="&#39;Inter Tight&#39;,system-ui,-apple-system,sans-serif" font-size="30" fill="#181715">11 tables, full by 6:30</text><g transform="translate(80,860)"><g transform="translate(0,-2) scale(0.9)" fill="none" stroke="#a8431a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3 V9 a2 2 0 0 0 4 0 V3 M9 9 V21"></path><path d="M16 3 c-2 1 -2 6 0 7 V21"></path></g></g><text x="120" y="880" font-family="&#39;Inter Tight&#39;,system-ui,-apple-system,sans-serif" font-size="30" fill="#181715">Bread arrives warm</text><g transform="translate(80,918)"><g transform="translate(0,-2) scale(0.9)" fill="none" stroke="#a8431a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3 V9 a2 2 0 0 0 4 0 V3 M9 9 V21"></path><path d="M16 3 c-2 1 -2 6 0 7 V21"></path></g></g><text x="120" y="938" font-family="&#39;Inter Tight&#39;,system-ui,-apple-system,sans-serif" font-size="30" fill="#181715">Cod earns the detour</text><g transform="translate(80,976)"><g transform="translate(0,-2) scale(0.9)" fill="none" stroke="#a8431a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3 V9 a2 2 0 0 0 4 0 V3 M9 9 V21"></path><path d="M16 3 c-2 1 -2 6 0 7 V21"></path></g></g><text x="120" y="996" font-family="&#39;Inter Tight&#39;,system-ui,-apple-system,sans-serif" font-size="30" fill="#181715">Natural-wine list, short</text><g>
+      <line x1="80" y1="1254" x2="1000" y2="1254" stroke="#a8431a" stroke-width="4"></line>
+      <g transform="translate(80,1223) scale(0.74)" fill="none" stroke="#a8431a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3 V9 a2 2 0 0 0 4 0 V3 M9 9 V21"></path><path d="M16 3 c-2 1 -2 6 0 7 V21"></path></g>
+      <text x="104" y="1238" font-family="&#39;JetBrains Mono&#39;,ui-monospace,monospace" font-weight="500" font-size="17" letter-spacing="2" fill="#a8431a">RESTAURANT</text>
+      <text x="1000" y="1238" text-anchor="end" font-family="&#39;JetBrains Mono&#39;,ui-monospace,monospace" font-size="16" letter-spacing="1" fill="#8a877f">SWIPE →</text>
+    </g></svg>

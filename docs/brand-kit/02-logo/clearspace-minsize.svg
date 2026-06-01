@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="560" viewBox="0 0 1040 560">
+<rect width="1040" height="560" fill="#faf9f6"></rect>
+<g transform="translate(40,30) scale(0.62)"><circle cx="24" cy="24" r="18" fill="none" stroke="#a8431a" stroke-width="1.7"></circle><circle cx="24" cy="24" r="11" fill="none" stroke="#a8431a" stroke-width="1.7"></circle><circle cx="24" cy="24" r="3" fill="#a8431a"></circle><g stroke="#a8431a" stroke-width="1.7" stroke-linecap="round"><line x1="24" y1="3" x2="24" y2="11"></line><line x1="24" y1="37" x2="24" y2="45"></line><line x1="3" y1="24" x2="11" y2="24"></line><line x1="37" y1="24" x2="45" y2="24"></line></g></g>
+  <text x="74" y="40" font-family="&#39;Instrument Serif&#39;,Georgia,serif" font-size="26" fill="#181715">Ibraverse</text>
+  <text x="74" y="56" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="10" letter-spacing="1.4" fill="#8a877f">02 · LOGO — CLEAR SPACE &amp; MINIMUM SIZE</text>
+  <line x1="40" y1="76" x2="1000" y2="76" stroke="#d9d6cb"></line>
+<text x="40" y="112" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="11" letter-spacing="1.4" fill="#a8431a">A</text>
+<text x="60" y="112" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="11" letter-spacing="1.4" fill="#4a4843">CLEAR SPACE</text>
+
+<rect x="50" y="80" width="420" height="420" fill="none" stroke="#a8431a" stroke-width="1" stroke-dasharray="5 5" opacity="0.7"></rect>
+
+<g transform="translate(140,170) scale(5)"><circle cx="24" cy="24" r="18" fill="none" stroke="#a8431a" stroke-width="1.6"></circle><circle cx="24" cy="24" r="11" fill="none" stroke="#a8431a" stroke-width="1.6"></circle><circle cx="24" cy="24" r="3" fill="#a8431a"></circle><g stroke="#a8431a" stroke-width="1.6" stroke-linecap="round"><line x1="24" y1="3" x2="24" y2="11"></line><line x1="24" y1="37" x2="24" y2="45"></line><line x1="3" y1="24" x2="11" y2="24"></line><line x1="37" y1="24" x2="45" y2="24"></line></g></g>
+
+<line x1="50" y1="290" x2="140" y2="290" stroke="#181715" stroke-width="1"></line>
+<line x1="50" y1="284" x2="50" y2="296" stroke="#181715"></line>
+<line x1="140" y1="284" x2="140" y2="296" stroke="#181715"></line>
+<text x="95" y="278" text-anchor="middle" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="13" fill="#181715">X</text>
+
+<rect x="140" y="78" width="0" height="0"></rect>
+<text x="50" y="68" font-family="&#39;Inter Tight&#39;,system-ui,sans-serif" font-size="13" fill="#4a4843">Clear space = X on all sides</text>
+<text x="50" y="526" font-family="&#39;Inter Tight&#39;,system-ui,sans-serif" font-size="13" fill="#8a877f">X = the outer ring radius (r18). Nothing — type, edges, other marks — enters this zone.</text>
+
+
+<text x="640" y="112" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="11" letter-spacing="1.4" fill="#a8431a">B</text>
+<text x="660" y="112" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="11" letter-spacing="1.4" fill="#4a4843">MINIMUM SIZE</text>
+
+<g transform="translate(660,150)"><rect x="-8" y="-8" width="32" height="32" fill="#f2f0e9" stroke="#d9d6cb"></rect>
+<g transform="scale(0.3333)"><circle cx="24" cy="24" r="17" fill="none" stroke="#a8431a" stroke-width="3.2"></circle><circle cx="24" cy="24" r="5" fill="#a8431a"></circle><g stroke="#a8431a" stroke-width="3.2" stroke-linecap="round"><line x1="24" y1="2" x2="24" y2="9"></line><line x1="24" y1="39" x2="24" y2="46"></line><line x1="2" y1="24" x2="9" y2="24"></line><line x1="39" y1="24" x2="46" y2="24"></line></g></g></g>
+<text x="710" y="160" font-family="&#39;Inter Tight&#39;,system-ui,sans-serif" font-size="13" fill="#181715">16px — favicon</text>
+<text x="710" y="178" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="10.5" fill="#8a877f">simplified: no inner ring</text>
+
+<g transform="translate(660,210)"><rect x="0" y="0" width="24" height="24" fill="none"></rect><g transform="scale(0.5)"><circle cx="24" cy="24" r="18" fill="none" stroke="#a8431a" stroke-width="2.2"></circle><circle cx="24" cy="24" r="11" fill="none" stroke="#a8431a" stroke-width="2.2"></circle><circle cx="24" cy="24" r="3" fill="#a8431a"></circle><g stroke="#a8431a" stroke-width="2.2" stroke-linecap="round"><line x1="24" y1="3" x2="24" y2="11"></line><line x1="24" y1="37" x2="24" y2="45"></line><line x1="3" y1="24" x2="11" y2="24"></line><line x1="37" y1="24" x2="45" y2="24"></line></g></g></g>
+<text x="710" y="226" font-family="&#39;Inter Tight&#39;,system-ui,sans-serif" font-size="13" fill="#181715">24px — minimum digital (full mark)</text>
+
+<g transform="translate(660,265)"><g transform="translate(0,0) scale(0.5)"><circle cx="24" cy="24" r="18" fill="none" stroke="#a8431a" stroke-width="1.7"></circle><circle cx="24" cy="24" r="11" fill="none" stroke="#a8431a" stroke-width="1.7"></circle><circle cx="24" cy="24" r="3" fill="#a8431a"></circle><g stroke="#a8431a" stroke-width="1.7" stroke-linecap="round"><line x1="24" y1="3" x2="24" y2="11"></line><line x1="24" y1="37" x2="24" y2="45"></line><line x1="3" y1="24" x2="11" y2="24"></line><line x1="37" y1="24" x2="45" y2="24"></line></g></g><text x="30" y="20" font-family="&#39;Instrument Serif&#39;,Georgia,serif" font-size="20" fill="#181715">Ibraverse</text></g>
+<text x="660" y="318" font-family="&#39;Inter Tight&#39;,system-ui,sans-serif" font-size="13" fill="#181715">Horizontal wordmark — min width 120px</text>
+<line x1="640" y1="350" x2="1000" y2="350" stroke="#d9d6cb"></line>
+<text x="640" y="378" font-family="&#39;Inter Tight&#39;,system-ui,sans-serif" font-size="13" fill="#8a877f">Print: mark ≥ 8mm. Below min, use the simplified favicon mark.</text>
+<text x="640" y="400" font-family="&#39;Inter Tight&#39;,system-ui,sans-serif" font-size="13" fill="#8a877f">Optically center the mark; the ring&#39;s mass sits slightly low — nudge up ~1%.</text>
+</svg>

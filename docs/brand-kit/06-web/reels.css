@@ -1,0 +1,117 @@
+/* ============================================================================
+   IBRAVERSE — REELS  (06-web/reels.css)
+   On-brand styling for the `reels` shortcode: ONE row of vertical (9:16)
+   click-to-load thumbnails — YouTube · Instagram · TikTok — under "## Watch"
+   at the article foot. Replaces assets/css/extended/reels.css.
+   Markup it expects (emitted by layouts/shortcodes/reels.html — see
+   hugo-partial.html for the template):
+
+     <section class="reels" data-category="restaurant">
+       <h2 class="reels__title">Watch</h2>
+       <div class="reels__row">
+         <figure class="reel" data-platform="youtube"  data-embed="…">
+           <button class="reel__play" aria-label="Play"><svg…/></button>
+           <span class="reel__platform">YouTube</span>
+           <img class="reel__thumb" src="…" alt="…" loading="lazy">
+         </figure>
+         …Instagram, TikTok…
+       </div>
+     </section>
+   Load AFTER tokens.css.
+   ========================================================================== */
+
+.reels{margin:var(--space-9) 0 var(--space-7);}
+
+.reels__title{
+  font-family:var(--font-serif);font-weight:400;font-size:var(--t-display-s);
+  line-height:1.1;color:var(--ink);margin:0 0 var(--space-2);
+  display:flex;align-items:center;gap:var(--space-3);
+}
+.reels__title::before{                       /* tiny compass tick */
+  content:"";width:10px;height:10px;border-radius:var(--radius-pill);
+  border:2px solid var(--accent);box-sizing:border-box;
+}
+.reels__sub{
+  font-family:var(--font-mono);font-size:var(--t-eyebrow);letter-spacing:var(--track-eyebrow);
+  text-transform:uppercase;color:var(--ink-mute);margin:0 0 var(--space-5);
+}
+
+/* ONE row, three equal vertical cards */
+.reels__row{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-4);
+  max-width:var(--container-content);
+}
+@media (max-width:680px){
+  .reels__row{grid-template-columns:1fr;max-width:360px}
+}
+
+/* the card */
+.reel{
+  position:relative;margin:0;aspect-ratio:9/16;border-radius:var(--radius-md);
+  overflow:hidden;background:var(--paper-alt);box-shadow:var(--shadow-photo);
+  border:var(--hairline) solid var(--rule);cursor:pointer;isolation:isolate;
+}
+.reel__thumb{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform var(--dur-4) var(--ease-out),filter var(--dur-3) var(--ease-standard);
+}
+.reel::after{                                /* readability scrim at the foot */
+  content:"";position:absolute;inset:auto 0 0 0;height:42%;z-index:1;
+  background:linear-gradient(to top,rgba(20,19,15,.62),transparent);
+}
+.reel:hover .reel__thumb{transform:scale(1.04)}
+
+/* platform tag (top-left) */
+.reel__platform{
+  position:absolute;top:var(--space-3);left:var(--space-3);z-index:2;
+  font-family:var(--font-mono);font-weight:500;font-size:11px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--paper);
+  background:color-mix(in srgb,var(--ink) 62%,transparent);
+  backdrop-filter:blur(4px);
+  padding:4px 9px;border-radius:var(--radius-pill);
+}
+/* accent left-tick on the platform tag */
+.reel__platform::before{
+  content:"";display:inline-block;width:6px;height:6px;border-radius:var(--radius-pill);
+  background:var(--accent);margin-right:6px;vertical-align:middle;
+}
+
+/* duration / handle (bottom-left, above scrim) */
+.reel__meta{
+  position:absolute;left:var(--space-3);bottom:var(--space-3);z-index:2;
+  font-family:var(--font-mono);font-size:12px;letter-spacing:.04em;color:var(--paper);
+}
+
+/* the play button — the ONE spring in the system */
+.reel__play{
+  position:absolute;top:50%;left:50%;z-index:3;transform:translate(-50%,-50%);
+  width:64px;height:64px;border-radius:var(--radius-pill);
+  background:color-mix(in srgb,var(--paper) 92%,transparent);
+  border:0;box-shadow:var(--shadow-card);display:grid;place-items:center;cursor:pointer;
+  transition:transform var(--dur-3) var(--ease-spring),box-shadow var(--dur-3) var(--ease-standard),background var(--dur-2);
+}
+.reel__play svg{width:22px;height:22px;margin-left:3px;fill:var(--accent)}
+.reel:hover .reel__play{transform:translate(-50%,-50%) scale(1.06);box-shadow:var(--shadow-pop);
+  background:var(--paper)}
+.reel__play:active{transform:translate(-50%,-50%) scale(.98)}
+.reel__play:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+
+/* ring that draws in on hover */
+.reel__play::after{
+  content:"";position:absolute;inset:-7px;border-radius:var(--radius-pill);
+  border:2px solid var(--accent);opacity:0;transform:scale(.85);
+  transition:opacity var(--dur-3) var(--ease-out),transform var(--dur-3) var(--ease-spring);
+}
+.reel:hover .reel__play::after{opacity:1;transform:scale(1)}
+
+/* loaded state — shortcode swaps in the iframe and sets .is-playing */
+.reel.is-playing .reel__play,
+.reel.is-playing .reel__platform,
+.reel.is-playing .reel__meta,
+.reel.is-playing::after{opacity:0;pointer-events:none;transition:opacity var(--dur-2)}
+.reel.is-playing iframe{position:absolute;inset:0;width:100%;height:100%;border:0;z-index:4}
+
+@media (prefers-reduced-motion:reduce){
+  .reel__play,.reel__thumb,.reel__play::after{transition:opacity var(--dur-2)!important;transform:none!important}
+  .reel:hover .reel__play{transform:translate(-50%,-50%)!important}
+}

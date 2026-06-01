@@ -1,0 +1,112 @@
+<?xml version="1.0"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1060" height="720" viewBox="0 0 1060 720">
+<rect width="1060" height="720" fill="#faf9f6"></rect>
+<g transform="translate(40,28) scale(0.62)"><circle cx="24" cy="24" r="18" fill="none" stroke="#a8431a" stroke-width="1.7"></circle><circle cx="24" cy="24" r="11" fill="none" stroke="#a8431a" stroke-width="1.7"></circle><circle cx="24" cy="24" r="3" fill="#a8431a"></circle><g stroke="#a8431a" stroke-width="1.7" stroke-linecap="round"><line x1="24" y1="3" x2="24" y2="11"></line><line x1="24" y1="37" x2="24" y2="45"></line><line x1="3" y1="24" x2="11" y2="24"></line><line x1="37" y1="24" x2="45" y2="24"></line></g></g>
+<text x="74" y="42" font-family="&#39;Instrument Serif&#39;,Georgia,serif" font-size="26" fill="#181715">Ibraverse</text>
+<text x="74" y="58" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="10" letter-spacing="1.4" fill="#8a877f">03 · CATEGORY ACCENTS + ICONOGRAPHY</text>
+<text x="1020" y="42" text-anchor="end" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="10" letter-spacing="1.2" fill="#8a877f">SWAP ONLY THE ACCENT · ICONS 1.7px ROUND</text>
+<line x1="40" y1="84" x2="1020" y2="84" stroke="#d9d6cb"></line>
+<text x="40" y="112" font-family="&#39;Inter Tight&#39;,system-ui,sans-serif" font-size="13" fill="#4a4843">Each category = one icon (mark&#39;s stroke style) + a light/dark accent pair. Everything else in the system stays identical.</text>
+<g>
+    <line x1="40" y1="130" x2="1020" y2="130" stroke="#d9d6cb"></line>
+    
+    <rect x="40" y="154" width="56" height="56" rx="12" fill="#f2f0e9" stroke="#d9d6cb"></rect>
+    <g transform="translate(56,170) scale(1.0)"><g fill="none" stroke="#a8431a" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3 V9 a2 2 0 0 0 4 0 V3 M9 9 V21"></path><path d="M16 3 c-2 1 -2 6 0 7 V21"></path></g></g>
+    
+    <text x="116" y="180" font-family="&#39;Instrument Serif&#39;,Georgia,serif" font-size="26" fill="#181715">Restaurant<tspan font-family="&#39;JetBrains Mono&#39;,monospace" font-size="10" fill="#a8431a" dx="10" dy="-2">MASTER</tspan></text>
+    <text x="116" y="200" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="11" letter-spacing="0.06em" fill="#8a877f">data-category=&#34;restaurant&#34;</text>
+    
+    <rect x="500" y="156" width="250" height="52" rx="8" fill="#faf9f6" stroke="#d9d6cb"></rect>
+    <rect x="512" y="168" width="28" height="28" rx="6" fill="#a8431a"></rect>
+    <text x="550" y="180" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="12" fill="#181715">#a8431a</text>
+    <text x="550" y="196" font-family="&#39;Inter Tight&#39;,system-ui,sans-serif" font-size="10.5" fill="#4a4843">paper · 5.73:1 ✓</text>
+    <text x="738" y="174" text-anchor="end" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="9" fill="#8a877f">LIGHT</text>
+    
+    <rect x="766" y="156" width="250" height="52" rx="8" fill="#14130f" stroke="#2c2a23"></rect>
+    <rect x="778" y="168" width="28" height="28" rx="6" fill="#d97757"></rect>
+    <text x="816" y="180" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="12" fill="#ece8dc">#d97757</text>
+    <text x="816" y="196" font-family="&#39;Inter Tight&#39;,system-ui,sans-serif" font-size="10.5" fill="#b8b3a2">bg · 5.95:1 ✓</text>
+    <text x="1004" y="174" text-anchor="end" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="9" fill="#807c70">DARK</text>
+  </g><g>
+    <line x1="40" y1="234" x2="1020" y2="234" stroke="#d9d6cb"></line>
+    
+    <rect x="40" y="258" width="56" height="56" rx="12" fill="#f2f0e9" stroke="#d9d6cb"></rect>
+    <g transform="translate(56,274) scale(1.0)"><g fill="none" stroke="#3f6b3a" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20 L9 7 L13 14 L16 9 L22 20 Z"></path><circle cx="18" cy="5" r="1.6" fill="#3f6b3a" stroke="none"></circle></g></g>
+    
+    <text x="116" y="284" font-family="&#39;Instrument Serif&#39;,Georgia,serif" font-size="26" fill="#181715">Hike</text>
+    <text x="116" y="304" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="11" letter-spacing="0.06em" fill="#8a877f">data-category=&#34;hike&#34;</text>
+    
+    <rect x="500" y="260" width="250" height="52" rx="8" fill="#faf9f6" stroke="#d9d6cb"></rect>
+    <rect x="512" y="272" width="28" height="28" rx="6" fill="#3f6b3a"></rect>
+    <text x="550" y="284" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="12" fill="#181715">#3f6b3a</text>
+    <text x="550" y="300" font-family="&#39;Inter Tight&#39;,system-ui,sans-serif" font-size="10.5" fill="#4a4843">paper · 5.91:1 ✓</text>
+    <text x="738" y="278" text-anchor="end" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="9" fill="#8a877f">LIGHT</text>
+    
+    <rect x="766" y="260" width="250" height="52" rx="8" fill="#14130f" stroke="#2c2a23"></rect>
+    <rect x="778" y="272" width="28" height="28" rx="6" fill="#5d8a52"></rect>
+    <text x="816" y="284" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="12" fill="#ece8dc">#5d8a52</text>
+    <text x="816" y="300" font-family="&#39;Inter Tight&#39;,system-ui,sans-serif" font-size="10.5" fill="#b8b3a2">bg · 4.62:1 ✓</text>
+    <text x="1004" y="278" text-anchor="end" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="9" fill="#807c70">DARK</text>
+  </g><g>
+    <line x1="40" y1="338" x2="1020" y2="338" stroke="#d9d6cb"></line>
+    
+    <rect x="40" y="362" width="56" height="56" rx="12" fill="#f2f0e9" stroke="#d9d6cb"></rect>
+    <g transform="translate(56,378) scale(1.0)"><g fill="none" stroke="#2f6b6b" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 20 H19"></path><path d="M8 16 c-2 -2 2 -3 0 -6 c-1 -2 1 -3 0 -4"></path><path d="M12 16 c-2 -2 2 -3 0 -6 c-1 -2 1 -3 0 -4"></path><path d="M16 16 c-2 -2 2 -3 0 -6 c-1 -2 1 -3 0 -4"></path></g></g>
+    
+    <text x="116" y="388" font-family="&#39;Instrument Serif&#39;,Georgia,serif" font-size="26" fill="#181715">Spa / Stay</text>
+    <text x="116" y="408" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="11" letter-spacing="0.06em" fill="#8a877f">data-category=&#34;spa&#34;</text>
+    
+    <rect x="500" y="364" width="250" height="52" rx="8" fill="#faf9f6" stroke="#d9d6cb"></rect>
+    <rect x="512" y="376" width="28" height="28" rx="6" fill="#2f6b6b"></rect>
+    <text x="550" y="388" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="12" fill="#181715">#2f6b6b</text>
+    <text x="550" y="404" font-family="&#39;Inter Tight&#39;,system-ui,sans-serif" font-size="10.5" fill="#4a4843">paper · 5.80:1 ✓</text>
+    <text x="738" y="382" text-anchor="end" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="9" fill="#8a877f">LIGHT</text>
+    
+    <rect x="766" y="364" width="250" height="52" rx="8" fill="#14130f" stroke="#2c2a23"></rect>
+    <rect x="778" y="376" width="28" height="28" rx="6" fill="#4f9a9a"></rect>
+    <text x="816" y="388" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="12" fill="#ece8dc">#4f9a9a</text>
+    <text x="816" y="404" font-family="&#39;Inter Tight&#39;,system-ui,sans-serif" font-size="10.5" fill="#b8b3a2">bg · 5.68:1 ✓</text>
+    <text x="1004" y="382" text-anchor="end" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="9" fill="#807c70">DARK</text>
+  </g><g>
+    <line x1="40" y1="442" x2="1020" y2="442" stroke="#d9d6cb"></line>
+    
+    <rect x="40" y="466" width="56" height="56" rx="12" fill="#f2f0e9" stroke="#d9d6cb"></rect>
+    <g transform="translate(56,482) scale(1.0)"><g fill="none" stroke="#6b3a5d" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8 a2 2 0 0 1 2 -2 H19 a2 2 0 0 1 2 2 v2 a2 2 0 0 0 0 4 v2 a2 2 0 0 1 -2 2 H5 a2 2 0 0 1 -2 -2 v-2 a2 2 0 0 0 0 -4 Z"></path><path d="M14 6 V18" stroke-dasharray="2 2.5"></path></g></g>
+    
+    <text x="116" y="492" font-family="&#39;Instrument Serif&#39;,Georgia,serif" font-size="26" fill="#181715">Event</text>
+    <text x="116" y="512" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="11" letter-spacing="0.06em" fill="#8a877f">data-category=&#34;event&#34;</text>
+    
+    <rect x="500" y="468" width="250" height="52" rx="8" fill="#faf9f6" stroke="#d9d6cb"></rect>
+    <rect x="512" y="480" width="28" height="28" rx="6" fill="#6b3a5d"></rect>
+    <text x="550" y="492" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="12" fill="#181715">#6b3a5d</text>
+    <text x="550" y="508" font-family="&#39;Inter Tight&#39;,system-ui,sans-serif" font-size="10.5" fill="#4a4843">paper · 8.35:1 ✓</text>
+    <text x="738" y="486" text-anchor="end" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="9" fill="#8a877f">LIGHT</text>
+    
+    <rect x="766" y="468" width="250" height="52" rx="8" fill="#14130f" stroke="#2c2a23"></rect>
+    <rect x="778" y="480" width="28" height="28" rx="6" fill="#9a5d86"></rect>
+    <text x="816" y="492" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="12" fill="#ece8dc">#9a5d86</text>
+    <text x="816" y="508" font-family="&#39;Inter Tight&#39;,system-ui,sans-serif" font-size="10.5" fill="#9a5d86">bg · 3.79:1 ⚠ large</text>
+    <text x="1004" y="486" text-anchor="end" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="9" fill="#807c70">DARK</text>
+  </g><g>
+    <line x1="40" y1="546" x2="1020" y2="546" stroke="#d9d6cb"></line>
+    
+    <rect x="40" y="570" width="56" height="56" rx="12" fill="#f2f0e9" stroke="#d9d6cb"></rect>
+    <g transform="translate(56,586) scale(1.0)"><g fill="none" stroke="#3a5a6b" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21 C7 15 5 12.5 5 9 a7 7 0 0 1 14 0 c0 3.5 -2 6 -7 12 Z"></path><circle cx="12" cy="9" r="2.6"></circle></g></g>
+    
+    <text x="116" y="596" font-family="&#39;Instrument Serif&#39;,Georgia,serif" font-size="26" fill="#181715">City / Walk</text>
+    <text x="116" y="616" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="11" letter-spacing="0.06em" fill="#8a877f">data-category=&#34;city&#34;</text>
+    
+    <rect x="500" y="572" width="250" height="52" rx="8" fill="#faf9f6" stroke="#d9d6cb"></rect>
+    <rect x="512" y="584" width="28" height="28" rx="6" fill="#3a5a6b"></rect>
+    <text x="550" y="596" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="12" fill="#181715">#3a5a6b</text>
+    <text x="550" y="612" font-family="&#39;Inter Tight&#39;,system-ui,sans-serif" font-size="10.5" fill="#4a4843">paper · 6.99:1 ✓</text>
+    <text x="738" y="590" text-anchor="end" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="9" fill="#8a877f">LIGHT</text>
+    
+    <rect x="766" y="572" width="250" height="52" rx="8" fill="#14130f" stroke="#2c2a23"></rect>
+    <rect x="778" y="584" width="28" height="28" rx="6" fill="#5d86a0"></rect>
+    <text x="816" y="596" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="12" fill="#ece8dc">#5d86a0</text>
+    <text x="816" y="612" font-family="&#39;Inter Tight&#39;,system-ui,sans-serif" font-size="10.5" fill="#b8b3a2">bg · 4.76:1 ✓</text>
+    <text x="1004" y="590" text-anchor="end" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="9" fill="#807c70">DARK</text>
+  </g>
+<text x="40" y="690" font-family="&#39;Inter Tight&#39;,system-ui,sans-serif" font-size="12" fill="#8a877f">Add a category: hue at L30–32%/S28–40% (light) &amp; L43–50%/S25–32% (dark); verify ≥4.5:1; give it a 1.7px round-cap icon. Nothing else changes.</text>
+</svg>

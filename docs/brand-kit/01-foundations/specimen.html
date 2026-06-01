@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ibraverse — Type Specimen</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#faf9f6; --paper-alt:#f2f0e9; --ink:#181715; --ink-soft:#4a4843;
+    --ink-mute:#8a877f; --rule:#d9d6cb; --accent:#a8431a; --accent-soft:#c96b3e;
+    --serif:'Instrument Serif',Georgia,serif;
+    --sans:'Inter Tight',system-ui,sans-serif;
+    --mono:'JetBrains Mono',ui-monospace,monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.6;
+    padding:64px clamp(20px,6vw,96px) 96px;max-width:1200px;margin:0 auto}
+  .eyebrow{font-family:var(--mono);font-weight:500;font-size:12px;letter-spacing:0.12em;
+    text-transform:uppercase;color:var(--ink);line-height:1.3}
+  .eyebrow .d{color:var(--accent)}
+  .eyebrow .place{color:var(--ink-mute)}
+  header{display:flex;align-items:flex-start;gap:16px;padding-bottom:28px;
+    border-bottom:1px solid var(--rule);margin-bottom:56px}
+  header .wm{display:flex;flex-direction:column;gap:6px}
+  header h1{font-family:var(--serif);font-weight:400;font-size:34px;line-height:1;letter-spacing:-0.005em}
+  header .sub{font-family:var(--mono);font-size:11px;letter-spacing:0.14em;color:var(--ink-mute);text-transform:uppercase}
+  header .meta{margin-left:auto;font-family:var(--mono);font-size:11px;letter-spacing:0.12em;
+    color:var(--ink-mute);text-transform:uppercase;text-align:right;line-height:1.8;padding-top:6px}
+  section{margin-bottom:72px}
+  .sec-label{font-family:var(--mono);font-size:12px;letter-spacing:0.16em;text-transform:uppercase;
+    color:var(--ink-soft);margin-bottom:28px;display:flex;align-items:center;gap:14px}
+  .sec-label::before{content:attr(data-n);color:var(--accent);font-weight:500}
+  .sec-label::after{content:"";flex:1;height:1px;background:var(--rule)}
+
+  .row{display:grid;grid-template-columns:120px 1fr;gap:24px;align-items:baseline;
+    padding:18px 0;border-bottom:1px solid var(--rule)}
+  .row:last-child{border-bottom:none}
+  .row .spec{font-family:var(--mono);font-size:11px;line-height:1.7;color:var(--ink-mute);letter-spacing:0.02em}
+  .row .spec b{color:var(--ink-soft);font-weight:500;display:block;font-size:12px}
+  .serif{font-family:var(--serif);font-weight:400;color:var(--ink)}
+  .sans{font-family:var(--sans);color:var(--ink)}
+  .mono{font-family:var(--mono);color:var(--ink)}
+  .d-xl{font-size:88px;line-height:0.98;letter-spacing:-0.02em}
+  .d-l{font-size:64px;line-height:1;letter-spacing:-0.015em}
+  .d-m{font-size:48px;line-height:1.04;letter-spacing:-0.01em}
+  .d-s{font-size:34px;line-height:1.08;letter-spacing:-0.005em}
+  .t-heading{font-size:24px;line-height:1.25;font-weight:600;letter-spacing:-0.01em}
+  .t-subhead{font-size:20px;line-height:1.4;font-weight:500}
+  .t-bodyl{font-size:18px;line-height:1.62;font-weight:400}
+  .t-body{font-size:16px;line-height:1.6;font-weight:400}
+  .t-caption{font-size:13px;line-height:1.45;font-weight:400;color:var(--ink-soft)}
+  .t-data{font-size:13px;line-height:1.4;letter-spacing:0.04em}
+  .t-eyebrow{font-size:12px;letter-spacing:0.12em;text-transform:uppercase;font-weight:500}
+
+  .specimen-block{background:var(--paper-alt);border:1px solid var(--rule);border-radius:14px;
+    padding:40px 44px;margin-bottom:24px}
+  .specimen-block .d-l{margin:0 0 18px}
+  .specimen-block p{max-width:62ch}
+  .glyphs{font-family:var(--serif);font-size:46px;line-height:1.5;color:var(--ink);letter-spacing:0.02em}
+  .glyphs .mut{color:var(--ink-mute)}
+  .weights{display:flex;flex-wrap:wrap;gap:32px;align-items:baseline}
+  .weights div{font-family:var(--sans);font-size:30px}
+  .weights span{display:block;font-family:var(--mono);font-size:10px;letter-spacing:0.1em;
+    color:var(--ink-mute);text-transform:uppercase;margin-top:4px}
+  .mark{flex:none}
+  footer{margin-top:24px;padding-top:24px;border-top:1px solid var(--rule);
+    font-family:var(--mono);font-size:11px;letter-spacing:0.06em;color:var(--ink-mute)}
+</style>
+</head>
+<body>
+  <header>
+    <svg class="mark" width="42" height="42" viewBox="0 0 48 48" aria-label="Ibraverse compass mark">
+      <circle cx="24" cy="24" r="18" fill="none" stroke="#a8431a" stroke-width="1.6"/>
+      <circle cx="24" cy="24" r="11" fill="none" stroke="#a8431a" stroke-width="1.6"/>
+      <circle cx="24" cy="24" r="3" fill="#a8431a"/>
+      <g stroke="#a8431a" stroke-width="1.6" stroke-linecap="round">
+        <line x1="24" y1="3" x2="24" y2="11"/><line x1="24" y1="37" x2="24" y2="45"/>
+        <line x1="3" y1="24" x2="11" y2="24"/><line x1="37" y1="24" x2="45" y2="24"/>
+      </g>
+    </svg>
+    <div class="wm">
+      <h1>Ibraverse</h1>
+      <div class="sub">Type Specimen — Foundations</div>
+    </div>
+    <div class="meta">Instrument Serif<br>Inter Tight<br>JetBrains Mono</div>
+  </header>
+
+  <section>
+    <div class="sec-label" data-n="01">The eyebrow</div>
+    <div class="specimen-block">
+      <div class="eyebrow" style="margin-bottom:20px">FIELD NOTE № 004 <span class="d">·</span> RESTAURANT <span class="d">·</span> <span class="place">OLD MONTREAL</span></div>
+      <div class="eyebrow" style="margin-bottom:20px">FIELD NOTE № 012 <span class="d">·</span> HIKE <span class="d">·</span> <span class="place">GATINEAU PARK</span></div>
+      <div class="eyebrow">FIELD NOTE № 027 <span class="d">·</span> SPA / STAY <span class="d">·</span> <span class="place">EASTERN TOWNSHIPS</span></div>
+      <p class="t-caption" style="margin-top:22px">JetBrains Mono 500 · 12px · 0.12em tracking · uppercase. Dots in accent, place in ink-mute.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-label" data-n="02">Display scale — Instrument Serif</div>
+    <div class="row"><div class="spec"><b>display-xl</b>88 / 5.5rem<br>lh 0.98 · −0.02em</div><div class="serif d-xl">Field Notes</div></div>
+    <div class="row"><div class="spec"><b>display-l</b>64 / 4rem<br>lh 1.0 · −0.015em</div><div class="serif d-l">A quiet table by the window</div></div>
+    <div class="row"><div class="spec"><b>display-m</b>48 / 3rem<br>lh 1.04 · −0.01em</div><div class="serif d-m">The ridge clears just after seven</div></div>
+    <div class="row"><div class="spec"><b>display-s</b>34 / 2.125rem<br>lh 1.08</div><div class="serif d-s">Steam, cedar, and a cold plunge</div></div>
+  </section>
+
+  <section>
+    <div class="sec-label" data-n="03">Text scale — Inter Tight</div>
+    <div class="row"><div class="spec"><b>heading</b>24px · 600<br>lh 1.25</div><div class="sans t-heading">What I actually ordered</div></div>
+    <div class="row"><div class="spec"><b>subhead</b>20px · 500<br>lh 1.40</div><div class="sans t-subhead">Worth the detour, if you book the early seating.</div></div>
+    <div class="row"><div class="spec"><b>body-l</b>18px · 400<br>lh 1.62</div><div class="sans t-bodyl" style="max-width:62ch">The room is small — eleven tables — and it fills by half past six. I came for the cod and stayed for the bread, which arrives warm and disappears faster than is dignified. One con: the playlist fights the room.</div></div>
+    <div class="row"><div class="spec"><b>body</b>16px · 400<br>lh 1.60</div><div class="sans t-body" style="max-width:64ch">Default running text and UI. Set to a 60–75 character measure for comfortable reading, with text-wrap: pretty to avoid ragged orphans at the end of a paragraph.</div></div>
+    <div class="row"><div class="spec"><b>caption</b>13px · 400<br>lh 1.45</div><div class="sans t-caption">Golden hour, handheld. &lt;PHOTO&gt; — the dining room at 18:40.</div></div>
+  </section>
+
+  <section>
+    <div class="sec-label" data-n="04">Data &amp; labels — JetBrains Mono</div>
+    <div class="row"><div class="spec"><b>data</b>13px · 400<br>0.04em</div><div class="mono t-data">№ 004 · 4.6 / 5 · 18:40 · $$$ · OLD MONTREAL · QC</div></div>
+    <div class="row"><div class="spec"><b>eyebrow</b>12px · 500<br>0.12em · upper</div><div class="mono t-eyebrow">FIELD NOTE · RESTAURANT · VERDICT</div></div>
+    <div class="row"><div class="spec"><b>micro</b>11px · 400<br>0.06em</div><div class="mono" style="font-size:11px;letter-spacing:0.06em;color:var(--ink-mute)">© 2026 IBRAVERSE · IBRAVERSE.CA · ALL FIELD NOTES ARE FIRST-PERSON</div></div>
+  </section>
+
+  <section>
+    <div class="sec-label" data-n="05">Specimen — title at work</div>
+    <div class="specimen-block">
+      <div class="eyebrow" style="margin-bottom:14px">FIELD NOTE № 004 <span class="d">·</span> RESTAURANT <span class="d">·</span> <span class="place">OLD MONTREAL</span></div>
+      <div class="serif d-l">A quiet table<br>by the window</div>
+      <p class="t-bodyl" style="margin-top:18px;color:var(--ink-soft)">Eleven tables, warm bread, and a cod that earns the detour. The room runs loud after seven — go early, sit by the glass, order the thing they're nervous about.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-label" data-n="06">Glyphs &amp; weights</div>
+    <div class="specimen-block">
+      <div class="glyphs">ABCDEFGHIJKLM<br>NOPQRSTUVWXYZ<br><span class="mut">abcdefghijklmnopqrstuvwxyz</span><br><span class="mut">0123456789 № · — & ?!</span></div>
+      <div class="weights" style="margin-top:32px">
+        <div>Inter Tight<span>Regular 400</span></div>
+        <div style="font-weight:500">Inter Tight<span>Medium 500</span></div>
+        <div style="font-weight:600">Inter Tight<span>Semibold 600</span></div>
+        <div class="mono" style="font-size:26px">Mono 400<span>JetBrains 400</span></div>
+        <div class="mono" style="font-size:26px;font-weight:500">Mono 500<span>JetBrains 500</span></div>
+      </div>
+    </div>
+  </section>
+
+  <footer>IBRAVERSE · TYPE SPECIMEN v1.0 · INSTRUMENT SERIF + INTER TIGHT + JETBRAINS MONO · NO OTHER FAMILIES</footer>
+</body>
+</html>

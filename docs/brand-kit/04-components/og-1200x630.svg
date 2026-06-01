@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630"><rect width="1200" height="630" fill="#faf9f6"></rect><g>
+      <rect x="620" y="0" width="580" height="630" rx="14" fill="#eceadf"></rect>
+      <g transform="translate(886,257) scale(1.0)" opacity="0.16"><g transform="translate(0,0) scale(1)">
+      <circle cx="24" cy="24" r="18" fill="none" stroke="#181715" stroke-width="1.6"></circle>
+      <circle cx="24" cy="24" r="11" fill="none" stroke="#181715" stroke-width="1.6"></circle>
+      <circle cx="24" cy="24" r="3" fill="#181715"></circle>
+      <g stroke="#181715" stroke-width="1.6" stroke-linecap="round">
+        <line x1="24" y1="3" x2="24" y2="11"></line><line x1="24" y1="37" x2="24" y2="45"></line>
+        <line x1="3" y1="24" x2="11" y2="24"></line><line x1="37" y1="24" x2="45" y2="24"></line>
+      </g></g></g>
+      <text x="910" y="325" text-anchor="middle" font-family="&#39;JetBrains Mono&#39;,ui-monospace,monospace" font-weight="500" font-size="19" letter-spacing="3" fill="#8a877f">‹ PHOTO ›</text>
+      <text x="910" y="353" text-anchor="middle" font-family="&#39;JetBrains Mono&#39;,ui-monospace,monospace" font-size="13" letter-spacing="0.5" fill="#8a877f"></text>
+      <text x="910" y="377" text-anchor="middle" font-family="&#39;Inter Tight&#39;,system-ui,-apple-system,sans-serif" font-style="italic" font-size="14" fill="#8a877f">golden hour · the dining room</text>
+      <g stroke="#a8431a" stroke-width="2" stroke-linecap="round" opacity="0.85">
+        <path d="M638 30 V18 H650"></path>
+        <path d="M1170 18 H1182 V30"></path>
+        <path d="M638 600 V612 H650"></path>
+        <path d="M1170 612 H1182 V600"></path>
+      </g></g><rect width="620" height="630" fill="#faf9f6"></rect><line x1="620" y1="0" x2="620" y2="630" stroke="#d9d6cb"></line><g transform="translate(64,56) scale(1.1)">
+      <circle cx="24" cy="24" r="18" fill="none" stroke="#a8431a" stroke-width="1.6"></circle>
+      <circle cx="24" cy="24" r="11" fill="none" stroke="#a8431a" stroke-width="1.6"></circle>
+      <circle cx="24" cy="24" r="3" fill="#a8431a"></circle>
+      <g stroke="#a8431a" stroke-width="1.6" stroke-linecap="round">
+        <line x1="24" y1="3" x2="24" y2="11"></line><line x1="24" y1="37" x2="24" y2="45"></line>
+        <line x1="3" y1="24" x2="11" y2="24"></line><line x1="37" y1="24" x2="45" y2="24"></line>
+      </g></g><text x="130" y="92" font-family="&#39;Instrument Serif&#39;,Georgia,serif" font-size="34" fill="#181715">Ibraverse</text><text x="64" y="170" font-family="&#39;JetBrains Mono&#39;,ui-monospace,monospace" font-weight="500" font-size="17" letter-spacing="2.04" fill="#181715">FIELD NOTE № 004<tspan fill="#a8431a"> · </tspan><tspan fill="#181715">RESTAURANT</tspan><tspan fill="#a8431a"> · </tspan><tspan fill="#8a877f">OLD MONTREAL</tspan></text><text x="64" y="240" font-family="&#39;Instrument Serif&#39;,Georgia,serif" font-size="56" fill="#181715" letter-spacing="-0.67" text-anchor="start"><tspan x="64">A quiet table by</tspan><tspan x="64" dy="54.9">the window</tspan></text><g>
+      <line x1="64" y1="566" x2="556" y2="566" stroke="#a8431a" stroke-width="4"></line>
+      <g transform="translate(64,535) scale(0.74)" fill="none" stroke="#a8431a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3 V9 a2 2 0 0 0 4 0 V3 M9 9 V21"></path><path d="M16 3 c-2 1 -2 6 0 7 V21"></path></g>
+      <text x="88" y="550" font-family="&#39;JetBrains Mono&#39;,ui-monospace,monospace" font-weight="500" font-size="17" letter-spacing="2" fill="#a8431a">RESTAURANT</text>
+      <text x="556" y="550" text-anchor="end" font-family="&#39;JetBrains Mono&#39;,ui-monospace,monospace" font-size="16" letter-spacing="1" fill="#8a877f">4.2 / 5</text>
+    </g></svg>

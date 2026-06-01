@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="en" data-theme="light" data-category="restaurant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ibraverse — Web UI Kit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ---- tokens (mirrors 03-color/tokens.css) ---- */
+:root{
+  --bg:#faf9f6;--bg-alt:#f2f0e9;--ink:#181715;--ink-soft:#4a4843;--ink-mute:#8a877f;--rule:#d9d6cb;
+  --accent:#a8431a;--accent-soft:#c96b3e;--photo:#eceadf;
+  --serif:'Instrument Serif',Georgia,serif;--sans:'Inter Tight',system-ui,sans-serif;--mono:'JetBrains Mono',ui-monospace,monospace;
+  --radius-md:14px;--radius-sm:8px;--shadow-photo:0 2px 8px rgba(24,23,21,.08);
+  --shadow-card:0 1px 2px rgba(24,23,21,.04),0 2px 8px rgba(24,23,21,.06);
+  --dur-1:120ms;--dur-2:200ms;--dur-3:320ms;--ease:cubic-bezier(.2,0,0,1);--ease-out:cubic-bezier(.16,1,.3,1);
+}
+[data-theme="dark"]{--bg:#14130f;--bg-alt:#1c1b16;--ink:#ece8dc;--ink-soft:#b8b3a2;--ink-mute:#807c70;--rule:#2c2a23;--accent:#d97757;--accent-soft:#e89878;--photo:#23221b;--shadow-photo:0 2px 8px rgba(0,0,0,.4);--shadow-card:0 1px 2px rgba(0,0,0,.3),0 2px 8px rgba(0,0,0,.4);}
+[data-category="restaurant"]{--accent:#a8431a;--accent-soft:#c96b3e}[data-theme="dark"][data-category="restaurant"]{--accent:#d97757;--accent-soft:#e89878}
+[data-category="hike"]{--accent:#3f6b3a;--accent-soft:#5d8a52}[data-theme="dark"][data-category="hike"]{--accent:#5d8a52;--accent-soft:#7aa86f}
+[data-category="spa"]{--accent:#2f6b6b;--accent-soft:#4f9a9a}[data-theme="dark"][data-category="spa"]{--accent:#4f9a9a;--accent-soft:#6fb6b6}
+[data-category="event"]{--accent:#6b3a5d;--accent-soft:#9a5d86}[data-theme="dark"][data-category="event"]{--accent:#9a5d86;--accent-soft:#b87da6}
+[data-category="city"]{--accent:#3a5a6b;--accent-soft:#5d86a0}[data-theme="dark"][data-category="city"]{--accent:#5d86a0;--accent-soft:#7da6c0}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-font-smoothing:antialiased}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.6;transition:background var(--dur-3) var(--ease),color var(--dur-3) var(--ease)}
+[data-theme="dark"] a{text-underline-offset:2px}
+
+/* control bar */
+.controls{position:sticky;top:0;z-index:20;display:flex;gap:18px;align-items:center;flex-wrap:wrap;
+  background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--rule);padding:14px clamp(20px,5vw,64px)}
+.controls .brand{display:flex;align-items:center;gap:10px;font-family:var(--serif);font-size:22px}
+.controls .grp{display:flex;gap:6px;margin-left:auto;align-items:center}
+.controls .lbl{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-mute);margin-right:4px}
+.seg{display:flex;border:1px solid var(--rule);border-radius:999px;overflow:hidden}
+.seg button{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;
+  background:transparent;color:var(--ink-mute);border:0;padding:7px 12px;cursor:pointer;transition:all var(--dur-2) var(--ease)}
+.seg button[aria-pressed="true"]{background:var(--accent);color:var(--bg)}
+.cat-dot{width:14px;height:14px;border-radius:999px;background:var(--accent);border:1px solid color-mix(in srgb,var(--ink) 12%,transparent)}
+
+main{max-width:960px;margin:0 auto;padding:56px clamp(20px,5vw,64px) 96px}
+section{margin-bottom:72px}
+.kicker{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);
+  display:flex;align-items:center;gap:14px;margin-bottom:24px}
+.kicker::before{content:attr(data-n);color:var(--accent);font-weight:500}
+.kicker::after{content:"";flex:1;height:1px;background:var(--rule)}
+
+/* eyebrow */
+.eyebrow{font-family:var(--mono);font-weight:500;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);line-height:1.3}
+.eyebrow .d{color:var(--accent)}.eyebrow .pl{color:var(--ink-mute)}
+
+/* category badge */
+.badge{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-weight:500;font-size:12px;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--accent);border:1px solid var(--accent);
+  border-radius:999px;padding:6px 14px 6px 10px}
+.badge svg{width:16px;height:16px}
+
+/* article header */
+.article-head{border-bottom:1px solid var(--rule);padding-bottom:32px}
+.article-head .eyebrow{margin-bottom:18px}
+.article-head h1{font-family:var(--serif);font-weight:400;font-size:clamp(2.5rem,1.5rem+4vw,4rem);line-height:1.0;letter-spacing:-.015em;margin-bottom:18px;text-wrap:balance}
+.article-head .lede{font-size:20px;line-height:1.45;color:var(--ink-soft);max-width:60ch;font-weight:500}
+.article-head .meta{display:flex;gap:18px;flex-wrap:wrap;margin-top:22px;font-family:var(--mono);font-size:13px;letter-spacing:.03em;color:var(--ink-mute)}
+.article-head .meta b{color:var(--ink-soft);font-weight:500}
+.cat-bar{height:4px;background:var(--accent);border-radius:2px;width:88px;margin-bottom:26px}
+
+/* photo */
+.photo{position:relative;border-radius:var(--radius-md);background:var(--photo);box-shadow:var(--shadow-photo);
+  display:grid;place-items:center;color:var(--ink-mute);overflow:hidden}
+.photo .tag{text-align:center;font-family:var(--mono);font-size:13px;letter-spacing:2px}
+.photo .tag i{display:block;font-family:var(--sans);font-style:italic;font-size:13px;letter-spacing:0;margin-top:6px;color:var(--ink-mute)}
+.photo.r169{aspect-ratio:16/9}.photo.r32{aspect-ratio:3/2}
+
+/* body copy */
+.prose{max-width:62ch}
+.prose p{font-size:18px;line-height:1.62;margin:0 0 20px}
+a.link{color:var(--accent);text-decoration:none;background:linear-gradient(var(--accent),var(--accent)) no-repeat;
+  background-size:0% 1.5px;background-position:0 100%;transition:background-size var(--dur-1) var(--ease),color var(--dur-1)}
+a.link:hover{background-size:100% 1.5px;color:var(--accent-soft)}
+[data-theme="dark"] a.link{background-size:100% 1.5px}
+
+/* recommendations list */
+.recs{display:flex;flex-direction:column;gap:0;border-top:1px solid var(--rule)}
+.rec{display:grid;grid-template-columns:auto 1fr auto;gap:18px;align-items:center;padding:18px 4px;border-bottom:1px solid var(--rule)}
+.rec .idx{font-family:var(--mono);font-size:13px;color:var(--accent)}
+.rec .name{font-family:var(--serif);font-size:24px;line-height:1.1}
+.rec .desc{font-size:14px;color:var(--ink-mute)}
+.rec .score{font-family:var(--mono);font-size:14px;color:var(--ink-soft);white-space:nowrap}
+
+/* verdict block */
+.verdict{background:var(--bg-alt);border:1px solid var(--rule);border-radius:var(--radius-md);padding:8px 28px 22px;position:relative}
+.verdict::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--accent);border-radius:var(--radius-md) 0 0 var(--radius-md)}
+.verdict .vh{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);padding:18px 0 6px}
+.verdict .vrow{display:grid;grid-template-columns:1fr auto;gap:16px;align-items:baseline;padding:14px 0;border-top:1px solid var(--rule)}
+.verdict .vrow .k{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-mute)}
+.verdict .vrow .v{font-size:18px;font-weight:500;text-align:right;text-wrap:balance}
+.verdict .vrow.con .v{color:var(--accent)}
+.verdict .rating{font-family:var(--serif);font-size:30px}
+
+/* buttons */
+.btns{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+.btn{font-family:var(--sans);font-weight:600;font-size:15px;border-radius:999px;padding:12px 22px;cursor:pointer;
+  border:1.5px solid transparent;transition:transform var(--dur-2) var(--ease),background var(--dur-2),color var(--dur-2),border-color var(--dur-2);text-decoration:none;display:inline-flex;gap:8px;align-items:center}
+.btn:active{transform:scale(.98)}
+.btn-primary{background:var(--accent);color:var(--bg)}
+.btn-primary:hover{background:var(--accent-soft)}
+.btn-ghost{background:transparent;color:var(--accent);border-color:var(--accent)}
+.btn-ghost:hover{background:color-mix(in srgb,var(--accent) 8%,transparent)}
+.btn-quiet{background:transparent;color:var(--ink-soft);border-color:var(--rule)}
+.btn-quiet:hover{border-color:var(--ink-mute);color:var(--ink)}
+
+/* tags */
+.tags{display:flex;gap:8px;flex-wrap:wrap}
+.tag{font-family:var(--mono);font-size:12px;letter-spacing:.04em;color:var(--ink-soft);background:var(--bg-alt);
+  border:1px solid var(--rule);border-radius:var(--radius-sm);padding:5px 11px;transition:all var(--dur-2) var(--ease)}
+.tag:hover{border-color:var(--accent);color:var(--accent)}
+.tag .h{color:var(--accent)}
+
+/* links inline demo */
+.linkrow{display:flex;gap:28px;flex-wrap:wrap;font-size:17px}
+
+/* footer */
+.site-footer{border-top:1px solid var(--rule);background:var(--bg-alt);margin-top:40px}
+.site-footer .in{max-width:960px;margin:0 auto;padding:40px clamp(20px,5vw,64px);display:flex;gap:32px;flex-wrap:wrap;align-items:flex-start}
+.site-footer .wm{display:flex;align-items:center;gap:12px;font-family:var(--serif);font-size:26px}
+.site-footer nav{display:flex;gap:22px;flex-wrap:wrap;margin-left:auto;font-family:var(--mono);font-size:13px;letter-spacing:.04em}
+.site-footer nav a{color:var(--ink-soft);text-decoration:none}
+.site-footer nav a:hover{color:var(--accent)}
+.site-footer .copy{flex-basis:100%;font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--ink-mute);padding-top:22px;border-top:1px solid var(--rule);margin-top:8px}
+
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+@media(max-width:680px){.grid2{grid-template-columns:1fr}}
+.note{font-family:var(--mono);font-size:11px;color:var(--ink-mute);margin-top:12px;letter-spacing:.02em}
+</style>
+</head>
+<body>
+<!-- mark symbol -->
+<svg width="0" height="0" style="position:absolute"><symbol id="mark" viewBox="0 0 48 48">
+  <circle cx="24" cy="24" r="18" fill="none" stroke="currentColor" stroke-width="1.6"/>
+  <circle cx="24" cy="24" r="11" fill="none" stroke="currentColor" stroke-width="1.6"/>
+  <circle cx="24" cy="24" r="3" fill="currentColor"/>
+  <g stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+    <line x1="24" y1="3" x2="24" y2="11"/><line x1="24" y1="37" x2="24" y2="45"/><line x1="3" y1="24" x2="11" y2="24"/><line x1="37" y1="24" x2="45" y2="24"/></g>
+</symbol>
+<symbol id="ic-restaurant" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3 V9 a2 2 0 0 0 4 0 V3 M9 9 V21"/><path d="M16 3 c-2 1 -2 6 0 7 V21"/></g></symbol>
+</svg>
+
+<div class="controls">
+  <span class="brand"><svg width="26" height="26" style="color:var(--accent)"><use href="#mark"/></svg> Ibraverse</span>
+  <span style="font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--ink-mute);text-transform:uppercase">Web UI Kit</span>
+  <div class="grp">
+    <span class="lbl">Theme</span>
+    <div class="seg" id="theme"><button data-t="light" aria-pressed="true">Light</button><button data-t="dark" aria-pressed="false">Dark</button></div>
+    <span class="lbl" style="margin-left:14px">Category</span>
+    <div class="seg" id="cat">
+      <button data-c="restaurant" aria-pressed="true">Rest</button><button data-c="hike">Hike</button><button data-c="spa">Spa</button><button data-c="event">Event</button><button data-c="city">City</button>
+    </div>
+    <span class="cat-dot" title="current accent"></span>
+  </div>
+</div>
+
+<main>
+  <!-- Article header -->
+  <section>
+    <div class="kicker" data-n="01">Article header</div>
+    <div class="cat-bar"></div>
+    <header class="article-head">
+      <div class="eyebrow">FIELD NOTE № 004 <span class="d">·</span> <span id="eb-cat">RESTAURANT</span> <span class="d">·</span> <span class="pl">OLD MONTREAL</span></div>
+      <h1 id="eb-title">A quiet table by the window</h1>
+      <p class="lede">Eleven tables, warm bread, and a cod that earns the detour — if you take the early seating and sit by the glass.</p>
+      <div class="meta"><span><b>By</b> Ibraverse</span><span><b>May 2026</b></span><span><b>6 min</b> read</span><span class="badge" style="border:none;padding:0;color:var(--ink-mute)">№ 004</span></div>
+    </header>
+    <div class="photo r169" style="margin-top:28px"><div class="tag">‹ PHOTO › · 16:9<i>golden hour · the dining room</i></div></div>
+  </section>
+
+  <!-- Eyebrow + badge -->
+  <section>
+    <div class="kicker" data-n="02">Eyebrow &amp; category badge</div>
+    <div class="grid2">
+      <div>
+        <div class="eyebrow" style="margin-bottom:18px">FIELD NOTE № 004 <span class="d">·</span> <span id="eb-cat2">RESTAURANT</span> <span class="d">·</span> <span class="pl">OLD MONTREAL</span></div>
+        <p class="note">JetBrains Mono · 13px · 0.12em · dots = accent · place = ink-mute</p>
+      </div>
+      <div>
+        <span class="badge"><svg id="badge-ic"><use href="#ic-restaurant"/></svg> <span id="badge-label">RESTAURANT</span></span>
+        <p class="note">Pill badge in the category accent + line icon.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Body + links -->
+  <section>
+    <div class="kicker" data-n="03">Body copy &amp; links</div>
+    <div class="prose">
+      <p>The room is small — eleven tables — and it fills by half past six. I came for the cod and stayed for the bread, which arrives warm and disappears faster than is dignified. The <a class="link" href="#">natural-wine list</a> is short and confident, the kind a place keeps when it actually drinks what it pours.</p>
+      <p>One con, and it's a real one: after seven the playlist starts fighting the room, and the table by the window — the one worth booking — sits closest to the speaker. Go early. <a class="link" href="#">Reserve the glass</a>, order the thing the server seems nervous about, and leave before the second seating turns it loud.</p>
+    </div>
+    <div class="linkrow" style="margin-top:20px"><a class="link" href="#">Inline link</a><a class="link" href="#">ibraverse.ca/field-notes</a></div>
+  </section>
+
+  <!-- Recommendations -->
+  <section>
+    <div class="kicker" data-n="04">Recommendations list</div>
+    <div class="recs">
+      <div class="rec"><span class="idx">01</span><div><div class="name">The cod</div><div class="desc">Order it first. It goes.</div></div><span class="score">order this</span></div>
+      <div class="rec"><span class="idx">02</span><div><div class="name">Warm bread &amp; cultured butter</div><div class="desc">Free refills if you ask nicely.</div></div><span class="score">don't skip</span></div>
+      <div class="rec"><span class="idx">03</span><div><div class="name">Skin-contact white</div><div class="desc">By the glass, ask the server.</div></div><span class="score">worth it</span></div>
+      <div class="rec"><span class="idx">04</span><div><div class="name">The window table</div><div class="desc">Book it — but only before seven.</div></div><span class="score">the catch</span></div>
+    </div>
+  </section>
+
+  <!-- Verdict block -->
+  <section>
+    <div class="kicker" data-n="05">Verdict block</div>
+    <div class="verdict">
+      <div class="vh">Verdict</div>
+      <div class="vrow"><span class="k">Would I go back?</span><span class="v">Yes — for the early seating.</span></div>
+      <div class="vrow"><span class="k">Best for</span><span class="v">A slow dinner for two.</span></div>
+      <div class="vrow con"><span class="k">The one con</span><span class="v">The room gets loud after seven.</span></div>
+      <div class="vrow"><span class="k">Field rating</span><span class="v rating">4.2<span style="font-size:16px;color:var(--ink-mute)"> / 5</span></span></div>
+    </div>
+  </section>
+
+  <!-- Buttons + tags -->
+  <section>
+    <div class="kicker" data-n="06">Buttons, links &amp; tags</div>
+    <div class="btns" style="margin-bottom:26px">
+      <a class="btn btn-primary" href="#">Read the field note →</a>
+      <a class="btn btn-ghost" href="#">Save for later</a>
+      <a class="btn btn-quiet" href="#">Share</a>
+    </div>
+    <div class="tags">
+      <span class="tag"><span class="h">№</span> 004</span>
+      <span class="tag">old montreal</span>
+      <span class="tag">natural wine</span>
+      <span class="tag">$$$</span>
+      <span class="tag">dinner</span>
+      <span class="tag">book ahead</span>
+      <span class="tag">4.2 / 5</span>
+    </div>
+  </section>
+</main>
+
+<!-- Footer -->
+<footer class="site-footer">
+  <div class="in">
+    <span class="wm"><svg width="30" height="30" style="color:var(--accent)"><use href="#mark"/></svg> Ibraverse</span>
+    <nav>
+      <a href="#">Adventures</a><a href="#">Restaurants</a><a href="#">Hikes</a><a href="#">Spa &amp; Stay</a><a href="#">City Walks</a><a href="#">Operating Protocol</a>
+    </nav>
+    <div class="copy">© 2026 IBRAVERSE · IBRAVERSE.CA · FIELD NOTES ARE FIRST-PERSON · ONE GENUINE CON, EVERY TIME · BUILT ON THE OPERATING PROTOCOL</div>
+  </div>
+</footer>
+
+<script>
+  const root=document.documentElement;
+  const CAT={restaurant:'RESTAURANT',hike:'HIKE',spa:'SPA / STAY',event:'EVENT',city:'CITY / WALK'};
+  const TITLE={restaurant:'A quiet table by the window',hike:'The ridge clears just after seven',spa:'Steam, cedar, and a cold plunge',event:'Front row, back of the mix',city:'An hour east of the noise'};
+  document.querySelectorAll('#theme button').forEach(b=>b.onclick=()=>{
+    root.setAttribute('data-theme',b.dataset.t);
+    document.querySelectorAll('#theme button').forEach(x=>x.setAttribute('aria-pressed',x===b));
+  });
+  document.querySelectorAll('#cat button').forEach(b=>b.onclick=()=>{
+    const c=b.dataset.c; root.setAttribute('data-category',c);
+    document.querySelectorAll('#cat button').forEach(x=>x.setAttribute('aria-pressed',x===b));
+    document.getElementById('eb-cat').textContent=CAT[c];
+    document.getElementById('eb-cat2').textContent=CAT[c];
+    document.getElementById('badge-label').textContent=CAT[c];
+    document.getElementById('eb-title').textContent=TITLE[c];
+    document.getElementById('badge-ic').querySelector('use').setAttribute('href','#ic-restaurant');
+  });
+</script>
+</body>
+</html>
