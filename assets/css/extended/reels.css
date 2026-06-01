@@ -36,13 +36,18 @@
   text-transform:uppercase;color:var(--ink-mute);margin:0 0 var(--space-5);
 }
 
-/* ONE row, three equal vertical cards */
+/* ONE row, three equal vertical cards — stays one row at every width, smaller */
 .reels__row{
-  display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-4);
-  max-width:var(--container-content);
+  display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-3);
+  max-width:520px;margin-inline:0;            /* ~160px per card on desktop */
 }
-@media (max-width:680px){
-  .reels__row{grid-template-columns:1fr;max-width:360px}
+@media (max-width:560px){
+  .reels__row{gap:var(--space-2);max-width:100%}   /* still 3 across, just tighter */
+  .reel__platform{font-size:9px;padding:3px 6px;top:6px;left:6px}
+  .reel__platform::before{width:4px;height:4px;margin-right:4px}
+  .reel__meta{display:none}
+  .reel__play{width:38px;height:38px}
+  .reel__play svg{width:14px;height:14px}
 }
 
 /* the card */
@@ -82,15 +87,15 @@
   font-family:var(--font-mono);font-size:12px;letter-spacing:.04em;color:var(--paper);
 }
 
-/* the play button — the ONE spring in the system */
+/* the play button — the ONE spring in the system (sized for the smaller card) */
 .reel__play{
   position:absolute;top:50%;left:50%;z-index:3;transform:translate(-50%,-50%);
-  width:64px;height:64px;border-radius:var(--radius-pill);
+  width:44px;height:44px;border-radius:var(--radius-pill);
   background:color-mix(in srgb,var(--paper) 92%,transparent);
   border:0;box-shadow:var(--shadow-card);display:grid;place-items:center;cursor:pointer;
   transition:transform var(--dur-3) var(--ease-spring),box-shadow var(--dur-3) var(--ease-standard),background var(--dur-2);
 }
-.reel__play svg{width:22px;height:22px;margin-left:3px;fill:var(--accent)}
+.reel__play svg{width:16px;height:16px;margin-left:2px;fill:var(--accent)}
 .reel:hover .reel__play{transform:translate(-50%,-50%) scale(1.06);box-shadow:var(--shadow-pop);
   background:var(--paper)}
 .reel__play:active{transform:translate(-50%,-50%) scale(.98)}

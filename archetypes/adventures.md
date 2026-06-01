@@ -4,7 +4,6 @@ date: {{ .Date }}
 draft: true
 summary: ""
 tags: ["Montreal", "Adventure"]
-categories: ["Adventures"]
 cover:
     image: "cover.jpg"
     alt: ""

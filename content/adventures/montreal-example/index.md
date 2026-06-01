@@ -4,7 +4,6 @@ date: 2026-05-31
 draft: true
 summary: "Template adventure article showing the reel + photos + map + recommendations layout. Duplicate it for real posts."
 tags: ["Montreal", "Old Port", "Walking"]
-categories: ["Adventures"]
 cover:
     image: "cover.jpg"
     alt: "Old Port of Montreal"
