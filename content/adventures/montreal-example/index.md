@@ -18,9 +18,9 @@ goBack: "Yes — first-evening-in-Montreal material."
 bestFor: "A free sunset walk after the day-trip crowds thin out."
 con: "Touristy — skip the overpriced terraces on Place Jacques-Cartier."
 reels:
-  - { platform: "youtube",   id: "dQw4w9WgXcQ", meta: "2:14" }
-  - { platform: "instagram", url: "https://www.instagram.com/reel/CXXXXXXXXXX/", thumb: "ig-thumb.jpg", meta: "@ibraverse" }
-  - { platform: "tiktok",    url: "https://www.tiktok.com/@you/video/7300000000000000000", thumb: "tt-thumb.jpg", meta: "0:38" }
+  - { platform: "youtube",   id: "3Y7o9IgliYk", meta: "Short" }
+  - { platform: "instagram", url: "https://www.instagram.com/reels/DY0YkOwghXC/", thumb: "ig-thumb.jpg", meta: "@mellicorreia" }
+  - { platform: "tiktok",    url: "https://www.tiktok.com/@mellicorreia/video/7566757358458785045", thumb: "tt-thumb.jpg", meta: "@mellicorreia" }
 ---
 
 <!--

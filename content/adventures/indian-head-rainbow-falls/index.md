@@ -18,7 +18,9 @@ goBack: "Yes — top of the list."
 bestFor: "A long but easy-graded day with three world-class views."
 con: "It's a full ~11 miles — mostly flat, but a long day on your feet."
 reels:
-  - { platform: "youtube", id: "YOUTUBE_ID", meta: "Trail" }
+  - { platform: "youtube",   id: "3Y7o9IgliYk", meta: "Short" }
+  - { platform: "instagram", url: "https://www.instagram.com/reels/DY0YkOwghXC/", thumb: "ig-thumb.jpg", meta: "@mellicorreia" }
+  - { platform: "tiktok",    url: "https://www.tiktok.com/@mellicorreia/video/7566757358458785045", thumb: "tt-thumb.jpg", meta: "@mellicorreia" }
 ---
 
 <!--

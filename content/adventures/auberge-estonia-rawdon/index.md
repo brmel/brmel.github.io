@@ -18,7 +18,9 @@ goBack: "Yes — easy yes."
 bestFor: "A low-key Nordic-spa weekend for a couple or small group."
 con: "You self-cater — bring groceries; restaurants are ~10 min away."
 reels:
-  - { platform: "youtube", id: "YOUTUBE_ID", meta: "Spa" }
+  - { platform: "youtube",   id: "3Y7o9IgliYk", meta: "Short" }
+  - { platform: "instagram", url: "https://www.instagram.com/reels/DY0YkOwghXC/", thumb: "ig-thumb.jpg", meta: "@mellicorreia" }
+  - { platform: "tiktok",    url: "https://www.tiktok.com/@mellicorreia/video/7566757358458785045", thumb: "tt-thumb.jpg", meta: "@mellicorreia" }
 ---
 
 <!--
