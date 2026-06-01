@@ -18,11 +18,6 @@ cover:
   Replace the placeholder IDs/URLs and add the referenced images to this folder.
 -->
 
-{{< reels
-    youtube="dQw4w9WgXcQ"
-    instagram="https://www.instagram.com/reel/CXXXXXXXXXX/" instagram_thumb="ig-thumb.jpg"
-    tiktok="https://www.tiktok.com/@you/video/7300000000000000000" tiktok_thumb="tt-thumb.jpg" >}}
-
 Spent a slow evening walking the Old Port as the light dropped over the
 St. Lawrence — here's the honest version, not the postcard one.
 
@@ -56,3 +51,10 @@ watched the sunset from the pier.
 ## Verdict
 
 Yes — I'd take any visitor here on their first evening in Montreal.
+
+## Watch
+
+{{< reels
+    youtube="dQw4w9WgXcQ"
+    instagram="https://www.instagram.com/reel/CXXXXXXXXXX/" instagram_thumb="ig-thumb.jpg"
+    tiktok="https://www.tiktok.com/@you/video/7300000000000000000" tiktok_thumb="tt-thumb.jpg" >}}

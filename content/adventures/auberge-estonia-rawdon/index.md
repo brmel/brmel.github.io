@@ -24,9 +24,6 @@ cover:
   - When ready: set draft: false.
 -->
 
-{{< reels
-    youtube="YOUTUBE_ID" >}}
-
 An hour from Montreal, tucked in the Rawdon woods: two Nordic hot tubs steaming under the trees, a Finnish sauna, a lake to cold-plunge into, and a BBQ cabin to come back to. Auberge Estonia is the low-key spa weekend that doesn't cost spa-resort money.
 
 ## The place
@@ -86,3 +83,8 @@ It's a do-nothing-on-purpose kind of place — quiet, wooded, no crowds.
 Yes — easy yes. It's the closest thing to a private Nordic spa weekend within an
 hour of Montreal, minus the resort price tag. Perfect for a couple or a small
 group that wants forest, fire, and hot water and not much else.
+
+## Watch
+
+{{< reels
+    youtube="YOUTUBE_ID" >}}

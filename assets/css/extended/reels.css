@@ -3,16 +3,19 @@
 
 .reels {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;           /* keep all reels on a single row */
   gap: 16px;
   justify-content: center;
+  align-items: flex-start;
   margin: 1.75rem 0;
 }
 
 .reel-card {
   position: relative;
-  flex: 0 0 auto;
-  width: min(300px, 80vw);
+  flex: 1 1 0;                 /* share the row equally, shrink to fit */
+  width: auto;
+  max-width: 300px;
+  min-width: 0;
   aspect-ratio: 9 / 16;        /* vertical short-form video */
   margin: 0;
   border-radius: 14px;
@@ -105,6 +108,7 @@
 }
 
 @media (max-width: 560px) {
-  .reels { gap: 12px; }
-  .reel-card { width: min(46vw, 300px); }
+  .reels { gap: 8px; }              /* still one row, tighter on phones */
+  .reel-icon { width: 44px; height: 44px; font-size: 17px; }
+  .reel-badge { left: 6px; bottom: 6px; padding: 2px 7px; font-size: 11px; }
 }

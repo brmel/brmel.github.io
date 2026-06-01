@@ -1,8 +1,9 @@
 # Adventures Playbook — Montreal articles with a voice/face video review
 
 How to publish an Adventures article that **goes viral and stays on-brand**:
-a short **face + voice video review** at the top (you on camera explaining the
-place), then a written article with photos, a map, and honest recommendations.
+a written article with photos, a map, and honest recommendations, closing with a
+short **face + voice video review** at the bottom (you on camera explaining the
+place) shown as a single row of YouTube / Instagram / TikTok thumbnails.
 
 The whole point is a **repeatable pattern**: every article looks the same, every
 reel follows the same beats, so the audience learns your format and the work gets
@@ -18,14 +19,15 @@ shortcode, and an `adventures` archetype that scaffolds the structure.
 
 ```
 ┌───────────────────────────────────────┐
-│  VOICE/FACE REEL  (YouTube + IG + TT)  │  ← hook, 15–45s, you on camera
-├───────────────────────────────────────┤
 │  One-line hook sentence                │
 │  ## The place        + photo           │
 │  ## What I did       + photo           │
 │  ## Map              (gmap)            │
 │  ## Recommendations  (scannable list)  │
 │  ## Verdict          (one honest line) │
+├───────────────────────────────────────┤
+│  ## Watch — VOICE/FACE REEL row        │  ← YouTube + IG + TT, one row, at the
+│  (YouTube + IG + TikTok thumbnails)    │    bottom; hook 15–45s, you on camera
 └───────────────────────────────────────┘
 ```
 
@@ -37,7 +39,7 @@ shortcode, and an `adventures` archetype that scaffolds the structure.
 
 ---
 
-## 1. The VIDEO — record voice (and face) on top of the article
+## 1. The VIDEO — record voice (and face) for the article
 
 This is the growth engine. The video is filmed *as if* narrating the article:
 you talk through the place, the article is the written version of the same script.
@@ -213,19 +215,22 @@ cover:
 ---
 ```
 
-### Reel block (top)
+### Order: hook sentence → photos → map → recommendations → verdict → reel.
+
+### Reel block (bottom, under a `## Watch` heading)
 
 ```text
+## Watch
+
 {{< reels
     youtube="VIDEO_ID"
     instagram="https://www.instagram.com/reel/CODE/" instagram_thumb="ig-thumb.jpg"
     tiktok="https://www.tiktok.com/@you/video/ID"     tiktok_thumb="tt-thumb.jpg" >}}
 ```
 
+- Goes **last**, after the Verdict — renders as one row of platform thumbnails.
 - Omit any platform you didn't post to.
 - `*_thumb` = image files in the article folder (YouTube auto-thumbnails).
-
-### Then: hook sentence → photos → map → recommendations → verdict.
 
 Recommendations block (keep this exact shape every article):
 

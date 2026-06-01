@@ -24,9 +24,6 @@ cover:
   - When ready: set draft: false.
 -->
 
-{{< reels
-    youtube="YOUTUBE_ID" >}}
-
 Eleven miles, almost no scrambling, and it ends at a cliff over a lake shaped like a Norwegian fjord — Indian Head & Rainbow Falls is the most bang-for-effort hike I've done in the Adirondacks.
 
 ## The place
@@ -85,3 +82,8 @@ to **Rainbow Falls** before the long, easy walk back on Lake Road.
 Yes — top of the list. The effort is mostly distance, not difficulty, and the
 payoff at Indian Head is out of proportion to what it costs you. Reserve early
 and give yourself the full day.
+
+## Watch
+
+{{< reels
+    youtube="YOUTUBE_ID" >}}

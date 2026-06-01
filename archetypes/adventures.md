@@ -11,11 +11,6 @@ cover:
     relative: true
 ---
 
-{{</* reels
-    youtube="VIDEO_ID"
-    instagram="https://www.instagram.com/reel/CODE/" instagram_thumb="ig-thumb.jpg"
-    tiktok="https://www.tiktok.com/@you/video/ID"     tiktok_thumb="tt-thumb.jpg" */>}}
-
 One or two sentences that hook the reader and say where we are.
 
 ## The place
@@ -46,3 +41,10 @@ Walk through the experience. Keep it personal and specific.
 ## Verdict
 
 Would you go back? One honest line.
+
+## Watch
+
+{{</* reels
+    youtube="VIDEO_ID"
+    instagram="https://www.instagram.com/reel/CODE/" instagram_thumb="ig-thumb.jpg"
+    tiktok="https://www.tiktok.com/@you/video/ID"     tiktok_thumb="tt-thumb.jpg" */>}}
