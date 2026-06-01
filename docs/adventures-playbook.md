@@ -19,17 +19,25 @@ shortcode, and an `adventures` archetype that scaffolds the structure.
 
 ```
 ┌───────────────────────────────────────┐
+│  FIELD NOTE № 004 · CATEGORY · PLACE   │  ← eyebrow + compass accent (auto)
+│  Big serif title                       │
 │  One-line hook sentence                │
 │  ## The place        + photo           │
 │  ## What I did       + photo           │
 │  ## Map              (gmap)            │
 │  ## Recommendations  (scannable list)  │
-│  ## Verdict          (one honest line) │
 ├───────────────────────────────────────┤
-│  ## Watch — VOICE/FACE REEL row        │  ← YouTube + IG + TT, one row, at the
-│  (YouTube + IG + TikTok thumbnails)    │    bottom; hook 15–45s, you on camera
+│  VERDICT  (goBack / bestFor / con / ★) │  ← structured, from front matter (auto)
+├───────────────────────────────────────┤
+│  WATCH — reel row (YT + IG + TikTok)   │  ← one row, from front matter (auto)
 └───────────────────────────────────────┘
 ```
+
+The **header eyebrow, Verdict block, and Watch reel row all render
+automatically** from front matter (`category`, `fieldNote`, `place`, `rating`,
+`goBack`, `bestFor`, `con`, `reels`). You write only the prose body — the brand
+chrome is layout-driven, so every article is consistent by construction.
+`category` (restaurant / hike / spa / event / city) sets the accent color.
 
 - **Adventures** = places & experiences (Montreal + travel). Reel pulls views
   from YouTube/IG/TikTok back to the site.
@@ -212,25 +220,37 @@ cover:
     image: "cover.jpg"
     alt: "Old Port of Montreal at sunset"
     relative: true
+# --- field note (drives the brand chrome) ---
+category: "city"          # restaurant | hike | spa | event | city → accent
+fieldNote: 5              # → № 005 in the eyebrow
+place: "Old Port, Montréal"
+rating: 4.2               # verdict, out of 5
+goBack: "Yes — first-evening material."
+bestFor: "A free sunset walk after the crowds thin."
+con: "Touristy — skip the terraces on the square."
+reels:                    # one row of reviews at the foot; drop any platform you skipped
+  - { platform: "youtube",   id: "VIDEO_ID", meta: "2:14" }
+  - { platform: "instagram", url: "https://www.instagram.com/reel/CODE/", thumb: "ig-thumb.jpg", meta: "@ibraverse" }
+  - { platform: "tiktok",    url: "https://www.tiktok.com/@you/video/ID", thumb: "tt-thumb.jpg", meta: "0:38" }
 ---
 ```
 
-### Order: hook sentence → photos → map → recommendations → verdict → reel.
+### Body order: hook sentence → photos → map → recommendations. Stop there.
 
-### Reel block (bottom, under a `## Watch` heading)
+The Verdict and Watch reel row are **not** written in the body — they render
+from the front matter above (`rating`/`goBack`/`bestFor`/`con` → Verdict;
+`reels` → the Watch row). This keeps every article identical in structure.
 
-```text
-## Watch
+### Reels (front matter, not a shortcode)
 
-{{< reels
-    youtube="VIDEO_ID"
-    instagram="https://www.instagram.com/reel/CODE/" instagram_thumb="ig-thumb.jpg"
-    tiktok="https://www.tiktok.com/@you/video/ID"     tiktok_thumb="tt-thumb.jpg" >}}
-```
+Each entry in `reels:` is one card in the bottom row:
 
-- Goes **last**, after the Verdict — renders as one row of platform thumbnails.
-- Omit any platform you didn't post to.
-- `*_thumb` = image files in the article folder (YouTube auto-thumbnails).
+- `platform`: `youtube` | `instagram` | `tiktok`.
+- YouTube uses `id` (the 11-char video ID) and auto-pulls its thumbnail.
+- Instagram/TikTok use `url` + a `thumb` image in the article folder
+  (`ig-thumb.jpg` / `tt-thumb.jpg`) — they have no public auto-thumbnail.
+- `meta`: short caption shown on the card (duration or `@handle`).
+- Drop any platform you didn't post to. Omit `reels` entirely → no row.
 
 Recommendations block (keep this exact shape every article):
 

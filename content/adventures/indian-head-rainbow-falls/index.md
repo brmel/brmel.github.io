@@ -9,6 +9,16 @@ cover:
     image: "cover.jpg"
     alt: "View from Indian Head over the fjord-shaped Lower Ausable Lake"
     relative: true
+# --- field note ---
+category: "hike"
+fieldNote: 2
+place: "Adirondacks, NY"
+rating: 4.7
+goBack: "Yes — top of the list."
+bestFor: "A long but easy-graded day with three world-class views."
+con: "It's a full ~11 miles — mostly flat, but a long day on your feet."
+reels:
+  - { platform: "youtube", id: "YOUTUBE_ID", meta: "Trail" }
 ---
 
 <!--
@@ -77,13 +87,3 @@ to **Rainbow Falls** before the long, easy walk back on Lake Road.
 - **Bring:** 2L+ water, layers (the ledge is windy), real hiking shoes, and a
   paper/offline map — no cell service.
 
-## Verdict
-
-Yes — top of the list. The effort is mostly distance, not difficulty, and the
-payoff at Indian Head is out of proportion to what it costs you. Reserve early
-and give yourself the full day.
-
-## Watch
-
-{{< reels
-    youtube="YOUTUBE_ID" >}}

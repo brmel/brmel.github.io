@@ -1,8 +1,13 @@
 {{- define "main" }}
 
-<article class="post-single">
+{{- $adv := eq .Section "adventures" }}
+
+<article class="post-single{{ if $adv }} adventures{{ end }}"{{ if $adv }} data-category="{{ .Params.category | default "restaurant" }}"{{ end }}>
     <header class="post-header">
         {{ partial "breadcrumbs.html" . }}
+        {{- if $adv }}
+        {{- partial "adventures-header.html" . }}
+        {{- else }}
         <h1 class="post-title entry-hint-parent">
             {{ .Title }}
             {{- if .Draft }}
@@ -25,6 +30,7 @@
             {{- partial "post_canonical.html" . -}}
         </div>
         {{- end }}
+        {{- end }}
     </header>
     {{- $isHidden := (.Param "cover.hiddenInSingle") | default (.Param "cover.hidden") | default false }}
     {{- partial "cover.html" (dict "cxt" . "IsSingle" true "isHidden" $isHidden) }}
@@ -38,6 +44,11 @@
         {{- partial "anchored_headings.html" .Content -}}
         {{- else }}{{ .Content }}{{ end }}
     </div>
+    {{- end }}
+
+    {{- if $adv }}
+    {{- if .Params.rating }}{{ partial "verdict.html" . }}{{ end }}
+    {{- partial "reels.html" . }}
     {{- end }}
 
     <footer class="post-footer">
@@ -60,5 +71,12 @@
     {{- partial "comments.html" . }}
     {{- end }}
 </article>
+
+{{- if $adv }}
+{{- $advJS := resources.Get "js/adventures.js" | minify | fingerprint }}
+{{- with $advJS }}
+<script defer src="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}"></script>
+{{- end }}
+{{- end }}
 
 {{- end }}{{/* end main */}}

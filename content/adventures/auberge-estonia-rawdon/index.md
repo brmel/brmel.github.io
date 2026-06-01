@@ -9,6 +9,16 @@ cover:
     image: "cover.jpg"
     alt: "Nordic hot tubs and sauna in the forest at Auberge Estonia, Rawdon"
     relative: true
+# --- field note ---
+category: "spa"
+fieldNote: 3
+place: "Rawdon, Lanaudière"
+rating: 4.5
+goBack: "Yes — easy yes."
+bestFor: "A low-key Nordic-spa weekend for a couple or small group."
+con: "You self-cater — bring groceries; restaurants are ~10 min away."
+reels:
+  - { platform: "youtube", id: "YOUTUBE_ID", meta: "Spa" }
 ---
 
 <!--
@@ -78,13 +88,3 @@ It's a do-nothing-on-purpose kind of place — quiet, wooded, no crowds.
 - **Book direct:** reserve ahead (it's small and fills up on weekends);
   estoniahebergement.com / 450-712-6337.
 
-## Verdict
-
-Yes — easy yes. It's the closest thing to a private Nordic spa weekend within an
-hour of Montreal, minus the resort price tag. Perfect for a couple or a small
-group that wants forest, fire, and hot water and not much else.
-
-## Watch
-
-{{< reels
-    youtube="YOUTUBE_ID" >}}

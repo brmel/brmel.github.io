@@ -22,6 +22,12 @@
 {{- if eq site.Language.LanguageDirection "rtl" }}
 <script>document.documentElement.setAttribute("dir", "rtl");</script>
 {{- end }}
+{{- /* Brand fonts, loaded site-wide (Instrument Serif / Inter Tight / JetBrains
+       Mono). The tokens that use them ship in css/extended/tokens.css, which is
+       already concatenated into PaperMod's stylesheet bundle. */ -}}
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 {{- range .Params.customCSS }}
 {{- with resources.Get . }}
 {{- $css := . | minify | fingerprint }}

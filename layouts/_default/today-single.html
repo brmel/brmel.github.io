@@ -16,6 +16,10 @@
 
   {{- partial "protocol-fonts.html" . }}
 
+  {{- $tokensCSS := resources.Get "css/extended/tokens.css" | minify | fingerprint }}
+  {{- with $tokensCSS }}
+  <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}">
+  {{- end }}
   {{- $protocolCSS := resources.Get "css/protocol.css" | minify | fingerprint }}
   {{- with $protocolCSS }}
   <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}">

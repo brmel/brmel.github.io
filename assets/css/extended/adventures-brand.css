@@ -1,0 +1,168 @@
+/* ============================================================================
+   IBRAVERSE — ADVENTURES BRAND  (06-web/adventures-brand.css)
+   Applies the field-note look to PaperMod Adventures articles. Extends
+   layouts/_default/single.html + assets/css/extended/. Load AFTER tokens.css
+   and AFTER PaperMod's own css so these win.
+   Scope: pages under /adventures/ — add `data-category="…"` to <html> or the
+   <article class="post-single"> (set it from front-matter, see hugo-partial.html).
+   ========================================================================== */
+
+/* ---------- page rhythm ---------- */
+.adventures .post-single,
+.single.adventures .post-single{
+  max-width:var(--container-content);
+  font-family:var(--font-sans);
+  color:var(--ink);
+}
+
+/* ---------- the eyebrow (FIELD NOTE № nnn · CATEGORY · PLACE) ---------- */
+.field-eyebrow{
+  font-family:var(--font-mono);
+  font-weight:500;
+  font-size:var(--t-eyebrow);
+  letter-spacing:var(--track-eyebrow);
+  text-transform:uppercase;
+  color:var(--ink);
+  line-height:1.3;
+  margin:0 0 var(--space-4);
+  display:flex;flex-wrap:wrap;gap:.5ch;
+}
+.field-eyebrow .sep{color:var(--accent)}          /* the · dots = accent */
+.field-eyebrow .place{color:var(--ink-mute)}
+
+/* ---------- category bar (the one accent rule) ---------- */
+.category-bar{
+  height:var(--category-bar);
+  width:88px;
+  background:var(--accent);
+  border-radius:2px;
+  margin:0 0 var(--space-5);
+}
+
+/* ---------- title in Instrument Serif ---------- */
+.adventures .post-title,
+.post-single .post-title{
+  font-family:var(--font-serif);
+  font-weight:400;
+  font-size:var(--fl-display-l);
+  line-height:1.0;
+  letter-spacing:-0.015em;
+  color:var(--ink);
+  text-wrap:balance;
+  margin:0 0 var(--space-4);
+}
+
+/* lede / description */
+.adventures .post-description,
+.post-single .post-description{
+  font-family:var(--font-sans);
+  font-weight:500;
+  font-size:var(--t-subhead);
+  line-height:1.45;
+  color:var(--ink-soft);
+  max-width:60ch;
+  margin:0 0 var(--space-5);
+}
+
+/* meta line */
+.adventures .post-meta,
+.post-single .post-meta{
+  font-family:var(--font-mono);
+  font-size:var(--t-data);
+  letter-spacing:.03em;
+  color:var(--ink-mute);
+  display:flex;gap:var(--space-4);flex-wrap:wrap;
+  padding-bottom:var(--space-6);
+  border-bottom:var(--hairline) solid var(--rule);
+}
+.adventures .post-meta b{color:var(--ink-soft);font-weight:500}
+
+/* ---------- cover photo (14px frame) ---------- */
+.adventures .post-cover,
+.adventures .entry-cover img,
+.post-single .post-content img{
+  border-radius:var(--radius-md);
+  box-shadow:var(--shadow-photo);
+}
+.adventures figure{margin:var(--space-7) 0}
+.adventures figure figcaption{
+  font-family:var(--font-sans);font-style:italic;font-size:var(--t-caption);
+  color:var(--ink-soft);margin-top:var(--space-3);
+}
+
+/* ---------- long-form body ---------- */
+.adventures .post-content{
+  max-width:var(--container-text);
+  font-size:var(--t-body-l);
+  line-height:1.62;
+  color:var(--ink);
+  text-wrap:pretty;
+}
+.adventures .post-content h2{
+  font-family:var(--font-serif);font-weight:400;font-size:var(--t-display-s);
+  line-height:1.08;letter-spacing:-0.005em;margin:var(--space-8) 0 var(--space-4);
+}
+.adventures .post-content h3{
+  font-family:var(--font-sans);font-weight:600;font-size:var(--t-heading);
+  margin:var(--space-6) 0 var(--space-3);
+}
+.adventures .post-content a{
+  color:var(--accent);text-decoration:none;
+  background:linear-gradient(var(--accent),var(--accent)) no-repeat;
+  background-size:0% 1.5px;background-position:0 100%;
+  transition:background-size var(--dur-1) var(--ease-standard),color var(--dur-1);
+}
+.adventures .post-content a:hover{background-size:100% 1.5px;color:var(--accent-soft)}
+[data-theme="dark"] .adventures .post-content a{background-size:100% 1.5px;text-underline-offset:2px}
+
+.adventures .post-content blockquote{
+  border-left:var(--hairline-strong) solid var(--accent);
+  margin:var(--space-6) 0;padding:var(--space-2) 0 var(--space-2) var(--space-5);
+  font-family:var(--font-serif);font-size:var(--t-display-s);line-height:1.2;color:var(--ink-soft);
+}
+
+/* ---------- category badge (inline) ---------- */
+.cat-badge{
+  display:inline-flex;align-items:center;gap:.5ch;
+  font-family:var(--font-mono);font-weight:500;font-size:var(--t-eyebrow);
+  letter-spacing:.1em;text-transform:uppercase;color:var(--accent);
+  border:1px solid var(--accent);border-radius:var(--radius-pill);
+  padding:5px 12px;
+}
+.cat-badge svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.7}
+
+/* ---------- verdict block ---------- */
+.verdict{
+  position:relative;background:var(--bg-alt);border:var(--hairline) solid var(--rule);
+  border-radius:var(--radius-md);padding:var(--space-2) var(--space-6) var(--space-5);
+  margin:var(--space-8) 0;overflow:hidden;
+}
+.verdict::before{content:"";position:absolute;left:0;top:0;bottom:0;width:var(--category-bar);background:var(--accent)}
+.verdict h4{
+  font-family:var(--font-mono);font-size:var(--t-eyebrow);letter-spacing:.16em;
+  text-transform:uppercase;color:var(--accent);margin:var(--space-4) 0 0;
+}
+.verdict dl{display:grid;grid-template-columns:1fr auto;gap:0;margin:var(--space-3) 0 0}
+.verdict dt{
+  font-family:var(--font-mono);font-size:var(--t-caption);letter-spacing:.06em;
+  text-transform:uppercase;color:var(--ink-mute);padding:var(--space-4) 0;
+  border-top:var(--hairline) solid var(--rule);
+}
+.verdict dd{
+  font-family:var(--font-sans);font-weight:500;font-size:var(--t-body-l);text-align:right;
+  margin:0;padding:var(--space-4) 0;border-top:var(--hairline) solid var(--rule);text-wrap:balance;
+}
+.verdict .con,.verdict .rating{display:contents}      /* dt/dd join the dl grid */
+.verdict .con dd{color:var(--accent)}
+.verdict .rating dd{font-family:var(--font-serif);font-size:var(--t-display-s)}
+.verdict .of5{font-size:1rem;color:var(--ink-mute)}
+
+/* ---------- focus ---------- */
+.adventures a:focus-visible,.adventures button:focus-visible{
+  outline:2px solid var(--accent);outline-offset:2px;border-radius:var(--radius-xs);
+}
+
+/* ---------- page-load reveal (paired with a small IntersectionObserver) ---------- */
+.adventures .reveal{opacity:0;transform:translateY(12px);
+  transition:opacity var(--dur-4) var(--ease-out),transform var(--dur-4) var(--ease-out)}
+.adventures .reveal.in{opacity:1;transform:none}

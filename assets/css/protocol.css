@@ -4,54 +4,9 @@
    theme variables when present; defines its own otherwise.
    ============================================================ */
 
-:root {
-  --bg: #faf9f6;
-  --bg-alt: #f2f0e9;
-  --ink: #181715;
-  --ink-soft: #4a4843;
-  --ink-mute: #8a877f;
-  --rule: #d9d6cb;
-  --rule-soft: #e8e5da;
-  --accent: #a8431a;
-  --accent-soft: #c96b3e;
-  --grid: #00000008;
-
-  --serif: "Instrument Serif", "Cormorant Garamond", "Source Serif Pro",
-           ui-serif, Georgia, "Times New Roman", serif;
-  --sans:  "Inter Tight", ui-sans-serif, system-ui, -apple-system,
-           "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-  --mono:  "JetBrains Mono", "IBM Plex Mono", ui-monospace,
-           SFMono-Regular, Menlo, Consolas, monospace;
-}
-
-html[data-theme="dark"],
-.dark {
-  --bg: #14130f;
-  --bg-alt: #1c1b16;
-  --ink: #ece8dc;
-  --ink-soft: #b8b3a2;
-  --ink-mute: #807c70;
-  --rule: #2c2a23;
-  --rule-soft: #1f1e18;
-  --accent: #d97757;
-  --accent-soft: #e89878;
-  --grid: #ffffff05;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg: #14130f;
-    --bg-alt: #1c1b16;
-    --ink: #ece8dc;
-    --ink-soft: #b8b3a2;
-    --ink-mute: #807c70;
-    --rule: #2c2a23;
-    --rule-soft: #1f1e18;
-    --accent: #d97757;
-    --accent-soft: #e89878;
-    --grid: #ffffff05;
-  }
-}
+/* Color + type tokens (--bg, --ink, --accent, --serif/--sans/--mono, …) and the
+   light/dark themes now live in css/extended/tokens.css — the single source
+   loaded ahead of this file on every Operating Protocol / Today page. */
 
 /* ---------- Scoped reset ---------- */
 .protocol *,

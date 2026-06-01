@@ -1,0 +1,15 @@
+{{- /*
+  verdict — the structured field-note verdict block. Reads front matter:
+  goBack, bestFor, con, rating. Rendered at the end of an adventures article
+  (see single.html). Styling + the display:contents grid trick live in
+  css/extended/adventures-brand.css — no inline styles here.
+*/ -}}
+<aside class="verdict">
+  <h4>Verdict</h4>
+  <dl>
+    {{- with .Params.goBack }}<dt>Would I go back?</dt><dd>{{ . }}</dd>{{ end }}
+    {{- with .Params.bestFor }}<dt>Best for</dt><dd>{{ . }}</dd>{{ end }}
+    {{- with .Params.con }}<div class="con"><dt>The one con</dt><dd>{{ . }}</dd></div>{{ end }}
+    {{- with .Params.rating }}<div class="rating"><dt>Field rating</dt><dd>{{ . }} <span class="of5">/ 5</span></dd></div>{{ end }}
+  </dl>
+</aside>

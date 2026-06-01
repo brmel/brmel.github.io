@@ -9,6 +9,18 @@ cover:
     image: "cover.jpg"
     alt: "Old Port of Montreal"
     relative: true
+# --- field note (template values — replace per article) ---
+category: "city"
+fieldNote: 1
+place: "Old Port, Montréal"
+rating: 4.0
+goBack: "Yes — first-evening-in-Montreal material."
+bestFor: "A free sunset walk after the day-trip crowds thin out."
+con: "Touristy — skip the overpriced terraces on Place Jacques-Cartier."
+reels:
+  - { platform: "youtube",   id: "dQw4w9WgXcQ", meta: "2:14" }
+  - { platform: "instagram", url: "https://www.instagram.com/reel/CXXXXXXXXXX/", thumb: "ig-thumb.jpg", meta: "@ibraverse" }
+  - { platform: "tiktok",    url: "https://www.tiktok.com/@you/video/7300000000000000000", thumb: "tt-thumb.jpg", meta: "0:38" }
 ---
 
 <!--
@@ -48,13 +60,3 @@ watched the sunset from the pier.
 - **Best time:** weekday evenings, golden hour
 - **Getting there:** Métro Champ-de-Mars (Orange line), 8 min walk
 
-## Verdict
-
-Yes — I'd take any visitor here on their first evening in Montreal.
-
-## Watch
-
-{{< reels
-    youtube="dQw4w9WgXcQ"
-    instagram="https://www.instagram.com/reel/CXXXXXXXXXX/" instagram_thumb="ig-thumb.jpg"
-    tiktok="https://www.tiktok.com/@you/video/7300000000000000000" tiktok_thumb="tt-thumb.jpg" >}}
