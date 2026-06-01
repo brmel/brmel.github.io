@@ -16,7 +16,7 @@ googleAnalytics = "G-CHFGS2DHF6"
       enabled = true
       title = "Brahim Redouane Mellah"
       subtitle = "Software Engineer passionate about Image Processing, Mathematics, C++, and AI.\n\nI am currently working at Zebra Technologies. I specialize in developing advanced classical image processing and machine learning algorithms, optimized and packaged to work in real industry applications."
-      imageUrl = "images/MyPhoto.png"
+      imageUrl = "images/MyPhoto.jpg"
       imageWidth = 380
       imageTitle = "Brahim Redouane Mellah"
     [[languages.en.menu.main]]
@@ -62,7 +62,7 @@ googleAnalytics = "G-CHFGS2DHF6"
       enabled = true
       title = "Brahim Redouane Mellah"
       subtitle = "Ingénieur Logiciel passionné par le Traitement d'Images, les Mathématiques, le C++ et l'IA.\n\nJe travaille actuellement chez Zebra Technologies. Je suis spécialisé dans le développement d'algorithmes avancés de traitement d'images et d'apprentissage automatique, optimisés pour des applications industrielles réelles."
-      imageUrl = "images/MyPhoto.png"
+      imageUrl = "images/MyPhoto.jpg"
       imageWidth = 380
       imageTitle = "Brahim Redouane Mellah"
     [[languages.fr.menu.main]]
@@ -109,7 +109,7 @@ googleAnalytics = "G-CHFGS2DHF6"
       enabled = true
       title = "إبراهيم رضوان ملاح"
       subtitle = "مهندس برمجيات شغوف بمعالجة الصور والرياضيات وبرمجة C++ والذكاء الاصطناعي.\n\nأعمل حاليًا في Zebra Technologies. متخصص في تطوير خوارزميات معالجة الصور المتقدمة والتعلم الآلي، وتحسينها للعمل بكفاءة في التطبيقات الصناعية."
-      imageUrl = "images/MyPhoto.png"
+      imageUrl = "images/MyPhoto.jpg"
       imageWidth = 380
       imageTitle = "إبراهيم رضوان ملاح"
     [[languages.ar.menu.main]]

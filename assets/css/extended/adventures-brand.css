@@ -161,8 +161,3 @@
 .adventures a:focus-visible,.adventures button:focus-visible{
   outline:2px solid var(--accent);outline-offset:2px;border-radius:var(--radius-xs);
 }
-
-/* ---------- page-load reveal (paired with a small IntersectionObserver) ---------- */
-.adventures .reveal{opacity:0;transform:translateY(12px);
-  transition:opacity var(--dur-4) var(--ease-out),transform var(--dur-4) var(--ease-out)}
-.adventures .reveal.in{opacity:1;transform:none}
