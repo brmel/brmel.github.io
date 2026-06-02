@@ -33,9 +33,6 @@ body{
   transition:color var(--dur-1) var(--ease-standard);
 }
 .sa-nav__link:hover{color:var(--accent)}
-.sa-theme{all:unset;cursor:pointer;color:var(--ink-mute);font-size:18px;line-height:1}
-.sa-theme:hover{color:var(--accent)}
-.sa-theme:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:var(--radius-xs)}
 
 /* ---- article ---- */
 .sa-main{padding:var(--space-8) 0 0}

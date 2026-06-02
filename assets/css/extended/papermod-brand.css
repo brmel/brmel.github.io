@@ -109,3 +109,14 @@ a:focus-visible,button:focus-visible{
   transition:color var(--dur-1) var(--ease-standard);
 }
 .post-footer .share-buttons li a:hover svg{color:var(--accent)}
+
+/* ---- centered top nav: brand (+ lang switch) pinned left, menu centered ---- */
+.nav{position:relative;justify-content:center}
+.nav .logo{position:absolute;inset-inline-start:var(--gap);top:0;bottom:0;display:flex;align-items:center;margin:0}
+.nav #menu{margin-inline:auto}
+@media (max-width:768px){
+  /* revert to PaperMod's default row on small screens (avoids overlap) */
+  .nav{justify-content:space-between}
+  .nav .logo{position:static;margin:auto var(--gap)}
+  .nav #menu{margin-inline:0}
+}

@@ -61,7 +61,6 @@
       <nav class="sa-nav" aria-label="Site navigation">
         <a class="sa-nav__link" href="{{ "/tech/" | relURL }}">← Tech</a>
         <a class="sa-nav__link" href="{{ "/" | relURL }}">Home</a>
-        <button class="sa-theme" type="button" data-sa-theme aria-label="Toggle theme">☾</button>
       </nav>
     </div>
   </header>
@@ -90,17 +89,5 @@
 
   {{- range .Params.customJS }}{{ with resources.Get . }}{{ $j := . | minify | fingerprint }}
   <script defer src="{{ $j.RelPermalink }}" integrity="{{ $j.Data.Integrity }}"></script>{{ end }}{{ end }}
-  <script>
-    (function () {
-      var KEY = "pref-theme", el = document.documentElement;
-      try { if (localStorage.getItem(KEY) === "dark") el.setAttribute("data-theme", "dark"); } catch (e) {}
-      var btn = document.querySelector("[data-sa-theme]");
-      if (btn) btn.addEventListener("click", function () {
-        var dark = el.getAttribute("data-theme") === "dark";
-        el.setAttribute("data-theme", dark ? "light" : "dark");
-        try { localStorage.setItem(KEY, dark ? "light" : "dark"); } catch (e) {}
-      });
-    })();
-  </script>
 </body>
 </html>
