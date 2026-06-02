@@ -80,7 +80,7 @@
 /* ---------- cover photo (14px frame) + in-body images ---------- */
 .adventures .post-cover,
 .adventures .entry-cover img,
-.post-single .post-content img{
+.adventures .post-content img{
   border-radius:var(--radius-md);
   box-shadow:var(--shadow-photo);
   display:block;margin-inline:auto;          /* centre */
