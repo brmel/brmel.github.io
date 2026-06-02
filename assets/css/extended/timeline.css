@@ -1,6 +1,6 @@
 /* Timeline Container */
 :root {
-    --timeline-thumb-width: 130px;
+    --timeline-thumb-width: 64px;
     --timeline-thumb-margin: 20px;
     --timeline-marker-size: 20px;
     --timeline-line-offset: 20px;
@@ -173,7 +173,7 @@
     .video-thumbnail {
         float: none;
         width: 100%;
-        max-width: 300px;
+        max-width: 130px;
         margin: 0 auto 15px auto;
         display: block;
     }
