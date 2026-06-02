@@ -75,7 +75,7 @@
         {{- with $desc }}<p class="sa-lede">{{ . }}</p>{{ end }}
       </header>
       {{- end }}
-      <div class="sa-body sa-wrap">
+      <div class="sa-body{{ if not .Params.fullBleed }} sa-wrap{{ end }}">
         {{ .Content }}
       </div>
     </article>
