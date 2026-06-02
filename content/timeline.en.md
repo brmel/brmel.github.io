@@ -11,7 +11,7 @@ ShowBreadCrumbs: false
 <img src="https://img.youtube.com/vi/m7KKRmOxRT0/hqdefault.jpg" class="video-thumbnail" data-video-src="https://www.youtube.com/embed/m7KKRmOxRT0?autoplay=1" alt="Video Thumbnail">
 
 #### [Leading the Aurora Imaging Library](https://www.zebra.com/us/en/software/machine-vision-and-fixed-industrial-scanning-software/aurora-imaging-library.html)
-I am one of the responsibles of the algorithms of AIL. My role isn't just coding; I collaborate with the UI, Documentation, and Test teams to deliver a complete product, and I help our clients solve their most difficult application challenges .
+I am one of the people responsible for the AIL algorithms. My role isn't just coding; I collaborate with the UI, Documentation, and Test teams to deliver a complete product, and I help our clients solve their most difficult application challenges.
 
 
 ---
@@ -33,7 +33,7 @@ This is where I learned the industry. I maintained core MIL modules like Calibra
 <img src="https://img.youtube.com/vi/sfLZ7v9gEnc/hqdefault.jpg" class="video-thumbnail" data-video-src="https://www.youtube.com/embed/sfLZ7v9gEnc?autoplay=1" alt="Technical Mastery Video">
 
 #### Technical Mastery & Teamwork
-I learned to be a relentless teammate while mastering the complexities of a large library using C++, Git, SVN, and Visual Studio . I bridged the gap between old and new by implementing non-linear optimizers like Levenberg-Marquardt.
+I learned to be a relentless teammate while mastering the complexities of a large library using C++, Git, SVN, and Visual Studio. I bridged the gap between old and new by implementing non-linear optimizers like Levenberg-Marquardt.
 
 ---
 
@@ -47,7 +47,7 @@ I learned the deep learning technology by completing the Coursera Deep Learning 
 <img src="https://img.youtube.com/vi/BPkj-VETeX0/hqdefault.jpg" class="video-thumbnail" data-video-src="https://www.youtube.com/embed/BPkj-VETeX0?autoplay=1" alt="Al Ghurair Scholarship Video">
 
 #### [A Merit-Based Achievement](https://www.alghurairfoundation.org/)
-I was selected for the prestigious **Al Ghurair Foundation Scholarship** based on academic merit . This gave me the opportunity to pursue my passion in Canada. And had my master degree gpa grow from 3.5 to 3.84 at the end after adapting to new environment
+I was selected for the prestigious **Al Ghurair Foundation Scholarship** based on academic merit. This gave me the opportunity to pursue my passion in Canada, and my master's GPA grew from 3.5 to 3.84 by the end, after adapting to a new environment.
 
 ---
 
@@ -61,14 +61,14 @@ I didn't just study theory; I built systems. I gained practical experience by de
 <img src="https://img.youtube.com/vi/VjwIGG7Lbt0/hqdefault.jpg" class="video-thumbnail" data-video-src="https://www.youtube.com/embed/VjwIGG7Lbt0?autoplay=1&start=14" alt="Strong Foundation Video">
 
 #### Built on a Strong Foundation
-I started with two years of intensive preparatory classes—studying math, physics, and coding from 9 AM to 6 PM, six days a week. This dedication helped me graduate **5th out of 1400 students** (Top 1%) with a 17.5/20 GPA .
+I started with two years of intensive preparatory classes—studying math, physics, and coding from 9 AM to 6 PM, six days a week. This dedication helped me graduate **5th out of 1400 students** (Top 1%) with a 17.5/20 GPA.
 
 ---
 
 <img src="https://img.youtube.com/vi/eGPbNTXTd1I/hqdefault.jpg" class="video-thumbnail" data-video-src="https://www.youtube.com/embed/eGPbNTXTd1I?autoplay=1" alt="Acquiring Engineering Knowledge Video">
 
 #### Acquiring Engineering Knowledge
-I built a strong engineering foundation through diverse projects. I developed an **Adaptive Cruise Control** system for autonomous vehicles and programmed a complex **industrial assembly machine** for a factory using PLCs .
+I built a strong engineering foundation through diverse projects. I developed an **Adaptive Cruise Control** system for autonomous vehicles and programmed a complex **industrial assembly machine** for a factory using PLCs.
 {{< /timeline_item >}}
 
 {{< /timeline >}}

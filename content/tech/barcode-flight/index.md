@@ -22,6 +22,6 @@ But then I realized: my phone was in dark mode, and the barcode was shown with d
 
 I really hope Düsseldorf airport and all airports improve their barcode reader.
 
-Want to know more about foreground color support for example in Aurora imaging library? Read this link : [https://lnkd.in/eEKXeeWp](https://lnkd.in/eEKXeeWp)
+Want to know more about foreground color support for example in Aurora imaging library? Read this link: [https://lnkd.in/eEKXeeWp](https://lnkd.in/eEKXeeWp)
 
 Thank you.

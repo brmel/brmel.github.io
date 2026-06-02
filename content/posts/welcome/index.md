@@ -16,7 +16,7 @@ Welcome to my personal technical blog where I share insights from my work in ima
 
 ## My Background
 
-I'm passionate about solving complex technical problems that bridge theory and practice. My professional experience spans industrial image processing at companies like Matrox and Zebra Technology, where I've developed robust computer vision solutions for real-world applications.
+I'm passionate about solving complex technical problems that bridge theory and practice. My professional experience spans industrial image processing at companies like Matrox and Zebra Technologies, where I've developed robust computer vision solutions for real-world applications.
 
 ## What You'll Find Here
 
@@ -40,7 +40,7 @@ I'm passionate about solving complex technical problems that bridge theory and p
 
 ## My Professional Journey
 
-During my time at **Matrox** and **Zebra Technology**, I focused on developing image processing algorithms that meet industrial standards, combining mathematical rigor with practical engineering solutions.
+During my time at **Matrox** and **Zebra Technologies**, I focused on developing image processing algorithms that meet industrial standards, combining mathematical rigor with practical engineering solutions.
 
 ### Key Projects & Achievements
 
