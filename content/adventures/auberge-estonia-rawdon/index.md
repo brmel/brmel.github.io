@@ -1,7 +1,7 @@
 ---
 title: "Auberge Estonia: A Nordic Spa Cabin Escape in Rawdon, One Hour from Montreal"
 date: 2026-05-31
-draft: false
+draft: true
 summary: "A forest auberge in Rawdon, Lanaudière — free Nordic spa with hot tubs and a Finnish sauna, a cold-plunge lake, BBQ cabins, and hiking trails on the estate, all about an hour from Montreal."
 tags: ["Lanaudière", "Rawdon", "Quebec", "Spa", "Nordic Spa", "Cabin", "Hiking", "Getaway", "Montreal"]
 cover:
