@@ -1,0 +1,106 @@
+<!doctype html>
+{{- /*
+  Layout: standalone
+  A self-contained, full-page tech article that bypasses PaperMod's chrome
+  (like the Operating Protocol pages). The layout owns the document shell —
+  <head> with SEO + Google Analytics + brand tokens/fonts, a slim top nav back
+  into the site, and a footer — and renders the article body from .Content.
+
+  Use it from a page bundle: content/tech/<slug>/index.md
+    ---
+    title: "..."
+    date: 2026-06-01
+    layout: "standalone"
+    summary: "One-line teaser (used for description + social cards)."
+    tags: ["..."]
+    cover: { image: "cover.jpg", alt: "...", relative: true }   # optional (og:image)
+    customCSS: ["css/<slug>.css"]    # optional, per-article styles (assets/)
+    customJS:  ["js/<slug>.js"]      # optional, per-article scripts (assets/)
+    hideAutoHeader: true             # optional: hide the auto eyebrow/title/lede
+                                     #   when your HTML provides its own hero
+    ---
+    Put the article BODY here — HTML and/or markdown, plus any <style>/<script>.
+    Do NOT paste a whole <html>…</html> document; just the body content.
+*/ -}}
+{{- $desc := cond (ne (string .Description) "") .Description .Summary -}}
+<html lang="{{ .Site.LanguageCode | default "en" }}" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{ .Title }} — {{ .Site.Title }}</title>
+  <meta name="description" content="{{ $desc }}" />
+  <link rel="canonical" href="{{ .Permalink }}" />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="{{ .Title }}" />
+  <meta property="og:description" content="{{ $desc }}" />
+  <meta property="og:url" content="{{ .Permalink }}" />
+  <meta property="og:site_name" content="{{ .Site.Title }}" />
+  {{- with .Params.cover.image }}{{ with $.Resources.GetMatch . }}
+  <meta property="og:image" content="{{ .Permalink }}" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="{{ .Permalink }}" />
+  {{- end }}{{ end }}
+
+  {{- partial "protocol-fonts.html" . }}
+
+  {{- $tokensCSS := resources.Get "css/extended/tokens.css" | minify | fingerprint }}
+  {{- with $tokensCSS }}<link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}">{{ end }}
+  {{- $saCSS := resources.Get "css/standalone.css" | minify | fingerprint }}
+  {{- with $saCSS }}<link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}">{{ end }}
+  {{- range .Params.customCSS }}{{ with resources.Get . }}{{ $c := . | minify | fingerprint }}
+  <link rel="stylesheet" href="{{ $c.RelPermalink }}" integrity="{{ $c.Data.Integrity }}">{{ end }}{{ end }}
+
+  {{- partial "google_analytics.html" . }}
+</head>
+<body>
+
+  <header class="sa-topbar">
+    <div class="sa-wrap sa-topbar__inner">
+      <a class="sa-brand" href="{{ "/" | relURL }}">{{ .Site.Title }}</a>
+      <nav class="sa-nav" aria-label="Site navigation">
+        <a class="sa-nav__link" href="{{ "/tech/" | relURL }}">← Tech</a>
+        <a class="sa-nav__link" href="{{ "/" | relURL }}">Home</a>
+        <button class="sa-theme" type="button" data-sa-theme aria-label="Toggle theme">☾</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="sa-main">
+    <article class="sa-article">
+      {{- if not .Params.hideAutoHeader }}
+      <header class="sa-head sa-wrap">
+        <p class="sa-eyebrow">Tech{{ with .Date }} · {{ .Format "Jan 2006" }}{{ end }}</p>
+        <h1 class="sa-title">{{ .Title }}</h1>
+        {{- with $desc }}<p class="sa-lede">{{ . }}</p>{{ end }}
+      </header>
+      {{- end }}
+      <div class="sa-body sa-wrap">
+        {{ .Content }}
+      </div>
+    </article>
+  </main>
+
+  <footer class="sa-footer">
+    <div class="sa-wrap sa-footer__inner">
+      <a href="{{ "/tech/" | relURL }}">← Back to Tech</a>
+      <span>© {{ now.Format "2006" }} {{ .Site.Title }}</span>
+    </div>
+  </footer>
+
+  {{- range .Params.customJS }}{{ with resources.Get . }}{{ $j := . | minify | fingerprint }}
+  <script defer src="{{ $j.RelPermalink }}" integrity="{{ $j.Data.Integrity }}"></script>{{ end }}{{ end }}
+  <script>
+    (function () {
+      var KEY = "pref-theme", el = document.documentElement;
+      try { if (localStorage.getItem(KEY) === "dark") el.setAttribute("data-theme", "dark"); } catch (e) {}
+      var btn = document.querySelector("[data-sa-theme]");
+      if (btn) btn.addEventListener("click", function () {
+        var dark = el.getAttribute("data-theme") === "dark";
+        el.setAttribute("data-theme", dark ? "light" : "dark");
+        try { localStorage.setItem(KEY, dark ? "light" : "dark"); } catch (e) {}
+      });
+    })();
+  </script>
+</body>
+</html>

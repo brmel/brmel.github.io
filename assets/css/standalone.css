@@ -1,0 +1,79 @@
+/* ============================================================================
+   IBRAVERSE — STANDALONE  (css/standalone.css)
+   Chrome for the `standalone` layout: a full-page tech article that bypasses
+   PaperMod. Reads the shared brand tokens (tokens.css, loaded just before this)
+   so it matches the rest of the site in light + dark. The article's own body
+   styling can come from its customCSS.
+   ========================================================================== */
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:var(--font-sans);line-height:var(--lh-body);
+  -webkit-font-smoothing:antialiased;
+}
+
+.sa-wrap{max-width:var(--container-content);margin-inline:auto;padding-inline:var(--space-5)}
+
+/* ---- top nav (back into the site) ---- */
+.sa-topbar{
+  position:sticky;top:0;z-index:20;
+  background:color-mix(in srgb,var(--bg) 86%,transparent);
+  backdrop-filter:saturate(1.1) blur(8px);
+  border-bottom:var(--hairline) solid var(--rule);
+}
+.sa-topbar__inner{display:flex;align-items:center;justify-content:space-between;height:56px}
+.sa-brand{font-family:var(--font-serif);font-weight:400;font-size:1.3rem;color:var(--ink);text-decoration:none}
+.sa-brand:hover{color:var(--accent)}
+.sa-nav{display:flex;align-items:center;gap:var(--space-5)}
+.sa-nav__link{
+  font-family:var(--font-mono);font-size:var(--t-eyebrow);letter-spacing:.08em;
+  text-transform:uppercase;color:var(--ink-mute);text-decoration:none;
+  transition:color var(--dur-1) var(--ease-standard);
+}
+.sa-nav__link:hover{color:var(--accent)}
+.sa-theme{all:unset;cursor:pointer;color:var(--ink-mute);font-size:18px;line-height:1}
+.sa-theme:hover{color:var(--accent)}
+.sa-theme:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:var(--radius-xs)}
+
+/* ---- article ---- */
+.sa-main{padding:var(--space-8) 0 0}
+.sa-head{margin-bottom:var(--space-7)}
+.sa-eyebrow{
+  font-family:var(--font-mono);font-size:var(--t-eyebrow);letter-spacing:var(--track-eyebrow);
+  text-transform:uppercase;color:var(--accent);margin:0 0 var(--space-3);
+}
+.sa-title{
+  font-family:var(--font-serif);font-weight:400;font-size:var(--fl-display-l);
+  line-height:1.05;letter-spacing:-0.015em;color:var(--ink);margin:0 0 var(--space-4);text-wrap:balance;
+}
+.sa-lede{font-size:var(--t-subhead);line-height:1.45;color:var(--ink-soft);margin:0;max-width:60ch}
+
+/* ---- article body defaults (overridable by the article's own customCSS) ---- */
+.sa-body{font-size:var(--t-body-l)}
+.sa-body :where(h2){font-family:var(--font-serif);font-weight:400;font-size:var(--t-display-s);line-height:1.1;margin:var(--space-8) 0 var(--space-4)}
+.sa-body :where(h3){font-family:var(--font-sans);font-weight:600;font-size:var(--t-heading);margin:var(--space-6) 0 var(--space-3)}
+.sa-body :where(p,ul,ol){margin:0 0 var(--space-4)}
+.sa-body :where(a){color:var(--accent);text-decoration:underline;text-underline-offset:2px}
+.sa-body :where(a):hover{color:var(--accent-soft)}
+.sa-body :where(img,video,iframe){max-width:100%;height:auto;border-radius:var(--radius-md);display:block}
+.sa-body :where(pre,code,kbd,samp){font-family:var(--font-mono)}
+.sa-body :where(pre){background:var(--bg-alt);border:var(--hairline) solid var(--rule);border-radius:var(--radius-sm);padding:var(--space-4);overflow:auto}
+.sa-body :where(blockquote){border-left:var(--hairline-strong) solid var(--accent);margin:var(--space-6) 0;padding-left:var(--space-5);color:var(--ink-soft)}
+
+/* ---- footer ---- */
+.sa-footer{
+  border-top:var(--hairline) solid var(--rule);
+  margin-top:var(--space-9);padding:var(--space-6) 0;
+  font-family:var(--font-mono);font-size:var(--t-eyebrow);
+  letter-spacing:.05em;color:var(--ink-mute);
+}
+.sa-footer__inner{display:flex;align-items:center;justify-content:space-between;gap:var(--space-4)}
+.sa-footer a{color:var(--ink-mute);text-decoration:none}
+.sa-footer a:hover{color:var(--accent)}
+
+@media (max-width:560px){
+  .sa-nav{gap:var(--space-4)}
+  .sa-main{padding-top:var(--space-6)}
+}
