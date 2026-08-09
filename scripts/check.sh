@@ -8,7 +8,9 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 
 echo "▸ build"
-hugo --gc --minify --quiet
+# --cleanDestinationDir matters after a deletion: without it Hugo leaves the
+# removed pages sitting in public/ and the next deploy resurrects them.
+hugo --gc --minify --quiet --cleanDestinationDir
 echo "  ✅ built $(find public -name '*.html' | wc -l | tr -d ' ') pages"
 
 echo "▸ orphaned assets"

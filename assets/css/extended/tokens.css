@@ -1,15 +1,16 @@
 /* ============================================================================
    IBRAVERSE — TOKENS  (single source of truth)
-   The whole site reads from here: PaperMod pages (via the extended bundle),
-   the Operating Protocol + Today pages (loaded explicitly), and the Adventures
-   brand layer. Variable names match the original protocol.css (--bg, --ink,
-   --accent, --serif, …) AND the brand kit (--font-serif, …) so both consume it.
+   The whole site reads from here: every PaperMod page (via the extended
+   bundle), the standalone layout (loaded explicitly), and the Adventures brand
+   layer. Two naming conventions resolve to the same values (--serif and
+   --font-serif, …) so both older and newer stylesheets consume it unchanged.
 
-   Fonts are loaded once in the document <head> (extend_head.html /
-   protocol-fonts.html), not @imported here.
+   Fonts are loaded once in the document <head> (extend_head.html for PaperMod
+   pages, brand-fonts.html for standalone ones), not @imported here.
 
    Theme:    :root = light · html[data-theme="dark"], .dark = dark
-             (protocol pages toggle html[data-theme]; PaperMod toggles body.dark)
+             (PaperMod toggles body.dark; the data-theme selector is retained
+             for the standalone layout — see #9, which collapses the two)
    Category: [data-category="restaurant|hike|spa|event|city"] swaps ONLY the accent.
    ========================================================================== */
 
@@ -72,7 +73,7 @@
   --ease-spring:cubic-bezier(.34,1.36,.64,1);
 }
 
-/* ---- dark theme — protocol(html[data-theme]) + PaperMod(body.dark) ---- */
+/* ---- dark theme — standalone(html[data-theme]) + PaperMod(body.dark) ---- */
 html[data-theme="dark"],
 .dark{
   --bg:#14130f; --bg-alt:#1c1b16; --ink:#ece8dc; --ink-soft:#b8b3a2;

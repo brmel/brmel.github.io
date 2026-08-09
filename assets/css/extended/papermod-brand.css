@@ -5,8 +5,8 @@
    paper / ink / rust identity in both themes. No hardcoded colors here:
    everything resolves through the tokens.
    Bundled after PaperMod core (css/extended/*), so these win.
-   Does NOT touch the standalone Operating Protocol / Today pages (they load
-   tokens.css + protocol.css directly).
+   Does NOT touch pages using the `standalone` layout (the Hydro-Quebec report),
+   which loads tokens.css + standalone.css directly.
    ========================================================================== */
 
 /* ---- map PaperMod theme vars → brand tokens (light :root + dark .dark) ---- */
