@@ -1,0 +1,8 @@
+# Site-specific strings used by the home-page partials. PaperMod's own keys stay
+# in themes/PaperMod/i18n/ and are merged with these.
+# Flat "key: value" form — the nested go-i18n "other:" form does not resolve here.
+home_latest: "Latest"
+home_resume_hint: "the short version"
+sections: "Sections"
+entry_one: "entry"
+entry_other: "entries"

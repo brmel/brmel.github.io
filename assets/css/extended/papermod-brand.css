@@ -167,3 +167,118 @@ a:focus-visible,button:focus-visible{
 /* theme toggle: brand-coloured, matched to the nav mark */
 #theme-toggle{color:var(--ink-soft);}
 #theme-toggle:hover{color:var(--accent);}
+
+/* ============================================================================
+   HOME — intro, section cards, latest list
+   The home page is identity first, then routes. Cards carry their section's
+   accent via [data-category]; nothing here hardcodes a colour or a section.
+   ========================================================================== */
+
+.home-intro{
+  max-width:var(--container-text);
+  margin:var(--space-8) auto var(--space-9);
+  text-align:center;
+}
+.home-intro p{color:var(--ink-soft);}
+.home-intro > :first-child{margin-top:0;}
+
+/* ---- section cards ---- */
+.home-sections{
+  max-width:var(--container-content);
+  margin:0 auto var(--space-9);
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:var(--space-4);
+}
+.home-card{
+  position:relative;
+  display:flex;flex-direction:column;gap:var(--space-2);
+  padding:var(--space-5) var(--space-5) var(--space-5);
+  background:var(--bg-alt);
+  border:var(--hairline) solid var(--rule);
+  border-radius:var(--radius-md);
+  text-decoration:none;
+  overflow:hidden;
+  transition:border-color var(--dur-2) var(--ease-standard),
+             transform var(--dur-2) var(--ease-standard),
+             box-shadow var(--dur-2) var(--ease-standard);
+}
+.home-card:hover{
+  border-color:var(--accent);
+  transform:translateY(-2px);
+  box-shadow:var(--shadow-card);
+}
+/* the category bar — the one place each card shows its accent as a block */
+.home-card__rule{
+  position:absolute;inset-inline-start:0;inset-block-start:0;
+  width:var(--category-bar);height:100%;
+  background:var(--accent);
+}
+.home-card__title{
+  font-family:var(--font-serif);
+  font-size:var(--t-heading);
+  line-height:1.15;
+  color:var(--ink);
+}
+.home-card__desc{
+  font-size:var(--t-caption);
+  line-height:1.5;
+  color:var(--ink-soft);
+  flex:1 1 auto;
+}
+.home-card__count{
+  font-family:var(--font-mono);
+  font-size:var(--t-eyebrow);
+  letter-spacing:var(--track-eyebrow);
+  text-transform:uppercase;
+  color:var(--accent);
+}
+
+/* ---- latest across sections ---- */
+.home-latest{
+  max-width:var(--container-text);
+  margin:0 auto var(--space-9);
+}
+.home-latest__heading{
+  font-family:var(--font-mono);
+  font-size:var(--t-eyebrow);
+  letter-spacing:var(--track-eyebrow);
+  text-transform:uppercase;
+  color:var(--ink-mute);
+  font-weight:400;
+  margin:0 0 var(--space-4);
+  padding-bottom:var(--space-2);
+  border-bottom:var(--hairline) solid var(--rule);
+}
+.home-latest__list{list-style:none;margin:0;padding:0;}
+.home-latest__item{border-bottom:var(--hairline) solid var(--rule-soft);}
+.home-latest__item:last-child{border-bottom:0;}
+.home-latest__item a{
+  display:flex;flex-direction:column;gap:var(--space-1);
+  padding:var(--space-4) 0;
+  text-decoration:none;
+}
+.home-latest__meta{
+  font-family:var(--font-mono);
+  font-size:var(--t-eyebrow);
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  color:var(--ink-mute);
+}
+.home-latest__title{
+  font-family:var(--font-serif);
+  font-size:var(--t-subhead);
+  line-height:1.2;
+  color:var(--ink);
+  transition:color var(--dur-1) var(--ease-standard);
+}
+.home-latest__item a:hover .home-latest__title{color:var(--accent);}
+.home-latest__sum{
+  font-size:var(--t-caption);
+  line-height:1.5;
+  color:var(--ink-soft);
+}
+
+@media (max-width:480px){
+  .home-sections{grid-template-columns:1fr;}
+}

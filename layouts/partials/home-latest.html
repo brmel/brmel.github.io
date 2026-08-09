@@ -1,0 +1,34 @@
+{{- /*
+  home-latest — the most recent writing across every section in mainSections.
+
+  This is what params.mainSections was configured for (#6). Ranges over the same
+  sections the cards do, so a new section appears here automatically.
+  Renders nothing at all when there is nothing to show, rather than an empty
+  heading — same principle as the empty-section rules elsewhere.
+*/ -}}
+{{- $limit := 5 -}}
+{{- $pages := where site.RegularPages "Type" "in" site.Params.mainSections -}}
+{{- $pages = where $pages "Params.hiddenInHomeList" "!=" true -}}
+{{- $pages = first $limit $pages -}}
+
+{{- with $pages }}
+<section class="home-latest" aria-labelledby="home-latest-heading">
+  <h2 class="home-latest__heading" id="home-latest-heading">
+    {{ i18n "home_latest" | default "Latest" }}
+  </h2>
+  <ul class="home-latest__list">
+    {{- range . }}
+    <li class="home-latest__item">
+      <a href="{{ .RelPermalink }}">
+        <span class="home-latest__meta">
+          {{- with .Date }}<time datetime="{{ .Format "2006-01-02" }}">{{ .Format (site.Params.DateFormat | default "January 2, 2006") }}</time>{{ end }}
+          {{- with .Section }} <span aria-hidden="true">·</span> {{ . }}{{ end }}
+        </span>
+        <span class="home-latest__title">{{ .Title }}</span>
+        {{- with .Params.summary }}<span class="home-latest__sum">{{ . }}</span>{{ end }}
+      </a>
+    </li>
+    {{- end }}
+  </ul>
+</section>
+{{- end }}

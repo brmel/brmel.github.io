@@ -1,0 +1,44 @@
+{{- /*
+  home-sections — the routes out of the home page.
+
+  One card per section listed in site.Params.mainSections, plus the Resume,
+  each carrying its own accent from the [data-category] register in tokens.css
+  (see docs/brand-guidelines.md §5). Cards are built from the section pages
+  themselves — title and description come from each section's _index.md — so
+  adding a section adds a card with no template edit.
+
+  A section with nothing published is skipped, matching the rule in
+  partials/header.html: the home page never routes anywhere the nav won't.
+*/ -}}
+
+{{- /* accent per section, keyed to the domain register in tokens.css */ -}}
+{{- $accents := dict "projects" "saas" "tech" "restaurant" "adventures" "hike" "thoughts" "city" -}}
+
+<nav class="home-sections" aria-label="{{ i18n "sections" | default "Sections" }}">
+  {{- range site.Params.mainSections }}
+  {{- with site.GetPage (printf "/%s" .) }}
+  {{- if ge (len .RegularPages) 1 }}
+  <a class="home-card" href="{{ .RelPermalink }}"
+     data-category="{{ index $accents .Section | default "restaurant" }}">
+    <span class="home-card__rule" aria-hidden="true"></span>
+    <span class="home-card__title">{{ .Title }}</span>
+    {{- with .Description }}<span class="home-card__desc">{{ . }}</span>{{ end }}
+    {{- $n := len .RegularPages }}
+    <span class="home-card__count">
+      {{- $n }} {{ cond (eq $n 1) (i18n "entry_one") (i18n "entry_other") -}}
+    </span>
+  </a>
+  {{- end }}
+  {{- end }}
+  {{- end }}
+
+  {{- /* The resume is a single page, not a section, so it is named explicitly. */ -}}
+  {{- with site.GetPage "/timeline" }}
+  <a class="home-card home-card--resume" href="{{ .RelPermalink }}" data-category="event">
+    <span class="home-card__rule" aria-hidden="true"></span>
+    <span class="home-card__title">{{ .Title }}</span>
+    {{- with .Params.summary }}<span class="home-card__desc">{{ . }}</span>{{ end }}
+    <span class="home-card__count">{{ i18n "home_resume_hint" | default "the short version" }}</span>
+  </a>
+  {{- end }}
+</nav>

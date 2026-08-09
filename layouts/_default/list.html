@@ -1,7 +1,20 @@
 {{- define "main" }}
 
 {{- if (and site.Params.profileMode.enabled .IsHome) }}
+{{- /* Home = identity, then the routes into the work.
+
+       Upstream PaperMod renders index_profile and returns, which meant the whole
+       body of content/_index.md was parsed and then silently dropped — it had
+       never appeared on the site (#10). The three blocks below fix that: the
+       profile, then the page's own copy, then cards + latest posts. */ -}}
 {{- partial "index_profile.html" . }}
+{{- if .Content }}
+<div class="post-content home-intro">
+  {{ .Content }}
+</div>
+{{- end }}
+{{- partial "home-sections.html" . }}
+{{- partial "home-latest.html" . }}
 {{- else }} {{/* if not profileMode */}}
 
 {{- if not .IsHome | and .Title }}

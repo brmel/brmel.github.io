@@ -15,7 +15,7 @@ googleAnalytics = "G-CHFGS2DHF6"
     [languages.en.params.profileMode]
       enabled = true
       title = "Brahim Redouane Mellah"
-      subtitle = "Software Engineer passionate about Image Processing, Mathematics, C++, and AI.\n\nI am currently working at Zebra Technologies. I specialize in developing advanced classical image processing and machine learning algorithms, optimized and packaged to work in real industry applications."
+      subtitle = "Machine vision & image processing · Zebra Technologies · Montréal"
       imageUrl = "images/MyPhoto.jpg"
       imageWidth = 380
       imageTitle = "Brahim Redouane Mellah"
@@ -56,7 +56,7 @@ googleAnalytics = "G-CHFGS2DHF6"
     [languages.fr.params.profileMode]
       enabled = true
       title = "Brahim Redouane Mellah"
-      subtitle = "Ingénieur Logiciel passionné par le Traitement d'Images, les Mathématiques, le C++ et l'IA.\n\nJe travaille actuellement chez Zebra Technologies. Je suis spécialisé dans le développement d'algorithmes avancés de traitement d'images et d'apprentissage automatique, optimisés pour des applications industrielles réelles."
+      subtitle = "Vision industrielle & traitement d'images · Zebra Technologies · Montréal"
       imageUrl = "images/MyPhoto.jpg"
       imageWidth = 380
       imageTitle = "Brahim Redouane Mellah"
@@ -98,7 +98,7 @@ googleAnalytics = "G-CHFGS2DHF6"
     [languages.ar.params.profileMode]
       enabled = true
       title = "إبراهيم رضوان ملاح"
-      subtitle = "مهندس برمجيات شغوف بمعالجة الصور والرياضيات وبرمجة C++ والذكاء الاصطناعي.\n\nأعمل حاليًا في Zebra Technologies. متخصص في تطوير خوارزميات معالجة الصور المتقدمة والتعلم الآلي، وتحسينها للعمل بكفاءة في التطبيقات الصناعية."
+      subtitle = "الرؤية الآلية ومعالجة الصور · Zebra Technologies · مونتريال"
       imageUrl = "images/MyPhoto.jpg"
       imageWidth = 380
       imageTitle = "إبراهيم رضوان ملاح"
