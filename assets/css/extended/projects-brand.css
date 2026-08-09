@@ -167,3 +167,51 @@
   .project-grid{grid-template-columns:1fr;}
   .project-links{margin-inline-start:0;}
 }
+
+/* ---- continuous-learning block (partials/projects-learning.html) ----
+   Subordinate to the project grid by construction: hairlines, mono eyebrows,
+   no cards, no accent fills. If it ever competes with the grid above it, the
+   block is wrong, not the grid. */
+.learning{
+  max-width:var(--container-content);
+  margin:var(--space-10) auto 0;
+  padding-top:var(--space-6);
+  border-top:var(--hairline) solid var(--rule);
+}
+.learning__h{
+  font-family:var(--font-mono);font-weight:400;
+  font-size:var(--t-eyebrow);letter-spacing:var(--track-eyebrow);
+  text-transform:uppercase;color:var(--ink-mute);
+  margin:0 0 var(--space-6);
+}
+.learning__group + .learning__group{margin-top:var(--space-8);}
+.learning__sub{
+  display:flex;flex-wrap:wrap;align-items:baseline;gap:var(--space-3);
+  font-family:var(--font-serif);font-weight:400;
+  font-size:var(--t-subhead);color:var(--ink);
+  margin:0 0 var(--space-3);
+}
+.learning__updated{
+  font-family:var(--font-mono);font-size:11px;
+  letter-spacing:.06em;text-transform:uppercase;color:var(--ink-mute);
+}
+.learning__list{list-style:none;margin:0;padding:0;}
+.learning__item{
+  display:grid;grid-template-columns:200px 1fr;gap:var(--space-4);
+  padding:var(--space-3) 0;
+  border-bottom:var(--hairline) solid var(--rule-soft);
+}
+.learning__item:last-child{border-bottom:0;}
+.learning__link{
+  font-family:var(--font-mono);font-size:var(--t-eyebrow);
+  letter-spacing:.06em;text-transform:uppercase;
+  color:var(--accent);text-decoration:none;
+  transition:color var(--dur-1) var(--ease-standard);
+}
+.learning__link:hover{color:var(--accent-soft);text-decoration:underline;}
+.learning__link--plain{color:var(--ink-soft);}
+.learning__note{color:var(--ink-soft);line-height:1.6;font-size:var(--t-caption);}
+
+@media (max-width:600px){
+  .learning__item{grid-template-columns:1fr;gap:var(--space-1);}
+}

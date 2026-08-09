@@ -10,7 +10,10 @@ cd "$(dirname "$0")/.."
 echo "▸ build"
 # --cleanDestinationDir matters after a deletion: without it Hugo leaves the
 # removed pages sitting in public/ and the next deploy resurrects them.
-hugo --gc --minify --quiet --cleanDestinationDir
+# --logLevel warn, not --quiet: templates raise content warnings (a stale
+# data/learning.yaml, a missing resource) and --quiet swallows them, which
+# defeats the point of running this before pushing.
+hugo --gc --minify --cleanDestinationDir --logLevel warn
 echo "  ✅ built $(find public -name '*.html' | wc -l | tr -d ' ') pages"
 
 echo "▸ orphaned assets"
