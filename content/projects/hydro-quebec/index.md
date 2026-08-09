@@ -8,6 +8,13 @@ pitch: "Two months of Hydro-Québec outage snapshots, collected every minute, tu
 stack: ["Python", "pandas", "Plotly", "KMZ", "Firebase Storage"]
 links:
   live: "/tech/hydro-quebec-outage-analysis/"
+lede: |
+  Hydro-Québec publishes a live outage map that tells you what is broken right
+  now and when they expect it back, and then forgets — no history, no accuracy
+  record, no way to ask whether last Tuesday's estimate meant anything. I wanted
+  one number: when they say the power is back at four, how often is it back at
+  four? Nobody publishes that, so I wrote the map down every minute for
+  fifty-six days and worked it out — the answer is five percent.
 takeaway: "A number you collected yourself changes your mind in a way the same number from someone else never does."
 lessons:
   - "**The headline finding was about me, not the utility.** Announced restoration times land within an hour about 5% of the time. My second reaction was recognising the same failure in my own estimates — that became [a whole piece of writing](/thoughts/estimates-and-the-five-percent/), and it is the only thing from this project I still think about."
@@ -19,16 +26,12 @@ tags: ["Python", "Data Analysis", "Hydro-Québec", "Web Scraping"]
 
 ## The story
 
-Hydro-Québec publishes a live outage map. It tells you what is broken right now
-and when they expect it back, and then it forgets. There is no history, no
-accuracy record, and no way to ask whether the estimate you were given last
-Tuesday meant anything.
+The map is a live view with no memory: it tells you what is broken right now and
+then forgets, so there is no accuracy record and no way to ask whether last
+Tuesday's estimate meant anything.
 
-I wanted one number: when they say the power is back at four, how often is it
-back at four?
-
-Nobody publishes that, so the only way to get it was to write down the map every
-minute for two months and work it out afterwards.
+The only way to get the number was to write the map down every minute for two
+months and work it out afterwards.
 
 ## The product
 

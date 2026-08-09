@@ -17,27 +17,38 @@ contact:
     url: "https://github.com/brmel"
 skills:
   - group: "Languages"
-    items: ["C++", "C", "Python", "Dart / Flutter", "MATLAB", "VHDL"]
+    items: ["C++", "C", "Python", "Dart / Flutter", "TypeScript", "MATLAB", "VHDL", "SQL"]
   - group: "Machine vision"
-    items: ["Aurora Imaging Library", "Matrox Imaging Library", "OpenCV", "geometric matching", "calibration", "metrology"]
+    items: ["Aurora Imaging Library", "Matrox Imaging Library", "OpenCV", "geometric matching", "calibration", "metrology", "edge measurement"]
   - group: "Maths & algorithms"
-    items: ["non-linear optimisation", "Levenberg–Marquardt", "control theory", "classical ML", "deep learning"]
+    items: ["non-linear optimisation", "Levenberg–Marquardt", "control theory", "classical ML", "deep learning", "multi-agent pipelines"]
+  - group: "Cloud & backend"
+    items: ["Google Cloud", "Firebase", "Cloud Functions", "Firestore", "Cloud Storage", "Firebase Hosting", "FastAPI", "Prefect"]
   - group: "Systems & tools"
-    items: ["real-time systems", "QNX", "ROS", "Git", "SVN", "Simulink", "Unity-Pro"]
+    items: ["real-time systems", "QNX", "ROS", "Git / GitHub", "SVN", "Simulink", "LabVIEW", "Unity-Pro (Schneider)", "Simatic-Manager (Siemens)", "JIRA"]
+  - group: "Spoken"
+    items: ["French", "English", "Arabic"]
 education:
   - year: "2017 – 2019"
     degree: "M.Sc., Control Systems Engineering"
     school: "Polytechnique Montréal"
-    note: "GPA 3.84/4 · Al Ghurair Foundation Scholarship (1 of 100 from 15,000+ applicants)"
+    note: "GPA 3.87/4 · Al Ghurair Foundation Scholarship (1 of 100 from 15,000+ applicants) · digital control, detection and estimation, robotics, image processing, stochastic and robust control"
   - year: "2012 – 2017"
-    degree: "B.Eng., Electrical Engineering"
+    degree: "B.Eng., Electrical Engineering — Control Systems"
     school: "École Nationale Polytechnique, Algiers"
-    note: "GPA 17.5/20 · graduated 5th of 1,400 (top 1% nationally)"
+    note: "GPA 17.5/20 · graduated 5th of 1,400 (top 1% nationally) · process identification, control design, PLC programming, optimal control"
+certifications:
+  - year: "2023"
+    name: "Neural Networks and Deep Learning · Convolutional Neural Networks"
+    issuer: "DeepLearning.AI"
+  - year: "2023"
+    name: "Machine Learning: Classification"
+    issuer: "University of Washington"
 ---
 
 {{< timeline >}}
 
-{{< timeline_item title="Current Job: [Zebra Technologies](https://www.zebra.com/us/en.html)" date="2022 - Present" >}}
+{{< timeline_item title="Senior Software Developer: [Zebra Technologies](https://www.zebra.com/us/en.html)" date="2024 - Present" >}}
 <img src="/images/timeline/m7KKRmOxRT0.jpg" class="video-thumbnail" data-video-src="https://www.youtube.com/embed/m7KKRmOxRT0?autoplay=1" alt="Video Thumbnail">
 
 #### [Leading the Aurora Imaging Library](https://www.zebra.com/us/en/software/machine-vision-and-fixed-industrial-scanning-software/aurora-imaging-library.html)
@@ -50,6 +61,21 @@ I am one of the people responsible for the AIL algorithms. My role isn't just co
 
 #### [Empowering the Aurora Focus Camera](https://www.zebra.com/us/en/products/industrial-machine-vision-fixed-scanners/smart-sensors-and-cameras.html?page=1)
 I am currently working on the **Aurora Focus** smart camera. My goal is to embed our powerful imaging library directly into the camera hardware, enabling it to process data autonomously at the edge.
+{{< /timeline_item >}}
+
+{{< timeline_item title="Software Developer II: [Zebra Technologies](https://www.zebra.com/us/en.html)" date="2022 - 2024" >}}
+#### Machine vision algorithms in C++
+Designed and implemented machine vision algorithms in the Matrox Imaging Library (MIL) in C++, combining classical image processing with machine learning. Designed — with my team — the new **Advanced Geometric Matcher (AGM) API**.
+
+---
+
+#### Maintaining the 2D modules
+Model Finder, Edge Finder, Measurement, Metrology, Calibration and Bead. Solving, implementing and debugging mathematical algorithms using algebra, geometry and non-linear optimisation, and improving the library's tests and coverage.
+
+---
+
+#### Beyond the code
+Documenting new MIL APIs and writing examples for customers, helping customers work through their hardest applications, and supervising trainees and interns. Agile, with JIRA and Git/GitHub.
 {{< /timeline_item >}}
 
 {{< timeline_item title="First Job: [Matrox Imaging](https://video.matrox.com/en)" date="2019 - 2022" >}}

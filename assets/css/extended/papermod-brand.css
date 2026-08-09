@@ -484,3 +484,58 @@ a:focus-visible,button:focus-visible{
   height:auto;
   box-shadow:var(--shadow-photo);
 }
+
+/* ============================================================================
+   SECTION NAV — the way back, at the end of every content page
+   One pattern for every section, so navigation is learned once. Quiet: hairline
+   rule, mono back-link, sibling titles in serif.
+   ========================================================================== */
+.section-nav{
+  max-width:var(--container-text);
+  margin:var(--space-9) auto 0;
+  padding-top:var(--space-5);
+  border-top:var(--hairline) solid var(--rule);
+}
+.section-nav__back{
+  display:inline-flex;align-items:center;gap:var(--space-2);
+  font-family:var(--font-mono);font-size:var(--t-eyebrow);
+  letter-spacing:var(--track-eyebrow);text-transform:uppercase;
+  color:var(--accent);text-decoration:none;
+  transition:gap var(--dur-2) var(--ease-standard);
+}
+.section-nav__back span{transition:transform var(--dur-2) var(--ease-standard);}
+.section-nav__back:hover span{transform:translateX(-3px);}
+[dir="rtl"] .section-nav__back span{transform:scaleX(-1);}
+[dir="rtl"] .section-nav__back:hover span{transform:scaleX(-1) translateX(-3px);}
+
+.section-nav__siblings{
+  display:grid;grid-template-columns:1fr 1fr;gap:var(--space-4);
+  margin-top:var(--space-5);
+}
+.section-nav__sib{
+  display:flex;flex-direction:column;gap:var(--space-1);
+  padding:var(--space-4);
+  background:var(--bg-alt);
+  border:var(--hairline) solid var(--rule);
+  border-radius:var(--radius-md);
+  text-decoration:none;
+  transition:border-color var(--dur-2) var(--ease-standard),
+             transform var(--dur-2) var(--ease-standard);
+}
+.section-nav__sib:hover{border-color:var(--accent);transform:translateY(-2px);}
+.section-nav__sib--next{text-align:end;}
+.section-nav__dir{
+  font-family:var(--font-mono);font-size:10px;
+  letter-spacing:var(--track-eyebrow);text-transform:uppercase;
+  color:var(--ink-mute);
+}
+.section-nav__title{
+  font-family:var(--font-serif);font-size:var(--t-body-l);
+  line-height:1.25;color:var(--ink);
+}
+.section-nav__sib:hover .section-nav__title{color:var(--accent);}
+
+@media (max-width:600px){
+  .section-nav__siblings{grid-template-columns:1fr;}
+  .section-nav__sib--next{text-align:start;}
+}

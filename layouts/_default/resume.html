@@ -15,6 +15,8 @@
 */ -}}
 <article class="post-single resume">
 
+  {{ partial "breadcrumbs.html" . }}
+
   <header class="resume__head">
     <span class="resume__mark">{{ partial "brand-mark.html" (dict "size" 32) }}</span>
     <h1 class="resume__name">{{ site.Params.profileMode.title | default .Title }}</h1>
@@ -63,6 +65,21 @@
         <span class="resume__edu-degree">{{ .degree }}</span>
         <span class="resume__edu-school">{{ .school }}</span>
         {{- with .note }}<span class="resume__edu-note">{{ . }}</span>{{ end }}
+      </li>
+      {{- end }}
+    </ul>
+  </section>
+  {{- end }}
+
+  {{- with .Params.certifications }}
+  <section class="resume__section" aria-labelledby="resume-certs">
+    <h2 class="resume__h2" id="resume-certs">{{ i18n "resume_certifications" | default "Certifications" }}</h2>
+    <ul class="resume__edu">
+      {{- range . }}
+      <li class="resume__edu-item">
+        <span class="resume__edu-year" dir="ltr">{{ .year }}</span>
+        <span class="resume__edu-degree">{{ .name }}</span>
+        <span class="resume__edu-school">{{ .issuer }}</span>
       </li>
       {{- end }}
     </ul>

@@ -8,6 +8,14 @@ pitch: "Clinic ticketing and queue management that runs on one PC, with no cloud
 stack: ["Electron", "TypeScript", "Firebase", "Ed25519", "Turborepo"]
 links:
   live: "https://tikipro.web.app"
+lede: |
+  A three-doctor clinic runs its waiting room on shouting: someone calls a name,
+  half the room doesn't hear it, and the person who stepped outside loses their
+  turn. The software that fixes this is built for hospitals — a server, a
+  network, a per-seat licence, an IT contact — and a small clinic has none of
+  that, just one PC at reception and a television on the wall. TikiPro turns that
+  machine into the whole system: reception issues tickets, the room watches its
+  place on the second screen, and no patient record ever leaves the building.
 takeaway: "Shipping to non-technical users means the install path is the product — everything before first launch is where it fails."
 lessons:
   - "**The installer is the product for the first ten minutes.** The app refuses to start without a licence file, and the installer is not code-signed, so Windows SmartScreen blocks it. Two dead ends before anyone sees a feature. I now write the onboarding email before the release, because every warning it has to explain is a design failure I could have removed."
@@ -19,15 +27,9 @@ tags: ["Electron", "TypeScript", "Firebase", "Desktop", "Licensing"]
 
 ## The story
 
-A clinic waiting room runs on shouting. Someone at reception calls a name, half
-the room doesn't hear it, and the person who stepped out to take a call loses
-their turn. The staff spend the day re-explaining the order to people who are
-convinced they were skipped.
-
-The software that fixes this exists, and it is priced and architected for
-hospitals: a server, a network, a per-seat licence, an IT contact. A three-doctor
-clinic has none of those things. It has one PC at reception and a television on
-the wall.
+The staff cost is the part that does not show up in a feature list: they spend
+the day re-explaining the order to people who are convinced they were skipped,
+and every one of those conversations happens while somebody else is waiting.
 
 TikiPro is built for exactly that machine. Reception issues numbered tickets from
 a desk view. The waiting room sees its position on a second screen. Each doctor

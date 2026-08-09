@@ -117,23 +117,38 @@
   border-bottom:var(--hairline) solid var(--rule);
 }
 
-/* ---- single: gallery ---- */
+/* ---- single: lede ----
+   Three sentences between the title and the evidence. Slightly larger than body
+   copy so it reads as a standfirst, not as the first paragraph of the article. */
+.project-lede{
+  max-width:var(--container-text);
+  margin:0 auto var(--space-7);
+  font-size:var(--t-body-l);
+  line-height:1.6;
+  color:var(--ink-soft);
+}
+.project-lede p{margin:0 0 var(--space-3);}
+.project-lede p:last-child{margin-bottom:0;}
+.project-lede strong{color:var(--ink);font-weight:500;}
+
+/* ---- single: gallery ----
+   Multi-column, not grid. Screenshots arrive at wildly different aspect ratios
+   — a 1200x750 desktop capture next to a 675x1200 phone — and a fixed-height
+   grid cell letterboxed every one of them, which is where the dead space came
+   from. Columns let each figure keep its own height and pack without gaps. */
 .project-gallery{max-width:var(--container-content);margin:0 auto var(--space-8);}
 .project-gallery__grid{
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-  gap:var(--space-4);
+  columns:2;
+  column-gap:var(--space-4);
 }
-.project-shot{margin:0;}
+.project-shot{
+  break-inside:avoid;
+  margin:0 0 var(--space-4);
+  display:inline-block;   /* stops figures splitting across columns in Safari */
+  width:100%;
+}
 .project-shot img{
-  width:100%;display:block;
-  /* Screenshots arrive at wildly different aspect ratios — a 1200x750 desktop
-     capture next to a 566x1200 phone or admin screen. A fixed box keeps the grid
-     on one rhythm; `contain` means nothing is ever cropped, which matters more
-     for a screenshot than filling the frame. The letterboxing lands on paper, so
-     it reads as a mounted screenshot rather than a gap. */
-  height:clamp(240px,30vw,420px);
-  object-fit:contain;object-position:center;
-  padding:var(--space-3);box-sizing:border-box;
+  width:100%;height:auto;display:block;   /* natural aspect — nothing cropped, nothing padded */
   border:var(--hairline) solid var(--rule);
   border-radius:var(--radius-sm);
   box-shadow:var(--shadow-photo);
@@ -163,9 +178,13 @@
   width:10px;height:var(--hairline-strong);background:var(--accent);
 }
 
+@media (max-width:760px){
+  .project-gallery__grid{columns:1;}
+}
 @media (max-width:600px){
   .project-grid{grid-template-columns:1fr;}
   .project-links{margin-inline-start:0;}
+  .project-lede{font-size:var(--t-body);}
 }
 
 /* ---- continuous-learning block (partials/projects-learning.html) ----

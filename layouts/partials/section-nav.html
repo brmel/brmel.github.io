@@ -1,0 +1,61 @@
+{{- /*
+  section-nav — the way back, at the end of every content page.
+
+  Before this, the only route out of an article or a project was the breadcrumb
+  at the very top: after 700–2,700 words a reader had to scroll all the way back
+  up to leave. Prev/next was disabled site-wide (ShowPostNavLinks = false), so
+  there was no way to move between sibling pages at all.
+
+  One partial, used by every single-page layout, so the affordance is identical
+  everywhere:
+
+      ← Back to Projects
+      Previous: <title>            Next: <title>
+
+  Siblings come from the page's own section and respect the tiered language
+  policy — a reader on /fr/ moving between English-only articles stays in the
+  same set they were shown in the listing.
+*/ -}}
+
+{{- $section := .Section -}}
+{{- with site.GetPage (printf "/%s" $section) }}
+{{- $siblings := partial "func/section-pages.html" . -}}
+{{- /* Projects read in numbered order; everything else newest first. */ -}}
+{{- if eq $section "projects" }}
+  {{- $siblings = sort $siblings "Params.projectNo" "asc" }}
+{{- else }}
+  {{- $siblings = sort $siblings "Date" "desc" }}
+{{- end }}
+
+{{- $cur := $.RelPermalink -}}
+{{- $prev := false }}{{ $next := false }}{{ $idx := -1 }}
+{{- range $i, $p := $siblings }}{{ if eq $p.RelPermalink $cur }}{{ $idx = $i }}{{ end }}{{ end }}
+{{- if ge $idx 0 }}
+  {{- if gt $idx 0 }}{{ $prev = index $siblings (sub $idx 1) }}{{ end }}
+  {{- if lt $idx (sub (len $siblings) 1) }}{{ $next = index $siblings (add $idx 1) }}{{ end }}
+{{- end }}
+
+<nav class="section-nav" aria-label="{{ i18n "section_nav_label" | default "Section navigation" }}">
+  <a class="section-nav__back" href="{{ .RelPermalink }}">
+    <span aria-hidden="true">←</span>
+    {{ i18n "back_to" | default "Back to" }} {{ .Title }}
+  </a>
+
+  {{- if or $prev $next }}
+  <div class="section-nav__siblings">
+    {{- with $prev }}
+    <a class="section-nav__sib section-nav__sib--prev" href="{{ .RelPermalink }}" rel="prev">
+      <span class="section-nav__dir">{{ i18n "previous" | default "Previous" }}</span>
+      <span class="section-nav__title">{{ .Title }}</span>
+    </a>
+    {{- else }}<span></span>{{ end }}
+    {{- with $next }}
+    <a class="section-nav__sib section-nav__sib--next" href="{{ .RelPermalink }}" rel="next">
+      <span class="section-nav__dir">{{ i18n "next" | default "Next" }}</span>
+      <span class="section-nav__title">{{ .Title }}</span>
+    </a>
+    {{- end }}
+  </div>
+  {{- end }}
+</nav>
+{{- end }}

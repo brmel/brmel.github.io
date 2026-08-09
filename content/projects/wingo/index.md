@@ -8,6 +8,14 @@ pitch: "A small group decides where to go — nominate options, vote in real tim
 stack: ["Flutter", "Firebase Functions", "TypeScript", "React", "Firestore"]
 links:
   live: ""
+lede: |
+  Five friends trying to pick a restaurant will fill a group chat with links,
+  three thumbs-up reactions and no decision, and two days later nobody booked
+  anything. The problem was never a shortage of options — it is that no message
+  in a chat is ever the moment the group agreed. Wingo makes that moment
+  explicit: a squad nominates options, everyone votes in real time, and one of
+  them locks in, so the thread afterwards is about logistics instead of whether
+  it is happening.
 takeaway: "Build the deploy tooling before you need it — the second web property is when hand-run commands start costing real time."
 lessons:
   - "**The control plane was the best decision on the project.** Two web properties, two audiences, two visibility rules, and deploys were hand-run CLI commands. `Operator/` turned build → deploy → publish → rollback into one model across Firebase Hosting, this machine, and any server, with an audit trail and health-check auto-rollback. It cost a fortnight and paid for itself the first time a bad deploy needed reverting."
@@ -19,17 +27,10 @@ tags: ["Flutter", "Firebase", "Mobile", "Real-time"]
 
 ## The story
 
-Deciding where to go with five friends is a solved problem right up until you try
-to solve it. The group chat fills with links, three people react with a thumbs
-up, someone asks "so are we doing this?", and the thread dies. Two days later
-nobody booked anything.
-
-The failure isn't a lack of options. It's that no message in a chat is ever the
-decision — there's no moment where the group agrees something is now true.
-
-Wingo makes that moment explicit. A squad nominates options, everyone votes in
-real time, and one of them locks in as the plan. After that the thread is about
-logistics instead of whether it's happening.
+The moment matters more than the mechanism. A squad nominates options, everyone
+votes in real time, and one of them locks in as the plan — and it is the locking
+in, not the voting, that ends the argument. Before that moment every message is
+just an opinion; after it, the thread is about logistics.
 
 ## The product
 

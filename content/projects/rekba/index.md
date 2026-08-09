@@ -8,6 +8,14 @@ pitch: "Public transit for Algeria — bus, tram and metro in one app, in a coun
 stack: ["Python", "FastAPI", "Prefect", "Typer", "GTFS", "Flutter"]
 links:
   live: "https://rekba-landing.web.app"
+lede: |
+  In Algiers you find out when the bus comes by standing where the bus comes and
+  waiting, because no agency publishes a usable timetable and the apps that
+  would show you one have nothing to read. That gap is the whole problem: the
+  transit app everyone wants cannot exist until someone builds the data
+  underneath it. Rekba is both halves in order — a pipeline that manufactures a
+  network out of OpenStreetMap geometry, timetable estimates and coarse
+  positions, and the app that finally makes it useful to a rider.
 takeaway: "When the data doesn't exist, the product is the pipeline that produces it — not the app on top."
 lessons:
   - "**I surveyed riders before writing the app, and it changed what I built.** The mapped rail network and the station-level survey came first. What people wanted was not a journey planner — it was knowing whether the thing they are standing at the stop for is actually coming."
@@ -19,17 +27,14 @@ tags: ["Python", "FastAPI", "GTFS", "Transit", "Algeria"]
 
 ## The story
 
-In Algiers you find out when the bus comes by standing where the bus comes and
-waiting. There is no timetable to check. For the routes that do have one, it
-describes an intention rather than a schedule.
+For the routes that do have a published timetable, it describes an intention
+rather than a schedule — which is its own kind of missing data, and harder to
+detect than an empty file.
 
-Every mapping app has the same gap, and for the same reason: they consume open
-transit data, and Algeria doesn't publish any. There's nothing to consume. The
-app you'd want can't be built until someone builds the feed underneath it.
-
-Rekba is an attempt at both, in that order. The transit app is the visible half.
-The half that took the work is the pipeline that manufactures a usable network
-out of sources that were never meant to be one.
+Every mapping app has the same gap for the same reason: they consume open transit
+data, and there is none to consume. So the transit app is the visible half of
+this project, and the half that took the work is the pipeline that manufactures a
+usable network out of sources that were never meant to be one.
 
 ## The product
 

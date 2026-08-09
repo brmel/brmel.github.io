@@ -4,7 +4,6 @@ date: 2025-01-08
 draft: false
 author: "Ibraverse"
 tags: ["Edge Detection", "Measurement", "Industrial Vision", "Image Processing"]
-categories: ["Tutorials", "Image Analysis"]
 aliases: ["/posts/image-histograms/"]
 description: "Learn edge measurement techniques through a practical saw blade teeth counting application"
 cover:

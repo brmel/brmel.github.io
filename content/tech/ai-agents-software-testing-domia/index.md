@@ -4,7 +4,6 @@ date: 2026-04-07
 summary: "Chat, function calling, agent loops — then DOMIA, an autonomous QA agent that tests a live site with no selectors, judges a screenshot with vision, and writes its own evidence to disk."
 description: "A practical guide to what AI agents actually are, and DOMIA — an autonomous end-to-end testing agent built on Google ADK and Gemini."
 tags: ["AI", "Agents", "Testing", "QA", "Python", "Gemini", "Playwright"]
-categories: ["AI"]
 cover:
     image: "04-domia-architecture.jpg"
     alt: "DOMIA architecture: the agent loop, its tools, and the drivers for web, mobile and desktop"

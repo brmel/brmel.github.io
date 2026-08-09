@@ -8,6 +8,14 @@ pitch: "Say one sentence about your day and a two-pass agent pipeline files it a
 stack: ["Flutter", "Python", "Firebase Functions", "Multi-agent", "Dart"]
 links:
   live: "https://farkad.web.app"
+lede: |
+  Every habit tracker asks you to become a data-entry clerk for your own life —
+  six taps for breakfast, a separate screen for water, a sleep slider you move
+  without believing it — so after nine days you stop. The information was never
+  the hard part: you could say the whole day in one breath and a person would
+  understand every piece of it. Farkad makes that sentence the entire interface,
+  turning "two eggs, a big glass of water, walked forty minutes, slept badly"
+  into structured, editable entries across every area it touched.
 takeaway: "One engine that serves every user configuration beats six engines that each serve one — but only if you decide that before the second pillar ships."
 lessons:
   - "**A decisions log with expiry dates outlives a design doc.** `DECISIONS.md` records every locked decision *and what no longer holds*. It exists because a navigation tab drifted three times in one session, twice from reasoning off a backlog of screens that were still only drawn. There is now a test that reads the spec table and fails when the code disagrees."
@@ -19,19 +27,9 @@ tags: ["Flutter", "Python", "AI", "Firebase", "Mobile"]
 
 ## The story
 
-Every habit tracker asks you to become a data-entry clerk for your own life.
-Six taps to log breakfast. A separate screen for water. A slider for sleep
-quality that you move without believing it. The tracking costs more attention
-than the habit does, so after nine days you stop.
-
-The information was never the hard part. You could say the whole day in one
-breath — *two eggs and a slice of rye, a big glass of water, walked forty
-minutes to work, slept badly, up around three* — and a person would understand
-every piece of it, including which parts belong to which category.
-
-Farkad is that sentence as the entire interface. You speak once, in whatever
-language you were thinking in, and a two-pass agent pipeline works out what you
-touched, how much, and when, and turns it into structured entries you can edit.
+You speak once, in whatever language you were thinking in, and a two-pass agent
+pipeline works out what you touched, how much, and when, then turns it into
+structured entries you can edit.
 
 The name is فرقد — *Pherkad*, the guide star of Ursa Minor. The second star you
 find after the pole star, and the one that tells you you're looking at the right

@@ -10,6 +10,13 @@
   {{ partial "breadcrumbs.html" . }}
   {{ partial "project-header.html" . }}
 
+  {{- /* The lede: problem -> what it does -> what changed, in three sentences.
+         A reader who sees screenshots before they know what the thing is has to
+         reverse-engineer the product from its UI. Words first, then evidence. */ -}}
+  {{- with .Params.lede }}
+  <div class="project-lede">{{ . | markdownify }}</div>
+  {{- end }}
+
   {{- /* Gallery renders from the page bundle, not from markdown, so every
          project shows its screenshots the same way. Images are Hugo-processed:
          resized, fingerprinted, and served with srcset. */ -}}
@@ -36,6 +43,7 @@
   </section>
   {{- end }}
 
+
   <div class="post-content project-body">
     {{- partial "anchored_headings.html" .Content -}}
   </div>
@@ -48,6 +56,9 @@
     </ul>
   </section>
   {{- end }}
+
+  {{- /* The way back — see partials/section-nav.html. */ -}}
+  {{- partial "section-nav.html" . }}
 
   <footer class="post-footer">
     {{- $tags := .Language.Params.Taxonomies.tag | default "tags" }}

@@ -269,5 +269,7 @@ enableEmoji = true
   section = ["HTML", "RSS"]
 
 [taxonomies]
-  category = "categories"
+  # Tags only. `categories` held five terms of one or two posts each, every one
+  # of them already covered by a tag — 5 extra thin routes and a second
+  # vocabulary to keep consistent, for no reader benefit.
   tag = "tags"

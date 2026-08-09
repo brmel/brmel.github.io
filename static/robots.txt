@@ -1,4 +1,9 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://brmel.github.io/sitemap.xml
+# The Plotly report under /reports/ is a generated artefact embedded in an
+# iframe on /tech/hydro-quebec-outage-analysis/. It has no navigation of its own
+# and is not a page anyone should land on from search.
+Disallow: /reports/
+
+Sitemap: https://ibraverse.ca/sitemap.xml

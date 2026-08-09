@@ -4,7 +4,6 @@ date: 2024-01-10
 summary: "Every memory state and every memory type in a VMMap snapshot, explained with C++ examples: private data, stack, heap, mapped files, images, unused regions and the managed heap."
 description: "A detailed walk through Windows memory states and memory types — private data, stack, heap, mapped files, images — with VirtualAlloc, File Mapping and std::vector examples."
 tags: ["C++", "Windows", "Memory Management", "Sysinternals", "Systems"]
-categories: ["Systems"]
 series: "Windows Memory Management"
 seriesPart: 2
 cover:
