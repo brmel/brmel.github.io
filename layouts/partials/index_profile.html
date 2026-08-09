@@ -5,35 +5,31 @@
                Ibraverse surface. See layouts/partials/brand-mark.html. */ -}}
         <span class="profile__mark">{{ partial "brand-mark.html" (dict "size" 40 "title" site.Title) }}</span>
         <h1>{{ .title | default site.Title | markdownify }}</h1>
-        {{- if .imageUrl -}}
-        {{- $img := "" }}
-        {{- if not (urls.Parse .imageUrl).IsAbs }}
-        {{- $img = resources.Get .imageUrl }}
-        {{- end }}
-        {{- if $img }}
-        {{- $processableFormats := (slice "jpg" "jpeg" "png" "tif" "bmp" "gif") -}}
-        {{- if hugo.IsExtended -}}
-        {{- $processableFormats = $processableFormats | append "webp" -}}
-        {{- end -}}
-        {{- $prod := (hugo.IsProduction | or (eq site.Params.env "production")) }}
-        {{- if and (in $processableFormats $img.MediaType.SubType) (eq $prod true)}}
-        {{- if and .imageHeight .imageWidth }}
-        {{- $img = $img.Resize (printf "%dx%d" .imageWidth .imageHeight) }}
-        {{- else if .imageHeight }}
-        {{- $img = $img.Resize (printf "x%d" .imageHeight) }}
-        {{ else if .imageWidth }}
-        {{- $img = $img.Resize (printf "%dx" .imageWidth) }}
-        {{ else }}
-        {{- $img = $img.Resize "150x150" }}
-        {{- end }}
-        {{- end }}
-        <img draggable="false" src="{{ $img.Permalink }}" alt="{{ .imageTitle | default " profile image" }}"
-            title="{{ .imageTitle }}" height="{{ .imageHeight | default " auto" }}"
-            width="{{ .imageWidth | default 150 }}" style="border-radius: 15px; object-fit: cover;" />
+        {{- /* The profile photo is the LCP element on mobile and used to ship raw:
+               760x960, 324 KB, displayed at 380px. It lived in static/, which
+               bypasses Hugo Pipes entirely — resources.Get returned nil and the
+               template fell through to a plain absURL. Moving it to assets/ puts
+               it through the same pipeline the project galleries use. */ -}}
+        {{- with .imageUrl }}
+        {{- $img := resources.Get . }}
+        {{- with $img }}
+        {{- $w := .Width }}
+        {{- $x1 := .Resize "380x webp q72" }}
+        {{- /* The 2x variant is only ever shown at 380 CSS px, where retina density
+               hides compression. q80 cost 187 KB; q58 is visually identical here. */ -}}
+        {{- $x2 := cond (ge $w 760) (.Resize "760x webp q58") $x1 }}
+        <img class="profile__photo"
+             src="{{ $x1.RelPermalink }}"
+             srcset="{{ $x1.RelPermalink }} 380w, {{ $x2.RelPermalink }} 760w"
+             sizes="380px"
+             width="{{ $x1.Width }}" height="{{ $x1.Height }}"
+             fetchpriority="high" decoding="async" draggable="false"
+             alt="{{ site.Params.profileMode.imageTitle | default (printf "%s" site.Title) }}"
+             title="{{ site.Params.profileMode.imageTitle }}" />
         {{- else }}
-        <img draggable="false" src="{{ .imageUrl | absURL }}" alt="{{ .imageTitle | default " profile image" }}"
-            title="{{ .imageTitle }}" height="{{ .imageHeight | default " auto" }}"
-            width="{{ .imageWidth | default 150 }}" style="border-radius: 15px; object-fit: cover;" />
+        <img class="profile__photo" src="{{ . | absURL }}" width="380" height="480"
+             fetchpriority="high" decoding="async" draggable="false"
+             alt="{{ site.Params.profileMode.imageTitle | default site.Title }}" />
         {{- end }}
         {{- end }}
         <span>{{ .subtitle | markdownify }}</span>

@@ -453,3 +453,34 @@ a:focus-visible,button:focus-visible{
   .workflow .wf-t{font-size:15px}
   .workflow .wf-s{font-size:12px}
 }
+
+/* ---- body links must not rely on colour alone ----
+   axe flagged .post-content a at 1.51:1 against the surrounding text, which
+   fails the 3:1 required when colour is the only signal. A visible underline
+   removes the dependency entirely; the accent then becomes reinforcement
+   rather than the sole cue. */
+.post-content a{
+  text-decoration:underline;
+  text-decoration-thickness:1px;
+  text-underline-offset:0.18em;
+  text-decoration-color:color-mix(in srgb,var(--accent) 45%,transparent);
+  transition:text-decoration-color var(--dur-1) var(--ease-standard),
+             color var(--dur-1) var(--ease-standard);
+}
+.post-content a:hover{
+  color:var(--accent-soft);
+  text-decoration-color:var(--accent);
+}
+/* headings and figure captions keep their own treatment */
+.post-content h1 a,.post-content h2 a,.post-content h3 a,
+.post-content figure a{text-decoration:none;}
+
+/* profile photo: the raw template had height="auto" (invalid) and no radius
+   token. Explicit dimensions come from the pipeline now, so it reserves space. */
+.profile__photo{
+  border-radius:var(--radius-md);
+  object-fit:cover;
+  max-width:100%;
+  height:auto;
+  box-shadow:var(--shadow-photo);
+}

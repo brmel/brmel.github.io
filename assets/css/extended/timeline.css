@@ -1,222 +1,236 @@
-/* Timeline Container */
-:root {
-    --timeline-thumb-width: 128px;
-    --timeline-thumb-margin: 20px;
-    --timeline-marker-size: 20px;
-    --timeline-line-offset: 20px;
-    --timeline-content-padding: 20px;
+/* ============================================================================
+   IBRAVERSE — RESUME TIMELINE
+   Rebuilt on the brand tokens. The previous version used PaperMod's raw vars
+   (--primary/--entry), a black rgba shadow, plain black dots and a float-based
+   media layout, which read as a generic template rather than part of this site.
+
+   Everything here resolves through tokens.css, so it follows the theme and the
+   accent register. Media floats with logical properties (float:inline-start,
+   margin-inline-end), so RTL mirrors without a single [dir] override.
+   ========================================================================== */
+
+:root{
+  --tl-rail: 1px;
+  --tl-dot: 13px;
+  --tl-gutter: 40px;          /* rail -> card */
+  --tl-thumb: 210px;          /* media column */
 }
 
-.timeline-container {
-    position: relative;
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px 0;
+.timeline-container{
+  position:relative;
+  max-width:var(--container-content);
+  margin:0 auto;
+  padding:var(--space-4) 0 var(--space-2);
 }
 
-/* Vertical Line */
-.timeline-container::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: var(--timeline-line-offset);
-    width: 2px;
-    background: var(--primary);
-    opacity: 0.3;
+/* the rail — a hairline, not a 2px bar */
+.timeline-container::before{
+  content:'';
+  position:absolute;
+  top:var(--space-5); bottom:var(--space-5);
+  inset-inline-start:6px;
+  width:var(--tl-rail);
+  background:linear-gradient(to bottom,
+    transparent, var(--rule) 6%, var(--rule) 94%, transparent);
 }
 
-/* Timeline Item */
-.timeline-item {
-    position: relative;
-    margin-bottom: 40px;
-    padding-left: 50px;
+/* ---- item ---- */
+.timeline-item{
+  position:relative;
+  margin-bottom:var(--space-6);
+  padding-inline-start:var(--tl-gutter);
+}
+.timeline-item:last-child{margin-bottom:0;}
+
+/* marker: an accent ring on paper, matching the compass mark's language */
+.timeline-marker{
+  position:absolute;
+  inset-inline-start:calc(6px - (var(--tl-dot) / 2) + (var(--tl-rail) / 2));
+  top:var(--space-6);
+  width:var(--tl-dot); height:var(--tl-dot);
+  border-radius:var(--radius-pill);
+  background:var(--bg);
+  border:2px solid var(--accent);
+  box-sizing:border-box;
+  z-index:1;
 }
 
-/* Marker (Dot) */
-.timeline-marker {
-    position: absolute;
-    left: calc(var(--timeline-line-offset) - (var(--timeline-marker-size) / 2) + 1px);
-    top: 5px;
-    width: var(--timeline-marker-size);
-    height: var(--timeline-marker-size);
-    border-radius: 50%;
-    background: var(--primary);
-    border: 3px solid var(--theme);
-    z-index: 1;
+/* ---- card ---- */
+.timeline-content{
+  position:relative;
+  background:var(--bg-alt);
+  border:var(--hairline) solid var(--rule);
+  border-radius:var(--radius-md);
+  padding:var(--space-5) var(--space-5) var(--space-4);
+  overflow:hidden;
+  transition:border-color var(--dur-2) var(--ease-standard),
+             box-shadow var(--dur-2) var(--ease-standard);
+}
+/* the category bar, same signature as project and home cards */
+.timeline-content::before{
+  content:'';
+  position:absolute;inset-inline-start:0;inset-block-start:0;
+  width:var(--category-bar);height:100%;
+  background:var(--accent);
+}
+.timeline-content:hover{
+  border-color:var(--accent);
+  box-shadow:var(--shadow-card);
 }
 
-/* Content */
-.timeline-content {
-    background: var(--entry);
-    padding: var(--timeline-content-padding);
-    border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
+/* date: mono eyebrow, like every other label on the site */
+.timeline-date{
+  font-family:var(--font-mono);
+  font-size:var(--t-eyebrow);
+  letter-spacing:var(--track-eyebrow);
+  text-transform:uppercase;
+  color:var(--ink-mute);
+  margin-bottom:var(--space-2);
 }
 
-.timeline-content:hover {
-    transform: translateY(-5px);
+/* role: serif display, and the company link stops shouting */
+.timeline-title{
+  font-family:var(--font-serif);
+  font-weight:400;
+  font-size:var(--t-display-s);
+  line-height:1.15;
+  color:var(--ink);
+  margin:0 0 var(--space-5);
+}
+.timeline-title a{
+  color:var(--accent);
+  text-decoration:none;
+  border-bottom:var(--hairline) solid color-mix(in srgb, var(--accent) 35%, transparent);
+  transition:border-color var(--dur-1) var(--ease-standard);
+}
+.timeline-title a:hover{border-bottom-color:var(--accent);}
+
+/* ---- body: media floated, text wraps beside it ----
+   Grid was tried first and is wrong for this content: the markdown is a flat
+   run of img / h4 / p / p / hr, so each element lands in its own grid row and
+   the prose drops below the thumbnail instead of sitting next to it. Float is
+   the correct tool for "text flows around media", and flow-root contains it
+   without clearfix hacks. */
+.timeline-body{
+  font-size:var(--t-body);
+  line-height:var(--lh-body);
+  color:var(--ink-soft);
+  display:flow-root;
+}
+.timeline-body > .video-thumb,
+.timeline-body > img{
+  float:inline-start;
+  width:var(--tl-thumb);
+  margin-inline-end:var(--space-5);
+}
+.timeline-body > hr{clear:both;}
+
+.timeline-body h4{
+  font-family:var(--font-sans);
+  font-size:var(--t-subhead);
+  font-weight:500;
+  line-height:1.3;
+  color:var(--ink);
+  margin:0 0 var(--space-2);
+}
+.timeline-body h4 a{
+  color:var(--ink);
+  text-decoration:none;
+  background-image:linear-gradient(var(--accent),var(--accent));
+  background-size:100% 1px;
+  background-repeat:no-repeat;
+  background-position:0 100%;
+  transition:color var(--dur-1) var(--ease-standard);
+}
+.timeline-body h4 a:hover{color:var(--accent);}
+.timeline-body p{margin:0 0 var(--space-3);}
+.timeline-body p:last-child{margin-bottom:0;}
+
+.timeline-body hr{
+  border:0;height:var(--hairline);
+  background:var(--rule);
+  margin:var(--space-5) 0;
 }
 
-/* Date */
-.timeline-date {
-    font-size: 0.9rem;
-    color: var(--secondary);
-    margin-bottom: 4px;
-    font-weight: bold;
+/* ---- video thumbnail: a real button with a play badge ---- */
+.video-thumb{
+  position:relative;
+  display:block;
+  width:100%;
+  padding:0;margin:0 0 var(--space-4);
+  border:var(--hairline) solid var(--rule);
+  border-radius:var(--radius-sm);
+  overflow:hidden;
+  background:var(--bg);
+  cursor:pointer;
+  line-height:0;
+  transition:border-color var(--dur-2) var(--ease-standard),
+             transform var(--dur-2) var(--ease-standard),
+             box-shadow var(--dur-2) var(--ease-standard);
+}
+.video-thumb img{
+  display:block;width:100%;height:auto;
+  aspect-ratio:16/9;object-fit:cover;
+  margin:0;border-radius:0;
+}
+.video-thumb__play{
+  position:absolute;inset:0;
+  display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(to top, rgba(24,23,21,.35), rgba(24,23,21,.05) 60%);
+  transition:background var(--dur-2) var(--ease-standard);
+}
+.video-thumb__play svg{
+  width:34px;height:34px;
+  fill:var(--bg);
+  filter:drop-shadow(0 1px 3px rgba(0,0,0,.45));
+  transform:translateX(1px);          /* optical centring of the triangle */
+  transition:transform var(--dur-2) var(--ease-spring), fill var(--dur-2) var(--ease-standard);
+}
+.video-thumb:hover{
+  border-color:var(--accent);
+  transform:translateY(-2px);
+  box-shadow:var(--shadow-photo);
+}
+.video-thumb:hover .video-thumb__play{background:rgba(24,23,21,.18);}
+.video-thumb:hover .video-thumb__play svg{transform:scale(1.12) translateX(1px);fill:#fff;}
+.video-thumb:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
+
+/* plain images in the body keep the same frame */
+.timeline-body > img{
+  border:var(--hairline) solid var(--rule);
+  border-radius:var(--radius-sm);
+  margin:0 0 var(--space-4);
+  cursor:zoom-in;
 }
 
-/* Title */
-.timeline-title {
-    margin-top: 0;
-    margin-bottom: 12px;
-    font-size: 1.5rem;
+/* ---- lightbox ---- */
+#lightbox{
+  display:none;position:fixed;z-index:9999;inset:0;
+  background:color-mix(in srgb, var(--ink) 92%, transparent);
+  justify-content:center;align-items:center;cursor:zoom-out;
+  opacity:0;transition:opacity var(--dur-3) var(--ease-standard);
+}
+#lightbox.active{display:flex;opacity:1;}
+#lightbox img,#lightbox iframe{
+  max-width:min(90vw,1100px);max-height:88vh;
+  border-radius:var(--radius-md);
+  box-shadow:var(--shadow-pop);
+  object-fit:contain;
+}
+#lightbox iframe{width:min(90vw,1100px);aspect-ratio:16/9;height:auto;background:#000;border:0;}
+
+/* ---- responsive ---- */
+@media (max-width:760px){
+  :root{--tl-gutter:26px;}
+  .timeline-body > .video-thumb,
+  .timeline-body > img{
+    float:none;width:100%;max-width:360px;
+    margin-inline-end:0;
+  }
+  .timeline-content{padding:var(--space-4);}
+  .timeline-title{font-size:var(--t-heading);}
 }
 
-/* Body */
-.timeline-body {
-    font-size: 1rem;
-    line-height: 1.6;
-}
-
-.timeline-body p,
-.timeline-body h4 {
-    margin-left: calc(var(--timeline-thumb-width) + var(--timeline-thumb-margin));
-}
-
-.timeline-body h4 {
-    margin-top: 0;
-    margin-bottom: 10px;
-    color: var(--primary);
-    font-size: 1.2rem;
-    font-weight: bold;
-}
-
-.timeline-body hr {
-    border: 0;
-    height: 1px;
-    background: var(--primary);
-    opacity: 0.2;
-    margin: 25px 0;
-    clear: both;
-}
-
-/* Media (Images & Video Thumbnails) */
-.timeline-body img,
-.video-thumbnail {
-    border-radius: 8px;
-    margin-top: 3px;
-    margin-bottom: 15px;
-    margin-right: var(--timeline-thumb-margin);
-    width: var(--timeline-thumb-width);
-    height: auto;
-    float: left;
-    cursor: pointer;
-    transition: transform 0.2s;
-}
-
-.video-thumbnail {
-    aspect-ratio: 16/9;
-    object-fit: cover;
-}
-
-.timeline-body img:hover,
-.video-thumbnail:hover {
-    transform: scale(1.05);
-}
-
-.timeline-body iframe {
-    display: none;
-}
-
-/* Lightbox */
-#lightbox {
-    display: none;
-    position: fixed;
-    z-index: 9999;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.9);
-    justify-content: center;
-    align-items: center;
-    cursor: zoom-out;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-#lightbox.active {
-    display: flex;
-    opacity: 1;
-}
-
-#lightbox img,
-#lightbox iframe {
-    max-width: 90%;
-    max-height: 90%;
-    border-radius: 8px;
-    object-fit: contain;
-}
-
-#lightbox iframe {
-    width: 800px;
-    height: 450px;
-    background: #000;
-}
-
-/* Responsive Design */
-@media (max-width: 600px) {
-
-    .timeline-body img,
-    .video-thumbnail {
-        float: none;
-        width: 100%;
-        max-width: 220px;
-        margin: 0 auto 15px auto;
-        display: block;
-    }
-
-    .timeline-body p,
-    .timeline-body h4 {
-        margin-left: 0;
-    }
-}
-
-/* RTL Support */
-[dir="rtl"] .timeline-container::before {
-    left: auto;
-    right: var(--timeline-line-offset);
-}
-
-[dir="rtl"] .timeline-item {
-    padding-left: 0;
-    padding-right: 50px;
-}
-
-[dir="rtl"] .timeline-marker {
-    left: auto;
-    right: calc(var(--timeline-line-offset) - (var(--timeline-marker-size) / 2) + 1px);
-}
-
-[dir="rtl"] .timeline-body img,
-[dir="rtl"] .video-thumbnail {
-    float: right;
-    margin-right: 0;
-    margin-left: var(--timeline-thumb-margin);
-}
-
-[dir="rtl"] .timeline-body p,
-[dir="rtl"] .timeline-body h4 {
-    margin-left: 0;
-    margin-right: calc(var(--timeline-thumb-width) + var(--timeline-thumb-margin));
-}
-
-@media (max-width: 600px) {
-
-    [dir="rtl"] .timeline-body p,
-    [dir="rtl"] .timeline-body h4 {
-        margin-right: 0;
-    }
+@media (prefers-reduced-motion:reduce){
+  .video-thumb,.video-thumb:hover,.timeline-content:hover{transform:none;}
 }

@@ -21,9 +21,12 @@
   --font-mono:"JetBrains Mono","IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
   --serif:var(--font-serif); --sans:var(--font-sans); --mono:var(--font-mono);
 
-  /* ---- neutrals — light (primary) ---- */
+  /* ---- neutrals — light (primary) ----
+     --ink-mute is the eyebrow / meta / caption colour and is used at 11-13px,
+     so it must clear 4.5:1 for NORMAL text, not the 3:1 large-text bar. It was
+     #8a877f (3.15:1 on --bg-alt) until an axe run caught it. */
   --bg:#faf9f6; --bg-alt:#f2f0e9; --ink:#181715; --ink-soft:#4a4843;
-  --ink-mute:#8a877f; --rule:#d9d6cb; --rule-soft:#e8e5da;
+  --ink-mute:#6e6c65; --rule:#d9d6cb; --rule-soft:#e8e5da;
   --paper:#faf9f6; --paper-alt:#f2f0e9; --grid:#00000008;
 
   /* ---- accent — master = restaurant rust ---- */
@@ -87,14 +90,14 @@
    mechanism to keep in sync (this used to be html[data-theme] as well). */
 .dark{
   --bg:#14130f; --bg-alt:#1c1b16; --ink:#ece8dc; --ink-soft:#b8b3a2;
-  --ink-mute:#807c70; --rule:#2c2a23; --rule-soft:#1f1e18;
+  --ink-mute:#888477; --rule:#2c2a23; --rule-soft:#1f1e18;
   --paper:#14130f; --paper-alt:#1c1b16; --grid:#ffffff05;
   --accent:#d97757; --accent-soft:#e89878;
   --cat-restaurant:#d97757; --cat-restaurant-soft:#e89878;
-  --cat-hike:#5d8a52;       --cat-hike-soft:#7aa86f;
+  --cat-hike:#619056;       --cat-hike-soft:#7aa86f;
   --cat-spa:#4f9a9a;        --cat-spa-soft:#6fb6b6;
-  --cat-event:#a76e95;      --cat-event-soft:#bb8eac; /* lightened: #9a5d86 was 3.79:1 on --bg */
-  --cat-city:#5d86a0;       --cat-city-soft:#7da6c0;
+  --cat-event:#aa7398;      --cat-event-soft:#bb8eac; /* lightened: #9a5d86 was 3.79:1 on --bg */
+  --cat-city:#618aa3;       --cat-city-soft:#7da6c0;
   --cat-saas:#7d84c4;       --cat-saas-soft:#9aa0d6;
   --cat-mobile:#d0a05a;     --cat-mobile-soft:#e0bb84;
   --cat-data:#9ab562;       --cat-data-soft:#b4c98a;

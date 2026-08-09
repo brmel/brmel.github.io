@@ -6,13 +6,36 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (!lightbox || !lightboxImg || !lightboxVideo || !timelineContainer) return;
 
+    /* Give every video thumbnail a real button wrapper.
+
+       The markdown only carries a bare <img class="video-thumbnail">, so there
+       is nowhere to hang a play badge or a focus ring. Wrapping at runtime
+       keeps the content files simple and makes the thumbnails keyboard
+       reachable — they open a video, so they have to be buttons, not images. */
+    timelineContainer.querySelectorAll('img.video-thumbnail').forEach(function (img) {
+        if (img.parentElement.classList.contains('video-thumb')) return;
+        var btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'video-thumb';
+        btn.setAttribute('aria-label', 'Play video: ' + (img.alt || 'video'));
+        btn.setAttribute('data-video-src', img.getAttribute('data-video-src') || '');
+        img.parentNode.insertBefore(btn, img);
+        btn.appendChild(img);
+        var badge = document.createElement('span');
+        badge.className = 'video-thumb__play';
+        badge.setAttribute('aria-hidden', 'true');
+        badge.innerHTML = '<svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z"/></svg>';
+        btn.appendChild(badge);
+    });
+
     // Event Delegation: Handle clicks on images and video thumbnails
     timelineContainer.addEventListener('click', function (e) {
         const target = e.target;
 
-        // Handle Video Thumbnails
-        if (target.classList.contains('video-thumbnail')) {
-            const videoSrc = target.getAttribute('data-video-src');
+        // Handle Video Thumbnails (click lands on the wrapper, the img or the badge)
+        const thumb = target.closest('.video-thumb');
+        if (thumb) {
+            const videoSrc = thumb.getAttribute('data-video-src');
             if (videoSrc) {
                 lightboxVideo.src = videoSrc;
                 lightboxVideo.style.display = 'block';

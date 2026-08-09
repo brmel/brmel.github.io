@@ -21,3 +21,6 @@ echo "▸ orphaned assets"
 
 echo "▸ social cards"
 python3 ./scripts/check-og.py
+
+echo "▸ colour contrast"
+python3 ./scripts/check-contrast.py
