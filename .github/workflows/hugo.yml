@@ -22,7 +22,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      HUGO_VERSION: 0.146.0
+      # Keep in lockstep with .github/workflows/check.yml and the local toolchain.
+      HUGO_VERSION: 0.148.0
     steps:
       - name: Install Hugo CLI
         run: |
