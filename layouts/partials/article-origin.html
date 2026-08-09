@@ -18,7 +18,7 @@
 {{- $series := . }}
 {{- $parts := where (where site.RegularPages "Section" "tech") "Params.series" $series }}
 {{- if gt (len $parts) 1 }}
-<nav class="series" aria-label="{{ i18n "series_label" | default "Series" }}">
+<nav class="u-card series" aria-label="{{ i18n "series_label" | default "Series" }}">
   <p class="series__title">
     {{ i18n "series_label" | default "Series" }} <b aria-hidden="true">·</b> {{ $series }}
   </p>

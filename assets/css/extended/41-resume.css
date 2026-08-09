@@ -1,0 +1,99 @@
+/* ============================================================================
+   IBRAVERSE — RESUME
+   The page you send to someone hiring. Chrome renders from front matter, so
+   the three language versions share one structure.
+   ========================================================================== */
+
+.resume__head{
+  max-width:var(--container-text);
+  margin:0 auto var(--space-8);
+  padding-bottom:var(--space-5);
+  border-bottom:var(--hairline) solid var(--rule);
+  text-align:center;
+}
+.resume__mark{display:flex;justify-content:center;margin-bottom:var(--space-3);color:var(--accent);}
+.resume__name{
+  font-family:var(--font-serif);font-weight:400;
+  font-size:var(--fl-display-m);line-height:1.05;
+  margin:0 0 var(--space-2);color:var(--ink);
+}
+.resume__role{margin:0;color:var(--ink-soft);font-size:var(--t-body-l);}
+.resume__loc{
+  margin:var(--space-1) 0 0;color:var(--ink-mute);
+  font-family:var(--font-mono);font-size:var(--t-eyebrow);
+  letter-spacing:var(--track-eyebrow);text-transform:uppercase;
+}
+.resume__contact{
+  list-style:none;margin:var(--space-4) 0 0;padding:0;
+  display:flex;flex-wrap:wrap;justify-content:center;gap:var(--space-2) var(--space-4);
+  font-family:var(--font-mono);font-size:var(--t-eyebrow);
+  letter-spacing:.07em;text-transform:uppercase;
+}
+.resume__contact a{
+  color:var(--ink-mute);text-decoration:none;
+  border-bottom:var(--hairline) solid var(--rule);padding-bottom:2px;
+  transition:color var(--dur-1) var(--ease-standard),border-color var(--dur-1) var(--ease-standard);
+}
+.resume__contact a:hover{color:var(--accent);border-color:var(--accent);}
+
+.resume__section{max-width:var(--container-text);margin:var(--space-9) auto 0;}
+
+/* skills: label column + values, collapsing to stacked on narrow screens */
+.resume__skills{margin:0;}
+.resume__skillgroup{
+  display:grid;grid-template-columns:150px 1fr;gap:var(--space-4);
+  padding:var(--space-3) 0;border-bottom:var(--hairline) solid var(--rule-soft);
+}
+.resume__skillgroup:last-child{border-bottom:0;}
+.resume__skillgroup dt{
+  font-family:var(--font-mono);font-size:var(--t-eyebrow);
+  letter-spacing:.07em;text-transform:uppercase;color:var(--accent);
+}
+.resume__skillgroup dd{margin:0;color:var(--ink-soft);line-height:1.6;}
+.resume__skillgroup dd span{color:var(--ink-mute);}
+
+/* education */
+.resume__edu{list-style:none;margin:0;padding:0;}
+.resume__edu-item{
+  display:grid;grid-template-columns:150px 1fr;gap:0 var(--space-4);
+  padding:var(--space-4) 0;border-bottom:var(--hairline) solid var(--rule-soft);
+}
+.resume__edu-item:last-child{border-bottom:0;}
+.resume__edu-year{
+  grid-row:span 3;
+  font-family:var(--font-mono);font-size:var(--t-eyebrow);
+  letter-spacing:.07em;color:var(--ink-mute);padding-top:4px;
+}
+.resume__edu-degree{font-family:var(--font-serif);font-size:var(--t-subhead);color:var(--ink);}
+.resume__edu-school{color:var(--ink-soft);font-size:var(--t-caption);}
+.resume__edu-note{color:var(--ink-mute);font-size:var(--t-caption);margin-top:var(--space-1);}
+
+.resume__more{
+  max-width:var(--container-text);margin:var(--space-8) auto 0;
+  font-family:var(--font-mono);font-size:var(--t-eyebrow);
+  letter-spacing:var(--track-eyebrow);text-transform:uppercase;
+}
+.resume__more a{color:var(--accent);text-decoration:none;}
+.resume__more a:hover{text-decoration:underline;}
+
+@media (max-width:600px){
+  .resume__skillgroup,
+  .resume__edu-item{grid-template-columns:1fr;gap:var(--space-1);}
+  .resume__edu-year{grid-row:auto;padding-top:0;}
+}
+
+/* print: this is a resume, people print it */
+@media print{
+  .header,.footer,.site-mark,.top-link,.resume__more{display:none!important;}
+  .resume__head{border-bottom-color:var(--ink-mute);}
+  a{text-decoration:none;color:inherit;}
+  .timeline-item{break-inside:avoid;}
+}
+
+/* "in English" marker on list entries served by the language fallback (#17) */
+.entry-lang{
+  margin:var(--space-2) 0 0;
+  font-family:var(--font-mono);font-size:10px;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--ink-mute);
+}
+

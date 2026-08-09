@@ -44,13 +44,13 @@
   {{- if or $prev $next }}
   <div class="section-nav__siblings">
     {{- with $prev }}
-    <a class="section-nav__sib section-nav__sib--prev" href="{{ .RelPermalink }}" rel="prev">
+    <a class="u-card section-nav__sib section-nav__sib--prev" href="{{ .RelPermalink }}" rel="prev">
       <span class="section-nav__dir">{{ i18n "previous" | default "Previous" }}</span>
       <span class="section-nav__title">{{ .Title }}</span>
     </a>
     {{- else }}<span></span>{{ end }}
     {{- with $next }}
-    <a class="section-nav__sib section-nav__sib--next" href="{{ .RelPermalink }}" rel="next">
+    <a class="u-card section-nav__sib section-nav__sib--next" href="{{ .RelPermalink }}" rel="next">
       <span class="section-nav__dir">{{ i18n "next" | default "Next" }}</span>
       <span class="section-nav__title">{{ .Title }}</span>
     </a>

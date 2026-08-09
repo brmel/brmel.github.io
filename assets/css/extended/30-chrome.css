@@ -1,0 +1,153 @@
+/* ============================================================================
+   IBRAVERSE — CHROME
+   Everything that frames the content and is identical on every page: the top
+   nav and brand mark, the footer mark, the post footer, and the section
+   navigation that gets a reader back out of a page.
+   ========================================================================== */
+
+/* ---- centered top nav: brand (+ lang switch) pinned left, menu centered ---- */
+.nav{position:relative;justify-content:center}
+.nav .logo{position:absolute;inset-inline-start:var(--gap);top:0;bottom:0;display:flex;align-items:center;margin:0}
+.nav #menu{margin-inline:auto}
+@media (max-width:768px){
+  /* revert to PaperMod's default row on small screens (avoids overlap) */
+  .nav{justify-content:space-between}
+  .nav .logo{position:static;margin:auto var(--gap)}
+  .nav #menu{margin-inline:0}
+}
+
+/* ---- the compass mark (partials/brand-mark.html) ---- */
+/* One implementation, three placements: home hero, footer, and anywhere a
+   section needs the signature. Colour always inherits — never set a hex here. */
+.brand-mark{
+  display:block;
+  color:var(--accent);
+  flex:0 0 auto;
+}
+.brand-mark--quiet{color:var(--ink-mute);}
+
+/* home hero: mark sits above the name, centred with it */
+.profile__mark{
+  display:flex;justify-content:center;
+  margin:0 0 var(--space-4);
+}
+
+/* site-wide footer mark: small, centred, well clear of the copyright line */
+.site-mark{
+  display:flex;justify-content:center;
+  padding-bottom:var(--space-6);
+  opacity:.7;
+  transition:opacity var(--dur-2) var(--ease-standard);
+}
+.site-mark:hover{opacity:1;}
+
+/* nav logo mark: sits left of the wordmark, optically aligned with it */
+.logo a{display:inline-flex;align-items:center;gap:var(--space-2);}
+.brand-mark--logo{color:var(--accent);}
+
+/* ---- article footer: tags · suggest-changes · share — small & discreet ---- */
+/* Reusable across every post type. One quiet hairline row, mono micro-type,
+   accent only on hover. */
+.post-footer{
+  margin-top:var(--space-8);padding-top:var(--space-4);
+  border-top:var(--hairline) solid var(--rule);
+  display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-2) var(--space-4);
+  font-family:var(--font-mono);font-size:11px;
+}
+.post-footer .post-tags{
+  margin:0;padding:0;list-style:none;flex:1 1 60%;
+  display:flex;flex-wrap:wrap;gap:var(--space-2);
+}
+.post-footer .post-tags li a{
+  display:inline-block;padding:2px 9px;border:var(--hairline) solid var(--rule);
+  border-radius:var(--radius-pill);color:var(--ink-mute);
+  text-transform:uppercase;letter-spacing:.07em;font-size:11px;
+  transition:color var(--dur-1) var(--ease-standard),border-color var(--dur-1) var(--ease-standard);
+}
+.post-footer .post-tags li a:hover{color:var(--accent);border-color:var(--accent)}
+/* "Suggest Changes" — a discreet mono link, not a button */
+.post-footer a[rel~="edit"]{
+  color:var(--ink-mute);text-transform:uppercase;letter-spacing:.07em;font-size:11px;
+  text-decoration:none;border-bottom:var(--hairline) solid var(--rule);padding-bottom:1px;
+  transition:color var(--dur-1) var(--ease-standard),border-color var(--dur-1) var(--ease-standard);
+}
+.post-footer a[rel~="edit"]:hover{color:var(--accent);border-color:var(--accent)}
+/* share icons — smaller, muted, accent on hover */
+.post-footer .share-buttons{margin:0;gap:var(--space-2)}
+.post-footer .share-buttons li a svg{
+  height:20px;width:20px;color:var(--ink-mute);
+  transition:color var(--dur-1) var(--ease-standard);
+}
+.post-footer .share-buttons li a:hover svg{color:var(--accent)}
+
+/* ---- series nav + original-publication credit (partials/article-origin.html) ---- */
+.series{
+  max-width:var(--container-text);margin:0 auto var(--space-6);
+  padding:var(--space-4) var(--space-5);
+}
+.series__title{
+  margin:0 0 var(--space-2);
+  font-family:var(--font-mono);font-size:var(--t-eyebrow);
+  letter-spacing:var(--track-eyebrow);text-transform:uppercase;color:var(--ink-mute);
+}
+.series__title b{color:var(--accent);font-weight:400;}
+.series__list{margin:0;padding-inline-start:var(--space-5);}
+.series__item{color:var(--ink-soft);line-height:1.6;}
+.series__item a{color:var(--accent);text-decoration:none;}
+.series__item a:hover{text-decoration:underline;}
+.series__item--current{color:var(--ink);font-weight:500;}
+.article-origin{
+  max-width:var(--container-text);margin:0 auto var(--space-6);
+  font-family:var(--font-mono);font-size:var(--t-eyebrow);
+  letter-spacing:.06em;text-transform:uppercase;color:var(--ink-mute);
+}
+.article-origin a{color:var(--ink-mute);text-decoration:underline;text-underline-offset:3px;}
+.article-origin a:hover{color:var(--accent);}
+
+   SECTION NAV — the way back, at the end of every content page
+   One pattern for every section, so navigation is learned once. Quiet: hairline
+   rule, mono back-link, sibling titles in serif.
+   ========================================================================== */
+.section-nav{
+  max-width:var(--container-text);
+  margin:var(--space-9) auto 0;
+  padding-top:var(--space-5);
+  border-top:var(--hairline) solid var(--rule);
+}
+.section-nav__back{
+  display:inline-flex;align-items:center;gap:var(--space-2);
+  font-family:var(--font-mono);font-size:var(--t-eyebrow);
+  letter-spacing:var(--track-eyebrow);text-transform:uppercase;
+  color:var(--accent);text-decoration:none;
+  transition:gap var(--dur-2) var(--ease-standard);
+}
+.section-nav__back span{transition:transform var(--dur-2) var(--ease-standard);}
+.section-nav__back:hover span{transform:translateX(-3px);}
+[dir="rtl"] .section-nav__back span{transform:scaleX(-1);}
+[dir="rtl"] .section-nav__back:hover span{transform:scaleX(-1) translateX(-3px);}
+
+.section-nav__siblings{
+  display:grid;grid-template-columns:1fr 1fr;gap:var(--space-4);
+  margin-top:var(--space-5);
+}
+.section-nav__sib{
+  display:flex;flex-direction:column;gap:var(--space-1);
+  padding:var(--space-4);
+  text-decoration:none;
+}
+.section-nav__sib--next{text-align:end;}
+.section-nav__dir{
+  font-family:var(--font-mono);font-size:10px;
+  letter-spacing:var(--track-eyebrow);text-transform:uppercase;
+  color:var(--ink-mute);
+}
+.section-nav__title{
+  font-family:var(--font-serif);font-size:var(--t-body-l);
+  line-height:1.25;color:var(--ink);
+}
+.section-nav__sib:hover .section-nav__title{color:var(--accent);}
+
+@media (max-width:600px){
+  .section-nav__siblings{grid-template-columns:1fr;}
+  .section-nav__sib--next{text-align:start;}
+}

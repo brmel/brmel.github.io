@@ -11,7 +11,7 @@ text, so they are held to the same bar.
 import re, sys, os
 
 TOKENS = os.path.join(os.path.dirname(__file__), "..",
-                      "assets", "css", "extended", "tokens.css")
+                      "assets", "css", "extended", "00-tokens.css")
 AA = 4.5
 
 def lum(h):

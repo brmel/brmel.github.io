@@ -30,9 +30,9 @@
 
 <div class="project-grid">
   {{- range $projects }}
-  <a class="project-card" href="{{ .RelPermalink }}" data-category="{{ .Params.domain | default "saas" }}">
-    <span class="project-card__rule" aria-hidden="true"></span>
-    <span class="project-card__eyebrow">
+  <a class="u-card project-card" href="{{ .RelPermalink }}" data-category="{{ .Params.domain | default "saas" }}">
+    <span class="u-bar" aria-hidden="true"></span>
+    <span class="u-eyebrow project-card__eyebrow">
       {{- with .Params.projectNo }}№ {{ printf "%02d" . }} <b aria-hidden="true">·</b> {{ end -}}
       {{ .Params.domain | default "saas" | upper }}
       <b aria-hidden="true">·</b>
@@ -42,6 +42,12 @@
     {{- with .Params.pitch }}<span class="project-card__pitch">{{ . }}</span>{{ end }}
     {{- if ne .Lang site.Language.Lang }}
     <span class="project-card__lang" title="{{ i18n "lang_en_only_title" | default "This write-up is in English" }}">{{ i18n "lang_en_only" | default "in English" }}</span>
+    {{- end }}
+    {{- with .Params.links.live }}
+    {{- /* Surface the live URL on the card too. It was only on the detail page,
+           so a reader scanning the index could not tell what is actually
+           running and reachable. */ -}}
+    <span class="u-eyebrow project-card__live">{{ i18n "project_link_live" | default "Live" }} <span aria-hidden="true">↗</span></span>
     {{- end }}
     {{- with .Params.stack }}
     <span class="project-card__stack">

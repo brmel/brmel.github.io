@@ -49,10 +49,22 @@
 
   {{- partial "brand-fonts.html" . }}
 
-  {{- $tokensCSS := resources.Get "css/extended/tokens.css" | minify | fingerprint }}
-  {{- with $tokensCSS }}<link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}">{{ end }}
-  {{- $saCSS := resources.Get "css/standalone.css" | minify | fingerprint }}
-  {{- with $saCSS }}<link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}">{{ end }}
+  {{- /* This layout owns its own <head>, so it assembles the slice of the design
+         system it needs rather than inheriting PaperMod's bundle: the tokens,
+         the shared component primitives, then its own rules.
+
+         Built with resources.Match, not three hardcoded resources.Get calls —
+         renaming 00-tokens.css previously returned nil here and failed the
+         build with an unhelpful "expected ResourceTransformer" error. A glob
+         degrades to "one fewer file" instead of a hard failure. */ -}}
+  {{- $css := slice }}
+  {{- range (slice "css/extended/00-tokens.css" "css/extended/20-components.css" "css/standalone.css") }}
+  {{- with resources.Get . }}{{ $css = $css | append . }}{{ end }}
+  {{- end }}
+  {{- with $css }}
+  {{- $bundle := . | resources.Concat "assets/css/standalone-bundle.css" | minify | fingerprint }}
+  <link rel="stylesheet" href="{{ $bundle.RelPermalink }}" integrity="{{ $bundle.Data.Integrity }}">
+  {{- end }}
   {{- range .Params.customCSS }}{{ with resources.Get . }}{{ $c := . | minify | fingerprint }}
   <link rel="stylesheet" href="{{ $c.RelPermalink }}" integrity="{{ $c.Data.Integrity }}">{{ end }}{{ end }}
 

@@ -78,16 +78,7 @@
 .adventures .post-meta b{color:var(--ink-soft);font-weight:500}
 
 /* ---------- cover photo (14px frame) + in-body images ---------- */
-.adventures .post-cover,
-.adventures .entry-cover img,
-.adventures .post-content img{
-  border-radius:var(--radius-md);
-  box-shadow:var(--shadow-photo);
-  display:block;margin-inline:auto;          /* centre */
-  max-width:100%;width:auto;height:auto;
-  max-height:60vh;                            /* cap big vertical shots */
-}
-.adventures figure{margin:var(--space-7) 0;text-align:center}
+.adventures .adventures figure{margin:var(--space-7) 0;text-align:center}
 /* in-body photos ~30% smaller than the text column on wider screens
    (the cover hero stays full-bleed) */
 @media (min-width:768px){
@@ -149,8 +140,7 @@
 
 /* ---------- verdict block ---------- */
 .verdict{
-  position:relative;background:var(--bg-alt);border:var(--hairline) solid var(--rule);
-  border-radius:var(--radius-md);padding:var(--space-2) var(--space-6) var(--space-5);
+  position:relative;border-radius:var(--radius-md);padding:var(--space-2) var(--space-6) var(--space-5);
   margin:var(--space-8) 0;overflow:hidden;
 }
 .verdict::before{content:"";position:absolute;left:0;top:0;bottom:0;width:var(--category-bar);background:var(--accent)}

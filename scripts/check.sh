@@ -24,3 +24,6 @@ python3 ./scripts/check-og.py
 
 echo "▸ colour contrast"
 python3 ./scripts/check-contrast.py
+
+echo "▸ css architecture"
+python3 ./scripts/check-css.py

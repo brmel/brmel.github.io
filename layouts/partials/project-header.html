@@ -16,7 +16,7 @@
 <header class="project-head">
   <p class="project-eyebrow">
     {{- partial "brand-mark.html" (dict "size" 16 "class" "brand-mark project-eyebrow__mark") -}}
-    <span class="project-eyebrow__text">
+    <span class="u-eyebrow project-eyebrow__text">
       {{- with $no }}{{ i18n "project_no" | default "Project" }} № {{ printf "%02d" . }}
       <b class="project-eyebrow__dot" aria-hidden="true">·</b> {{ end -}}
       {{ $domain | upper }}

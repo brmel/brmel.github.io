@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (img.parentElement.classList.contains('video-thumb')) return;
         var btn = document.createElement('button');
         btn.type = 'button';
-        btn.className = 'video-thumb';
+        btn.className = 'u-card u-card--interactive video-thumb';
         btn.setAttribute('aria-label', 'Play video: ' + (img.alt || 'video'));
         btn.setAttribute('data-video-src', img.getAttribute('data-video-src') || '');
         img.parentNode.insertBefore(btn, img);

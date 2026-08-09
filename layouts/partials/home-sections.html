@@ -18,13 +18,13 @@
   {{- range site.Params.mainSections }}
   {{- with site.GetPage (printf "/%s" .) }}
   {{- if ge (len .RegularPages) 1 }}
-  <a class="home-card" href="{{ .RelPermalink }}"
+  <a class="u-card home-card" href="{{ .RelPermalink }}"
      data-category="{{ index $accents .Section | default "restaurant" }}">
-    <span class="home-card__rule" aria-hidden="true"></span>
+    <span class="u-bar" aria-hidden="true"></span>
     <span class="home-card__title">{{ .Title }}</span>
     {{- with .Description }}<span class="home-card__desc">{{ . }}</span>{{ end }}
     {{- $n := len .RegularPages }}
-    <span class="home-card__count">
+    <span class="u-eyebrow home-card__count">
       {{- $n }} {{ cond (eq $n 1) (i18n "entry_one") (i18n "entry_other") -}}
     </span>
   </a>
@@ -34,11 +34,11 @@
 
   {{- /* The resume is a single page, not a section, so it is named explicitly. */ -}}
   {{- with site.GetPage "/resume" }}
-  <a class="home-card home-card--resume" href="{{ .RelPermalink }}" data-category="event">
-    <span class="home-card__rule" aria-hidden="true"></span>
+  <a class="u-card home-card home-card--resume" href="{{ .RelPermalink }}" data-category="event">
+    <span class="u-bar" aria-hidden="true"></span>
     <span class="home-card__title">{{ .Title }}</span>
     {{- with .Params.summary }}<span class="home-card__desc">{{ . }}</span>{{ end }}
-    <span class="home-card__count">{{ i18n "home_resume_hint" | default "the short version" }}</span>
+    <span class="u-eyebrow home-card__count">{{ i18n "home_resume_hint" | default "the short version" }}</span>
   </a>
   {{- end }}
 </nav>

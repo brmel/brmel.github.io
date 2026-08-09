@@ -1,0 +1,87 @@
+/* ============================================================================
+   IBRAVERSE — ARTICLE CONTENT
+   Inside a post body: figures, diagrams, embedded artefacts, and the list
+   entry treatments that only appear in article contexts.
+   ========================================================================== */
+
+/* ---- workflow diagrams (inline SVG in articles) ----
+   Brand-system diagrams: paper ground, ink text, accent edges. No library, no
+   JS, and they follow the theme because every colour is a token. */
+.workflow{
+  display:block;width:100%;height:auto;
+  max-width:var(--container-content);
+  margin:var(--space-6) auto;
+  color:var(--accent);           /* arrowheads inherit this */
+  overflow:visible;
+}
+.workflow rect{
+  fill:var(--bg-alt);
+  stroke:var(--rule);
+  stroke-width:1;
+}
+.workflow .wf-store rect,.workflow rect.wf-store{fill:var(--bg-alt);stroke:var(--accent);}
+.workflow rect.wf-out{fill:var(--bg-alt);stroke:var(--accent);stroke-width:1.5;}
+.workflow .wf-t{
+  fill:var(--ink);font-family:var(--font-sans);font-size:13px;
+  text-anchor:middle;font-weight:500;
+}
+.workflow .wf-s{
+  fill:var(--ink-soft);font-family:var(--font-mono);font-size:10.5px;
+  text-anchor:middle;letter-spacing:.02em;
+}
+.workflow .wf-lane-label{
+  fill:var(--ink-mute);font-family:var(--font-mono);font-size:10px;
+  letter-spacing:.14em;
+}
+.workflow .wf-edge path{
+  fill:none;stroke:var(--accent);stroke-width:1.5;
+}
+@media (max-width:700px){
+  .workflow .wf-t{font-size:15px}
+  .workflow .wf-s{font-size:12px}
+}
+
+
+/* ---- embedded report iframe ----
+   assets/reports/*.html are generated artefacts with their own (light) palette
+   and cannot follow the site theme. Rather than let a white slab sit on the
+   dark page, frame it: a paper card with a hairline and radius, so in dark mode
+   it reads as an embedded document rather than a broken background. */
+.report-frame{
+  border-radius:var(--radius-md);
+  box-shadow:var(--shadow-card);
+}
+.dark .report-frame{
+  border:var(--hairline) solid var(--rule);
+  background:#fff;
+}
+
+/* theme toggle: brand-coloured, matched to the nav mark */
+#theme-toggle{color:var(--ink-soft);}
+#theme-toggle:hover{color:var(--accent);}
+
+/* ============================================================================
+
+/* profile photo — explicit dimensions come from the image pipeline, so it
+   reserves its space and cannot shift layout. */
+.profile__photo{
+  border-radius:var(--radius-md);object-fit:cover;
+  max-width:100%;height:auto;box-shadow:var(--shadow-photo);
+}
+
+/* "in English" marker on entries served by the language fallback (#17) */
+.entry-lang{
+  margin:var(--space-2) 0 0;
+  font-family:var(--font-mono);font-size:10px;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--ink-mute);
+}
+
+/* list entry covers, floated as an icon (carried over from custom.css, which
+   declared .entry-cover twice with contradictory display values) */
+.entry-cover{float:inline-start;margin-inline-end:var(--space-5);margin-bottom:var(--space-3);}
+.entry-cover img{
+  width:100px;height:100px;object-fit:contain;
+  border:var(--hairline) solid var(--rule);
+  border-radius:var(--radius-sm);
+  background:var(--bg-alt);
+}

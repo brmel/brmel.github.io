@@ -13,14 +13,14 @@
 
 {{- with $pages }}
 <section class="home-latest" aria-labelledby="home-latest-heading">
-  <h2 class="home-latest__heading" id="home-latest-heading">
+  <h2 class="u-rule-heading home-latest__heading" id="home-latest-heading">
     {{ i18n "home_latest" | default "Latest" }}
   </h2>
   <ul class="home-latest__list">
     {{- range . }}
     <li class="home-latest__item">
       <a href="{{ .RelPermalink }}">
-        <span class="home-latest__meta">
+        <span class="u-eyebrow home-latest__meta">
           {{- with .Date }}<time datetime="{{ .Format "2006-01-02" }}">{{ .Format (site.Params.DateFormat | default "January 2, 2006") }}</time>{{ end }}
           {{- with .Section }} <span aria-hidden="true">·</span> {{ . }}{{ end }}
         </span>

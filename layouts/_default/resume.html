@@ -39,7 +39,7 @@
 
   {{- with .Params.skills }}
   <section class="resume__section" aria-labelledby="resume-skills">
-    <h2 class="resume__h2" id="resume-skills">{{ i18n "resume_skills" | default "Skills" }}</h2>
+    <h2 class="u-rule-heading resume__h2" id="resume-skills">{{ i18n "resume_skills" | default "Skills" }}</h2>
     <dl class="resume__skills">
       {{- range . }}
       <div class="resume__skillgroup">
@@ -55,7 +55,7 @@
 
   {{- with .Params.education }}
   <section class="resume__section" aria-labelledby="resume-education">
-    <h2 class="resume__h2" id="resume-education">{{ i18n "resume_education" | default "Education" }}</h2>
+    <h2 class="u-rule-heading resume__h2" id="resume-education">{{ i18n "resume_education" | default "Education" }}</h2>
     <ul class="resume__edu">
       {{- range . }}
       <li class="resume__edu-item">
@@ -73,7 +73,7 @@
 
   {{- with .Params.certifications }}
   <section class="resume__section" aria-labelledby="resume-certs">
-    <h2 class="resume__h2" id="resume-certs">{{ i18n "resume_certifications" | default "Certifications" }}</h2>
+    <h2 class="u-rule-heading resume__h2" id="resume-certs">{{ i18n "resume_certifications" | default "Certifications" }}</h2>
     <ul class="resume__edu">
       {{- range . }}
       <li class="resume__edu-item">

@@ -23,14 +23,14 @@
   {{- $gallery := .Resources.Match "gallery/*" -}}
   {{- with $gallery }}
   <section class="project-gallery" aria-labelledby="project-gallery-h">
-    <h2 class="project-h2" id="project-gallery-h">{{ i18n "project_gallery" | default "Gallery" }}</h2>
+    <h2 class="u-rule-heading" id="project-gallery-h">{{ i18n "project_gallery" | default "Gallery" }}</h2>
     <div class="project-gallery__grid">
       {{- range . }}
       {{- $img := . }}
       {{- $small := $img.Resize "640x webp q82" }}
       {{- $large := $img.Resize "1280x webp q82" }}
       <figure class="project-shot">
-        <img src="{{ $small.RelPermalink }}"
+        <img class="u-frame" src="{{ $small.RelPermalink }}"
              srcset="{{ $small.RelPermalink }} 640w, {{ $large.RelPermalink }} 1280w"
              sizes="(max-width: 760px) 100vw, 620px"
              width="{{ $large.Width }}" height="{{ $large.Height }}"
@@ -50,7 +50,7 @@
 
   {{- with .Params.lessons }}
   <section class="project-lessons" aria-labelledby="project-lessons-h">
-    <h2 class="project-h2" id="project-lessons-h">{{ i18n "project_lessons" | default "What it taught me" }}</h2>
+    <h2 class="u-rule-heading" id="project-lessons-h">{{ i18n "project_lessons" | default "What it taught me" }}</h2>
     <ul class="project-lessons__list">
       {{- range . }}<li>{{ . | markdownify }}</li>{{ end }}
     </ul>

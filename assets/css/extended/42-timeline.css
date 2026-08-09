@@ -57,36 +57,10 @@
 
 /* ---- card ---- */
 .timeline-content{
-  position:relative;
-  background:var(--bg-alt);
-  border:var(--hairline) solid var(--rule);
-  border-radius:var(--radius-md);
   padding:var(--space-5) var(--space-5) var(--space-4);
-  overflow:hidden;
-  transition:border-color var(--dur-2) var(--ease-standard),
-             box-shadow var(--dur-2) var(--ease-standard);
-}
-/* the category bar, same signature as project and home cards */
-.timeline-content::before{
-  content:'';
-  position:absolute;inset-inline-start:0;inset-block-start:0;
-  width:var(--category-bar);height:100%;
-  background:var(--accent);
-}
-.timeline-content:hover{
-  border-color:var(--accent);
-  box-shadow:var(--shadow-card);
 }
 
 /* date: mono eyebrow, like every other label on the site */
-.timeline-date{
-  font-family:var(--font-mono);
-  font-size:var(--t-eyebrow);
-  letter-spacing:var(--track-eyebrow);
-  text-transform:uppercase;
-  color:var(--ink-mute);
-  margin-bottom:var(--space-2);
-}
 
 /* role: serif display, and the company link stops shouting */
 .timeline-title{
@@ -154,19 +128,9 @@
 
 /* ---- video thumbnail: a real button with a play badge ---- */
 .video-thumb{
-  position:relative;
-  display:block;
-  width:100%;
+  position:relative;display:block;width:100%;
   padding:0;margin:0 0 var(--space-4);
-  border:var(--hairline) solid var(--rule);
-  border-radius:var(--radius-sm);
-  overflow:hidden;
-  background:var(--bg);
-  cursor:pointer;
-  line-height:0;
-  transition:border-color var(--dur-2) var(--ease-standard),
-             transform var(--dur-2) var(--ease-standard),
-             box-shadow var(--dur-2) var(--ease-standard);
+  cursor:pointer;line-height:0;
 }
 .video-thumb img{
   display:block;width:100%;height:auto;
@@ -185,11 +149,6 @@
   filter:drop-shadow(0 1px 3px rgba(0,0,0,.45));
   transform:translateX(1px);          /* optical centring of the triangle */
   transition:transform var(--dur-2) var(--ease-spring), fill var(--dur-2) var(--ease-standard);
-}
-.video-thumb:hover{
-  border-color:var(--accent);
-  transform:translateY(-2px);
-  box-shadow:var(--shadow-photo);
 }
 .video-thumb:hover .video-thumb__play{background:rgba(24,23,21,.18);}
 .video-thumb:hover .video-thumb__play svg{transform:scale(1.12) translateX(1px);fill:#fff;}
@@ -232,5 +191,4 @@
 }
 
 @media (prefers-reduced-motion:reduce){
-  .video-thumb,.video-thumb:hover,.timeline-content:hover{transform:none;}
-}
+  .video-thumb,.video-thumb:hover,}

@@ -1,0 +1,76 @@
+/* ============================================================================
+   IBRAVERSE — HOME
+   Identity first, then the routes into the work. Cards compose .u-card and
+   .u-bar from 20-components.css and add only grid geometry.
+   ========================================================================== */
+
+  max-width:var(--container-text);
+  margin:var(--space-8) auto var(--space-9);
+  text-align:center;
+}
+.home-intro p{color:var(--ink-soft);}
+.home-intro > :first-child{margin-top:0;}
+
+/* ---- section cards ---- */
+.home-sections{
+  max-width:var(--container-content);
+  margin:0 auto var(--space-9);
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:var(--space-4);
+}
+.home-card{
+  display:flex;flex-direction:column;gap:var(--space-2);
+  padding:var(--space-5);
+  text-decoration:none;
+}
+/* the category bar — the one place each card shows its accent as a block */
+
+.home-card__title{
+  font-family:var(--font-serif);
+  font-size:var(--t-heading);
+  line-height:1.15;
+  color:var(--ink);
+}
+.home-card__desc{
+  font-size:var(--t-caption);
+  line-height:1.5;
+  color:var(--ink-soft);
+  flex:1 1 auto;
+}
+.home-card__count{color:var(--accent);}
+
+/* ---- latest across sections ---- */
+.home-latest{
+  max-width:var(--container-text);
+  margin:0 auto var(--space-9);
+}
+
+.home-latest__list{list-style:none;margin:0;padding:0;}
+.home-latest__item{border-bottom:var(--hairline) solid var(--rule-soft);}
+.home-latest__item:last-child{border-bottom:0;}
+.home-latest__item a{
+  display:flex;flex-direction:column;gap:var(--space-1);
+  padding:var(--space-4) 0;
+  text-decoration:none;
+}
+
+.home-latest__title{
+  font-family:var(--font-serif);
+  font-size:var(--t-subhead);
+  line-height:1.2;
+  color:var(--ink);
+  transition:color var(--dur-1) var(--ease-standard);
+}
+.home-latest__item a:hover .home-latest__title{color:var(--accent);}
+.home-latest__sum{
+  font-size:var(--t-caption);
+  line-height:1.5;
+  color:var(--ink-soft);
+}
+
+@media (max-width:480px){
+  .home-sections{grid-template-columns:1fr;}
+}
+
+/* ============================================================================
