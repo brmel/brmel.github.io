@@ -142,11 +142,16 @@ enableEmoji = true
 
 [params]
   env = "production"
-  title = "Welcome to Ibraverse"
+  title = "Ibraverse"
+  # Sections that count as "the work" — drives the home page's latest-posts list
+  # (layouts/_default/list.html) and anything else ranging over site content.
+  # `projects` is listed ahead of the section existing (#12) so adding it needs
+  # no config change.
+  mainSections = ["projects", "tech", "adventures", "thoughts"]
   description = "Senior Software Developer at Zebra Technologies specializing in Machine Vision, Image Processing, and Control Systems. 5+ years of industrial experience in C++, AI, and real-time systems."
   keywords = ["machine vision", "image processing", "computer vision", "industrial algorithms", "OpenCV", "C++", "control theory", "robotics", "AI", "Zebra Technologies", "Matrox", "real-time systems", "AGM", "geometric matching"]
   author = "Ibraverse"
-  images = ["images/profile.jpg"]
+  images = ["images/MyPhoto.jpg"]
   DateFormat = "January 2, 2006"
   defaultTheme = "light"
   disableThemeToggle = true
@@ -168,11 +173,16 @@ enableEmoji = true
   tocopen = false
 
   [params.assets]
+    # Every file below exists in static/ and is generated from the compass mark
+    # (layouts/partials/brand-mark.html) — see scripts/gen-favicons.py.
     favicon = "favicon.ico"
     favicon16x16 = "favicon-16x16.png"
     favicon32x32 = "favicon-32x32.png"
     apple_touch_icon = "apple-touch-icon.png"
     safari_pinned_tab = "safari-pinned-tab.svg"
+    # Browser chrome colours — brand paper, not PaperMod's default slate #2e2e33.
+    theme_color = "#faf9f6"
+    msapplication_TileColor = "#faf9f6"
 
   [params.label]
     text = "Ibraverse"
@@ -198,14 +208,9 @@ enableEmoji = true
     name = "instagram"
     url = "https://www.instagram.com/mellahredouane/"
 
-  [params.analytics.google]
-    SiteVerificationTag = "XYZabc"  # Replace with your Google Search Console verification tag
-
-  [params.analytics.bing]
-    SiteVerificationTag = "XYZabc"  # Replace with your Bing Webmaster verification tag
-
-  [params.analytics.yandex]
-    SiteVerificationTag = "XYZabc"  # Replace with your Yandex verification tag
+  # No [params.analytics.*] verification tags: absent beats fake. Add a block
+  # back only when the site is actually registered with that search console,
+  # with the real token.
 
   [params.cover]
     hidden = true
