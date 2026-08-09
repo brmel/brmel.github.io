@@ -13,6 +13,11 @@
   for them, so other pages don't download them. Scripts are deferred so
   they run after the document is parsed.
 
+  NOTE: no page uses customCSS/customJS right now — the machine-vision article
+  that did was removed in #5. This hook is deliberately kept: it is the seam an
+  interactive article or a Projects page (#12) plugs into, and re-deriving it
+  costs more than keeping it. Do not delete it as dead code.
+
   Also sets the document writing direction from the site's configured
   languageDirection. PaperMod's baseof emits <html dir="auto">, which is
   unreliable for laying out RTL boxes; making it explicit lets CSS logical
