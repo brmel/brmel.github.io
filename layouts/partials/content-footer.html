@@ -1,0 +1,47 @@
+{{- /*
+  content-footer — everything that comes after the words, on every content page.
+
+  Before this, each layout assembled its own ending and they had drifted apart:
+  an article got tags, a mailto "Suggest Changes", share icons and section nav;
+  a project got the same minus prev/next ordering; the standalone report got
+  nothing at all — no breadcrumb, no way back, no contribute; the resume got
+  nothing. A reader learned one page's affordances and then lost them on the
+  next.
+
+  One composition, one order, used by every content layout:
+
+      tags            what this is about
+      actions         improve it · discuss it        (contribute)
+      share           take it elsewhere
+      section-nav     the way back + siblings
+      comments        the conversation               (config-gated)
+
+  Each row hides itself when it has nothing to show, so a page with no tags or
+  a section with one page degrades quietly instead of rendering an empty shell.
+
+  Opt out per page with `hideContentFooter: true` — used by the standalone
+  report, which is a full-bleed artefact, not an article.
+*/ -}}
+
+{{- if not (.Param "hideContentFooter") }}
+<footer class="content-footer">
+
+  {{- $tags := .Language.Params.Taxonomies.tag | default "tags" }}
+  {{- with ($.GetTerms $tags) }}
+  <ul class="content-footer__tags">
+    {{- range . }}<li><a href="{{ .Permalink }}">{{ .LinkTitle }}</a></li>{{ end }}
+  </ul>
+  {{- end }}
+
+  <div class="content-footer__row">
+    {{- partial "content-actions.html" . }}
+    {{- if (and site.Params.ShowShareButtons (ne .Params.disableShare true)) }}
+    {{- partial "share_icons.html" . }}
+    {{- end }}
+  </div>
+
+  {{- partial "section-nav.html" . }}
+  {{- partial "comments.html" . }}
+
+</footer>
+{{- end }}

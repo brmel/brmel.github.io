@@ -53,6 +53,9 @@ jobs:
       - name: CSS architecture
         run: python3 ./scripts/check-css.py
 
+      - name: Page chrome
+        run: python3 ./scripts/check-chrome.py
+
       # Internal links only. External links rot for reasons outside this repo,
       # so they are reported but never fail the job (see the second step).
       - name: Broken internal links

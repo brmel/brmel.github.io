@@ -1,0 +1,70 @@
+{{- /*
+  comments — giscus, driven by GitHub Discussions.
+
+  Why giscus and not the alternatives:
+    * No third-party tracking and no ads. Disqus is both, and would undo the
+      privacy posture of a site whose only other script is analytics.
+    * No backend. This is a static site on GitHub Pages; anything needing a
+      database is a new thing to run and pay for.
+    * The audience already has accounts. Readers arriving from a C++ memory
+      article or a scikit-learn bug report are on GitHub daily.
+    * Threads live in the repo's Discussions, so a conversation about an article
+      sits next to the issue and the commit that came out of it.
+
+  INERT UNTIL CONFIGURED. It renders nothing at all unless every giscus id is
+  present in config.toml, so a half-set-up widget can never ship. Enabling it is
+  documented in docs/comments.md — it needs Discussions turned on, the giscus
+  app installed, and four ids pasted in.
+
+  Theme: giscus runs in an iframe and cannot read the page's CSS, so it is told
+  which theme to use at load, and told again over postMessage whenever the
+  reader toggles. Without the second part it stays light on a dark page.
+*/ -}}
+
+{{- $c := site.Params.comments -}}
+{{- if and $c $c.enabled $c.repo $c.repoId $c.category $c.categoryId (ne (.Param "comments") false) }}
+<section class="comments" aria-labelledby="comments-h">
+  <h2 class="u-rule-heading" id="comments-h">
+    {{ i18n "comments_heading" | default "Comments" }}
+  </h2>
+  <p class="comments__note">
+    {{ i18n "comments_note" | default "Replies are GitHub Discussions — a GitHub account is needed to post." }}
+  </p>
+
+  <script src="https://giscus.app/client.js"
+          data-repo="{{ $c.repo }}"
+          data-repo-id="{{ $c.repoId }}"
+          data-category="{{ $c.category }}"
+          data-category-id="{{ $c.categoryId }}"
+          data-mapping="pathname"
+          data-strict="1"
+          data-reactions-enabled="1"
+          data-emit-metadata="0"
+          data-input-position="top"
+          data-theme="{{ cond (eq site.Params.defaultTheme "dark") "transparent_dark" "light" }}"
+          data-lang="{{ site.Language.Lang }}"
+          data-loading="lazy"
+          crossorigin="anonymous"
+          async>
+  </script>
+
+  <script>
+    /* Keep the iframe's theme in step with the page's. The toggle in the nav
+       flips body.dark; giscus only listens on postMessage. */
+    (function () {
+      var frame = function () { return document.querySelector('iframe.giscus-frame'); };
+      var send = function (dark) {
+        var f = frame();
+        if (!f) return;
+        f.contentWindow.postMessage(
+          { giscus: { setConfig: { theme: dark ? 'transparent_dark' : 'light' } } },
+          'https://giscus.app'
+        );
+      };
+      new MutationObserver(function () {
+        send(document.body.classList.contains('dark'));
+      }).observe(document.body, { attributes: true, attributeFilter: ['class'] });
+    })();
+  </script>
+</section>
+{{- end }}

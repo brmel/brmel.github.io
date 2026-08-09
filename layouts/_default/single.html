@@ -60,28 +60,9 @@
     {{- partial "reels.html" . }}
     {{- end }}
 
-    {{- /* The way back — see partials/section-nav.html. */ -}}
-    {{- partial "section-nav.html" . }}
+    {{- /* Everything after the words — see partials/content-footer.html. */ -}}
+    {{- partial "content-footer.html" . }}
 
-    <footer class="post-footer">
-        {{- $tags := .Language.Params.Taxonomies.tag | default "tags" }}
-        <ul class="post-tags">
-            {{- range ($.GetTerms $tags) }}
-            <li><a href="{{ .Permalink }}">{{ .LinkTitle }}</a></li>
-            {{- end }}
-        </ul>
-        {{- if (.Param "ShowPostNavLinks") }}
-        {{- partial "post_nav_links.html" . }}
-        {{- end }}
-        {{- partial "edit_post.html" . -}}
-        {{- if (and site.Params.ShowShareButtons (ne .Params.disableShare true)) }}
-        {{- partial "share_icons.html" . -}}
-        {{- end }}
-    </footer>
-
-    {{- if (.Param "comments") }}
-    {{- partial "comments.html" . }}
-    {{- end }}
 </article>
 
 {{- if $adv }}

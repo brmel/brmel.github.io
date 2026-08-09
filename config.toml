@@ -182,12 +182,17 @@ enableEmoji = true
   UseHugoToc = true
   disableSpecial1stPost = false
   disableScrollToTop = false
-  comments = false
   hidemeta = false
   hideAuthor = true
   hideSummary = false
   showtoc = false
   tocopen = false
+
+  # Contribute links (partials/content-actions.html) are derived from these.
+  # PaperMod's editPost pointed at a mailto, which asked a stranger to describe
+  # a typo in an email with no path to a commit.
+  repo = "https://github.com/brmel/brmel.github.io"
+  repoBranch = "main"
 
   [params.assets]
     # Every file below exists in static/ and is generated from the compass mark
@@ -234,10 +239,20 @@ enableEmoji = true
     hiddenInList = false
     hiddenInSingle = true
 
-  [params.editPost]
-    URL = "mailto:mellah.brahim.redouane@gmail.com?subject=Suggestion for"
-    Text = "Suggest Changes"
-    appendFilePath = true
+  # Contribute links (partials/content-actions.html) are derived from these.
+  # PaperMod's editPost pointed at a mailto, which asked a stranger to describe
+  # a typo in an email with no path to a commit.
+  repo = "https://github.com/brmel/brmel.github.io"
+  repoBranch = "main"
+
+  # Comments — giscus over GitHub Discussions. Inert until every id is filled
+  # in; see docs/comments.md for how to get them.
+  [params.comments]
+    enabled = false
+    repo = ""
+    repoId = ""
+    category = "Announcements"
+    categoryId = ""
 
   [params.fuseOpts]
     isCaseSensitive = false

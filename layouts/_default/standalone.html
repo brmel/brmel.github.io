@@ -103,6 +103,12 @@
     </article>
   </main>
 
+  {{- /* The same ending as every other content page. The report itself is
+         full-bleed, so the footer sits in the reading column below it. */ -}}
+  <div class="sa-wrap">
+    {{- partial "content-footer.html" . }}
+  </div>
+
   <footer class="sa-footer">
     <div class="sa-wrap sa-footer__inner">
       <a href="{{ "/tech/" | relURL }}">← Back to Tech</a>

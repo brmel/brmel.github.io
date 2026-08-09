@@ -1,0 +1,44 @@
+{{- /*
+  content-actions — the two things a reader can do about a page.
+
+  This replaces PaperMod's `editPost`, which pointed at
+  `mailto:…?subject=Suggestion for` with the file path appended. That asks a
+  stranger to compose an email describing a typo, and there is no path from
+  their message to a commit. Almost nobody does it.
+
+  Both links here go to GitHub instead, where the repo already lives:
+
+    Improve this page  → the file's edit view. GitHub forks it for the reader
+                         automatically and the Propose changes button opens a
+                         pull request. A typo fix is three clicks.
+    Discuss            → a new issue, pre-filled with the page title and URL so
+                         the report arrives with context attached.
+
+  Both are derived from site.Params.repo, so there is one place to change if the
+  repository ever moves, and they disappear cleanly if it is unset.
+*/ -}}
+
+{{- $repo := site.Params.repo -}}
+{{- $branch := site.Params.repoBranch | default "main" -}}
+
+{{- with .File }}
+{{- if $repo }}
+{{- $path := path.Join "content" .Path -}}
+<ul class="content-actions">
+  <li>
+    <a href="{{ printf "%s/edit/%s/%s" $repo $branch $path }}"
+       target="_blank" rel="noopener noreferrer">
+      {{ i18n "improve_page" | default "Improve this page" }} <span aria-hidden="true">↗</span>
+    </a>
+  </li>
+  <li>
+    {{- $title := printf "%s: " ($.Title | plainify) -}}
+    {{- $body := printf "Page: %s\n\n" $.Permalink -}}
+    <a href="{{ printf "%s/issues/new?title=%s&body=%s" $repo (urlquery $title) (urlquery $body) }}"
+       target="_blank" rel="noopener noreferrer">
+      {{ i18n "discuss_page" | default "Found a problem? Open an issue" }} <span aria-hidden="true">↗</span>
+    </a>
+  </li>
+</ul>
+{{- end }}
+{{- end }}

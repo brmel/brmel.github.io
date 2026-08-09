@@ -27,3 +27,6 @@ python3 ./scripts/check-contrast.py
 
 echo "▸ css architecture"
 python3 ./scripts/check-css.py
+
+echo "▸ page chrome"
+python3 ./scripts/check-chrome.py

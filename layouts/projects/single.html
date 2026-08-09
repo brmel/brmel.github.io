@@ -57,21 +57,8 @@
   </section>
   {{- end }}
 
-  {{- /* The way back — see partials/section-nav.html. */ -}}
-  {{- partial "section-nav.html" . }}
-
-  <footer class="post-footer">
-    {{- $tags := .Language.Params.Taxonomies.tag | default "tags" }}
-    <ul class="post-tags">
-      {{- range ($.GetTerms $tags) }}
-      <li><a href="{{ .Permalink }}">{{ .LinkTitle }}</a></li>
-      {{- end }}
-    </ul>
-    {{- partial "edit_post.html" . -}}
-    {{- if (and site.Params.ShowShareButtons (ne .Params.disableShare true)) }}
-    {{- partial "share_icons.html" . -}}
-    {{- end }}
-  </footer>
+  {{- /* Everything after the words — see partials/content-footer.html. */ -}}
+  {{- partial "content-footer.html" . }}
 
 </article>
 {{- end }}

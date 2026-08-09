@@ -5,6 +5,7 @@ draft: false
 layout: "standalone"
 hideAutoHeader: true
 fullBleed: true
+disableShare: false
 summary: "A two-month reliability study of Hydro-Québec's public outage feed — regional reliability, Montréal boroughs, ETA accuracy, causes, record outages, and the data pipeline behind it. Interactive charts + map."
 tags: ["Data Analysis", "Plotly", "Hydro-Québec", "Reliability", "Web Scraping"]
 cover:
