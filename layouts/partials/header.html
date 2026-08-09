@@ -121,7 +121,11 @@
                    never hidden. */ -}}
             {{- $hide := false }}
             {{- with site.GetPage .URL }}
-            {{- if and (eq .Kind "section") (lt (len .RegularPages) 1) }}{{ $hide = true }}{{ end }}
+            {{- if eq .Kind "section" }}
+            {{- /* Counts the fallback too, so a section that is English-only
+                   still appears in the fr and ar navs (#17). */ -}}
+            {{- if lt (len (partial "func/section-pages.html" .)) 1 }}{{ $hide = true }}{{ end }}
+            {{- end }}
             {{- end }}
             {{- if not $hide }}
             {{- $menu_item_url := (cond (strings.HasSuffix .URL "/") .URL (printf "%s/" .URL) ) | absLangURL }}

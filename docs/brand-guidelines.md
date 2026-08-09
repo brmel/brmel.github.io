@@ -232,14 +232,44 @@ throat-clearing, no words that would not survive being read aloud.
 
 ## 8. Language
 
-The site ships English, French and Arabic (RTL). **Policy is decided in #17** —
-until it lands, do not add a translation for a page that is about to be
-rewritten. Whatever is chosen, two rules already hold:
+The site ships English, French and Arabic (RTL) under a **tiered policy**:
+
+| Tier | What | Languages |
+|---|---|---|
+| **Structural** | Home, Resume, section indexes, nav, all UI strings | **all three, always** |
+| **Long-form** | Project write-ups, tech articles, field notes, Thoughts | **English by default**; translate individually when it earns it |
+
+The rule that makes this honest: **a reader never sees less because of their
+language.** Section listings *merge* rather than filter —
+`partials/func/section-pages.html` returns this language's pages plus any
+default-language pages that have no translation here, and the untranslated ones
+are labelled *in English* / *en anglais* / *بالإنجليزية* on the card.
+
+So `/fr/tech/` lists all three tech articles: the one translated into French, in
+French, and the two English-only ones, marked. Filtering instead of merging is
+what made `/fr/projects/` empty, which then hid Projects from the French nav
+entirely — the French site silently contained less than the English one.
+
+Consequences worth knowing:
+
+- A page listed from the fallback links to its **English URL**. That is
+  deliberate: it is an English page, and pretending otherwise by minting a
+  French URL for English content is worse.
+- New UI strings go in `i18n/{en,fr,ar}.yaml` in all three at once. Hugo
+  resolves the flat `key: value` form here — the nested go-i18n `other:` form
+  silently returns empty and falls through to the English default.
+- Translating a long-form page means adding `index.fr.md` beside `index.md` in
+  the same page bundle. The merge notices and stops showing the English one.
+
+Two rules that predate the policy and still hold:
 
 - The language switcher must never offer a language that does not exist for the
-  current page.
+  current page. PaperMod's nav switcher points at each language's **home**, so
+  it cannot dead-end; `partials/translation_list.html` only renders when a
+  translation actually exists.
 - Arabic is RTL and must be **checked**, not assumed: nav, breadcrumbs,
-  eyebrows, galleries and timelines all have to mirror.
+  eyebrows, galleries and timelines all have to mirror. Numeric ranges need
+  isolating (`dir="ltr"`) or they render backwards.
 
 ---
 

@@ -1,0 +1,52 @@
+{{- /*
+  func/section-pages — the pages a section should list, under the tiered
+  language policy (docs/brand-guidelines.md §8).
+
+  Structural pages are translated. Long-form writing — project write-ups, tech
+  articles, field notes — is English-only unless someone translates it.
+
+  A naive per-language listing hides English-only writing from fr and ar
+  readers: /fr/tech/ would show one article out of three, and /fr/projects/
+  would be empty, which then hides Projects from the nav entirely (#7). The
+  French site would silently contain less than the English one.
+
+  So this MERGES rather than falls back:
+
+      this language's pages
+    + the default language's pages that have no translation here
+
+  A page already translated is never listed twice. Callers mark the untranslated
+  ones by comparing `.Lang` to the current site language — see the `entry-lang`
+  and `project-card__lang` markers.
+
+  Usage:
+      {{- $pages := partial "func/section-pages.html" . }}
+
+  Returns a page slice, unsorted beyond Hugo's default (callers sort).
+*/ -}}
+
+{{- $pages := .RegularPages -}}
+{{- $lang := site.Language.Lang -}}
+{{- $default := index site.Sites 0 -}}
+
+{{- if ne $lang $default.Language.Lang -}}
+  {{- /* Which of the default language's pages are already translated here?
+         Compare by .File.ContentBaseName, which is stable across the
+         index.md / index.fr.md pair inside one page bundle. */ -}}
+  {{- $have := slice -}}
+  {{- range $pages -}}
+    {{- with .File }}{{ $have = $have | append .ContentBaseName }}{{ end -}}
+  {{- end -}}
+
+  {{- with $default.GetPage (printf "/%s" .Section) -}}
+    {{- range .RegularPages -}}
+      {{- $base := "" -}}
+      {{- with .File }}{{ $base = .ContentBaseName }}{{ end -}}
+      {{- if not (in $have $base) -}}
+        {{- $pages = $pages | append . -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+
+{{- return $pages -}}

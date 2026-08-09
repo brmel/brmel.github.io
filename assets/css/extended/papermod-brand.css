@@ -382,3 +382,10 @@ a:focus-visible,button:focus-visible{
   a{text-decoration:none;color:inherit;}
   .timeline-item{break-inside:avoid;}
 }
+
+/* "in English" marker on list entries served by the language fallback (#17) */
+.entry-lang{
+  margin:var(--space-2) 0 0;
+  font-family:var(--font-mono);font-size:10px;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--ink-mute);
+}

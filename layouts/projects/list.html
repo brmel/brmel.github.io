@@ -16,7 +16,9 @@
 <div class="post-content projects-intro">{{ . }}</div>
 {{- end }}
 
-{{- $projects := sort .RegularPages "Params.projectNo" "asc" }}
+{{- /* Tiered language policy: this language's pages, or the default
+       language's if none are translated. See partials/func/section-pages.html. */ -}}
+{{- $projects := sort (partial "func/section-pages.html" .) "Params.projectNo" "asc" }}
 
 {{- if lt (len $projects) 1 }}
 <div class="empty-section">
@@ -38,6 +40,9 @@
     </span>
     <span class="project-card__title">{{ .Title }}</span>
     {{- with .Params.pitch }}<span class="project-card__pitch">{{ . }}</span>{{ end }}
+    {{- if ne .Lang site.Language.Lang }}
+    <span class="project-card__lang" title="{{ i18n "lang_en_only_title" | default "This write-up is in English" }}">{{ i18n "lang_en_only" | default "in English" }}</span>
+    {{- end }}
     {{- with .Params.stack }}
     <span class="project-card__stack">
       {{- range $i, $s := first 4 . }}{{ if $i }} <b aria-hidden="true">·</b> {{ end }}{{ $s }}{{ end -}}
