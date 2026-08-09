@@ -1,8 +1,38 @@
 ---
-title: "مسيرتي المهنية"
-layout: "page"
-summary: "جدول زمني لتعليمي ومسيرتي المهنية."
+title: "السيرة الذاتية"
+layout: "resume"
+summary: "مهندس رؤية آلية ومعالجة صور — Zebra Technologies وMatrox Imaging وPolytechnique Montréal."
+description: "مطور برمجيات أول متخصص في الرؤية الآلية ومعالجة الصور وأنظمة التحكم."
 ShowBreadCrumbs: false
+disableShare: true
+aliases: ["/ar/timeline/", "/ar/about/"]
+role: "مطور برمجيات أول — الرؤية الآلية ومعالجة الصور"
+location: "مونتريال، كيبك"
+contact:
+  - label: "البريد الإلكتروني"
+    url: "mailto:mellah.brahim.redouane@gmail.com"
+  - label: "لينكد إن"
+    url: "https://www.linkedin.com/in/brahim-redouane-mellah/"
+  - label: "غيت هَب"
+    url: "https://github.com/brmel"
+skills:
+  - group: "لغات البرمجة"
+    items: ["C++", "C", "Python", "Dart / Flutter", "MATLAB", "VHDL"]
+  - group: "الرؤية الآلية"
+    items: ["Aurora Imaging Library", "Matrox Imaging Library", "OpenCV", "المطابقة الهندسية", "المعايرة", "القياس"]
+  - group: "الرياضيات والخوارزميات"
+    items: ["التحسين غير الخطي", "Levenberg–Marquardt", "نظرية التحكم", "التعلم الآلي الكلاسيكي", "التعلم العميق"]
+  - group: "الأنظمة والأدوات"
+    items: ["أنظمة الوقت الحقيقي", "QNX", "ROS", "Git", "SVN", "Simulink", "Unity-Pro"]
+education:
+  - year: "2017 – 2019"
+    degree: "ماجستير في هندسة أنظمة التحكم"
+    school: "Polytechnique Montréal"
+    note: "المعدل 3.84/4 · منحة مؤسسة الغرير (1 من 100 من بين أكثر من 15,000 متقدم)"
+  - year: "2012 – 2017"
+    degree: "مهندس دولة في الهندسة الكهربائية"
+    school: "المدرسة الوطنية المتعددة التقنيات، الجزائر"
+    note: "المعدل 17.5/20 · الخامس من بين 1,400 طالب (ضمن أفضل 1% وطنياً)"
 ---
 
 {{< timeline >}}

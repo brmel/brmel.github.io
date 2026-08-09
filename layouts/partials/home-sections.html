@@ -33,7 +33,7 @@
   {{- end }}
 
   {{- /* The resume is a single page, not a section, so it is named explicitly. */ -}}
-  {{- with site.GetPage "/timeline" }}
+  {{- with site.GetPage "/resume" }}
   <a class="home-card home-card--resume" href="{{ .RelPermalink }}" data-category="event">
     <span class="home-card__rule" aria-hidden="true"></span>
     <span class="home-card__title">{{ .Title }}</span>

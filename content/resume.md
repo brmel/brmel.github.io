@@ -1,8 +1,38 @@
 ---
-title: "My Journey"
-layout: "page"
-summary: "A timeline of my education and professional career."
+title: "Resume"
+layout: "resume"
+summary: "Machine vision and image processing engineer — Zebra Technologies, Matrox Imaging, Polytechnique Montréal."
+description: "Senior Software Developer specialising in machine vision, image processing and control systems."
 ShowBreadCrumbs: false
+disableShare: true
+aliases: ["/timeline/", "/about/"]
+role: "Senior Software Developer — machine vision & image processing"
+location: "Montréal, Québec"
+contact:
+  - label: "Email"
+    url: "mailto:mellah.brahim.redouane@gmail.com"
+  - label: "LinkedIn"
+    url: "https://www.linkedin.com/in/brahim-redouane-mellah/"
+  - label: "GitHub"
+    url: "https://github.com/brmel"
+skills:
+  - group: "Languages"
+    items: ["C++", "C", "Python", "Dart / Flutter", "MATLAB", "VHDL"]
+  - group: "Machine vision"
+    items: ["Aurora Imaging Library", "Matrox Imaging Library", "OpenCV", "geometric matching", "calibration", "metrology"]
+  - group: "Maths & algorithms"
+    items: ["non-linear optimisation", "Levenberg–Marquardt", "control theory", "classical ML", "deep learning"]
+  - group: "Systems & tools"
+    items: ["real-time systems", "QNX", "ROS", "Git", "SVN", "Simulink", "Unity-Pro"]
+education:
+  - year: "2017 – 2019"
+    degree: "M.Sc., Control Systems Engineering"
+    school: "Polytechnique Montréal"
+    note: "GPA 3.84/4 · Al Ghurair Foundation Scholarship (1 of 100 from 15,000+ applicants)"
+  - year: "2012 – 2017"
+    degree: "B.Eng., Electrical Engineering"
+    school: "École Nationale Polytechnique, Algiers"
+    note: "GPA 17.5/20 · graduated 5th of 1,400 (top 1% nationally)"
 ---
 
 {{< timeline >}}

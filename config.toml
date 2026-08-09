@@ -25,9 +25,9 @@ googleAnalytics = "G-CHFGS2DHF6"
       url = "/"
       weight = 1
     [[languages.en.menu.main]]
-      identifier = "timeline"
-      name = "Timeline"
-      url = "/timeline/"
+      identifier = "resume"
+      name = "Resume"
+      url = "/resume/"
       weight = 2
     [[languages.en.menu.main]]
       identifier = "tech"
@@ -66,9 +66,9 @@ googleAnalytics = "G-CHFGS2DHF6"
       url = "/"
       weight = 1
     [[languages.fr.menu.main]]
-      identifier = "timeline"
-      name = "Parcours"
-      url = "/timeline/"
+      identifier = "resume"
+      name = "CV"
+      url = "/resume/"
       weight = 2
     [[languages.fr.menu.main]]
       identifier = "tech"
@@ -108,9 +108,9 @@ googleAnalytics = "G-CHFGS2DHF6"
       url = "/"
       weight = 1
     [[languages.ar.menu.main]]
-      identifier = "timeline"
-      name = "مسيرتي"
-      url = "/timeline/"
+      identifier = "resume"
+      name = "السيرة الذاتية"
+      url = "/resume/"
       weight = 2
     [[languages.ar.menu.main]]
       identifier = "tech"

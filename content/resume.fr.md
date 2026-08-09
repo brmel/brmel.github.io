@@ -1,8 +1,38 @@
 ---
-title: "Mon Parcours"
-layout: "page"
-summary: "Une chronologie de mon éducation et de ma carrière professionnelle."
+title: "CV"
+layout: "resume"
+summary: "Ingénieur en vision industrielle et traitement d'images — Zebra Technologies, Matrox Imaging, Polytechnique Montréal."
+description: "Développeur logiciel senior spécialisé en vision industrielle, traitement d'images et systèmes de contrôle."
 ShowBreadCrumbs: false
+disableShare: true
+aliases: ["/fr/timeline/", "/fr/about/"]
+role: "Développeur logiciel senior — vision industrielle & traitement d'images"
+location: "Montréal, Québec"
+contact:
+  - label: "Courriel"
+    url: "mailto:mellah.brahim.redouane@gmail.com"
+  - label: "LinkedIn"
+    url: "https://www.linkedin.com/in/brahim-redouane-mellah/"
+  - label: "GitHub"
+    url: "https://github.com/brmel"
+skills:
+  - group: "Langages"
+    items: ["C++", "C", "Python", "Dart / Flutter", "MATLAB", "VHDL"]
+  - group: "Vision industrielle"
+    items: ["Aurora Imaging Library", "Matrox Imaging Library", "OpenCV", "appariement géométrique", "calibration", "métrologie"]
+  - group: "Maths & algorithmes"
+    items: ["optimisation non linéaire", "Levenberg–Marquardt", "théorie du contrôle", "apprentissage classique", "apprentissage profond"]
+  - group: "Systèmes & outils"
+    items: ["systèmes temps réel", "QNX", "ROS", "Git", "SVN", "Simulink", "Unity-Pro"]
+education:
+  - year: "2017 – 2019"
+    degree: "M.Sc.A., génie des systèmes de contrôle"
+    school: "Polytechnique Montréal"
+    note: "Moyenne 3,84/4 · Bourse de la Fondation Al Ghurair (1 sur 100 parmi plus de 15 000 candidatures)"
+  - year: "2012 – 2017"
+    degree: "Ingénieur d'État, génie électrique"
+    school: "École Nationale Polytechnique, Alger"
+    note: "Moyenne 17,5/20 · 5e sur 1 400 (top 1 % national)"
 ---
 
 {{< timeline >}}
