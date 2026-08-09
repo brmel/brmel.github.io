@@ -125,7 +125,15 @@
 }
 .project-shot{margin:0;}
 .project-shot img{
-  width:100%;height:auto;display:block;
+  width:100%;display:block;
+  /* Screenshots arrive at wildly different aspect ratios — a 1200x750 desktop
+     capture next to a 566x1200 phone or admin screen. A fixed box keeps the grid
+     on one rhythm; `contain` means nothing is ever cropped, which matters more
+     for a screenshot than filling the frame. The letterboxing lands on paper, so
+     it reads as a mounted screenshot rather than a gap. */
+  height:clamp(240px,30vw,420px);
+  object-fit:contain;object-position:center;
+  padding:var(--space-3);box-sizing:border-box;
   border:var(--hairline) solid var(--rule);
   border-radius:var(--radius-sm);
   box-shadow:var(--shadow-photo);

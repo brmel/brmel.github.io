@@ -167,5 +167,7 @@ hugo server                 # then read the page at 1440px and 390px
 | № | Project | Domain | Status |
 |---|---|---|---|
 | 01 | TikiPro | saas | shipped |
+| 02 | Wingo | mobile | active |
+| 03 | Rekba | infra | active |
 
 Keep this table current — it is the fastest way to check the next free number.
