@@ -15,4 +15,7 @@ cover:
 # layout carries no language switcher — this article never appears translated.
 ---
 
+> How this was built, and what it changed my mind about:
+> [the HydroData project page](/projects/hydro-quebec/).
+
 {{< reportframe src="reports/hydro-quebec-outage.html" title="Hydro-Québec Outage Reliability Report" >}}
