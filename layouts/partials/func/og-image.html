@@ -1,0 +1,74 @@
+{{- /*
+  func/og-image — resolve the social card for any page, in one place.
+
+  Every share of every page used to render the same portrait, because
+  params.images was a site-wide default and almost nothing overrode it. (Worse:
+  it pointed at static/images/profile.jpg, which was a text placeholder, not an
+  image — fixed in #6.)
+
+  Resolution order, first hit wins:
+
+    1. the page's own cover image        — a project gallery shot, an article cover
+    2. the section's generated card      — static/og/<section>.jpg
+    3. the home card                     — static/og/home.jpg
+
+  The section cards are generated from the brand system by
+  scripts/gen-og-cards.py; see docs/brand-guidelines.md §9. Six sections, one
+  template, so they cannot drift apart the way six hand-designed cards would.
+
+  Returns a dict: { url: <absolute URL>, alt: <string> }
+  og:image must be absolute for X and LinkedIn, so every branch uses absURL.
+*/ -}}
+
+{{- $url := "" -}}
+{{- $alt := "" -}}
+
+{{- /* 1. the page's own cover */ -}}
+{{- with .Params.cover }}
+  {{- with .image }}
+    {{- /* Try the page bundle FIRST, whatever `cover.relative` says. Upstream
+           trusts that flag, and content/tech/image-histograms omitted it, so its
+           card resolved to /blades.png at the site root — a 404 that nothing
+           noticed until scripts/check-og.py went looking. */ -}}
+    {{- with $.Resources.GetMatch . }}
+      {{- $url = .Permalink -}}
+    {{- else }}
+      {{- if eq $.Params.cover.relative true }}
+        {{- $url = (path.Join $.RelPermalink .) | absURL -}}
+      {{- else }}
+        {{- $url = . | absURL -}}
+      {{- end }}
+    {{- end }}
+    {{- $alt = $.Params.cover.alt | default $.Title -}}
+  {{- end }}
+{{- end }}
+
+{{- /* 1b. a project's first gallery shot — a real screenshot beats a generated
+       card, and every project page has one. */ -}}
+{{- if not $url }}
+  {{- with .Resources.Match "gallery/*" }}
+    {{- with index . 0 }}
+      {{- $url = .Permalink -}}
+      {{- $alt = printf "%s — %s" ($.Title | plainify) site.Title -}}
+    {{- end }}
+  {{- end }}
+{{- end }}
+
+{{- /* 2. the section card, 3. the home card */ -}}
+{{- if not $url }}
+  {{- $section := .Section | default "home" -}}
+  {{- if .IsHome }}{{ $section = "home" }}{{ end -}}
+  {{- /* Root-level pages (resume.md) have no .Section, so fall back to the file
+         name — otherwise /resume/ shares the home card instead of its own. */ -}}
+  {{- if and (not .IsHome) (eq $section "home") }}
+    {{- with .File }}{{ $section = .ContentBaseName }}{{ end }}
+  {{- end }}
+  {{- $candidate := printf "og/%s.jpg" $section -}}
+  {{- if not (fileExists (printf "static/%s" $candidate)) }}
+    {{- $candidate = "og/home.jpg" -}}
+  {{- end }}
+  {{- $url = $candidate | absURL -}}
+  {{- $alt = printf "%s — %s" (.Title | plainify) site.Title -}}
+{{- end }}
+
+{{- return dict "url" $url "alt" $alt -}}

@@ -293,8 +293,24 @@ TikTok as one row of click-to-load vertical thumbnails at the bottom of an
 Adventures article. Platform badge colours are the only non-brand colours
 allowed anywhere on the site, and only on those badges.
 
-**Open Graph cards** — one per section, generated from a template rather than
-designed individually. See #18.
+**Open Graph cards** — `static/og/<section>.jpg`, 1200×630, six sections from
+**one** template (`scripts/og-cards.html`, cut by `scripts/gen-og-cards.py`).
+Six hand-designed cards would drift; one template cannot. Adding a section means
+editing the template and the `SECTIONS` list, not drawing an image.
+
+Which card a page shares is resolved in one place,
+`layouts/partials/func/og-image.html`, first hit wins:
+
+1. the page's own `cover.image`
+2. a project's first `gallery/` screenshot — a real product shot beats a
+   generated card
+3. the section card
+4. the home card
+
+`og:` and `twitter:` read the same resolver, so they cannot disagree — upstream
+PaperMod let them fall back differently. `scripts/check-og.py` runs locally and
+in CI and fails the build if any page ships an og:image that is missing,
+relative, unresolvable, or has no alt text.
 
 The built kit lives in [`docs/brand-kit/`](brand-kit/) — proofs, channel assets,
 and exported tokens. Regenerate rather than hand-editing.

@@ -1,0 +1,22 @@
+{{- /*
+  twitter_cards — local fork. Shares one resolver with opengraph.html
+  (partials/func/og-image.html) so the two can never disagree about which image
+  a page shares, which they did upstream: og fell back to params.images while
+  twitter fell back to the first page resource. See #18.
+*/ -}}
+{{- $og := partial "func/og-image.html" . }}
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="{{ $og.url }}">
+<meta name="twitter:image:alt" content="{{ $og.alt }}">
+<meta name="twitter:title" content="{{ .Title | plainify }}">
+<meta name="twitter:description" content="{{ with .Description }}{{ . }}{{ else }}{{ if .IsPage }}{{ .Summary }}{{ else }}{{ site.Params.description }}{{ end }}{{ end }} ">
+
+{{- with site.Params.social }}
+  {{- if reflect.IsMap . }}
+    {{- with .twitter }}
+      {{- $content := . }}
+      {{- if not (strings.HasPrefix . "@") }}{{ $content = printf "@%v" . }}{{ end }}
+<meta name="twitter:site" content="{{ $content }}">
+    {{- end }}
+  {{- end }}
+{{- end }}

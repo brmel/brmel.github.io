@@ -18,3 +18,6 @@ echo "  ✅ built $(find public -name '*.html' | wc -l | tr -d ' ') pages"
 
 echo "▸ orphaned assets"
 ./scripts/check-orphans.sh
+
+echo "▸ social cards"
+python3 ./scripts/check-og.py

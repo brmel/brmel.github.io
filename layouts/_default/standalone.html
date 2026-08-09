@@ -36,11 +36,16 @@
   <meta property="og:description" content="{{ $desc }}" />
   <meta property="og:url" content="{{ .Permalink }}" />
   <meta property="og:site_name" content="{{ .Site.Title }}" />
-  {{- with .Params.cover.image }}{{ with $.Resources.GetMatch . }}
-  <meta property="og:image" content="{{ .Permalink }}" />
+  {{- /* Same resolver as the PaperMod pages, so this layout cannot drift out of
+         sync on social cards (#18). */ -}}
+  {{- $og := partial "func/og-image.html" . }}
+  <meta property="og:image" content="{{ $og.url }}" />
+  <meta property="og:image:alt" content="{{ $og.alt }}" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:image" content="{{ .Permalink }}" />
-  {{- end }}{{ end }}
+  <meta name="twitter:image" content="{{ $og.url }}" />
+  <meta name="twitter:image:alt" content="{{ $og.alt }}" />
 
   {{- partial "brand-fonts.html" . }}
 
