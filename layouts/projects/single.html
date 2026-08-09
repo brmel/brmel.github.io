@@ -1,0 +1,66 @@
+{{- define "main" }}
+{{- /*
+  Layout: projects/single
+  A project page. data-category sets the accent for the whole page from the
+  `domain` front matter field — one attribute, one accent, no other colour
+  decisions. See docs/brand-guidelines.md §3 and docs/projects-playbook.md.
+*/ -}}
+<article class="post-single project" data-category="{{ .Params.domain | default "saas" }}">
+
+  {{ partial "breadcrumbs.html" . }}
+  {{ partial "project-header.html" . }}
+
+  {{- /* Gallery renders from the page bundle, not from markdown, so every
+         project shows its screenshots the same way. Images are Hugo-processed:
+         resized, fingerprinted, and served with srcset. */ -}}
+  {{- $gallery := .Resources.Match "gallery/*" -}}
+  {{- with $gallery }}
+  <section class="project-gallery" aria-labelledby="project-gallery-h">
+    <h2 class="project-h2" id="project-gallery-h">{{ i18n "project_gallery" | default "Gallery" }}</h2>
+    <div class="project-gallery__grid">
+      {{- range . }}
+      {{- $img := . }}
+      {{- $small := $img.Resize "640x webp q82" }}
+      {{- $large := $img.Resize "1280x webp q82" }}
+      <figure class="project-shot">
+        <img src="{{ $small.RelPermalink }}"
+             srcset="{{ $small.RelPermalink }} 640w, {{ $large.RelPermalink }} 1280w"
+             sizes="(max-width: 760px) 100vw, 620px"
+             width="{{ $large.Width }}" height="{{ $large.Height }}"
+             loading="lazy" decoding="async"
+             alt="{{ $img.Title | default (printf "%s screenshot" $.Title) }}">
+        {{- with $img.Params.caption }}<figcaption>{{ . }}</figcaption>{{ end }}
+      </figure>
+      {{- end }}
+    </div>
+  </section>
+  {{- end }}
+
+  <div class="post-content project-body">
+    {{- partial "anchored_headings.html" .Content -}}
+  </div>
+
+  {{- with .Params.lessons }}
+  <section class="project-lessons" aria-labelledby="project-lessons-h">
+    <h2 class="project-h2" id="project-lessons-h">{{ i18n "project_lessons" | default "What it taught me" }}</h2>
+    <ul class="project-lessons__list">
+      {{- range . }}<li>{{ . | markdownify }}</li>{{ end }}
+    </ul>
+  </section>
+  {{- end }}
+
+  <footer class="post-footer">
+    {{- $tags := .Language.Params.Taxonomies.tag | default "tags" }}
+    <ul class="post-tags">
+      {{- range ($.GetTerms $tags) }}
+      <li><a href="{{ .Permalink }}">{{ .LinkTitle }}</a></li>
+      {{- end }}
+    </ul>
+    {{- partial "edit_post.html" . -}}
+    {{- if (and site.Params.ShowShareButtons (ne .Params.disableShare true)) }}
+    {{- partial "share_icons.html" . -}}
+    {{- end }}
+  </footer>
+
+</article>
+{{- end }}

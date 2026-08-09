@@ -1,0 +1,161 @@
+/* ============================================================================
+   IBRAVERSE — PROJECTS
+   The section brand layer. Structure mirrors adventures-brand.css: the accent
+   comes entirely from [data-category] in tokens.css, driven by each page's
+   `domain` front matter. No hardcoded colours — if you need a new hue, add it
+   to the register in tokens.css and check its contrast (brand-guidelines §3).
+   ========================================================================== */
+
+/* ---- index: the card grid ---- */
+.projects-intro{max-width:var(--container-text);margin:0 auto var(--space-8);}
+
+.project-grid{
+  max-width:var(--container-content);
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:var(--space-4);
+}
+.project-card{
+  position:relative;
+  display:flex;flex-direction:column;gap:var(--space-2);
+  padding:var(--space-5);
+  background:var(--bg-alt);
+  border:var(--hairline) solid var(--rule);
+  border-radius:var(--radius-md);
+  text-decoration:none;overflow:hidden;
+  transition:border-color var(--dur-2) var(--ease-standard),
+             transform var(--dur-2) var(--ease-standard),
+             box-shadow var(--dur-2) var(--ease-standard);
+}
+.project-card:hover{
+  border-color:var(--accent);
+  transform:translateY(-2px);
+  box-shadow:var(--shadow-card);
+}
+.project-card__rule{
+  position:absolute;inset-inline-start:0;inset-block-start:0;
+  width:var(--category-bar);height:100%;background:var(--accent);
+}
+.project-card__eyebrow{
+  font-family:var(--font-mono);font-size:var(--t-eyebrow);
+  letter-spacing:var(--track-eyebrow);text-transform:uppercase;
+  color:var(--ink-mute);
+}
+.project-card__eyebrow b{color:var(--accent);font-weight:400;}
+.project-card__title{
+  font-family:var(--font-serif);font-size:var(--t-heading);
+  line-height:1.15;color:var(--ink);
+}
+.project-card__pitch{
+  font-size:var(--t-caption);line-height:1.55;color:var(--ink-soft);
+  flex:1 1 auto;
+}
+.project-card__stack{
+  font-family:var(--font-mono);font-size:11px;
+  color:var(--ink-mute);letter-spacing:.04em;
+}
+.project-card__stack b{color:var(--accent);font-weight:400;}
+
+/* ---- single: header ---- */
+.project-head{
+  max-width:var(--container-text);
+  margin:0 auto var(--space-7);
+}
+.project-eyebrow{
+  display:flex;align-items:center;gap:var(--space-2);
+  margin:0 0 var(--space-3);
+}
+.project-eyebrow__mark{color:var(--accent);}
+.project-eyebrow__text{
+  font-family:var(--font-mono);font-size:var(--t-eyebrow);
+  letter-spacing:var(--track-eyebrow);text-transform:uppercase;
+  color:var(--ink-mute);
+}
+.project-eyebrow__dot{color:var(--accent);font-weight:400;}
+.project-title{
+  font-family:var(--font-serif);font-weight:400;
+  font-size:var(--fl-display-m);line-height:1.03;
+  margin:0 0 var(--space-3);color:var(--ink);
+}
+.project-pitch{
+  font-size:var(--t-body-l);line-height:1.55;
+  color:var(--ink-soft);margin:0 0 var(--space-5);
+}
+.project-meta{
+  display:flex;flex-wrap:wrap;align-items:center;
+  gap:var(--space-3) var(--space-5);
+  padding-top:var(--space-4);
+  border-top:var(--hairline) solid var(--rule);
+}
+.project-stack,
+.project-links{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:var(--space-2);}
+.project-stack li{
+  font-family:var(--font-mono);font-size:11px;
+  letter-spacing:.05em;
+  padding:3px 10px;
+  border:var(--hairline) solid var(--rule);
+  border-radius:var(--radius-pill);
+  color:var(--ink-mute);
+}
+.project-links{margin-inline-start:auto;gap:var(--space-4);}
+.project-links a{
+  font-family:var(--font-mono);font-size:var(--t-eyebrow);
+  letter-spacing:.07em;text-transform:uppercase;
+  color:var(--accent);text-decoration:none;
+  border-bottom:var(--hairline) solid transparent;
+  transition:border-color var(--dur-1) var(--ease-standard);
+}
+.project-links a:hover{border-bottom-color:var(--accent);}
+
+/* ---- single: shared section heading ---- */
+.project-h2{
+  font-family:var(--font-mono);font-weight:400;
+  font-size:var(--t-eyebrow);letter-spacing:var(--track-eyebrow);
+  text-transform:uppercase;color:var(--ink-mute);
+  margin:0 0 var(--space-4);padding-bottom:var(--space-2);
+  border-bottom:var(--hairline) solid var(--rule);
+}
+
+/* ---- single: gallery ---- */
+.project-gallery{max-width:var(--container-content);margin:0 auto var(--space-8);}
+.project-gallery__grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:var(--space-4);
+}
+.project-shot{margin:0;}
+.project-shot img{
+  width:100%;height:auto;display:block;
+  border:var(--hairline) solid var(--rule);
+  border-radius:var(--radius-sm);
+  box-shadow:var(--shadow-photo);
+  background:var(--bg-alt);
+}
+.project-shot figcaption{
+  margin-top:var(--space-2);
+  font-family:var(--font-mono);font-size:11px;
+  color:var(--ink-mute);line-height:1.45;
+}
+
+/* ---- single: body + lessons ---- */
+.project-body{max-width:var(--container-text);margin:0 auto;}
+.project-lessons{max-width:var(--container-text);margin:var(--space-9) auto 0;}
+.project-lessons__list{margin:0;padding:0;list-style:none;}
+.project-lessons__list li{
+  position:relative;
+  padding:var(--space-3) 0 var(--space-3) var(--space-5);
+  padding-inline-start:var(--space-5);padding-inline-end:0;
+  border-bottom:var(--hairline) solid var(--rule-soft);
+  color:var(--ink-soft);line-height:1.6;
+}
+.project-lessons__list li:last-child{border-bottom:0;}
+/* the accent tick — logical inset so it flips in RTL */
+.project-lessons__list li::before{
+  content:"";position:absolute;inset-inline-start:0;top:calc(var(--space-3) + 0.6em);
+  width:10px;height:var(--hairline-strong);background:var(--accent);
+}
+
+@media (max-width:600px){
+  .project-grid{grid-template-columns:1fr;}
+  .project-links{margin-inline-start:0;}
+}

@@ -1,0 +1,55 @@
+{{- define "main" }}
+{{- /*
+  Layout: projects/list
+  The project index. Cards, not post entries — a project is identified by its
+  domain, status and pitch, not by a date and a summary. Each card carries its
+  own accent via data-category, so the grid shows the whole register at once.
+*/ -}}
+
+<header class="page-header">
+  {{- partial "breadcrumbs.html" . }}
+  <h1>{{ .Title }}</h1>
+  {{- with .Description }}<div class="post-description">{{ . | markdownify }}</div>{{ end }}
+</header>
+
+{{- with .Content }}
+<div class="post-content projects-intro">{{ . }}</div>
+{{- end }}
+
+{{- $projects := sort .RegularPages "Params.projectNo" "asc" }}
+
+{{- if lt (len $projects) 1 }}
+<div class="empty-section">
+  <span class="empty-section__mark" aria-hidden="true"></span>
+  <p class="empty-section__lead">{{ i18n "projects_empty_lead" | default "No projects published yet." }}</p>
+  <p class="empty-section__sub">{{ i18n "projects_empty_sub" | default "Write-ups are on the way — check back soon." }}</p>
+</div>
+{{- else }}
+
+<div class="project-grid">
+  {{- range $projects }}
+  <a class="project-card" href="{{ .RelPermalink }}" data-category="{{ .Params.domain | default "saas" }}">
+    <span class="project-card__rule" aria-hidden="true"></span>
+    <span class="project-card__eyebrow">
+      {{- with .Params.projectNo }}№ {{ printf "%02d" . }} <b aria-hidden="true">·</b> {{ end -}}
+      {{ .Params.domain | default "saas" | upper }}
+      <b aria-hidden="true">·</b>
+      {{ i18n (printf "project_status_%s" (.Params.status | default "active")) | default (.Params.status | upper) }}
+    </span>
+    <span class="project-card__title">{{ .Title }}</span>
+    {{- with .Params.pitch }}<span class="project-card__pitch">{{ . }}</span>{{ end }}
+    {{- with .Params.stack }}
+    <span class="project-card__stack">
+      {{- range $i, $s := first 4 . }}{{ if $i }} <b aria-hidden="true">·</b> {{ end }}{{ $s }}{{ end -}}
+    </span>
+    {{- end }}
+  </a>
+  {{- end }}
+</div>
+
+{{- /* The continuous-learning companion block (#16) attaches here. */ -}}
+{{- partial "projects-learning.html" . }}
+
+{{- end }}
+
+{{- end }}

@@ -1,0 +1,53 @@
+{{- /*
+  project-header — the brand chrome at the top of a project page.
+
+  Everything here comes from front matter, so every project page is consistent
+  by construction and the author only writes prose. Same principle as
+  partials/adventures-header.html. See docs/projects-playbook.md.
+
+  Reads: projectNo, domain, status, pitch, stack, links{live,repo,…}
+  Eyebrow grammar (docs/brand-guidelines.md §2):
+      PROJECT № {nn} · {DOMAIN} · {STATUS}
+*/ -}}
+{{- $no := .Params.projectNo -}}
+{{- $domain := .Params.domain | default "saas" -}}
+{{- $status := .Params.status | default "active" -}}
+
+<header class="project-head">
+  <p class="project-eyebrow">
+    {{- partial "brand-mark.html" (dict "size" 16 "class" "brand-mark project-eyebrow__mark") -}}
+    <span class="project-eyebrow__text">
+      {{- with $no }}{{ i18n "project_no" | default "Project" }} № {{ printf "%02d" . }}
+      <b class="project-eyebrow__dot" aria-hidden="true">·</b> {{ end -}}
+      {{ $domain | upper }}
+      <b class="project-eyebrow__dot" aria-hidden="true">·</b>
+      {{ i18n (printf "project_status_%s" $status) | default ($status | upper) }}
+    </span>
+  </p>
+
+  <h1 class="project-title">{{ .Title }}</h1>
+  {{- with .Params.pitch }}<p class="project-pitch">{{ . }}</p>{{ end }}
+
+  {{- if or .Params.stack .Params.links }}
+  <div class="project-meta">
+    {{- with .Params.stack }}
+    <ul class="project-stack" aria-label="{{ i18n `project_stack` | default `Stack` }}">
+      {{- range . }}<li>{{ . }}</li>{{ end }}
+    </ul>
+    {{- end }}
+    {{- with .Params.links }}
+    <ul class="project-links">
+      {{- range $label, $url := . }}
+      {{- if $url }}
+      <li>
+        <a href="{{ $url }}" target="_blank" rel="noopener noreferrer">
+          {{- i18n (printf "project_link_%s" $label) | default ($label | title) }} <span aria-hidden="true">↗</span>
+        </a>
+      </li>
+      {{- end }}
+      {{- end }}
+    </ul>
+    {{- end }}
+  </div>
+  {{- end }}
+</header>
