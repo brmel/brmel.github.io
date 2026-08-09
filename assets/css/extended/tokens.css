@@ -11,7 +11,8 @@
    Theme:    :root = light · html[data-theme="dark"], .dark = dark
              (PaperMod toggles body.dark; the data-theme selector is retained
              for the standalone layout — see #9, which collapses the two)
-   Category: [data-category="restaurant|hike|spa|event|city"] swaps ONLY the accent.
+   Category: [data-category="..."] swaps ONLY the accent. Adventures use
+             restaurant|hike|spa|event|city; Projects use saas|mobile|data|infra.
    ========================================================================== */
 
 :root{
@@ -29,12 +30,20 @@
   /* ---- accent — master = restaurant rust ---- */
   --accent:#a8431a; --accent-soft:#c96b3e;
 
-  /* ---- category register (light) ---- */
+  /* ---- category register (light) ----
+     One accent per content type, all at the same saturation and value so the
+     site always reads as one brand. Adventures use the first five; Projects use
+     the last four. Rust stays the master/home accent. */
   --cat-restaurant:#a8431a; --cat-restaurant-soft:#c96b3e;
   --cat-hike:#3f6b3a;       --cat-hike-soft:#5d8a52;
   --cat-spa:#2f6b6b;        --cat-spa-soft:#4f9a9a;
   --cat-event:#6b3a5d;      --cat-event-soft:#9a5d86;
   --cat-city:#3a5a6b;       --cat-city-soft:#5d86a0;
+  /* project domains */
+  --cat-saas:#3a3f6b;       --cat-saas-soft:#5d64a0;
+  --cat-mobile:#8a5a12;     --cat-mobile-soft:#b8863a;
+  --cat-data:#5a6b2f;       --cat-data-soft:#869a52;
+  --cat-infra:#6b2f3a;      --cat-infra-soft:#a05d6a;
 
   /* ---- type scale (rem) ---- */
   --t-display-xl:5.5rem; --t-display-l:4rem; --t-display-m:3rem; --t-display-s:2.125rem;
@@ -83,8 +92,12 @@ html[data-theme="dark"],
   --cat-restaurant:#d97757; --cat-restaurant-soft:#e89878;
   --cat-hike:#5d8a52;       --cat-hike-soft:#7aa86f;
   --cat-spa:#4f9a9a;        --cat-spa-soft:#6fb6b6;
-  --cat-event:#9a5d86;      --cat-event-soft:#b87da6;
+  --cat-event:#a76e95;      --cat-event-soft:#bb8eac; /* lightened: #9a5d86 was 3.79:1 on --bg */
   --cat-city:#5d86a0;       --cat-city-soft:#7da6c0;
+  --cat-saas:#7d84c4;       --cat-saas-soft:#9aa0d6;
+  --cat-mobile:#d0a05a;     --cat-mobile-soft:#e0bb84;
+  --cat-data:#9ab562;       --cat-data-soft:#b4c98a;
+  --cat-infra:#c47d8a;      --cat-infra-soft:#d6a0aa;
   --shadow-card:0 1px 2px rgba(0,0,0,.3),0 2px 8px rgba(0,0,0,.4);
   --shadow-photo:0 2px 8px rgba(0,0,0,.4);
   --shadow-pop:0 4px 12px rgba(0,0,0,.5),0 12px 32px rgba(0,0,0,.5);
@@ -96,6 +109,10 @@ html[data-theme="dark"],
 [data-category="spa"]{--accent:var(--cat-spa);--accent-soft:var(--cat-spa-soft)}
 [data-category="event"]{--accent:var(--cat-event);--accent-soft:var(--cat-event-soft)}
 [data-category="city"]{--accent:var(--cat-city);--accent-soft:var(--cat-city-soft)}
+[data-category="saas"]{--accent:var(--cat-saas);--accent-soft:var(--cat-saas-soft)}
+[data-category="mobile"]{--accent:var(--cat-mobile);--accent-soft:var(--cat-mobile-soft)}
+[data-category="data"]{--accent:var(--cat-data);--accent-soft:var(--cat-data-soft)}
+[data-category="infra"]{--accent:var(--cat-infra);--accent-soft:var(--cat-infra-soft)}
 
 /* ---- reduced motion ---- */
 @media (prefers-reduced-motion:reduce){
