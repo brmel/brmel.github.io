@@ -416,3 +416,40 @@ a:focus-visible,button:focus-visible{
 }
 .article-origin a{color:var(--ink-mute);text-decoration:underline;text-underline-offset:3px;}
 .article-origin a:hover{color:var(--accent);}
+
+/* ---- workflow diagrams (inline SVG in articles) ----
+   Brand-system diagrams: paper ground, ink text, accent edges. No library, no
+   JS, and they follow the theme because every colour is a token. */
+.workflow{
+  display:block;width:100%;height:auto;
+  max-width:var(--container-content);
+  margin:var(--space-6) auto;
+  color:var(--accent);           /* arrowheads inherit this */
+  overflow:visible;
+}
+.workflow rect{
+  fill:var(--bg-alt);
+  stroke:var(--rule);
+  stroke-width:1;
+}
+.workflow .wf-store rect,.workflow rect.wf-store{fill:var(--bg-alt);stroke:var(--accent);}
+.workflow rect.wf-out{fill:var(--bg-alt);stroke:var(--accent);stroke-width:1.5;}
+.workflow .wf-t{
+  fill:var(--ink);font-family:var(--font-sans);font-size:13px;
+  text-anchor:middle;font-weight:500;
+}
+.workflow .wf-s{
+  fill:var(--ink-soft);font-family:var(--font-mono);font-size:10.5px;
+  text-anchor:middle;letter-spacing:.02em;
+}
+.workflow .wf-lane-label{
+  fill:var(--ink-mute);font-family:var(--font-mono);font-size:10px;
+  letter-spacing:.14em;
+}
+.workflow .wf-edge path{
+  fill:none;stroke:var(--accent);stroke-width:1.5;
+}
+@media (max-width:700px){
+  .workflow .wf-t{font-size:15px}
+  .workflow .wf-s{font-size:12px}
+}
