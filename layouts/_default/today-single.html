@@ -14,7 +14,7 @@
   <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}What to do right now, what's next, and the whole day.{{ end }}" />
   <link rel="canonical" href="{{ .Permalink }}" />
 
-  {{- partial "protocol-fonts.html" . }}
+  {{- partial "brand-fonts.html" . }}
 
   {{- $tokensCSS := resources.Get "css/extended/tokens.css" | minify | fingerprint }}
   {{- with $tokensCSS }}

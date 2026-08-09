@@ -1,5 +1,10 @@
-{{- if .Site.Params.newsletter.enabled }}
-<div class="newsletter-footer">
-    {{- partial "newsletter.html" . }}
+{{- /*
+  extend_footer — rendered by PaperMod after the <footer> block.
+
+  Carries the compass mark site-wide, so every page closes on the same
+  signature. Quiet by construction: small, muted, no wordmark — the footer text
+  above it already says the name.
+*/ -}}
+<div class="site-mark" aria-hidden="true">
+  {{ partial "brand-mark.html" (dict "size" 18 "class" "brand-mark brand-mark--quiet") }}
 </div>
-{{- end }}

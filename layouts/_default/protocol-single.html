@@ -16,7 +16,7 @@
   <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Summary }}{{ end }}" />
   <link rel="canonical" href="{{ .Permalink }}" />
 
-  {{- partial "protocol-fonts.html" . }}
+  {{- partial "brand-fonts.html" . }}
 
   {{- $tokensCSS := resources.Get "css/extended/tokens.css" | minify | fingerprint }}
   {{- with $tokensCSS }}

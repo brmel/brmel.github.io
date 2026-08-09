@@ -120,3 +120,28 @@ a:focus-visible,button:focus-visible{
   .nav .logo{position:static;margin:auto var(--gap)}
   .nav #menu{margin-inline:0}
 }
+
+/* ---- the compass mark (partials/brand-mark.html) ---- */
+/* One implementation, three placements: home hero, footer, and anywhere a
+   section needs the signature. Colour always inherits — never set a hex here. */
+.brand-mark{
+  display:block;
+  color:var(--accent);
+  flex:0 0 auto;
+}
+.brand-mark--quiet{color:var(--ink-mute);}
+
+/* home hero: mark sits above the name, centred with it */
+.profile__mark{
+  display:flex;justify-content:center;
+  margin:0 0 var(--space-4);
+}
+
+/* site-wide footer mark: small, centred, well clear of the copyright line */
+.site-mark{
+  display:flex;justify-content:center;
+  padding-bottom:var(--space-6);
+  opacity:.7;
+  transition:opacity var(--dur-2) var(--ease-standard);
+}
+.site-mark:hover{opacity:1;}

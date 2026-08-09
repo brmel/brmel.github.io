@@ -1,6 +1,9 @@
 <div class="profile">
     {{- with site.Params.profileMode }}
     <div class="profile_inner">
+        {{- /* The compass mark opens the page — same signature as every other
+               Ibraverse surface. See layouts/partials/brand-mark.html. */ -}}
+        <span class="profile__mark">{{ partial "brand-mark.html" (dict "size" 40 "title" site.Title) }}</span>
         <h1>{{ .title | default site.Title | markdownify }}</h1>
         {{- if .imageUrl -}}
         {{- $img := "" }}
