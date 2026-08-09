@@ -129,7 +129,7 @@
   transition:background-size var(--dur-1) var(--ease-standard),color var(--dur-1);
 }
 .adventures .post-content a:hover{background-size:100% 1.5px;color:var(--accent-soft)}
-[data-theme="dark"] .adventures .post-content a{background-size:100% 1.5px;text-underline-offset:2px}
+.dark .adventures .post-content a{background-size:100% 1.5px;text-underline-offset:2px}
 
 .adventures .post-content blockquote{
   border-left:var(--hairline-strong) solid var(--accent);

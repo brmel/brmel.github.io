@@ -149,3 +149,21 @@ a:focus-visible,button:focus-visible{
 /* nav logo mark: sits left of the wordmark, optically aligned with it */
 .logo a{display:inline-flex;align-items:center;gap:var(--space-2);}
 .brand-mark--logo{color:var(--accent);}
+
+/* ---- embedded report iframe ----
+   assets/reports/*.html are generated artefacts with their own (light) palette
+   and cannot follow the site theme. Rather than let a white slab sit on the
+   dark page, frame it: a paper card with a hairline and radius, so in dark mode
+   it reads as an embedded document rather than a broken background. */
+.report-frame{
+  border-radius:var(--radius-md);
+  box-shadow:var(--shadow-card);
+}
+.dark .report-frame{
+  border:var(--hairline) solid var(--rule);
+  background:#fff;
+}
+
+/* theme toggle: brand-coloured, matched to the nav mark */
+#theme-toggle{color:var(--ink-soft);}
+#theme-toggle:hover{color:var(--accent);}

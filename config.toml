@@ -153,8 +153,10 @@ enableEmoji = true
   author = "Ibraverse"
   images = ["images/MyPhoto.jpg"]
   DateFormat = "January 2, 2006"
+  # Light is the brand's home theme; dark is a full, contrast-audited
+  # palette in tokens.css and is reachable from the toggle in the nav.
   defaultTheme = "light"
-  disableThemeToggle = true
+  disableThemeToggle = false
   ShowReadingTime = false
   ShowShareButtons = true
   ShowPostNavLinks = false

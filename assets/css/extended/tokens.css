@@ -8,9 +8,8 @@
    Fonts are loaded once in the document <head> (extend_head.html for PaperMod
    pages, brand-fonts.html for standalone ones), not @imported here.
 
-   Theme:    :root = light · html[data-theme="dark"], .dark = dark
-             (PaperMod toggles body.dark; the data-theme selector is retained
-             for the standalone layout — see #9, which collapses the two)
+   Theme:    :root = light · body.dark = dark. One selector, site-wide,
+             including the standalone layout. Light is the home theme.
    Category: [data-category="..."] swaps ONLY the accent. Adventures use
              restaurant|hike|spa|event|city; Projects use saas|mobile|data|infra.
    ========================================================================== */
@@ -82,8 +81,10 @@
   --ease-spring:cubic-bezier(.34,1.36,.64,1);
 }
 
-/* ---- dark theme — standalone(html[data-theme]) + PaperMod(body.dark) ---- */
-html[data-theme="dark"],
+/* ---- dark theme ----
+   ONE selector: body.dark, PaperMod's convention. The standalone layout applies
+   the same class from the same localStorage key, so there is no second
+   mechanism to keep in sync (this used to be html[data-theme] as well). */
 .dark{
   --bg:#14130f; --bg-alt:#1c1b16; --ink:#ece8dc; --ink-soft:#b8b3a2;
   --ink-mute:#807c70; --rule:#2c2a23; --rule-soft:#1f1e18;

@@ -23,7 +23,7 @@
     Do NOT paste a whole <html>…</html> document; just the body content.
 */ -}}
 {{- $desc := cond (ne (string .Description) "") .Description .Summary -}}
-<html lang="{{ .Site.LanguageCode | default "en" }}" data-theme="light">
+<html lang="{{ .Site.LanguageCode | default "en" }}">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -54,6 +54,12 @@
   {{- partial "google_analytics.html" . }}
 </head>
 <body>
+  {{- /* Theme bootstrap. This layout owns its own shell, so it has to apply the
+         stored preference itself. Same storage key and same body.dark class as
+         PaperMod, so a toggle on any page carries over to this one. Inline and
+         before paint, so there is no flash. */ -}}
+  <script>if(localStorage.getItem("pref-theme")==="dark"){document.body.classList.add("dark")}</script>
+
 
   <header class="sa-topbar">
     <div class="sa-wrap sa-topbar__inner">
