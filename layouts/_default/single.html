@@ -39,6 +39,9 @@
     {{- partial "toc.html" . }}
     {{- end }}
 
+    {{- /* Series nav + original-publication credit, from front matter (#imports). */ -}}
+    {{- partial "article-origin.html" . }}
+
     {{- if .Content }}
     <div class="post-content">
         {{- if not (.Param "disableAnchoredHeadings") }}
