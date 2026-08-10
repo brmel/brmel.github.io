@@ -7,6 +7,11 @@
   themselves — title and description come from each section's _index.md — so
   adding a section adds a card with no template edit.
 
+  Counts come from func/section-pages.html, which merges this language's pages
+  with untranslated default-language ones. Counting .RegularPages instead hid
+  Projects and Thoughts from the French and Arabic home pages while the nav on
+  those same pages still linked to them.
+
   A section with nothing published is skipped, matching the rule in
   partials/header.html: the home page never routes anywhere the nav won't.
 */ -}}
@@ -17,13 +22,14 @@
 <nav class="home-sections" aria-label="{{ i18n "sections" | default "Sections" }}">
   {{- range site.Params.mainSections }}
   {{- with site.GetPage (printf "/%s" .) }}
-  {{- if ge (len .RegularPages) 1 }}
+  {{- $pages := partial "func/section-pages.html" . }}
+  {{- if ge (len $pages) 1 }}
   <a class="u-card home-card" href="{{ .RelPermalink }}"
      data-category="{{ index $accents .Section | default "restaurant" }}">
     <span class="u-bar" aria-hidden="true"></span>
     <span class="home-card__title">{{ .Title }}</span>
     {{- with .Description }}<span class="home-card__desc">{{ . }}</span>{{ end }}
-    {{- $n := len .RegularPages }}
+    {{- $n := len $pages }}
     <span class="u-eyebrow home-card__count">
       {{- $n }} {{ cond (eq $n 1) (i18n "entry_one") (i18n "entry_other") -}}
     </span>

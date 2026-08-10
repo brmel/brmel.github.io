@@ -2,14 +2,20 @@
   home-latest — the most recent writing across every section in mainSections.
 
   This is what params.mainSections was configured for. Ranges over the same
-  sections the cards do, so a new section appears here automatically.
+  sections the cards do, through the same merge, so French and Arabic readers
+  see the English writing that has no translation instead of a list of one.
   Renders nothing at all when there is nothing to show, rather than an empty
   heading — same principle as the empty-section rules elsewhere.
 */ -}}
 {{- $limit := 5 -}}
-{{- $pages := where site.RegularPages "Type" "in" site.Params.mainSections -}}
+{{- $pages := slice -}}
+{{- range site.Params.mainSections -}}
+  {{- with site.GetPage (printf "/%s" .) -}}
+    {{- $pages = $pages | append (partial "func/section-pages.html" .) -}}
+  {{- end -}}
+{{- end -}}
 {{- $pages = where $pages "Params.hiddenInHomeList" "!=" true -}}
-{{- $pages = first $limit $pages -}}
+{{- $pages = first $limit (sort $pages "Date" "desc") -}}
 
 {{- with $pages }}
 <section class="home-latest" aria-labelledby="home-latest-heading">
