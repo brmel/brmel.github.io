@@ -1,0 +1,40 @@
+{{- /*
+  llms.txt — the site as a map, for retrieval agents.
+  https://llmstxt.org/ : an H1, a blockquote summary, then linked sections.
+
+  Built from the same section merge the nav and the home page use, so it lists
+  exactly what a reader can reach and cannot drift out of date.
+*/ -}}
+# {{ site.Title }}
+
+> {{ site.Params.description }}
+
+{{ with site.GetPage "/" }}{{ .Plain | plainify | htmlUnescape | chomp }}{{ end }}
+
+{{ range site.Params.mainSections }}
+{{- $sec := site.GetPage (printf "/%s" .) }}
+{{- with $sec }}
+{{- $pages := partial "func/section-pages.html" . }}
+{{- with $pages }}
+## {{ $sec.Title }}{{ with $sec.Description }} — {{ . | plainify | htmlUnescape }}{{ end }}
+
+{{ range (sort . "Date" "desc") -}}
+- [{{ .Title | htmlUnescape }}]({{ .Permalink }}){{ with (or .Description .Params.pitch .Params.summary) }}: {{ . | plainify | htmlUnescape | chomp }}{{ end }}
+{{ end }}
+{{- end }}
+{{- end }}
+{{- end }}
+## Reference
+
+{{ with site.GetPage "/resume" -}}
+- [{{ .Title }}]({{ .Permalink }}): {{ .Params.summary | default "Career history, skills and education." | plainify | htmlUnescape }}
+{{ end -}}
+- [Tags]({{ printf "%stags/" site.BaseURL }}): every subject on the site, {{ len site.Taxonomies.tags }} terms.
+- [Full text]({{ printf "%sllms-full.txt" site.BaseURL }}): every page above as plain text, in one file.
+- [Sitemap]({{ printf "%ssitemap.xml" site.BaseURL }})
+
+## Languages
+
+{{ range site.Home.AllTranslations -}}
+- {{ .Language.LanguageName }} ({{ .Language.Lang }}): {{ .Permalink }}
+{{ end }}

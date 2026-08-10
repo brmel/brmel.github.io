@@ -269,8 +269,20 @@ enableEmoji = true
     [markup.goldmark.renderer]
       unsafe = true
 
+# Two plain-text views of the site for retrieval agents: llms.txt is the map,
+# llms-full.txt is the whole corpus. Both are generated from the content, so
+# neither can drift the way a hand-written index would.
+[outputFormats.LLMS]
+  mediaType = "text/plain"
+  baseName = "llms"
+  isPlainText = true
+[outputFormats.LLMSFULL]
+  mediaType = "text/plain"
+  baseName = "llms-full"
+  isPlainText = true
+
 [outputs]
-  home = ["HTML", "RSS"]
+  home = ["HTML", "RSS", "LLMS", "LLMSFULL"]
   page = ["HTML"]
   section = ["HTML", "RSS"]
 
