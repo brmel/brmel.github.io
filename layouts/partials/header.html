@@ -2,8 +2,11 @@
 {{- /*
   header — local fork of themes/PaperMod/layouts/partials/header.html.
 
-  Two deliberate divergences from upstream; everything else is verbatim, so a
+  Three deliberate divergences from upstream; everything else is verbatim, so a
   theme update can be re-forked by diffing against the vendored original:
+
+  0. SKIP LINK: the first focusable element on the page, so keyboard and screen
+     reader users are not walked through the whole nav on every page.
 
   1. LOGO: the raster favicon <img> is replaced by the inline compass mark
      (partials/brand-mark.html). One shape, scalable, accent-coloured, and the
@@ -56,6 +59,7 @@
 </script>
 {{- end }}
 
+<a class="skip-link" href="#main">{{ i18n "skip_to_content" }}</a>
 <header class="header">
     <nav class="nav">
         <div class="logo">

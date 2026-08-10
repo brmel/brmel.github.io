@@ -81,6 +81,8 @@
   <script>if(localStorage.getItem("pref-theme")==="dark"){document.body.classList.add("dark")}</script>
 
 
+  <a class="skip-link" href="#main">{{ i18n "skip_to_content" }}</a>
+
   <header class="sa-topbar">
     <div class="sa-wrap sa-topbar__inner">
       <a class="sa-brand" href="{{ "/" | relURL }}">
@@ -94,7 +96,7 @@
     </div>
   </header>
 
-  <main class="sa-main">
+  <main class="sa-main" id="main">
     <article class="sa-article">
       {{- if .Params.hideAutoHeader }}
       {{- /* The embedded artefact carries its own hero, so showing this one too

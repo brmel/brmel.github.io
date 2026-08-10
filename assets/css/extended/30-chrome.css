@@ -211,3 +211,32 @@
   border-bottom:var(--hairline) solid var(--rule);padding-block:var(--space-1);
 }
 .page-404__routes a:hover{border-color:var(--accent);color:var(--accent);}
+
+/* ---- skip link: first in the tab order, visible only when focused ---- */
+.skip-link{
+  position:absolute;inset-inline-start:var(--space-4);inset-block-start:-100%;
+  z-index:100;padding:var(--space-2) var(--space-4);
+  background:var(--bg-alt);color:var(--accent);
+  border:var(--hairline) solid var(--accent);border-radius:var(--radius-sm);
+  font-family:var(--font-label);font-size:var(--t-eyebrow);
+  letter-spacing:var(--track-eyebrow);text-transform:uppercase;
+}
+.skip-link:focus{inset-block-start:var(--space-2);}
+
+/* ---- WCAG 2.5.8: a control is at least 24x24, whatever its type size.
+   Padding, not font-size, so nothing about the design changes. Links inside a
+   sentence are exempt and are left alone. ---- */
+.content-actions a,
+.learning__link,
+.section-nav__back,
+.page-404__routes a,
+.resume__contact a,
+.sa-nav__link{min-height:24px;display:inline-flex;align-items:center;}
+#menu li a{min-width:24px;text-align:center;}
+.rss-link{min-width:24px;min-height:24px;display:inline-flex;align-items:center;justify-content:center;}
+.lang-switch a{min-width:24px;min-height:24px;display:inline-flex;align-items:center;justify-content:center;}
+.content-footer .share-buttons li a,
+.social-icons a{
+  min-width:24px;min-height:24px;
+  display:inline-flex;align-items:center;justify-content:center;
+}
