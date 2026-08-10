@@ -1,7 +1,7 @@
 ---
 title: "Five percent"
 date: 2026-08-09
-tags: ["Estimates", "Data", "Engineering"]
+tags: ["Data Analysis", "Engineering"]
 summary: "I logged every Hydro-Québec outage for two months to see how often the announced restoration time was right. It was right five percent of the time — and I recognised the failure immediately."
 ---
 

@@ -3,7 +3,7 @@ title: "How I Fixed an IA Algorithm in Scikit-Learn"
 date: 2024-04-29
 summary: "K-means in scikit-learn could hang forever. Three conditions had to line up — duplicate points, k equal to the number of points, and a very particular initialisation — and the empty-cluster fix created the empty cluster it was fixing."
 description: "Finding and reporting an infinite loop in scikit-learn's K-means empty-cluster handling, and how the fix was reached."
-tags: ["Python", "scikit-learn", "Machine Learning", "K-means", "Open Source"]
+tags: ["Python", "Machine Learning"]
 cover:
     image: "01-kmeans-bug-repro.jpg"
     alt: "Scatter plot of the failing case, with input data points and cluster centres marked"

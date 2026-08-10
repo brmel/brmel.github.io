@@ -1,7 +1,7 @@
 ---
 title: "How an image-processing feature saved my flight"
 date: 2025-12-03
-tags: ["Image Processing", "Barcode", "Dark Mode", "Travel"]
+tags: ["Image Processing"]
 summary: "A real-world example of why foreground color support in barcode reading matters."
 cover:
     image: "barcode_1.jpeg"

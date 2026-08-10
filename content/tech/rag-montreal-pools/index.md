@@ -3,7 +3,7 @@ title: "Generative AI, LlamaIndex, RAG and ChainLit: Finding the Next Available 
 date: 2024-09-03
 summary: "Montréal publishes every indoor pool schedule and no way to search them by time. A RAG chatbot over the scraped schedules, built in one afternoon — and why the result still made me uncomfortable."
 description: "Building a retrieval-augmented chatbot over Montréal's indoor pool schedules with LlamaIndex, embeddings and ChainLit."
-tags: ["Python", "LLM", "RAG", "LlamaIndex", "ChainLit", "Generative AI"]
+tags: ["Python", "LLM", "AI"]
 cover:
     image: "05-chatbot-demo.jpg"
     alt: "The finished chatbot answering a question about pool availability, citing the pool's page as its source"

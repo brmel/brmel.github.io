@@ -3,7 +3,7 @@ title: "Edge Measurement in Industrial Vision: Counting Saw Blade Teeth"
 date: 2025-01-08
 draft: false
 author: "Ibraverse"
-tags: ["Edge Detection", "Measurement", "Industrial Vision", "Image Processing"]
+tags: ["Industrial Vision", "Image Processing"]
 aliases: ["/posts/image-histograms/"]
 description: "Learn edge measurement techniques through a practical saw blade teeth counting application"
 cover:

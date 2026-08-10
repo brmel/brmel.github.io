@@ -23,7 +23,7 @@ lessons:
   - "**Layer discipline is measurable, and mine was lopsided.** 19 files of domain against 159 of presentation. The business rules were genuinely small and genuinely isolated — but I wrote eight test files, all for identification, and none for matching, trips or contracts. I tested the layer that was easy to test rather than the one that carried the risk."
   - "**Trust was the product, and I built the marketplace instead.** Listings, chat, contracts, matching — all shipped. Identity verification, escrow, dispute handling, what happens when a package does not arrive: none of it. For a stranger to hand another stranger a laptop at an airport, the trust layer *is* the app, and I treated it as a later phase."
   - "**Twenty months, three languages, store screenshots — and it never launched.** The gap between the last feature commit and the last commit of any kind is a translation pass. What was missing was never another feature."
-tags: ["Flutter", "Dart", "Firebase", "Mobile", "Clean Architecture"]
+tags: ["Flutter", "Firebase", "Mobile", "Clean Architecture"]
 ---
 
 ## The story

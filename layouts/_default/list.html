@@ -107,10 +107,13 @@
       {{- end }}
     </h2>
   </header>
-  {{- if (ne (.Param "hideSummary") true) }}
-  <div class="entry-content">
-    <p>{{ .Summary | plainify | htmlUnescape }}{{ if .Truncated }}...{{ end }}</p>
-  </div>
+  {{- /* An entry's blurb, in order of intent: the page's own description, a
+         project's pitch, then Hugo's auto-summary. The auto-summary starts at
+         the first paragraph and swallows any heading before it, so project
+         entries read "The story The moment matters…" on every tag page. */ -}}
+  {{- $blurb := or .Description .Params.pitch (printf "%s%s" (.Summary | plainify | htmlUnescape) (cond .Truncated "…" "")) }}
+  {{- if and $blurb (ne (.Param "hideSummary") true) }}
+  <div class="entry-content"><p>{{ $blurb }}</p></div>
   {{- end }}
   {{- if ne .Lang site.Language.Lang }}
   <p class="entry-lang">{{ i18n "lang_en_only" | default "in English" }}</p>

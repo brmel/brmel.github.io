@@ -22,7 +22,7 @@ lessons:
   - "**Every write goes through Cloud Functions, and that constraint aged well.** No client writes straight to Firestore. It felt heavy while building the first screen and stopped being negotiable the moment real-time voting arrived — the vote rules live in one place, not in every client version anyone has installed."
   - "**Both hosting sites are 404 today, and I only found out writing this page.** Nothing monitors them, because the app never launched and I stopped deploying. A control plane with an audit trail and no uptime check is only half the problem solved."
   - "**Onboarding got built twice.** The first version explained the app; the second shows you the button. Four coach-mark steps replaced a tour nobody finished."
-tags: ["Flutter", "Firebase", "Mobile", "Real-time"]
+tags: ["Flutter", "Firebase", "Mobile"]
 ---
 
 ## The story
