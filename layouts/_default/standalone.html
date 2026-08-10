@@ -51,14 +51,17 @@
 
   {{- /* This layout owns its own <head>, so it assembles the slice of the design
          system it needs rather than inheriting PaperMod's bundle: the tokens,
-         the shared component primitives, then its own rules.
+         the shared component primitives, the chrome rules that style the common
+         content footer, then its own rules. Without 30-chrome the footer still
+         rendered but unstyled, so "Back to Tech" and "Improve this page" read in
+         sentence case where every other screen shows uppercase mono.
 
          Built with resources.Match, not three hardcoded resources.Get calls —
          renaming 00-tokens.css previously returned nil here and failed the
          build with an unhelpful "expected ResourceTransformer" error. A glob
          degrades to "one fewer file" instead of a hard failure. */ -}}
   {{- $css := slice }}
-  {{- range (slice "css/extended/00-tokens.css" "css/extended/20-components.css" "css/standalone.css") }}
+  {{- range (slice "css/extended/00-tokens.css" "css/extended/20-components.css" "css/extended/30-chrome.css" "css/standalone.css") }}
   {{- with resources.Get . }}{{ $css = $css | append . }}{{ end }}
   {{- end }}
   {{- with $css }}
@@ -70,7 +73,7 @@
 
   {{- partial "google_analytics.html" . }}
 </head>
-<body>
+<body id="top">
   {{- /* Theme bootstrap. This layout owns its own shell, so it has to apply the
          stored preference itself. Same storage key and same body.dark class as
          PaperMod, so a toggle on any page carries over to this one. Inline and
@@ -80,7 +83,10 @@
 
   <header class="sa-topbar">
     <div class="sa-wrap sa-topbar__inner">
-      <a class="sa-brand" href="{{ "/" | relURL }}">{{ .Site.Title }}</a>
+      <a class="sa-brand" href="{{ "/" | relURL }}">
+        {{- partial "brand-mark.html" (dict "size" 20 "class" "sa-brand__mark") -}}
+        <span>{{ .Site.Title }}</span>
+      </a>
       <nav class="sa-nav" aria-label="Site navigation">
         <a class="sa-nav__link" href="{{ "/tech/" | relURL }}">← Tech</a>
         <a class="sa-nav__link" href="{{ "/" | relURL }}">Home</a>
@@ -90,7 +96,12 @@
 
   <main class="sa-main">
     <article class="sa-article">
-      {{- if not .Params.hideAutoHeader }}
+      {{- if .Params.hideAutoHeader }}
+      {{- /* The embedded artefact carries its own hero, so showing this one too
+             stacks the same title twice. It still has to exist: without it the
+             document had no h1 at all and no headings in its outline. */ -}}
+      <h1 class="sa-sr-only">{{ .Title }}</h1>
+      {{- else }}
       <header class="sa-head sa-wrap">
         <p class="sa-eyebrow">Tech{{ with .Date }} · {{ .Format "Jan 2006" }}{{ end }}</p>
         <h1 class="sa-title">{{ .Title }}</h1>
@@ -111,7 +122,7 @@
 
   <footer class="sa-footer">
     <div class="sa-wrap sa-footer__inner">
-      <a href="{{ "/tech/" | relURL }}">← Back to Tech</a>
+      <a href="#top">↑ {{ i18n "back_to_top" | default "Top" }}</a>
       <span>© {{ now.Format "2006" }} {{ .Site.Title }}</span>
     </div>
   </footer>
