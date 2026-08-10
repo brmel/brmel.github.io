@@ -12,6 +12,15 @@ content page actually renders it, so a new layout cannot quietly opt out.
 
 A page may opt out deliberately with `hideContentFooter: true` in front matter;
 list that page in OPT_OUT below so the exemption is visible rather than silent.
+
+Three more rules apply to EVERY page, not just content pages, each of them a
+defect the August 2026 screen audit found shipped:
+
+  one h1        the report had none across 13,000px of scroll; one article had
+                two because it repeated its title as a body heading
+  skip link     no page had one, so keyboard users walked the nav every time
+  image sizing  the resume's nine video thumbnails carried no width/height and
+                the page reflowed as they loaded
 """
 import os, re, sys, glob
 
@@ -28,7 +37,21 @@ REQUIRED = {
     "contribute": re.compile(r"content-actions"),
 }
 
-fails, checked = [], 0
+# The lightbox placeholder has no dimensions until JS opens an image into it.
+DIM_EXEMPT = re.compile(r'id="?lightbox-img"?')
+
+IMG = re.compile(r"<img\b[^>]*>", re.I)
+
+def img_without_dimensions(html):
+    out = []
+    for tag in IMG.findall(html):
+        if DIM_EXEMPT.search(tag):
+            continue
+        if not re.search(r"\bwidth=", tag) or not re.search(r"\bheight=", tag):
+            out.append(re.sub(r"\s+", " ", tag)[:90])
+    return out
+
+fails, checked, pages = [], 0, 0
 for f in sorted(glob.glob(os.path.join(PUB, "**", "*.html"), recursive=True)):
     rel = os.path.relpath(f, PUB)
     url = "/" + rel.replace("index.html", "")
@@ -37,6 +60,17 @@ for f in sorted(glob.glob(os.path.join(PUB, "**", "*.html"), recursive=True)):
     body = open(f, encoding="utf-8", errors="ignore").read()
     if "http-equiv=refresh" in body:
         continue                                    # alias redirect
+
+    # ---- rules that apply to every page ----
+    pages += 1
+    n_h1 = len(re.findall(r"<h1[ >]", body))
+    if n_h1 != 1:
+        fails.append(f"{url}: {n_h1} h1 (want exactly 1)")
+    if "skip-link" not in body:
+        fails.append(f"{url}: no skip link")
+    for tag in img_without_dimensions(body):
+        fails.append(f"{url}: img without width/height — {tag}")
+
     # a single page inside a content section, not the section index itself
     stripped = url.lstrip("/")
     if not stripped.startswith(CONTENT):
@@ -52,10 +86,11 @@ for f in sorted(glob.glob(os.path.join(PUB, "**", "*.html"), recursive=True)):
         if not pat.search(body):
             fails.append(f"{url}: no {name}")
 
-print(f"checked {checked} content pages")
+print(f"checked {pages} pages, {checked} of them content pages")
 if fails:
-    print(f"\n❌ {len(fails)} page(s) missing shared chrome:")
+    print(f"\n❌ {len(fails)} problem(s):")
     for x in fails:
         print("  " + x)
     sys.exit(1)
-print("✅ every content page carries the same footer: a way back and a way to contribute")
+print("✅ one h1, a skip link and sized images on every page; "
+      "every content page carries the same footer")

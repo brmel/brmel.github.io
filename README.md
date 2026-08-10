@@ -45,11 +45,11 @@ shipped.
 | Check | Asserts |
 |---|---|
 | build | Hugo builds clean with `--cleanDestinationDir` |
-| `check-orphans.sh` | no asset is referenced by nothing |
+| `check-orphans.sh` | no asset is referenced by nothing; no image under `static/` |
 | `check-og.py` | every page has a resolvable, absolute `og:image` with alt text |
 | `check-contrast.py` | every text token clears WCAG AA on every surface, both themes |
 | `check-css.py` | explicit cascade order, colours only in tokens, no duplicated primitives, no dead classes |
-| `check-chrome.py` | every content page has a way back and a way to contribute |
+| `check-chrome.py` | one `h1`, a skip link and sized images on every page; every content page has a way back and a way to contribute |
 
 ## Conventions
 

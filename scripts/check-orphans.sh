@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 #
-# check-orphans.sh — find asset files that nothing references.
+# check-orphans.sh — find asset files that nothing references, and images that
+# bypass the image pipeline.
 #
 # Scans assets/ and static/images/ and reports any file whose name does not
 # appear in content/, layouts/, config.toml, or another asset. Catches the
@@ -34,6 +35,20 @@ is_whitelisted() {
     *) return 1 ;;
   esac
 }
+
+# static/ is served verbatim: no WebP, no srcset, no fingerprint. Images belong
+# in assets/ or a page bundle. static/images/timeline held nine YouTube posters
+# that shipped unprocessed and without dimensions until Aug 2026.
+# Exempt: favicons and the generated social cards, which are referenced by
+# absolute URL in <meta> and must keep a stable, unfingerprinted path.
+stray=$(find static -type f \( -name '*.jpg' -o -name '*.jpeg' -o -name '*.png' -o -name '*.webp' -o -name '*.gif' \) \
+        ! -name 'favicon*' ! -name 'apple-touch-icon.png' ! -path 'static/og/*' 2>/dev/null | sort)
+if [ -n "$stray" ]; then
+  echo "❌ image(s) under static/, which bypasses the image pipeline:"
+  echo "$stray" | sed 's/^/   /'
+  echo "   move them to assets/ or the page bundle that uses them"
+  exit 1
+fi
 
 count=0
 orphan_list=""
