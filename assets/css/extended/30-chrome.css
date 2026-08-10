@@ -228,6 +228,9 @@
    sentence are exempt and are left alone. ---- */
 .content-actions a,
 .learning__link,
+.series__item a,
+.project-links a,
+.toc a,
 .section-nav__back,
 .page-404__routes a,
 .resume__contact a,

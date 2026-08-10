@@ -1,5 +1,12 @@
 # Screen audit — August 2026
 
+> **Resolved 2026-08-09.** Every defect below is fixed and the fixes are gated.
+> Final sweep: 23 screens × 2 viewports × 3 languages, zero violations of the
+> checklist. Four rules — one `h1`, a skip link, sized images, no image under
+> `static/` — are now enforced by `scripts/`, each verified by seeding the
+> defect and watching the gate fail. This file is kept as the record of what
+> was wrong and why; see the commit log from `Fix D1` onward for each change.
+
 Every route in the built site, checked screen by screen against one checklist.
 97 real pages (aliases and paginator stubs excluded), 12 screen archetypes,
 3 languages, 2 themes, 2 viewports.

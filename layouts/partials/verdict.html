@@ -4,8 +4,9 @@
   (see single.html). Styling + the display:contents grid trick live in
   css/extended/adventures-brand.css — no inline styles here.
 */ -}}
-<aside class="verdict">
-  <h4>Verdict</h4>
+<aside class="verdict" aria-labelledby="verdict-h">
+  {{- /* h2: it is a top-level section of the note, and h4 skipped a level */ -}}
+  <h2 id="verdict-h">Verdict</h2>
   <dl>
     {{- with .Params.goBack }}<dt>Would I go back?</dt><dd>{{ . }}</dd>{{ end }}
     {{- with .Params.bestFor }}<dt>Best for</dt><dd>{{ . }}</dd>{{ end }}

@@ -144,7 +144,7 @@
   margin:var(--space-8) 0;overflow:hidden;
 }
 .verdict::before{content:"";position:absolute;left:0;top:0;bottom:0;width:var(--category-bar);background:var(--accent)}
-.verdict h4{
+.verdict h2{
   font-family:var(--font-label);font-size:var(--t-eyebrow);letter-spacing:.16em;
   text-transform:uppercase;color:var(--accent);margin:var(--space-4) 0 0;
 }
