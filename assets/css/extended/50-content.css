@@ -85,3 +85,7 @@
   border-radius:var(--radius-sm);
   background:var(--bg-alt);
 }
+
+/* inline code: the theme ships margin:auto 4px, which detaches the punctuation
+   that follows a span — `Trip` , reads as a typographic error */
+.post-content :not(pre) > code{margin:0;padding:.1em .22em;font-size:.85em;}

@@ -171,5 +171,6 @@ hugo server                 # then read the page at 1440px and 390px
 | 03 | Rekba | infra | active |
 | 04 | Farkad | mobile | active |
 | 05 | HydroData | data | shipped |
+| 06 | Leorra | mobile | archived |
 
 Keep this table current — it is the fastest way to check the next free number.
