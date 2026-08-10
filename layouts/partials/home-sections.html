@@ -7,10 +7,14 @@
   themselves — title and description come from each section's _index.md — so
   adding a section adds a card with no template edit.
 
-  Counts come from func/section-pages.html, which merges this language's pages
-  with untranslated default-language ones. Counting .RegularPages instead hid
-  Projects and Thoughts from the French and Arabic home pages while the nav on
-  those same pages still linked to them.
+  Whether a section has anything to show comes from func/section-pages.html,
+  which merges this language's pages with untranslated default-language ones.
+  Counting .RegularPages instead hid Projects and Thoughts from the French and
+  Arabic home pages while the nav on those same pages still linked to them.
+
+  The cards carry no count. Sections counted entries and the resume said "the
+  short version" — two grammars in one row — and the count published "1 ENTRY"
+  on the thinnest section, which is the last thing it should advertise.
 
   A section with nothing published is skipped, matching the rule in
   partials/header.html: the home page never routes anywhere the nav won't.
@@ -29,10 +33,6 @@
     <span class="u-bar" aria-hidden="true"></span>
     <span class="home-card__title">{{ .Title }}</span>
     {{- with .Description }}<span class="home-card__desc">{{ . }}</span>{{ end }}
-    {{- $n := len $pages }}
-    <span class="u-eyebrow home-card__count">
-      {{- $n }} {{ cond (eq $n 1) (i18n "entry_one") (i18n "entry_other") -}}
-    </span>
   </a>
   {{- end }}
   {{- end }}
@@ -44,7 +44,6 @@
     <span class="u-bar" aria-hidden="true"></span>
     <span class="home-card__title">{{ .Title }}</span>
     {{- with .Params.summary }}<span class="home-card__desc">{{ . }}</span>{{ end }}
-    <span class="u-eyebrow home-card__count">{{ i18n "home_resume_hint" | default "the short version" }}</span>
   </a>
   {{- end }}
 </nav>

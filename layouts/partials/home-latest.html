@@ -31,7 +31,7 @@
           {{- with .Section }} <span aria-hidden="true">·</span> {{ . }}{{ end }}
         </span>
         <span class="home-latest__title">{{ .Title }}</span>
-        {{- with .Params.summary }}<span class="home-latest__sum">{{ . }}</span>{{ end }}
+        {{- with (or .Description .Params.pitch .Params.summary) }}<span class="home-latest__sum">{{ . }}</span>{{ end }}
       </a>
     </li>
     {{- end }}
