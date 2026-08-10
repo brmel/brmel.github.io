@@ -17,7 +17,7 @@
 
 /* ---------- the eyebrow (FIELD NOTE № nnn · CATEGORY · PLACE) ---------- */
 .field-eyebrow{
-  font-family:var(--font-mono);
+  font-family:var(--font-label);
   font-weight:500;
   font-size:var(--t-eyebrow);
   letter-spacing:var(--track-eyebrow);
@@ -67,7 +67,7 @@
 /* meta line */
 .adventures .post-meta,
 .post-single .post-meta{
-  font-family:var(--font-mono);
+  font-family:var(--font-label);
   font-size:var(--t-data);
   letter-spacing:.03em;
   color:var(--ink-mute);
@@ -131,7 +131,7 @@
 /* ---------- category badge (inline) ---------- */
 .cat-badge{
   display:inline-flex;align-items:center;gap:.5ch;
-  font-family:var(--font-mono);font-weight:500;font-size:var(--t-eyebrow);
+  font-family:var(--font-label);font-weight:500;font-size:var(--t-eyebrow);
   letter-spacing:.1em;text-transform:uppercase;color:var(--accent);
   border:1px solid var(--accent);border-radius:var(--radius-pill);
   padding:5px 12px;
@@ -145,12 +145,12 @@
 }
 .verdict::before{content:"";position:absolute;left:0;top:0;bottom:0;width:var(--category-bar);background:var(--accent)}
 .verdict h4{
-  font-family:var(--font-mono);font-size:var(--t-eyebrow);letter-spacing:.16em;
+  font-family:var(--font-label);font-size:var(--t-eyebrow);letter-spacing:.16em;
   text-transform:uppercase;color:var(--accent);margin:var(--space-4) 0 0;
 }
 .verdict dl{display:grid;grid-template-columns:1fr auto;gap:0;margin:var(--space-3) 0 0}
 .verdict dt{
-  font-family:var(--font-mono);font-size:var(--t-caption);letter-spacing:.06em;
+  font-family:var(--font-label);font-size:var(--t-caption);letter-spacing:.06em;
   text-transform:uppercase;color:var(--ink-mute);padding:var(--space-4) 0;
   border-top:var(--hairline) solid var(--rule);
 }

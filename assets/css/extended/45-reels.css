@@ -32,7 +32,7 @@
   border:2px solid var(--accent);box-sizing:border-box;
 }
 .reels__sub{
-  font-family:var(--font-mono);font-size:var(--t-eyebrow);letter-spacing:var(--track-eyebrow);
+  font-family:var(--font-label);font-size:var(--t-eyebrow);letter-spacing:var(--track-eyebrow);
   text-transform:uppercase;color:var(--ink-mute);margin:0 0 var(--space-3);  /* tighter to the row */
 }
 
@@ -69,7 +69,7 @@
 /* platform tag (top-left) */
 .reel__platform{
   position:absolute;top:var(--space-3);left:var(--space-3);z-index:2;
-  font-family:var(--font-mono);font-weight:500;font-size:11px;letter-spacing:.1em;
+  font-family:var(--font-label);font-weight:500;font-size:11px;letter-spacing:.1em;
   text-transform:uppercase;color:var(--paper);
   background:color-mix(in srgb,var(--ink) 62%,transparent);
   backdrop-filter:blur(4px);
@@ -84,7 +84,7 @@
 /* duration / handle (bottom-left, above scrim) */
 .reel__meta{
   position:absolute;left:var(--space-3);bottom:var(--space-3);z-index:2;
-  font-family:var(--font-mono);font-size:12px;letter-spacing:.04em;color:var(--paper);
+  font-family:var(--font-label);font-size:12px;letter-spacing:.04em;color:var(--paper);
 }
 
 /* the play button — the ONE spring in the system (sized for the smaller card) */

@@ -45,7 +45,7 @@ a.u-card:hover,
    Mono caps, letterspaced, muted. Every label on the site: dates, counts,
    statuses, section headings, meta rows. */
 .u-eyebrow{
-  font-family:var(--font-mono);
+  font-family:var(--font-label);
   font-size:var(--t-eyebrow);
   letter-spacing:var(--track-eyebrow);
   text-transform:uppercase;
@@ -58,7 +58,7 @@ a.u-card:hover,
    An eyebrow used as a section heading, with the hairline under it. Used by
    Skills, Education, Gallery, Lessons, Latest, Continuous learning. */
 .u-rule-heading{
-  font-family:var(--font-mono);
+  font-family:var(--font-label);
   font-weight:400;
   font-size:var(--t-eyebrow);
   letter-spacing:var(--track-eyebrow);
@@ -102,7 +102,7 @@ a.u-card:hover,
   color:var(--ink);margin:0 0 var(--space-2);text-transform:capitalize;
 }
 .empty-section__sub{
-  font-family:var(--font-mono);font-size:var(--t-eyebrow);
+  font-family:var(--font-label);font-size:var(--t-eyebrow);
   letter-spacing:var(--track-eyebrow);text-transform:uppercase;
   color:var(--ink-mute);margin:0;
 }

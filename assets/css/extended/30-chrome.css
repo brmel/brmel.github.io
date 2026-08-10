@@ -52,7 +52,7 @@
   margin-top:var(--space-8);padding-top:var(--space-4);
   border-top:var(--hairline) solid var(--rule);
   display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-2) var(--space-4);
-  font-family:var(--font-mono);font-size:11px;
+  font-family:var(--font-label);font-size:11px;
 }
 .post-footer .post-tags{
   margin:0;padding:0;list-style:none;flex:1 1 60%;
@@ -87,7 +87,7 @@
 }
 .series__title{
   margin:0 0 var(--space-2);
-  font-family:var(--font-mono);font-size:var(--t-eyebrow);
+  font-family:var(--font-label);font-size:var(--t-eyebrow);
   letter-spacing:var(--track-eyebrow);text-transform:uppercase;color:var(--ink-mute);
 }
 .series__title b{color:var(--accent);font-weight:400;}
@@ -98,7 +98,7 @@
 .series__item--current{color:var(--ink);font-weight:500;}
 .article-origin{
   max-width:var(--container-text);margin:0 auto var(--space-6);
-  font-family:var(--font-mono);font-size:var(--t-eyebrow);
+  font-family:var(--font-label);font-size:var(--t-eyebrow);
   letter-spacing:.06em;text-transform:uppercase;color:var(--ink-mute);
 }
 .article-origin a{color:var(--ink-mute);text-decoration:underline;text-underline-offset:3px;}
@@ -116,7 +116,7 @@
 }
 .section-nav__back{
   display:inline-flex;align-items:center;gap:var(--space-2);
-  font-family:var(--font-mono);font-size:var(--t-eyebrow);
+  font-family:var(--font-label);font-size:var(--t-eyebrow);
   letter-spacing:var(--track-eyebrow);text-transform:uppercase;
   color:var(--accent);text-decoration:none;
   transition:gap var(--dur-2) var(--ease-standard);
@@ -137,7 +137,7 @@
 }
 .section-nav__sib--next{text-align:end;}
 .section-nav__dir{
-  font-family:var(--font-mono);font-size:10px;
+  font-family:var(--font-label);font-size:10px;
   letter-spacing:var(--track-eyebrow);text-transform:uppercase;
   color:var(--ink-mute);
 }
@@ -167,7 +167,7 @@
   display:inline-block;padding:2px 9px;
   border:var(--hairline) solid var(--rule);
   border-radius:var(--radius-pill);
-  font-family:var(--font-mono);font-size:11px;
+  font-family:var(--font-label);font-size:11px;
   letter-spacing:.07em;text-transform:uppercase;
   color:var(--ink-mute);text-decoration:none;
   transition:color var(--dur-1) var(--ease-standard),
@@ -186,7 +186,7 @@
   display:flex;flex-wrap:wrap;gap:var(--space-2) var(--space-4);
 }
 .content-actions a{
-  font-family:var(--font-mono);font-size:11px;
+  font-family:var(--font-label);font-size:11px;
   letter-spacing:.07em;text-transform:uppercase;
   color:var(--ink-mute);text-decoration:none;
   border-bottom:var(--hairline) solid var(--rule);padding-bottom:1px;
@@ -204,7 +204,7 @@
 /* ---- comments ---- */
 .comments{margin-top:var(--space-9);}
 .comments__note{
-  font-family:var(--font-mono);font-size:var(--t-eyebrow);
+  font-family:var(--font-label);font-size:var(--t-eyebrow);
   letter-spacing:.04em;color:var(--ink-mute);
   margin:0 0 var(--space-5);
 }
@@ -221,3 +221,24 @@
   margin-top:var(--space-5);
   padding-top:0;
 }
+
+/* ---- 404: the one screen that used to have no way out.
+   Named page-404, not the theme's .not-found, whose absolute positioning and
+   160px numeral are what made it a bare glyph. ---- */
+.page-404{
+  margin:var(--space-9) 0;
+  display:flex;flex-direction:column;gap:var(--space-3);
+}
+.page-404__code{color:var(--accent);}
+.page-404 h1{margin:0;}
+.page-404__lede{margin:0;color:var(--ink-mute);max-width:52ch;}
+.page-404__routes ul{
+  list-style:none;margin:var(--space-3) 0 0;padding:0;
+  display:flex;flex-wrap:wrap;gap:var(--space-2) var(--space-5);
+}
+.page-404__routes a{
+  font-family:var(--font-label);font-size:var(--t-eyebrow);
+  letter-spacing:var(--track-eyebrow);text-transform:uppercase;
+  border-bottom:var(--hairline) solid var(--rule);padding-block:var(--space-1);
+}
+.page-404__routes a:hover{border-color:var(--accent);color:var(--accent);}

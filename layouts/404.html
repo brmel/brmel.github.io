@@ -1,0 +1,20 @@
+{{- /* Fork of themes/PaperMod/404.html @2d2f2c6 — diff before upgrading.
+
+  Upstream renders the numeral and nothing else, which made this the one screen
+  on the site with no way out. The recovery links are the site menu, so they
+  stay correct when the menu changes and need no strings of their own.
+*/ -}}
+{{- define "main" }}
+<article class="page-404">
+  <p class="u-eyebrow page-404__code" aria-hidden="true">404</p>
+  <h1>{{ i18n "notfound_title" }}</h1>
+  <p class="page-404__lede">{{ i18n "notfound_lede" }}</p>
+  {{- with site.Menus.main }}
+  <nav class="page-404__routes" aria-label="{{ i18n "notfound_title" }}">
+    <ul>
+      {{- range . }}<li><a href="{{ .URL | relLangURL }}">{{ .Name }}</a></li>{{ end }}
+    </ul>
+  </nav>
+  {{- end }}
+</article>
+{{- end }}

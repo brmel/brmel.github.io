@@ -26,11 +26,11 @@
   text-anchor:middle;font-weight:500;
 }
 .workflow .wf-s{
-  fill:var(--ink-soft);font-family:var(--font-mono);font-size:10.5px;
+  fill:var(--ink-soft);font-family:var(--font-label);font-size:10.5px;
   text-anchor:middle;letter-spacing:.02em;
 }
 .workflow .wf-lane-label{
-  fill:var(--ink-mute);font-family:var(--font-mono);font-size:10px;
+  fill:var(--ink-mute);font-family:var(--font-label);font-size:10px;
   letter-spacing:.14em;
 }
 .workflow .wf-edge path{
@@ -72,7 +72,7 @@
 /* "in English" marker on entries served by the language fallback */
 .entry-lang{
   margin:var(--space-2) 0 0;
-  font-family:var(--font-mono);font-size:10px;
+  font-family:var(--font-label);font-size:10px;
   letter-spacing:.08em;text-transform:uppercase;color:var(--ink-mute);
 }
 

@@ -30,7 +30,7 @@
   flex:1 1 auto;
 }
 .project-card__stack{
-  font-family:var(--font-mono);font-size:11px;
+  font-family:var(--font-label);font-size:11px;
   color:var(--ink-mute);letter-spacing:.04em;
 }
 .project-card__stack b{color:var(--accent);font-weight:400;}
@@ -65,7 +65,7 @@
 .project-stack,
 .project-links{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:var(--space-2);}
 .project-stack li{
-  font-family:var(--font-mono);font-size:11px;
+  font-family:var(--font-label);font-size:11px;
   letter-spacing:.05em;
   padding:3px 10px;
   border:var(--hairline) solid var(--rule);
@@ -74,7 +74,7 @@
 }
 .project-links{margin-inline-start:auto;gap:var(--space-4);}
 .project-links a{
-  font-family:var(--font-mono);font-size:var(--t-eyebrow);
+  font-family:var(--font-label);font-size:var(--t-eyebrow);
   letter-spacing:.07em;text-transform:uppercase;
   color:var(--accent);text-decoration:none;
   border-bottom:var(--hairline) solid transparent;
@@ -117,7 +117,7 @@
 .project-shot img{width:100%;height:auto;}
 .project-shot figcaption{
   margin-top:var(--space-2);
-  font-family:var(--font-mono);font-size:11px;
+  font-family:var(--font-label);font-size:11px;
   color:var(--ink-mute);line-height:1.45;
 }
 
@@ -159,7 +159,7 @@
   border-top:var(--hairline) solid var(--rule);
 }
 .learning__h{
-  font-family:var(--font-mono);font-weight:400;
+  font-family:var(--font-label);font-weight:400;
   font-size:var(--t-eyebrow);letter-spacing:var(--track-eyebrow);
   text-transform:uppercase;color:var(--ink-mute);
   margin:0 0 var(--space-6);
@@ -172,7 +172,7 @@
   margin:0 0 var(--space-3);
 }
 .learning__updated{
-  font-family:var(--font-mono);font-size:11px;
+  font-family:var(--font-label);font-size:11px;
   letter-spacing:.06em;text-transform:uppercase;color:var(--ink-mute);
 }
 .learning__list{list-style:none;margin:0;padding:0;}
@@ -183,7 +183,7 @@
 }
 .learning__item:last-child{border-bottom:0;}
 .learning__link{
-  font-family:var(--font-mono);font-size:var(--t-eyebrow);
+  font-family:var(--font-label);font-size:var(--t-eyebrow);
   letter-spacing:.06em;text-transform:uppercase;
   color:var(--accent);text-decoration:none;
   transition:color var(--dur-1) var(--ease-standard);
@@ -200,7 +200,7 @@
    Quiet by design: it is a fact about the write-up, not a warning. */
 .project-card__lang{
   align-self:flex-start;
-  font-family:var(--font-mono);font-size:10px;
+  font-family:var(--font-label);font-size:10px;
   letter-spacing:.08em;text-transform:uppercase;
   color:var(--ink-mute);
   border:var(--hairline) solid var(--rule);
