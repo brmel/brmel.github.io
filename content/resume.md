@@ -3,7 +3,6 @@ title: "Resume"
 layout: "resume"
 summary: "Machine vision and image processing engineer — Zebra Technologies, Matrox Imaging, Polytechnique Montréal."
 description: "Senior Software Developer specialising in machine vision, image processing and control systems."
-ShowBreadCrumbs: false
 disableShare: true
 aliases: ["/timeline/", "/about/"]
 role: "Senior Software Developer — machine vision & image processing"

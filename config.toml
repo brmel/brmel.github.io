@@ -92,7 +92,7 @@ googleAnalytics = "G-CHFGS2DHF6"
       weight = 5
     [[languages.fr.menu.main]]
       identifier = "thoughts"
-      name = "Réflexions"
+      name = "Pensées"
       url = "/thoughts/"
       weight = 6
 

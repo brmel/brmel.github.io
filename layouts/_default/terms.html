@@ -1,0 +1,27 @@
+{{- /* Fork of themes/PaperMod/_default/terms.html @2d2f2c6 — diff before upgrading.
+
+  Adds the breadcrumb. This is the only index that lacked one, so /tags/ was the
+  one page a level below root with no path back except the nav.
+*/ -}}
+{{- define "main" }}
+
+{{- if .Title }}
+<header class="page-header">
+  {{- partial "breadcrumbs.html" . }}
+  <h1>{{ .Title }}</h1>
+  {{- with .Description }}<div class="post-description">{{ . }}</div>{{ end }}
+</header>
+{{- end }}
+
+<ul class="terms-tags">
+  {{- $type := .Type }}
+  {{- range $key, $value := .Data.Terms.Alphabetical }}
+  {{- $name := .Name }}
+  {{- $count := .Count }}
+  {{- with site.GetPage (printf "/%s/%s" $type $name) }}
+  <li><a href="{{ .Permalink }}">{{ .Name }} <sup>{{ $count }}</sup></a></li>
+  {{- end }}
+  {{- end }}
+</ul>
+
+{{- end }}

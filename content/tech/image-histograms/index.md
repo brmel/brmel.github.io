@@ -14,8 +14,6 @@ ShowToc: true
 TocOpen: false
 ---
 
-# Edge Measurement in Industrial Vision: Counting Saw Blade Teeth
-
 Edge measurement is a fundamental technique in industrial vision systems, enabling precise detection and analysis of object boundaries. This tutorial demonstrates edge measurement principles through a practical application: automatically counting the teeth on a saw blade.
 
 ## Understanding Edge Measurement
