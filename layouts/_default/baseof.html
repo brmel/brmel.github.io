@@ -1,11 +1,13 @@
 {{- /* Fork of themes/PaperMod/_default/baseof.html @2d2f2c6 — diff before upgrading.
-     One change: <main> carries id="main", the target of the skip link. */ -}}
+     Two changes: <main> carries id="main", the target of the skip link, and
+     the document direction falls back to ltr rather than auto — auto resolves
+     per first strong character, which is not a document-level property. */ -}}
 {{- if lt hugo.Version "0.146.0" }}
 {{- errorf "=> hugo v0.146.0 or greater is required for hugo-PaperMod to build " }}
 {{- end -}}
 
 <!DOCTYPE html>
-<html lang="{{ site.Language }}" dir="{{ .Language.LanguageDirection | default "auto" }}">
+<html lang="{{ site.Language }}" dir="{{ .Language.LanguageDirection | default "ltr" }}">
 
 <head>
     {{- partial "head.html" . }}

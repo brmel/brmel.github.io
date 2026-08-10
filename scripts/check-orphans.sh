@@ -43,6 +43,10 @@ while IFS= read -r asset; do
   is_whitelisted "$asset" && continue
 
   base=$(basename "$asset")
+  # Shortcodes may build a path from a parameter, so the filename never appears
+  # literally: {{< videothumb id="m7KKRmOxRT0" >}} loads
+  # images/timeline/m7KKRmOxRT0.jpg. Match on the stem as well as the filename.
+  stem=${base%.*}
   # Hugo Pipes calls use asset-relative paths ("css/extended/tokens.css"),
   # markdown uses bare filenames ("blades.png"). Accept either.
   rel_from_assets=${asset#assets/}
@@ -51,6 +55,9 @@ while IFS= read -r asset; do
     continue
   fi
   if grep -rqIF -- "$rel_from_assets" $SEARCH_PATHS --exclude="$base" 2>/dev/null; then
+    continue
+  fi
+  if grep -rqIF -- "$stem" $SEARCH_PATHS --exclude="$base" 2>/dev/null; then
     continue
   fi
 

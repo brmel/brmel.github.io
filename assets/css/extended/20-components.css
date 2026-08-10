@@ -57,7 +57,10 @@ a.u-card:hover,
 /* ---- rule heading -------------------------------------------------------
    An eyebrow used as a section heading, with the hairline under it. Used by
    Skills, Education, Gallery, Lessons, Latest, Continuous learning. */
-.u-rule-heading{
+.u-rule-heading,
+/* .post-content h2 is an element+class selector and outranks this one, so a
+   rule heading written inside a page body needs the label face named again */
+.post-content .u-rule-heading{
   font-family:var(--font-label);
   font-weight:400;
   font-size:var(--t-eyebrow);
