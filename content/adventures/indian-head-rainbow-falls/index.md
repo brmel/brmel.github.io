@@ -1,13 +1,9 @@
 ---
 title: "Indian Head & Rainbow Falls: The Adirondacks' Best Day Hike"
 date: 2026-05-31
-draft: true
+draft: false
 summary: "An 11-mile loop to a fjord-like vista over Lower Ausable Lake and a 150-foot waterfall — the most rewarding easy-graded hike in the Adirondack High Peaks."
-tags: ["Adirondacks", "Hiking", "New York", "Rainbow Falls", "Indian Head", "Day Hike"]
-cover:
-    image: "cover.jpg"
-    alt: "View from Indian Head over the fjord-shaped Lower Ausable Lake"
-    relative: true
+tags: ["Adirondacks", "Hiking", "Day Hike"]
 # --- field note ---
 category: "hike"
 fieldNote: 2
@@ -16,30 +12,11 @@ rating: 4.7
 goBack: "Yes — top of the list."
 bestFor: "A long but easy-graded day with three world-class views."
 con: "It's a full ~11 miles — mostly flat, but a long day on your feet."
-reels:
-  - { platform: "youtube",   id: "3Y7o9IgliYk", meta: "Short" }
-  - { platform: "instagram", url: "https://www.instagram.com/reels/DY0YkOwghXC/", thumb: "ig-thumb.jpg", meta: "@mellicorreia" }
-  - { platform: "tiktok",    url: "https://www.tiktok.com/@mellicorreia/video/7566757358458785045", thumb: "tt-thumb.jpg", meta: "@mellicorreia" }
 ---
-
-<!--
-  TEMPLATE NOTES (delete before publishing):
-  - Replace YOUTUBE_ID below with your real YouTube Short / video ID.
-  - Add your photos to THIS folder and keep the figure filenames, OR rename
-    both the file and the src=. Optimize each to <=1600px / <300KB / EXIF-stripped.
-  - cover.jpg is the hero/share image — put a strong landscape shot here.
-  - Map: either keep the gmap place-pin below, or paste a Google Maps "Embed a
-    map" src=, or swap the whole block for a {{< figure >}} of a map screenshot.
-  - Facts below are from public trail guides; double-check distances/permit rules
-    against hikeamr.org before publishing, as AMR rules change seasonally.
-  - When ready: set draft: false.
--->
 
 Eleven miles, almost no scrambling, and it ends at a cliff over a lake shaped like a Norwegian fjord — Indian Head & Rainbow Falls is the most bang-for-effort hike I've done in the Adirondacks.
 
 ## The place
-
-{{< figure src="photo-1.jpg" alt="Lower Ausable Lake seen from the Indian Head ledge" caption="The Indian Head vista over Lower Ausable Lake" >}}
 
 Indian Head is a rock ledge high above **Lower Ausable Lake**, deep in the
 Adirondack High Peaks near **Keene Valley, NY**. The lake below is long, narrow,
@@ -57,13 +34,9 @@ I parked at **St. Huberts** and walked the flat **Lake Road** from the Ausable
 Club, then took the **Gill Brook Trail**, which climbs gently past a chain of
 small waterfalls.
 
-{{< figure src="photo-2.jpg" alt="One of the cascades along the Gill Brook trail" caption="Gill Brook — waterfalls the whole way up" >}}
-
 The only real work is the final push to the **Indian Head** ledge. From there I
 crossed to **Fish Hawk Cliffs** for a second angle on the lake, then dropped down
 to **Rainbow Falls** before the long, easy walk back on Lake Road.
-
-{{< figure src="photo-3.jpg" alt="Rainbow Falls cascading through a green gorge" caption="Rainbow Falls — ~150 ft of cascade" >}}
 
 ## Map
 

@@ -10,6 +10,16 @@ reel follows the same beats, so the audience learns your format and the work get
 faster each time. Treat this file as the single source of truth — follow it
 article-by-article and don't improvise the structure.
 
+**Photographs must be yours and must be of the place.** The two field notes
+published in August 2026 shipped as drafts carrying one stock file reused as the
+hero of both a Rawdon spa and an Adirondack summit; they went live without
+images rather than with borrowed ones. Same rule for the reels row — it links
+your own clips or it stays empty.
+
+`gmap` takes a real embed URL from Google Maps → Share → "Embed a map". The
+`q="place name"` form renders a link, not an iframe: Google refuses to frame the
+legacy `maps.google.com/maps?output=embed` URL and it came out as a blank box.
+
 Tools are already wired: a `reels` shortcode, a `gmap` shortcode, the `figure`
 shortcode, and an `adventures` archetype that scaffolds the structure.
 

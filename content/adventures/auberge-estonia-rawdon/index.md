@@ -1,13 +1,9 @@
 ---
 title: "Auberge Estonia: A Nordic Spa Cabin Escape in Rawdon, One Hour from Montreal"
 date: 2026-05-31
-draft: true
+draft: false
 summary: "A forest auberge in Rawdon, Lanaudière — free Nordic spa with hot tubs and a Finnish sauna, a cold-plunge lake, BBQ cabins, and hiking trails on the estate, all about an hour from Montreal."
-tags: ["Lanaudière", "Rawdon", "Quebec", "Spa", "Nordic Spa", "Cabin", "Hiking", "Getaway", "Montreal"]
-cover:
-    image: "cover.jpg"
-    alt: "Nordic hot tubs and sauna in the forest at Auberge Estonia, Rawdon"
-    relative: true
+tags: ["Québec", "Spa", "Getaway"]
 # --- field note ---
 category: "spa"
 fieldNote: 3
@@ -16,30 +12,11 @@ rating: 4.5
 goBack: "Yes — easy yes."
 bestFor: "A low-key Nordic-spa weekend for a couple or small group."
 con: "You self-cater — bring groceries; restaurants are ~10 min away."
-reels:
-  - { platform: "youtube",   id: "3Y7o9IgliYk", meta: "Short" }
-  - { platform: "instagram", url: "https://www.instagram.com/reels/DY0YkOwghXC/", thumb: "ig-thumb.jpg", meta: "@mellicorreia" }
-  - { platform: "tiktok",    url: "https://www.tiktok.com/@mellicorreia/video/7566757358458785045", thumb: "tt-thumb.jpg", meta: "@mellicorreia" }
 ---
-
-<!--
-  TEMPLATE NOTES (delete before publishing):
-  - Replace YOUTUBE_ID with your real YouTube video/Short ID.
-  - Add your photos to THIS folder: cover.jpg + photo-1/2/3.jpg. Optimize each
-    to <=1600px / <300KB / EXIF-stripped (see docs/adventures-playbook.md §2.2).
-  - All facts below are from public sources (estoniahebergement.com, Tourisme
-    Lanaudière, Bonjour Québec, booking listings). Re-check prices/hours on their
-    site before publishing — those change seasonally.
-  - Map: free gmap place-pin is set; swap for a Google "Embed a map" src= or a
-    screenshot {{< figure >}} if you prefer.
-  - When ready: set draft: false.
--->
 
 An hour from Montreal, tucked in the Rawdon woods: two Nordic hot tubs steaming under the trees, a Finnish sauna, a lake to cold-plunge into, and a BBQ cabin to come back to. Auberge Estonia is the low-key spa weekend that doesn't cost spa-resort money.
 
 ## The place
-
-{{< figure src="photo-1.jpg" alt="Nordic hot tubs and sauna in the forest at Auberge Estonia" caption="The outdoor Nordic spa — free for guests" >}}
 
 **Auberge Estonia** (Estonia Hébergement Nature) sits in the forested hills of
 **Rawdon**, in Quebec's **Lanaudière** region — about **one hour from Montreal**.
@@ -54,15 +31,11 @@ room with a wood fireplace, hammocks, and a ping-pong table.
 
 ## What I did
 
-{{< figure src="photo-2.jpg" alt="Cold-plunge lake and firepit at the auberge" caption="Hot tub → cold lake → fire. Repeat." >}}
-
 Ran the thermal circuit on loop — **hot tub, then the cold lake, then the fire**
 — which is the whole point of a Nordic spa and somehow never gets old. Between
 rounds I walked the **hiking trails on the estate** (forest paths, streams, the
 lakeshore), then fired up the **BBQ at the chalet** for dinner instead of going
 out.
-
-{{< figure src="photo-3.jpg" alt="Mini-chalet in the forest with a BBQ" caption="The mini-chalets come with a kitchenette and a BBQ" >}}
 
 It's a do-nothing-on-purpose kind of place — quiet, wooded, no crowds.
 

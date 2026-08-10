@@ -16,7 +16,9 @@
   max-width:var(--container-content);
   margin:0 auto var(--space-9);
   display:grid;
-  grid-template-columns:repeat(4,1fr);
+  /* The reading column is 720px, so a 210px floor fits exactly three: five
+     cards land 3 + 2 rather than leaving one alone on its own row. */
+  grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
   gap:var(--space-4);
 }
 .home-card{
@@ -69,8 +71,10 @@
   color:var(--ink-soft);
 }
 
-@media (max-width:860px){
+@media (max-width:700px){
   .home-sections{grid-template-columns:repeat(2,1fr);}
+  /* an odd card count would otherwise end the grid with one card in a half row */
+  .home-sections > :last-child:nth-child(odd){grid-column:1 / -1;}
 }
 @media (max-width:480px){
   .home-sections{grid-template-columns:1fr;}

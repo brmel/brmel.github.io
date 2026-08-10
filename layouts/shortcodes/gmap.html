@@ -1,19 +1,28 @@
 {{- /*
-  gmap — embed a Google Map.
+  gmap — a map for a field note.
 
-  Easiest (a real map with a route/pin you styled):
-    Google Maps -> Share -> "Embed a map" -> copy the src="..." URL:
+  A real embed, from Google Maps -> Share -> "Embed a map":
     {{< gmap src="https://www.google.com/maps/embed?pb=..." title="Schwartz's Deli" >}}
 
-  Quick pin by place name (no copying an embed URL):
+  A place, with no embed URL to copy:
     {{< gmap q="Schwartz's Deli, Montreal" title="Schwartz's Deli" >}}
 
-  For a multi-stop itinerary, build a "Google My Maps", then use its embed src= here.
+  The q= form used to build a maps.google.com/maps?output=embed iframe. Google
+  refuses to frame that URL now, so it rendered a blank 538px box on both field
+  notes — worse than no map. It degrades to a link instead. Only a real embed
+  src= gets an iframe.
 */ -}}
-{{- $src := .Get "src" -}}
-{{- if not $src }}{{ with .Get "q" }}{{ $src = printf "https://maps.google.com/maps?%s" (querify "q" . "z" "15" "output" "embed") }}{{ end }}{{ end -}}
-{{- with $src }}
+{{- $title := .Get "title" | default "Map" -}}
+{{- with .Get "src" }}
 <div class="gmap">
-  <iframe src="{{ . | safeURL }}" title="{{ $.Get `title` | default `Map` }}" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+  <iframe src="{{ . | safeURL }}" title="{{ $title }}" loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
 </div>
-{{- end -}}
+{{- else }}
+{{- with .Get "q" }}
+<p class="gmap-link">
+  <a href="https://www.google.com/maps/search/?{{ (querify "api" "1" "query" .) | safeURL }}"
+     target="_blank" rel="noopener noreferrer">{{ $title }} <span aria-hidden="true">↗</span></a>
+</p>
+{{- end }}
+{{- end }}
