@@ -1,23 +1,15 @@
 {{- /*
-  func/og-image — resolve the social card for any page, in one place.
+  Resolve a page's social card. First hit wins:
 
-  Every share of every page used to render the same portrait, because
-  params.images was a site-wide default and almost nothing overrode it. (Worse:
-  it pointed at static/images/profile.jpg, which was a text placeholder, not an
-  image — fixed in #6.)
+    1. the page's own cover
+    2. a project's first gallery screenshot
+    3. the section card, static/og/<section>.jpg
+    4. the home card
 
-  Resolution order, first hit wins:
+  The page bundle is checked before `cover.relative` is trusted: one article
+  omits that flag, and trusting it resolved the image to the site root.
 
-    1. the page's own cover image        — a project gallery shot, an article cover
-    2. the section's generated card      — static/og/<section>.jpg
-    3. the home card                     — static/og/home.jpg
-
-  The section cards are generated from the brand system by
-  scripts/gen-og-cards.py; see docs/brand-guidelines.md §9. Six sections, one
-  template, so they cannot drift apart the way six hand-designed cards would.
-
-  Returns a dict: { url: <absolute URL>, alt: <string> }
-  og:image must be absolute for X and LinkedIn, so every branch uses absURL.
+  Returns { url, alt }. Always absolute — X and LinkedIn reject relative.
 */ -}}
 
 {{- $url := "" -}}

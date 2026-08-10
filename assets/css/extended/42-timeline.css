@@ -1,12 +1,8 @@
 /* ============================================================================
-   IBRAVERSE — RESUME TIMELINE
-   Rebuilt on the brand tokens. The previous version used PaperMod's raw vars
-   (--primary/--entry), a black rgba shadow, plain black dots and a float-based
-   media layout, which read as a generic template rather than part of this site.
-
-   Everything here resolves through tokens.css, so it follows the theme and the
-   accent register. Media floats with logical properties (float:inline-start,
-   margin-inline-end), so RTL mirrors without a single [dir] override.
+   RESUME TIMELINE
+   Media floats with logical properties (float:inline-start, margin-inline-end),
+   so RTL mirrors without a single [dir] override. Float rather than grid: the
+   markup is a flat run of img/h4/p/hr, which grid puts in separate rows.
    ========================================================================== */
 
 :root{

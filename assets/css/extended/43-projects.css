@@ -1,9 +1,8 @@
 /* ============================================================================
-   IBRAVERSE — PROJECTS
-   The section brand layer. Structure mirrors adventures-brand.css: the accent
-   comes entirely from [data-category] in tokens.css, driven by each page's
-   `domain` front matter. No hardcoded colours — if you need a new hue, add it
-   to the register in tokens.css and check its contrast (brand-guidelines §3).
+   PROJECTS
+   Accent comes entirely from [data-category], driven by each page's `domain`.
+   Gallery is multi-column so figures keep their natural aspect ratio; a fixed
+   grid cell letterboxed captures ranging from 1200x750 to 675x1200.
    ========================================================================== */
 
 /* ---- index: the card grid ---- */
@@ -197,7 +196,7 @@
   .learning__item{grid-template-columns:1fr;gap:var(--space-1);}
 }
 
-/* "in English" marker on cards shown by the cross-language fallback (#17).
+/* "in English" marker on cards shown by the cross-language fallback.
    Quiet by design: it is a fact about the write-up, not a warning. */
 .project-card__lang{
   align-self:flex-start;

@@ -1,33 +1,12 @@
-{{- /* FORK PROVENANCE
-     Forked from themes/PaperMod (2d2f2c6). Upstream's copy of this file is still
-     on disk at themes/PaperMod/partials/extend_head.html — diff against it before taking an
-     upstream update, then re-apply the divergences documented below.
-*/ -}}
+{{- /* Fork of themes/PaperMod/partials/extend_head.html @2d2f2c6 — diff before upgrading. */ -}}
 {{- /*
-  extend_head — per-page asset hook (overrides PaperMod's empty stub).
+  Per-page assets. Front matter `customCSS` / `customJS` list paths under
+  assets/; they are fingerprinted and scoped to the page that asks, so other
+  pages do not download them.
 
-  Lets any page pull in its own stylesheet(s) and script(s) via front
-  matter instead of inlining <style>/<script> blocks, keeping content,
-  presentation, and behavior in separate layers:
-
-      customCSS: ["css/machine-vision.css"]
-      customJS:  ["js/machine-vision.js"]
-
-  Paths resolve from the assets/ directory. Assets are minified and
-  fingerprinted through Hugo Pipes and scoped to just the pages that ask
-  for them, so other pages don't download them. Scripts are deferred so
-  they run after the document is parsed.
-
-  NOTE: no page uses customCSS/customJS right now — the machine-vision article
-  that did was removed in #5. This hook is deliberately kept: it is the seam an
-  interactive article or a Projects page (#12) plugs into, and re-deriving it
-  costs more than keeping it. Do not delete it as dead code.
-
-  Also sets the document writing direction from the site's configured
-  languageDirection. PaperMod's baseof emits <html dir="auto">, which is
-  unreliable for laying out RTL boxes; making it explicit lets CSS logical
-  properties (margin-inline-*, text-align: start/end) flip correctly on
-  Arabic pages. Runs during head parse, so there is no layout flash.
+  The dir attribute is set here rather than on <html> in baseof: PaperMod emits
+  dir="auto", which does not lay out RTL boxes reliably. Setting it during head
+  parse avoids a flash.
 */ -}}
 {{- if eq site.Language.LanguageDirection "rtl" }}
 <script>document.documentElement.setAttribute("dir", "rtl");</script>

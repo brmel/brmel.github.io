@@ -90,7 +90,7 @@
   .timeline-item{break-inside:avoid;}
 }
 
-/* "in English" marker on list entries served by the language fallback (#17) */
+/* "in English" marker on list entries served by the language fallback */
 .entry-lang{
   margin:var(--space-2) 0 0;
   font-family:var(--font-mono);font-size:10px;

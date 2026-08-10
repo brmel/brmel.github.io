@@ -1,8 +1,4 @@
-{{- /* FORK PROVENANCE
-     Forked from themes/PaperMod (2d2f2c6). Upstream's copy of this file is still
-     on disk at themes/PaperMod/_default/list.html — diff against it before taking an
-     upstream update, then re-apply the divergences documented below.
-*/ -}}
+{{- /* Fork of themes/PaperMod/_default/list.html @2d2f2c6 — diff before upgrading. */ -}}
 {{- define "main" }}
 
 {{- if (and site.Params.profileMode.enabled .IsHome) }}
@@ -10,7 +6,7 @@
 
        Upstream PaperMod renders index_profile and returns, which meant the whole
        body of content/_index.md was parsed and then silently dropped — it had
-       never appeared on the site (#10). The three blocks below fix that: the
+       never appeared on the site. The three blocks below fix that: the
        profile, then the page's own copy, then cards + latest posts. */ -}}
 {{- partial "index_profile.html" . }}
 {{- if .Content }}
@@ -56,7 +52,7 @@
 </div>
 {{- end }}
 
-{{- /* Tiered language policy (#17): a section lists this language's pages, or
+{{- /* Tiered language policy: a section lists this language's pages, or
        falls back to the default language's when nothing is translated, so the
        fr and ar sites never silently offer less than the en one. Cards from the
        fallback are marked. See partials/func/section-pages.html. */ -}}

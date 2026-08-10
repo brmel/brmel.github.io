@@ -1,17 +1,9 @@
 /* ============================================================================
-   IBRAVERSE — COMPONENT PRIMITIVES
-
-   The shared visual patterns, defined once. Before this file the same card
-   treatment — paper-alt fill, hairline border, radius, accent border on hover,
-   2px lift, shadow — was written out five times: home cards, project cards,
-   timeline entries, section-nav siblings, series box. Each copy drifted a
-   little, and a token change had to be made in five places.
-
-   Everything here is presentational and content-agnostic. Section files
-   (40-*, 43-*, …) compose these and add only what is genuinely specific to
-   them: grid geometry, one-off spacing, per-section accents.
-
-   Naming: `u-` for a utility you apply directly in markup.
+   COMPONENT PRIMITIVES
+   The shared visual patterns, defined once: card surface, accent bar, eyebrow,
+   rule heading, media frame, empty state.
+   Section files (4x) compose these and add only their own geometry.
+   `u-` marks a utility applied directly in markup.
    ========================================================================== */
 
 /* ---- card ---------------------------------------------------------------

@@ -69,7 +69,7 @@
   max-width:100%;height:auto;box-shadow:var(--shadow-photo);
 }
 
-/* "in English" marker on entries served by the language fallback (#17) */
+/* "in English" marker on entries served by the language fallback */
 .entry-lang{
   margin:var(--space-2) 0 0;
   font-family:var(--font-mono);font-size:10px;

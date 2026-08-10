@@ -1,21 +1,11 @@
 {{- /*
-  brand-mark — the Ibraverse compass-aperture mark.
+  The compass mark — the site's one reproducible signature. Single
+  implementation; never inline a second copy.
 
-  The site's one reproducible signature: concentric circles + four N/S/E/W
-  ticks. Specified in docs/brand-guidelines.md §2; this partial is the single
-  implementation. Never inline a second copy.
+  Colour comes from currentColor so the mark adopts its container's colour.
+  Decorative by default; pass `title` when it is the only thing naming the site.
 
-  Colour comes from `currentColor`, so the mark adopts whatever `color` the
-  surrounding element sets — normally `var(--accent)`. Never hardcode the rust
-  hex here.
-
-  Usage:
-      {{ partial "brand-mark.html" . }}                        24px, default class
-      {{ partial "brand-mark.html" (dict "size" 40) }}         40px
-      {{ partial "brand-mark.html" (dict "size" 18 "class" "brand-mark brand-mark--quiet") }}
-
-  Decorative by default (aria-hidden). Pass a `title` when the mark is the only
-  thing identifying the site — then it becomes an img with an accessible name.
+      {{ partial "brand-mark.html" (dict "size" 40 "title" site.Title) }}
 */ -}}
 {{- $size := 24 -}}
 {{- $class := "brand-mark" -}}

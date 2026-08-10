@@ -1,21 +1,9 @@
 {{- /*
-  content-actions — the two things a reader can do about a page.
+  Improve / discuss links, derived from site.Params.repo.
 
-  This replaces PaperMod's `editPost`, which pointed at
-  `mailto:…?subject=Suggestion for` with the file path appended. That asks a
-  stranger to compose an email describing a typo, and there is no path from
-  their message to a commit. Almost nobody does it.
-
-  Both links here go to GitHub instead, where the repo already lives:
-
-    Improve this page  → the file's edit view. GitHub forks it for the reader
-                         automatically and the Propose changes button opens a
-                         pull request. A typo fix is three clicks.
-    Discuss            → a new issue, pre-filled with the page title and URL so
-                         the report arrives with context attached.
-
-  Both are derived from site.Params.repo, so there is one place to change if the
-  repository ever moves, and they disappear cleanly if it is unset.
+  Both point at GitHub rather than email: the edit view lets a reader fork and
+  open a PR in three clicks, and the issue link carries the page title and URL
+  so a report arrives with context.
 */ -}}
 
 {{- $repo := site.Params.repo -}}

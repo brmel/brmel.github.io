@@ -1,8 +1,4 @@
-{{- /* FORK PROVENANCE
-     Forked from themes/PaperMod (2d2f2c6). Upstream's copy of this file is still
-     on disk at themes/PaperMod/partials/header.html — diff against it before taking an
-     upstream update, then re-apply the divergences documented below.
-*/ -}}
+{{- /* Fork of themes/PaperMod/partials/header.html @2d2f2c6 — diff before upgrading. */ -}}
 {{- /*
   header — local fork of themes/PaperMod/layouts/partials/header.html.
 
@@ -15,7 +11,7 @@
 
   2. EMPTY SECTIONS ARE HIDDEN: a menu entry pointing at a section with no
      published pages is skipped. Two of five nav entries used to lead to an
-     empty-state card (see #7); this makes that structurally impossible rather
+     empty-state card; this makes that structurally impossible rather
      than something to remember. A section reappears in the nav the moment it
      has one published page.
 */ -}}
@@ -132,7 +128,7 @@
             {{- with site.GetPage .URL }}
             {{- if eq .Kind "section" }}
             {{- /* Counts the fallback too, so a section that is English-only
-                   still appears in the fr and ar navs (#17). */ -}}
+                   still appears in the fr and ar navs. */ -}}
             {{- if lt (len (partial "func/section-pages.html" .)) 1 }}{{ $hide = true }}{{ end }}
             {{- end }}
             {{- end }}

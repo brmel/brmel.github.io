@@ -1,28 +1,12 @@
 {{- /*
-  func/section-pages — the pages a section should list, under the tiered
-  language policy (docs/brand-guidelines.md §8).
+  The pages a section lists: this language's, plus any default-language pages
+  with no translation here.
 
-  Structural pages are translated. Long-form writing — project write-ups, tech
-  articles, field notes — is English-only unless someone translates it.
+  It merges rather than filters. Filtering hid English-only writing from fr and
+  ar readers and left /fr/projects/ empty, which then removed Projects from the
+  nav entirely. Callers mark the untranslated ones by comparing .Lang.
 
-  A naive per-language listing hides English-only writing from fr and ar
-  readers: /fr/tech/ would show one article out of three, and /fr/projects/
-  would be empty, which then hides Projects from the nav entirely (#7). The
-  French site would silently contain less than the English one.
-
-  So this MERGES rather than falls back:
-
-      this language's pages
-    + the default language's pages that have no translation here
-
-  A page already translated is never listed twice. Callers mark the untranslated
-  ones by comparing `.Lang` to the current site language — see the `entry-lang`
-  and `project-card__lang` markers.
-
-  Usage:
-      {{- $pages := partial "func/section-pages.html" . }}
-
-  Returns a page slice, unsorted beyond Hugo's default (callers sort).
+  Returns a page slice; callers sort.
 */ -}}
 
 {{- $pages := .RegularPages -}}
