@@ -1,44 +1,21 @@
 {{- $c := site.Params.comments -}}
-{{- if and $c $c.enabled $c.repo $c.repoId $c.category $c.categoryId (ne (.Param "comments") false) }}
+{{- $on := and $c $c.enabled $c.repo $c.repoId $c.category $c.categoryId -}}
+{{- $where := $c.sections | default (slice "projects" "tech" "thoughts" "adventures") -}}
+{{- $here := and .IsPage (in $where .Section) (ne (.Param "comments") false) -}}
+
+{{- if and $on $here }}
 <section class="comments" aria-labelledby="comments-h">
-  <h2 class="u-rule-heading" id="comments-h">
-    {{ i18n "comments_heading" | default "Comments" }}
-  </h2>
-  <p class="comments__note">
-    {{ i18n "comments_note" | default "Replies are GitHub Discussions — a GitHub account is needed to post." }}
-  </p>
-  <script src="https://giscus.app/client.js"
-          data-repo="{{ $c.repo }}"
-          data-repo-id="{{ $c.repoId }}"
-          data-category="{{ $c.category }}"
-          data-category-id="{{ $c.categoryId }}"
-          data-mapping="pathname"
-          data-strict="1"
-          data-reactions-enabled="1"
-          data-emit-metadata="0"
-          data-input-position="top"
-          data-theme="{{ cond (eq site.Params.defaultTheme "dark") "transparent_dark" "light" }}"
-          data-lang="{{ site.Language.Lang }}"
-          data-loading="lazy"
-          crossorigin="anonymous"
-          async>
-  </script>
-  <script>
-    /* keep the giscus iframe's theme in step with body.dark */
-    (function () {
-      var frame = function () { return document.querySelector('iframe.giscus-frame'); };
-      var send = function (dark) {
-        var f = frame();
-        if (!f) return;
-        f.contentWindow.postMessage(
-          { giscus: { setConfig: { theme: dark ? 'transparent_dark' : 'light' } } },
-          'https://giscus.app'
-        );
-      };
-      new MutationObserver(function () {
-        send(document.body.classList.contains('dark'));
-      }).observe(document.body, { attributes: true, attributeFilter: ['class'] });
-    })();
-  </script>
+  <h2 class="u-rule-heading" id="comments-h">{{ i18n "comments_heading" | default "Comments" }}</h2>
+  <p class="comments__note">{{ i18n "comments_note" | default "Replies are GitHub Discussions — a GitHub account is needed to post." }}</p>
+  <div class="comments__mount"
+       data-repo="{{ $c.repo }}"
+       data-repo-id="{{ $c.repoId }}"
+       data-category="{{ $c.category }}"
+       data-category-id="{{ $c.categoryId }}"
+       data-lang="{{ site.Language.Lang }}"
+       data-theme-light="{{ $c.themeLight | default "light" }}"
+       data-theme-dark="{{ $c.themeDark | default "transparent_dark" }}"></div>
 </section>
+{{ $js := resources.Get "js/comments.js" | resources.Minify | resources.Fingerprint }}
+<script src="{{ $js.RelPermalink }}" defer></script>
 {{- end }}

@@ -19,42 +19,35 @@ filled in. A half-configured widget can never ship.
 
 ## Enabling it
 
-1. **Make the repository public** if it is not already — giscus reads
-   Discussions through the public API.
-2. **Enable Discussions**: repo → Settings → General → Features → tick
-   *Discussions*.
-3. **Create a category for it**: repo → Discussions → Categories → New.
-   Name it `Comments` and choose the **Announcements** format, so only you can
-   open a thread and readers can only reply. Without this anyone can create
-   threads that are not attached to any page.
-4. **Install the app**: <https://github.com/apps/giscus> → Configure → grant it
-   this repository.
-5. **Get the ids**: go to <https://giscus.app>, enter `brmel/brmel.github.io`,
-   pick *Discussion title contains page pathname* and the category from step 3.
-   The generated snippet contains `data-repo-id` and `data-category-id`.
-6. **Fill in `config.toml`**:
+Discussions is on, the ids below are filled in, and the widget is written and
+styled. One step is left, and it needs a human with repo access:
 
-   ```toml
-   [params.comments]
-     enabled    = true
-     repo       = "brmel/brmel.github.io"
-     repoId     = "R_..."           # from step 5
-     category   = "Comments"
-     categoryId = "DIC_..."         # from step 5
-   ```
+1. **Install the giscus app**: <https://github.com/apps/giscus> → Configure →
+   grant it `brmel/brmel.github.io`. Until this is done the widget answers
+   *"giscus is not installed on this repository"*.
+2. **Flip the flag**: `enabled = true` in `[params.comments]`.
 
-7. `./scripts/check.sh` and open any article. The thread appears under the
-   section navigation.
+Already done, for the record:
 
-## Turning it off for one page
+| | |
+|---|---|
+| Discussions | enabled on the repository |
+| Category | `Announcements` — only the owner opens a thread, readers reply |
+| `repoId` | `R_kgDOPJVQtA` |
+| `categoryId` | `DIC_kwDOPJVQtM4DDjn9` |
 
-```yaml
-comments: false
-```
+## Where it appears
 
-## Theme
+`params.comments.sections` decides, and it lists projects, tech, thoughts and
+adventures. The resume, the home page and every section index are excluded: a
+comment box under a CV is an invitation nobody wants to accept.
 
-giscus runs in an iframe and cannot read this site's CSS, so it is told which
-theme to use at load and told again over `postMessage` whenever the reader
-toggles. Both halves are needed — without the second, it stays light on a dark
-page.
+A single page can still opt out with `comments: false` in its front matter.
+
+## Theme and language
+
+`assets/js/comments.js` builds the widget at runtime rather than in the
+template, because the theme is a runtime fact: a static `data-theme` would load
+the thread in light and flip it a beat later for anyone reading in dark. The
+same script keeps the iframe in step when the toggle is used, and the language
+comes from the page, so `/fr/` and `/ar/` load their own.

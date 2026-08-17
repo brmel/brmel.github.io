@@ -1,19 +1,10 @@
 {{- $repo := site.Params.repo -}}
-{{- $branch := site.Params.repoBranch | default "main" -}}
-
 {{- with .File }}
 {{- if $repo }}
-{{- $path := path.Join "content" .Path -}}
+{{- $title := printf "%s: " ($.Title | plainify) -}}
+{{- $body := printf "Page: %s\n\n" $.Permalink -}}
 <ul class="content-actions">
   <li>
-    <a href="{{ printf "%s/edit/%s/%s" $repo $branch $path }}"
-       target="_blank" rel="noopener noreferrer">
-      {{ i18n "improve_page" | default "Improve this page" }} <span aria-hidden="true">↗</span>
-    </a>
-  </li>
-  <li>
-    {{- $title := printf "%s: " ($.Title | plainify) -}}
-    {{- $body := printf "Page: %s\n\n" $.Permalink -}}
     <a href="{{ printf "%s/issues/new?title=%s&body=%s" $repo (urlquery $title) (urlquery $body) }}"
        target="_blank" rel="noopener noreferrer">
       {{ i18n "discuss_page" | default "Found a problem? Open an issue" }} <span aria-hidden="true">↗</span>
