@@ -1,4 +1,4 @@
 ---
 title: "Thoughts"
-description: "Personal thoughts, philosophy, and life experiences."
+description: "Shorter pieces about engineering judgement — estimates, failure, and what building things has changed my mind about."
 ---

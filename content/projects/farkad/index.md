@@ -18,9 +18,10 @@ newToMe: ["multi-agent pipelines", "structured output from free text", "Firebase
 links:
   live: "https://farkad.web.app"
 lede: |
-  Say one line about your day — *two eggs, a big glass of water, walked forty
-  minutes, slept badly* — and it comes back filed across every area it touched,
-  each entry editable next to the words it came from.
+  A health tracker whose entire interface is one spoken sentence. You say a line
+  about your day — *two eggs, a big glass of water, walked forty minutes, slept
+  badly* — and an agent pipeline files it across every area it touched, each
+  entry editable next to the words it came from.
 takeaway: "One engine that handles every combination beats six that each handle one, but it has to be decided early — retrofitting it cost me a rewrite."
 lessons:
   - "**A decisions log with expiry dates outlives a design doc.** `DECISIONS.md` records every locked decision *and what no longer holds*. It exists because a navigation tab drifted three times in one session, twice from reasoning off a backlog of screens that were still only drawn. There is now a test that reads the spec table and fails when the code disagrees."

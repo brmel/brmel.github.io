@@ -1,4 +1,4 @@
 ---
 title: "Tech"
-description: "Technical articles about image processing, math, and coding."
+description: "How things actually work, learned by building them — image processing and machine vision first, then the systems underneath: memory, algorithms, agents."
 ---

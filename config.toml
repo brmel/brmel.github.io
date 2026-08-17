@@ -21,6 +21,7 @@ googleAnalytics = "G-CHFGS2DHF6"
       imageUrl = "images/MyPhoto.jpg"
       imageWidth = 380
       imageTitle = "Brahim Redouane Mellah"
+      bigPicture = "Image processing and machine vision by trade — algorithms designed in C++ and shipped into products running on factory floors. Robotics, and small applications for people who needed them, on my own time."
     [[languages.en.menu.main]]
       identifier = "home"
       name = "Home"
@@ -67,6 +68,7 @@ googleAnalytics = "G-CHFGS2DHF6"
       imageUrl = "images/MyPhoto.jpg"
       imageWidth = 380
       imageTitle = "Brahim Redouane Mellah"
+      bigPicture = "Traitement d'images et vision industrielle de métier — des algorithmes conçus en C++ et livrés dans des produits qui tournent en usine. De la robotique et de petites applications utiles, sur mon temps libre."
     [[languages.fr.menu.main]]
       identifier = "home"
       name = "Accueil"
@@ -114,6 +116,7 @@ googleAnalytics = "G-CHFGS2DHF6"
       imageUrl = "images/MyPhoto.jpg"
       imageWidth = 380
       imageTitle = "إبراهيم رضوان ملاح"
+      bigPicture = "معالجة الصور والرؤية الآلية مهنةً — خوارزميات تُصمَّم بلغة C++ وتُشحن داخل منتجات تعمل في المصانع. وفي الوقت الخاص: الروبوتات وتطبيقات صغيرة لمن احتاجها."
     [[languages.ar.menu.main]]
       identifier = "home"
       name = "الرئيسية"

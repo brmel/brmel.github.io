@@ -1,0 +1,14 @@
+{{- with site.GetPage "/resume" }}
+<aside class="author-card">
+  <span class="u-eyebrow author-card__label">{{ i18n "author_label" | default "Who wrote this" }}</span>
+  <p class="author-card__name">{{ site.Params.profileMode.title | default site.Title }}</p>
+  {{- with .Params.role }}<p class="author-card__role">{{ . }}</p>{{ end }}
+  {{- with site.Params.profileMode.bigPicture }}<p class="author-card__line">{{ . }}</p>{{ end }}
+  <p class="author-card__links">
+    <a href="{{ .RelPermalink }}">{{ i18n "author_resume" | default "The whole career →" }}</a>
+    {{- with site.GetPage "/projects" }}
+    <a href="{{ .RelPermalink }}">{{ i18n "author_projects" | default "Everything built →" }}</a>
+    {{- end }}
+  </p>
+</aside>
+{{- end }}

@@ -20,11 +20,11 @@ links:
   live: ""
   repo: ""
 lede: |
-  A robot cell you can open in a browser and then argue with: pick an
-  application, swap the algorithm that plans the motion or finds the part, and
-  watch a UR10e on a rail try it in a physics engine that does not flatter
-  anybody. Everything you can change is data; everything you can replace sits
-  behind one interface.
+  An open platform for testing robotics algorithms in real physics. Pick an
+  application, swap the node that finds the part or plans the motion, and watch a
+  UR10e on a rail try it in a physics engine that does not flatter anybody:
+  everything you can change is data, everything you can replace sits behind one
+  interface.
 takeaway: "A simulator that lets your algorithm succeed is worse than no simulator, because you believe it."
 lessons:
   - "**The scenario has to be unfair or the result means nothing.** An easy cell makes every algorithm look competent. The default scene moves the target, delays the sensor, and puts a decoy in the bin that is the same colour as the part — so a tracker that assumes a stationary world misses visibly, and the log names what it hit rather than reporting a lower score."
