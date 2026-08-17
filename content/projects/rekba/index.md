@@ -46,8 +46,8 @@ harder to detect than an empty file.
 
 Riders get bus, tram and metro in one app, in the three languages the country
 actually reads in. Underneath, a pipeline manufactures a network out of sources
-never meant to be one — map geometry, timetable estimates, coarse positions —
-and publishes it as a standard transit feed.
+never meant to be one: map geometry, timetable estimates, coarse positions. It
+publishes the result as a standard transit feed.
 
 The piece I did not expect to build is the review screen. Every candidate feed
 is compared against the published one and every change is graded before anything

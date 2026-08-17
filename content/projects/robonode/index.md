@@ -62,22 +62,22 @@ setup.
 ## The product
 
 One command brings up a cell in the browser: a UR10e on a rail, a conveyor, a
-bin, a pallet, and a running application you can watch. The physics is real —
-the arm is stopped by whatever is in its way, a grasp is a constraint on the
-part it actually caught, and the conveyor moves the workpiece by friction.
+bin, a pallet, and a running application you can watch. The physics is real. The arm is stopped by whatever is in its way, a grasp is
+a constraint on the part it actually caught, and the conveyor moves the
+workpiece by friction.
 
 Four things in that cell are **nodes**: what sees, what tracks, what plans the
 path, and what controls the arm. Each is one typed interface with several
 implementations and an empty slot for yours. Open the editor, write a grasp
-offset, and it compiles into a sandbox and becomes another selectable version
-— then run the same application against both and compare.
+offset, and it compiles into a sandbox and becomes another selectable version.
+Then run the same application against both and compare.
 
 Breaking it is the demonstration. Switch tracking to the snapshot version and
 run the moving-bin application: the arm aims where the part *was* and misses,
 in the same way it would miss on a real line. Nothing about that failure needs
 a rig, a safety fence, or a technician.
 
-The engines underneath are borrowed on purpose — MuJoCo, OpenCV, Ruckig,
+The engines underneath are borrowed on purpose: MuJoCo, OpenCV, Ruckig,
 Pinocchio. What I built is the boundary around them, the sandbox that lets a
 stranger's code run beside mine, and the one wire contract that the browser,
 the CLI and anything else all speak.

@@ -21,7 +21,7 @@ googleAnalytics = "G-CHFGS2DHF6"
       imageUrl = "images/MyPhoto.jpg"
       imageWidth = 380
       imageTitle = "Brahim Redouane Mellah"
-      bigPicture = "Image processing and machine vision by trade — algorithms designed in C++ and shipped into products running on factory floors. Robotics, and small applications for people who needed them, on my own time."
+      bigPicture = "Software engineer working in C++ on image processing, machine vision and robotics. My algorithms ship inside industrial products; on my own time I build robots and small applications."
     [[languages.en.menu.main]]
       identifier = "home"
       name = "Home"
@@ -68,7 +68,7 @@ googleAnalytics = "G-CHFGS2DHF6"
       imageUrl = "images/MyPhoto.jpg"
       imageWidth = 380
       imageTitle = "Brahim Redouane Mellah"
-      bigPicture = "Traitement d'images et vision industrielle de métier — des algorithmes conçus en C++ et livrés dans des produits qui tournent en usine. De la robotique et de petites applications utiles, sur mon temps libre."
+      bigPicture = "Ingénieur logiciel en C++ : traitement d'images, vision industrielle et robotique. Mes algorithmes sont livrés dans des produits industriels ; sur mon temps libre, je construis des robots et de petites applications."
     [[languages.fr.menu.main]]
       identifier = "home"
       name = "Accueil"
@@ -116,7 +116,7 @@ googleAnalytics = "G-CHFGS2DHF6"
       imageUrl = "images/MyPhoto.jpg"
       imageWidth = 380
       imageTitle = "إبراهيم رضوان ملاح"
-      bigPicture = "معالجة الصور والرؤية الآلية مهنةً — خوارزميات تُصمَّم بلغة C++ وتُشحن داخل منتجات تعمل في المصانع. وفي الوقت الخاص: الروبوتات وتطبيقات صغيرة لمن احتاجها."
+      bigPicture = "مهندس برمجيات بلغة C++ في معالجة الصور والرؤية الآلية والروبوتات. خوارزمياتي تُشحن داخل منتجات صناعية، وفي وقتي الخاص أبني روبوتات وتطبيقات صغيرة."
     [[languages.ar.menu.main]]
       identifier = "home"
       name = "الرئيسية"
@@ -279,7 +279,7 @@ enableEmoji = true
     [markup.goldmark.renderer]
       unsafe = true
 
-# Two plain-text views of the site for retrieval agents: llms.txt is the map,
+# Two plain-text views of the site: llms.txt is the map,
 # llms-full.txt is the whole corpus. Both are generated from the content, so
 # neither can drift the way a hand-written index would.
 [outputFormats.LLMS]

@@ -3,11 +3,13 @@ title: "Ibraverse"
 date: 2025-01-08
 description: "Vision industrielle et traitement d'images chez Zebra Technologies. Projets personnels, articles techniques et carnets de terrain."
 ---
-J'aime programmer, et ce sont les cas limites que je préfère — l'entrée que
-personne n'avait prévue, celle qui ne casse qu'au quatrième essai.
+Je suis ingénieur logiciel. Je travaille en C++ sur le traitement d'images, la
+vision industrielle et la robotique.
 
-Professionnellement, c'est le traitement d'images : concevoir des algorithmes et
-les livrer dans des produits qui tournent en usine. Sur mon temps libre, c'est la
-robotique, et de petites applications faites pour des gens qui en avaient besoin.
+Au travail, mes algorithmes sont livrés dans des produits industriels qui
+tournent en usine. Sur mon temps libre, je construis des robots et de petites
+applications pour des gens qui me les ont demandées.
 
-Les articles racontent aussi ce qui n'a pas fonctionné.
+Ce que je préfère, ce sont les cas limites : l'entrée que personne n'avait
+prévue, celle qui ne casse qu'au quatrième essai. Les articles ici racontent
+aussi ce qui n'a pas marché.

@@ -84,8 +84,7 @@ are defensible; the mix is not. An editorial brand usually picks sentence case.
 **The report page is a different design system.** `/tech/hydro-quebec-outage-analysis/`
 embeds a generated 1.4MB artefact with a white ground, a blue accent and a bold
 sans — none of which exist anywhere else on this site. It is deliberately
-iframed and documented as such, and it is also the best artefact here for a
-recruiter. *Recommendation: regenerate the report with the site's tokens; the
+iframed and documented as such, and it is also the best artefact on the site. *Recommendation: regenerate the report with the site's tokens; the
 palette is ~20 values in the generator.*
 
 **Project pages show `stack` and `tags` on the same screen** — "TypeScript" and

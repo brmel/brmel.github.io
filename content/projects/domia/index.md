@@ -49,15 +49,15 @@ there is a button that says *Continue*.
 ## The product
 
 Domia takes a request in plain language and drives the application until it is
-done: read the accessibility tree — the same structure a screen reader uses —
-choose an action, act on what is actually there, look at what changed, decide
-again. One loop, no recorded steps, and the same loop whether the target is a
+done. It reads the accessibility tree, the same structure a screen reader uses,
+chooses an action, acts on what is actually there, looks at what changed, and
+decides again. One loop, no recorded steps, and the same loop whether the target is a
 web page or a desktop app.
 
-Judgement is the expensive part, so it is spent last. A deterministic pass over
-an origin's files, headers and served HTML settles what it can in pure functions
-— fifteen findings in about a fifth of a second, no model, no browser — and the
-agent only picks up what is left. Every run is recorded as a tree and can be
+Judgement is the expensive part, so it is spent last. A deterministic pass over an origin's
+files, headers and served HTML settles what it can in pure functions: fifteen
+findings in about a fifth of a second, with no model and no browser. The agent
+only picks up what is left. Every run is recorded as a tree and can be
 replayed from its own tape without calling the model again.
 
 It is a beta and says so. What is missing is the ordinary part: entering a key

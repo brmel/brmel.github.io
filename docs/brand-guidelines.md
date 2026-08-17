@@ -208,7 +208,7 @@ doesn't fit one of these rows doesn't have a home yet — decide before building
 | Section | It exists to | Accent | Chrome |
 |---|---|---|---|
 | **Home** | Say who this is, show the career, then route into the work | rust (master) | hero band, career strip, section cards, latest posts |
-| **Resume** | Be the page you send to someone hiring | rust | career timeline, skills, certifications |
+| **Resume** | The career, in one page | rust | career timeline, skills, certifications |
 | **Projects** | Show things built end-to-end, with the lessons | per `domain:` | eyebrow, stack chips, status, gallery |
 | **Tech** | Explain something learned by doing it | rust | article layout, figures |
 | **Adventures** | Honest first-person reviews of places | per `category:` | eyebrow, verdict block, reel row |
