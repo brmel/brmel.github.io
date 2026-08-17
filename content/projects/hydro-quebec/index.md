@@ -15,7 +15,6 @@ metrics:
   - value: "5%"
     label: "of announced restoration times landed within the hour"
 stack: ["Python", "pandas", "Plotly", "KMZ", "Firebase Storage"]
-newToMe: ["long-running collectors", "KMZ geometry and spatial attribution", "Plotly reporting"]
 links:
   live: "/tech/hydro-quebec-outage-analysis/"
 lede: |

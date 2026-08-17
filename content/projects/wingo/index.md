@@ -14,7 +14,6 @@ metrics:
   - value: "0"
     label: "launches — the infrastructure is further along than the product"
 stack: ["Flutter", "Firebase Functions", "TypeScript", "React", "Firestore"]
-newToMe: ["Cloud Functions as the only write path", "release tooling and rollback", "Flutter web"]
 links:
   live: ""
 lede: |

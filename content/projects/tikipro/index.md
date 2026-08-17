@@ -14,7 +14,6 @@ metrics:
   - value: "0"
     label: "patient records that leave the building"
 stack: ["Electron", "TypeScript", "Firebase", "Ed25519", "Turborepo"]
-newToMe: ["Electron packaging and code signing", "Ed25519 offline licensing", "Turborepo"]
 links:
   live: "https://tikipro.web.app"
 lede: |

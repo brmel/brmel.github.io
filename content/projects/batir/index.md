@@ -10,12 +10,11 @@ startHereWhy: "retrieval that has to cite a building code, in three languages"
 metrics:
   - value: "3 languages"
     label: "Arabic, French and English, answered from one corpus"
-  - value: "0 answers"
-    label: "without a citation back to the document they came from"
+  - value: "Cited"
+    label: "answers are retrieved from the corpus and point back to the document"
   - value: "5 stages"
     label: "fetch, promote, deploy, re-ingest, verify — before a corpus change is live"
 stack: ["Python", "FastAPI", "Next.js", "Postgres + pgvector", "LlamaIndex", "Gemini"]
-newToMe: ["pgvector", "LlamaIndex", "hexagonal architecture in Python", "agent streaming (AG-UI)"]
 links:
   live: ""
   repo: ""
@@ -30,7 +29,7 @@ lessons:
   - "**Everything an operator tunes lives in `data/`, not in the code.** Prompts, retrieval parameters and the corpus documents are editable from an admin console. The rule came from watching how these systems really get improved: someone reads a bad answer and wants to change one line of prompt. If that needs a pull request and a deploy, the bad answer stays."
   - "**Publishing a corpus is a release, so it has stages.** Fetch, promote from dev to prod, deploy the markdown, rebuild the index, verify. A retrieval index that quietly regresses is invisible until a user gets a wrong citation, which is exactly the failure the staging step exists to catch."
   - "**One schema, generated both ways.** The frontend's response types are generated from the API's OpenAPI schema instead of being written twice. It is a small discipline that removes an entire category of bug — the one where the backend renamed a field three weeks ago and the UI has been quietly rendering `undefined`."
-  - "**Arabic is not a translation pass.** Right-to-left is a layout problem, but a *technical* corpus in three languages is a retrieval problem: the same regulation has to be findable whichever language the question arrives in. Getting that wrong looks exactly like the model being stupid."
+  - "**Three languages is a retrieval problem, not a translation pass.** Right-to-left is a layout job and a small one. The harder half is that a question can arrive in any of the three languages while the regulation that answers it was written in another."
 tags: ["AI", "Python", "RAG", "Algeria"]
 ---
 

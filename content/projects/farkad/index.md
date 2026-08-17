@@ -11,10 +11,9 @@ metrics:
     label: "the entire interface"
   - value: "6 areas"
     label: "filed from one spoken line"
-  - value: "9 days"
-    label: "how long a tapping habit tracker survives"
+  - value: "2 passes"
+    label: "spoken sentence to structured, editable entries"
 stack: ["Flutter", "Python", "Firebase Functions", "Multi-agent", "Dart"]
-newToMe: ["multi-agent pipelines", "structured output from free text", "Firebase Functions in Python"]
 links:
   live: "https://farkad.web.app"
 lede: |

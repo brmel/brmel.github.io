@@ -14,7 +14,6 @@ metrics:
   - value: "0"
     label: "agencies publishing a usable timetable feed"
 stack: ["Python", "FastAPI", "Prefect", "Typer", "GTFS", "Flutter"]
-newToMe: ["the GTFS specification", "Prefect orchestration", "OpenStreetMap geometry"]
 links:
   live: "https://rekba-landing.web.app"
 lede: |

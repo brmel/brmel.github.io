@@ -14,7 +14,6 @@ metrics:
   - value: "40"
     label: "design decisions recorded, each with what it fixed"
 stack: ["TypeScript", "Playwright", "Electron", "AI SDK", "MCP", "SQLite"]
-newToMe: ["the AI SDK and its provider quirks", "MCP as a server, not a client", "accessibility-tree automation"]
 links:
   live: ""
   repo: ""

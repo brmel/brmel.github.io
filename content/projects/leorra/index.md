@@ -14,7 +14,6 @@ metrics:
   - value: "0"
     label: "launches — the missing piece was never a feature"
 stack: ["Flutter", "Dart", "Firebase", "BLoC", "Clean Architecture", "get_it"]
-newToMe: ["clean architecture in Flutter", "BLoC state management", "dependency injection with get_it"]
 links:
   live: ""
 lede: |

@@ -15,7 +15,6 @@ metrics:
   - value: "0 rigs"
     label: "needed to find out an algorithm is wrong"
 stack: ["C++", "MuJoCo", "OpenCV", "Ruckig", "three.js", "Docker"]
-newToMe: ["MuJoCo physics", "WebAssembly sandboxing of user code", "Ruckig trajectories", "three.js"]
 links:
   live: ""
   repo: ""
@@ -30,7 +29,7 @@ lessons:
   - "**The scenario has to be unfair or the result means nothing.** An easy cell makes every algorithm look competent. The default scene moves the target, delays the sensor, and puts a decoy in the bin that is the same colour as the part — so a tracker that assumes a stationary world misses visibly, and the log names what it hit rather than reporting a lower score."
   - "**One interface per capability, and the seam is the product.** Vision, tracking, trajectory and control are four typed slots with interchangeable versions and a bring-your-own option. Because the seam is owned, swapping a planner touches neither the UI, nor the CLI, nor the real-time loop — and that is the entire reason a stranger's algorithm can be dropped into a running cell at all."
   - "**Reuse the mature engines; the platform is the glue.** MuJoCo for physics, Ruckig for trajectories, OpenCV for vision, Pinocchio for kinematics. None of them is reimplemented. What is actually hard, and what I built, is the clean modular boundary and the swap-and-compare experience around them."
-  - "**Third-party code runs in a sandbox, not in my process.** User algorithms compile to WebAssembly and execute isolated, because the moment a platform invites strangers to write control code, a crash in their planner must not take the cell down with it."
+  - "**Third-party code runs in a sandbox, not in my process.** User algorithms compile into a fuel-bounded VM with no host surface, so a runaway loop stops instead of taking the cell with it. The moment a platform invites strangers to write control code, that stops being optional."
   - "**Every UI action has a CLI verb, and that was not free.** One contract, three surfaces — web, CLI, and other clients — with the wire format defined once. It costs discipline on every feature, and it is why the thing can be driven by a script, a person, or an agent without three implementations drifting apart."
 tags: ["Robotics", "C++", "Simulation"]
 resources:
