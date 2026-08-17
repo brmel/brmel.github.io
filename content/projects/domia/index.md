@@ -4,8 +4,8 @@ date: 2026-07-26
 projectNo: 7
 domain: "infra"
 status: "active"
-pitch: "An agent that tests software by looking at the screen, the way a person would."
-description: "An agent that tests software by looking at the screen, the way a person would."
+pitch: "Software that tests other software by reading the screen and clicking, the way a person would."
+description: "Software that tests other software by reading the screen and clicking, the way a person would."
 metrics:
   - value: "~200 ms"
     label: "for 15 verified findings, with no model involved"

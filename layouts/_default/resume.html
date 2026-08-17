@@ -12,7 +12,7 @@
     <ul class="resume__contact">
       {{- range . }}
       <li><a href="{{ .url }}"{{ if hasPrefix .url "http" }} target="_blank" rel="noopener noreferrer"{{ end }}>
-        {{- partial "social-icon.html" .label }}<span>{{ .label }}</span></a></li>
+        {{- partial "social-icon.html" .url }}<span>{{ .label }}</span></a></li>
       {{- end }}
     </ul>
     {{- end }}
@@ -65,7 +65,7 @@
     {{- with .Params.availability }}<p class="resume__availability">{{ . }}</p>{{ end }}
     <ul class="resume__contact resume__contact--close">
       {{- range first 1 .Params.contact }}
-      <li><a href="{{ .url }}">{{ partial "social-icon.html" .label }}<span>{{ .label }}</span></a></li>
+      <li><a href="{{ .url }}">{{ partial "social-icon.html" .url }}<span>{{ .label }}</span></a></li>
       {{- end }}
       <li><button type="button" class="resume__print" onclick="window.print()">{{ i18n "resume_print" | default "Save as PDF" }}</button></li>
       {{- with site.GetPage "/projects" }}

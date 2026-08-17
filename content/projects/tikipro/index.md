@@ -4,8 +4,8 @@ date: 2025-08-04
 projectNo: 1
 domain: "saas"
 status: "shipped"
-pitch: "Waiting-room ticketing for a small clinic, running on the one PC already at reception."
-description: "Waiting-room ticketing for a small clinic, running on the one PC already at reception."
+pitch: "Gives a small clinic a numbered queue on a screen, so patients stop asking who is next."
+description: "Gives a small clinic a numbered queue on a screen, so patients stop asking who is next."
 metrics:
   - value: "1 PC"
     label: "runs reception, the board and every doctor"

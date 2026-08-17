@@ -4,8 +4,8 @@ date: 2024-11-21
 projectNo: 3
 domain: "infra"
 status: "active"
-pitch: "A public transit app for Algeria, built on a network that had to be created first."
-description: "A public transit app for Algeria, built on a network that had to be created first."
+pitch: "A bus, tram and metro app for Algeria, where no usable timetable existed until I built one."
+description: "A bus, tram and metro app for Algeria, where no usable timetable existed until I built one."
 metrics:
   - value: "281 stations"
     label: "and 374 connections, manufactured from open map data"

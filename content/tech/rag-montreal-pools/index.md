@@ -1,5 +1,5 @@
 ---
-title: "Building a RAG Chatbot for Montréal's Pool Schedules"
+title: "Building a Chatbot That Answers From Your Own Documents"
 date: 2024-09-03
 relatedProject: "batir"
 summary: "Montréal publishes every indoor pool schedule and no way to search them by time. A RAG chatbot over the scraped schedules, built in one afternoon — and why the result still made me uncomfortable."

@@ -4,8 +4,8 @@ date: 2026-08-01
 projectNo: 4
 domain: "mobile"
 status: "active"
-pitch: "A health tracker you talk to: say your day in one sentence and it files the rest."
-description: "A health tracker you talk to: say your day in one sentence and it files the rest."
+pitch: "A health tracker you talk to: say what you ate, drank and did in one sentence, and it records it."
+description: "A health tracker you talk to: say what you ate, drank and did in one sentence, and it records it."
 metrics:
   - value: "1 sentence"
     label: "the entire interface"

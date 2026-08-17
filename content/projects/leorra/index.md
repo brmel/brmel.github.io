@@ -4,8 +4,8 @@ date: 2021-08-29
 projectNo: 6
 domain: "mobile"
 status: "archived"
-pitch: "A marketplace for sending parcels with travellers who have room in their luggage."
-description: "A marketplace for sending parcels with travellers who have room in their luggage."
+pitch: "An app for sending a parcel abroad with a traveller who has room in their suitcase."
+description: "An app for sending a parcel abroad with a traveller who has room in their suitcase."
 metrics:
   - value: "20 months"
     label: "of work, three languages, store screenshots"

@@ -4,8 +4,8 @@ date: 2026-08-04
 projectNo: 2
 domain: "mobile"
 status: "active"
-pitch: "An app for deciding where a group is going, and actually settling it."
-description: "An app for deciding where a group is going, and actually settling it."
+pitch: "Helps a group of friends pick where to go out, and settles it, instead of a chat that never decides."
+description: "Helps a group of friends pick where to go out, and settles it, instead of a chat that never decides."
 metrics:
   - value: "3 surfaces"
     label: "app, admin console, marketing site"

@@ -4,9 +4,9 @@ date: 2026-07-25
 projectNo: 9
 domain: "saas"
 status: "active"
-pitch: "A construction assistant for Algeria that answers in three languages and cites the code."
-description: "A construction assistant for Algeria that answers in three languages and cites the code."
-startHereWhy: "retrieval that has to cite a building code, in three languages"
+pitch: "Answers Algerian construction questions in Arabic, French or English, and shows the building rule behind each answer."
+description: "Answers Algerian construction questions in Arabic, French or English, and shows the building rule behind each answer."
+startHereWhy: "an assistant that has to prove where its answer came from"
 metrics:
   - value: "3 languages"
     label: "Arabic, French and English, answered from one corpus"

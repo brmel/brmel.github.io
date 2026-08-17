@@ -1,4 +1,4 @@
 ---
 title: "Tech"
-description: "How things actually work, learned by building them — image processing and machine vision first, then the systems underneath: memory, algorithms, agents."
+description: "Long write-ups on how something works, learned by building it: image processing and machine vision first, then memory, algorithms and agents."
 ---

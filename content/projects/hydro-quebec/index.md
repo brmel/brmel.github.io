@@ -4,9 +4,9 @@ date: 2026-06-01
 projectNo: 5
 domain: "data"
 status: "shipped"
-pitch: "A reliability report on Québec's power grid, built from two months of my own measurements."
-description: "A reliability report on Québec's power grid, built from two months of my own measurements."
-startHereWhy: "two months of data I collected, and the number nobody publishes"
+pitch: "I recorded every power cut in Québec for two months, to see how often the power really returns when they say it will."
+description: "I recorded every power cut in Québec for two months, to see how often the power really returns when they say it will."
+startHereWhy: "two months of data I collected, and a number nobody publishes"
 metrics:
   - value: "56 days"
     label: "of the outage map, recorded every minute"
