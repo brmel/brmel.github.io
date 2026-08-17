@@ -1,0 +1,9 @@
+{{- with .Params.relatedProject }}
+{{- with site.GetPage (printf "/projects/%s" .) }}
+<aside class="related-project" data-category="{{ .Params.domain | default "saas" }}">
+  <span class="u-eyebrow related-project__label">{{ i18n "related_project" | default "The project behind this" }}</span>
+  <a class="related-project__link" href="{{ .RelPermalink }}">{{ .Title }}</a>
+  <span class="related-project__pitch">{{ .Params.pitch }}</span>
+</aside>
+{{- end }}
+{{- end }}

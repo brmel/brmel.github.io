@@ -5,6 +5,7 @@ projectNo: 9
 domain: "saas"
 status: "active"
 pitch: "Ask a construction question in Arabic, French or English and get an answer that cites the Algerian code it came from."
+description: "A tri-lingual AI construction consultant for Algeria — retrieval-grounded answers on seismic rules, concrete mixes and permits, each cited back to the code it came from."
 startHereWhy: "retrieval that has to cite a building code, in three languages"
 metrics:
   - value: "3 languages"

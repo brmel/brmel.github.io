@@ -5,6 +5,7 @@ projectNo: 3
 domain: "infra"
 status: "active"
 pitch: "Public transit for Algeria — bus, tram and metro in one app, in a country with no reliable open timetable data."
+description: "Public transit for Algeria where no agency publishes a usable timetable: a pipeline that manufactures a GTFS network from OpenStreetMap geometry, and the rider app on top of it."
 metrics:
   - value: "281 stations"
     label: "and 374 connections, manufactured from open map data"

@@ -2,6 +2,8 @@ baseURL = "https://ibraverse.ca"
 defaultContentLanguage = "en"
 defaultContentLanguageInSubdir = false
 theme = "PaperMod"
+# lastmod from the commit that touched the file, so sitemap freshness is real
+enableGitInfo = true
 googleAnalytics = "G-CHFGS2DHF6"
 
   [languages.en]

@@ -5,6 +5,7 @@ projectNo: 6
 domain: "mobile"
 status: "archived"
 pitch: "Peer-to-peer shipping between countries the courier companies price out — matching people who need to send something with travellers who have spare luggage."
+description: "A peer-to-peer shipping marketplace matching senders with travellers who have spare luggage. Twenty months, three languages, never launched — and why the missing piece was trust, not features."
 metrics:
   - value: "20 months"
     label: "of work, three languages, store screenshots"

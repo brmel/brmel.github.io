@@ -59,13 +59,21 @@
   </section>
   {{- end }}
 
-  {{- with site.GetPage "/projects" }}
-  {{- if ge (len .RegularPages) 1 }}
-  <p class="resume__more">
-    <a href="{{ .RelPermalink }}">{{ i18n "resume_projects_link" | default "See the projects →" }}</a>
-  </p>
-  {{- end }}
-  {{- end }}
+  <section class="resume__close" aria-labelledby="resume-contact">
+    <h2 class="u-rule-heading resume__h2" id="resume-contact">{{ i18n "resume_get_in_touch" | default "Get in touch" }}</h2>
+    {{- with .Params.availability }}<p class="resume__availability">{{ . }}</p>{{ end }}
+    <ul class="resume__contact resume__contact--close">
+      {{- range .Params.contact }}
+      <li><a href="{{ .url }}"{{ if hasPrefix .url "http" }} target="_blank" rel="noopener noreferrer"{{ end }}>{{ .label }}</a></li>
+      {{- end }}
+      <li><button type="button" class="resume__print" onclick="window.print()">{{ i18n "resume_print" | default "Save as PDF" }}</button></li>
+      {{- with site.GetPage "/projects" }}
+      {{- if ge (len .RegularPages) 1 }}
+      <li><a href="{{ .RelPermalink }}">{{ i18n "resume_projects_link" | default "See the projects →" }}</a></li>
+      {{- end }}
+      {{- end }}
+    </ul>
+  </section>
 
   {{- partial "content-footer.html" . }}
 

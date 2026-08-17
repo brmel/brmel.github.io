@@ -7,6 +7,7 @@ ShowBreadCrumbs: false
 aliases: ["/ar/timeline/", "/ar/about/"]
 role: "مطور برمجيات أول — الرؤية الآلية ومعالجة الصور"
 location: "مونتريال، كيبك"
+availability: "منفتح على أدوار أولى ومتقدمة في الرؤية الآلية والتصوير وأنظمة الوقت الحقيقي — في مونتريال أو عن بُعد. البريد الإلكتروني أسرع وسيلة للتواصل."
 contact:
   - label: "البريد الإلكتروني"
     url: "mailto:mellah.brahim.redouane@gmail.com"

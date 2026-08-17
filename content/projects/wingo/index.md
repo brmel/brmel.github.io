@@ -5,6 +5,7 @@ projectNo: 2
 domain: "mobile"
 status: "active"
 pitch: "A small group decides where to go — nominate options, vote in real time, lock in a winner."
+description: "A group planning app built around the moment a chat thread cannot produce: nominate options, vote in real time, and lock one in — with every write behind a server function."
 metrics:
   - value: "3 surfaces"
     label: "app, admin console, marketing site"

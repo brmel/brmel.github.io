@@ -5,6 +5,7 @@ projectNo: 5
 domain: "data"
 status: "shipped"
 pitch: "Two months of Hydro-Québec outage snapshots, collected every minute, turned into a reliability report the utility doesn't publish."
+description: "Fifty-six days of Hydro-Québec's outage map recorded every minute: 16,561 outages, and the finding that announced restoration times land within the hour about five percent of the time."
 startHereWhy: "two months of data I collected, and the number nobody publishes"
 metrics:
   - value: "56 days"

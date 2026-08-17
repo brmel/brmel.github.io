@@ -136,3 +136,18 @@
 .entry-content{-webkit-line-clamp:unset;overflow:visible;}
 
 .post-content :not(pre) > code{margin:0;padding:.1em .22em;font-size:.85em;}
+
+.related-project{
+  max-width:var(--container-text);
+  margin:var(--space-8) auto 0;
+  padding-top:var(--space-4);
+  border-top:var(--hairline) solid var(--rule);
+  display:flex;flex-direction:column;gap:var(--space-1);
+}
+.related-project__link{
+  font-family:var(--font-serif);font-size:var(--t-subhead);
+  color:var(--ink);text-decoration:none;
+  border-bottom:var(--hairline) solid var(--accent);align-self:flex-start;
+}
+.related-project__link:hover{color:var(--accent);}
+.related-project__pitch{font-size:var(--t-caption);color:var(--ink-soft);line-height:1.5;}

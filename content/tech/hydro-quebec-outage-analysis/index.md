@@ -1,6 +1,7 @@
 ---
 title: "Hydro-Québec Outage Analysis"
 date: 2026-06-01
+relatedProject: "hydro-quebec"
 draft: false
 layout: "standalone"
 hideAutoHeader: true

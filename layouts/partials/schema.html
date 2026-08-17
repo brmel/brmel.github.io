@@ -1,0 +1,76 @@
+{{- $person := dict
+      "@type" "Person"
+      "@id" (printf "%s#person" site.BaseURL)
+      "name" (site.Params.profileMode.title | default site.Title)
+      "url" site.BaseURL
+-}}
+
+{{- with site.GetPage "/resume" }}
+{{- $sameAs := slice }}
+{{- range .Params.contact }}{{ if hasPrefix .url "http" }}{{ $sameAs = $sameAs | append .url }}{{ end }}{{ end }}
+{{- $skills := slice }}
+{{- range .Params.skills }}{{ range .items }}{{ $skills = $skills | append . }}{{ end }}{{ end }}
+{{- $person = merge $person (dict
+      "jobTitle" (.Params.role | default "")
+      "description" (.Params.description | default "")
+      "address" (dict "@type" "PostalAddress" "addressLocality" (.Params.location | default ""))
+      "sameAs" $sameAs
+      "knowsAbout" (first 20 $skills)) }}
+{{- with index .Params.experience 0 }}
+{{- $person = merge $person (dict "worksFor" (dict "@type" "Organization" "name" .org "url" (.url | default ""))) }}
+{{- end }}
+{{- $edu := slice }}
+{{- range .Params.experience }}{{ if or (hasPrefix .role "M.Sc") (hasPrefix .role "B.Eng") (hasPrefix .role "Ingénieur") (hasPrefix .role "ماجستير") }}{{ $edu = $edu | append (dict "@type" "CollegeOrUniversity" "name" .org) }}{{ end }}{{ end }}
+{{- with $edu }}{{ $person = merge $person (dict "alumniOf" .) }}{{ end }}
+{{- end }}
+
+{{- $graph := slice $person -}}
+
+{{- if .IsHome }}
+{{- $graph = $graph | append (dict
+      "@type" "WebSite"
+      "@id" (printf "%s#website" site.BaseURL)
+      "url" site.BaseURL
+      "name" site.Title
+      "description" site.Params.description
+      "inLanguage" site.Language.Lang
+      "publisher" (dict "@id" (printf "%s#person" site.BaseURL))) }}
+{{- end }}
+
+{{- if eq .Section "projects" }}{{ if .IsPage }}
+{{- $og := partial "func/og-image.html" . }}
+{{- $work := dict
+      "@type" "SoftwareSourceCode"
+      "name" .Title
+      "url" .Permalink
+      "description" (.Description | default .Params.pitch)
+      "abstract" .Params.pitch
+      "author" (dict "@id" (printf "%s#person" site.BaseURL))
+      "programmingLanguage" (.Params.stack | default slice)
+      "image" $og.url
+      "inLanguage" .Lang
+      "dateCreated" (.Date.Format "2006-01-02")
+      "keywords" (delimit (.Params.tags | default slice) ", ") -}}
+{{- with .Params.links.live }}{{ if . }}{{ $work = merge $work (dict "codeRepository" .) }}{{ end }}{{ end }}
+{{- $graph = $graph | append $work }}
+{{- end }}{{ end }}
+
+{{- if and .IsPage (in (slice "tech" "thoughts" "adventures") .Section) }}
+{{- $og := partial "func/og-image.html" . }}
+{{- $graph = $graph | append (dict
+      "@type" "TechArticle"
+      "headline" .Title
+      "url" .Permalink
+      "description" (.Description | default .Summary | plainify | chomp)
+      "image" $og.url
+      "inLanguage" .Lang
+      "datePublished" (.Date.Format "2006-01-02")
+      "dateModified" ((.Lastmod | default .Date).Format "2006-01-02")
+      "wordCount" .WordCount
+      "keywords" (delimit (.Params.tags | default slice) ", ")
+      "author" (dict "@id" (printf "%s#person" site.BaseURL))
+      "publisher" (dict "@id" (printf "%s#person" site.BaseURL))
+      "mainEntityOfPage" (dict "@type" "WebPage" "@id" .Permalink)) }}
+{{- end }}
+
+<script type="application/ld+json">{{ (dict "@context" "https://schema.org" "@graph" $graph) | jsonify | safeJS }}</script>

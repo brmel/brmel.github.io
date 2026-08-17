@@ -7,6 +7,7 @@ ShowBreadCrumbs: false
 aliases: ["/fr/timeline/", "/fr/about/"]
 role: "Développeur logiciel senior — vision industrielle & traitement d'images"
 location: "Montréal, Québec"
+availability: "Ouvert aux postes senior et staff en vision industrielle, imagerie et systèmes temps réel — Montréal ou à distance. Le courriel est le moyen le plus rapide de me joindre."
 contact:
   - label: "Courriel"
     url: "mailto:mellah.brahim.redouane@gmail.com"

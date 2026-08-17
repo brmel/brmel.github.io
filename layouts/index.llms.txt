@@ -24,6 +24,31 @@
 {{- end }}
 {{- end }}
 {{- end }}
+## Facts
+
+Figures a citation can carry, each taken from the page it belongs to.
+
+{{ range (sort (where (site.GetPage "/projects").Pages "Params.metrics" "!=" nil) "Date" "desc") -}}
+### {{ .Title }} — {{ .Permalink }}
+{{ range .Params.metrics }}- {{ .value }}: {{ .label }}
+{{ end }}{{ with .Params.stack }}- Built with: {{ delimit . ", " }}
+{{ end }}{{ with .Params.newToMe }}- New to the author on this project: {{ delimit . ", " }}
+{{ end }}{{ with .Params.takeaway }}- Lesson: {{ . }}
+{{ end }}
+{{ end -}}
+
+## Career
+
+{{ with site.GetPage "/resume" }}{{ range .Params.experience -}}
+### {{ .period }} — {{ .role }}{{ with .org }}, {{ . }}{{ end }}
+{{ with .note }}{{ . }}
+{{ end }}{{ with .built }}- Built: {{ delimit . ", " }}
+{{ end }}{{ with .stack }}- Stack: {{ delimit . ", " }}
+{{ end }}{{ with .tools }}- Tools: {{ delimit . ", " }}
+{{ end }}{{ with .learned }}- Learned: {{ . }}
+{{ end }}
+{{ end }}{{ end -}}
+
 ## Reference
 
 {{ with site.GetPage "/resume" -}}

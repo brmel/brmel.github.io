@@ -6,6 +6,7 @@ description: "Senior Software Developer specialising in machine vision, image pr
 aliases: ["/timeline/", "/about/"]
 role: "Senior Software Developer — machine vision & image processing"
 location: "Montréal, Québec"
+availability: "Open to senior and staff roles in machine vision, imaging and real-time systems — Montréal or remote. The fastest way to reach me is email."
 contact:
   - label: "Email"
     url: "mailto:mellah.brahim.redouane@gmail.com"
