@@ -4,8 +4,8 @@ date: 2025-08-04
 projectNo: 1
 domain: "saas"
 status: "shipped"
-pitch: "Clinic ticketing and queue management that runs on one PC, with no cloud dependency for patient data."
-description: "Clinic ticketing and queue management running entirely on one PC — reception, waiting-room board and each doctor's queue, offline-licensed, with no patient record leaving the building."
+pitch: "Waiting-room ticketing for a small clinic, running on the one PC already at reception."
+description: "Waiting-room ticketing for a small clinic, running on the one PC already at reception."
 metrics:
   - value: "1 PC"
     label: "runs reception, the board and every doctor"

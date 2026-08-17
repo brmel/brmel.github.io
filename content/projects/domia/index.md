@@ -4,8 +4,8 @@ date: 2026-07-26
 projectNo: 7
 domain: "infra"
 status: "active"
-pitch: "An agent that operates a real application the way a person does — reading the screen, clicking, and checking what actually happened."
-description: "An LLM agent that tests real applications by reading the accessibility tree instead of CSS selectors — one loop, no recorded steps, web and desktop alike."
+pitch: "An agent that tests software by looking at the screen, the way a person would."
+description: "An agent that tests software by looking at the screen, the way a person would."
 metrics:
   - value: "~200 ms"
     label: "for 15 verified findings, with no model involved"

@@ -2,7 +2,7 @@
 title: "Estimates and the Five Percent: Why Deadlines Slip, Mine Included"
 date: 2026-08-09
 tags: ["Data Analysis", "Engineering"]
-summary: "I logged every Hydro-Québec outage for two months to see how often the announced restoration time was right. It was right five percent of the time — and I recognised the failure immediately."
+summary: "Hydro-Québec's restoration times were right one time in twenty. I recognised the failure immediately, because I make the same one."
 ---
 
 For fifty-six days I recorded every power outage in Québec, once a minute. Not for a client, not for work — I wanted to know one thing.

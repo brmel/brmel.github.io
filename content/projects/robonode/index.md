@@ -4,8 +4,8 @@ date: 2026-08-01
 projectNo: 8
 domain: "infra"
 status: "active"
-pitch: "Swap the vision, the planner or the controller of a running robot cell from a browser, and watch real physics decide whether you were right."
-description: "An open platform for testing robotics algorithms in real physics: swap the vision, tracking, trajectory or control node of a running UR10e cell from a browser and watch MuJoCo decide."
+pitch: "A robot lab in the browser for trying robotics algorithms against real physics."
+description: "A robot lab in the browser for trying robotics algorithms against real physics."
 startHereWhy: "robotics algorithms tested in real physics, C++"
 metrics:
   - value: "4 nodes"

@@ -4,8 +4,8 @@ date: 2026-08-01
 projectNo: 4
 domain: "mobile"
 status: "active"
-pitch: "Say one sentence about your day and a two-pass agent pipeline files it across every area it touched."
-description: "One spoken sentence about your day, filed by a two-pass agent pipeline across every area it touched — with every generated field editable beside the words it came from."
+pitch: "A health tracker you talk to: say your day in one sentence and it files the rest."
+description: "A health tracker you talk to: say your day in one sentence and it files the rest."
 metrics:
   - value: "1 sentence"
     label: "the entire interface"
