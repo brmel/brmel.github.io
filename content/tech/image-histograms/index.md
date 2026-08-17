@@ -5,7 +5,7 @@ draft: false
 author: "Ibraverse"
 tags: ["Industrial Vision", "Image Processing"]
 aliases: ["/posts/image-histograms/"]
-description: "Learn edge measurement techniques through a practical saw blade teeth counting application"
+description: "Industrial vision systems measure parts by finding their edges. This walks through how edge measurement works, using a saw blade with teeth to count as the example."
 cover:
     image: "01-saw-blade.png"
     alt: "Saw Blade Edge Detection"

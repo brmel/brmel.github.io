@@ -21,7 +21,7 @@ googleAnalytics = "G-CHFGS2DHF6"
       imageUrl = "images/MyPhoto.jpg"
       imageWidth = 380
       imageTitle = "Brahim Redouane Mellah"
-      bigPicture = "Software engineer working in C++ on image processing, machine vision and robotics. My algorithms ship inside industrial products; on my own time I build robots and small applications."
+      bigPicture = "Software engineer in C++, working on image processing, machine vision and robotics. At work I build software that runs inside industrial factories: tested, maintained, optimised and validated. Outside work I keep learning and build projects end to end."
     [[languages.en.menu.main]]
       identifier = "home"
       name = "Home"
@@ -68,7 +68,7 @@ googleAnalytics = "G-CHFGS2DHF6"
       imageUrl = "images/MyPhoto.jpg"
       imageWidth = 380
       imageTitle = "Brahim Redouane Mellah"
-      bigPicture = "Ingénieur logiciel en C++ : traitement d'images, vision industrielle et robotique. Mes algorithmes sont livrés dans des produits industriels ; sur mon temps libre, je construis des robots et de petites applications."
+      bigPicture = "Ingénieur logiciel en C++ : traitement d'images, vision industrielle et robotique. Au travail, je construis des logiciels qui tournent dans des usines, testés, maintenus, optimisés et validés. En dehors, je continue d'apprendre et je mène des projets de bout en bout."
     [[languages.fr.menu.main]]
       identifier = "home"
       name = "Accueil"
@@ -116,7 +116,7 @@ googleAnalytics = "G-CHFGS2DHF6"
       imageUrl = "images/MyPhoto.jpg"
       imageWidth = 380
       imageTitle = "إبراهيم رضوان ملاح"
-      bigPicture = "مهندس برمجيات بلغة C++ في معالجة الصور والرؤية الآلية والروبوتات. خوارزمياتي تُشحن داخل منتجات صناعية، وفي وقتي الخاص أبني روبوتات وتطبيقات صغيرة."
+      bigPicture = "مهندس برمجيات بلغة C++ في معالجة الصور والرؤية الآلية والروبوتات. في العمل أبني برمجيات تعمل داخل المصانع: مُختبرة ومُصانة ومُحسّنة ومُتحقَّق منها. وخارج العمل أواصل التعلّم وأنجز مشاريع من البداية إلى النهاية."
     [[languages.ar.menu.main]]
       identifier = "home"
       name = "الرئيسية"
