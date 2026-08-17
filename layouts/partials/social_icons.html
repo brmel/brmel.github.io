@@ -1,0 +1,10 @@
+{{- /* Fork of themes/PaperMod/partials/social_icons.html @2d2f2c6 — diff before upgrading. */ -}}
+<div class="social-icons" {{ with .align}}align="{{.}}" {{- end }}>
+    {{- range site.Params.socialIcons }}
+    {{- $name := (.title | default .name) | title }}
+    <a href="{{ trim .url " " | safeURL }}" target="_blank" rel="noopener noreferrer me"
+        aria-label="{{ $name }}" title="{{ $name }}">
+        {{ partial "svg.html" . }}
+    </a>
+    {{- end }}
+</div>

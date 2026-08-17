@@ -1,6 +1,7 @@
 ---
 title: "Resume"
 layout: "resume"
+disableShare: true
 summary: "Machine vision and image processing engineer — Zebra Technologies, Matrox Imaging, Polytechnique Montréal."
 description: "Senior Software Developer specialising in machine vision, image processing and control systems."
 aliases: ["/timeline/", "/about/"]

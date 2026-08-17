@@ -1,6 +1,7 @@
 ---
 title: "السيرة الذاتية"
 layout: "resume"
+disableShare: true
 summary: "مهندس رؤية آلية ومعالجة صور — Zebra Technologies وMatrox Imaging وPolytechnique Montréal."
 description: "مطور برمجيات أول متخصص في الرؤية الآلية ومعالجة الصور وأنظمة التحكم."
 ShowBreadCrumbs: false

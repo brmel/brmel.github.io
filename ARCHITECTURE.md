@@ -89,6 +89,13 @@ Section files **compose** the primitives; they never redeclare them.
 `scripts/check-css.py` fails the build if they do, if a colour appears outside
 tokens, if a file exceeds 260 lines, or if a class is declared but never used.
 
+`scripts/check-pages.py` covers what a structural check cannot see: the same
+destination linked twice on one page however differently the two links are
+dressed, a link pointing at its own page, an icon control with no accessible
+name, and internal links that resolve to nothing. It exists because every other
+gate passed while the resume showed LinkedIn and GitHub twice — once as text in
+the header, once as an icon in the footer.
+
 ## Content model
 
 One page bundle per article or project — markdown plus its images — so a page's

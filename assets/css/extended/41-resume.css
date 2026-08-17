@@ -99,3 +99,6 @@
   min-height:24px;
 }
 .resume__print:hover{color:var(--accent);border-color:var(--accent);}
+
+.resume__contact a{display:inline-flex;align-items:center;gap:.5ch;}
+.resume__contact svg{width:14px;height:14px;flex:0 0 auto;opacity:.85;}

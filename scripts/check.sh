@@ -30,3 +30,6 @@ python3 ./scripts/check-css.py
 
 echo "▸ page chrome"
 python3 ./scripts/check-chrome.py
+
+echo "▸ links, duplicates and controls"
+python3 ./scripts/check-pages.py
