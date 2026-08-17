@@ -1,22 +1,26 @@
 ---
 title: "Rekba"
-date: 2026-08-06
+date: 2024-11-21
 projectNo: 3
 domain: "infra"
 status: "active"
 pitch: "Public transit for Algeria — bus, tram and metro in one app, in a country with no reliable open timetable data."
+metrics:
+  - value: "281 stations"
+    label: "and 374 connections, manufactured from open map data"
+  - value: "3 locales"
+    label: "French, Arabic and English, right-to-left aware"
+  - value: "0"
+    label: "agencies publishing a usable timetable feed"
 stack: ["Python", "FastAPI", "Prefect", "Typer", "GTFS", "Flutter"]
+newToMe: ["the GTFS specification", "Prefect orchestration", "OpenStreetMap geometry"]
 links:
   live: "https://rekba-landing.web.app"
 lede: |
-  In Algiers you find out when the bus comes by standing where the bus comes and
-  waiting, because no agency publishes a usable timetable and the apps that
-  would show you one have nothing to read. That gap is the whole problem: the
-  transit app everyone wants cannot exist until someone builds the data
-  underneath it. Rekba is both halves in order — a pipeline that manufactures a
-  network out of OpenStreetMap geometry, timetable estimates and coarse
-  positions, and the app that finally makes it useful to a rider.
-takeaway: "When the data doesn't exist, the product is the pipeline that produces it — not the app on top."
+  Public transit for Algeria, in a country where no agency publishes a usable
+  timetable. Two halves in order: a pipeline that manufactures a transit network
+  out of open map data and estimates, and the rider app that makes it useful.
+takeaway: "When the data doesn't exist, the pipeline that produces it is the product, not the app on top of it."
 lessons:
   - "**I surveyed riders before writing the app, and it changed what I built.** The mapped rail network and the station-level survey came first. What people wanted was not a journey planner — it was knowing whether the thing they are standing at the stop for is actually coming."
   - "**One implementation, three triggers, and no regrets.** The business logic sits behind a FastAPI service, a Typer CLI and Prefect flows over a provider-agnostic data layer. Every rule has one home; the trigger is a detail. This is the decision I would keep on any project of this shape."
@@ -27,35 +31,29 @@ tags: ["Python", "Transit", "Algeria"]
 
 ## The story
 
-For the routes that do have a published timetable, it describes an intention
-rather than a schedule — which is its own kind of missing data, and harder to
-detect than an empty file.
+In Algiers you find out when the bus comes by standing where the bus comes and
+waiting. No agency publishes a usable timetable, and the mapping apps everyone
+already has show nothing, for the same reason: they consume open transit data,
+and there is none to consume. Where a timetable does exist it describes an
+intention rather than a schedule — which is its own kind of missing data, and
+harder to detect than an empty file.
 
-Every mapping app has the same gap for the same reason: they consume open transit
-data, and there is none to consume. So the transit app is the visible half of
-this project, and the half that took the work is the pipeline that manufactures a
-usable network out of sources that were never meant to be one.
+> The app everyone wants cannot exist until someone builds the data underneath
+> it. The pipeline is the product; the app is the part you can see.
 
 ## The product
 
-Riders get bus, tram and metro in one app — lines, live positions where they can
-be estimated, and routes that reflect how the network actually runs. Three
-locales, French, Arabic and English, RTL-aware, because that is how the country
-reads.
+Riders get bus, tram and metro in one app, in the three languages the country
+actually reads in. Underneath, a pipeline manufactures a network out of sources
+never meant to be one — map geometry, timetable estimates, coarse positions —
+and publishes it as a standard transit feed.
 
-Underneath, the backend is deliberately shaped: **one business-logic
-implementation behind three triggers** — a FastAPI service, a Typer CLI and
-Prefect flows — over a provider-agnostic `data/` layer, with infrastructure
-concerns isolated and a dependency-free `kernel/` at the leaf. Adding a fourth
-way to invoke something doesn't mean reimplementing it.
+The piece I did not expect to build is the review screen. Every candidate feed
+is compared against the published one and every change is graded before anything
+ships: routes removed, calendars changed, stations that quietly vanished. You
+approve a release rather than accept it, because publishing a broken timetable
+to someone standing at a stop is worse than publishing an old one.
 
-The piece I did not expect to build is the **feed refresh review screen**. Every
-candidate feed is diffed against the published baseline and every change is
-classified by severity before anything ships — routes removed, calendars
-changed, stops that vanished. A run over the current network produces 281
-stations, 374 edges, and a change list you approve rather than accept. Publishing
-a broken timetable to someone standing at a stop is worse than publishing an old
-one.
-
-The app is not launched yet — the landing page says *bientôt disponible* and
-means it. The network and the pipeline are the parts that exist.
+I surveyed riders before writing any of it, and what they wanted was not a
+journey planner. It was knowing whether the thing they are standing there for is
+actually coming.

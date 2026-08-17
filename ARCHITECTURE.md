@@ -40,13 +40,15 @@ layouts/
     brand-mark.html      the compass mark, single implementation
     project-header.html  eyebrow, title, pitch, stack, links
     article-origin.html  series navigation + original-publication credit
+    career-timeline.html the resume's periods, from `experience:` front matter
+    video-thumb.html     a poster frame that opens in the timeline lightbox
+    home-career.html     the same experience data, one line per period
     home-sections.html   section cards
     home-latest.html     latest across sections
-    projects-learning.html  continuous-learning block
+    projects-learning.html  what each project taught, at the foot of the index
   shortcodes/
     figure.html        images through the pipeline, with srcset and dimensions
-    timeline.html · timeline_item.html   the resume career timeline
-    reels.html · gmap.html · reportframe.html · rawhtml.html
+    reels.html · gmap.html · reportframe.html
 ```
 
 ### `partials/func/`
@@ -77,9 +79,10 @@ everything that consumes it.
 |---|---|
 | `00-tokens` | design tokens; the only file that defines a colour |
 | `10-base` | theme variable remap, type, links, tables, code |
-| `20-components` | shared primitives — `.u-card`, `.u-bar`, `.u-eyebrow`, `.u-rule-heading`, `.u-frame` |
+| `20-components` | shared primitives — `.u-card`, `.u-bar`, `.u-eyebrow`, `.u-chip`, `.u-rule-heading`, `.u-frame` |
 | `30-chrome` | nav, mark, footers, section nav, content footer |
 | `40-home` `41-resume` `42-timeline` `43-projects` `44-adventures` `45-reels` | one section each |
+| | `42-timeline` is the career timeline; the project index draws the same rail from the same tokens |
 | `50-content` | article body: figures, diagrams, embedded artefacts |
 
 Section files **compose** the primitives; they never redeclare them.
@@ -106,6 +109,14 @@ lessons: ["…"]               # at least one real failure
 ```
 
 `docs/projects-playbook.md` documents each field.
+
+The resume is the same rule applied to a career. Each period is an entry under
+`experience:` — `period`, `role`, `org`, the `work` done, then `built`, `stack`,
+`tools` and one `learned` sentence — and `layouts/partials/career-timeline.html`
+renders it. It was prose in shortcodes until the three languages drifted: English
+listed three periods where French and Arabic listed two, and no gate could see
+it. Education is not a separate section; both degrees are periods, so a year, a
+degree and a school are written once.
 
 ## Languages
 

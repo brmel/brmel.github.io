@@ -14,91 +14,159 @@ contact:
     url: "https://www.linkedin.com/in/brahim-redouane-mellah/"
   - label: "غيت هَب"
     url: "https://github.com/brmel"
+
+# المسار المهني، مرحلة بمرحلة. البنية تأتي من
+# layouts/partials/career-timeline.html، ولا يتغير بين اللغات سوى النص.
+# اجعل `learned` جملة واحدة — فهي السطر الذي يبقى في ذهن القارئ.
+experience:
+  - period: "2024 — الآن"
+    role: "مطور برمجيات أول"
+    org: "Zebra Technologies"
+    url: "https://www.zebra.com/us/en.html"
+    work:
+      - title: "خوارزميات يبني عليها آخرون منتجاتهم"
+        url: "https://www.zebra.com/us/en/software/machine-vision-and-fixed-industrial-scanning-software/aurora-imaging-library.html"
+        video: "m7KKRmOxRT0"
+        videoAlt: "عرض لمكتبة Aurora Imaging داخل Aurora Vision Studio"
+        text: >-
+          أحد المهندسين المسؤولين عن خوارزميات المكتبة. العمل يتجاوز كتابة
+          الكود بكثير: الاتفاق على السلوك مع فرق الواجهة والتوثيق والاختبار قبل
+          الإصدار، والدخول في التطبيقات التي يعجز العملاء عن تشغيلها.
+      - title: "فحص يجري داخل الكاميرا نفسها"
+        url: "https://www.zebra.com/us/en/products/industrial-machine-vision-fixed-scanners/smart-sensors-and-cameras.html"
+        video: "N2DfQzTPwog"
+        videoAlt: "الكاميرا الذكية Aurora Focus أثناء فحص القطع"
+        text: >-
+          نقل مكتبة التصوير إلى داخل الكاميرا نفسها، ليجري الفحص على الجهاز بدل
+          حاسوب موصول به.
+    built: ["Aurora Imaging Library", "الكاميرا الذكية Aurora Focus"]
+    stack: ["C++", "خوارزميات الرؤية الآلية", "التصوير على الأجهزة الطرفية"]
+    tools: ["Visual Studio", "Git / GitHub", "JIRA"]
+    learned: >-
+      لا تصير المكتبة منتجًا إلا حين تقول الخوارزمية والتوثيق والاختبارات الشيء
+      نفسه — والاختلاف يظهر في تطبيق العميل قبل أن يظهر في الاختبارات بكثير.
+
+  - period: "2022 — 2024"
+    role: "مطور برمجيات II"
+    org: "Zebra Technologies"
+    url: "https://www.zebra.com/us/en.html"
+    work:
+      - title: "الهندسة التي تقوم عليها وحدات 2D"
+        text: >-
+          Model Finder وEdge Finder وMeasurement وMetrology وCalibration وBead —
+          حل وتنفيذ وتصحيح ما تحتها من هندسة وجبر وتحسين غير خطي، وتوسيع
+          الاختبارات التي تحميها. وانتقل Advanced Geometric Matcher من خوارزمية
+          داخلية إلى واجهة برمجية عامة، صُممت مع الفريق.
+      - title: "إدخال تعلّم الآلة في مكتبة هندسية"
+        video: "CS4cs9xVecg"
+        videoAlt: "ملاحظات من تخصص التعلم العميق"
+        text: >-
+          إدخال تعلّم الآلة الكلاسيكي في وحدات كانت هندسية بحتة، ثم توثيق
+          الواجهات الجديدة وكتابة أمثلة العملاء التي صدرت معها، والإشراف على
+          المتدربين.
+    built: ["واجهة Advanced Geometric Matcher", "وحدات 2D في MIL", "أمثلة الواجهات للعملاء"]
+    stack: ["C++", "المطابقة الهندسية", "القياس", "التحسين غير الخطي", "التعلم الآلي الكلاسيكي"]
+    tools: ["Visual Studio", "Git / GitHub", "JIRA", "Agile"]
+    learned: >-
+      كتابة التوثيق والأمثلة هي الاختبار الحقيقي لتصميم أي واجهة — فالأسئلة
+      التي تعود إليك تدور حول الواجهة، لا حول الخوارزمية.
+
+  - period: "2019 — 2022"
+    role: "مطور برمجيات"
+    org: "Matrox Imaging"
+    url: "https://video.matrox.com/en"
+    note: "انضمت Matrox Imaging إلى Zebra Technologies سنة 2022، واستمر العمل دون انقطاع."
+    work:
+      - title: "تعلّم الصنعة"
+        video: "LcoPNbyuhZU"
+        videoAlt: "معالجة الصور الصناعية في مكتبة Matrox Imaging"
+        text: >-
+          أول وظيفة بعد الماجستير، على الوحدات التي تقيس: Calibration
+          وMeasurement وMetrology. وتصميم Advanced Geometric Matcher، الخوارزمية
+          التي صارت لاحقًا واجهة برمجية عامة.
+      - title: "العمل داخل قاعدة كود C++ ضخمة"
+        video: "sfLZ7v9gEnc"
+        videoAlt: "العمل داخل قاعدة كود مكتبة Matrox Imaging"
+        text: >-
+          استبدال حلّالات قديمة في وحدات الهندسة بمُحسِّنات غير خطية، منها
+          Levenberg–Marquardt، داخل مكتبة تعتمد عليها آلاف التطبيقات المثبّتة.
+    built: ["Advanced Geometric Matcher", "MIL Calibration · Measurement · Metrology"]
+    stack: ["C++", "التحسين غير الخطي", "Levenberg–Marquardt", "التعلم الآلي الكلاسيكي"]
+    tools: ["Visual Studio", "Git", "SVN"]
+    learned: >-
+      كتابة خوارزمية أفضل هي النصف القصير من العمل؛ أما إدخالها في مكتبة يعتمد
+      عليها آخرون دون تغيير نتيجة يبنون عليها فهو النصف الطويل.
+
+  - period: "2017 — 2019"
+    role: "ماجستير في هندسة أنظمة التحكم"
+    org: "Polytechnique Montréal"
+    url: "https://www.polymtl.ca/"
+    note: "المعدل 3.87/4 · منحة مؤسسة الغرير — 1 من 100 من بين أكثر من 15,000 متقدم."
+    work:
+      - title: "كيف وصلت إلى كندا"
+        video: "BPkj-VETeX0"
+        videoAlt: "عن منحة مؤسسة الغرير"
+        url: "https://www.alghurairfoundation.org/"
+        text: >-
+          مُنحت المنحة على أساس الاستحقاق الأكاديمي ومولت الماجستير، وهي سبب
+          وقوع بقية هذه الصفحة في مونتريال.
+      - title: "أنظمة، لا مقررات فقط"
+        video: "UZbmuAs2K2w"
+        videoAlt: "الروبوتات والتحكم في الوقت الحقيقي أثناء الماجستير"
+        text: >-
+          كل مقرر مهم كان ينتهي بشيء يجب أن يعمل: روبوت عليه أن يبلغ نقطته،
+          ومتحكم عليه أن يفي بموعده، وكاميرا عليها أن تخبر الذراع بموضع القطعة.
+    built: ["مزامنة مسارات الروبوتات بخوارزمية A*", "تحكم آني في الروبوتات على QNX", "نظام رؤية يوجّه روبوت Fanuc"]
+    stack: ["C++", "التحكم الرقمي", "الكشف والتقدير", "التحكم العشوائي والمتين", "معالجة الصور"]
+    tools: ["QNX", "ROS", "MATLAB / Simulink", "روبوتات Fanuc"]
+    learned: >-
+      قانون تحكم صحيح على الورق ومتأخر بعشر ميلي ثانية هو قانون خاطئ — فالموعد
+      جزء من المواصفات، لا تفصيل في التنفيذ.
+
+  - period: "2012 — 2017"
+    role: "مهندس دولة في الهندسة الكهربائية — أنظمة التحكم"
+    org: "المدرسة الوطنية المتعددة التقنيات، الجزائر"
+    url: "https://www.enp.edu.dz/en/"
+    note: "المعدل 17.5/20 · الخامس من بين 1,400 طالب — ضمن أفضل 1% وطنيًا."
+    work:
+      - title: "سنتان تحضيريتان أولًا"
+        video: "VjwIGG7Lbt0"
+        videoAlt: "سنوات الأقسام التحضيرية في الجزائر"
+        text: >-
+          رياضيات وفيزياء وبرمجة، من التاسعة صباحًا إلى السادسة مساءً، ستة أيام
+          في الأسبوع، وترتيب في النهاية يحدد المدرسة التي تدخلها. من هناك جاءت
+          عادة الاشتغال على المسألة حتى تُحلّ فعلًا.
+      - title: "هندسة تخرج من قاعة الدرس"
+        video: "eGPbNTXTd1I"
+        videoAlt: "مشاريع التحكم والمتحكمات المنطقية أثناء دراسة الهندسة"
+        text: >-
+          انتهت الدراسة بأنظمة تحكم بُنيت في مواجهة عتاد حقيقي وقيود مصنع
+          حقيقية، لا محاكاة لها.
+    built: ["مثبّت سرعة تكيّفي لمركبة ذاتية القيادة", "برنامج متحكم منطقي لآلة تجميع صناعية"]
+    stack: ["C", "MATLAB", "VHDL", "تصميم أنظمة التحكم", "تعريف الأنظمة", "التحكم الأمثل"]
+    tools: ["Unity-Pro (Schneider)", "Simatic-Manager (Siemens)", "Simulink", "LabVIEW"]
+    learned: >-
+      العتاد لا يعنيه جمال النموذج: أول آلة تجميع برمجتها أنفقت أعطالها على
+      الحساسات والأسلاك، لا على منطق التحكم الذي قضيت الفصل كله عليه.
+
 skills:
   - group: "لغات البرمجة"
-    items: ["C++", "C", "Python", "Dart / Flutter", "MATLAB", "VHDL"]
+    items: ["C++", "C", "Python", "Dart / Flutter", "TypeScript", "MATLAB", "VHDL", "SQL"]
   - group: "الرؤية الآلية"
-    items: ["Aurora Imaging Library", "Matrox Imaging Library", "OpenCV", "المطابقة الهندسية", "المعايرة", "القياس"]
+    items: ["Aurora Imaging Library", "Matrox Imaging Library", "OpenCV", "المطابقة الهندسية", "المعايرة", "القياس", "قياس الحواف"]
   - group: "الرياضيات والخوارزميات"
-    items: ["التحسين غير الخطي", "Levenberg–Marquardt", "نظرية التحكم", "التعلم الآلي الكلاسيكي", "التعلم العميق"]
+    items: ["التحسين غير الخطي", "Levenberg–Marquardt", "نظرية التحكم", "التعلم الآلي الكلاسيكي", "التعلم العميق", "أنظمة الوكلاء المتعددة"]
+  - group: "السحابة والخلفية"
+    items: ["Google Cloud", "Firebase", "Cloud Functions", "Firestore", "Cloud Storage", "FastAPI", "Prefect"]
   - group: "الأنظمة والأدوات"
-    items: ["أنظمة الوقت الحقيقي", "QNX", "ROS", "Git", "SVN", "Simulink", "Unity-Pro"]
-education:
-  - year: "2017 – 2019"
-    degree: "ماجستير في هندسة أنظمة التحكم"
-    school: "Polytechnique Montréal"
-    note: "المعدل 3.84/4 · منحة مؤسسة الغرير (1 من 100 من بين أكثر من 15,000 متقدم)"
-  - year: "2012 – 2017"
-    degree: "مهندس دولة في الهندسة الكهربائية"
-    school: "المدرسة الوطنية المتعددة التقنيات، الجزائر"
-    note: "المعدل 17.5/20 · الخامس من بين 1,400 طالب (ضمن أفضل 1% وطنياً)"
+    items: ["أنظمة الوقت الحقيقي", "QNX", "ROS", "Git / GitHub", "SVN", "Simulink", "LabVIEW", "Unity-Pro (Schneider)", "Simatic-Manager (Siemens)", "JIRA"]
+  - group: "اللغات"
+    items: ["الفرنسية", "الإنجليزية", "العربية"]
+certifications:
+  - year: "2023"
+    name: "Neural Networks and Deep Learning · Convolutional Neural Networks"
+    issuer: "DeepLearning.AI"
+  - year: "2023"
+    name: "Machine Learning: Classification"
+    issuer: "University of Washington"
 ---
-
-<h2 class="u-rule-heading resume__h2" id="resume-experience">الخبرة</h2>
-
-{{< timeline >}}
-
-{{< timeline_item title="الوظيفة الحالية: [Zebra Technologies](https://www.zebra.com/us/en.html)" date="2022 - الحاضر" >}}
-{{< videothumb id="m7KKRmOxRT0" alt="Video Thumbnail" >}}
-
-#### [قيادة مكتبة Aurora Imaging](https://www.zebra.com/us/en/software/machine-vision-and-fixed-industrial-scanning-software/aurora-imaging-library.html)
-أنا أحد المسؤولين عن خوارزميات AIL. دوري يتجاوز مجرد كتابة الكود؛ فأنا أتعاون مع فرق واجهة المستخدم والتوثيق والاختبار لتقديم منتج متكامل، وأساعد عملائنا في حل أصعب تحدياتهم التطبيقية.
-
----
-
-{{< videothumb id="N2DfQzTPwog" alt="Aurora Focus Video" >}}
-
-#### [تمكين كاميرا Aurora Focus](https://www.zebra.com/us/en/products/industrial-machine-vision-fixed-scanners/smart-sensors-and-cameras.html?page=1)
-أعمل حاليًا على الكاميرا الذكية **Aurora Focus**. هدفي هو دمج مكتبة التصوير القوية لدينا مباشرة في أجهزة الكاميرا، مما يمكنها من معالجة البيانات بشكل مستقل على الجهاز مباشرة (Edge Computing).
-{{< /timeline_item >}}
-
-{{< timeline_item title="الوظيفة الأولى: [Matrox Imaging](https://video.matrox.com/en)" date="2019 - 2022" >}}
-{{< videothumb id="LcoPNbyuhZU" alt="Mastering Industrial Image Processing Video" >}}
-
-#### إتقان معالجة الصور الصناعية
-هنا تعلمت أصول الصناعة. قمت بصيانة وحدات MIL الأساسية مثل المعايرة والقياس والمترولوجيا. كما ابتكرت من خلال تصميم **Advanced Geometric Matcher (AGM)**.
-
----
-
-{{< videothumb id="sfLZ7v9gEnc" alt="Technical Mastery Video" >}}
-
-#### التميز التقني والعمل الجماعي
-تعلمت أن أكون عضوًا فعالًا في الفريق بينما أتقن تعقيدات مكتبة ضخمة باستخدام C++ و Git و SVN و Visual Studio. قمت بسد الفجوة بين القديم والجديد من خلال تنفيذ خوارزميات تحسين غير خطية مثل Levenberg-Marquardt.
-
----
-
-{{< videothumb id="CS4cs9xVecg" alt="Deep Learning Specialization Video" >}}
-
-#### [التخصص في التعلم العميق والذكاء الاصطناعي](https://www.coursera.org/account/accomplishments/certificate/8ZBT54UMC76C)
-تعمقت في تقنية التعلم العميق من خلال إكمال تخصص Deep Learning AI على Coursera، وتطوير خوارزميات التعلم الآلي مثل Random Forest و AdaBoost وفقًا لمعايير الصناعة ودمجها في MIL.
-{{< /timeline_item >}}
-
-{{< timeline_item title="درجة الماجستير: [Polytechnique Montréal](https://www.polymtl.ca/)" date="2017 - 2019" >}}
-{{< videothumb id="BPkj-VETeX0" alt="Al Ghurair Scholarship Video" >}}
-
-#### [إنجاز قائم على الجدارة](https://www.alghurairfoundation.org/)
-تم اختياري لـ **منحة مؤسسة الغرير** المرموقة بناءً على الجدارة الأكاديمية. منحتني هذه الفرصة لمتابعة شغفي في كندا. وارتفع معدل الماجستير الخاص بي من 3.5 إلى 3.84 بعد التأقلم مع البيئة الجديدة.
-
----
-
-{{< videothumb id="UZbmuAs2K2w" alt="Hands-on Experience Video" >}}
-
-#### اكتساب الخبرة العملية
-لم أدرس النظرية فحسب؛ بل بنيت أنظمة. اكتسبت خبرة عملية من خلال تطوير مشاريع حقيقية مثل مزامنة حركة الروبوت باستخدام خوارزمية A*، وتطوير أنظمة تحكم في الوقت الفعلي للروبوتات باستخدام QNX، وإنشاء نظام رؤية لتوجيه روبوت Fanuc.
-{{< /timeline_item >}}
-
-{{< timeline_item title="الجامعة (بكالوريوس): [المدرسة الوطنية المتعددة التقنيات بالجزائر](https://www.enp.edu.dz/en/)" date="2012 - 2017" >}}
-{{< videothumb id="VjwIGG7Lbt0" alt="Strong Foundation Video" >}}
-
-#### بناء أساس متين
-بدأت بسنتين من الفصول التحضيرية المكثفة - دراسة الرياضيات والفيزياء والبرمجة من 9 صباحًا حتى 6 مساءً، ستة أيام في الأسبوع. ساعدني هذا التفاني على التخرج في المرتبة **الخامسة من أصل 1400 طالب** (أفضل 1%) بمعدل 17.5/20.
-
----
-
-{{< videothumb id="eGPbNTXTd1I" alt="Acquiring Engineering Knowledge Video" >}}
-
-#### اكتساب المعرفة الهندسية
-بنيت أساسًا هندسيًا قويًا من خلال مشاريع متنوعة. قمت بتطوير نظام **التحكم التكيفي في ثبات السرعة (ACC)** للمركبات ذاتية القيادة وبرمجت **آلة تجميع صناعية** معقدة لمصنع باستخدام PLCs.
-{{< /timeline_item >}}
-
-{{< /timeline >}}

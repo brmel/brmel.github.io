@@ -58,8 +58,8 @@ while IFS= read -r asset; do
   is_whitelisted "$asset" && continue
 
   base=$(basename "$asset")
-  # Shortcodes may build a path from a parameter, so the filename never appears
-  # literally: {{< videothumb id="m7KKRmOxRT0" >}} loads
+  # A template may build a path from a parameter, so the filename never appears
+  # literally: `video: "m7KKRmOxRT0"` in the resume front matter loads
   # images/timeline/m7KKRmOxRT0.jpg. Match on the stem as well as the filename.
   stem=${base%.*}
   # Hugo Pipes calls use asset-relative paths ("css/extended/tokens.css"),

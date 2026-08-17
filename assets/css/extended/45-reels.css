@@ -1,48 +1,25 @@
-/* ============================================================================
-   IBRAVERSE — REELS  (06-web/reels.css)
-   On-brand styling for the `reels` shortcode: ONE row of vertical (9:16)
-   click-to-load thumbnails — YouTube · Instagram · TikTok — under "## Watch"
-   at the article foot. Replaces assets/css/extended/reels.css.
-   Markup it expects (emitted by layouts/shortcodes/reels.html — see
-   hugo-partial.html for the template):
-
-     <section class="reels" data-category="restaurant">
-       <h2 class="reels__title">Watch</h2>
-       <div class="reels__row">
-         <figure class="reel" data-platform="youtube"  data-embed="…">
-           <button class="reel__play" aria-label="Play"><svg…/></button>
-           <span class="reel__platform">YouTube</span>
-           <img class="reel__thumb" src="…" alt="…" loading="lazy">
-         </figure>
-         …Instagram, TikTok…
-       </div>
-     </section>
-   Load AFTER tokens.css.
-   ========================================================================== */
-
 .reels{margin:var(--space-7) 0 var(--space-7);}
 
 .reels__title{
   font-family:var(--font-serif);font-weight:400;font-size:var(--t-display-s);
-  line-height:1.1;color:var(--ink);margin:0 0 var(--space-1);   /* tighter to the sub */
+  line-height:1.1;color:var(--ink);margin:0 0 var(--space-1);
   display:flex;align-items:center;gap:var(--space-3);
 }
-.reels__title::before{                       /* tiny compass tick */
+.reels__title::before{
   content:"";width:10px;height:10px;border-radius:var(--radius-pill);
   border:2px solid var(--accent);box-sizing:border-box;
 }
 .reels__sub{
   font-family:var(--font-label);font-size:var(--t-eyebrow);letter-spacing:var(--track-eyebrow);
-  text-transform:uppercase;color:var(--ink-mute);margin:0 0 var(--space-3);  /* tighter to the row */
+  text-transform:uppercase;color:var(--ink-mute);margin:0 0 var(--space-3);
 }
 
-/* ONE row, three equal vertical cards — stays one row at every width, smaller */
 .reels__row{
   display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-3);
-  max-width:520px;margin-inline:0;            /* ~160px per card on desktop */
+  max-width:520px;margin-inline:0;
 }
 @media (max-width:560px){
-  .reels__row{gap:var(--space-2);max-width:100%}   /* still 3 across, just tighter */
+  .reels__row{gap:var(--space-2);max-width:100%}
   .reel__platform{font-size:9px;padding:3px 6px;top:6px;left:6px}
   .reel__platform::before{width:4px;height:4px;margin-right:4px}
   .reel__meta{display:none}
@@ -50,7 +27,6 @@
   .reel__play svg{width:14px;height:14px}
 }
 
-/* the card */
 .reel{
   position:relative;margin:0;aspect-ratio:9/16;border-radius:var(--radius-md);
   overflow:hidden;background:var(--paper-alt);box-shadow:var(--shadow-photo);
@@ -60,13 +36,12 @@
   position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;
   transition:transform var(--dur-4) var(--ease-out),filter var(--dur-3) var(--ease-standard);
 }
-.reel::after{                                /* readability scrim at the foot */
+.reel::after{
   content:"";position:absolute;inset:auto 0 0 0;height:42%;z-index:1;
   background:linear-gradient(to top,rgba(20,19,15,.62),transparent);
 }
 .reel:hover .reel__thumb{transform:scale(1.04)}
 
-/* platform tag (top-left) */
 .reel__platform{
   position:absolute;top:var(--space-3);left:var(--space-3);z-index:2;
   font-family:var(--font-label);font-weight:500;font-size:11px;letter-spacing:.1em;
@@ -75,19 +50,17 @@
   backdrop-filter:blur(4px);
   padding:4px 9px;border-radius:var(--radius-pill);
 }
-/* accent left-tick on the platform tag */
+
 .reel__platform::before{
   content:"";display:inline-block;width:6px;height:6px;border-radius:var(--radius-pill);
   background:var(--accent);margin-right:6px;vertical-align:middle;
 }
 
-/* duration / handle (bottom-left, above scrim) */
 .reel__meta{
   position:absolute;left:var(--space-3);bottom:var(--space-3);z-index:2;
   font-family:var(--font-label);font-size:12px;letter-spacing:.04em;color:var(--paper);
 }
 
-/* the play button — the ONE spring in the system (sized for the smaller card) */
 .reel__play{
   position:absolute;top:50%;left:50%;z-index:3;transform:translate(-50%,-50%);
   width:44px;height:44px;border-radius:var(--radius-pill);
@@ -101,7 +74,6 @@
 .reel__play:active{transform:translate(-50%,-50%) scale(.98)}
 .reel__play:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 
-/* ring that draws in on hover */
 .reel__play::after{
   content:"";position:absolute;inset:-7px;border-radius:var(--radius-pill);
   border:2px solid var(--accent);opacity:0;transform:scale(.85);
@@ -109,7 +81,6 @@
 }
 .reel:hover .reel__play::after{opacity:1;transform:scale(1)}
 
-/* loaded state — shortcode swaps in the iframe and sets .is-playing */
 .reel.is-playing .reel__play,
 .reel.is-playing .reel__platform,
 .reel.is-playing .reel__meta,

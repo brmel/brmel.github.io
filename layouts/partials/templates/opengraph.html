@@ -1,14 +1,5 @@
-{{- /* Fork of themes/PaperMod/partials/templates/opengraph.html @2d2f2c6 — diff before upgrading. */ -}}
-{{- /*
-  opengraph — local fork of themes/PaperMod/layouts/partials/templates/opengraph.html.
-  Everything above is upstream verbatim. The image block below is replaced: it now
-  resolves through partials/func/og-image.html so every page gets a real card
-  (its own cover, else its section's generated card), always absolute, always with
-  an alt. Upstream fell back to a site-wide params.images default, which meant
-  every share of every page looked identical. See #18.
-*/ -}}
+{{- /* fork of themes/PaperMod/layouts/partials/templates/opengraph.html */ -}}
 <meta property="og:url" content="{{ .Permalink }}">
-
 {{- with or site.Title site.Params.title | plainify }}
   <meta property="og:site_name" content="{{ . }}">
 {{- end }}
@@ -50,7 +41,6 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 
-{{- /* hreflang siblings, so a shared link resolves to the reader's language */ -}}
 {{- range .Translations }}
 <meta property="og:locale:alternate" content="{{ .Language.Lang }}">
 {{- end }}

@@ -1,16 +1,3 @@
-{{- /*
-  brand-fonts — the three brand faces, loaded for pages that render outside
-  PaperMod's own <head> (the `standalone` layout).
-
-  Instrument Serif (display) · Inter Tight (body) · JetBrains Mono (data, eyebrows).
-  These are the faces the tokens in assets/css/extended/tokens.css resolve to;
-  loading anything else here silently breaks the type system.
-
-  PaperMod pages get the same three from layouts/partials/extend_head.html.
-  Keep the two lists identical — if you add a weight, add it in both places.
-
-  Swap in self-hosted files here if the Google Fonts dependency ever needs to go.
-*/ -}}
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />

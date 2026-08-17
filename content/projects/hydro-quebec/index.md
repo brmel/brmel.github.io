@@ -5,17 +5,23 @@ projectNo: 5
 domain: "data"
 status: "shipped"
 pitch: "Two months of Hydro-Québec outage snapshots, collected every minute, turned into a reliability report the utility doesn't publish."
+startHereWhy: "two months of data I collected, and the number nobody publishes"
+metrics:
+  - value: "56 days"
+    label: "of the outage map, recorded every minute"
+  - value: "16,561"
+    label: "distinct outages across 1,280 municipalities"
+  - value: "5%"
+    label: "of announced restoration times landed within the hour"
 stack: ["Python", "pandas", "Plotly", "KMZ", "Firebase Storage"]
+newToMe: ["long-running collectors", "KMZ geometry and spatial attribution", "Plotly reporting"]
 links:
   live: "/tech/hydro-quebec-outage-analysis/"
 lede: |
-  Hydro-Québec publishes a live outage map that tells you what is broken right
-  now and when they expect it back, and then forgets — no history, no accuracy
-  record, no way to ask whether last Tuesday's estimate meant anything. I wanted
-  one number: when they say the power is back at four, how often is it back at
-  four? Nobody publishes that, so I wrote the map down every minute for
-  fifty-six days and worked it out — the answer is five percent.
-takeaway: "A number you collected yourself changes your mind in a way the same number from someone else never does."
+  Two months of Hydro-Québec's outage map, recorded every minute and turned into
+  the reliability report the utility does not publish: where outages concentrate,
+  how long they really last, and how often the announced restoration time holds.
+takeaway: "A number I collected myself changed my mind in a way the same number from someone else would not have."
 lessons:
   - "**The headline finding was about me, not the utility.** Announced restoration times land within an hour about 5% of the time. My second reaction was recognising the same failure in my own estimates — that became [a whole piece of writing](/thoughts/estimates-and-the-five-percent/), and it is the only thing from this project I still think about."
   - "**Collect first, decide the question later.** I started polling before I knew what I was looking for. Every interesting result — ETA accuracy, regional spread, the 611-outage peak — came from questions I could not have asked on day one, and could only ask because the data was already on disk."
@@ -26,37 +32,29 @@ tags: ["Python", "Data Analysis", "Québec"]
 
 ## The story
 
-The map is a live view with no memory: it tells you what is broken right now and
-then forgets, so there is no accuracy record and no way to ask whether last
-Tuesday's estimate meant anything.
+Hydro-Québec publishes a live outage map: what is broken now, and when they
+expect it back. Then it forgets. No history, no accuracy record, no way to ask
+whether last Tuesday's estimate meant anything.
 
-The only way to get the number was to write the map down every minute for two
-months and work it out afterwards.
+I wanted one number. When they say the power is back at four, how often is it
+back at four? Nobody publishes that, so I wrote the map down every minute for
+fifty-six days and worked it out.
+
+> It is right about five percent of the time. The second thing I noticed was
+> that I estimate exactly the same way.
 
 ## The product
 
-A collector polls the public outage feed once a minute, writes snapshots to
-hourly JSONL files, and uploads each hour only once it is closed. An analysis
-pass rebuilds outage *events* out of those snapshots — an outage is not a row,
-it is a thing that appears, moves, and disappears across hundreds of readings —
-and renders an HTML report.
+A reliability report the utility does not produce: where outages concentrate,
+how long they really last, which causes dominate, and how far the published
+estimates fall from what happened. The Montréal borough map exists because the
+raw feed ships geometry meant for drawing, not for counting, and turning
+polygons into per-municipality attribution was most of the work.
 
-**56 days · 7,870 readings · 16,561 unique outages · 1,280 municipalities.**
+The collector is deliberately dull. Snapshots append to the open hour's file and
+only closed hours upload, so it can die at any moment and lose at most one
+minute — which it did, more than once, over eight weeks.
 
-What the data said:
-
-- **Announced restoration times land within an hour of the estimate about 5% of
-  the time.** That is the number the whole project existed to get.
-- **21.5 million client-hours lost** over the period, with a single worst moment
-  of **611 simultaneous outages**.
-- **Outaouais is the most affected region** — 2,017 outages and 3.86 million
-  client-hours — against **Nord-du-Québec** at 102 outages, roughly a twentieth
-  of the impact.
-- The longest single outage ran **37.5 days**, in Montréal.
-
-The report is on this site: [Hydro-Québec Outage
-Analysis](/tech/hydro-quebec-outage-analysis/) — interactive charts, a regional
-map, borough-level reliability, and the methodology.
-
-The data is Hydro-Québec's own public outage feed, which anyone can see; what
-did not exist was the record of what it said yesterday.
+I started polling before I knew the question. Every result worth having came
+from something I could not have thought to ask on day one, and could only ask
+because the data was already on disk.

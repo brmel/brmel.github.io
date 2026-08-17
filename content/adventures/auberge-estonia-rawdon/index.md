@@ -1,8 +1,8 @@
 ---
-title: "Auberge Estonia: A Nordic Spa Cabin Escape in Rawdon, One Hour from Montreal"
+title: "Auberge Estonia: A Nordic Spa Cabin Escape in Rawdon, One Hour from Montréal"
 date: 2026-05-31
 draft: false
-summary: "A forest auberge in Rawdon, Lanaudière — free Nordic spa with hot tubs and a Finnish sauna, a cold-plunge lake, BBQ cabins, and hiking trails on the estate, all about an hour from Montreal."
+summary: "A forest auberge in Rawdon, Lanaudière — free Nordic spa with hot tubs and a Finnish sauna, a cold-plunge lake, BBQ cabins, and hiking trails on the estate, all about an hour from Montréal."
 tags: ["Québec", "Spa", "Getaway"]
 # --- field note ---
 category: "spa"
@@ -14,12 +14,12 @@ bestFor: "A low-key Nordic-spa weekend for a couple or small group."
 con: "You self-cater — bring groceries; restaurants are ~10 min away."
 ---
 
-An hour from Montreal, tucked in the Rawdon woods: two Nordic hot tubs steaming under the trees, a Finnish sauna, a lake to cold-plunge into, and a BBQ cabin to come back to. Auberge Estonia is the low-key spa weekend that doesn't cost spa-resort money.
+An hour from Montréal, tucked in the Rawdon woods: two Nordic hot tubs steaming under the trees, a Finnish sauna, a lake to cold-plunge into, and a BBQ cabin to come back to. Auberge Estonia is the low-key spa weekend that doesn't cost spa-resort money.
 
 ## The place
 
 **Auberge Estonia** (Estonia Hébergement Nature) sits in the forested hills of
-**Rawdon**, in Quebec's **Lanaudière** region — about **one hour from Montreal**.
+**Rawdon**, in Québec's **Lanaudière** region — about **one hour from Montréal**.
 It's small and nature-first: **8 rooms** in the inn (each with a private
 bathroom) and a handful of **mini-chalets** scattered in the woods.
 
@@ -58,7 +58,7 @@ It's a do-nothing-on-purpose kind of place — quiet, wooded, no crowds.
 - **Best time:** summer for lake swims and trails; winter for sauna-to-snow and a
   lake that can turn into an ice rink. Fall for the foliage.
 - **Getting there:** **4333 Chemin du Lac Brennan, Rawdon, QC** — about **1 hour
-  from Montreal** by car. Free outdoor parking + EV charging on site.
+  from Montréal** by car. Free outdoor parking + EV charging on site.
 - **Book direct:** reserve ahead (it's small and fills up on weekends);
   estoniahebergement.com / 450-712-6337.
 

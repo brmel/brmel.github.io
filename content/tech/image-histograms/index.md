@@ -7,7 +7,7 @@ tags: ["Industrial Vision", "Image Processing"]
 aliases: ["/posts/image-histograms/"]
 description: "Learn edge measurement techniques through a practical saw blade teeth counting application"
 cover:
-    image: "blades.png"
+    image: "01-saw-blade.png"
     alt: "Saw Blade Edge Detection"
     caption: "Edge measurement for counting saw blade teeth"
 ShowToc: true
@@ -29,7 +29,7 @@ Edge measurement involves detecting transitions in pixel intensity that correspo
 
 Our objective is to create an application that automatically counts the number of teeth on a circular saw blade from a single image.
 
-{{< figure src="blades.png" alt="Saw Blade Challenge" caption="Example saw blade image - our goal is to automatically count the teeth around the perimeter" align="center" width="50%" >}}
+{{< figure src="01-saw-blade.png" alt="Saw Blade Challenge" caption="Example saw blade image - our goal is to automatically count the teeth around the perimeter" align="center" width="50%" >}}
 
 ### Input Requirements
 - Single image of a saw blade

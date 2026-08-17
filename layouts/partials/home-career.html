@@ -1,0 +1,28 @@
+{{- with site.GetPage "/resume" }}
+{{- $resume := . }}
+{{- with .Params.experience }}
+<section class="home-career" aria-labelledby="home-career-heading">
+  <h2 class="u-rule-heading home-career__heading" id="home-career-heading">
+    {{ i18n "home_career" | default "Career" }}
+  </h2>
+  <ol class="home-career__list">
+    {{- range . }}
+    <li class="home-career__item">
+      {{- /* dir=ltr: a numeric range reorders in RTL and renders backwards. */ -}}
+      <span class="u-eyebrow home-career__period"><bdi dir="ltr">{{ .period }}</bdi></span>
+      <span class="home-career__role">{{ .role }}</span>
+      {{- with .org }}<span class="home-career__org">{{ . }}</span>{{ end }}
+      {{- with .built }}
+      <span class="home-career__built">
+        {{- range $i, $b := first 2 . }}{{ if $i }} <b aria-hidden="true">·</b> {{ end }}{{ $b }}{{ end -}}
+      </span>
+      {{- end }}
+    </li>
+    {{- end }}
+  </ol>
+  <p class="home-career__more">
+    <a href="{{ $resume.RelPermalink }}">{{ i18n "home_career_more" | default "Full resume →" }}</a>
+  </p>
+</section>
+{{- end }}
+{{- end }}

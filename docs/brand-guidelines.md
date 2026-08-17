@@ -66,7 +66,21 @@ rule, recognisable in one frame:
    |---|---|---|
    | Adventures | `FIELD NOTE № {nn} · {CATEGORY} · {PLACE}` | `FIELD NOTE № 004 · HIKE · ADIRONDACKS` |
    | Projects | `PROJECT № {nn} · {DOMAIN} · {STATUS}` | `PROJECT № 01 · SAAS · SHIPPED` |
-   | Tech | `{CATEGORY} · {READ LENGTH}` | `IMAGE PROCESSING · 6 MIN` |
+   | Any list card | `{DATE} · {READ LENGTH}` | `1 JUNE 2026 · 6 MIN` |
+   | Career period | `{YEARS}` | `2024 — PRESENT` |
+
+   Two rules the eyebrow follows everywhere:
+
+   - **The date is localised.** It renders through `time.Format` with
+     `:date_long`, never Go's `.Format`, which prints English month names
+     on every language.
+   - **Read length appears only when it is true.** Hugo counts words in the
+     markdown, so a page whose body is one embedded artefact reported
+     "1 MIN" for 13,000px of report. Under two minutes it is the date alone.
+
+   On a project *index* card the word `PROJECT` is dropped: the page is the
+   project index, so it would repeat on every card. It stays on the project
+   page itself, where it is the only thing naming the section.
 
 3. **One accent, used sparingly** — the mark, the eyebrow dots, the category
    bar, links. Never a filled background.
@@ -79,12 +93,14 @@ under, image fills the rest.
 | Placement | Size | Colour |
 |---|---|---|
 | Nav logo (every page) | 22px | `--accent` |
-| Home hero | 40px | `--accent` |
 | Site footer (every page) | 18px | `--ink-mute` at 70% opacity |
 | Social cards / end-cards | large, centred | `--accent` |
 
-**Never**: inside body copy, as a bullet, as a loading spinner, more than twice
-on one screen, or in any colour that is not `--accent` or `--ink-mute`.
+**Never**: inside body copy, as a bullet, as a loading spinner, more than once
+on one screen, or in any colour that is not `--accent` or `--ink-mute`. The home
+hero used to carry a 40px mark directly under the nav's 22px one — the same
+signature twice within one screen height, which reads as a logo stacked on a
+logo rather than as a mark. The nav carries it there now.
 
 ---
 
@@ -170,7 +186,17 @@ Loaded once site-wide — `extend_head.html` for PaperMod pages,
 
 Scale: oversized serif title, small mono eyebrow above it, comfortable Inter
 Tight body. Generous line-height, lots of paper. Tokens: `--t-display-*`,
-`--t-body*`, `--t-eyebrow`, `--fl-display-*` for fluid sizes.
+`--t-body*`, `--t-eyebrow`, `--t-micro`, `--fl-display-*` for fluid sizes.
+
+**One rank, one size.** Every single page — article, project, field note,
+resume — opens at `--fl-display-m`; a section index opens one step down. This
+was three sizes until the audit: an article title was 64px because
+`44-adventures.css` styled `.post-single .post-title`, which is every single
+page on the site, from a file scoped to one section.
+
+**`--t-micro` is the floor.** Chips, stack lines and language markers were
+written as raw 9, 10, 10.5 and 11px across six stylesheets — four sizes doing
+one job, two of them below the size the contrast audit was run at.
 
 ---
 
@@ -181,8 +207,8 @@ doesn't fit one of these rows doesn't have a home yet — decide before building
 
 | Section | It exists to | Accent | Chrome |
 |---|---|---|---|
-| **Home** | Say who this is, then route into the work | rust (master) | mark 40px, section cards, latest posts |
-| **Resume** | Be the page you send to someone hiring | rust | timeline, skills, education |
+| **Home** | Say who this is, show the career, then route into the work | rust (master) | hero band, career strip, section cards, latest posts |
+| **Resume** | Be the page you send to someone hiring | rust | career timeline, skills, certifications |
 | **Projects** | Show things built end-to-end, with the lessons | per `domain:` | eyebrow, stack chips, status, gallery |
 | **Tech** | Explain something learned by doing it | rust | article layout, figures |
 | **Adventures** | Honest first-person reviews of places | per `category:` | eyebrow, verdict block, reel row |

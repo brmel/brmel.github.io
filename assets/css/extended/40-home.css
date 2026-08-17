@@ -1,33 +1,81 @@
-/* ============================================================================
-   IBRAVERSE — HOME
-   Identity first, then the routes into the work. Cards compose .u-card and
-   .u-bar from 20-components.css and add only grid geometry.
-   ========================================================================== */
-
+.main .profile{
+  min-height:0;
+  padding:var(--space-7) 0 var(--space-4);
+}
+.profile .profile_inner{
+  display:grid;
+  grid-template-columns:200px 1fr;
+  align-items:center;
+  gap:var(--space-2) var(--space-6);
   max-width:var(--container-text);
-  margin:var(--space-8) auto var(--space-9);
-  text-align:center;
+  margin:0 auto;
+  text-align:start;
+}
+.profile__photo{grid-column:1;grid-row:1 / span 3;width:200px;}
+.profile_inner h1,
+.profile_inner > span,
+.profile_inner .social-icons{grid-column:2;justify-self:start;}
+.profile_inner h1{margin:0;}
+.profile_inner > span{color:var(--ink-soft);}
+.profile_inner .social-icons{margin-top:var(--space-2);}
+
+.home-intro{
+  max-width:var(--container-text);
+  margin:var(--space-7) auto var(--space-8);
+  font-size:var(--t-body-l);
 }
 .home-intro p{color:var(--ink-soft);}
 .home-intro > :first-child{margin-top:0;}
 
-/* ---- section cards ---- */
+.home-career{
+  max-width:var(--container-text);
+  margin:0 auto var(--space-9);
+}
+.home-career__list{list-style:none;margin:0;padding:0;}
+.home-career__item{
+  display:grid;
+  grid-template-columns:130px 1fr;
+  gap:var(--space-1) var(--space-4);
+  padding:var(--space-4) 0;
+  border-bottom:var(--hairline) solid var(--rule-soft);
+}
+.home-career__item:last-child{border-bottom:0;}
+.home-career__period{grid-row:span 3;padding-top:3px;}
+.home-career__role{
+  font-family:var(--font-serif);
+  font-size:var(--t-subhead);
+  line-height:1.2;
+  color:var(--ink);
+}
+.home-career__org{font-size:var(--t-caption);color:var(--ink-soft);}
+.home-career__built{
+  font-family:var(--font-label);font-size:var(--t-micro);
+  letter-spacing:.04em;color:var(--ink-mute);
+}
+.home-career__built b{color:var(--accent);font-weight:400;}
+.home-career__more{
+  margin:var(--space-4) 0 0;
+  font-family:var(--font-label);font-size:var(--t-eyebrow);
+  letter-spacing:var(--track-eyebrow);text-transform:uppercase;
+}
+.home-career__more a{color:var(--accent);text-decoration:none;}
+.home-career__more a:hover{text-decoration:underline;}
+
 .home-sections{
   max-width:var(--container-content);
   margin:0 auto var(--space-9);
   display:grid;
-  /* The reading column is 720px, so a 210px floor fits exactly three: five
-     cards land 3 + 2 rather than leaving one alone on its own row. */
-  grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+
+  grid-template-columns:repeat(2,1fr);
   gap:var(--space-4);
 }
+/* an odd card count would otherwise end the grid with one card in a half row */
+.home-sections > :last-child:nth-child(odd){grid-column:1 / -1;}
 .home-card{
   display:flex;flex-direction:column;gap:var(--space-2);
   padding:var(--space-5);
   text-decoration:none;
 }
-/* the category bar — the one place each card shows its accent as a block */
-
 .home-card__title{
   font-family:var(--font-serif);
   font-size:var(--t-heading);
@@ -41,8 +89,6 @@
   flex:1 1 auto;
 }
 
-
-/* ---- latest across sections ---- */
 .home-latest{
   max-width:var(--container-text);
   margin:0 auto var(--space-9);
@@ -71,13 +117,15 @@
   color:var(--ink-soft);
 }
 
-@media (max-width:700px){
-  .home-sections{grid-template-columns:repeat(2,1fr);}
-  /* an odd card count would otherwise end the grid with one card in a half row */
-  .home-sections > :last-child:nth-child(odd){grid-column:1 / -1;}
+@media (max-width:600px){
+  .profile .profile_inner{grid-template-columns:1fr;justify-items:center;text-align:center;}
+  .profile__photo{grid-column:1;grid-row:auto;width:180px;}
+  .profile_inner h1,
+  .profile_inner > span,
+  .profile_inner .social-icons{grid-column:1;justify-self:center;}
+  .home-career__item{grid-template-columns:1fr;}
+  .home-career__period{grid-row:auto;padding-top:0;}
 }
 @media (max-width:480px){
   .home-sections{grid-template-columns:1fr;}
 }
-
-/* ============================================================================

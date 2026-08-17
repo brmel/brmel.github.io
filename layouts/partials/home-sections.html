@@ -1,26 +1,3 @@
-{{- /*
-  home-sections — the routes out of the home page.
-
-  One card per section listed in site.Params.mainSections, plus the Resume,
-  each carrying its own accent from the [data-category] register in tokens.css
-  (see docs/brand-guidelines.md §5). Cards are built from the section pages
-  themselves — title and description come from each section's _index.md — so
-  adding a section adds a card with no template edit.
-
-  Whether a section has anything to show comes from func/section-pages.html,
-  which merges this language's pages with untranslated default-language ones.
-  Counting .RegularPages instead hid Projects and Thoughts from the French and
-  Arabic home pages while the nav on those same pages still linked to them.
-
-  The cards carry no count. Sections counted entries and the resume said "the
-  short version" — two grammars in one row — and the count published "1 ENTRY"
-  on the thinnest section, which is the last thing it should advertise.
-
-  A section with nothing published is skipped, matching the rule in
-  partials/header.html: the home page never routes anywhere the nav won't.
-*/ -}}
-
-{{- /* accent per section, keyed to the domain register in tokens.css */ -}}
 {{- $accents := dict "projects" "saas" "tech" "restaurant" "adventures" "hike" "thoughts" "city" -}}
 
 <nav class="home-sections" aria-label="{{ i18n "sections" | default "Sections" }}">
@@ -38,12 +15,4 @@
   {{- end }}
   {{- end }}
 
-  {{- /* The resume is a single page, not a section, so it is named explicitly. */ -}}
-  {{- with site.GetPage "/resume" }}
-  <a class="u-card home-card home-card--resume" href="{{ .RelPermalink }}" data-category="event">
-    <span class="u-bar" aria-hidden="true"></span>
-    <span class="home-card__title">{{ .Title }}</span>
-    {{- with .Params.summary }}<span class="home-card__desc">{{ . }}</span>{{ end }}
-  </a>
-  {{- end }}
 </nav>

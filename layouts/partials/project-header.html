@@ -1,14 +1,3 @@
-{{- /*
-  project-header — the brand chrome at the top of a project page.
-
-  Everything here comes from front matter, so every project page is consistent
-  by construction and the author only writes prose. Same principle as
-  partials/adventures-header.html. See docs/projects-playbook.md.
-
-  Reads: projectNo, domain, status, pitch, stack, links{live,repo,…}
-  Eyebrow grammar (docs/brand-guidelines.md §2):
-      PROJECT № {nn} · {DOMAIN} · {STATUS}
-*/ -}}
 {{- $no := .Params.projectNo -}}
 {{- $domain := .Params.domain | default "saas" -}}
 {{- $status := .Params.status | default "active" -}}
@@ -24,7 +13,6 @@
       {{ i18n (printf "project_status_%s" $status) | default ($status | upper) }}
     </span>
   </p>
-
   <h1 class="project-title">{{ .Title }}</h1>
   {{- with .Params.pitch }}<p class="project-pitch">{{ . }}</p>{{ end }}
 
@@ -32,7 +20,7 @@
   <div class="project-meta">
     {{- with .Params.stack }}
     <ul class="project-stack" aria-label="{{ i18n `project_stack` | default `Stack` }}">
-      {{- range . }}<li>{{ . }}</li>{{ end }}
+      {{- range . }}<li class="u-chip">{{ . }}</li>{{ end }}
     </ul>
     {{- end }}
     {{- with .Params.links }}
@@ -49,5 +37,14 @@
     </ul>
     {{- end }}
   </div>
+  {{- end }}
+
+  {{- with .Params.newToMe }}
+  <p class="project-new">
+    <span class="u-eyebrow project-new__label">{{ i18n "project_new_to_me" | default "New to me here" }}</span>
+    <span class="project-new__items">
+      {{- range $i, $t := . }}{{ if $i }} <b aria-hidden="true">·</b> {{ end }}{{ $t }}{{ end -}}
+    </span>
+  </p>
   {{- end }}
 </header>

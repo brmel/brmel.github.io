@@ -1,27 +1,9 @@
-{{- /*
-  Resolve a page's social card. First hit wins:
-
-    1. the page's own cover
-    2. a project's first gallery screenshot
-    3. the section card, static/og/<section>.jpg
-    4. the home card
-
-  The page bundle is checked before `cover.relative` is trusted: one article
-  omits that flag, and trusting it resolved the image to the site root.
-
-  Returns { url, alt }. Always absolute — X and LinkedIn reject relative.
-*/ -}}
-
 {{- $url := "" -}}
 {{- $alt := "" -}}
 
-{{- /* 1. the page's own cover */ -}}
 {{- with .Params.cover }}
   {{- with .image }}
-    {{- /* Try the page bundle FIRST, whatever `cover.relative` says. Upstream
-           trusts that flag, and content/tech/image-histograms omitted it, so its
-           card resolved to /blades.png at the site root — a 404 that nothing
-           noticed until scripts/check-og.py went looking. */ -}}
+
     {{- with $.Resources.GetMatch . }}
       {{- $url = .Permalink -}}
     {{- else }}
@@ -35,8 +17,6 @@
   {{- end }}
 {{- end }}
 
-{{- /* 1b. a project's first gallery shot — a real screenshot beats a generated
-       card, and every project page has one. */ -}}
 {{- if not $url }}
   {{- with .Resources.Match "gallery/*" }}
     {{- with index . 0 }}
@@ -46,12 +26,10 @@
   {{- end }}
 {{- end }}
 
-{{- /* 2. the section card, 3. the home card */ -}}
 {{- if not $url }}
   {{- $section := .Section | default "home" -}}
   {{- if .IsHome }}{{ $section = "home" }}{{ end -}}
-  {{- /* Root-level pages (resume.md) have no .Section, so fall back to the file
-         name — otherwise /resume/ shares the home card instead of its own. */ -}}
+
   {{- if and (not .IsHome) (eq $section "home") }}
     {{- with .File }}{{ $section = .ContentBaseName }}{{ end }}
   {{- end }}

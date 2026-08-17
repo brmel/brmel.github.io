@@ -1,0 +1,80 @@
+{{- $rails := slice
+      (dict "key" "built"   "i18n" "career_built"   "fallback" "Built")
+      (dict "key" "stack"   "i18n" "career_stack"   "fallback" "Stack")
+      (dict "key" "tools"   "i18n" "career_tools"   "fallback" "Tools")
+-}}
+
+{{- with .Params.experience }}
+<div class="timeline-container">
+  {{- range . }}
+  {{- $p := . }}
+  <article class="timeline-item">
+    <span class="timeline-marker" aria-hidden="true"></span>
+    <div class="u-card timeline-content">
+      <span class="u-bar" aria-hidden="true"></span>
+
+      <p class="u-eyebrow timeline-date"><bdi dir="ltr">{{ $p.period }}</bdi></p>
+
+      <h3 class="timeline-title">
+        {{ $p.role }}
+        {{- with $p.org }}
+        <span class="timeline-org">
+          {{- with $p.url }}<a href="{{ . }}" target="_blank" rel="noopener noreferrer">{{ $p.org }}</a>
+          {{- else }}{{ . }}{{ end -}}
+        </span>
+        {{- end }}
+      </h3>
+      {{- with $p.note }}<p class="timeline-note">{{ . | markdownify }}</p>{{ end }}
+
+      {{- with $p.work }}
+      <div class="timeline-body">
+        {{- range . }}
+        {{- $w := . }}
+
+        <div class="timeline-work{{ with $w.video }} timeline-work--media{{ end }}">
+          {{- with $w.video }}
+          {{- partial "video-thumb.html" (dict "id" . "alt" ($w.videoAlt | default $w.title)) }}
+          {{- end }}
+          <h4 class="timeline-work__title">
+            {{- with $w.url }}<a href="{{ . }}" target="_blank" rel="noopener noreferrer">{{ $w.title }}</a>
+            {{- else }}{{ $w.title }}{{ end -}}
+          </h4>
+          {{- with $w.text }}<p class="timeline-work__text">{{ . | markdownify }}</p>{{ end }}
+        </div>
+        {{- end }}
+      </div>
+      {{- end }}
+
+      {{- if or $p.built $p.stack $p.tools $p.learned }}
+      <dl class="timeline-facts">
+        {{- range $rails }}
+        {{- $rail := . }}
+        {{- with index $p $rail.key }}
+        <div class="timeline-facts__row">
+          <dt class="u-eyebrow timeline-facts__label">{{ i18n $rail.i18n | default $rail.fallback }}</dt>
+          <dd class="timeline-facts__value">
+            {{- range $i, $v := . }}{{ if $i }} <b aria-hidden="true">·</b> {{ end }}{{ $v }}{{ end -}}
+          </dd>
+        </div>
+        {{- end }}
+        {{- end }}
+        {{- with $p.learned }}
+        <div class="timeline-facts__row timeline-facts__row--learned">
+          <dt class="u-eyebrow timeline-facts__label">{{ i18n "career_learned" | default "Learned" }}</dt>
+          <dd class="timeline-facts__value">{{ . | markdownify }}</dd>
+        </div>
+        {{- end }}
+      </dl>
+      {{- end }}
+    </div>
+  </article>
+  {{- end }}
+</div>
+<div id="lightbox">
+  <iframe id="lightbox-video" src="" title="{{ i18n "career_video" | default "Video" }}" frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen
+    style="display: none;"></iframe>
+</div>
+{{ $js := resources.Get "js/timeline.js" | resources.Minify | resources.Fingerprint }}
+<script src="{{ $js.RelPermalink }}" defer></script>
+{{- end }}

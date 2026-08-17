@@ -57,6 +57,9 @@ stack: ["Electron", "TypeScript", "Firebase", "Ed25519"]
 links:
   live: "https://tikipro.web.app"
   repo: ""
+metrics:                     # exactly three, the page's evidence at a glance
+  - value: "1 PC"
+    label: "runs reception, the board and every doctor"
 takeaway: "One sentence."    # feeds the learning block on /projects/
 lessons:
   - "**Bold lead.** Then the detail."
@@ -71,6 +74,7 @@ lessons:
 | `stack` | The index card shows the **first four**, so order them by what matters. |
 | `links` | Keys are localised via `project_link_*`. An empty value is skipped, so leave unused keys blank rather than deleting them. |
 | `lessons` | 3–5 bullets, markdown allowed. **At least one must be a real failure.** |
+| `metrics` | Exactly three. A number and what it counts, shown above the gallery. Every figure must also appear, sourced, in the page below — this row is the index, not the evidence. If a project has no honest numbers, it has no metrics row. |
 | `takeaway` | One sentence for the learning block. Not a summary of the lessons — the single thing you'd tell someone starting the same project. |
 
 ---
@@ -86,6 +90,16 @@ not the architecture.
 
 **`## The product`** — what it actually became. Screens, flows, the one or two
 decisions that made it work. Concrete numbers wherever you have them.
+
+**One blockquote, once.** Between the two sections, set the single line worth
+remembering as a `>` blockquote. It renders as a pull quote and it is the thing
+a reader carries away if they read nothing else — so it is a judgement, not a
+summary.
+
+**Aim for 220 words.** The lede says what the thing is, the metrics carry the
+numbers, the lessons carry the detail. The body only has to carry the story, and
+the versions of these pages that ran to 500 words were repeating the other
+three.
 
 > **Never copy README prose.** A README is written for a contributor who has
 > already decided to care. A project page is written for someone deciding whether

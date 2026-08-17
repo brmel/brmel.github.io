@@ -34,13 +34,12 @@
         {{- end }}
     </header>
     {{- $isHidden := (.Param "cover.hiddenInSingle") | default (.Param "cover.hidden") | default false }}
-    {{- if $adv }}{{ $isHidden = false }}{{ end }}{{/* adventures show the cover as a field-note hero */}}
+    {{- if $adv }}{{ $isHidden = false }}{{ end }}
     {{- partial "cover.html" (dict "cxt" . "IsSingle" true "isHidden" $isHidden) }}
     {{- if (.Param "ShowToc") }}
     {{- partial "toc.html" . }}
     {{- end }}
 
-    {{- /* Series nav + original-publication credit, from front matter (#imports). */ -}}
     {{- partial "article-origin.html" . }}
 
     {{- if .Content }}
@@ -56,11 +55,9 @@
     {{- partial "reels.html" . }}
     {{- end }}
 
-    {{- /* Everything after the words — see partials/content-footer.html. */ -}}
     {{- partial "content-footer.html" . }}
 
 </article>
-
 {{- if $adv }}
 {{- $advJS := resources.Get "js/adventures.js" | minify | fingerprint }}
 {{- with $advJS }}
@@ -68,4 +65,4 @@
 {{- end }}
 {{- end }}
 
-{{- end }}{{/* end main */}}
+{{- end }}

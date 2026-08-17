@@ -1,11 +1,3 @@
-/* ============================================================================
-   IBRAVERSE — STANDALONE  (css/standalone.css)
-   Chrome for the `standalone` layout: a full-page tech article that bypasses
-   PaperMod. Reads the shared brand tokens (tokens.css, loaded just before this)
-   so it matches the rest of the site in light + dark. The article's own body
-   styling can come from its customCSS.
-   ========================================================================== */
-
 *,*::before,*::after{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
 body{
@@ -16,7 +8,6 @@ body{
 
 .sa-wrap{max-width:var(--container-content);margin-inline:auto;padding-inline:var(--space-5)}
 
-/* ---- top nav (back into the site) ---- */
 .sa-topbar{
   position:sticky;top:0;z-index:20;
   background:color-mix(in srgb,var(--bg) 86%,transparent);
@@ -38,7 +29,6 @@ body{
 }
 .sa-nav__link:hover{color:var(--accent)}
 
-/* ---- article ---- */
 .sa-main{padding:var(--space-8) 0 0}
 .sa-head{margin-bottom:var(--space-7)}
 .sa-eyebrow{
@@ -51,7 +41,6 @@ body{
 }
 .sa-lede{font-size:var(--t-subhead);line-height:1.45;color:var(--ink-soft);margin:0;max-width:60ch}
 
-/* ---- article body defaults (overridable by the article's own customCSS) ---- */
 .sa-body{font-size:var(--t-body-l)}
 .sa-body :where(h2){font-family:var(--font-serif);font-weight:400;font-size:var(--t-display-s);line-height:1.1;margin:var(--space-8) 0 var(--space-4)}
 .sa-body :where(h3){font-family:var(--font-sans);font-weight:600;font-size:var(--t-heading);margin:var(--space-6) 0 var(--space-3)}
@@ -63,7 +52,6 @@ body{
 .sa-body :where(pre){background:var(--bg-alt);border:var(--hairline) solid var(--rule);border-radius:var(--radius-sm);padding:var(--space-4);overflow:auto}
 .sa-body :where(blockquote){border-left:var(--hairline-strong) solid var(--accent);margin:var(--space-6) 0;padding-left:var(--space-5);color:var(--ink-soft)}
 
-/* ---- footer ---- */
 .sa-footer{
   border-top:var(--hairline) solid var(--rule);
   margin-top:var(--space-9);padding:var(--space-6) 0;

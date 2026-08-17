@@ -1,0 +1,13 @@
+{{- $id := .id -}}
+{{- $alt := .alt | default "Video thumbnail" -}}
+{{- with resources.Get (printf "images/timeline/%s.jpg" $id) }}
+{{- $sm := .Resize "320x webp q80" }}
+{{- $lg := .Resize "480x webp q80" }}
+<img class="video-thumbnail" src="{{ $sm.RelPermalink }}"
+     srcset="{{ $sm.RelPermalink }} 320w, {{ $lg.RelPermalink }} 480w"
+     sizes="(max-width: 760px) 104px, 180px"
+     width="{{ $lg.Width }}" height="{{ $lg.Height }}"
+     loading="lazy" decoding="async"
+     data-video-src="https://www.youtube.com/embed/{{ $id }}?autoplay=1"
+     alt="{{ $alt }}">
+{{- end }}

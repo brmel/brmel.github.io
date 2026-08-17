@@ -1,19 +1,7 @@
-{{- /* Fork of themes/PaperMod/partials/extend_head.html @2d2f2c6 — diff before upgrading. */ -}}
-{{- /*
-  Per-page assets. Front matter `customCSS` / `customJS` list paths under
-  assets/; they are fingerprinted and scoped to the page that asks, so other
-  pages do not download them.
-
-  The dir attribute is set here rather than on <html> in baseof: PaperMod emits
-  dir="auto", which does not lay out RTL boxes reliably. Setting it during head
-  parse avoids a flash.
-*/ -}}
 {{- if eq site.Language.LanguageDirection "rtl" }}
 <script>document.documentElement.setAttribute("dir", "rtl");</script>
 {{- end }}
-{{- /* Brand fonts, loaded site-wide (Instrument Serif / Inter Tight / JetBrains
-       Mono). The tokens that use them ship in css/extended/tokens.css, which is
-       already concatenated into PaperMod's stylesheet bundle. */ -}}
+
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />

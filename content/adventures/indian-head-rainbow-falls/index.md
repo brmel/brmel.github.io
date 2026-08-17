@@ -57,7 +57,7 @@ to **Rainbow Falls** before the long, easy walk back on Lake Road.
   on trail).
 - **Best time:** late spring to mid-October; fall foliage is spectacular.
 - **Getting there:** trailhead parking at **St. Huberts / Ausable Club, Keene
-  Valley, NY**. ~2h from Montreal, ~2h from Albany.
+  Valley, NY**. ~2h from Montréal, ~2h from Albany.
 - **Bring:** 2L+ water, layers (the ledge is windy), real hiking shoes, and a
   paper/offline map — no cell service.
 

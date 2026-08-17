@@ -2,21 +2,17 @@
 {{- define "main" }}
 
 {{- if (and site.Params.profileMode.enabled .IsHome) }}
-{{- /* Home = identity, then the routes into the work.
 
-       Upstream PaperMod renders index_profile and returns, which meant the whole
-       body of content/_index.md was parsed and then silently dropped — it had
-       never appeared on the site. The three blocks below fix that: the
-       profile, then the page's own copy, then cards + latest posts. */ -}}
 {{- partial "index_profile.html" . }}
 {{- if .Content }}
 <div class="post-content home-intro">
   {{ .Content }}
 </div>
 {{- end }}
+{{- partial "home-career.html" . }}
 {{- partial "home-sections.html" . }}
 {{- partial "home-latest.html" . }}
-{{- else }} {{/* if not profileMode */}}
+{{- else }}
 
 {{- if not .IsHome | and .Title }}
 <header class="page-header">
@@ -52,10 +48,6 @@
 </div>
 {{- end }}
 
-{{- /* Tiered language policy: a section lists this language's pages, or
-       falls back to the default language's when nothing is translated, so the
-       fr and ar sites never silently offer less than the en one. Cards from the
-       fallback are marked. See partials/func/section-pages.html. */ -}}
 {{- $pages := union .RegularPages .Sections }}
 
 {{- if eq .Kind "section" }}
@@ -68,14 +60,12 @@
 {{- partial "home_info.html" . }}
 {{- end }}
 
-{{- /* Brand empty-state: a section/term page with nothing published yet
-       (e.g. Adventures while every field note is still a draft). Keeps the
-       menu link from landing on a blank page. */ -}}
 {{- if and (not .IsHome) (lt (len $pages) 1) }}
 <div class="empty-section">
   <span class="empty-section__mark" aria-hidden="true"></span>
-  <p class="empty-section__lead">No {{ lower .Title }} published yet.</p>
-  <p class="empty-section__sub">New field notes are on the way — check back soon.</p>
+
+  <p class="empty-section__lead">{{ i18n "section_empty_lead" | default "Nothing published here yet." }}</p>
+  <p class="empty-section__sub">{{ i18n "section_empty_sub" | default "New work is on the way — check back soon." }}</p>
 </div>
 {{- end }}
 
@@ -94,7 +84,16 @@
 <article class="{{ $class }}">
   {{- $isHidden := (.Param "cover.hiddenInList") | default (.Param "cover.hidden") | default false }}
   {{- partial "cover.html" (dict "cxt" . "IsSingle" false "isHidden" $isHidden) }}
+
+  <div class="entry-text">
   <header class="entry-header">
+    {{- if not (.Param "hideMeta") }}
+    <span class="u-eyebrow entry-eyebrow">
+      {{- with .Date }}<time datetime="{{ .Format "2006-01-02" }}">{{ time.Format (site.Params.DateFormat | default ":date_long") . }}</time>{{ end }}
+
+      {{- if ge .ReadingTime 2 }} <b aria-hidden="true">·</b> {{ i18n "read_time" .ReadingTime | default (printf "%d min" .ReadingTime) }}{{ end }}
+    </span>
+    {{- end }}
     <h2 class="entry-hint-parent">
       {{- .Title }}
       {{- if .Draft }}
@@ -107,22 +106,15 @@
       {{- end }}
     </h2>
   </header>
-  {{- /* An entry's blurb, in order of intent: the page's own description, a
-         project's pitch, then Hugo's auto-summary. The auto-summary starts at
-         the first paragraph and swallows any heading before it, so project
-         entries read "The story The moment matters…" on every tag page. */ -}}
   {{- $blurb := or .Description .Params.pitch (printf "%s%s" (.Summary | plainify | htmlUnescape) (cond .Truncated "…" "")) }}
   {{- if and $blurb (ne (.Param "hideSummary") true) }}
-  <div class="entry-content"><p>{{ $blurb }}</p></div>
+
+  <div class="entry-content"><p dir="auto">{{ $blurb }}</p></div>
   {{- end }}
   {{- if ne .Lang site.Language.Lang }}
   <p class="entry-lang">{{ i18n "lang_en_only" | default "in English" }}</p>
   {{- end }}
-  {{- if not (.Param "hideMeta") }}
-  <footer class="entry-footer">
-    {{- partial "post_meta.html" . -}}
-  </footer>
-  {{- end }}
+  </div>
   <a class="entry-link" aria-label="post link to {{ .Title | plainify }}" href="{{ .Permalink }}"></a>
 </article>
 {{- end }}
@@ -150,6 +142,6 @@
 </footer>
 {{- end }}
 
-{{- end }}{{/* end profileMode */}}
+{{- end }}
 
-{{- end }}{{- /* end main */ -}}
+{{- end }}

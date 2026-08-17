@@ -1,17 +1,3 @@
-{{- /*
-  gmap — a map for a field note.
-
-  A real embed, from Google Maps -> Share -> "Embed a map":
-    {{< gmap src="https://www.google.com/maps/embed?pb=..." title="Schwartz's Deli" >}}
-
-  A place, with no embed URL to copy:
-    {{< gmap q="Schwartz's Deli, Montreal" title="Schwartz's Deli" >}}
-
-  The q= form used to build a maps.google.com/maps?output=embed iframe. Google
-  refuses to frame that URL now, so it rendered a blank 538px box on both field
-  notes — worse than no map. It degrades to a link instead. Only a real embed
-  src= gets an iframe.
-*/ -}}
 {{- $title := .Get "title" | default "Map" -}}
 {{- with .Get "src" }}
 <div class="gmap">

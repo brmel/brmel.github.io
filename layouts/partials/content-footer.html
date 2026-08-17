@@ -1,19 +1,9 @@
-{{- /*
-  The common ending for every content page:
-
-      tags -> actions -> share -> section nav -> comments
-
-  Each row hides itself when empty, so a page with no tags or a section with one
-  page degrades quietly. Opt out with `hideContentFooter: true`.
-*/ -}}
-
 {{- if not (.Param "hideContentFooter") }}
 <footer class="content-footer">
-
   {{- $tags := .Language.Params.Taxonomies.tag | default "tags" }}
   {{- with ($.GetTerms $tags) }}
   <ul class="content-footer__tags">
-    {{- range . }}<li><a href="{{ .Permalink }}">{{ .LinkTitle }}</a></li>{{ end }}
+    {{- range . }}<li><a class="u-chip" href="{{ .Permalink }}">{{ .LinkTitle }}</a></li>{{ end }}
   </ul>
   {{- end }}
 
@@ -23,7 +13,6 @@
     {{- partial "share_icons.html" . }}
     {{- end }}
   </div>
-
   {{- partial "section-nav.html" . }}
   {{- partial "comments.html" . }}
 

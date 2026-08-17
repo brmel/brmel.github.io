@@ -1,23 +1,14 @@
-{{- /* Fork of themes/PaperMod/partials/index_profile.html @2d2f2c6 — diff before upgrading. */ -}}
 <div class="profile">
     {{- with site.Params.profileMode }}
     <div class="profile_inner">
-        {{- /* The compass mark opens the page — same signature as every other
-               Ibraverse surface. See layouts/partials/brand-mark.html. */ -}}
-        <span class="profile__mark">{{ partial "brand-mark.html" (dict "size" 40 "title" site.Title) }}</span>
         <h1>{{ .title | default site.Title | markdownify }}</h1>
-        {{- /* The profile photo is the LCP element on mobile and used to ship raw:
-               760x960, 324 KB, displayed at 380px. It lived in static/, which
-               bypasses Hugo Pipes entirely — resources.Get returned nil and the
-               template fell through to a plain absURL. Moving it to assets/ puts
-               it through the same pipeline the project galleries use. */ -}}
+
         {{- with .imageUrl }}
         {{- $img := resources.Get . }}
         {{- with $img }}
         {{- $w := .Width }}
         {{- $x1 := .Resize "380x webp q72" }}
-        {{- /* The 2x variant is only ever shown at 380 CSS px, where retina density
-               hides compression. q80 cost 187 KB; q58 is visually identical here. */ -}}
+
         {{- $x2 := cond (ge $w 760) (.Resize "760x webp q58") $x1 }}
         <img class="profile__photo"
              src="{{ $x1.RelPermalink }}"

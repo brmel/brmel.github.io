@@ -1,22 +1,9 @@
-{{- /*
-  The pages a section lists: this language's, plus any default-language pages
-  with no translation here.
-
-  It merges rather than filters. Filtering hid English-only writing from fr and
-  ar readers and left /fr/projects/ empty, which then removed Projects from the
-  nav entirely. Callers mark the untranslated ones by comparing .Lang.
-
-  Returns a page slice; callers sort.
-*/ -}}
-
 {{- $pages := .RegularPages -}}
 {{- $lang := site.Language.Lang -}}
 {{- $default := index site.Sites 0 -}}
 
 {{- if ne $lang $default.Language.Lang -}}
-  {{- /* Which of the default language's pages are already translated here?
-         Compare by .File.ContentBaseName, which is stable across the
-         index.md / index.fr.md pair inside one page bundle. */ -}}
+
   {{- $have := slice -}}
   {{- range $pages -}}
     {{- with .File }}{{ $have = $have | append .ContentBaseName }}{{ end -}}

@@ -1,23 +1,42 @@
 {{- define "main" }}
-{{- /*
-  Layout: projects/list
-  The project index. Cards, not post entries — a project is identified by its
-  domain, status and pitch, not by a date and a summary. Each card carries its
-  own accent via data-category, so the grid shows the whole register at once.
-*/ -}}
 
 <header class="page-header">
   {{- partial "breadcrumbs.html" . }}
-  <h1>{{ .Title }}</h1>
+  <h1>
+    {{ .Title }}
+
+    {{- if (.Param "ShowRssButtonInSectionTermList") }}
+    {{- with .OutputFormats.Get "rss" }}
+    <a class="rss-link" href="{{ .RelPermalink }}" title="RSS" aria-label="RSS">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" height="23">
+        <path d="M4 11a9 9 0 0 1 9 9" />
+        <path d="M4 4a16 16 0 0 1 16 16" />
+        <circle cx="5" cy="19" r="1" />
+      </svg>
+    </a>
+    {{- end }}
+    {{- end }}
+  </h1>
   {{- with .Description }}<div class="post-description">{{ . | markdownify }}</div>{{ end }}
 </header>
-
 {{- with .Content }}
 <div class="post-content projects-intro">{{ . }}</div>
 {{- end }}
 
-{{- /* Tiered language policy: this language's pages, or the default
-       language's if none are translated. See partials/func/section-pages.html. */ -}}
+{{- with .Params.startHere }}
+<nav class="start-here" aria-label="{{ i18n "projects_start_here" | default "Start here" }}">
+  <span class="u-eyebrow start-here__label">{{ i18n "projects_start_here" | default "Start here" }}</span>
+  <ul class="start-here__list">
+    {{- range . }}
+    {{- with site.GetPage (printf "/projects/%s" .) }}
+    <li><a href="{{ .RelPermalink }}">{{ .Title }}</a> <span class="start-here__why">{{ .Params.startHereWhy }}</span></li>
+    {{- end }}
+    {{- end }}
+  </ul>
+</nav>
+{{- end }}
+
 {{- $projects := sort (partial "func/section-pages.html" .) "Params.projectNo" "asc" }}
 
 {{- if lt (len $projects) 1 }}
@@ -28,9 +47,17 @@
 </div>
 {{- else }}
 
-<div class="project-grid">
-  {{- range $projects }}
-  <a class="u-card project-card" href="{{ .RelPermalink }}" data-category="{{ .Params.domain | default "saas" }}">
+{{- $years := slice }}
+{{- range $projects }}{{ $years = $years | append .Date.Year }}{{ end }}
+{{- $years = sort (uniq $years) "value" "desc" }}
+
+<div class="project-timeline">
+  {{- range $year := $years }}
+  <section class="project-period" aria-labelledby="projects-{{ $year }}">
+    <h2 class="u-eyebrow project-period__year" id="projects-{{ $year }}"><bdi dir="ltr">{{ $year }}</bdi></h2>
+    <div class="project-grid">
+    {{- range where $projects "Date.Year" $year }}
+    <a class="u-card project-card" href="{{ .RelPermalink }}" data-category="{{ .Params.domain | default "saas" }}">
     <span class="u-bar" aria-hidden="true"></span>
     <span class="u-eyebrow project-card__eyebrow">
       {{- with .Params.projectNo }}№ {{ printf "%02d" . }} <b aria-hidden="true">·</b> {{ end -}}
@@ -39,14 +66,13 @@
       {{ i18n (printf "project_status_%s" (.Params.status | default "active")) | default (.Params.status | upper) }}
     </span>
     <span class="project-card__title">{{ .Title }}</span>
-    {{- with .Params.pitch }}<span class="project-card__pitch">{{ . }}</span>{{ end }}
+
+    {{- with .Params.pitch }}<span class="project-card__pitch" dir="auto">{{ . }}</span>{{ end }}
     {{- if ne .Lang site.Language.Lang }}
-    <span class="project-card__lang" title="{{ i18n "lang_en_only_title" | default "This write-up is in English" }}">{{ i18n "lang_en_only" | default "in English" }}</span>
+    <span class="u-chip project-card__lang" title="{{ i18n "lang_en_only_title" | default "This write-up is in English" }}">{{ i18n "lang_en_only" | default "in English" }}</span>
     {{- end }}
     {{- with .Params.links.live }}
-    {{- /* Surface the live URL on the card too. It was only on the detail page,
-           so a reader scanning the index could not tell what is actually
-           running and reachable. */ -}}
+
     <span class="u-eyebrow project-card__live">{{ i18n "project_link_live" | default "Live" }} <span aria-hidden="true">↗</span></span>
     {{- end }}
     {{- with .Params.stack }}
@@ -54,11 +80,13 @@
       {{- range $i, $s := first 4 . }}{{ if $i }} <b aria-hidden="true">·</b> {{ end }}{{ $s }}{{ end -}}
     </span>
     {{- end }}
-  </a>
+    </a>
+    {{- end }}
+    </div>
+  </section>
   {{- end }}
 </div>
 
-{{- /* The continuous-learning companion block attaches here. */ -}}
 {{- partial "projects-learning.html" . }}
 
 {{- end }}

@@ -167,7 +167,12 @@ enableEmoji = true
   keywords = ["machine vision", "image processing", "computer vision", "industrial algorithms", "OpenCV", "C++", "control theory", "robotics", "AI", "Zebra Technologies", "Matrox", "real-time systems", "AGM", "geometric matching"]
   author = "Ibraverse"
   images = ["images/MyPhoto.jpg"]
-  DateFormat = "January 2, 2006"
+  # A localised layout, not a Go one. "January 2, 2006" is a fixed English
+  # pattern, so /fr/ and /ar/ printed "August 4, 2026" on every card and every
+  # article — the one string on those pages that never got translated.
+  # ":date_long" resolves per language: 4 août 2026 · ٤ أغسطس ٢٠٢٦.
+  # Call it through `time.Format`; `.Format` is Go's and ignores the locale.
+  DateFormat = ":date_long"
   # Light is the brand's home theme; dark is a full, contrast-audited
   # palette in tokens.css and is reachable from the toggle in the nav.
   defaultTheme = "light"

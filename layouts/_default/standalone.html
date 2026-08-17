@@ -1,33 +1,11 @@
 <!doctype html>
-{{- /*
-  Layout: standalone
-  A self-contained, full-page tech article that bypasses PaperMod's chrome
-  (like the Hydro-Quebec outage report). The layout owns the document shell —
-  <head> with SEO + Google Analytics + brand tokens/fonts, a slim top nav back
-  into the site, and a footer — and renders the article body from .Content.
 
-  Use it from a page bundle: content/tech/<slug>/index.md
-    ---
-    title: "..."
-    date: 2026-06-01
-    layout: "standalone"
-    summary: "One-line teaser (used for description + social cards)."
-    tags: ["..."]
-    cover: { image: "cover.jpg", alt: "...", relative: true }   # optional (og:image)
-    customCSS: ["css/<slug>.css"]    # optional, per-article styles (assets/)
-    customJS:  ["js/<slug>.js"]      # optional, per-article scripts (assets/)
-    hideAutoHeader: true             # optional: hide the auto eyebrow/title/lede
-                                     #   when your HTML provides its own hero
-    ---
-    Put the article BODY here — HTML and/or markdown, plus any <style>/<script>.
-    Do NOT paste a whole <html>…</html> document; just the body content.
-*/ -}}
 {{- $desc := cond (ne (string .Description) "") .Description .Summary -}}
 <html lang="{{ .Site.LanguageCode | default "en" }}" dir="{{ .Language.LanguageDirection | default "ltr" }}">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>{{ .Title }} — {{ .Site.Title }}</title>
+  <title>{{ .Title }} | {{ .Site.Title }}</title>
   <meta name="description" content="{{ $desc }}" />
   <link rel="canonical" href="{{ .Permalink }}" />
   <meta name="robots" content="index, follow" />
@@ -36,8 +14,6 @@
   <meta property="og:description" content="{{ $desc }}" />
   <meta property="og:url" content="{{ .Permalink }}" />
   <meta property="og:site_name" content="{{ .Site.Title }}" />
-  {{- /* Same resolver as the PaperMod pages, so this layout cannot drift out of
-         sync on social cards. */ -}}
   {{- $og := partial "func/og-image.html" . }}
   <meta property="og:image" content="{{ $og.url }}" />
   <meta property="og:image:alt" content="{{ $og.alt }}" />
@@ -46,20 +22,8 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="{{ $og.url }}" />
   <meta name="twitter:image:alt" content="{{ $og.alt }}" />
-
   {{- partial "brand-fonts.html" . }}
 
-  {{- /* This layout owns its own <head>, so it assembles the slice of the design
-         system it needs rather than inheriting PaperMod's bundle: the tokens,
-         the shared component primitives, the chrome rules that style the common
-         content footer, then its own rules. Without 30-chrome the footer still
-         rendered but unstyled, so "Back to Tech" and "Improve this page" read in
-         sentence case where every other screen shows uppercase mono.
-
-         Built with resources.Match, not three hardcoded resources.Get calls —
-         renaming 00-tokens.css previously returned nil here and failed the
-         build with an unhelpful "expected ResourceTransformer" error. A glob
-         degrades to "one fewer file" instead of a hard failure. */ -}}
   {{- $css := slice }}
   {{- range (slice "css/extended/00-tokens.css" "css/extended/20-components.css" "css/extended/30-chrome.css" "css/standalone.css") }}
   {{- with resources.Get . }}{{ $css = $css | append . }}{{ end }}
@@ -74,12 +38,7 @@
   {{- partial "google_analytics.html" . }}
 </head>
 <body id="top">
-  {{- /* Theme bootstrap. This layout owns its own shell, so it has to apply the
-         stored preference itself. Same storage key and same body.dark class as
-         PaperMod, so a toggle on any page carries over to this one. Inline and
-         before paint, so there is no flash. */ -}}
   <script>if(localStorage.getItem("pref-theme")==="dark"){document.body.classList.add("dark")}</script>
-
 
   <a class="skip-link" href="#main">{{ i18n "skip_to_content" }}</a>
 
@@ -95,13 +54,10 @@
       </nav>
     </div>
   </header>
-
   <main class="sa-main" id="main">
     <article class="sa-article">
       {{- if .Params.hideAutoHeader }}
-      {{- /* The embedded artefact carries its own hero, so showing this one too
-             stacks the same title twice. It still has to exist: without it the
-             document had no h1 at all and no headings in its outline. */ -}}
+
       <h1 class="sa-sr-only">{{ .Title }}</h1>
       {{- else }}
       <header class="sa-head sa-wrap">
@@ -116,19 +72,15 @@
     </article>
   </main>
 
-  {{- /* The same ending as every other content page. The report itself is
-         full-bleed, so the footer sits in the reading column below it. */ -}}
   <div class="sa-wrap">
     {{- partial "content-footer.html" . }}
   </div>
-
   <footer class="sa-footer">
     <div class="sa-wrap sa-footer__inner">
       <a href="#top">↑ {{ i18n "back_to_top" | default "Top" }}</a>
       <span>© {{ now.Format "2006" }} {{ .Site.Title }}</span>
     </div>
   </footer>
-
   {{- range .Params.customJS }}{{ with resources.Get . }}{{ $j := . | minify | fingerprint }}
   <script defer src="{{ $j.RelPermalink }}" integrity="{{ $j.Data.Integrity }}"></script>{{ end }}{{ end }}
 </body>

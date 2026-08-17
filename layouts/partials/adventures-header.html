@@ -1,10 +1,3 @@
-{{- /*
-  adventures-header — the field-note header for /adventures/ articles.
-  Eyebrow (FIELD NOTE № nnn · CATEGORY · PLACE) + category bar + Instrument
-  Serif title + meta + category badge. The cover is left to PaperMod's
-  cover.html (renders the page-bundle cover.image). The accent comes from
-  data-category set on the <article> wrapper in single.html.
-*/ -}}
 {{- $n := printf "%03d" (int (.Params.fieldNote | default 0)) -}}
 <div class="category-bar"></div>
 <p class="field-eyebrow">
@@ -16,7 +9,6 @@
   <span class="place">{{ . | upper }}</span>
   {{- end }}
 </p>
-
 <h1 class="post-title">{{ .Title }}</h1>
 
 {{- with (or .Params.description .Params.summary) }}<p class="post-description">{{ . }}</p>{{ end -}}
@@ -26,6 +18,6 @@
   <span><b>{{ .Date.Format "Jan 2006" }}</b></span>
   <span>{{ .ReadingTime }} min read</span>
   {{- with .Params.category }}
-  <span class="cat-badge">{{ partial "category-icon.html" . }}{{ . | upper }}</span>
+  <span class="u-chip u-chip--accent cat-badge">{{ partial "category-icon.html" . }}{{ . | upper }}</span>
   {{- end }}
 </div>

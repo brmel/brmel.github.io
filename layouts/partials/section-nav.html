@@ -1,22 +1,3 @@
-{{- /*
-  section-nav — the way back, at the end of every content page.
-
-  Before this, the only route out of an article or a project was the breadcrumb
-  at the very top: after 700–2,700 words a reader had to scroll all the way back
-  up to leave. Prev/next was disabled site-wide (ShowPostNavLinks = false), so
-  there was no way to move between sibling pages at all.
-
-  One partial, used by every single-page layout, so the affordance is identical
-  everywhere:
-
-      ← Back to Projects
-      Previous: <title>            Next: <title>
-
-  Siblings come from the page's own section and respect the tiered language
-  policy — a reader on /fr/ moving between English-only articles stays in the
-  same set they were shown in the listing.
-*/ -}}
-
 {{- $section := .Section -}}
 {{- with site.GetPage (printf "/%s" $section) }}
 {{- $siblings := partial "func/section-pages.html" . -}}
@@ -40,7 +21,6 @@
     <span aria-hidden="true">←</span>
     {{ i18n "back_to" | default "Back to" }} {{ .Title }}
   </a>
-
   {{- if or $prev $next }}
   <div class="section-nav__siblings">
     {{- with $prev }}

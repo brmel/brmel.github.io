@@ -5,18 +5,22 @@ projectNo: 2
 domain: "mobile"
 status: "active"
 pitch: "A small group decides where to go — nominate options, vote in real time, lock in a winner."
+metrics:
+  - value: "3 surfaces"
+    label: "app, admin console, marketing site"
+  - value: "1 control plane"
+    label: "build, deploy, publish, roll back"
+  - value: "0"
+    label: "launches — the infrastructure is further along than the product"
 stack: ["Flutter", "Firebase Functions", "TypeScript", "React", "Firestore"]
+newToMe: ["Cloud Functions as the only write path", "release tooling and rollback", "Flutter web"]
 links:
   live: ""
 lede: |
-  Five friends trying to pick a restaurant will fill a group chat with links,
-  three thumbs-up reactions and no decision, and two days later nobody booked
-  anything. The problem was never a shortage of options — it is that no message
-  in a chat is ever the moment the group agreed. Wingo makes that moment
-  explicit: a squad nominates options, everyone votes in real time, and one of
-  them locks in, so the thread afterwards is about logistics instead of whether
-  it is happening.
-takeaway: "Build the deploy tooling before you need it — the second web property is when hand-run commands start costing real time."
+  A group planning app built around the one thing a chat thread cannot do —
+  end the conversation. A squad nominates options, everyone votes in real time,
+  and one person locks the winner in.
+takeaway: "By the second site, deploying by hand was costing me more time than building the tooling would have."
 lessons:
   - "**The control plane was the best decision on the project.** Two web properties, two audiences, two visibility rules, and deploys were hand-run CLI commands. `Operator/` turned build → deploy → publish → rollback into one model across Firebase Hosting, this machine, and any server, with an audit trail and health-check auto-rollback. It cost a fortnight and paid for itself the first time a bad deploy needed reverting."
   - "**Every write goes through Cloud Functions, and that constraint aged well.** No client writes straight to Firestore. It felt heavy while building the first screen and stopped being negotiable the moment real-time voting arrived — the vote rules live in one place, not in every client version anyone has installed."
@@ -27,32 +31,27 @@ tags: ["Flutter", "Firebase", "Mobile"]
 
 ## The story
 
-The moment matters more than the mechanism. A squad nominates options, everyone
-votes in real time, and one of them locks in as the plan — and it is the locking
-in, not the voting, that ends the argument. Before that moment every message is
-just an opinion; after it, the thread is about logistics.
+Five friends picking a restaurant will fill a group chat with links, three
+thumbs-up reactions and no decision, and two days later nobody has booked
+anything. The problem was never a shortage of options.
+
+> It is the locking in, not the voting, that ends the argument. Before that
+> moment every message is only an opinion.
 
 ## The product
 
-Three surfaces off one Firestore backend: a Flutter app for iOS and Android, a
-Flutter-web admin console for curating public events, and a React marketing site
-with share-link previews.
+A squad nominates options, everyone votes in real time, and one person locks the
+winner in. The app opens on a curated list of what is on in Montréal this week,
+so the first screen is useful before you have a single friend on the platform.
 
-The app opens on **Discover** — what's on in Montréal this week, curated rather
-than scraped, so the first screen is useful before you have a single friend on
-the platform. Pick an event, choose which squad you're planning with, and it
-becomes a plan the group votes on.
+Two decisions shaped the rest. **Every write goes through a server function** —
+no client touches the database directly — so the voting rules live in one place
+rather than in whichever app version someone still has installed. And deploys go
+through a small control plane instead of hand-run commands: build, deploy,
+publish, roll back, with an audit trail and a health check that reverts a bad
+release on its own.
 
-Two decisions shaped everything else:
-
-- **Every write goes through Cloud Functions.** No client writes to Firestore
-  directly. Voting rules, plan state, and membership are enforced server-side, so
-  an old app version can't corrupt a live vote.
-- **A local control plane, not a deploy script.** `Operator/` runs on localhost
-  and manages build → deploy → publish → rollback for both web properties across
-  heterogeneous targets — Firebase Hosting, this machine, or any server, bare or
-  Docker — with the public site world-readable and the admin console gated to
-  contributors, enforced by config validation rather than by remembering.
-
-The app is pre-launch. The infrastructure around it is further along than the
-launch is, which is its own lesson.
+It has not launched. The honest reading of that is on the page below: the
+tooling around the product got further than the product did, and the day I
+wrote this page I found both of its sites returning 404 because nothing was
+watching them.

@@ -1,24 +1,19 @@
-/* ============================================================================
-   IBRAVERSE — CHROME
-   Everything that frames the content and is identical on every page: the top
-   nav and brand mark, the footer mark, the post footer, and the section
-   navigation that gets a reader back out of a page.
-   ========================================================================== */
-
-/* ---- centered top nav: brand (+ lang switch) pinned left, menu centered ---- */
 .nav{position:relative;justify-content:center}
 .nav .logo{position:absolute;inset-inline-start:var(--gap);top:0;bottom:0;display:flex;align-items:center;margin:0}
 .nav #menu{margin-inline:auto}
 @media (max-width:768px){
-  /* revert to PaperMod's default row on small screens (avoids overlap) */
+
   .nav{justify-content:space-between}
   .nav .logo{position:static;margin:auto var(--gap)}
   .nav #menu{margin-inline:0}
 }
 
-/* ---- the compass mark (partials/brand-mark.html) ---- */
-/* One implementation, three placements: home hero, footer, and anywhere a
-   section needs the signature. Colour always inherits — never set a hex here. */
+@media (max-width:520px){
+  .nav #menu{margin-inline:var(--space-2)}
+  .nav #menu li + li{margin-inline-start:var(--space-2)}
+  .nav #menu a{font-size:14px}
+}
+
 .brand-mark{
   display:block;
   color:var(--accent);
@@ -26,13 +21,6 @@
 }
 .brand-mark--quiet{color:var(--ink-mute);}
 
-/* home hero: mark sits above the name, centred with it */
-.profile__mark{
-  display:flex;justify-content:center;
-  margin:0 0 var(--space-4);
-}
-
-/* site-wide footer mark: small, centred, well clear of the copyright line */
 .site-mark{
   display:flex;justify-content:center;
   padding-bottom:var(--space-6);
@@ -41,12 +29,9 @@
 }
 .site-mark:hover{opacity:1;}
 
-/* nav logo mark: sits left of the wordmark, optically aligned with it */
 .logo a{display:inline-flex;align-items:center;gap:var(--space-2);}
 .brand-mark--logo{color:var(--accent);}
 
-
-/* ---- series nav + original-publication credit (partials/article-origin.html) ---- */
 .series{
   max-width:var(--container-text);margin:0 auto var(--space-6);
   padding:var(--space-4) var(--space-5);
@@ -70,10 +55,6 @@
 .article-origin a{color:var(--ink-mute);text-decoration:underline;text-underline-offset:3px;}
 .article-origin a:hover{color:var(--accent);}
 
-   SECTION NAV — the way back, at the end of every content page
-   One pattern for every section, so navigation is learned once. Quiet: hairline
-   rule, mono back-link, sibling titles in serif.
-   ========================================================================== */
 .section-nav{
   max-width:var(--container-text);
   margin:var(--space-9) auto 0;
@@ -103,7 +84,7 @@
 }
 .section-nav__sib--next{text-align:end;}
 .section-nav__dir{
-  font-family:var(--font-label);font-size:10px;
+  font-family:var(--font-label);font-size:var(--t-micro);
   letter-spacing:var(--track-eyebrow);text-transform:uppercase;
   color:var(--ink-mute);
 }
@@ -118,9 +99,6 @@
   .section-nav__sib--next{text-align:start;}
 }
 
-/* ---- content footer ------------------------------------------------------
-   The common ending: tags, actions, share, section nav, comments. One quiet
-   hairline row; the accent appears only on hover. */
 .content-footer{
   max-width:var(--container-text);
   margin:var(--space-8) auto 0;
@@ -129,17 +107,12 @@
   margin:0 0 var(--space-4);padding:0;list-style:none;
   display:flex;flex-wrap:wrap;gap:var(--space-2);
 }
+
 .content-footer__tags a{
-  display:inline-block;padding:2px 9px;
-  border:var(--hairline) solid var(--rule);
-  border-radius:var(--radius-pill);
-  font-family:var(--font-label);font-size:11px;
-  letter-spacing:.07em;text-transform:uppercase;
-  color:var(--ink-mute);text-decoration:none;
+  text-transform:uppercase;
   transition:color var(--dur-1) var(--ease-standard),
              border-color var(--dur-1) var(--ease-standard);
 }
-.content-footer__tags a:hover{color:var(--accent);border-color:var(--accent);}
 
 .content-footer__row{
   display:flex;flex-wrap:wrap;align-items:center;
@@ -152,7 +125,7 @@
   display:flex;flex-wrap:wrap;gap:var(--space-2) var(--space-4);
 }
 .content-actions a{
-  font-family:var(--font-label);font-size:11px;
+  font-family:var(--font-label);font-size:var(--t-eyebrow);
   letter-spacing:.07em;text-transform:uppercase;
   color:var(--ink-mute);text-decoration:none;
   border-bottom:var(--hairline) solid var(--rule);padding-bottom:1px;
@@ -170,7 +143,6 @@
 }
 .content-footer .share-buttons li a:hover svg{color:var(--accent);}
 
-/* ---- comments ---- */
 .comments{margin-top:var(--space-9);}
 .comments__note{
   font-family:var(--font-label);font-size:var(--t-eyebrow);
@@ -182,18 +154,12 @@
   .content-footer__row{flex-direction:column;align-items:flex-start;}
 }
 
-/* Inside the content footer the actions row already draws the dividing rule,
-   so the section nav drops its own and just spaces itself. Standalone use of
-   section-nav (if any layout ever needs it alone) keeps the border. */
 .content-footer .section-nav{
   border-top:0;
   margin-top:var(--space-5);
   padding-top:0;
 }
 
-/* ---- 404: the one screen that used to have no way out.
-   Named page-404, not the theme's .not-found, whose absolute positioning and
-   160px numeral are what made it a bare glyph. ---- */
 .page-404{
   margin:var(--space-9) 0;
   display:flex;flex-direction:column;gap:var(--space-3);
@@ -212,7 +178,6 @@
 }
 .page-404__routes a:hover{border-color:var(--accent);color:var(--accent);}
 
-/* ---- skip link: first in the tab order, visible only when focused ---- */
 .skip-link{
   position:absolute;inset-inline-start:var(--space-4);inset-block-start:-100%;
   z-index:100;padding:var(--space-2) var(--space-4);
@@ -223,9 +188,6 @@
 }
 .skip-link:focus{inset-block-start:var(--space-2);}
 
-/* ---- WCAG 2.5.8: a control is at least 24x24, whatever its type size.
-   Padding, not font-size, so nothing about the design changes. Links inside a
-   sentence are exempt and are left alone. ---- */
 .content-actions a,
 .learning__link,
 .series__item a,

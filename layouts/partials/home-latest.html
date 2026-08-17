@@ -1,12 +1,3 @@
-{{- /*
-  home-latest — the most recent writing across every section in mainSections.
-
-  This is what params.mainSections was configured for. Ranges over the same
-  sections the cards do, through the same merge, so French and Arabic readers
-  see the English writing that has no translation instead of a list of one.
-  Renders nothing at all when there is nothing to show, rather than an empty
-  heading — same principle as the empty-section rules elsewhere.
-*/ -}}
 {{- $limit := 5 -}}
 {{- $pages := slice -}}
 {{- range site.Params.mainSections -}}
@@ -27,7 +18,7 @@
     <li class="home-latest__item">
       <a href="{{ .RelPermalink }}">
         <span class="u-eyebrow home-latest__meta">
-          {{- with .Date }}<time datetime="{{ .Format "2006-01-02" }}">{{ .Format (site.Params.DateFormat | default "January 2, 2006") }}</time>{{ end }}
+          {{- with .Date }}<time datetime="{{ .Format "2006-01-02" }}">{{ time.Format (site.Params.DateFormat | default ":date_long") . }}</time>{{ end }}
           {{- with .Section }} <span aria-hidden="true">·</span> {{ . }}{{ end }}
         </span>
         <span class="home-latest__title">{{ .Title }}</span>

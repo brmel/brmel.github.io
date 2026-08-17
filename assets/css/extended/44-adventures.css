@@ -1,13 +1,3 @@
-/* ============================================================================
-   IBRAVERSE — ADVENTURES BRAND  (06-web/adventures-brand.css)
-   Applies the field-note look to PaperMod Adventures articles. Extends
-   layouts/_default/single.html + assets/css/extended/. Load AFTER tokens.css
-   and AFTER PaperMod's own css so these win.
-   Scope: pages under /adventures/ — add `data-category="…"` to <html> or the
-   <article class="post-single"> (set it from front-matter, see hugo-partial.html).
-   ========================================================================== */
-
-/* ---------- page rhythm ---------- */
 .adventures .post-single,
 .single.adventures .post-single{
   max-width:var(--container-content);
@@ -15,7 +5,6 @@
   color:var(--ink);
 }
 
-/* ---------- the eyebrow (FIELD NOTE № nnn · CATEGORY · PLACE) ---------- */
 .field-eyebrow{
   font-family:var(--font-label);
   font-weight:500;
@@ -27,10 +16,9 @@
   margin:0 0 var(--space-4);
   display:flex;flex-wrap:wrap;gap:.5ch;
 }
-.field-eyebrow .sep{color:var(--accent)}          /* the · dots = accent */
+.field-eyebrow .sep{color:var(--accent)}
 .field-eyebrow .place{color:var(--ink-mute)}
 
-/* ---------- category bar (the one accent rule) ---------- */
 .category-bar{
   height:var(--category-bar);
   width:88px;
@@ -39,53 +27,14 @@
   margin:0 0 var(--space-5);
 }
 
-/* ---------- title in Instrument Serif ---------- */
-.adventures .post-title,
-.post-single .post-title{
-  font-family:var(--font-serif);
-  font-weight:400;
-  font-size:var(--fl-display-l);
-  line-height:1.0;
-  letter-spacing:-0.015em;
-  color:var(--ink);
-  text-wrap:balance;
-  margin:0 0 var(--space-4);
-}
-
-/* lede / description */
-.adventures .post-description,
-.post-single .post-description{
-  font-family:var(--font-sans);
-  font-weight:500;
-  font-size:var(--t-subhead);
-  line-height:1.45;
-  color:var(--ink-soft);
-  max-width:60ch;
-  margin:0 0 var(--space-5);
-}
-
-/* meta line */
-.adventures .post-meta,
-.post-single .post-meta{
-  font-family:var(--font-label);
-  font-size:var(--t-data);
-  letter-spacing:.03em;
-  color:var(--ink-mute);
-  display:flex;gap:var(--space-4);flex-wrap:wrap;
-  padding-bottom:var(--space-6);
-  border-bottom:var(--hairline) solid var(--rule);
-}
 .adventures .post-meta b{color:var(--ink-soft);font-weight:500}
 
-/* ---------- cover photo (14px frame) + in-body images ---------- */
 .adventures .adventures figure{margin:var(--space-7) 0;text-align:center}
-/* in-body photos ~30% smaller than the text column on wider screens
-   (the cover hero stays full-bleed) */
+
 @media (min-width:768px){
   .adventures .post-content img{max-width:70%}
 }
 
-/* ---------- map embed (gmap shortcode) — restored + enlarged ~3× ---------- */
 .gmap{
   position:relative;aspect-ratio:4/3;margin:var(--space-7) 0;
   border-radius:var(--radius-md);overflow:hidden;
@@ -97,7 +46,6 @@
   color:var(--ink-soft);margin-top:var(--space-3);
 }
 
-/* ---------- long-form body ---------- */
 .adventures .post-content{
   max-width:var(--container-text);
   font-size:var(--t-body-l);
@@ -128,17 +76,9 @@
   font-family:var(--font-serif);font-size:var(--t-display-s);line-height:1.2;color:var(--ink-soft);
 }
 
-/* ---------- category badge (inline) ---------- */
-.cat-badge{
-  display:inline-flex;align-items:center;gap:.5ch;
-  font-family:var(--font-label);font-weight:500;font-size:var(--t-eyebrow);
-  letter-spacing:.1em;text-transform:uppercase;color:var(--accent);
-  border:1px solid var(--accent);border-radius:var(--radius-pill);
-  padding:5px 12px;
-}
+.cat-badge{font-weight:500;letter-spacing:.1em;}
 .cat-badge svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.7}
 
-/* ---------- verdict block ---------- */
 .verdict{
   position:relative;border-radius:var(--radius-md);padding:var(--space-2) var(--space-6) var(--space-5);
   margin:var(--space-8) 0;overflow:hidden;
@@ -158,17 +98,15 @@
   font-family:var(--font-sans);font-weight:500;font-size:var(--t-body-l);text-align:right;
   margin:0;padding:var(--space-4) 0;border-top:var(--hairline) solid var(--rule);text-wrap:balance;
 }
-.verdict .con,.verdict .rating{display:contents}      /* dt/dd join the dl grid */
+.verdict .con,.verdict .rating{display:contents}
 .verdict .con dd{color:var(--accent)}
 .verdict .rating dd{font-family:var(--font-serif);font-size:var(--t-display-s)}
-.verdict .of5{font-size:1rem;color:var(--ink-mute)}
+.verdict .of5{font-size:var(--t-body);color:var(--ink-mute)}
 
-/* ---------- focus ---------- */
 .adventures a:focus-visible,.adventures button:focus-visible{
   outline:2px solid var(--accent);outline-offset:2px;border-radius:var(--radius-xs);
 }
 
-/* a place with no embed URL: a link, not an empty frame */
 .gmap-link a{
   display:inline-flex;align-items:center;gap:var(--space-2);min-height:24px;
   font-family:var(--font-label);font-size:var(--t-eyebrow);

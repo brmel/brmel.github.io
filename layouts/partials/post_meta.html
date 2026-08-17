@@ -1,12 +1,4 @@
-{{- /* Fork of themes/PaperMod/partials/post_meta.html @2d2f2c6 — diff before upgrading.
-
-  Date and, if the config asks for them, reading time, word count and author.
-
-  Upstream also appended the tag list here, which put the same five tags in the
-  header and again as chips in the content footer on every article. The footer
-  owns tags. The categories branch went with it: the taxonomy was removed from
-  config.toml, so it could only ever render nothing.
-*/ -}}
+{{- /* Fork of themes/PaperMod/partials/post_meta.html @2d2f2c6 — diff before upgrading */ -}}
 {{- $scratch := newScratch }}
 
 {{- if not .Date.IsZero -}}

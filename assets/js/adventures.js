@@ -1,8 +1,3 @@
-/* ============================================================================
-   IBRAVERSE — ADVENTURES  (js/adventures.js)
-   Reels: click a card to load its embed (YouTube inline; IG/TikTok open in a
-   new tab). Nothing third-party loads until the visitor asks for it.
-   ========================================================================== */
 (function () {
   document.querySelectorAll('.reel').forEach(function (reel) {
     reel.addEventListener('click', function () {

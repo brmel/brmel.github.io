@@ -1,22 +1,26 @@
 ---
 title: "TikiPro"
-date: 2026-08-04
+date: 2025-08-04
 projectNo: 1
 domain: "saas"
 status: "shipped"
 pitch: "Clinic ticketing and queue management that runs on one PC, with no cloud dependency for patient data."
+metrics:
+  - value: "1 PC"
+    label: "runs reception, the board and every doctor"
+  - value: "3 languages"
+    label: "French, Arabic and English, switched mid-sentence"
+  - value: "0"
+    label: "patient records that leave the building"
 stack: ["Electron", "TypeScript", "Firebase", "Ed25519", "Turborepo"]
+newToMe: ["Electron packaging and code signing", "Ed25519 offline licensing", "Turborepo"]
 links:
   live: "https://tikipro.web.app"
 lede: |
-  A three-doctor clinic runs its waiting room on shouting: someone calls a name,
-  half the room doesn't hear it, and the person who stepped outside loses their
-  turn. The software that fixes this is built for hospitals — a server, a
-  network, a per-seat licence, an IT contact — and a small clinic has none of
-  that, just one PC at reception and a television on the wall. TikiPro turns that
-  machine into the whole system: reception issues tickets, the room watches its
-  place on the second screen, and no patient record ever leaves the building.
-takeaway: "Shipping to non-technical users means the install path is the product — everything before first launch is where it fails."
+  Clinic queue management that runs entirely on the one PC already sitting at
+  reception: the desk view, the waiting-room screen and each doctor's queue, with
+  no server, no per-seat licence and no patient record leaving the building.
+takeaway: "Non-technical users judge the software by the install. Everything before first launch is where mine failed."
 lessons:
   - "**The installer is the product for the first ten minutes.** The app refuses to start without a licence file, and the installer is not code-signed, so Windows SmartScreen blocks it. Two dead ends before anyone sees a feature. I now write the onboarding email before the release, because every warning it has to explain is a design failure I could have removed."
   - "**Manual beats automatic when the volume is low.** There is no automated licensing email anywhere. A request writes to Firestore, a function sends me a Telegram message, and I reply by hand. Building the automated flow would have taken a week and served maybe one clinic a month."
@@ -27,40 +31,27 @@ tags: ["Desktop", "TypeScript", "Firebase"]
 
 ## The story
 
-The staff cost is the part that does not show up in a feature list: they spend
-the day re-explaining the order to people who are convinced they were skipped,
-and every one of those conversations happens while somebody else is waiting.
+A clinic's waiting room runs on shouting. Someone calls a name, half the room
+doesn't hear it, and the person who stepped outside loses their turn. The cost
+that never appears in a feature list is the staff time: a receptionist spends
+the day re-explaining the order to people convinced they were skipped, and every
+one of those conversations happens while somebody else waits.
 
-TikiPro is built for exactly that machine. Reception issues numbered tickets from
-a desk view. The waiting room sees its position on a second screen. Each doctor
-manages their own queue and writes consultation notes. All of it on the same
-computer, and patient data never leaves it.
+The software that fixes this is built for hospitals — a server, a network, a
+per-seat licence, an IT contact. A three-doctor clinic has one PC at reception
+and a television on the wall.
+
+> The clinic never asked for software. It asked for the waiting room to stop
+> being an argument.
 
 ## The product
 
-The reception desk, the waiting-room board, and the doctor's queue are three
-views of one local application. The board is a browser page on a second monitor —
-no second machine, no second licence. Patients can also scan a QR code and watch
-the same live list on their phone.
+Reception, the waiting-room board and each doctor's queue are three views of one
+application running on that single machine. The board is just a browser page on
+the second screen, so there is no second machine and no second licence, and
+patients can scan a QR code to watch the same live list on their phone.
 
-Around that sit the parts that make it something a stranger can actually buy and
-run: an offline-signed licence system, an auto-update feed, a marketing site with
-a request form, and an admin portal for licences and leads. Three languages —
-French, Arabic and English — because the clinics it was built for switch between
-them mid-sentence.
-
-The pieces worth naming:
-
-- **Queue mechanics that match how rooms actually behave.** Priority, a status
-  state machine, wait-time estimates, and the ability to call any waiting or late
-  visitor out of order — because the person who stepped out does come back.
-- **Ed25519 offline licences.** Signed keys verified locally, no phone-home. Two
-  tiers gate optional features; a trial is just a premium licence with a 30-day
-  expiry.
-- **Backups that assume nobody will run them.** Daily automatic, with
-  grandfather-father-son retention and in-app restore.
-- **An audit log on every patient data operation**, because this is medical data
-  on a machine in a room full of people.
-
-The CLI and the HTTP API share the same use-case layer as the UI, so anything the
-app can do is scriptable — which is how the demo board stays populated.
+Around it sits everything needed for a stranger to buy and run it alone:
+offline-verified licence keys, an auto-update feed, an admin portal, and an audit
+log on every operation that touches patient data. Nothing phones home, because a
+clinic with a dead connection still has to open the door in the morning.

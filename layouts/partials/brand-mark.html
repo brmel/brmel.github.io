@@ -1,12 +1,3 @@
-{{- /*
-  The compass mark — the site's one reproducible signature. Single
-  implementation; never inline a second copy.
-
-  Colour comes from currentColor so the mark adopts its container's colour.
-  Decorative by default; pass `title` when it is the only thing naming the site.
-
-      {{ partial "brand-mark.html" (dict "size" 40 "title" site.Title) }}
-*/ -}}
 {{- $size := 24 -}}
 {{- $class := "brand-mark" -}}
 {{- $title := "" -}}

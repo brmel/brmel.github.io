@@ -1,12 +1,3 @@
-{{- /*
-  render-link — markdown link hook. External links open in a new tab.
-
-  Whitespace control matters here: the previous version put the anchor text on
-  its own line, so Hugo emitted "<a …>Text\n</a>" and the browser rendered a
-  stray space before whatever followed the link — visible as "Zebra Technologies ,"
-  in the home-page copy. Every delimiter below is trimmed for that reason; keep
-  it that way.
-*/ -}}
 {{- $external := strings.HasPrefix .Destination "http" -}}
 <a href="{{ .Destination | safeURL }}"
   {{- with .Title }} title="{{ . }}"{{ end }}

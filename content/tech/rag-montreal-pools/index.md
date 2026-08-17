@@ -95,7 +95,7 @@ happens per question:
 
 {{< rawhtml >}}
 <svg class="workflow" viewBox="0 0 860 300" role="img"
-     aria-label="Workflow diagram. Offline: Montreal pool pages are scraped into one text file per pool, embedded with an embedding model, and stored as vectors. Per query: the user question is embedded with the same model, matched against the stored vectors by semantic search, the retrieved schedules are combined with the question into a prompt, and the LLM answers with a link to the source page.">
+     aria-label="Workflow diagram. Offline: Montréal pool pages are scraped into one text file per pool, embedded with an embedding model, and stored as vectors. Per query: the user question is embedded with the same model, matched against the stored vectors by semantic search, the retrieved schedules are combined with the question into a prompt, and the LLM answers with a link to the source page.">
   <defs>
     <marker id="wf-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
       <path d="M 0 0 L 10 5 L 0 10 z" fill="currentColor"/>

@@ -1,20 +1,6 @@
 {{- define "main" }}
-{{- /*
-  Layout: resume
-  The page you send to someone hiring. Chrome is layout-driven per
-  docs/brand-guidelines.md §5 — the header, contact row and skills grid all
-  render from front matter, so the three language versions cannot drift apart
-  in structure, only in words.
 
-  Front matter it reads:
-    role:      one line under the name
-    location:  city
-    contact:   [{label, url}]           — the row of links
-    skills:    [{group, items: [...]}]  — the grid
-    education: [{degree, school, year, note}]
-*/ -}}
 <article class="post-single resume">
-
   {{ partial "breadcrumbs.html" . }}
 
   <header class="resume__head">
@@ -31,11 +17,16 @@
     {{- end }}
   </header>
 
-  {{- /* The career timeline — the strongest thing on the site, kept verbatim
-         from the old /timeline/ page and its shortcodes. */ -}}
-  <div class="post-content resume__body">
-    {{ .Content }}
-  </div>
+  {{- with .Content }}
+  <div class="post-content resume__body">{{ . }}</div>
+  {{- end }}
+
+  {{- with .Params.experience }}
+  <section class="resume__section" aria-labelledby="resume-experience">
+    <h2 class="u-rule-heading resume__h2" id="resume-experience">{{ i18n "resume_experience" | default "Experience" }}</h2>
+    {{- partial "career-timeline.html" $ }}
+  </section>
+  {{- end }}
 
   {{- with .Params.skills }}
   <section class="resume__section" aria-labelledby="resume-skills">
@@ -53,40 +44,21 @@
   </section>
   {{- end }}
 
-  {{- with .Params.education }}
-  <section class="resume__section" aria-labelledby="resume-education">
-    <h2 class="u-rule-heading resume__h2" id="resume-education">{{ i18n "resume_education" | default "Education" }}</h2>
-    <ul class="resume__edu">
-      {{- range . }}
-      <li class="resume__edu-item">
-        {{- /* dir=ltr: a numeric year range is bidi-reordered in RTL and renders
-               backwards ("2019 - 2017"). Isolating it keeps the reading order. */ -}}
-        <span class="resume__edu-year" dir="ltr">{{ .year }}</span>
-        <span class="resume__edu-degree">{{ .degree }}</span>
-        <span class="resume__edu-school">{{ .school }}</span>
-        {{- with .note }}<span class="resume__edu-note">{{ . }}</span>{{ end }}
-      </li>
-      {{- end }}
-    </ul>
-  </section>
-  {{- end }}
-
   {{- with .Params.certifications }}
   <section class="resume__section" aria-labelledby="resume-certs">
     <h2 class="u-rule-heading resume__h2" id="resume-certs">{{ i18n "resume_certifications" | default "Certifications" }}</h2>
-    <ul class="resume__edu">
+    <ul class="resume__records">
       {{- range . }}
-      <li class="resume__edu-item">
-        <span class="resume__edu-year" dir="ltr">{{ .year }}</span>
-        <span class="resume__edu-degree">{{ .name }}</span>
-        <span class="resume__edu-school">{{ .issuer }}</span>
+      <li class="resume__record">
+        <span class="resume__record-year" dir="ltr">{{ .year }}</span>
+        <span class="resume__record-name">{{ .name }}</span>
+        <span class="resume__record-issuer">{{ .issuer }}</span>
       </li>
       {{- end }}
     </ul>
   </section>
   {{- end }}
 
-  {{- /* Projects live in their own section — link, do not duplicate. */ -}}
   {{- with site.GetPage "/projects" }}
   {{- if ge (len .RegularPages) 1 }}
   <p class="resume__more">

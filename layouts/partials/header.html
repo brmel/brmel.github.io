@@ -1,26 +1,7 @@
 {{- /* Fork of themes/PaperMod/partials/header.html @2d2f2c6 — diff before upgrading. */ -}}
-{{- /*
-  header — local fork of themes/PaperMod/layouts/partials/header.html.
 
-  Three deliberate divergences from upstream; everything else is verbatim, so a
-  theme update can be re-forked by diffing against the vendored original:
-
-  0. SKIP LINK: the first focusable element on the page, so keyboard and screen
-     reader users are not walked through the whole nav on every page.
-
-  1. LOGO: the raster favicon <img> is replaced by the inline compass mark
-     (partials/brand-mark.html). One shape, scalable, accent-coloured, and the
-     same mark the rest of the site uses.
-
-  2. EMPTY SECTIONS ARE HIDDEN: a menu entry pointing at a section with no
-     published pages is skipped. Two of five nav entries used to lead to an
-     empty-state card; this makes that structurally impossible rather
-     than something to remember. A section reappears in the nav the moment it
-     has one published page.
-*/ -}}
-{{- /* theme-toggle is enabled */}}
 {{- if (not site.Params.disableThemeToggle) }}
-{{- /* theme is light */}}
+
 {{- if (eq site.Params.defaultTheme "light") }}
 <script>
     if (localStorage.getItem("pref-theme") === "dark") {
@@ -28,7 +9,7 @@
     }
 
 </script>
-{{- /* theme is dark */}}
+
 {{- else if (eq site.Params.defaultTheme "dark") }}
 <script>
     if (localStorage.getItem("pref-theme") === "light") {
@@ -37,7 +18,7 @@
 
 </script>
 {{- else }}
-{{- /* theme is auto */}}
+
 <script>
     if (localStorage.getItem("pref-theme") === "dark") {
         document.body.classList.add('dark');
@@ -49,7 +30,7 @@
 
 </script>
 {{- end }}
-{{- /* theme-toggle is disabled and theme is auto */}}
+
 {{- else if (and (ne site.Params.defaultTheme "light") (ne site.Params.defaultTheme "dark"))}}
 <script>
     if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
@@ -66,7 +47,7 @@
             {{- $label_text := (site.Params.label.text | default site.Title) }}
             {{- if site.Title }}
             <a href="{{ "" | absLangURL }}" accesskey="h" title="{{ $label_text }} (Alt + H)">
-                {{- /* the compass mark, not a raster favicon */ -}}
+
                 {{ partial "brand-mark.html" (dict "size" 22 "class" "brand-mark brand-mark--logo") }}
                 {{- $label_text -}}
             </a>
@@ -103,11 +84,6 @@
                     {{- range . -}}
                     {{- if ne $lang .Lang }}
                     <li>
-                        {{- /* No aria-label here. Upstream set it to the language's own
-                               name ("Français") while the visible text is "Fr", so the
-                               accessible name did not contain the visible label — a
-                               speech-input user saying "Fr" could not activate it.
-                               The title attribute still carries the full name. */ -}}
                         <a href="{{- .Permalink -}}" title="{{ .Language.Params.languageAltTitle | default (.Language.LanguageName | emojify) | default (.Lang | title) }}">
                             {{- if (and site.Params.displayFullLangName (.Language.LanguageName)) }}
                             {{- .Language.LanguageName | emojify -}}
@@ -125,14 +101,11 @@
         {{- $currentPage := . }}
         <ul id="menu">
             {{- range site.Menus.main }}
-            {{- /* Hide a section that has nothing published — see the note at the
-                   top of this file. Non-section entries (home, single pages) are
-                   never hidden. */ -}}
+
             {{- $hide := false }}
             {{- with site.GetPage .URL }}
             {{- if eq .Kind "section" }}
-            {{- /* Counts the fallback too, so a section that is English-only
-                   still appears in the fr and ar navs. */ -}}
+
             {{- if lt (len (partial "func/section-pages.html" .)) 1 }}{{ $hide = true }}{{ end }}
             {{- end }}
             {{- end }}
@@ -158,7 +131,7 @@
                     {{- end }}
                 </a>
             </li>
-            {{- end }}{{/* end hide */}}
+            {{- end }}
             {{- end }}
         </ul>
     </nav>

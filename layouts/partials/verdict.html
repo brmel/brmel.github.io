@@ -1,16 +1,10 @@
-{{- /*
-  verdict — the structured field-note verdict block. Reads front matter:
-  goBack, bestFor, con, rating. Rendered at the end of an adventures article
-  (see single.html). Styling + the display:contents grid trick live in
-  css/extended/adventures-brand.css — no inline styles here.
-*/ -}}
 <aside class="verdict" aria-labelledby="verdict-h">
   {{- /* h2: it is a top-level section of the note, and h4 skipped a level */ -}}
-  <h2 id="verdict-h">Verdict</h2>
+  <h2 id="verdict-h">{{ i18n "verdict_heading" | default "Verdict" }}</h2>
   <dl>
-    {{- with .Params.goBack }}<dt>Would I go back?</dt><dd>{{ . }}</dd>{{ end }}
-    {{- with .Params.bestFor }}<dt>Best for</dt><dd>{{ . }}</dd>{{ end }}
-    {{- with .Params.con }}<div class="con"><dt>The one con</dt><dd>{{ . }}</dd></div>{{ end }}
-    {{- with .Params.rating }}<div class="rating"><dt>Field rating</dt><dd>{{ . }} <span class="of5">/ 5</span></dd></div>{{ end }}
+    {{- with .Params.goBack }}<dt>{{ i18n "verdict_go_back" | default "Would I go back?" }}</dt><dd>{{ . }}</dd>{{ end }}
+    {{- with .Params.bestFor }}<dt>{{ i18n "verdict_best_for" | default "Best for" }}</dt><dd>{{ . }}</dd>{{ end }}
+    {{- with .Params.con }}<div class="con"><dt>{{ i18n "verdict_con" | default "The one con" }}</dt><dd>{{ . }}</dd></div>{{ end }}
+    {{- with .Params.rating }}<div class="rating"><dt>{{ i18n "verdict_rating" | default "Field rating" }}</dt><dd>{{ . }} <span class="of5">/ 5</span></dd></div>{{ end }}
   </dl>
 </aside>

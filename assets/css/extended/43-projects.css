@@ -1,18 +1,38 @@
-/* ============================================================================
-   PROJECTS
-   Accent comes entirely from [data-category], driven by each page's `domain`.
-   Gallery is multi-column so figures keep their natural aspect ratio; a fixed
-   grid cell letterboxed captures ranging from 1200x750 to 675x1200.
-   ========================================================================== */
-
-/* ---- index: the card grid ---- */
 .projects-intro{max-width:var(--container-text);margin:0 auto var(--space-8);}
 
-.project-grid{
+.project-timeline{
+  position:relative;
   max-width:var(--container-content);
   margin:0 auto;
+}
+.project-timeline::before{
+  content:'';position:absolute;
+  top:var(--space-2);bottom:var(--space-4);
+  inset-inline-start:6px;width:var(--tl-rail);
+  background:linear-gradient(to bottom,
+    transparent, var(--rule) 6%, var(--rule) 94%, transparent);
+}
+.project-period{
+  position:relative;
+  padding-inline-start:var(--tl-gutter);
+}
+.project-period + .project-period{margin-top:var(--space-8);}
+.project-period__year{
+  margin:0 0 var(--space-4);
+  font-size:var(--t-caption);
+}
+.project-period__year::before{
+  content:'';position:absolute;
+  inset-inline-start:calc(6px - (var(--tl-dot) / 2) + (var(--tl-rail) / 2));
+  width:var(--tl-dot);height:var(--tl-dot);
+  border-radius:var(--radius-pill);
+  background:var(--bg);border:2px solid var(--accent);
+  box-sizing:border-box;
+}
+
+.project-grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  grid-template-columns:repeat(2,1fr);
   gap:var(--space-4);
 }
 .project-card{
@@ -30,131 +50,18 @@
   flex:1 1 auto;
 }
 .project-card__stack{
-  font-family:var(--font-label);font-size:11px;
+  font-family:var(--font-label);font-size:var(--t-micro);
   color:var(--ink-mute);letter-spacing:.04em;
 }
 .project-card__stack b{color:var(--accent);font-weight:400;}
 
-/* ---- single: header ---- */
-.project-head{
-  max-width:var(--container-text);
-  margin:0 auto var(--space-7);
-}
-.project-eyebrow{
-  display:flex;align-items:center;gap:var(--space-2);
-  margin:0 0 var(--space-3);
-}
-.project-eyebrow__mark{color:var(--accent);}
-
-.project-eyebrow__dot{color:var(--accent);font-weight:400;}
-.project-title{
-  font-family:var(--font-serif);font-weight:400;
-  font-size:var(--fl-display-m);line-height:1.03;
-  margin:0 0 var(--space-3);color:var(--ink);
-}
-.project-pitch{
-  font-size:var(--t-body-l);line-height:1.55;
-  color:var(--ink-soft);margin:0 0 var(--space-5);
-}
-.project-meta{
-  display:flex;flex-wrap:wrap;align-items:center;
-  gap:var(--space-3) var(--space-5);
-  padding-top:var(--space-4);
-  border-top:var(--hairline) solid var(--rule);
-}
-.project-stack,
-.project-links{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:var(--space-2);}
-.project-stack li{
-  font-family:var(--font-label);font-size:11px;
-  letter-spacing:.05em;
-  padding:3px 10px;
-  border:var(--hairline) solid var(--rule);
-  border-radius:var(--radius-pill);
-  color:var(--ink-mute);
-}
-.project-links{margin-inline-start:auto;gap:var(--space-4);}
-.project-links a{
-  font-family:var(--font-label);font-size:var(--t-eyebrow);
-  letter-spacing:.07em;text-transform:uppercase;
-  color:var(--accent);text-decoration:none;
-  border-bottom:var(--hairline) solid transparent;
-  transition:border-color var(--dur-1) var(--ease-standard);
-}
-.project-links a:hover{border-bottom-color:var(--accent);}
-
-/* ---- single: shared section heading ---- */
-
-/* ---- single: lede ----
-   Three sentences between the title and the evidence. Slightly larger than body
-   copy so it reads as a standfirst, not as the first paragraph of the article. */
-.project-lede{
-  max-width:var(--container-text);
-  margin:0 auto var(--space-7);
-  font-size:var(--t-body-l);
-  line-height:1.6;
-  color:var(--ink-soft);
-}
-.project-lede p{margin:0 0 var(--space-3);}
-.project-lede p:last-child{margin-bottom:0;}
-.project-lede strong{color:var(--ink);font-weight:500;}
-
-/* ---- single: gallery ----
-   Multi-column, not grid. Screenshots arrive at wildly different aspect ratios
-   — a 1200x750 desktop capture next to a 675x1200 phone — and a fixed-height
-   grid cell letterboxed every one of them, which is where the dead space came
-   from. Columns let each figure keep its own height and pack without gaps. */
-.project-gallery{max-width:var(--container-content);margin:0 auto var(--space-8);}
-.project-gallery__grid{
-  columns:2;
-  column-gap:var(--space-4);
-}
-.project-shot{
-  break-inside:avoid;
-  margin:0 0 var(--space-4);
-  display:inline-block;   /* stops figures splitting across columns in Safari */
-  width:100%;
-}
-.project-shot img{width:100%;height:auto;}
-.project-shot figcaption{
-  margin-top:var(--space-2);
-  font-family:var(--font-label);font-size:11px;
-  color:var(--ink-mute);line-height:1.45;
-}
-
-/* ---- single: body + lessons ---- */
-.project-body{max-width:var(--container-text);margin:0 auto;}
-.project-lessons{max-width:var(--container-text);margin:var(--space-9) auto 0;}
-.project-lessons__list{margin:0;padding:0;list-style:none;}
-.project-lessons__list li{
-  position:relative;
-  padding:var(--space-3) 0 var(--space-3) var(--space-5);
-  padding-inline-start:var(--space-5);padding-inline-end:0;
-  border-bottom:var(--hairline) solid var(--rule-soft);
-  color:var(--ink-soft);line-height:1.6;
-}
-.project-lessons__list li:last-child{border-bottom:0;}
-/* the accent tick — logical inset so it flips in RTL */
-.project-lessons__list li::before{
-  content:"";position:absolute;inset-inline-start:0;top:calc(var(--space-3) + 0.6em);
-  width:10px;height:var(--hairline-strong);background:var(--accent);
-}
-
-@media (max-width:760px){
-  .project-gallery__grid{columns:1;}
-}
 @media (max-width:600px){
   .project-grid{grid-template-columns:1fr;}
-  .project-links{margin-inline-start:0;}
-  .project-lede{font-size:var(--t-body);}
 }
 
-/* ---- continuous-learning block (partials/projects-learning.html) ----
-   Subordinate to the project grid by construction: hairlines, mono eyebrows,
-   no cards, no accent fills. If it ever competes with the grid above it, the
-   block is wrong, not the grid. */
 .learning{
   max-width:var(--container-content);
-  margin:var(--space-10) auto 0;
+  margin:var(--space-8) auto 0;
   padding-top:var(--space-6);
   border-top:var(--hairline) solid var(--rule);
 }
@@ -163,17 +70,6 @@
   font-size:var(--t-eyebrow);letter-spacing:var(--track-eyebrow);
   text-transform:uppercase;color:var(--ink-mute);
   margin:0 0 var(--space-6);
-}
-.learning__group + .learning__group{margin-top:var(--space-8);}
-.learning__sub{
-  display:flex;flex-wrap:wrap;align-items:baseline;gap:var(--space-3);
-  font-family:var(--font-serif);font-weight:400;
-  font-size:var(--t-subhead);color:var(--ink);
-  margin:0 0 var(--space-3);
-}
-.learning__updated{
-  font-family:var(--font-label);font-size:11px;
-  letter-spacing:.06em;text-transform:uppercase;color:var(--ink-mute);
 }
 .learning__list{list-style:none;margin:0;padding:0;}
 .learning__item{
@@ -189,29 +85,32 @@
   transition:color var(--dur-1) var(--ease-standard);
 }
 .learning__link:hover{color:var(--accent-soft);text-decoration:underline;}
-.learning__link--plain{color:var(--ink-soft);}
 .learning__note{color:var(--ink-soft);line-height:1.6;font-size:var(--t-caption);}
 
 @media (max-width:600px){
   .learning__item{grid-template-columns:1fr;gap:var(--space-1);}
 }
 
-/* "in English" marker on cards shown by the cross-language fallback.
-   Quiet by design: it is a fact about the write-up, not a warning. */
-.project-card__lang{
-  align-self:flex-start;
-  font-family:var(--font-label);font-size:10px;
-  letter-spacing:.08em;text-transform:uppercase;
-  color:var(--ink-mute);
-  border:var(--hairline) solid var(--rule);
-  border-radius:var(--radius-pill);
-  padding:1px 8px;
-}
+.project-card__lang{align-self:flex-start;text-transform:uppercase;}
 
-/* live badge on an index card — a fact about the project, so it sits with the
-   stack line rather than pretending to be a second link inside the card link */
 .project-card__live{
   align-self:flex-start;
   color:var(--accent);
-  font-size:10px;
+  font-size:var(--t-micro);
 }
+
+.start-here{
+  max-width:var(--container-content);
+  margin:0 auto var(--space-8);
+  padding-bottom:var(--space-5);
+  border-bottom:var(--hairline) solid var(--rule);
+}
+.start-here__label{display:block;margin-bottom:var(--space-3);}
+.start-here__list{list-style:none;margin:0;padding:0;display:grid;gap:var(--space-2);}
+.start-here__list a{
+  font-family:var(--font-serif);font-size:var(--t-subhead);
+  color:var(--ink);text-decoration:none;
+  border-bottom:var(--hairline) solid var(--rule);
+}
+.start-here__list a:hover{color:var(--accent);border-color:var(--accent);}
+.start-here__why{color:var(--ink-mute);font-size:var(--t-caption);}

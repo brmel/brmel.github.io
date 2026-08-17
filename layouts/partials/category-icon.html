@@ -1,8 +1,3 @@
-{{- /*
-  category-icon — a line icon in the mark's stroke style (1.7px, round caps).
-  Receives the category string as the context (.). Used in the adventures
-  header badge. Falls back to the pin icon for unknown categories.
-*/ -}}
 {{- $c := . -}}
 <svg viewBox="0 0 24 24" aria-hidden="true">
   {{- if eq $c "restaurant" }}<path d="M7 3 V9 a2 2 0 0 0 4 0 V3 M9 9 V21"/><path d="M16 3 c-2 1 -2 6 0 7 V21"/>

@@ -1,38 +1,38 @@
 {{- define "main" }}
-{{- /*
-  Layout: projects/single
-  A project page. data-category sets the accent for the whole page from the
-  `domain` front matter field — one attribute, one accent, no other colour
-  decisions. See docs/brand-guidelines.md §3 and docs/projects-playbook.md.
-*/ -}}
-<article class="post-single project" data-category="{{ .Params.domain | default "saas" }}">
 
+<article class="post-single project" data-category="{{ .Params.domain | default "saas" }}">
   {{ partial "breadcrumbs.html" . }}
   {{ partial "project-header.html" . }}
 
-  {{- /* The lede: problem -> what it does -> what changed, in three sentences.
-         A reader who sees screenshots before they know what the thing is has to
-         reverse-engineer the product from its UI. Words first, then evidence. */ -}}
   {{- with .Params.lede }}
   <div class="project-lede">{{ . | markdownify }}</div>
   {{- end }}
 
-  {{- /* Gallery renders from the page bundle, not from markdown, so every
-         project shows its screenshots the same way. Images are Hugo-processed:
-         resized, fingerprinted, and served with srcset. */ -}}
+  {{- with .Params.metrics }}
+  <dl class="project-metrics">
+    {{- range . }}
+    <div class="project-metrics__item">
+      <dt class="project-metrics__value"><bdi dir="ltr">{{ .value }}</bdi></dt>
+      <dd class="project-metrics__label">{{ .label }}</dd>
+    </div>
+    {{- end }}
+  </dl>
+  {{- end }}
+
   {{- $gallery := .Resources.Match "gallery/*" -}}
   {{- with $gallery }}
   <section class="project-gallery" aria-labelledby="project-gallery-h">
     <h2 class="u-rule-heading" id="project-gallery-h">{{ i18n "project_gallery" | default "Gallery" }}</h2>
     <div class="project-gallery__grid">
-      {{- range . }}
-      {{- $img := . }}
+      {{- range $i, $img := . }}
       {{- $small := $img.Resize "640x webp q82" }}
       {{- $large := $img.Resize "1280x webp q82" }}
+
+      {{- $sizes := cond (eq $i 0) "(max-width: 760px) 100vw, 960px" "(max-width: 760px) 100vw, (max-width: 1040px) 46vw, 470px" }}
       <figure class="project-shot">
         <img class="u-frame" src="{{ $small.RelPermalink }}"
              srcset="{{ $small.RelPermalink }} 640w, {{ $large.RelPermalink }} 1280w"
-             sizes="(max-width: 760px) 100vw, 620px"
+             sizes="{{ $sizes }}"
              width="{{ $large.Width }}" height="{{ $large.Height }}"
              loading="lazy" decoding="async"
              alt="{{ $img.Title | default (printf "%s screenshot" $.Title) }}">
@@ -43,11 +43,9 @@
   </section>
   {{- end }}
 
-
   <div class="post-content project-body">
     {{- partial "anchored_headings.html" .Content -}}
   </div>
-
   {{- with .Params.lessons }}
   <section class="project-lessons" aria-labelledby="project-lessons-h">
     <h2 class="u-rule-heading" id="project-lessons-h">{{ i18n "project_lessons" | default "What it taught me" }}</h2>
@@ -57,7 +55,6 @@
   </section>
   {{- end }}
 
-  {{- /* Everything after the words — see partials/content-footer.html. */ -}}
   {{- partial "content-footer.html" . }}
 
 </article>
