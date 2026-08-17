@@ -78,15 +78,6 @@
   color:var(--ink-mute);line-height:1.45;
 }
 
-.project-new{
-  max-width:var(--container-text);
-  margin:var(--space-4) auto 0;
-  display:flex;flex-wrap:wrap;align-items:baseline;gap:var(--space-2) var(--space-4);
-  font-size:var(--t-caption);
-  color:var(--ink-soft);
-}
-.project-new__label{color:var(--ink-mute);flex:0 0 auto;}
-.project-new__items b{color:var(--accent);font-weight:400;}
 
 .project-metrics{
   max-width:var(--container-text);

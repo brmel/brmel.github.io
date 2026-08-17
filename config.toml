@@ -148,11 +148,6 @@ googleAnalytics = "G-CHFGS2DHF6"
       url = "/thoughts/"
       weight = 6
 
-# Only tags. PaperMod ships a categories taxonomy too, and it was building three
-# empty index pages in three languages that no content fed and nothing linked to.
-[taxonomies]
-  tag = "tags"
-
 [pagination]
   pagerSize = 10
 enableRobotsTXT = true
@@ -270,4 +265,42 @@ enableEmoji = true
     sections   = ["projects", "tech", "thoughts", "adventures"]
     themeLight = "light"
     themeDark  = "transparent_dark"
+  tag = "tags"
+
+[markup]
+  [markup.highlight]
+    anchorLineNos = false
+    codeFences = true
+    guessSyntax = true
+    lineNos = false
+    lineNumbersInTable = false
+    noClasses = false
+    style = "github"
+    tabWidth = 4
+
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
+# Two plain-text views of the site: llms.txt is the map,
+# llms-full.txt is the whole corpus. Both are generated from the content, so
+# neither can drift the way a hand-written index would.
+[outputFormats.LLMS]
+  mediaType = "text/plain"
+  baseName = "llms"
+  isPlainText = true
+[outputFormats.LLMSFULL]
+  mediaType = "text/plain"
+  baseName = "llms-full"
+  isPlainText = true
+
+[outputs]
+  home = ["HTML", "RSS", "LLMS", "LLMSFULL"]
+  page = ["HTML"]
+  section = ["HTML", "RSS"]
+
+[taxonomies]
+  # Tags only. `categories` held five terms of one or two posts each, every one
+  # of them already covered by a tag — 5 extra thin routes and a second
+  # vocabulary to keep consistent, for no reader benefit.
   tag = "tags"

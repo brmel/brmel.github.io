@@ -32,7 +32,6 @@ The numbers from each project, taken from the page they belong to.
 ### {{ .Title }} — {{ .Permalink }}
 {{ range .Params.metrics }}- {{ .value }}: {{ .label }}
 {{ end }}{{ with .Params.stack }}- Built with: {{ delimit . ", " }}
-{{ end }}{{ with .Params.newToMe }}- New to the author on this project: {{ delimit . ", " }}
 {{ end }}{{ with .Params.takeaway }}- Lesson: {{ . }}
 {{ end }}
 {{ end -}}

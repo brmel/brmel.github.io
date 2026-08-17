@@ -39,12 +39,4 @@
   </div>
   {{- end }}
 
-  {{- with .Params.newToMe }}
-  <p class="project-new">
-    <span class="u-eyebrow project-new__label">{{ i18n "project_new_to_me" | default "New to me here" }}</span>
-    <span class="project-new__items">
-      {{- range $i, $t := . }}{{ if $i }} <b aria-hidden="true">·</b> {{ end }}{{ $t }}{{ end -}}
-    </span>
-  </p>
-  {{- end }}
 </header>
