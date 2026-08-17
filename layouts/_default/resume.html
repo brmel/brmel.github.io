@@ -63,8 +63,8 @@
     <h2 class="u-rule-heading resume__h2" id="resume-contact">{{ i18n "resume_get_in_touch" | default "Get in touch" }}</h2>
     {{- with .Params.availability }}<p class="resume__availability">{{ . }}</p>{{ end }}
     <ul class="resume__contact resume__contact--close">
-      {{- range .Params.contact }}
-      <li><a href="{{ .url }}"{{ if hasPrefix .url "http" }} target="_blank" rel="noopener noreferrer"{{ end }}>{{ .label }}</a></li>
+      {{- range first 1 .Params.contact }}
+      <li><a href="{{ .url }}">{{ .label }}</a></li>
       {{- end }}
       <li><button type="button" class="resume__print" onclick="window.print()">{{ i18n "resume_print" | default "Save as PDF" }}</button></li>
       {{- with site.GetPage "/projects" }}

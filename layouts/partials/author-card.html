@@ -1,4 +1,6 @@
-{{- with site.GetPage "/resume" }}
+{{- $resume := site.GetPage "/resume" }}
+{{- if and $resume (ne .RelPermalink $resume.RelPermalink) }}
+{{- with $resume }}
 <aside class="author-card">
   <span class="u-eyebrow author-card__label">{{ i18n "author_label" | default "Who wrote this" }}</span>
   <p class="author-card__name">{{ site.Params.profileMode.title | default site.Title }}</p>
@@ -11,4 +13,5 @@
     {{- end }}
   </p>
 </aside>
+{{- end }}
 {{- end }}
