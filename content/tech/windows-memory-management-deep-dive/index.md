@@ -1,5 +1,5 @@
 ---
-title: "Delving Deep into Windows Memory Management"
+title: "Windows Memory Management in Depth: Private Data, Stack, Heap and Mapped Files"
 date: 2024-01-10
 summary: "Every memory state and every memory type in a VMMap snapshot, explained with C++ examples: private data, stack, heap, mapped files, images, unused regions and the managed heap."
 description: "A detailed walk through Windows memory states and memory types — private data, stack, heap, mapped files, images — with VirtualAlloc, File Mapping and std::vector examples."
@@ -23,7 +23,7 @@ virtual memory for processes, and the tools you can use to monitor it.
 
 Before reading this article, I strongly recommend reading the first article that
 discusses the basics of Windows virtual memory management:
-[A Very Shallow Overview of Windows Memory Management]({{< relref "windows-memory-management-overview" >}}).
+[Windows Memory Management: Virtual vs Physical, and How to Measure It]({{< relref "windows-memory-management-overview" >}}).
 
 I need to mention again that this is a very complex subject, extending even
 beyond my knowledge. For those who are curious and want to understand every bit,

@@ -1,5 +1,5 @@
 ---
-title: "Hydro-Québec Outage Analysis"
+title: "Hydro-Québec Outage Analysis: Two Months of Grid Reliability Data"
 date: 2026-06-01
 relatedProject: "hydro-quebec"
 draft: false

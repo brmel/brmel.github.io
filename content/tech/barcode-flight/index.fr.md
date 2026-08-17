@@ -1,5 +1,5 @@
 ---
-title: "Comment une fonctionnalité de traitement d'image a sauvé mon vol"
+title: "Comment le traitement d'image a sauvé mon vol : codes-barres et couleur de premier plan"
 date: 2025-12-03
 tags: ["Traitement d’Images"]
 summary: "Un exemple concret de l'importance du support de la couleur de premier plan dans la lecture de codes-barres."

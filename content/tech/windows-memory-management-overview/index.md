@@ -1,5 +1,5 @@
 ---
-title: "A Very Shallow Overview of Windows Memory Management"
+title: "Windows Memory Management: Virtual vs Physical, and How to Measure It"
 date: 2023-11-29
 summary: "Virtual versus physical memory on Windows, committed versus reserved, private versus shared — and MemoryTracker, a C++ tool for watching a process's virtual memory over time."
 description: "An introduction to how the Windows Memory Manager separates virtual from physical memory, and a C++ tool for tracking a process's usage over time."

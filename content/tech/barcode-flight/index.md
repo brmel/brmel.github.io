@@ -1,5 +1,5 @@
 ---
-title: "How an image-processing feature saved my flight"
+title: "How an Image-Processing Feature Saved My Flight: Barcodes and Foreground Colour"
 date: 2025-12-03
 tags: ["Image Processing"]
 summary: "A real-world example of why foreground color support in barcode reading matters."
