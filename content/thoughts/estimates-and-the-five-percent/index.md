@@ -1,5 +1,5 @@
 ---
-title: "Estimates and the Five Percent: Why Deadlines Slip, Mine Included"
+title: "Why Deadlines Slip, Mine Included"
 date: 2026-08-09
 tags: ["Data Analysis", "Engineering"]
 summary: "Hydro-Québec's restoration times were right one time in twenty. I recognised the failure immediately, because I make the same one."

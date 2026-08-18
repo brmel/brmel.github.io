@@ -8,11 +8,11 @@ pitch: "Software that tests other software by reading the screen and clicking, t
 description: "Software that tests other software by reading the screen and clicking, the way a person would."
 metrics:
   - value: "~200 ms"
-    label: "for 15 verified findings, with no model involved"
+    label: "for 15 verified findings, before a model is involved"
   - value: "1 loop"
-    label: "no stages, no phases, no authored workflow"
+    label: "drives web and desktop alike, with no scripted steps"
   - value: "40"
-    label: "design decisions recorded, each with what it fixed"
+    label: "design decisions recorded, each with the problem it fixed"
 stack: ["TypeScript", "Playwright", "Electron", "AI SDK", "MCP", "SQLite"]
 links:
   live: ""

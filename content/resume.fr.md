@@ -6,9 +6,8 @@ summary: "Ingénieur en vision industrielle et traitement d'images — Zebra Tec
 description: "Développeur logiciel senior spécialisé en vision industrielle, traitement d'images et systèmes de contrôle."
 ShowBreadCrumbs: false
 aliases: ["/fr/timeline/", "/fr/about/"]
-role: "Développeur logiciel senior — vision industrielle & traitement d'images"
+role: "Développeur logiciel senior — vision industrielle et IA"
 location: "Montréal, Québec"
-availability: "Basé à Montréal. Le courriel est le moyen le plus rapide de me joindre."
 contact:
   - label: "Courriel"
     url: "mailto:mellah.brahim.redouane@gmail.com"
@@ -16,6 +15,8 @@ contact:
     url: "https://www.linkedin.com/in/brahim-redouane-mellah/"
   - label: "GitHub"
     url: "https://github.com/brmel"
+  - label: "X"
+    url: "https://x.com/BrmelB"
 
 # Le parcours, période par période. La structure vient de
 # layouts/partials/career-timeline.html ; seuls les mots changent d'une langue
@@ -97,7 +98,7 @@ experience:
           Remplacer d'anciens solveurs des modules de géométrie par des
           optimiseurs non linéaires, dont Levenberg–Marquardt, dans une
           bibliothèque dont des milliers d'applications installées dépendent.
-    built: ["Advanced Geometric Matcher", "MIL Calibration · Measurement · Metrology"]
+    built: ["Appariement de motifs", "Détection de contours", "Calibration", "Mesure et métrologie"]
     stack: ["C++", "optimisation non linéaire", "Levenberg–Marquardt", "apprentissage classique"]
     tools: ["Visual Studio", "Git", "SVN"]
     learned: >-
@@ -127,7 +128,7 @@ experience:
           fonctionner : un robot qui devait atteindre le point, un contrôleur
           qui devait tenir son échéance, une caméra qui devait dire au bras où
           était la pièce.
-    built: ["Synchronisation de robots avec A*", "Contrôle temps réel de robots sur QNX", "Système de vision guidant un robot Fanuc"]
+    built: ["Théorie du contrôle", "Robotique", "Traitement d'images"]
     stack: ["C++", "commande numérique", "détection et estimation", "commande stochastique et robuste", "traitement d'images"]
     tools: ["QNX", "ROS", "MATLAB / Simulink", "robots Fanuc"]
     learned: >-

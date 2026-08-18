@@ -28,7 +28,7 @@
       {{- $small := $img.Resize "640x webp q82" }}
       {{- $large := $img.Resize "1280x webp q82" }}
 
-      {{- $sizes := cond (eq $i 0) "(max-width: 760px) 100vw, 960px" "(max-width: 760px) 100vw, (max-width: 1040px) 46vw, 470px" }}
+      {{- $sizes := "(max-width: 760px) 100vw, 310px" }}
       <figure class="project-shot">
         <img class="u-frame" src="{{ $small.RelPermalink }}"
              srcset="{{ $small.RelPermalink }} 640w, {{ $large.RelPermalink }} 1280w"

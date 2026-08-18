@@ -213,7 +213,6 @@
   max-width:var(--container-text);
   margin:var(--space-6) auto 0;
   padding-top:var(--space-5);
-  border-top:var(--hairline) solid var(--rule);
 }
 .author-card__label{display:block;margin-bottom:var(--space-3);}
 .author-card__name{

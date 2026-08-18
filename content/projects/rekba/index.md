@@ -8,11 +8,11 @@ pitch: "A bus, tram and metro app for Algeria, where no usable timetable existed
 description: "A bus, tram and metro app for Algeria, where no usable timetable existed until I built one."
 metrics:
   - value: "281 stations"
-    label: "and 374 connections, manufactured from open map data"
+    label: "and 374 connections, built from open map data"
   - value: "3 locales"
     label: "French, Arabic and English, right-to-left aware"
-  - value: "0"
-    label: "agencies publishing a usable timetable feed"
+  - value: "1 pipeline"
+    label: "three triggers: a service, a CLI and scheduled flows"
 stack: ["Python", "FastAPI", "Prefect", "Typer", "GTFS", "Flutter"]
 links:
   live: "https://rekba-landing.web.app"

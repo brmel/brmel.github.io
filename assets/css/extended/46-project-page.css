@@ -58,20 +58,18 @@
 
 .project-gallery__grid{
   display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:var(--space-5);
+  grid-template-columns:repeat(3,1fr);
+  gap:var(--space-4);
   align-items:start;
 }
 .project-shot{margin:0;}
-.project-shot:first-child{grid-column:1 / -1;}
 
 .project-shot img{
   width:100%;height:auto;
-  max-height:400px;
+  aspect-ratio:16/10;
   object-fit:cover;object-position:top center;
 }
 
-.project-shot:first-child img{max-height:min(70vh,620px);}
 .project-shot figcaption{
   margin-top:var(--space-2);
   font-family:var(--font-label);font-size:var(--t-micro);
@@ -123,7 +121,6 @@
   position:relative;
   padding:var(--space-3) 0 var(--space-3) var(--space-5);
   padding-inline-start:var(--space-5);padding-inline-end:0;
-  border-bottom:var(--hairline) solid var(--rule-soft);
   color:var(--ink-soft);line-height:1.6;
 }
 .project-lessons__list li:last-child{border-bottom:0;}
@@ -135,6 +132,7 @@
 
 @media (max-width:760px){
   .project-gallery__grid{grid-template-columns:1fr;}
+  .project-shot img{aspect-ratio:16/9;}
   .project-gallery{width:100%;margin-inline-start:0;transform:none;}
   [dir="rtl"] .project-gallery{transform:none;}
 }

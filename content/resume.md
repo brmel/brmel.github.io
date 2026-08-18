@@ -5,9 +5,8 @@ disableShare: true
 summary: "Machine vision and image processing engineer — Zebra Technologies, Matrox Imaging, Polytechnique Montréal."
 description: "Senior Software Developer specialising in machine vision, image processing and control systems."
 aliases: ["/timeline/", "/about/"]
-role: "Senior Software Developer — machine vision & image processing"
+role: "Senior Software Developer — machine vision and AI"
 location: "Montréal, Québec"
-availability: "Based in Montréal. Email is the fastest way to reach me."
 contact:
   - label: "Email"
     url: "mailto:mellah.brahim.redouane@gmail.com"
@@ -15,6 +14,8 @@ contact:
     url: "https://www.linkedin.com/in/brahim-redouane-mellah/"
   - label: "GitHub"
     url: "https://github.com/brmel"
+  - label: "X"
+    url: "https://x.com/BrmelB"
 
 # The career, one period at a time. Structure comes from
 # layouts/partials/career-timeline.html; only the words below change per
@@ -96,7 +97,7 @@ experience:
           Replaced older solvers in the geometry modules with non-linear
           optimisers, Levenberg–Marquardt among them, in a library whose
           existing behaviour thousands of installed applications depend on.
-    built: ["Advanced Geometric Matcher", "MIL Calibration · Measurement · Metrology"]
+    built: ["Pattern matching", "Edge detection", "Calibration", "Measurement and metrology"]
     stack: ["C++", "non-linear optimisation", "Levenberg–Marquardt", "classical ML"]
     tools: ["Visual Studio", "Git", "SVN"]
     learned: >-
@@ -124,7 +125,7 @@ experience:
           Every course that mattered ended in something that had to run: a
           robot that had to reach the point, a controller that had to hold its
           deadline, a camera that had to tell the arm where the part was.
-    built: ["Robot path synchronisation with A*", "Real-time robot control on QNX", "Vision system guiding a Fanuc robot"]
+    built: ["Control theory", "Robotics", "Image processing"]
     stack: ["C++", "digital control", "detection and estimation", "stochastic and robust control", "image processing"]
     tools: ["QNX", "ROS", "MATLAB / Simulink", "Fanuc robots"]
     learned: >-

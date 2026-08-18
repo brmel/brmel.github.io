@@ -11,9 +11,9 @@ metrics:
   - value: "3 languages"
     label: "Arabic, French and English, answered from one corpus"
   - value: "Cited"
-    label: "answers are retrieved from the corpus and point back to the document"
+    label: "every answer points back to the document it came from"
   - value: "5 stages"
-    label: "fetch, promote, deploy, re-ingest, verify — before a corpus change is live"
+    label: "fetch, promote, deploy, re-ingest, verify"
 stack: ["Python", "FastAPI", "Next.js", "Postgres + pgvector", "LlamaIndex", "Gemini"]
 links:
   live: ""

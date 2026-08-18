@@ -8,11 +8,11 @@ pitch: "Gives a small clinic a numbered queue on a screen, so patients stop aski
 description: "Gives a small clinic a numbered queue on a screen, so patients stop asking who is next."
 metrics:
   - value: "1 PC"
-    label: "runs reception, the board and every doctor"
+    label: "runs reception, the waiting-room board and every doctor"
   - value: "3 languages"
     label: "French, Arabic and English, switched mid-sentence"
-  - value: "0"
-    label: "patient records that leave the building"
+  - value: "Offline"
+    label: "Ed25519 licences verified locally, no phone-home"
 stack: ["Electron", "TypeScript", "Firebase", "Ed25519", "Turborepo"]
 links:
   live: "https://tikipro.web.app"

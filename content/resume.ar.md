@@ -6,9 +6,8 @@ summary: "مهندس رؤية آلية ومعالجة صور — Zebra Technolog
 description: "مطور برمجيات أول متخصص في الرؤية الآلية ومعالجة الصور وأنظمة التحكم."
 ShowBreadCrumbs: false
 aliases: ["/ar/timeline/", "/ar/about/"]
-role: "مطور برمجيات أول — الرؤية الآلية ومعالجة الصور"
+role: "مطور برمجيات أول — الرؤية الآلية والذكاء الاصطناعي"
 location: "مونتريال، كيبك"
-availability: "مقيم في مونتريال. البريد الإلكتروني أسرع وسيلة للتواصل."
 contact:
   - label: "البريد الإلكتروني"
     url: "mailto:mellah.brahim.redouane@gmail.com"
@@ -16,6 +15,8 @@ contact:
     url: "https://www.linkedin.com/in/brahim-redouane-mellah/"
   - label: "غيت هَب"
     url: "https://github.com/brmel"
+  - label: "X"
+    url: "https://x.com/BrmelB"
 
 # المسار المهني، مرحلة بمرحلة. البنية تأتي من
 # layouts/partials/career-timeline.html، ولا يتغير بين اللغات سوى النص.
@@ -92,7 +93,7 @@ experience:
         text: >-
           استبدال حلّالات قديمة في وحدات الهندسة بمُحسِّنات غير خطية، منها
           Levenberg–Marquardt، داخل مكتبة تعتمد عليها آلاف التطبيقات المثبّتة.
-    built: ["Advanced Geometric Matcher", "MIL Calibration · Measurement · Metrology"]
+    built: ["مطابقة الأنماط", "كشف الحواف", "المعايرة", "القياس والمترولوجيا"]
     stack: ["C++", "التحسين غير الخطي", "Levenberg–Marquardt", "التعلم الآلي الكلاسيكي"]
     tools: ["Visual Studio", "Git", "SVN"]
     learned: >-
@@ -118,7 +119,7 @@ experience:
         text: >-
           كل مقرر مهم كان ينتهي بشيء يجب أن يعمل: روبوت عليه أن يبلغ نقطته،
           ومتحكم عليه أن يفي بموعده، وكاميرا عليها أن تخبر الذراع بموضع القطعة.
-    built: ["مزامنة مسارات الروبوتات بخوارزمية A*", "تحكم آني في الروبوتات على QNX", "نظام رؤية يوجّه روبوت Fanuc"]
+    built: ["نظرية التحكم", "الروبوتات", "معالجة الصور"]
     stack: ["C++", "التحكم الرقمي", "الكشف والتقدير", "التحكم العشوائي والمتين", "معالجة الصور"]
     tools: ["QNX", "ROS", "MATLAB / Simulink", "روبوتات Fanuc"]
     learned: >-

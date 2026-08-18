@@ -9,11 +9,11 @@ description: "A robot arm you drive from your browser, to test robotics code aga
 startHereWhy: "robotics algorithms tested against real physics, in C++"
 metrics:
   - value: "4 nodes"
-    label: "vision, tracking, trajectory, control — each swappable while running"
+    label: "vision, tracking, trajectory and control, swappable while running"
   - value: "1 command"
     label: "docker compose up, then a robot cell in the browser"
-  - value: "0 rigs"
-    label: "needed to find out an algorithm is wrong"
+  - value: "Sandboxed"
+    label: "third-party algorithms run isolated from the cell"
 stack: ["C++", "MuJoCo", "OpenCV", "Ruckig", "three.js", "Docker"]
 links:
   live: ""

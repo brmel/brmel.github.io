@@ -8,11 +8,11 @@ pitch: "Helps a group of friends pick where to go out, and settles it, instead o
 description: "Helps a group of friends pick where to go out, and settles it, instead of a chat that never decides."
 metrics:
   - value: "3 surfaces"
-    label: "app, admin console, marketing site"
-  - value: "1 control plane"
-    label: "build, deploy, publish, roll back"
-  - value: "0"
-    label: "launches — the infrastructure is further along than the product"
+    label: "one Flutter app, an admin console and a marketing site on one backend"
+  - value: "Real time"
+    label: "votes propagate live, with every write validated server-side"
+  - value: "1 command"
+    label: "build, deploy, publish or roll back, with health-checked rollback"
 stack: ["Flutter", "Firebase Functions", "TypeScript", "React", "Firestore"]
 links:
   live: ""

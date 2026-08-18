@@ -12,7 +12,7 @@ metrics:
   - value: "6 areas"
     label: "filed from one spoken line"
   - value: "2 passes"
-    label: "spoken sentence to structured, editable entries"
+    label: "speech to structured, editable entries"
 stack: ["Flutter", "Python", "Firebase Functions", "Multi-agent", "Dart"]
 links:
   live: "https://farkad.web.app"

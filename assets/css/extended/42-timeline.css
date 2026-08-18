@@ -74,7 +74,6 @@
 .timeline-body{margin-top:var(--space-5);}
 .timeline-work{
   padding-top:var(--space-4);
-  border-top:var(--hairline) solid var(--rule-soft);
 }
 .timeline-work:first-child{padding-top:0;border-top:0;}
 .timeline-work + .timeline-work{margin-top:var(--space-4);}

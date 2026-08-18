@@ -17,11 +17,11 @@ googleAnalytics = "G-CHFGS2DHF6"
     [languages.en.params.profileMode]
       enabled = true
       title = "Brahim Redouane Mellah"
-      subtitle = "Machine vision & image processing · Zebra Technologies · Montréal"
+      subtitle = "Machine vision and AI · Zebra Technologies · Montréal"
       imageUrl = "images/MyPhoto.jpg"
       imageWidth = 380
       imageTitle = "Brahim Redouane Mellah"
-      bigPicture = "Software engineer in C++, working on image processing, machine vision and robotics. At work I build software that runs inside industrial factories: tested, maintained, optimised and validated. Outside work I keep learning and build projects end to end."
+      bigPicture = "Software engineer in C++, working on image processing, machine vision, AI and robotics. At work I build software that runs inside industrial factories: tested, maintained, optimised and validated. Outside work I keep learning and build projects end to end."
     [[languages.en.menu.main]]
       identifier = "home"
       name = "Home"
@@ -64,11 +64,11 @@ googleAnalytics = "G-CHFGS2DHF6"
     [languages.fr.params.profileMode]
       enabled = true
       title = "Brahim Redouane Mellah"
-      subtitle = "Vision industrielle & traitement d'images · Zebra Technologies · Montréal"
+      subtitle = "Vision industrielle et IA · Zebra Technologies · Montréal"
       imageUrl = "images/MyPhoto.jpg"
       imageWidth = 380
       imageTitle = "Brahim Redouane Mellah"
-      bigPicture = "Ingénieur logiciel en C++ : traitement d'images, vision industrielle et robotique. Au travail, je construis des logiciels qui tournent dans des usines, testés, maintenus, optimisés et validés. En dehors, je continue d'apprendre et je mène des projets de bout en bout."
+      bigPicture = "Ingénieur logiciel en C++ : traitement d'images, vision industrielle, IA et robotique. Au travail, je construis des logiciels qui tournent dans des usines, testés, maintenus, optimisés et validés. En dehors, je continue d'apprendre et je mène des projets de bout en bout."
     [[languages.fr.menu.main]]
       identifier = "home"
       name = "Accueil"
@@ -112,11 +112,11 @@ googleAnalytics = "G-CHFGS2DHF6"
     [languages.ar.params.profileMode]
       enabled = true
       title = "إبراهيم رضوان ملاح"
-      subtitle = "الرؤية الآلية ومعالجة الصور · Zebra Technologies · مونتريال"
+      subtitle = "الرؤية الآلية والذكاء الاصطناعي · Zebra Technologies · مونتريال"
       imageUrl = "images/MyPhoto.jpg"
       imageWidth = 380
       imageTitle = "إبراهيم رضوان ملاح"
-      bigPicture = "مهندس برمجيات بلغة C++ في معالجة الصور والرؤية الآلية والروبوتات. في العمل أبني برمجيات تعمل داخل المصانع: مُختبرة ومُصانة ومُحسّنة ومُتحقَّق منها. وخارج العمل أواصل التعلّم وأنجز مشاريع من البداية إلى النهاية."
+      bigPicture = "مهندس برمجيات بلغة C++ في معالجة الصور والرؤية الآلية والذكاء الاصطناعي والروبوتات. في العمل أبني برمجيات تعمل داخل المصانع: مُختبرة ومُصانة ومُحسّنة ومُتحقَّق منها. وخارج العمل أواصل التعلّم وأنجز مشاريع من البداية إلى النهاية."
     [[languages.ar.menu.main]]
       identifier = "home"
       name = "الرئيسية"

@@ -7,12 +7,12 @@ status: "archived"
 pitch: "An app for sending a parcel abroad with a traveller who has room in their suitcase."
 description: "An app for sending a parcel abroad with a traveller who has room in their suitcase."
 metrics:
+  - value: "4 layers"
+    label: "domain, application, infrastructure and presentation, cleanly separated"
+  - value: "3 languages"
+    label: "English, French and Arabic, right-to-left aware"
   - value: "20 months"
-    label: "of work, three languages, store screenshots"
-  - value: "1,134 lines"
-    label: "deleted in one commit, two months in"
-  - value: "0"
-    label: "launches — the missing piece was never a feature"
+    label: "of design, build and iteration on a real marketplace"
 stack: ["Flutter", "Dart", "Firebase", "BLoC", "Clean Architecture", "get_it"]
 links:
   live: ""

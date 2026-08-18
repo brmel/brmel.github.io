@@ -2,7 +2,6 @@
   max-width:var(--container-text);
   margin:0 auto var(--space-6);
   padding-bottom:var(--space-5);
-  border-bottom:var(--hairline) solid var(--rule);
   text-align:center;
 }
 .resume__mark{display:flex;justify-content:center;margin-bottom:var(--space-3);color:var(--accent);}
@@ -37,7 +36,7 @@
 .resume__skills{margin:0;}
 .resume__skillgroup{
   display:grid;grid-template-columns:150px 1fr;gap:var(--space-4);
-  padding:var(--space-3) 0;border-bottom:var(--hairline) solid var(--rule-soft);
+  padding:var(--space-3) 0;
 }
 .resume__skillgroup:last-child{border-bottom:0;}
 .resume__skillgroup dt{
@@ -50,7 +49,7 @@
 .resume__records{list-style:none;margin:0;padding:0;}
 .resume__record{
   display:grid;grid-template-columns:150px 1fr;gap:0 var(--space-4);
-  padding:var(--space-4) 0;border-bottom:var(--hairline) solid var(--rule-soft);
+  padding:var(--space-4) 0;
 }
 .resume__record:last-child{border-bottom:0;}
 .resume__record-year{
@@ -84,12 +83,6 @@
 }
 
 
-.resume__close{max-width:var(--container-text);margin:var(--space-9) auto 0;}
-.resume__availability{
-  margin:0 0 var(--space-4);
-  font-size:var(--t-body-l);line-height:1.55;color:var(--ink-soft);
-}
-.resume__contact--close{justify-content:flex-start;margin-top:0;}
 .resume__print{
   background:none;border:0;padding:0;cursor:pointer;
   font-family:var(--font-label);font-size:var(--t-eyebrow);

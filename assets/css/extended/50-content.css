@@ -32,17 +32,6 @@
   .workflow .wf-s{font-size:12px}
 }
 
-.report-frame{
-  display:block;width:100%;min-height:100vh;
-  border:0;
-  border-radius:var(--radius-md);
-  box-shadow:var(--shadow-card);
-  background:var(--bg);
-}
-.dark .report-frame{
-  border:var(--hairline) solid var(--rule);
-  background:#fff;
-}
 
 #theme-toggle{color:var(--ink-soft);}
 #theme-toggle:hover{color:var(--accent);}

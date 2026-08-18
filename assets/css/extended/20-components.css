@@ -66,6 +66,22 @@ a.u-chip:hover{border-color:var(--accent);color:var(--accent);}
 
 .u-chip--accent{color:var(--accent);border-color:var(--accent);text-transform:uppercase;}
 
+/* an embedded generated document. Defined here because this file is in both
+   the PaperMod bundle and the standalone bundle; when these rules lived in
+   50-content.css the standalone report lost its width and collapsed to the
+   browser's default 300px iframe. */
+.report-frame{
+  display:block;width:100%;min-height:100vh;
+  border:0;
+  border-radius:var(--radius-md);
+  box-shadow:var(--shadow-card);
+  background:var(--bg);
+}
+.dark .report-frame{
+  border:var(--hairline) solid var(--rule);
+  background:#fff;
+}
+
 .u-frame{
   border:var(--hairline) solid var(--rule);
   border-radius:var(--radius-sm);
