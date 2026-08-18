@@ -89,6 +89,13 @@ Section files **compose** the primitives; they never redeclare them.
 `scripts/check-css.py` fails the build if they do, if a colour appears outside
 tokens, if a file exceeds 260 lines, or if a class is declared but never used.
 
+`scripts/check-bundles.py` covers the fault that shipped twice: two layouts
+assemble two different CSS bundles, and a class rendered by a shared partial but
+styled in a file only one bundle loads is invisible in the other, silently.
+`.report-frame` collapsed to a 300px iframe that way; `.related-project`
+rendered unstyled on the same page for the same reason. Anything a shared
+partial or a shortcode renders belongs in `20-components.css`.
+
 `scripts/check-pages.py` covers what a structural check cannot see: the same
 destination linked twice on one page however differently the two links are
 dressed, a link pointing at its own page, an icon control with no accessible

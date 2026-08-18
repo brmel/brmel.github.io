@@ -12,8 +12,8 @@ googleAnalytics = "G-CHFGS2DHF6"
     title = "Ibraverse"
     [languages.en.params]
       author = "Ibraverse"
-      description = "Senior Software Developer at Zebra Technologies specializing in Machine Vision, Image Processing, and Control Systems."
-      keywords = ["machine vision", "image processing", "computer vision", "industrial algorithms", "OpenCV", "C++", "control theory", "robotics", "AI", "Zebra Technologies", "Matrox", "real-time systems", "AGM", "geometric matching"]
+      description = "Senior Software Developer at Zebra Technologies working in machine vision, AI and image processing."
+      keywords = ["machine vision", "image processing", "computer vision", "industrial algorithms", "OpenCV", "C++", "control theory", "robotics", "AI", "Zebra Technologies", "Matrox", "real-time systems", "AI", "pattern matching", "edge detection", "calibration"]
     [languages.en.params.profileMode]
       enabled = true
       title = "Brahim Redouane Mellah"
@@ -59,8 +59,8 @@ googleAnalytics = "G-CHFGS2DHF6"
     title = "Ibraverse"
     [languages.fr.params]
       author = "Ibraverse"
-      description = "Développeur logiciel senior chez Zebra Technologies, spécialisé en vision industrielle, traitement d'images et systèmes de contrôle."
-      keywords = ["vision industrielle", "traitement d'images", "vision par ordinateur", "algorithmes industriels", "OpenCV", "C++", "théorie du contrôle", "robotique", "IA", "Zebra Technologies", "Matrox", "systèmes temps réel", "AGM", "appariement géométrique"]
+      description = "Développeur logiciel senior chez Zebra Technologies : vision industrielle, IA et traitement d'images."
+      keywords = ["vision industrielle", "traitement d'images", "vision par ordinateur", "algorithmes industriels", "OpenCV", "C++", "théorie du contrôle", "robotique", "IA", "Zebra Technologies", "Matrox", "systèmes temps réel", "IA", "appariement de motifs", "détection de contours", "calibration"]
     [languages.fr.params.profileMode]
       enabled = true
       title = "Brahim Redouane Mellah"
@@ -107,8 +107,8 @@ googleAnalytics = "G-CHFGS2DHF6"
     title = "إبرافرس"
     [languages.ar.params]
       author = "إبرافرس"
-      description = "مطور برمجيات أول في Zebra Technologies متخصص في الرؤية الآلية ومعالجة الصور وأنظمة التحكم."
-      keywords = ["الرؤية الآلية", "معالجة الصور", "رؤية الكمبيوتر", "الخوارزميات الصناعية", "OpenCV", "C++", "نظرية التحكم", "الروبوتات", "الذكاء الاصطناعي", "Zebra Technologies", "Matrox", "أنظمة الوقت الحقيقي", "AGM", "المطابقة الهندسية"]
+      description = "مطور برمجيات أول في Zebra Technologies في الرؤية الآلية والذكاء الاصطناعي ومعالجة الصور."
+      keywords = ["الرؤية الآلية", "معالجة الصور", "رؤية الكمبيوتر", "الخوارزميات الصناعية", "OpenCV", "C++", "نظرية التحكم", "الروبوتات", "الذكاء الاصطناعي", "Zebra Technologies", "Matrox", "أنظمة الوقت الحقيقي", "الذكاء الاصطناعي", "مطابقة الأنماط", "كشف الحواف"]
     [languages.ar.params.profileMode]
       enabled = true
       title = "إبراهيم رضوان ملاح"
@@ -168,8 +168,8 @@ enableEmoji = true
   # `projects` is listed ahead of the section existing (#12) so adding it needs
   # no config change.
   mainSections = ["projects", "tech", "adventures", "thoughts"]
-  description = "Senior Software Developer at Zebra Technologies specializing in Machine Vision, Image Processing, and Control Systems. 5+ years of industrial experience in C++, AI, and real-time systems."
-  keywords = ["machine vision", "image processing", "computer vision", "industrial algorithms", "OpenCV", "C++", "control theory", "robotics", "AI", "Zebra Technologies", "Matrox", "real-time systems", "AGM", "geometric matching"]
+  description = "Senior Software Developer at Zebra Technologies working in machine vision, AI and image processing. Industrial C++, algorithms shipped into products that run on factory floors."
+  keywords = ["machine vision", "image processing", "computer vision", "industrial algorithms", "OpenCV", "C++", "control theory", "robotics", "AI", "Zebra Technologies", "Matrox", "real-time systems", "AI", "pattern matching", "edge detection", "calibration"]
   author = "Ibraverse"
   images = ["images/MyPhoto.jpg"]
   # A localised layout, not a Go one. "January 2, 2006" is a fixed English

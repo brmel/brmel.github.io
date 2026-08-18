@@ -33,3 +33,6 @@ python3 ./scripts/check-chrome.py
 
 echo "▸ links, duplicates and controls"
 python3 ./scripts/check-pages.py
+
+echo "▸ bundle scope"
+python3 ./scripts/check-bundles.py

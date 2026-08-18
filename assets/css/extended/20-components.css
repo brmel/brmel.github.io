@@ -118,3 +118,34 @@ a.u-chip:hover{border-color:var(--accent);color:var(--accent);}
 @media (prefers-reduced-motion:reduce){
   a.u-card:hover,.u-card--interactive:hover{transform:none;}
 }
+
+/* rendered by partials and shortcodes that both the PaperMod bundle and the
+   standalone bundle reach, so the rules have to live where both load them */
+.related-project{
+  max-width:var(--container-text);
+  margin:var(--space-8) auto 0;
+  padding-top:var(--space-4);
+  border-top:var(--hairline) solid var(--rule);
+  display:flex;flex-direction:column;gap:var(--space-1);
+}
+.related-project__link{
+  font-family:var(--font-serif);font-size:var(--t-subhead);
+  color:var(--ink);text-decoration:none;
+  border-bottom:var(--hairline) solid var(--accent);align-self:flex-start;
+}
+.related-project__link:hover{color:var(--accent);}
+.related-project__pitch{font-size:var(--t-caption);color:var(--ink-soft);line-height:1.5;}
+
+.gmap{
+  position:relative;aspect-ratio:4/3;margin:var(--space-7) 0;
+  border-radius:var(--radius-md);overflow:hidden;
+  box-shadow:var(--shadow-photo);border:var(--hairline) solid var(--rule);
+}
+.gmap iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block}
+.gmap-link a{
+  display:inline-flex;align-items:center;gap:var(--space-2);min-height:24px;
+  font-family:var(--font-label);font-size:var(--t-eyebrow);
+  letter-spacing:var(--track-eyebrow);text-transform:uppercase;
+  border-bottom:var(--hairline) solid var(--rule);
+}
+.gmap-link a:hover{border-color:var(--accent);color:var(--accent);}
