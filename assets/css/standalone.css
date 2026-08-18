@@ -50,7 +50,7 @@ body{
 .sa-body :where(img,video,iframe){max-width:100%;height:auto;border-radius:var(--radius-md);display:block}
 .sa-body :where(pre,code,kbd,samp){font-family:var(--font-mono)}
 .sa-body :where(pre){background:var(--bg-alt);border:var(--hairline) solid var(--rule);border-radius:var(--radius-sm);padding:var(--space-4);overflow:auto}
-.sa-body :where(blockquote){border-left:var(--hairline-strong) solid var(--accent);margin:var(--space-6) 0;padding-left:var(--space-5);color:var(--ink-soft)}
+.sa-body :where(blockquote){border-inline-start:var(--hairline-strong) solid var(--accent);margin:var(--space-6) 0;padding-inline-start:var(--space-5);color:var(--ink-soft)}
 
 .sa-footer{
   border-top:var(--hairline) solid var(--rule);

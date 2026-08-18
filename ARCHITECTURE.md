@@ -48,7 +48,7 @@ layouts/
     projects-learning.html  what each project taught, at the foot of the index
   shortcodes/
     figure.html        images through the pipeline, with srcset and dimensions
-    reels.html · gmap.html · reportframe.html
+    gmap.html · reportframe.html
 ```
 
 ### `partials/func/`
@@ -81,7 +81,7 @@ everything that consumes it.
 | `10-base` | theme variable remap, type, links, tables, code |
 | `20-components` | shared primitives — `.u-card`, `.u-bar`, `.u-eyebrow`, `.u-chip`, `.u-rule-heading`, `.u-frame` |
 | `30-chrome` | nav, mark, footers, section nav, content footer |
-| `40-home` `41-resume` `42-timeline` `43-projects` `44-adventures` `45-reels` | one section each |
+| `40-home` `41-resume` `42-timeline` `43-projects` `44-adventures` `46-project-page` | one section each |
 | | `42-timeline` is the career timeline; the project index draws the same rail from the same tokens |
 | `50-content` | article body: figures, diagrams, embedded artefacts |
 

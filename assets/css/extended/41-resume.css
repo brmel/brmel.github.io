@@ -68,12 +68,16 @@
 }
 
 @media print{
-  .header,.footer,.site-mark,.top-link,
-  .video-thumb,.video-thumbnail,#lightbox{display:none!important;}
-  .timeline-work--media{display:block;}
-  .resume__head{border-bottom-color:var(--ink-mute);}
+  /* everything that is a control or a route, not the résumé itself */
+  .header,.footer,.site-mark,.top-link,.breadcrumbs,
+  .content-footer,.content-actions,.share-buttons,.section-nav,.author-card,
+  .resume__print,.video-thumb,.video-thumbnail,#lightbox{display:none!important;}
   a{text-decoration:none;color:inherit;}
   .timeline-item{break-inside:avoid;}
+  .timeline-content{padding:0;background:none;border:0;box-shadow:none;}
+  .timeline-container::before,.timeline-marker{display:none;}
+  .timeline-item{padding-inline-start:0;}
+  .resume__section{margin-top:var(--space-6);}
 }
 
 .entry-lang{

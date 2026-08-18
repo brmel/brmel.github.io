@@ -314,11 +314,6 @@ word title in Instrument Serif, thin accent bar at the bottom. Text in the
 **Reel end-card** (9:16)
 Paper, large compass mark centred, `ibraverse.ca`, `@ibraverse`, accent bar.
 
-**Reels row (on-site)** — the `reels` shortcode renders YouTube + Instagram +
-TikTok as one row of click-to-load vertical thumbnails at the bottom of an
-Adventures article. Platform badge colours are the only non-brand colours
-allowed anywhere on the site, and only on those badges.
-
 **Open Graph cards** — `static/og/<section>.jpg`, 1200×630, six sections from
 **one** template (`scripts/og-cards.html`, cut by `scripts/gen-og-cards.py`).
 Six hand-designed cards would drift; one template cannot. Adding a section means

@@ -36,3 +36,9 @@ python3 ./scripts/check-pages.py
 
 echo "▸ bundle scope"
 python3 ./scripts/check-bundles.py
+
+echo "▸ direction safety"
+python3 ./scripts/check-rtl.py
+
+echo "▸ script selectors"
+python3 ./scripts/check-js.py
