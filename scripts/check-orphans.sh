@@ -13,16 +13,16 @@
 #                                so they are consumed without being named anywhere.
 #   static/favicon.ico, CNAME, robots.txt — served by path, never referenced.
 #
-# ADVISORY MODE: exits 0 while known orphans are still being cleaned up
-# (issue #2). Set STRICT=1 — and flip STRICT_DEFAULT to 1 once issue #5 has
-# merged — to make orphans fail the build.
+# Orphans fail the build. The check ran advisory while the backlog it found was
+# being cleared; that finished, and a gate nobody has to remember to run is the
+# only kind that catches the next one. Set STRICT=0 to downgrade it again.
 #
 # Portable to bash 3.2 (macOS default): no mapfile, no associative arrays.
 
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
-STRICT_DEFAULT=0
+STRICT_DEFAULT=1
 STRICT="${STRICT:-$STRICT_DEFAULT}"
 
 SEARCH_PATHS="content layouts config.toml assets"
@@ -97,5 +97,5 @@ if [ "$STRICT" = "1" ]; then
 fi
 
 echo
-echo "(advisory — set STRICT=1 to fail on orphans)"
+echo "(advisory — STRICT=0)"
 exit 0

@@ -66,6 +66,14 @@ a.u-chip:hover{border-color:var(--accent);color:var(--accent);}
 
 .u-chip--accent{color:var(--accent);border-color:var(--accent);text-transform:uppercase;}
 
+/* Rendered by _default/list.html and partials/home-latest.html — a shared
+   primitive, so it lives here rather than in either section's file. */
+.entry-lang{
+  margin:var(--space-2) 0 0;
+  font-family:var(--font-label);font-size:var(--t-micro);
+  letter-spacing:.08em;text-transform:uppercase;color:var(--ink-mute);
+}
+
 /* an embedded generated document. Defined here because this file is in both
    the PaperMod bundle and the standalone bundle; when these rules lived in
    50-content.css the standalone report lost its width and collapsed to the

@@ -19,10 +19,15 @@
       <a href="{{ .RelPermalink }}">
         <span class="u-eyebrow home-latest__meta">
           {{- with .Date }}<time datetime="{{ .Format "2006-01-02" }}">{{ time.Format (site.Params.DateFormat | default ":date_long") . }}</time>{{ end }}
-          {{- with .Section }} <span aria-hidden="true">·</span> {{ . }}{{ end }}
+          {{- with .Section }}
+            {{- $name := . }}
+            {{- with site.GetPage (printf "/%s" .) }}{{ $name = .Title }}{{ end }}
+            <span aria-hidden="true">·</span> {{ $name }}
+          {{- end }}
         </span>
-        <span class="home-latest__title">{{ .Title }}</span>
-        {{- with (or .Description .Params.pitch .Params.summary) }}<span class="home-latest__sum">{{ . }}</span>{{ end }}
+        <span class="home-latest__title" dir="auto">{{ .Title }}</span>
+        {{- with (or .Description .Params.pitch .Params.summary) }}<span class="home-latest__sum" dir="auto">{{ . }}</span>{{ end }}
+        {{- if ne .Lang site.Language.Lang }}<span class="entry-lang">{{ i18n "lang_en_only" | default "in English" }}</span>{{ end }}
       </a>
     </li>
     {{- end }}

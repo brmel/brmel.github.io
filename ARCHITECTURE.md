@@ -64,10 +64,17 @@ own directory makes the distinction visible at the call site: anything in
 
 ### Theme forks
 
-`themes/PaperMod/` is vendored. Thirteen templates are forked into `layouts/`;
+`themes/PaperMod/` is vendored. Sixteen templates are forked into `layouts/`;
 each carries a one-line header naming the upstream path and the commit it was
 taken from, so a future theme upgrade can be diffed rather than guessed. Nothing
 else in the theme is modified.
+
+Four more files in `layouts/` share a name with a theme file without being
+forks — `comments.html`, `extend_head.html`, `extend_footer.html` and
+`shortcodes/figure.html` are written here from scratch, and the theme's
+versions are empty extension points or unrelated. They carry no fork header
+because there is nothing upstream to diff them against: the header is the
+signal, and its absence means "written here, ignore the theme's copy".
 
 ## Stylesheets
 

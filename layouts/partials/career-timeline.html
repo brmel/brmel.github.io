@@ -5,7 +5,7 @@
 -}}
 
 {{- with .Params.experience }}
-<div class="timeline-container">
+<div class="timeline-container" data-play-label="{{ i18n "career_play_video" | default "Play video" }}">
   {{- range . }}
   {{- $p := . }}
   <article class="timeline-item">
@@ -70,8 +70,15 @@
   </article>
   {{- end }}
 </div>
-<div id="lightbox">
-  <iframe id="lightbox-video" src="" title="{{ i18n "career_video" | default "Video" }}" frameborder="0"
+<div id="lightbox" role="dialog" aria-modal="true" aria-hidden="true"
+     aria-label="{{ i18n "career_video" | default "Video" }}">
+  <button type="button" id="lightbox-close" class="lightbox__close"
+          aria-label="{{ i18n "career_close_video" | default "Close video" }}">
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
+    </svg>
+  </button>
+  <iframe id="lightbox-video" title="{{ i18n "career_video" | default "Video" }}" frameborder="0"
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen
     style="display: none;"></iframe>
 </div>
