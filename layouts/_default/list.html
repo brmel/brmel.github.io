@@ -115,7 +115,9 @@
   <p class="entry-lang">{{ i18n "lang_en_only" | default "in English" }}</p>
   {{- end }}
   </div>
-  <a class="entry-link" aria-label="post link to {{ .Title | plainify }}" href="{{ .Permalink }}"></a>
+  {{- /* The title alone: "post link to" was English on the French and Arabic
+       indexes, and the prefix tells a screen reader nothing the role does not. */ -}}
+  <a class="entry-link" aria-label="{{ .Title | plainify }}" href="{{ .Permalink }}"></a>
 </article>
 {{- end }}
 

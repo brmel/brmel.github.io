@@ -31,6 +31,8 @@ notfound_lede: "Le lien est peut-être ancien, ou la page a changé d'adresse. V
 back_to_top: "Haut"
 toggle_theme: "Changer de thème"
 go_to_top: "Haut de page"
+social_follow: "Suivre sur"
+social_connect: "Se connecter sur"
 skip_to_content: "Aller au contenu"
 resume_experience: "Expérience"
 career_built: "Réalisé"

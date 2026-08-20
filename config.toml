@@ -222,21 +222,27 @@ enableEmoji = true
 
   [[params.socialIcons]]
     name = "github"
+    title = "GitHub"
     url = "https://github.com/brmel"
   [[params.socialIcons]]
     name = "linkedin"
+    title = "LinkedIn"
     url = "https://www.linkedin.com/in/brahim-redouane-mellah/"
   [[params.socialIcons]]
     name = "x"
+    title = "X"
     url = "https://x.com/BrmelB"
   [[params.socialIcons]]
     name = "email"
+    title = "Email"
     url = "mailto:mellah.brahim.redouane@gmail.com"
   [[params.socialIcons]]
     name = "facebook"
+    title = "Facebook"
     url = "https://www.facebook.com/mellah.brahim.redouane"
   [[params.socialIcons]]
     name = "instagram"
+    title = "Instagram"
     url = "https://www.instagram.com/mellahredouane/"
 
   # No [params.analytics.*] verification tags: absent beats fake. Add a block
