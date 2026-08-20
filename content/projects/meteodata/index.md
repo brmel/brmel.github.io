@@ -19,9 +19,9 @@ links:
 lede: |
   Three services publish an hourly forecast for two places in Montréal. An
   Environment Canada station sits beside each of them, measuring what actually
-  happens every minute. This records both for five days and grades every
-  prediction against the reading for the hour it described — at one hour ahead,
-  or three, six, twelve, twenty-four.
+  happens every minute. This records both for just under five days and grades
+  every prediction against the reading for the hour it described — at one hour
+  ahead, or three, six, twelve, twenty-four.
 takeaway: "A forecast is not one prediction, it is six, and they are not equally good — averaging them into \"accurate\" is how the useful part gets hidden."
 lessons:
   - "**The app is not bad at weather. It is bad at rain.** Temperature is genuinely good — 1.19 °C off six hours ahead, and it barely degrades out to a full day. Humidity holds. Then rain: 95 of 136 calls passed without a drop, 70% false alarms, and unlike temperature the precipitation error does not improve as the hour approaches. 0.40 mm at six hours is 0.40 mm at twenty-four. Getting one number for \"is the forecast accurate\" would have averaged the good half with the useless half and told me nothing."

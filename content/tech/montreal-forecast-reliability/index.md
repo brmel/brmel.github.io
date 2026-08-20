@@ -1,5 +1,5 @@
 ---
-title: "Montréal Forecast Reliability: Five Days, Three Services, 882 Comparisons"
+title: "Montréal Forecast Reliability: Three Services, Two Places, 882 Comparisons"
 date: 2026-08-20
 relatedProject: "meteodata"
 draft: false
@@ -7,7 +7,7 @@ layout: "standalone"
 hideAutoHeader: true
 fullBleed: true
 disableShare: false
-summary: "Three forecast services, two places in Montréal, every prediction graded against the weather station beside it. Temperature holds up. Rain does not — 70% of the rain calls never happened. Interactive report, gradeable from one hour ahead to twenty-four."
+summary: "Three forecast services, two places in Montréal, every prediction graded against the weather station beside it over five days. Temperature holds up. Rain does not — 70% of the rain calls never happened. Interactive report, gradeable from one hour ahead to twenty-four."
 tags: ["Data Analysis", "Québec"]
 cover:
     image: "cover.jpg"
