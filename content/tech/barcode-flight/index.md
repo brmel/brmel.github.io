@@ -20,8 +20,10 @@ But then I realized: my phone was in dark mode, and the barcode was shown with d
 
 {{< figure src="02-boarding-pass-read.jpeg" alt="Barcode in Light Mode" width="200" >}}
 
-I really hope Düsseldorf airport and all airports improve their barcode reader.
+A reader that assumes dark-on-light is a reader that works everywhere except on
+a phone at night, which is where boarding passes actually live. Foreground
+colour is a setting in every serious imaging library — including the
+[Aurora Imaging Library](https://www.zebra.com/us/en/software/machine-vision-and-fixed-industrial-scanning-software/aurora-imaging-library.html)
+I work on — and it costs nothing to set it correctly.
 
-Want to know more about foreground color support for example in Aurora imaging library? Read this link: [https://lnkd.in/eEKXeeWp](https://lnkd.in/eEKXeeWp)
-
-Thank you.
+I still switch to light mode before every gate.

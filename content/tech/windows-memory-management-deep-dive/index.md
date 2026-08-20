@@ -67,9 +67,9 @@ process needs it.
 
 ## Memory types
 
-Each row in the table of the VMMap snapshot above represents a type of memory. We
-will delve into the details of each memory type, exploring what it represents and
-how it is allocated.
+Each row of the VMMap snapshot above is a type of memory. The rest of this
+article takes them one at a time: what each one represents, and how it gets
+allocated.
 
 ### 1 — Private data
 
@@ -93,8 +93,9 @@ LPVOID MemPtr2 = VirtualAlloc(desiredAddress, size, MEM_COMMIT | MEM_RESERVE, PA
 
 The first parameter of the `VirtualAlloc` function is the base address of the
 memory block you want to allocate, and `NULL` means that the Memory Manager will
-decide. It is so powerful to be able to allocate memory at a specific address,
-although not recommended unless you know what you're doing.
+decide. Choosing the address yourself is occasionally what you want, and
+usually not — the Memory Manager has more information about the address space
+than you do.
 
 **Important notes about `VirtualAlloc`:**
 
@@ -367,8 +368,8 @@ well-formatted data to a file, and provides control over the snapshot frequency.
 {{< figure src="14-memory-tracer-vs-vmmap.jpg" alt="Memory Tracer output side by side with a VMMap snapshot showing matching figures" caption="Memory Tracer showing the same results as VMMap." >}}
 
 Memory Tracer attempts to reproduce the exact results as VMMap. However, there is
-**no guarantee of accuracy**, as I think that VMMap utilizes some internal tools
-to query virtual memory properties.
+**no guarantee of accuracy**: VMMap appears to query virtual memory through
+interfaces that are not public, so the two will not always agree.
 
 **Future improvements:**
 

@@ -1,5 +1,5 @@
 ---
-title: "How I Fixed an Infinite Loop in Scikit-Learn's K-Means"
+title: "Finding an Infinite Loop in Scikit-Learn's K-Means"
 date: 2024-04-29
 summary: "K-means in scikit-learn could hang forever. Three conditions had to line up — duplicate points, k equal to the number of points, and a very particular initialisation — and the empty-cluster fix created the empty cluster it was fixing."
 description: "Finding and reporting an infinite loop in scikit-learn's K-means empty-cluster handling, and how the fix was reached."
@@ -12,19 +12,18 @@ canonicalOriginal: "https://www.linkedin.com/pulse/how-i-fixed-ia-algorithm-scik
 canonicalOriginalName: "LinkedIn"
 ---
 
-As a software developer, one of the things I love doing at work is studying edge
-cases and boundaries of algorithms, especially mathematical ones, to define their
-limits and constraints.
+The boundaries are where a mathematical algorithm tells you what it really is.
+An implementation can be correct on every well-behaved input and still have a
+state it cannot leave, and the only way to find that state is to go looking for
+it.
 
-Recently, I was experimenting with a machine learning algorithm, K-means,
-implemented in the
-[scikit-learn library](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html),
-which is one of the best open-source repositories for mathematical and machine
-learning algorithms. During this exploration, I discovered a bug that was causing
-the K-means implementation to get stuck in an infinite loop.
+I went looking in
+[scikit-learn's K-means](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html)
+and found one: an input that makes it loop forever. Three conditions have to
+line up, and the last of them is the interesting part — the code that handles
+empty clusters creates the empty cluster it is handling.
 
-In the next section, I will provide a brief explanation of K-means, describe the
-bug, and the proposed solution that was implemented in the library.
+Below: what K-means does, how the loop happens, and what came of reporting it.
 
 > **Personal opinion.** I think everyone should help make open source better
 > however they can, as long as it doesn't hurt their business. Open source is a
@@ -103,10 +102,11 @@ opinion.
 
 ## The lessons
 
-- Handling edge cases and boundaries of algorithms is crucial and should not be
-  ignored, because they can cause real problems in production code.
-- Fixing open-source code can be time-consuming, and without sufficient
-  motivation, people may not put effort into it.
+- The dangerous edge case was not an input the author failed to imagine. It was
+  the repair code itself, which had never been run against the situation it
+  creates.
+- Reporting a bug well is most of the contribution. A reproducible case and the
+  three conditions that produce it is what let someone else fix this in days.
 
 ## Sources
 

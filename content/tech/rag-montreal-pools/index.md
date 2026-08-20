@@ -229,8 +229,8 @@ I will not say anything here, and let you see this beauty of an LLM alive:
   technologies. Standards and interfaces are not yet well defined, and code that
   works today may become obsolete in a few months. However, this rapid evolution
   might be a natural part of progress.
-- I completed this project in one afternoon, using an LLM as a coding partner to
-  create an app that utilizes LLMs to answer questions. :)
+- The whole thing took an afternoon, with an LLM as a coding partner, to build
+  an app that answers questions with an LLM.
 - I was occasionally banned from accessing pool websites due to intensive data
   collection for the database. My apologies to Ville de Montréal for the load. :)
 

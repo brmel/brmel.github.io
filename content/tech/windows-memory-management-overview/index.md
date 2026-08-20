@@ -14,22 +14,20 @@ canonicalOriginal: "https://www.linkedin.com/pulse/very-shallow-overview-windows
 canonicalOriginalName: "LinkedIn"
 ---
 
-If you are like me, a C++ developer with an electrical engineering background,
-you are probably interested in understanding how software interacts with
-hardware.
+Here is how hard it is to say how much memory a process is using: the people who
+build Windows have not agreed on it. Task Manager has labelled the same
+quantities differently across versions, and the
+[Sysinternals](https://learn.microsoft.com/en-us/sysinternals) team criticised
+one of those choices publicly.
 
-A few weeks ago, I watched a video by Mark Russinovich explaining [Virtual
+I came to this from C++ and an electrical engineering background, where the
+question of what the hardware is actually doing is not academic. After Mark
+Russinovich's talks on [Virtual
 Memory](https://youtu.be/AjTl53I_qzY?si=TONF91WbNu6d5Ra4) and [Physical Memory
-management in Windows](https://youtu.be/6KZdNsq1YV4?si=xpSamR2OSN-xyjr1). I
-found it so interesting that I decided to write this article and create a tool
-that can help you debug your process memory usage — details will follow later.
-
-But before we delve in, I want you to know this: this subject is so complex that
-even Microsoft engineers found themselves in disagreement at some point. In this
-image, we see the challenges faced by *Windows Task Manager* engineers to show
-memory's usage across different Windows versions. It was so confusing, they even
-got criticized from the [Sysinternals](https://learn.microsoft.com/en-us/sysinternals)
-team… publicly!
+management in Windows](https://youtu.be/6KZdNsq1YV4?si=xpSamR2OSN-xyjr1) I
+wanted two things: to be able to state the difference precisely, and to watch a
+process's usage over time instead of sampling it in a tool. This article is the
+first; the tool at the end is the second.
 
 {{< figure src="01-task-manager-memory-columns.jpg" alt="Table comparing the memory columns shown by Windows Task Manager across Windows versions" caption="How Task Manager labelled memory across Windows versions." >}}
 
@@ -38,7 +36,7 @@ team… publicly!
 Suppose you need to allocate a portion of memory on Windows. If you are using
 C++, you can achieve this using the `new` keyword, for instance. Windows, if
 possible, will then provide you with a pointer to the allocated memory that you
-can utilize in your program.
+can use in your program.
 
 The Memory Manager is responsible for handling this task, allowing you to
 specify certain characteristics of the allocated memory. For example, you can
@@ -47,8 +45,8 @@ future use.
 
 **Committed** implies that the memory is ready for immediate use and is backed
 by **physical** memory (real hardware). On the other hand, **reserved** indicates
-that the memory will be utilized later, without involving physical memory at the
-moment; this memory is purely **virtual**.
+that the memory is spoken for but not yet backed by anything physical; this
+memory is purely **virtual**.
 
 ## Virtual and physical memory
 
@@ -97,13 +95,11 @@ welcome.
 
 ## Debug virtual and physical memory usage
 
-I noticed that Windows VMMap and RAMMap are excellent tools for capturing
-snapshots of the current usage of virtual and physical memory at a specific
-moment. However, they have some limitations, particularly when it comes to
-tracking memory usage over an extended period of time or controlling the
-snapshot frequency. Additionally, exporting formatted data that can be easily
-utilized to detect and identify memory problems may be challenging with these
-tools.
+VMMap and RAMMap are excellent at what they do, which is capture the state of
+virtual and physical memory at one moment. What they are not built for is
+watching that state change: you cannot set the sampling interval, and getting
+the numbers out in a form you can plot is awkward. A leak that only shows up
+over an hour is invisible to a snapshot.
 
 ### Introducing MemoryTracker
 

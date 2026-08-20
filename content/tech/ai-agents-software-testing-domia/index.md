@@ -61,8 +61,9 @@ the model a list of tools it can use, and it decides *when* to call them and
 
 The key thing that needs to be understood: **the model does not run the tool.**
 It returns a request — a JSON object saying "call this function with these args".
-Your code runs the actual function and feeds the result back. This is very
-powerful because **it allows you to run tools in your environment**.
+Your code runs the actual function and feeds the result back. **The model asks;
+your code decides whether to comply.** Every capability an agent has, it has
+because you handed it over.
 
 ```python
 import os
@@ -247,8 +248,8 @@ active, the agent reads the count from the page and calls
 
 This illustrates a broader class of tests: scenarios where the verdict requires
 acting on the environment, not just reading it. Think of it as **agentic
-reporting** — the agent not only verifies a condition but produces an artifact as
-evidence.
+reporting** — the agent verifies a condition and leaves behind the artifact
+that proves it.
 
 {{< figure src="07-demo-shell.jpg" alt="Still from the recording of DOMIA running a shell command and the evidence file appearing on disk" caption="Recording: DOMIA navigates, counts, runs the shell command, and the article_count.txt file appears on disk in real time. [Watch the recording on LinkedIn](https://www.linkedin.com/pulse/concrete-example-how-ai-replace-software-testers-tnv-mellah--9vbxe)." >}}
 

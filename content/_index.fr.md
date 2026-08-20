@@ -3,13 +3,21 @@ title: "Ibraverse"
 date: 2025-01-08
 description: "Vision industrielle et traitement d'images chez Zebra Technologies. Projets personnels, articles techniques et carnets de terrain."
 ---
-Je suis ingénieur logiciel. Je travaille en C++ sur le traitement d'images, la
-vision industrielle, l'IA et la robotique.
+Je développe les algorithmes de mesure au cœur des logiciels de vision
+industrielle — la géométrie, la calibration et la mesure de contours sur
+lesquelles reposent les applications d'usine. En C++, chez Zebra Technologies à
+Montréal, sur l'Aurora Imaging Library, et chez Matrox Imaging avant que les
+deux ne deviennent une seule entreprise.
 
-Au travail, je construis des logiciels qui tournent dans des usines : testés,
-maintenus, optimisés et validés avant d'être livrés.
+L'essentiel du métier n'est pas d'écrire l'algorithme. C'est de convenir de son
+comportement avec les équipes d'interface, de documentation et de test avant la
+livraison, puis d'entrer dans les applications que les clients n'arrivent pas à
+faire fonctionner — c'est là qu'on découvre ce qu'il fait vraiment.
 
-Sur mon temps libre, je continue d'apprendre, et j'aime résoudre les problèmes
-où la programmation, la physique et les maths se rejoignent. Je construis avec
-des outils agentiques comme Claude ; les [projets](/projects/) et les
-[articles](/tech/) ici en sont le résultat, y compris ce qui n'a pas marché.
+En dehors du travail, je construis des choses qui exigent des données que
+personne ne publie : un réseau de transport pour un pays sans horaires, une
+cellule robotisée pour tester du code de commande contre une vraie physique,
+deux mois de relevés de pannes électriques enregistrés à la minute pour savoir
+si les heures de rétablissement annoncées tiennent. Les [projets](/projects/) et
+les [articles](/tech/) sont documentés ici avec ce que chacun m'a appris, y
+compris ce qui n'a pas marché.

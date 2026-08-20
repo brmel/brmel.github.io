@@ -3,13 +3,19 @@ title: "Ibraverse"
 date: 2025-01-08
 description: "Machine vision and image processing at Zebra Technologies. Side projects, technical writing, and field notes."
 ---
-I am a software engineer. I work in C++ on image processing, machine vision, AI
-and robotics.
+I build the measurement algorithms inside industrial vision software — the
+geometry, calibration and edge measurement that factory applications are built
+on. C++, at Zebra Technologies in Montréal, on the Aurora Imaging Library, and
+at Matrox Imaging before the two became one company.
 
-At work I build software that runs inside industrial factories: tested,
-maintained, optimised and validated before it ships.
+Most of that job is not writing the algorithm. It is agreeing what it should do
+with the UI, documentation and test teams before it ships, and then going into
+the applications customers cannot get working — which is where you find out
+what it actually does.
 
-On my own time I keep learning, and I like solving problems where programming,
-physics and maths meet. I build with agentic tools like Claude, and the
-[projects](/projects/) and [articles](/tech/) here are what came out of that,
-including the parts that did not work.
+Outside work I build things that need data nobody publishes: a transit network
+for a country with no timetable, a robot cell for testing control code against
+real physics, two months of power-outage readings collected a minute at a time
+to find out whether the restoration times hold. The [projects](/projects/) and
+[articles](/tech/) are written up here with what each one taught me, including
+the parts that did not work.

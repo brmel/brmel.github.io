@@ -22,6 +22,11 @@ Mais j'ai réalisé : mon téléphone était en mode sombre, et le code-barres s
 
 J'espère vraiment que l'aéroport de Düsseldorf et tous les aéroports amélioreront leur lecteur de code-barres.
 
-Vous voulez en savoir plus sur le support de la couleur de premier plan, par exemple dans la bibliothèque d'imagerie Aurora ? Lisez ce lien : [https://lnkd.in/eEKXeeWp](https://lnkd.in/eEKXeeWp)
+Un lecteur qui suppose du sombre sur clair est un lecteur qui fonctionne
+partout sauf sur un téléphone en soirée — c'est-à-dire là où vivent réellement
+les cartes d'embarquement. La couleur de premier plan est un paramètre dans
+toute bibliothèque d'imagerie sérieuse, dont l'[Aurora Imaging
+Library](https://www.zebra.com/us/en/software/machine-vision-and-fixed-industrial-scanning-software/aurora-imaging-library.html)
+sur laquelle je travaille, et il ne coûte rien de le régler correctement.
 
-Merci.
+Je passe encore en mode clair avant chaque porte d'embarquement.

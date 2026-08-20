@@ -21,7 +21,7 @@ googleAnalytics = "G-CHFGS2DHF6"
       imageUrl = "images/MyPhoto.jpg"
       imageWidth = 380
       imageTitle = "Brahim Redouane Mellah"
-      bigPicture = "Software engineer in C++, working on image processing, machine vision, AI and robotics. At work I build software that runs inside industrial factories: tested, maintained, optimised and validated. Outside work I keep learning and build projects end to end."
+      bigPicture = "I build the measurement algorithms inside industrial vision software — geometry, calibration and edge measurement — in C++ at Zebra Technologies. Outside work I build things that need data nobody publishes, and write up what each one taught me."
     [[languages.en.menu.main]]
       identifier = "home"
       name = "Home"
@@ -68,7 +68,7 @@ googleAnalytics = "G-CHFGS2DHF6"
       imageUrl = "images/MyPhoto.jpg"
       imageWidth = 380
       imageTitle = "Brahim Redouane Mellah"
-      bigPicture = "Ingénieur logiciel en C++ : traitement d'images, vision industrielle, IA et robotique. Au travail, je construis des logiciels qui tournent dans des usines, testés, maintenus, optimisés et validés. En dehors, je continue d'apprendre et je mène des projets de bout en bout."
+      bigPicture = "Je développe les algorithmes de mesure au cœur des logiciels de vision industrielle — géométrie, calibration et mesure de contours — en C++ chez Zebra Technologies. En dehors du travail, je construis des choses qui exigent des données que personne ne publie, et je documente ce que chacune m'a appris."
     [[languages.fr.menu.main]]
       identifier = "home"
       name = "Accueil"
@@ -116,7 +116,7 @@ googleAnalytics = "G-CHFGS2DHF6"
       imageUrl = "images/MyPhoto.jpg"
       imageWidth = 380
       imageTitle = "إبراهيم رضوان ملاح"
-      bigPicture = "مهندس برمجيات بلغة C++ في معالجة الصور والرؤية الآلية والذكاء الاصطناعي والروبوتات. في العمل أبني برمجيات تعمل داخل المصانع: مُختبرة ومُصانة ومُحسّنة ومُتحقَّق منها. وخارج العمل أواصل التعلّم وأنجز مشاريع من البداية إلى النهاية."
+      bigPicture = "أطوّر خوارزميات القياس داخل برمجيات الرؤية الصناعية — الهندسة الرياضية والمعايرة وقياس الحواف — بلغة C++‎ في Zebra Technologies. خارج العمل أبني أشياء تحتاج بيانات لا ينشرها أحد، وأوثّق ما علّمني كلٌّ منها."
     [[languages.ar.menu.main]]
       identifier = "home"
       name = "الرئيسية"

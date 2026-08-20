@@ -2,326 +2,126 @@
 title: "Edge Measurement in Industrial Vision: Counting Saw Blade Teeth"
 date: 2025-01-08
 draft: false
-author: "Ibraverse"
 tags: ["Industrial Vision", "Image Processing"]
 aliases: ["/posts/image-histograms/"]
-description: "Industrial vision systems measure parts by finding their edges. This walks through how edge measurement works, using a saw blade with teeth to count as the example."
+description: "Counting the teeth on a saw blade looks trivial and is not. How edge measurement actually solves it, and which part of the method decides whether it works."
 cover:
     image: "01-saw-blade.png"
-    alt: "Saw Blade Edge Detection"
-    caption: "Edge measurement for counting saw blade teeth"
-ShowToc: true
-TocOpen: false
+    alt: "A circular saw blade"
+    caption: "Counting the teeth is the easy half. Being able to say the count is right is the other one."
 ---
 
-Edge measurement is a fundamental technique in industrial vision systems, enabling precise detection and analysis of object boundaries. This tutorial demonstrates edge measurement principles through a practical application: automatically counting the teeth on a saw blade.
+A saw blade is a good way to explain edge measurement, because counting its
+teeth looks trivial and is not. You can see the teeth. A vision system cannot:
+it has a grid of intensities, and everything you want to know has to come out
+of where those intensities change.
 
-## Understanding Edge Measurement
+{{< figure src="01-saw-blade.png" alt="A circular saw blade with the arbor hole at its centre" caption="Every number below comes from the arbor hole and one circle drawn through the teeth." align="center" width="50%" >}}
 
-Edge measurement involves detecting transitions in pixel intensity that correspond to physical edges in objects. In industrial applications, this technique is crucial for:
+## Do not count the teeth — measure across them
 
-- **Quality control**: Verifying part dimensions and features
-- **Counting operations**: Detecting repetitive features like teeth, holes, or ridges
-- **Defect detection**: Finding missing or damaged edges
-- **Alignment**: Using edges as reference points for positioning
+The instinct is to find the blade's outline and count the bumps on it. That
+means separating blade from background, which means picking a threshold, and a
+threshold is a promise about the lighting that you will not be able to keep.
 
-## The Challenge: Counting Saw Teeth
+The better move is to segment nothing. Put a circle on the image, centred on
+the arbor hole, at a radius that passes through every tooth, and read the image
+along that circle. A closed path through all the teeth turns a two-dimensional
+counting problem into a one-dimensional signal with one feature per tooth.
 
-Our objective is to create an application that automatically counts the number of teeth on a circular saw blade from a single image.
+That is the actual idea, and the rest is consequences of it. A signal that
+should be periodic is a signal you can check, and being able to check the
+answer is worth more than getting it.
 
-{{< figure src="01-saw-blade.png" alt="Saw Blade Challenge" caption="Example saw blade image - our goal is to automatically count the teeth around the perimeter" align="center" width="50%" >}}
+## The origin comes from the part, not from the image
 
-### Input Requirements
-- Single image of a saw blade
-- Clear visibility of the mounting hole and teeth
-- Adequate lighting to distinguish teeth from background
+The circle needs a centre, and the centre has to be a feature of the blade
+rather than a position in the frame. The arbor hole is the obvious candidate:
+fit a circle to it and every measurement afterwards is expressed relative to
+the part.
 
-### Expected Output
-- Accurate count of blade teeth
-- Robust performance across different blade types
+This is what makes the method survive contact with a real cell. The blade is
+never placed the same way twice. If the origin travels with the blade, that
+stops being a problem instead of becoming a calibration ritual.
 
-### Key Observations
-- Teeth are distributed evenly around the mounting hole
-- The central mounting point provides a reference for circular scanning
-- Teeth create dark-to-light transitions that can be detected as stripes
+## Stripes, not edges
 
-## Solution Approach
+An edge is a single transition. A stripe is a pair of them — a rising edge and
+a falling edge, of a stated polarity, with a width between them.
 
-### Step 1: Locate the Central Reference Point
+Counting stripes rather than edges is the whole reliability argument. An edge
+is a place where the intensity moved, and plenty of things move it: a glint on
+ground steel, a scratch, the seam of the background. A stripe additionally has
+a width, and a width is something you can reject on. Noise readily produces one
+transition. It much less readily produces a matched pair of the right polarity,
+of roughly the right width, at roughly the right spacing.
 
-The mounting hole serves as our coordinate system origin. We use circle detection to find this reference:
+So the parameters that matter are the ones that describe the tooth as an
+object: polarity, taken from which way the tooth is darker than what surrounds
+it; a width range, taken from the blade specification rather than from the
+image; and a contrast threshold set high enough that a soft gradient is not
+allowed to be a tooth. Edge positions themselves come out at sub-pixel
+precision from the shape of the intensity gradient, which is why this is a
+measurement rather than a pixel count.
 
-```cpp
-// Detect the central mounting hole
-DetectSingleCircle(inputImage, expectedRadius, detectedCircle);
-Point2D centerPoint = detectedCircle.Center;
-```
+## The check that costs nothing
 
-**Key Parameters:**
-- **Expected Radius**: Measure manually or estimate based on blade specifications
-- **ROI Optimization**: Restrict search to the central region for better performance
-- **Detection Confidence**: Ensure reliable circle detection before proceeding
+If the count is right, the teeth are evenly spaced in angle. That is not an
+extra requirement — it is a property of the part you are already holding, and
+it is free.
 
-### Step 2: Define the Scanning Path
+Convert each detected stripe to an angle about the centre, take the gaps
+between consecutive angles, and look at their spread. Uniform gaps mean you
+counted teeth. One gap at twice the others means you missed one, and the gap
+tells you exactly where to look. Gaps at half the spacing mean you counted
+something twice.
 
-Create a circular path around the center at the appropriate radius to intersect all teeth:
+This is the difference between a number and a measurement. A system that
+reports 71 teeth is useless, because nobody can tell whether it is right. A
+system that reports 72 and can say the angular spacing was uniform to within a
+fraction of a degree has actually measured something, and can be trusted to
+say when it should not be.
 
-```cpp
-// Create circular scanning path
-Circle scanCircle = {
-    center: centerPoint,
-    radius: teethRadius  // Distance from center to teeth tips
-};
+## What actually breaks
 
-CreateCirclePath(scanCircle, pointCount, scanPath);
-```
+Three things, in my experience, and none of them is the algorithm.
 
-**Critical Considerations:**
-- **Point Count**: Must be sufficient to detect each tooth individually
-- **Radius Selection**: Position path to cross all teeth consistently
-- **Path Density**: Balance between detection accuracy and processing speed
+**Reflection.** Ground steel is close to a mirror. A specular highlight
+crossing the scan path is high-contrast and looks exactly like the transition
+you are hunting for. This is a lighting problem and it is solved with lighting
+— diffuse, off-axis — not by lowering a threshold until the highlight goes
+away, which also removes the teeth.
 
-### Step 3: Scan for Edge Transitions
+**Teeth that are not identical.** Many blades are ground with an alternate top
+bevel, so consecutive teeth are angled opposite ways and do not present the
+same face to the camera. Anything that assumes every tooth looks like the last
+one will find half of them. The width tolerance has to cover both appearances,
+and the periodicity check has to expect one tooth per gap rather than one
+bevel.
 
-Use stripe scanning along the circular path to detect teeth edges:
+**The radius.** Too close to the hub and the path passes inside the tooth roots
+and sees nothing. Too far and it leaves the blade between teeth and the signal
+becomes background. It wants to sit where the teeth are widest, and it is worth
+deriving it from the detected hole radius rather than fixing it, so that one
+recipe covers a family of blade sizes.
 
-```cpp
-// Scan for multiple stripes (teeth) along the path
-ScanMultipleStripes(
-    inputImage,
-    scanPath,
-    stripeParameters,
-    detectedStripes
-);
+## Where this generalises
 
-int toothCount = detectedStripes.Count;
-```
+Nothing above is about saw blades. The method is: find a feature on the part
+that defines a coordinate system, scan a path the features of interest must
+cross, measure pairs rather than transitions, and verify the result against the
+regularity you already expect.
 
-**Stripe Detection Parameters:**
-- **Polarity**: Set to "Dark" since teeth appear darker than background
-- **Width Tolerance**: Account for varying tooth sizes
-- **Contrast Threshold**: Ensure sufficient edge strength for reliable detection
+That applies to gear teeth, holes in a perforated sheet, splines on a shaft,
+threads, connector pins — anything repetitive arranged around something you can
+locate. The part changes and the recipe does not.
 
-## Implementation Details
-
-### Image Preprocessing
-
-Before edge detection, ensure optimal image quality:
-
-```cpp
-// Enhance contrast if needed
-if (imageContrast < minimumThreshold) {
-    EnhanceContrast(inputImage, enhancedImage);
-} else {
-    enhancedImage = inputImage;
-}
-```
-
-### Robust Circle Detection
-
-Improve mounting hole detection reliability:
-
-```cpp
-// Set detection parameters
-CircleDetectionParams params = {
-    radiusRange: {minRadius, maxRadius},
-    edgeThreshold: adaptiveThreshold,
-    centerTolerance: searchTolerance
-};
-
-// Detect with validation
-if (DetectSingleCircle(image, params, circle)) {
-    if (ValidateCircleQuality(circle)) {
-        // Proceed with scanning
-    } else {
-        // Handle detection failure
-    }
-}
-```
-
-### Adaptive Scanning
-
-Optimize scanning parameters based on detected circle:
-
-```cpp
-// Calculate optimal scanning radius
-double scanRadius = circle.Radius * TEETH_RADIUS_RATIO;
-
-// Adjust point count based on expected tooth count
-int estimatedTeeth = EstimateToothCount(scanRadius);
-int pointCount = estimatedTeeth * POINTS_PER_TOOTH;
-```
-
-## Practical Implementation Example
-
-To see this edge measurement technique in action, here's a demonstration using industrial vision software to solve the blade counting challenge:
+Here is the whole thing running on the blade at the top of this article:
 
 {{< youtube uJoLyFe7R1g >}}
 
-This video demonstrates the practical application of the edge measurement principles we've discussed, showing how circular scanning and stripe detection can be implemented in a real vision system.
-
-## Advanced Techniques
-
-### Multi-Scale Detection
-
-For blades with varying tooth sizes:
-
-```cpp
-// Scan at multiple radii
-vector<int> toothCounts;
-for (double radius = minRadius; radius <= maxRadius; radius += step) {
-    CreateCirclePath(center, radius, pointCount, path);
-    int count = ScanMultipleStripes(image, path, params).Count;
-    toothCounts.push_back(count);
-}
-
-// Select most consistent result
-int finalCount = FindConsistentCount(toothCounts);
-```
-
-### Validation and Quality Control
-
-Implement checks to ensure measurement reliability:
-
-```cpp
-bool ValidateToothCount(int count, Circle blade) {
-    // Check reasonable count range
-    if (count < MIN_TEETH || count > MAX_TEETH) return false;
-    
-    // Verify even distribution
-    double expectedSpacing = (2 * PI * scanRadius) / count;
-    return ValidateSpacing(detectedStripes, expectedSpacing);
-}
-```
-
-### Error Handling
-
-Robust applications handle edge cases:
-
-```cpp
-MeasurementResult CountBladeTooth(Image input) {
-    try {
-        // Main processing pipeline
-        Circle hole = DetectMountingHole(input);
-        Path scanPath = CreateScanningPath(hole);
-        StripeArray teeth = ScanForTeeth(input, scanPath);
-        
-        if (ValidateResults(teeth)) {
-            return {success: true, count: teeth.Count};
-        } else {
-            return {success: false, error: "Invalid detection"};
-        }
-    } catch (const VisionException& e) {
-        return {success: false, error: e.message};
-    }
-}
-```
-
-## Performance Optimization
-
-### Region of Interest (ROI)
-
-Limit processing to relevant image areas:
-
-```cpp
-// Restrict circle detection to central region
-Rectangle centerROI = {
-    x: imageWidth/4,
-    y: imageHeight/4,
-    width: imageWidth/2,
-    height: imageHeight/2
-};
-
-SetROI(centerROI);
-DetectSingleCircle(image, params, circle);
-ResetROI();
-```
-
-### Parallel Processing
-
-For real-time applications:
-
-```cpp
-// Process multiple scan radii in parallel
-#pragma omp parallel for
-for (int i = 0; i < radiusCount; i++) {
-    results[i] = ScanAtRadius(image, radii[i]);
-}
-```
-
-## Applications and Extensions
-
-### Quality Control
-
-- **Tooth uniformity**: Measure individual tooth dimensions
-- **Damage detection**: Identify broken or worn teeth
-- **Spacing verification**: Check even distribution
-
-### Different Blade Types
-
-- **Circular saws**: Standard tooth counting
-- **Band saws**: Linear stripe detection
-- **Specialty blades**: Adaptive parameter selection
-
-### Integration with Manufacturing
-
-- **Automated sorting**: Route blades based on tooth count
-- **Process monitoring**: Track blade quality over time
-- **Batch verification**: Ensure specification compliance
-
-## Best Practices
-
-### Lighting Considerations
-
-- **Uniform illumination**: Prevent shadows that could be mistaken for teeth
-- **Contrast optimization**: Ensure clear tooth-to-background separation
-- **Reflection management**: Avoid specular reflections on metal surfaces
-
-### Parameter Tuning
-
-- **Start with manual measurements**: Establish baseline parameters
-- **Use test datasets**: Validate across different blade types
-- **Implement adaptive algorithms**: Adjust parameters based on image characteristics
-
-### System Integration
-
-- **Calibration procedures**: Regular system validation
-- **Error reporting**: Clear feedback on measurement failures
-- **Data logging**: Track measurements for quality analysis
-
-## Troubleshooting Common Issues
-
-**Problem**: Inconsistent tooth counting
-**Solution**: Verify lighting consistency and adjust contrast thresholds
-
-**Problem**: Missing mounting hole detection
-**Solution**: Check expected radius range and edge detection parameters
-
-**Problem**: False tooth detections
-**Solution**: Increase stripe contrast threshold and validate tooth spacing
-
-**Problem**: Varying counts across similar blades
-**Solution**: Implement multi-scale scanning and result validation
-
-## Conclusion
-
-Edge measurement through stripe scanning provides a robust solution for counting saw blade teeth. This technique demonstrates key principles applicable to many industrial vision challenges:
-
-- **Reference point establishment**: Using geometric features for coordinate systems
-- **Systematic scanning**: Following defined paths for comprehensive analysis
-- **Edge detection optimization**: Tuning parameters for specific applications
-- **Result validation**: Implementing quality checks for reliable measurements
-
-The methods shown here can be adapted for counting other repetitive features like gear teeth, holes in perforated materials, or ridges in textured surfaces.
-
-## Next Steps
-
-Ready to implement edge measurement in your applications? Try adapting these techniques for:
-- Gear tooth counting and analysis
-- PCB via hole detection
-- Textile thread counting
-- Surface texture analysis
-
----
-
-*Master more industrial vision techniques with our upcoming tutorials on geometric matching and measurement calibration.*
+The one thing I would carry out of this into any measurement problem is the
+last section rather than the first. Getting the count is ordinary work. Being
+able to say why the count is right, from evidence in the same image, is what
+separates a demo from something you can put in front of a machine that acts on
+the answer.
