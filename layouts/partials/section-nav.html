@@ -16,6 +16,10 @@
   {{- if lt $idx (sub (len $siblings) 1) }}{{ $next = index $siblings (add $idx 1) }}{{ end }}
 {{- end }}
 
+{{- /* An untranslated sibling is marked "in English", the same convention the
+       list pages and the homepage use. Without it the French and Arabic
+       articles ended with two English titles under "Précédent"/"Suivant"
+       and no indication why. */ -}}
 <nav class="section-nav" aria-label="{{ i18n "section_nav_label" | default "Section navigation" }}">
   <a class="section-nav__back" href="{{ .RelPermalink }}">
     <span aria-hidden="true">←</span>
@@ -27,12 +31,18 @@
     <a class="u-card section-nav__sib section-nav__sib--prev" href="{{ .RelPermalink }}" rel="prev">
       <span class="section-nav__dir">{{ i18n "previous" | default "Previous" }}</span>
       <span class="section-nav__title">{{ .Title }}</span>
+      {{- if ne .Lang site.Language.Lang }}
+      <span class="entry-lang" title="{{ i18n "lang_en_only_title" | default "This write-up is in English" }}">{{ i18n "lang_en_only" | default "in English" }}</span>
+      {{- end }}
     </a>
     {{- else }}<span></span>{{ end }}
     {{- with $next }}
     <a class="u-card section-nav__sib section-nav__sib--next" href="{{ .RelPermalink }}" rel="next">
       <span class="section-nav__dir">{{ i18n "next" | default "Next" }}</span>
       <span class="section-nav__title">{{ .Title }}</span>
+      {{- if ne .Lang site.Language.Lang }}
+      <span class="entry-lang" title="{{ i18n "lang_en_only_title" | default "This write-up is in English" }}">{{ i18n "lang_en_only" | default "in English" }}</span>
+      {{- end }}
     </a>
     {{- end }}
   </div>

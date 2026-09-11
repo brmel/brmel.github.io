@@ -82,7 +82,7 @@ experience:
     role: "Développeur logiciel"
     org: "Matrox Imaging"
     url: "https://video.matrox.com/en"
-    note: "Matrox Imaging a rejoint Zebra Technologies en 2022 ; le travail s'est poursuivi sans interruption."
+    note: "Matrox Imaging a rejoint Zebra Technologies en 2022 ; le travail s'est poursuivi sans interruption."
     work:
       - title: "Apprendre le métier"
         video: "LcoPNbyuhZU"
