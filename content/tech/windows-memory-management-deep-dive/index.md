@@ -2,7 +2,7 @@
 title: "Windows Memory Management in Depth: Private Data, Stack, Heap and Mapped Files"
 date: 2024-01-10
 summary: "Every memory state and every memory type in a VMMap snapshot, explained with C++ examples: private data, stack, heap, mapped files, images, unused regions and the managed heap."
-description: "A detailed walk through Windows memory states and memory types — private data, stack, heap, mapped files, images — with VirtualAlloc, File Mapping and std::vector examples."
+description: "Windows memory states and types — private data, stack, heap, mapped files, images — with VirtualAlloc, file-mapping and std::vector examples."
 tags: ["C++", "Windows", "Systems"]
 series: "Windows Memory Management"
 seriesPart: 2
@@ -128,8 +128,8 @@ for (int i = 0; i < 200000000; i++)
 
 After each `for` loop (1, 2, and 3), we observe the growth of the working set —
 and consequently the used RAM — of the process each time we access more memory.
-It's important to note that the reserved and committed memory do not change by
-only using memory, because the memory was allocated and committed in advance.
+Reserved and committed memory do not move, because both were allocated and
+committed in advance. Only the working set grows.
 
 {{< figure src="04-working-set-growth.jpg" alt="VMMap showing the working set growing across three runs while reserved and committed stay constant" caption="The process working set grows when memory is used." >}}
 

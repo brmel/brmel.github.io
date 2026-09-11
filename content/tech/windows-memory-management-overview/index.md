@@ -108,10 +108,9 @@ the virtual memory of a specific process over time. It allows you to display dat
 on the screen, export well-formatted data to a file, and provides control over
 the snapshot frequency.
 
-You can integrate it into your code, utilizing it as a callback function to
-precisely control when to take a snapshot. Alternatively, you can employ it in
-another process if you prefer not to modify the code of the process you wish to
-track.
+Call it from your own code as a callback, to control exactly when a snapshot is
+taken. Or run it from a separate process, if you would rather not touch the code
+you are measuring.
 
 This is an example of tracking virtual memory usage of the process with id
 `32404`:

@@ -33,3 +33,6 @@ yarn-error.log*
 
 # Claude Code session/cron state
 .claude/
+
+# Local strategy notes (not for publication)
+SOCIAL-STRATEGY.*
