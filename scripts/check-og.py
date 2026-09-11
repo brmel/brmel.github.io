@@ -17,7 +17,10 @@ from urllib.parse import urlparse
 
 ROOT = os.path.join(os.path.dirname(__file__), "..")
 PUB = os.path.join(ROOT, "public")
-BASE = "https://ibraverse.ca"
+BASE = re.search(  # from config, so a domain change cannot fail CI silently
+    r'^\s*baseURL\s*=\s*["\']([^"\']+)',
+    open(os.path.join(ROOT, "config.toml"), encoding="utf-8").read(),
+    re.M).group(1).rstrip("/")
 
 meta = lambda h, k, a="property": re.search(
     rf'<meta {a}={k}[^>]*content="([^"]*)"', h) or re.search(

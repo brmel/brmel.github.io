@@ -38,9 +38,10 @@ themes/PaperMod/  vendored theme; forked files carry a provenance header
 
 ## Gates
 
-`./scripts/check.sh` runs six checks; CI runs the same six plus a link crawl on
-every pull request. They exist because each one caught a defect that had already
-shipped.
+`scripts/gates.sh` holds the list; `./scripts/check.sh` builds and runs it, and
+both workflows run the same script — on every pull request, and again before a
+deploy, plus a link crawl on top. They exist because each one caught a defect
+that had already shipped.
 
 | Check | Asserts |
 |---|---|
@@ -50,6 +51,10 @@ shipped.
 | `check-contrast.py` | every text token clears WCAG AA on every surface, both themes |
 | `check-css.py` | explicit cascade order, colours only in tokens, no duplicated primitives, no dead classes |
 | `check-chrome.py` | one `h1`, a skip link and sized images on every page; every content page has a way back and a way to contribute |
+| `check-pages.py` | no destination linked twice, no self-link, no unnamed control; every internal link resolves and every page is reachable |
+| `check-bundles.py` | every class the standalone layout renders is styled by a file it loads |
+| `check-rtl.py` | layout mirrors from logical properties alone — no physical `left`/`right` |
+| `check-js.py` | every selector a script reaches for exists on the pages that load it |
 
 ## Conventions
 
@@ -71,5 +76,3 @@ shipped.
 | [docs/brand-guidelines.md](docs/brand-guidelines.md) | the design system, tokens, voice |
 | [docs/projects-playbook.md](docs/projects-playbook.md) | how to publish a project page |
 | [docs/adventures-playbook.md](docs/adventures-playbook.md) | how to publish a field note |
-| [docs/comments.md](docs/comments.md) | enabling giscus comments |
-| [docs/site-audit-2026-08.md](docs/site-audit-2026-08.md) | measured performance, SEO and a11y audit |

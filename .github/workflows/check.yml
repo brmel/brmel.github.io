@@ -2,7 +2,8 @@ name: Check
 
 # The gate every content change validates against: the site must build, every
 # internal link and image must resolve, and no asset may be left orphaned by a
-# deletion. Runs on pull requests only — main is covered by the deploy workflow.
+# deletion. The deploy workflow runs the same gates, so a push straight to main
+# is checked too.
 
 on:
   pull_request:
@@ -41,20 +42,10 @@ jobs:
           HUGO_ENV: production
         run: hugo --gc --minify --cleanDestinationDir --baseURL "https://ibraverse.ca/"
 
-      - name: Orphaned assets
-        run: ./scripts/check-orphans.sh
-
-      - name: Social cards
-        run: python3 ./scripts/check-og.py
-
-      - name: Colour contrast
-        run: python3 ./scripts/check-contrast.py
-
-      - name: CSS architecture
-        run: python3 ./scripts/check-css.py
-
-      - name: Page chrome
-        run: python3 ./scripts/check-chrome.py
+      # Every gate, from the one list in scripts/gates.sh. Listing them here
+      # instead is what let four of them go unrun in CI for months.
+      - name: Gates
+        run: ./scripts/gates.sh
 
       # Internal links only. External links rot for reasons outside this repo,
       # so they are reported but never fail the job (see the second step).

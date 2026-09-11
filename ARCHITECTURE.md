@@ -32,11 +32,10 @@ layouts/
     func/              return values, not markup — call with `partial` and use the result
       section-pages.html   which pages a section lists, across languages
       og-image.html        which social card a page shares
-    content-footer.html    the common page ending — composes the four below
+    content-footer.html    the common page ending — composes the three below
       content-actions.html   improve · discuss
       share_icons.html
       section-nav.html       back + previous/next
-      comments.html          giscus, inert until configured
     brand-mark.html      the compass mark, single implementation
     project-header.html  eyebrow, title, pitch, stack, links
     article-origin.html  series navigation + original-publication credit
@@ -69,8 +68,8 @@ each carries a one-line header naming the upstream path and the commit it was
 taken from, so a future theme upgrade can be diffed rather than guessed. Nothing
 else in the theme is modified.
 
-Four more files in `layouts/` share a name with a theme file without being
-forks — `comments.html`, `extend_head.html`, `extend_footer.html` and
+Three more files in `layouts/` share a name with a theme file without being
+forks — `extend_head.html`, `extend_footer.html` and
 `shortcodes/figure.html` are written here from scratch, and the theme's
 versions are empty extension points or unrelated. They carry no fork header
 because there is nothing upstream to diff them against: the header is the
@@ -119,7 +118,7 @@ Front matter drives the chrome. A project declares:
 
 ```yaml
 projectNo: 1                 # stable, orders the index
-domain: "saas"               # selects the accent via [data-category]
+domain: "saas"               # the eyebrow label; the accent is site-wide
 status: "shipped"
 pitch: "One line a non-engineer understands."
 lede: |                      # three sentences: problem, what it does, what changed

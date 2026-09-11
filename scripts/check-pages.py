@@ -26,6 +26,25 @@ PUB = os.path.join(ROOT, "public")
 
 CHROME_WIDE = re.compile(r"class=[\"']?(?:nav|footer|site-mark|skip-link)")
 
+BASE_URL = re.search(
+    r'^\s*baseURL\s*=\s*["\']([^"\']+)', open(os.path.join(ROOT, "config.toml"),
+    encoding="utf-8").read(), re.M).group(1)
+SELF_HOST = re.compile(
+    r"^https?://(?:www\.)?" + re.escape(BASE_URL.split("//", 1)[-1].strip("/")), re.I)
+HREF = re.compile(r'href=(?:"([^"]*)"|([^\s>]+))')
+
+def internal_targets(html):
+    """Every href that lands on this site, as a site-relative path.
+
+    Hugo emits absolute permalinks, so a pattern anchored on "/" sees none of
+    them: broken absolute links went unchecked and pages linked only that way
+    looked orphaned.
+    """
+    for m in HREF.finditer(html):
+        t = SELF_HOST.sub("", m.group(1) or m.group(2), count=1) or "/"
+        if t.startswith("/"):
+            yield t
+
 pages = {}
 for f in sorted(glob.glob(os.path.join(PUB, "**", "*.html"), recursive=True)):
     body = open(f, encoding="utf-8", errors="ignore").read()
@@ -90,8 +109,7 @@ def resolves(p):
 
 broken = collections.Counter()
 for url, html in pages.items():
-    for m in re.finditer(r'href=(?:"(/[^"]*)"|(/[^\s>]+))', html):
-        t = m.group(1) or m.group(2)
+    for t in internal_targets(html):
         if not resolves(t):
             broken[t] += 1
 for t, n in broken.items():
@@ -100,8 +118,8 @@ for t, n in broken.items():
 # 6 — a page nothing links to
 linked = set()
 for html in pages.values():
-    for m in re.finditer(r'href=(?:"(/[^"]*)"|(/[^\s>]+))', html):
-        linked.add((m.group(1) or m.group(2)).split("#")[0].rstrip("/") or "/")
+    for t in internal_targets(html):
+        linked.add(unquote(t.split("#")[0]).rstrip("/") or "/")
 for url in pages:
     u = url.rstrip("/") or "/"
     if u not in linked and not u.startswith(("/tags", "/en", "/404")) and u != "/":

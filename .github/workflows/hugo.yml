@@ -57,6 +57,11 @@ jobs:
             --minify \
             --baseURL "${{ steps.pages.outputs.base_url }}/"
       
+      # A push straight to main skips the pull-request workflow, so the gates
+      # run here too — otherwise this path deploys unchecked.
+      - name: Gates
+        run: ./scripts/gates.sh
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

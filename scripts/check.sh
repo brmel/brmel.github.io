@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 #
-# check.sh — the local mirror of .github/workflows/check.yml.
-# Run before pushing: builds the site and reports orphaned assets.
-# CI adds a link crawl on top; this catches the two cheap failures locally.
+# check.sh — what CI runs, locally. Builds the site, then runs every gate.
+# The gate list itself lives in gates.sh, so this and CI cannot disagree.
 
 set -euo pipefail
 cd "$(dirname "$0")/.."
@@ -16,29 +15,4 @@ echo "▸ build"
 hugo --gc --minify --cleanDestinationDir --logLevel warn
 echo "  ✅ built $(find public -name '*.html' | wc -l | tr -d ' ') pages"
 
-echo "▸ orphaned assets"
-./scripts/check-orphans.sh
-
-echo "▸ social cards"
-python3 ./scripts/check-og.py
-
-echo "▸ colour contrast"
-python3 ./scripts/check-contrast.py
-
-echo "▸ css architecture"
-python3 ./scripts/check-css.py
-
-echo "▸ page chrome"
-python3 ./scripts/check-chrome.py
-
-echo "▸ links, duplicates and controls"
-python3 ./scripts/check-pages.py
-
-echo "▸ bundle scope"
-python3 ./scripts/check-bundles.py
-
-echo "▸ direction safety"
-python3 ./scripts/check-rtl.py
-
-echo "▸ script selectors"
-python3 ./scripts/check-js.py
+./scripts/gates.sh
