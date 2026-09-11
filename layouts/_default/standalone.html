@@ -35,7 +35,6 @@
   {{- range .Params.customCSS }}{{ with resources.Get . }}{{ $c := . | minify | fingerprint }}
   <link rel="stylesheet" href="{{ $c.RelPermalink }}" integrity="{{ $c.Data.Integrity }}">{{ end }}{{ end }}
 
-  {{- partial "google_analytics.html" . }}
 </head>
 <body id="top">
   <script>if(localStorage.getItem("pref-theme")==="dark"){document.body.classList.add("dark")}</script>

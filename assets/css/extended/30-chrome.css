@@ -8,7 +8,7 @@
   .nav #menu{margin-inline:0}
 }
 
-@media (max-width:520px){
+@media (max-width:600px){
   .nav #menu{margin-inline:var(--space-2)}
   .nav #menu li + li{margin-inline-start:var(--space-2)}
   .nav #menu a{font-size:14px}

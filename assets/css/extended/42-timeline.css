@@ -194,7 +194,7 @@
   background:#000;border:0;
 }
 
-@media (max-width:760px){
+@media (max-width:768px){
   :root{--tl-gutter:26px;--tl-thumb:104px;}
 
   .timeline-work--media{column-gap:var(--space-3);align-items:center;}

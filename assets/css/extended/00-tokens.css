@@ -40,6 +40,13 @@
   --prose-size:clamp(1.125rem, 1.017rem + 0.462vw, 1.3125rem);
   --resume-gutter:150px;
 
+  /* Breakpoints. Media queries cannot read custom properties, so these are
+     written literally in each component's own @media block — but only these two
+     values appear anywhere. The set had drifted to six (480, 520, 600, 700,
+     760, 768), so layout changed at six unrelated widths.
+       600px  phone   -> single column
+       768px  tablet  -> grids collapse, figures go full width */
+
   --radius-xs:4px; --radius-sm:8px; --radius-md:14px; --radius-lg:20px; --radius-pill:999px;
 
   --hairline:1px; --hairline-strong:1.5px; --category-bar:4px;

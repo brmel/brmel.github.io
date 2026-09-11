@@ -28,10 +28,10 @@ it's a mistake.
 
 | Token | Max-width | Use |
 |---|---|---|
-| `container-text` | **720px** | Long-form article body (60–75ch at 18px) |
-| `container-content` | **960px** | Article header, recommendation lists, default page |
-| `container-wide` | **1200px** | Galleries, contact sheet, dashboards |
-| `container-full` | **1440px** | Edge-to-edge layouts, banners |
+| `container-text` | **900px** | Long-form article body (~80ch at the prose size) |
+| `container-content` | **1200px** | Galleries, project grids, wide diagrams |
+
+`container-wide` and `container-full` were removed — nothing referenced either.
 
 Gutters: **24px** mobile · **48px** tablet · **96px** desktop (all on-grid).
 
@@ -39,7 +39,9 @@ Gutters: **24px** mobile · **48px** tablet · **96px** desktop (all on-grid).
 
 - **12 columns**, 24px gutter, max content 1200px.
 - Tablet collapses to **8 columns**, mobile to **4 columns**.
-- Article = text centered in `container-text`; media may break out to `container-content`.
+- Article = text in `container-text`; figures align to that column and are capped
+  at their own pixel width, so nothing is ever upscaled. Project galleries are
+  the one deliberate break-out, to `container-content`.
 - Reels row = 3 equal columns (1fr each), 16px gap, at the article foot.
 
 ```css

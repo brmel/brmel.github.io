@@ -1,9 +1,3 @@
-> **Snapshot notice — September 2026.** This kit predates the move to a single
-> site-wide accent. Its token files, `03-color/category-accents.svg` and the
-> `07-proofs/proof-*.svg` sheets still describe the nine-hue category accent
-> system, which the site no longer uses. `docs/brand-guidelines.md` is
-> authoritative; regenerate this kit before handing it to anyone.
-
 # Ibraverse — Brand Package
 
 **Editorial field notes.** A quietly confident print magazine for honest, first-person reviews —
@@ -29,7 +23,8 @@ Operating Protocol look across every surface, vector-only and production-ready.
 1. **Tokens** → drop `06-web/tokens.css` into the repo (variable names already match `protocol.css`:
    `--bg`, `--ink`, `--accent`, …). Or import `03-color/design-tokens.json` (W3C format) into your tool.
 2. **Theme** → `:root` is light; add `data-theme="dark"` for dark. Both are first-class.
-3. **Category** → add `data-category="restaurant|hike|spa|event|city"` to `<html>` or an `<article>`.
+3. **Accent** → one colour site-wide (`--accent`). There is no per-category swap;
+   category is carried by the eyebrow text and badge icon, not by hue.
    Only the accent changes.
 4. **Fonts** → Instrument Serif (display) · Inter Tight 400/500/600 (body/UI) · JetBrains Mono 400/500 (data).
 5. **See it all** → open `07-proofs/contact-sheet.html` (every component, 5 categories, light + dark).

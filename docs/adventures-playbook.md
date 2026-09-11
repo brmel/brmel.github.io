@@ -29,7 +29,7 @@ shortcode, and an `adventures` archetype that scaffolds the structure.
 
 ```
 ┌───────────────────────────────────────┐
-│  FIELD NOTE № 004 · CATEGORY · PLACE   │  ← eyebrow + compass accent (auto)
+│  FIELD NOTE № 004 · CATEGORY · PLACE   │  ← eyebrow + compass mark (auto)
 │  Big serif title                       │
 │  One-line hook sentence                │
 │  ## The place        + photo           │
@@ -47,7 +47,8 @@ The **header eyebrow, Verdict block, and Watch reel row all render
 automatically** from front matter (`category`, `fieldNote`, `place`, `rating`,
 `goBack`, `bestFor`, `con`, `reels`). You write only the prose body — the brand
 chrome is layout-driven, so every article is consistent by construction.
-`category` (restaurant / hike / spa / event / city) sets the accent color.
+`category` (restaurant / hike / spa / event / city) sets the eyebrow label and
+the badge icon. It does **not** set a colour: the site has one accent.
 
 - **Adventures** = places & experiences (Montreal + travel). Reel pulls views
   from YouTube/IG/TikTok back to the site.
@@ -231,7 +232,7 @@ cover:
     alt: "Old Port of Montreal at sunset"
     relative: true
 # --- field note (drives the brand chrome) ---
-category: "city"          # restaurant | hike | spa | event | city → accent
+category: "city"          # restaurant | hike | spa | event | city → label + icon
 fieldNote: 5              # → № 005 in the eyebrow
 place: "Old Port, Montréal"
 rating: 4.2               # verdict, out of 5

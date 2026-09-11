@@ -11,7 +11,9 @@ way, and a mono that timestamps everything.
 
 Load (Google Fonts):
 ```html
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<!-- The faces are self-hosted from /fonts; see assets/css/extended/05-fonts.css -->
+<link rel="preload" href="/fonts/inter-tight-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/instrument-serif-400-latin.woff2" as="font" type="font/woff2" crossorigin>
 ```
 
 ---

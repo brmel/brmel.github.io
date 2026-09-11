@@ -1,5 +1,12 @@
 <!doctype html><meta charset=utf-8>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Inter+Tight:wght@400;500&family=JetBrains+Mono:wght@500&display=swap" rel=stylesheet>
+<style>
+ /* Same self-hosted faces the site serves; the template is opened at the site
+    root in a headless browser, so /fonts resolves. No third-party fetch. */
+ @font-face{font-family:"Instrument Serif";font-weight:400;src:url(/fonts/instrument-serif-400-latin.woff2) format("woff2")}
+ @font-face{font-family:"Inter Tight";font-weight:400;src:url(/fonts/inter-tight-400-latin.woff2) format("woff2")}
+ @font-face{font-family:"Inter Tight";font-weight:500;src:url(/fonts/inter-tight-500-latin.woff2) format("woff2")}
+ @font-face{font-family:"JetBrains Mono";font-weight:500;src:url(/fonts/jetbrains-mono-500-latin.woff2) format("woff2")}
+</style>
 <style>
  *{box-sizing:border-box} body{margin:0;background:#fff}
  .card{position:relative;width:1200px;height:630px;background:#faf9f6;overflow:hidden;

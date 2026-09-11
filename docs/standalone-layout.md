@@ -16,7 +16,7 @@ tags: ["Template"]
   1. Duplicate this folder → content/tech/<your-slug>/index.md
   2. Paste your article BODY below (HTML and/or markdown). Do NOT paste a full
      <html>…</html> document — the `standalone` layout already provides the
-     <head> (SEO + Google Analytics + brand fonts/tokens), the top nav, and the
+     <head> (SEO + brand fonts/tokens), the top nav, and the
      footer. Inline <style>/<script> are fine here.
   3. Put any images in the same folder; reference them relatively (e.g. src="pic.jpg").
   4. Heavy styling/scripts → put them in assets/ and list them in customCSS / customJS.

@@ -27,7 +27,7 @@
 .workflow .wf-edge path{
   fill:none;stroke:var(--accent);stroke-width:1.5;
 }
-@media (max-width:700px){
+@media (max-width:768px){
   .workflow .wf-t{font-size:15px}
   .workflow .wf-s{font-size:12px}
 }
@@ -70,9 +70,8 @@
 }
 .post-content figure > figcaption > p{margin-top:var(--space-1);}
 
-@media (max-width:760px){
+@media (max-width:768px){
   .post-content figure{width:min(100%, var(--fig-w, 100%));}
-  [dir="rtl"] .post-content figure{transform:none;}
 }
 
 .post-single .post-title{

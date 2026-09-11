@@ -130,7 +130,7 @@
   width:10px;height:var(--hairline-strong);background:var(--accent);
 }
 
-@media (max-width:760px){
+@media (max-width:768px){
   .project-gallery__grid{grid-template-columns:1fr;}
   .project-shot img{aspect-ratio:16/9;}
   .project-gallery{width:100%;margin-inline-start:0;transform:none;}

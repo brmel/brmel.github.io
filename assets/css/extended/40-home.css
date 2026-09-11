@@ -127,7 +127,5 @@
   .profile_inner .social-icons{grid-column:1;justify-self:center;}
   .home-career__item{grid-template-columns:1fr;}
   .home-career__period{grid-row:auto;padding-top:0;}
-}
-@media (max-width:480px){
   .home-sections{grid-template-columns:1fr;}
 }
