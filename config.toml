@@ -202,6 +202,12 @@ enableEmoji = true
   # a typo in an email with no path to a commit.
   repo = "https://github.com/brmel/brmel.github.io"
 
+  # The article column, in px. The figure shortcode caps an image's display
+  # width at this so nothing is ever upscaled; --container-text in
+  # assets/css/extended/00-tokens.css is the CSS half of the same number.
+  # CSS cannot read Hugo config, so if you change one, change both.
+  proseColumnPx = 900
+
   [params.assets]
     # Every file below exists in static/ and is generated from the compass mark
     # (layouts/partials/brand-mark.html) — see scripts/gen-favicons.py.

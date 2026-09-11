@@ -15,7 +15,8 @@
   {{- $w := $img.Width }}
   {{- $large = cond (gt $w 1600) ($img.Resize "1600x webp q82") ($img.Resize (printf "%dx webp q82" $w)) }}
   {{- $small = cond (gt $w 800) ($img.Resize "800x webp q82") $large }}
-  {{- $displayW = cond (gt $large.Width 900) 900 $large.Width }}
+  {{- $col := site.Params.proseColumnPx | default 900 -}}
+  {{- $displayW = cond (gt $large.Width $col) $col $large.Width }}
 {{- end }}
 
 <figure{{ with .Get "class" }} class="{{ . }}"{{ else }}{{ if eq (.Get "align") "center" }} class="align-center"{{ end }}{{ end }}{{ if $displayW }} style="--fig-w:{{ $displayW }}px"{{ end }}>

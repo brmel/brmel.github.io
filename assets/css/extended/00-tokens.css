@@ -30,6 +30,8 @@
   /* +25% over the original 720/960: the article column was leaving 360px of
      empty gutter each side at 1440px. --container-wide and --container-full
      were removed with them — nothing referenced either. */
+  /* --container-text is mirrored by proseColumnPx in config.toml, which the
+     figure shortcode uses to cap image display width. Change both. */
   --container-text:900px; --container-content:1200px;
 
   /* Reading size for long text, defined once. The column is 900px, so the type
