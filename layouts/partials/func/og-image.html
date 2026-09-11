@@ -5,7 +5,7 @@
   {{- with .image }}
 
     {{- with $.Resources.GetMatch . }}
-      {{- $url = .Permalink -}}
+      {{- $url = partial "func/og-src.html" . -}}
     {{- else }}
       {{- if eq $.Params.cover.relative true }}
         {{- $url = (path.Join $.RelPermalink .) | absURL -}}
@@ -20,7 +20,7 @@
 {{- if not $url }}
   {{- with .Resources.Match "gallery/*" }}
     {{- with index . 0 }}
-      {{- $url = .Permalink -}}
+      {{- $url = partial "func/og-src.html" . -}}
       {{- $alt = printf "%s — %s" ($.Title | plainify) site.Title -}}
     {{- end }}
   {{- end }}

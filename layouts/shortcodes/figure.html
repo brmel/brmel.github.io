@@ -4,19 +4,26 @@
 {{- $img := .Page.Resources.GetMatch $src -}}
 {{- $processable := and $img (in (slice "jpg" "jpeg" "png" "webp" "tif" "bmp" "gif") $img.MediaType.SubType) -}}
 
-{{- $small := "" }}{{ $large := "" }}
+{{- /* An image is never laid out wider than it really is. srcset `w`
+       descriptors make the browser density-correct the intrinsic size to
+       whatever `sizes` claims, so a hardcoded sizes made every figure lay out
+       at that width — a 223px screenshot was being stretched to 960px. The
+       display width is therefore capped at the asset's own width, and `sizes`
+       states that same number. */ -}}
+{{- $small := "" }}{{ $large := "" }}{{ $displayW := 0 }}
 {{- if $processable }}
   {{- $w := $img.Width }}
   {{- $large = cond (gt $w 1600) ($img.Resize "1600x webp q82") ($img.Resize (printf "%dx webp q82" $w)) }}
   {{- $small = cond (gt $w 800) ($img.Resize "800x webp q82") $large }}
+  {{- $displayW = cond (gt $large.Width 900) 900 $large.Width }}
 {{- end }}
 
-<figure{{ with .Get "class" }} class="{{ . }}"{{ else }}{{ if eq (.Get "align") "center" }} class="align-center"{{ end }}{{ end }}>
+<figure{{ with .Get "class" }} class="{{ . }}"{{ else }}{{ if eq (.Get "align") "center" }} class="align-center"{{ end }}{{ end }}{{ if $displayW }} style="--fig-w:{{ $displayW }}px"{{ end }}>
   {{- with .Get "link" }}<a href="{{ . }}"{{ with $.Get "target" }} target="{{ . }}"{{ end }}{{ with $.Get "rel" }} rel="{{ . }}"{{ end }}>{{ end -}}
   {{- if $processable }}
   <img src="{{ $small.RelPermalink }}"
        srcset="{{ $small.RelPermalink }} {{ $small.Width }}w, {{ $large.RelPermalink }} {{ $large.Width }}w"
-       sizes="(max-width: 760px) 100vw, 960px"
+       sizes="(max-width: 760px) 100vw, {{ $displayW }}px"
        width="{{ $large.Width }}" height="{{ $large.Height }}"
        loading="lazy" decoding="async"
        alt="{{ with $alt }}{{ . }}{{ else }}{{ $caption | markdownify | plainify }}{{ end }}">

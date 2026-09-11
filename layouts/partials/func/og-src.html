@@ -1,0 +1,15 @@
+{{- /* func/og-src.html — a social-card-sized permalink for an image resource.
+
+Crawlers fetch this eagerly and cap what they accept, so the original is the
+wrong thing to hand them: the robonode gallery shot was 3456px and 751KB.
+Width-only, so nothing is cropped. Vector and animated formats pass through.
+
+Permalink is taken in one branch only: asking for it publishes the file, so
+reading it up front would ship the original beside the derivative. */ -}}
+{{- $url := "" -}}
+{{- if and (in (slice "png" "jpg" "jpeg" "webp") .MediaType.SubType) (gt .Width 1200) }}
+  {{- $url = (.Resize "1200x jpg q82").Permalink -}}
+{{- else }}
+  {{- $url = .Permalink -}}
+{{- end }}
+{{- return $url -}}
