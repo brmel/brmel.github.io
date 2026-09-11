@@ -1,3 +1,9 @@
+> **Snapshot notice — September 2026.** This kit predates the move to a single
+> site-wide accent. Its token files, `03-color/category-accents.svg` and the
+> `07-proofs/proof-*.svg` sheets still describe the nine-hue category accent
+> system, which the site no longer uses. `docs/brand-guidelines.md` is
+> authoritative; regenerate this kit before handing it to anyone.
+
 # Ibraverse — Brand Package
 
 **Editorial field notes.** A quietly confident print magazine for honest, first-person reviews —

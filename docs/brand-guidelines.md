@@ -122,41 +122,30 @@ Warm-editorial. Paper + ink + a single accent. Light is the home theme.
 Browser chrome (`theme_color`, `msapplication_TileColor`) is `#faf9f6` — paper,
 not PaperMod's default slate.
 
-### The category accent system
+### One accent, everywhere
 
-Coherence = everything keeps **paper + ink + the type system**; only the accent
-hue swaps per content type, at the same saturation and value every time. Rust
-stays the master/home accent. The mechanism is a single CSS rule in
-`tokens.css` — `[data-category="…"]` reassigns `--accent` and nothing else.
-There is no second colour system anywhere on this site.
+`--accent` is rust — `#a8431a` light, `#d97757` dark — on every page of the
+site, in both themes. There is no second colour system and no per-page hue.
 
-**Adventures**
+**This replaced a category accent system** (removed September 2026). Nine hues
+used to reassign `--accent` from a `[data-category="…"]` rule: five for
+Adventures categories, four for project `domain:` values. Each page was
+internally coherent and the set was contrast-checked, but the site as a whole
+had nine accents, so a visitor moving from one project to the next saw the brand
+colour change under them. Recognition across pages is worth more than
+wayfinding within one, and category is already stated in words by the eyebrow
+(`№ 05 · DATA · SHIPPED`), which survives colour-blindness and greyscale print
+as colour does not.
 
-| Category | Light | Dark |
-|----------|-------|------|
-| Restaurant / Food | `#a8431a` rust (master) | `#d97757` |
-| Hike / Trail | `#3f6b3a` forest | `#5d8a52` |
-| Spa / Stay | `#2f6b6b` teal | `#4f9a9a` |
-| Event | `#6b3a5d` plum | `#a76e95` |
-| City / Walk | `#3a5a6b` slate | `#5d86a0` |
-
-**Projects** — `domain:` in front matter sets these.
-
-| Domain | Light | Dark | Use for |
-|--------|-------|------|---------|
-| `saas` | `#3a3f6b` indigo | `#7d84c4` | products with customers, admin portals, licensing |
-| `mobile` | `#8a5a12` ochre | `#d0a05a` | phone-first apps |
-| `data` | `#5a6b2f` olive | `#9ab562` | collection, analysis, reporting |
-| `infra` | `#6b2f3a` burgundy | `#c47d8a` | backends, pipelines, control planes |
-
-Adding a category = pick one mid-saturation hue at the same value, add both
-theme variants and the `[data-category]` rule, **and check contrast** (below).
+If a future section genuinely needs to be told apart by colour, scope the hue to
+a small badge — never to `--accent`, which paints headings, links, rules and
+bars across the whole page.
 
 ### Contrast is a gate, not a preference
 
-Every accent must clear **4.5:1** against `--bg` in the theme it ships in. All
-nine currently do; the dark plum was lightened from `#9a5d86` (3.79:1) to
-`#a76e95` (4.70:1) for exactly this reason. Check before committing a hue:
+Every colour must clear **4.5:1** against `--bg` in the theme it ships in, and
+`check-contrast.py` fails the build if one does not. Check before committing a
+hue:
 
 ```python
 def lum(h):
@@ -209,9 +198,9 @@ doesn't fit one of these rows doesn't have a home yet — decide before building
 |---|---|---|---|
 | **Home** | Say who this is, show the career, then route into the work | rust (master) | hero band, career strip, section cards, latest posts |
 | **Resume** | The career, in one page | rust | career timeline, skills, certifications |
-| **Projects** | Show things built end-to-end, with the lessons | per `domain:` | eyebrow, stack chips, status, gallery |
+| **Projects** | Show things built end-to-end, with the lessons | rust | eyebrow, stack chips, status, gallery |
 | **Tech** | Explain something learned by doing it | rust | article layout, figures |
-| **Adventures** | Honest first-person reviews of places | per `category:` | eyebrow, verdict block, reel row |
+| **Adventures** | Honest first-person reviews of places | rust | eyebrow, verdict block, reel row |
 | **Thoughts** | Reflection — shorter, no artefact required | rust | plain article, no cover |
 
 **Layout-driven chrome is the rule.** In Adventures and Projects the eyebrow,
@@ -248,7 +237,7 @@ throat-clearing, no words that would not survive being read aloud.
 | Handle | `@ibraverse` on YouTube / IG / TikTok → all link to ibraverse.ca |
 | Eyebrow grammar | per §2 table |
 | Fonts | Instrument Serif / Inter Tight / JetBrains Mono only |
-| Accent rule | one accent per page, chosen by `category:` / `domain:` (§3) |
+| Accent rule | one accent, site-wide: `--accent` (§3) |
 | Colour source | `tokens.css`. No hex outside it, ever |
 | Contrast | ≥ 4.5:1 accent-on-background, checked before commit |
 | File names | `cover.jpg`, `ig-thumb.jpg`, `tt-thumb.jpg`, `photo-N.jpg` |

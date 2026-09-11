@@ -3,7 +3,7 @@
 
 {{- $adv := eq .Section "adventures" }}
 
-<article class="post-single{{ if $adv }} adventures{{ end }}"{{ if $adv }} data-category="{{ .Params.category | default "restaurant" }}"{{ end }}>
+<article class="post-single{{ if $adv }} adventures{{ end }}">
     <header class="post-header">
         {{ partial "breadcrumbs.html" . }}
         {{- if $adv }}

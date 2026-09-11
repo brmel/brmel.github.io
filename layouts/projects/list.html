@@ -57,7 +57,7 @@
     <h2 class="u-eyebrow project-period__year" id="projects-{{ $year }}"><bdi dir="ltr">{{ $year }}</bdi></h2>
     <div class="project-grid">
     {{- range where $projects "Date.Year" $year }}
-    <a class="u-card project-card" href="{{ .RelPermalink }}" data-category="{{ .Params.domain | default "saas" }}">
+    <a class="u-card project-card" href="{{ .RelPermalink }}">
     <span class="u-bar" aria-hidden="true"></span>
     <span class="u-eyebrow project-card__eyebrow">
       {{- with .Params.projectNo }}№ {{ printf "%02d" . }} <b aria-hidden="true">·</b> {{ end -}}
