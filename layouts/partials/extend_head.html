@@ -2,9 +2,7 @@
 <script>document.documentElement.setAttribute("dir", "rtl");</script>
 {{- end }}
 
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+{{- partial "brand-fonts.html" . }}
 {{- range .Params.customCSS }}
 {{- with resources.Get . }}
 {{- $css := . | minify | fingerprint }}

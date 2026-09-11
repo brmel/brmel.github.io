@@ -4,9 +4,17 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Reliability Report — Hydro-Québec</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <script src="https://cdn.plot.ly/plotly-2.32.0.min.js" charset="utf-8"></script>
+  <style>
+    /* Self-hosted, same origin as the site: no third-party request from inside
+       the iframe. unicode-range is omitted because this report is English-only. */
+    @font-face{font-family:'Inter Tight';font-style:normal;font-weight:400;font-display:swap;
+      src:url('/fonts/inter-tight-400-latin.woff2') format('woff2')}
+    @font-face{font-family:'Inter Tight';font-style:normal;font-weight:500;font-display:swap;
+      src:url('/fonts/inter-tight-500-latin.woff2') format('woff2')}
+    @font-face{font-family:'Inter Tight';font-style:normal;font-weight:600;font-display:swap;
+      src:url('/fonts/inter-tight-600-latin.woff2') format('woff2')}
+  </style>
+  <script src="https://cdn.plot.ly/plotly-2.32.0.min.js" charset="utf-8" integrity="sha384-7TVmlZWH60iKX5Uk7lSvQhjtcgw2tkFjuwLcXoRSR4zXTyWFJRm9aPAguMh7CIra" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
@@ -31,7 +39,7 @@
     }
 
     body {
-      font-family: 'Inter', system-ui, sans-serif;
+      font-family: 'Inter Tight', system-ui, sans-serif;
       background: var(--white);
       color: var(--ink);
       line-height: 1.6;
