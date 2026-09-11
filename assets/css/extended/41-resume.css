@@ -29,13 +29,22 @@
 }
 .resume__contact a:hover{color:var(--accent);border-color:var(--accent);}
 
-.resume__section{max-width:var(--container-text);margin:var(--space-9) auto 0;}
+/* The résumé body carries .post-content and so already reads at the prose
+   size; its structured sections sat a step below at the inherited 18px, which
+   made one page read at two sizes. --lh gives them the same vertical rhythm the
+   articles use. */
+.resume__section{
+  max-width:var(--container-text);
+  margin:var(--space-9) auto 0;
+  font-size:var(--prose-size);
+  --lh:1.6em;
+}
 
 .resume__section:first-of-type{margin-top:var(--space-6);}
 
 .resume__skills{margin:0;}
 .resume__skillgroup{
-  display:grid;grid-template-columns:150px 1fr;gap:var(--space-4);
+  display:grid;grid-template-columns:var(--resume-gutter) 1fr;gap:var(--space-4);
   padding:var(--space-3) 0;
 }
 .resume__skillgroup:last-child{border-bottom:0;}
@@ -48,7 +57,7 @@
 
 .resume__records{list-style:none;margin:0;padding:0;}
 .resume__record{
-  display:grid;grid-template-columns:150px 1fr;gap:0 var(--space-4);
+  display:grid;grid-template-columns:var(--resume-gutter) 1fr;gap:0 var(--space-4);
   padding:var(--space-4) 0;
 }
 .resume__record:last-child{border-bottom:0;}

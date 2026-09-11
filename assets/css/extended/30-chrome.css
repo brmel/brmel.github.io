@@ -143,16 +143,6 @@
 }
 .content-footer .share-buttons li a:hover svg{color:var(--accent);}
 
-.comments{max-width:var(--container-text);margin:var(--space-9) auto 0;}
-.comments__mount{margin-top:var(--space-5);min-height:1px;}
-.comments__mount .giscus,
-.comments__mount .giscus-frame{width:100%;border:0;color-scheme:normal;}
-.comments__note{
-  font-family:var(--font-label);font-size:var(--t-eyebrow);
-  letter-spacing:.04em;color:var(--ink-mute);
-  margin:0 0 var(--space-5);
-}
-
 @media (max-width:600px){
   .content-footer__row{flex-direction:column;align-items:flex-start;}
 }
@@ -198,8 +188,10 @@
 .toc a,
 .section-nav__back,
 .page-404__routes a,
-.resume__contact a,
 .sa-nav__link{min-height:24px;display:inline-flex;align-items:center;}
+/* The resume link owns its own inline-flex layout in 41-resume.css; only the
+   tap-target floor belongs to chrome, so it is the one thing set here. */
+.resume__contact a{min-height:24px;}
 #menu li a{min-width:24px;text-align:center;}
 .rss-link{min-width:24px;min-height:24px;display:inline-flex;align-items:center;justify-content:center;}
 .lang-switch a{min-width:24px;min-height:24px;display:inline-flex;align-items:center;justify-content:center;}

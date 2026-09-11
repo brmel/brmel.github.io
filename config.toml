@@ -4,7 +4,6 @@ defaultContentLanguageInSubdir = false
 theme = "PaperMod"
 # lastmod from the commit that touched the file, so sitemap freshness is real
 enableGitInfo = true
-googleAnalytics = "G-CHFGS2DHF6"
 
   [languages.en]
     languageName = "English"
@@ -21,7 +20,7 @@ googleAnalytics = "G-CHFGS2DHF6"
       imageUrl = "images/MyPhoto.jpg"
       imageWidth = 380
       imageTitle = "Brahim Redouane Mellah"
-      bigPicture = "I build the measurement algorithms inside industrial vision software — geometry, calibration and edge measurement — in C++ at Zebra Technologies. Outside work I build things that need data nobody publishes, and write up what each one taught me."
+      bigPicture = "I develop and maintain industrial machine vision algorithms — geometry, calibration, edge measurement — from prototype to deployment, classical methods and deep learning models alike. In C++ at Zebra Technologies. C++, robotics, AI and machine vision are what I stay curious about off the clock too."
     [[languages.en.menu.main]]
       identifier = "home"
       name = "Home"
@@ -68,7 +67,7 @@ googleAnalytics = "G-CHFGS2DHF6"
       imageUrl = "images/MyPhoto.jpg"
       imageWidth = 380
       imageTitle = "Brahim Redouane Mellah"
-      bigPicture = "Je développe les algorithmes de mesure au cœur des logiciels de vision industrielle — géométrie, calibration et mesure de contours — en C++ chez Zebra Technologies. En dehors du travail, je construis des choses qui exigent des données que personne ne publie, et je documente ce que chacune m'a appris."
+      bigPicture = "Je développe et maintiens des algorithmes de vision industrielle — géométrie, calibration, mesure de contours — du prototype au déploiement, méthodes classiques comme modèles d'apprentissage profond. En C++ chez Zebra Technologies. Le C++, la robotique, l'IA et la vision industrielle nourrissent aussi ma curiosité en dehors du travail."
     [[languages.fr.menu.main]]
       identifier = "home"
       name = "Accueil"
@@ -116,7 +115,7 @@ googleAnalytics = "G-CHFGS2DHF6"
       imageUrl = "images/MyPhoto.jpg"
       imageWidth = 380
       imageTitle = "إبراهيم رضوان ملاح"
-      bigPicture = "أطوّر خوارزميات القياس داخل برمجيات الرؤية الصناعية — الهندسة الرياضية والمعايرة وقياس الحواف — بلغة C++‎ في Zebra Technologies. خارج العمل أبني أشياء تحتاج بيانات لا ينشرها أحد، وأوثّق ما علّمني كلٌّ منها."
+      bigPicture = "أطوّر خوارزميات الرؤية الآلية الصناعية وأصونها — الهندسة الرياضية والمعايرة وقياس الحواف — من النموذج الأولي إلى النشر، طرقًا تقليدية ونماذج تعلّم عميق. بلغة C++‎ في Zebra Technologies. وC++‎ والروبوتات والذكاء الاصطناعي والرؤية الآلية هي ما يشدّ فضولي خارج العمل أيضًا."
     [[languages.ar.menu.main]]
       identifier = "home"
       name = "الرئيسية"
@@ -259,18 +258,6 @@ enableEmoji = true
   # a typo in an email with no path to a commit.
   repo = "https://github.com/brmel/brmel.github.io"
 
-  # Comments — giscus, storing every thread as a GitHub Discussion.
-  # Renders nothing until `enabled` is true AND every id below is filled, so a
-  # half-configured widget can never ship. Only the sections listed here get it.
-  [params.comments]
-    enabled    = false
-    repo       = "brmel/brmel.github.io"
-    repoId     = "R_kgDOPJVQtA"
-    category   = "Announcements"
-    categoryId = "DIC_kwDOPJVQtM4DDjn9"
-    sections   = ["projects", "tech", "thoughts", "adventures"]
-    themeLight = "light"
-    themeDark  = "transparent_dark"
   tag = "tags"
 
 [markup]
@@ -310,3 +297,19 @@ enableEmoji = true
   # of them already covered by a tag — 5 extra thin routes and a second
   # vocabulary to keep consistent, for no reader benefit.
   tag = "tags"
+# Page-bundle originals are never served: every <img> on the site is a Hugo
+# derivative, and og:image now resizes too. Publishing them shipped 1.5 MB of
+# files nothing referenced.
+[[cascade]]
+  [cascade.build]
+    publishResources = false
+
+# Tag pages are navigation, not content: 29 of them for 24 articles, each with
+# one or two entries and all inheriting the site description. They are already
+# absent from the sitemap; this keeps them out of the index too. The theme reads
+# robotsNoIndex, so this needs no template of our own.
+[[cascade]]
+  robotsNoIndex = true
+  [cascade._target]
+    kind = "{term,taxonomy}"
+

@@ -37,17 +37,20 @@
 #theme-toggle:hover{color:var(--accent);}
 
 .post-content figure{
-  width:min(100vw - var(--space-6) * 2, var(--container-content));
-  margin-inline-start:50%;
-  transform:translateX(-50%);
-  margin-block:var(--space-7);
-  text-align:center;
+  /* --fig-w is the asset's real width, capped at the text column by the figure
+     shortcode. min() keeps a small screenshot at its true size instead of
+     stretching it, so nothing is ever upscaled, and everything large enough
+     lines up flush with the text on both edges. The old rule broke out of the
+     column with a 50% margin plus a translate, which is what left images
+     neither aligned to the text nor filling their box. */
+  width:min(100%, var(--fig-w, 100%));
+  margin-inline:0;
+  text-align:start;
 }
-[dir="rtl"] .post-content figure{transform:translateX(50%);}
 .post-content figure img{
 
   width:auto;height:auto;max-width:100%;
-  margin-inline:auto;
+  margin-inline:0;
   border:var(--hairline) solid var(--rule);
   border-radius:var(--radius-sm);
   box-shadow:var(--shadow-photo);
@@ -62,12 +65,13 @@
   line-height:1.5;
   color:var(--ink-mute);
   max-width:var(--container-text);
-  margin:var(--space-3) auto 0;
+  margin:var(--space-3) 0 0;
+  text-align:start;
 }
 .post-content figure > figcaption > p{margin-top:var(--space-1);}
 
 @media (max-width:760px){
-  .post-content figure{width:100%;margin-inline-start:0;transform:none;}
+  .post-content figure{width:min(100%, var(--fig-w, 100%));}
   [dir="rtl"] .post-content figure{transform:none;}
 }
 
@@ -121,3 +125,44 @@
 
 .post-content :not(pre) > code{margin:0;padding:.1em .22em;font-size:.85em;}
 
+/* ── Article type scale ──────────────────────────────────────────────────────
+   PaperMod sizes article text in fixed pixels — h2:32, h3:24, --content-gap:20
+   — which is blind to the body size. When the prose grew to fit the wider
+   column, h3 landed at 1.14x body and stopped reading as a heading at all, and
+   paragraphs sat 0.6 of a line apart. Everything below is expressed in `em`
+   against the prose size instead, so the scale holds at every viewport the
+   clamp() produces.
+
+   --lh is one line of body text. It is declared here, so the `em` resolves
+   against .post-content and children inherit the computed pixel value: that
+   makes heading margins multiples of the body line, not of their own size.
+   Reference points measured on comparable sites: ciechanow.ski runs a 2.08-line
+   paragraph gap, web.dev 1.71 with h2 at 1.5x body.                          */
+.post-content{
+  --lh:1.6em;
+  --content-gap:var(--lh);        /* theme var: p, ul, ol, figure bottom margin */
+}
+.post-content h2{
+  font-size:1.7em;
+  margin-block:calc(var(--lh) * 2) calc(var(--lh) * 0.6);
+  margin-inline:0;
+}
+.post-content h3{
+  font-size:1.3em;
+  margin-block:calc(var(--lh) * 1.5) calc(var(--lh) * 0.45);
+}
+.post-content h4{
+  font-size:1.1em;
+  margin-block:calc(var(--lh) * 1.2) calc(var(--lh) * 0.4);
+}
+/* A heading opening the article should not push a full gap against the meta. */
+.post-content > :is(h2,h3,h4):first-child{margin-block-start:0;}
+
+/* Monospace at prose size overwhelms the page; code sits a step below it. */
+.post-content pre{font-size:.8em;}
+.post-content figure > figcaption,
+.post-content figure > figcaption > p{font-size:.72em;letter-spacing:.02em;}
+
+/* Figures breathe a little more than paragraphs, and group with the text
+   above them rather than floating equidistant between two blocks. */
+.post-content figure{margin-block:calc(var(--lh) * 1.5) calc(var(--lh) * 1.75);}

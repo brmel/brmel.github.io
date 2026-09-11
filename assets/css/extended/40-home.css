@@ -19,10 +19,12 @@
 .profile_inner > span{color:var(--ink-soft);}
 .profile_inner .social-icons{margin-top:var(--space-2);}
 
+/* The element already carries .post-content, so it inherits the article type
+   scale. Pinning a second size here made the homepage lead 18px in the same
+   900px column — a ~92 character line, against 79 in the articles. */
 .home-intro{
   max-width:var(--container-text);
   margin:var(--space-7) auto var(--space-8);
-  font-size:var(--t-body-l);
 }
 .home-intro p{color:var(--ink-soft);}
 .home-intro > :first-child{margin-top:0;}

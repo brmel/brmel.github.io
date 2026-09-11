@@ -8,9 +8,25 @@
   --content:var(--ink);
   --code-bg:var(--bg-alt);
   --border:var(--rule);
+
+  /* PaperMod's own width levers, +25%. --main-width drives the article column
+     (.main is main-width + gap*2) and the footer; --nav-width the header.
+     Widening --container-text alone did nothing, because the theme constrains
+     .main above it. Keep --main-width and --container-text equal. */
+  --main-width:900px;
+  --nav-width:1280px;
 }
 
 body{font-family:var(--font-sans);}
+
+/* Article prose scales with the column, not with the page. The column grew 25%
+   to 900px; at the body's 18px that is a ~99-character line, so the type grows
+   with it and holds the measure near 79. But the column only gets wide on a
+   wide screen: on a phone it is ~332px, where 21px would drop the line to 31
+   characters. So the size is tied to the viewport — 18px at 375px and below,
+   21px from 1024px up — which keeps characters-per-line in range at every
+   width instead of trading phone legibility for desktop. */
+.post-content{font-size:var(--prose-size);}
 .logo a,
 .first-entry .entry-header h1,
 .page-header h1,
