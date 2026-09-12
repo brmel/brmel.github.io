@@ -181,7 +181,14 @@ enableEmoji = true
   # palette in tokens.css and is reachable from the toggle in the nav.
   defaultTheme = "light"
   disableThemeToggle = false
-  ShowReadingTime = false
+  # Rendered by the post_meta fork; the theme supplies read_time in all three
+  # languages, so nothing English leaks. One caveat: PaperMod's Arabic defines
+  # zero/one/two/few but no many/other, and its `few` (3-10) reads "بضع ثوان"
+  # — a few *seconds*. Only bites on an Arabic article of 3 minutes or more;
+  # the one that exists is 1 minute. Our i18n files are flat key:value, which
+  # cannot express plural categories, so fixing it means either converting
+  # i18n/ar.yaml to list form or patching the vendored theme.
+  ShowReadingTime = true
   ShowShareButtons = true
   ShowPostNavLinks = false
   ShowBreadCrumbs = true
