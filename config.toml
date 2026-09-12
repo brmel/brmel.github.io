@@ -20,7 +20,7 @@ enableGitInfo = true
       imageUrl = "images/MyPhoto.jpg"
       imageWidth = 380
       imageTitle = "Brahim Redouane Mellah"
-      bigPicture = "I develop and maintain industrial machine vision algorithms — geometry, calibration, edge measurement — from prototype to deployment, classical methods and deep learning models alike. In C++ at Zebra Technologies. C++, robotics, AI and machine vision are what I stay curious about off the clock too."
+      bigPicture = "I develop and maintain industrial machine vision algorithms: geometry, calibration and edge measurement. I take them from prototype to deployment, with classical methods and with deep learning. I like C++, robotics, AI and machine vision, and I build and write about them here."
     [[languages.en.menu.main]]
       identifier = "home"
       name = "Home"
@@ -67,7 +67,7 @@ enableGitInfo = true
       imageUrl = "images/MyPhoto.jpg"
       imageWidth = 380
       imageTitle = "Brahim Redouane Mellah"
-      bigPicture = "Je développe et maintiens des algorithmes de vision industrielle — géométrie, calibration, mesure de contours — du prototype au déploiement, méthodes classiques comme modèles d'apprentissage profond. En C++ chez Zebra Technologies. Le C++, la robotique, l'IA et la vision industrielle nourrissent aussi ma curiosité en dehors du travail."
+      bigPicture = "Je développe et maintiens des algorithmes de vision industrielle : géométrie, calibration et mesure de contours. Je les mène du prototype au déploiement, avec des méthodes classiques et avec de l'apprentissage profond. J'aime le C++, la robotique, l'IA et la vision industrielle, et c'est ce dont je parle ici."
     [[languages.fr.menu.main]]
       identifier = "home"
       name = "Accueil"
@@ -115,7 +115,7 @@ enableGitInfo = true
       imageUrl = "images/MyPhoto.jpg"
       imageWidth = 380
       imageTitle = "إبراهيم رضوان ملاح"
-      bigPicture = "أطوّر خوارزميات الرؤية الآلية الصناعية وأصونها — الهندسة الرياضية والمعايرة وقياس الحواف — من النموذج الأولي إلى النشر، طرقًا تقليدية ونماذج تعلّم عميق. بلغة C++‎ في Zebra Technologies. وC++‎ والروبوتات والذكاء الاصطناعي والرؤية الآلية هي ما يشدّ فضولي خارج العمل أيضًا."
+      bigPicture = "أطوّر خوارزميات الرؤية الآلية الصناعية وأصونها: الهندسة الرياضية والمعايرة وقياس الحواف. آخذها من النموذج الأولي إلى النشر، بطرق تقليدية وبالتعلّم العميق. أحبّ C++‎ والروبوتات والذكاء الاصطناعي والرؤية الآلية، وعنها أبني وأكتب هنا."
     [[languages.ar.menu.main]]
       identifier = "home"
       name = "الرئيسية"
