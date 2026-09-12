@@ -8,7 +8,6 @@
   <ol class="home-career__list">
     {{- range . }}
     <li class="home-career__item">
-      {{- /* dir=ltr: a numeric range reorders in RTL and renders backwards. */ -}}
       <span class="u-eyebrow home-career__period"><bdi dir="ltr">{{ .period }}</bdi></span>
       <span class="home-career__role">{{ .role }}</span>
       {{- with .org }}<span class="home-career__org">{{ . }}</span>{{ end }}

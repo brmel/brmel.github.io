@@ -41,18 +41,14 @@ Always shoot wider than the tightest crop you need, so the same frame can ride 1
 
 ## 4. How photos sit in the templates
 
-- **Framed:** photos live in a **14px rounded frame** (`--radius-md`) with `shadow-photo`
-  (`0 2px 8px rgba(24,23,21,.08)`). The frame is the canonical treatment — social covers, posts,
-  carousels, reels.
+- **Framed (social):** social covers, posts, carousels and reels put the photo in a **14px rounded
+  frame** (`--radius-md`) with `--shadow-photo`.
 - **Full-bleed:** article heroes may bleed a photo to the edge with a **paper band** carrying the mark,
   eyebrow, and title over solid paper (never text directly on the photo unless inside a scrim).
-- **Inset:** in-article images sit in `container-content` (960px) with the 14px frame, captioned beneath.
+- **Inset (site):** in-article images sit in the prose column (`--container-text`, 900px, never
+  upscaled) with an 8px frame (`--radius-sm`), captioned beneath. The `figure` shortcode does this.
 - The photo never touches the mark or the eyebrow — keep `space-5` (24px) clearance minimum.
 
-```css
-.photo-frame{border-radius:14px;overflow:hidden;box-shadow:0 2px 8px rgba(24,23,21,.08);
-  background:var(--paper-alt)} /* placeholder fill while empty */
-```
 
 ## 5. Treatment (grade)
 
@@ -69,10 +65,8 @@ Keep skin tones honest. If a grade fights the food or the landscape, drop it.
 
 Every render marks the image area with a labeled placeholder so nothing is faked:
 
-- A `--paper-alt` (or `--bg-alt`) fill at the exact crop, **14px rounded**, with a centered tag:
+- A `--bg-alt` fill at the exact crop, **14px rounded**, with a centered tag:
   `‹PHOTO›` plus the intended ratio and a one-line art-direction note (e.g. *"golden hour, the
   dining room, 16:9"*). A faint corner-tick and the compass mark watermark sit at 6% opacity.
 - When producing a real asset, replace the placeholder with the graded photo at the same frame and
   radius — nothing else moves.
-
-*Next: `motion.md`.*

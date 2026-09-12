@@ -4,12 +4,6 @@
 {{- $img := .Page.Resources.GetMatch $src -}}
 {{- $processable := and $img (in (slice "jpg" "jpeg" "png" "webp" "tif" "bmp" "gif") $img.MediaType.SubType) -}}
 
-{{- /* An image is never laid out wider than it really is. srcset `w`
-       descriptors make the browser density-correct the intrinsic size to
-       whatever `sizes` claims, so a hardcoded sizes made every figure lay out
-       at that width — a 223px screenshot was being stretched to 960px. The
-       display width is therefore capped at the asset's own width, and `sizes`
-       states that same number. */ -}}
 {{- $small := "" }}{{ $large := "" }}{{ $displayW := 0 }}
 {{- if $processable }}
   {{- $w := $img.Width }}

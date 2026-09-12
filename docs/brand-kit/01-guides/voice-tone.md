@@ -73,27 +73,27 @@ On-screen text uses the **serif title** for beats 1 & 5, the **eyebrow** for 2, 
 Titles are Instrument Serif, 3–7 words, sentence case, optically balanced. One con lives in the body,
 not the title.
 
-**Restaurant** `#a8431a`
+**Restaurant**
 - "A quiet table by the window"
 - "Worth the detour, loud after seven"
 - "The bread outran the cod"
 
-**Hike** `#3f6b3a`
+**Hike**
 - "The ridge clears just after seven"
 - "Short climb, unreasonable payoff"
 - "Mud to the knees, view to the coast"
 
-**Spa / Stay** `#2f6b6b`
+**Spa / Stay**
 - "Steam, cedar, and a cold plunge"
 - "Quiet by design, thin by accident"
 - "The sauna earns the drive"
 
-**Event** `#6b3a5d`
+**Event**
 - "Front row, back of the mix"
 - "Small room, enormous sound"
 - "Late start, early magic"
 
-**City / Walk** `#3a5a6b`
+**City / Walk**
 - "An hour east of the noise"
 - "All staircases, no regrets"
 - "The long way is the right way"
@@ -102,7 +102,7 @@ not the title.
 
 ## 7. Verdict block — the standard close
 
-Every field note ends with a structured verdict (see `04-components/web-ui-kit.html`):
+Every field note ends with a structured verdict, rendered from front matter (see `docs/adventures-playbook.md`):
 
 ```
 VERDICT
@@ -113,5 +113,3 @@ Field rating      → 4.2 / 5
 ```
 
 Honest, scannable, always present. The rating is out of 5, one decimal, and must match the prose.
-
-*Next: `photography.md`.*

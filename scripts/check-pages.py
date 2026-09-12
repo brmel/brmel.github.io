@@ -1,23 +1,4 @@
 #!/usr/bin/env python3
-"""check-pages.py — the faults a structural check misses.
-
-The existing gates ask "is the block present" and "is the block present once".
-Both passed while the resume showed LinkedIn and GitHub twice: once as a text
-link in the header, once as an icon in the footer. Two different components,
-same destination, so neither a duplicate-block check nor a duplicate-(href,text)
-check saw it.
-
-These rules compare pages the way a reader does — by where a link goes, what a
-control looks like, and whether the journey closes.
-
-  1. Same destination twice on a page, whatever the two links look like.
-  2. A link that points at the page it is on.
-  3. A control with no accessible name (an icon link with no label).
-  4. Mixed affordance: the same destination shown as bare text in one place and
-     as an icon in another.
-  5. Internal links that resolve to nothing.
-  6. A page reachable from nowhere.
-"""
 import os, re, sys, glob, collections
 from urllib.parse import unquote
 
@@ -79,19 +60,16 @@ for url, html in pages.items():
         has_icon = "<svg" in inner
         seen[target].append((text, has_icon, bool(label)))
 
-        # 3 — a control a screen reader cannot name
         if not text and not label and has_icon:
             fails.append(f"{url}: icon link to {target[:48]} has no accessible name")
 
     for target, uses in seen.items():
-        # 2 — a link to the page it is on
         if target.rstrip("/") == url.rstrip("/") and target:
             fails.append(f"{url}: links to itself ({len(uses)}x)")
         if len(uses) < 2:
             continue
         texts = {u[0] for u in uses}
         icons = {u[1] for u in uses}
-        # 1 + 4 — same destination twice, and worse if it looks different each time
         if len(icons) > 1:
             fails.append(f"{url}: {target[:44]} appears as text and as an icon")
         elif len(texts) > 1:
@@ -99,7 +77,6 @@ for url, html in pages.items():
         else:
             warns.append(f"{url}: {target[:44]} linked {len(uses)}x")
 
-# 5 — internal links that resolve to nothing
 def resolves(p):
     p = unquote(p.split("#")[0].split("?")[0])
     if not p.startswith("/"):
@@ -115,7 +92,6 @@ for url, html in pages.items():
 for t, n in broken.items():
     fails.append(f"link to {t} resolves to nothing ({n} pages)")
 
-# 6 — a page nothing links to
 linked = set()
 for html in pages.values():
     for t in internal_targets(html):

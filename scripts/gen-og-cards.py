@@ -1,22 +1,4 @@
 #!/usr/bin/env python3
-"""Regenerate the per-section social cards in static/og/.
-
-Six sections, ONE template — scripts/og-cards.html — so the cards cannot drift
-apart the way six hand-designed images would. Edit the card list in that file,
-not the images.
-
-There is no SVG/HTML rasteriser on this machine, so the template is rendered in
-a real browser and screenshotted as one 1200x3780 strip, then cut into six
-1200x630 cards here.
-
-    python3 -m http.server 8899 --directory scripts/
-    # drive a headless browser: open /og-cards.html at width 1200,
-    # full-page screenshot -> og-strip.png
-    python3 scripts/gen-og-cards.py og-strip.png
-
-Requires Pillow. Adding a section means adding it to og-cards.html AND to
-SECTIONS below, in the same order.
-"""
 import sys, os
 from PIL import Image
 

@@ -2,7 +2,6 @@ baseURL = "https://ibraverse.ca"
 defaultContentLanguage = "en"
 defaultContentLanguageInSubdir = false
 theme = "PaperMod"
-# lastmod from the commit that touched the file, so sitemap freshness is real
 enableGitInfo = true
 
   [languages.en]
@@ -177,39 +176,16 @@ enableEmoji = true
 [params]
   env = "production"
   title = "Ibraverse"
-  # Sections that count as "the work" — drives the home page's latest-posts list
-  # (layouts/_default/list.html) and anything else ranging over site content.
-  # `projects` is listed ahead of the section existing (#12) so adding it needs
-  # no config change.
   mainSections = ["projects", "tech", "adventures", "thoughts"]
   description = "Senior Software Developer at Zebra Technologies working in machine vision, AI and image processing. Industrial C++, algorithms shipped into products that run on factory floors."
   keywords = ["machine vision", "image processing", "computer vision", "industrial algorithms", "OpenCV", "C++", "control theory", "robotics", "AI", "Zebra Technologies", "Matrox", "real-time systems", "AI", "pattern matching", "edge detection", "calibration"]
   author = "Ibraverse"
   images = ["images/MyPhoto.jpg"]
-  # A localised layout, not a Go one. "January 2, 2006" is a fixed English
-  # pattern, so /fr/ and /ar/ printed "August 4, 2026" on every card and every
-  # article — the one string on those pages that never got translated.
-  # ":date_long" resolves per language: 4 août 2026 · ٤ أغسطس ٢٠٢٦.
-  # Call it through `time.Format`; `.Format` is Go's and ignores the locale.
   DateFormat = ":date_long"
-  # Light is the brand's home theme; dark is a full, contrast-audited
-  # palette in tokens.css and is reachable from the toggle in the nav.
   defaultTheme = "light"
   disableThemeToggle = false
-  # Rendered by the post_meta fork; the theme supplies read_time in all three
-  # languages, so nothing English leaks. One caveat: PaperMod's Arabic defines
-  # zero/one/two/few but no many/other, and its `few` (3-10) reads "بضع ثوان"
-  # — a few *seconds*. Only bites on an Arabic article of 3 minutes or more;
-  # the one that exists is 1 minute. Our i18n files are flat key:value, which
-  # cannot express plural categories, so fixing it means either converting
-  # i18n/ar.yaml to list form or patching the vendored theme.
   ShowReadingTime = true
 
-  # Collapsed by default: the longest article has 15 headings and an open list
-  # would push the opening paragraph off the screen. The theme only emits a TOC
-  # when the article has at least one heading, and none of ours has exactly one,
-  # so no page gets a single-item list. .toc a is already covered by the
-  # tap-target rule in 30-chrome.css.
   ShowToc = true
   TocOpen = false
   ShowShareButtons = true
@@ -227,26 +203,16 @@ enableEmoji = true
   showtoc = false
   tocopen = false
 
-  # Contribute links (partials/content-actions.html) are derived from these.
-  # PaperMod's editPost pointed at a mailto, which asked a stranger to describe
-  # a typo in an email with no path to a commit.
   repo = "https://github.com/brmel/brmel.github.io"
 
-  # The article column, in px. The figure shortcode caps an image's display
-  # width at this so nothing is ever upscaled; --container-text in
-  # assets/css/extended/00-tokens.css is the CSS half of the same number.
-  # CSS cannot read Hugo config, so if you change one, change both.
   proseColumnPx = 900
 
   [params.assets]
-    # Every file below exists in static/ and is generated from the compass mark
-    # (layouts/partials/brand-mark.html) — see scripts/gen-favicons.py.
     favicon = "favicon.ico"
     favicon16x16 = "favicon-16x16.png"
     favicon32x32 = "favicon-32x32.png"
     apple_touch_icon = "apple-touch-icon.png"
     safari_pinned_tab = "safari-pinned-tab.svg"
-    # Browser chrome colours — brand paper, not PaperMod's default slate #2e2e33.
     theme_color = "#faf9f6"
     msapplication_TileColor = "#faf9f6"
 
@@ -280,18 +246,11 @@ enableEmoji = true
     title = "Instagram"
     url = "https://www.instagram.com/mellahredouane/"
 
-  # No [params.analytics.*] verification tags: absent beats fake. Add a block
-  # back only when the site is actually registered with that search console,
-  # with the real token.
-
   [params.cover]
     hidden = true
     hiddenInList = false
     hiddenInSingle = true
 
-  # Contribute links (partials/content-actions.html) are derived from these.
-  # PaperMod's editPost pointed at a mailto, which asked a stranger to describe
-  # a typo in an email with no path to a commit.
   repo = "https://github.com/brmel/brmel.github.io"
 
   tag = "tags"
@@ -311,9 +270,6 @@ enableEmoji = true
     [markup.goldmark.renderer]
       unsafe = true
 
-# Two plain-text views of the site: llms.txt is the map,
-# llms-full.txt is the whole corpus. Both are generated from the content, so
-# neither can drift the way a hand-written index would.
 [outputFormats.LLMS]
   mediaType = "text/plain"
   baseName = "llms"
@@ -324,28 +280,16 @@ enableEmoji = true
   isPlainText = true
 
 [outputs]
-  # JSON is the search index; fastsearch.js fetches ../index.json, which resolves
-  # to /index.json, /fr/index.json and /ar/index.json respectively.
   home = ["HTML", "RSS", "JSON", "LLMS", "LLMSFULL"]
   page = ["HTML"]
   section = ["HTML", "RSS"]
 
 [taxonomies]
-  # Tags only. `categories` held five terms of one or two posts each, every one
-  # of them already covered by a tag — 5 extra thin routes and a second
-  # vocabulary to keep consistent, for no reader benefit.
   tag = "tags"
-# Page-bundle originals are never served: every <img> on the site is a Hugo
-# derivative, and og:image now resizes too. Publishing them shipped 1.5 MB of
-# files nothing referenced.
 [[cascade]]
   [cascade.build]
     publishResources = false
 
-# Tag pages are navigation, not content: 29 of them for 24 articles, each with
-# one or two entries and all inheriting the site description. They are already
-# absent from the sitemap; this keeps them out of the index too. The theme reads
-# robotsNoIndex, so this needs no template of our own.
 [[cascade]]
   robotsNoIndex = true
   [cascade._target]

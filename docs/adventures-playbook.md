@@ -1,9 +1,9 @@
 # Adventures Playbook — Montreal articles with a voice/face video review
 
 How to publish an Adventures article that **goes viral and stays on-brand**:
-a written article with photos, a map, and honest recommendations, closing with a
-short **face + voice video review** at the bottom (you on camera explaining the
-place) shown as a single row of YouTube / Instagram / TikTok thumbnails.
+a written article with photos, a map, and honest recommendations, paired with a
+short **face + voice video review** (you on camera explaining the place) posted to
+YouTube, Instagram and TikTok.
 
 The whole point is a **repeatable pattern**: every article looks the same, every
 reel follows the same beats, so the audience learns your format and the work gets
@@ -13,15 +13,14 @@ article-by-article and don't improvise the structure.
 **Photographs must be yours and must be of the place.** The two field notes
 published in August 2026 shipped as drafts carrying one stock file reused as the
 hero of both a Rawdon spa and an Adirondack summit; they went live without
-images rather than with borrowed ones. Same rule for the reels row — it links
-your own clips or it stays empty.
+images rather than with borrowed ones.
 
 `gmap` takes a real embed URL from Google Maps → Share → "Embed a map". The
 `q="place name"` form renders a link, not an iframe: Google refuses to frame the
 legacy `maps.google.com/maps?output=embed` URL and it came out as a blank box.
 
-Tools are already wired: a `reels` shortcode, a `gmap` shortcode, the `figure`
-shortcode, and an `adventures` archetype that scaffolds the structure.
+Tools available: the `figure` and `gmap` shortcodes, and an `adventures`
+archetype that scaffolds the structure.
 
 ---
 
@@ -38,20 +37,17 @@ shortcode, and an `adventures` archetype that scaffolds the structure.
 │  ## Recommendations  (scannable list)  │
 ├───────────────────────────────────────┤
 │  VERDICT  (goBack / bestFor / con / ★) │  ← structured, from front matter (auto)
-├───────────────────────────────────────┤
-│  WATCH — reel row (YT + IG + TikTok)   │  ← one row, from front matter (auto)
 └───────────────────────────────────────┘
 ```
 
-The **header eyebrow, Verdict block, and Watch reel row all render
-automatically** from front matter (`category`, `fieldNote`, `place`, `rating`,
-`goBack`, `bestFor`, `con`, `reels`). You write only the prose body — the brand
+The **header eyebrow and Verdict block render automatically** from front
+matter (`category`, `fieldNote`, `place`, `rating`, `goBack`, `bestFor`, `con`). You write only the prose body — the brand
 chrome is layout-driven, so every article is consistent by construction.
 `category` (restaurant / hike / spa / event / city) sets the eyebrow label and
 the badge icon. It does **not** set a colour: the site has one accent.
 
-- **Adventures** = places & experiences (Montreal + travel). Reel pulls views
-  from YouTube/IG/TikTok back to the site.
+- **Adventures** = places & experiences (Montreal + travel). The video pulls
+  views from YouTube/IG/TikTok back to the site.
 - **Lifestyle** = health/training/protocols. Different section — don't mix.
 - One article = one **page bundle**: `content/adventures/<slug>/index.md` + all
   its images in the same folder.
@@ -129,19 +125,19 @@ Reproducibility = the audience recognizes your pattern. Use these 5 beats in
 - **TikTok** → post. Copy the video URL.
 - Write platform captions with 1 hook line + 3–5 hashtags (`#montreal #mtlfood
   #montreallife` + 1 niche tag). Same hook wording across platforms.
-- **Cross-link:** caption says "full guide on ibraverse.ca"; site embeds the reels.
+- **Cross-link:** caption says "full guide on ibraverse.ca"; the article links
+  the clips in its body.
 
 ### 1.6 Thumbnails / covers
 
 YouTube auto-generates one; **override it** for consistency. IG/TikTok have no
-public auto-thumbnail, so you supply one (the site needs it too — see §3).
+public auto-thumbnail, so you supply one.
 
 Thumbnail rules (same template every time):
 - One **clear subject** + **3–5 word** bold text (e.g. "BEST BAGEL IN MTL").
 - High contrast, readable at tiny size. Face with expression if possible.
 - Same font + same color accent as your brand (§4).
-- Export ~1080px wide JPG. Name it `cover.jpg` (article hero) and
-  `ig-thumb.jpg` / `tt-thumb.jpg` (reel cards).
+- Export ~1080px wide JPG. Name the article hero `cover.jpg`.
 
 ---
 
@@ -213,8 +209,8 @@ Every adventure gets a map — it's the reason people save the article.
 hugo new adventures/old-port-walk/index.md
 ```
 
-Uses `archetypes/adventures.md`, scaffolds `draft: true` + reels + figures + map
-+ recommendations. Put every photo in the same `content/adventures/old-port-walk/`
+Uses `archetypes/adventures.md`, scaffolds `draft: true` + field-note front
+matter + figures + recommendations. Put every photo in the same `content/adventures/old-port-walk/`
 folder.
 
 ### Front matter
@@ -226,12 +222,10 @@ date: 2026-06-01
 draft: true
 summary: "One-line teaser = the reel's hook. Shown in the list + Google + social."
 tags: ["Montreal", "Old Port", "Walking"]
-categories: ["Adventures"]
 cover:
     image: "cover.jpg"
     alt: "Old Port of Montreal at sunset"
     relative: true
-# --- field note (drives the brand chrome) ---
 category: "city"          # restaurant | hike | spa | event | city → label + icon
 fieldNote: 5              # → № 005 in the eyebrow
 place: "Old Port, Montréal"
@@ -239,29 +233,14 @@ rating: 4.2               # verdict, out of 5
 goBack: "Yes — first-evening material."
 bestFor: "A free sunset walk after the crowds thin."
 con: "Touristy — skip the terraces on the square."
-reels:                    # one row of reviews at the foot; drop any platform you skipped
-  - { platform: "youtube",   id: "VIDEO_ID", meta: "2:14" }
-  - { platform: "instagram", url: "https://www.instagram.com/reel/CODE/", thumb: "ig-thumb.jpg", meta: "@ibraverse" }
-  - { platform: "tiktok",    url: "https://www.tiktok.com/@you/video/ID", thumb: "tt-thumb.jpg", meta: "0:38" }
 ---
 ```
 
 ### Body order: hook sentence → photos → map → recommendations. Stop there.
 
-The Verdict and Watch reel row are **not** written in the body — they render
-from the front matter above (`rating`/`goBack`/`bestFor`/`con` → Verdict;
-`reels` → the Watch row). This keeps every article identical in structure.
-
-### Reels (front matter, not a shortcode)
-
-Each entry in `reels:` is one card in the bottom row:
-
-- `platform`: `youtube` | `instagram` | `tiktok`.
-- YouTube uses `id` (the 11-char video ID) and auto-pulls its thumbnail.
-- Instagram/TikTok use `url` + a `thumb` image in the article folder
-  (`ig-thumb.jpg` / `tt-thumb.jpg`) — they have no public auto-thumbnail.
-- `meta`: short caption shown on the card (duration or `@handle`).
-- Drop any platform you didn't post to. Omit `reels` entirely → no row.
+The Verdict is **not** written in the body — it renders from
+`rating`/`goBack`/`bestFor`/`con` above. This keeps every article identical in
+structure.
 
 Recommendations block (keep this exact shape every article):
 
@@ -284,13 +263,13 @@ once and reuse forever:
 | Element | Lock it |
 |---------|---------|
 | **Name/handle** | Same on YouTube / IG / TikTok (e.g. @ibraverse). Link all to ibraverse.ca |
-| **Colors** | Reuse the site palette (PaperMod CSS vars: `--primary`, accent). Same accent in thumbnails + text overlays |
+| **Colors** | Reuse the site palette from `assets/css/extended/00-tokens.css` (`--ink`, `--accent`). Same accent in thumbnails + text overlays |
 | **Font** | One display font for thumbnails/overlays; one body font (site default) |
 | **Intro** | Same 1–2s opener (logo flash or signature line) on every reel |
 | **End card** | Same CTA frame: "ibraverse.ca" + follow prompt |
 | **Caption style** | Same subtitle font/position/animation every reel |
 | **Tone** | Honest, curious, specific. Same persona on camera and in text |
-| **Naming** | Files always `cover.jpg`, `ig-thumb.jpg`, `tt-thumb.jpg`, `photo-N.jpg` |
+| **Naming** | Files always `cover.jpg`, `photo-N.jpg` |
 
 A viewer should know it's yours from the first frame and the article should feel
 like the same series every time.
@@ -333,7 +312,7 @@ content/adventures/old-port-walk/
 
 **Article**
 - [ ] `hugo new adventures/<slug>/index.md`
-- [ ] `reels` block with correct IDs/URLs + IG/TikTok thumbs
+- [ ] Clips linked from the article body
 - [ ] First sentence = reel hook; 300–700 words; scannable headings
 - [ ] `cover.jpg` set; 3–6 photos, all ≤1600px / <300KB / EXIF-stripped / `alt` set
 - [ ] `gmap` added

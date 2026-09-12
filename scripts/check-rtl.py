@@ -1,15 +1,4 @@
 #!/usr/bin/env python3
-"""check-rtl.py — the layout mirrors without per-direction overrides.
-
-Arabic is a first-class language here, not a translation bolted on. A physical
-property (margin-left, border-right, left:) pins a thing to one side of the
-screen and stays pinned when the page flips, so an accent bar meant for the
-leading edge ends up on the trailing one.
-
-Logical properties do the mirroring for free. This fails the build on a
-physical one outside an explicit [dir=] override, where the physical value is
-the whole point.
-"""
 import re, sys, glob, os
 
 ROOT = os.path.join(os.path.dirname(__file__), "..")

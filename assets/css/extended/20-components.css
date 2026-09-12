@@ -66,18 +66,12 @@ a.u-chip:hover{border-color:var(--accent);color:var(--accent);}
 
 .u-chip--accent{color:var(--accent);border-color:var(--accent);text-transform:uppercase;}
 
-/* Rendered by _default/list.html and partials/home-latest.html — a shared
-   primitive, so it lives here rather than in either section's file. */
 .entry-lang{
   margin:var(--space-2) 0 0;
   font-family:var(--font-label);font-size:var(--t-micro);
   letter-spacing:.08em;text-transform:uppercase;color:var(--ink-mute);
 }
 
-/* an embedded generated document. Defined here because this file is in both
-   the PaperMod bundle and the standalone bundle; when these rules lived in
-   50-content.css the standalone report lost its width and collapsed to the
-   browser's default 300px iframe. */
 .report-frame{
   display:block;width:100%;min-height:100vh;
   border:0;
@@ -90,18 +84,6 @@ a.u-chip:hover{border-color:var(--accent);color:var(--accent);}
   background:#fff;
 }
 
-/* The frame around any content image. Article figures restated every one of
-   these properties in 50-content.css, so a change had to be made twice and the
-   two had already drifted; they share this now and keep only their own layout.
-
-   The border is a mid tone rather than --rule because the images sit at both
-   luminance extremes: of 61 sampled, 36 average >180/255 (bright UI captures,
-   glaring on the ~26 dark page) and 13 average <100 (near-black on the ~249
-   light page). --rule tracks the theme — ~213 light, ~46 dark — so it is always
-   close to the page and never to the image. --ink-mute is ~108/~131 in the two
-   themes, so a softened mix of it separates a white screenshot and a black one
-   alike. The pixels are never altered: these are technical screenshots and
-   dimming them would misrepresent the tool on display. */
 .u-frame,
 .post-content figure img{
   border:var(--hairline) solid color-mix(in srgb, var(--ink-mute) 55%, transparent);
@@ -140,8 +122,6 @@ a.u-chip:hover{border-color:var(--accent);color:var(--accent);}
   a.u-card:hover,.u-card--interactive:hover{transform:none;}
 }
 
-/* rendered by partials and shortcodes that both the PaperMod bundle and the
-   standalone bundle reach, so the rules have to live where both load them */
 .related-project{
   max-width:var(--container-text);
   margin:var(--space-8) auto 0;
@@ -171,13 +151,6 @@ a.u-chip:hover{border-color:var(--accent);color:var(--accent);}
 }
 .gmap-link a:hover{border-color:var(--accent);color:var(--accent);}
 
-/* ── Timeline rail and dot ───────────────────────────────────────────────────
-   The résumé career timeline and the projects index draw the same thing: a
-   vertical hairline that fades at both ends, with an accent ring sitting on it.
-   Both files had their own copy, including four hand-written 6px offsets that
-   have to agree or the ring drifts off the rail. The offset is now
-   --tl-rail-inset and the recipe lives here; each section sets only its own
-   top/bottom, because those depend on its surrounding spacing. */
 .timeline-container::before,
 .project-timeline::before{
   content:'';

@@ -33,11 +33,6 @@
   display:inline-flex;align-items:center;gap:var(--space-2);
   transition:color var(--dur-1) var(--ease-standard);
 }
-/* The wordmark and the language switcher were the only two controls in the
-   chrome with no hover feedback, while the nav items, section-nav, footer and
-   content links all move to --accent. They are also the two most-used controls
-   on the site, and they appear in all three languages. The skip link
-   deliberately has none: it lives off-screen until :focus. */
 .logo a:hover{color:var(--accent);}
 .brand-mark--logo{color:var(--accent);}
 
@@ -198,8 +193,6 @@
 .section-nav__back,
 .page-404__routes a,
 .sa-nav__link{min-height:24px;display:inline-flex;align-items:center;}
-/* The resume link owns its own inline-flex layout in 41-resume.css; only the
-   tap-target floor belongs to chrome, so it is the one thing set here. */
 .resume__contact a{min-height:24px;}
 #menu li a{min-width:24px;text-align:center;}
 .rss-link{min-width:24px;min-height:24px;display:inline-flex;align-items:center;justify-content:center;}

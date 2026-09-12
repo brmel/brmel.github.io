@@ -3,9 +3,9 @@
 <rect width="1088" height="694" fill="#faf9f6"></rect>
 <g transform="translate(40,30) scale(0.62)"><circle cx="24" cy="24" r="18" fill="none" stroke="#a8431a" stroke-width="1.7"></circle><circle cx="24" cy="24" r="11" fill="none" stroke="#a8431a" stroke-width="1.7"></circle><circle cx="24" cy="24" r="3" fill="#a8431a"></circle><g stroke="#a8431a" stroke-width="1.7" stroke-linecap="round"><line x1="24" y1="3" x2="24" y2="11"></line><line x1="24" y1="37" x2="24" y2="45"></line><line x1="3" y1="24" x2="11" y2="24"></line><line x1="37" y1="24" x2="45" y2="24"></line></g></g>
   <text x="74" y="40" font-family="&#39;Instrument Serif&#39;,Georgia,serif" font-size="26" fill="#181715">Ibraverse</text>
-  <text x="74" y="56" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="10" letter-spacing="1.4" fill="#8a877f">02 · LOGO — MISUSE</text>
+  <text x="74" y="56" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="10" letter-spacing="1.4" fill="#6e6c65">02 · LOGO — MISUSE</text>
   <line x1="40" y1="76" x2="1048" y2="76" stroke="#d9d6cb"></line>
-<text x="40" y="100" font-family="&#39;Inter Tight&#39;,system-ui,sans-serif" font-size="13" fill="#8a877f">The mark is a fixed object. Recolor only by swapping the single accent token. Everything below is off-brand.</text>
+<text x="40" y="100" font-family="&#39;Inter Tight&#39;,system-ui,sans-serif" font-size="13" fill="#6e6c65">The mark is a fixed object. Recolor only by swapping the single accent token. Everything below is off-brand.</text>
 <g>
     <rect x="40" y="100" width="320" height="240" rx="12" fill="#f2f0e9" stroke="#d9d6cb"></rect>
     <g transform="translate(200,190) scale(1.9,1.0) translate(-24,-24)"><circle cx="24" cy="24" r="18" fill="none" stroke="#a8431a" stroke-width="1.6"></circle><circle cx="24" cy="24" r="11" fill="none" stroke="#a8431a" stroke-width="1.6"></circle><circle cx="24" cy="24" r="3" fill="#a8431a"></circle><g stroke="#a8431a" stroke-width="1.6" stroke-linecap="round"><line x1="24" y1="3" x2="24" y2="11"></line><line x1="24" y1="37" x2="24" y2="45"></line><line x1="3" y1="24" x2="11" y2="24"></line><line x1="37" y1="24" x2="45" y2="24"></line></g></g>

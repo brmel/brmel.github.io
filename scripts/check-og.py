@@ -1,17 +1,4 @@
 #!/usr/bin/env python3
-"""check-og.py — every built page must carry a real social card.
-
-Asserts, for every public/**/*.html that is a page (not an alias redirect):
-  * og:image is present
-  * it is an ABSOLUTE url (X and LinkedIn reject relative ones)
-  * it resolves to a file that actually exists in public/
-  * og:image:alt is present and non-empty
-  * og:title and og:description are not the site-wide defaults
-
-This exists because the site shipped for months with og:image pointing at
-static/images/profile.jpg — which was not an image at all, but a text
-placeholder file. Nothing caught it because nothing looked. Now something does.
-"""
 import os, re, sys
 from urllib.parse import urlparse
 

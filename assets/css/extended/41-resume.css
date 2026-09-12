@@ -29,10 +29,6 @@
 }
 .resume__contact a:hover{color:var(--accent);border-color:var(--accent);}
 
-/* The résumé body carries .post-content and so already reads at the prose
-   size; its structured sections sat a step below at the inherited 18px, which
-   made one page read at two sizes. --lh gives them the same vertical rhythm the
-   articles use. */
 .resume__section{
   max-width:var(--container-text);
   margin:var(--space-9) auto 0;
@@ -69,7 +65,6 @@
 .resume__record-name{font-family:var(--font-serif);font-size:var(--t-subhead);color:var(--ink);}
 .resume__record-issuer{color:var(--ink-soft);font-size:var(--t-caption);}
 
-
 @media (max-width:600px){
   .resume__skillgroup,
   .resume__record{grid-template-columns:1fr;gap:var(--space-1);}
@@ -77,7 +72,6 @@
 }
 
 @media print{
-  /* everything that is a control or a route, not the résumé itself */
   .header,.footer,.site-mark,.top-link,.breadcrumbs,
   .content-footer,.content-actions,.share-buttons,.section-nav,.author-card,
   .resume__print,.video-thumb,.video-thumbnail,#lightbox{display:none!important;}
@@ -88,8 +82,6 @@
   .timeline-item{padding-inline-start:0;}
   .resume__section{margin-top:var(--space-6);}
 }
-
-
 
 .resume__print{
   background:none;border:0;padding:0;cursor:pointer;

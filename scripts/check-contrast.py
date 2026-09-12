@@ -1,13 +1,4 @@
 #!/usr/bin/env python3
-"""check-contrast.py — every text token must be readable on every surface.
-
-The original gate only checked ACCENTS against --bg. That let --ink-mute ship
-at 3.15:1 on --bg-alt, failing WCAG AA for normal text across every eyebrow,
-date and caption on the site. This checks the whole matrix instead.
-
-Rules: body/label text needs 4.5:1. Accents are also used for links in running
-text, so they are held to the same bar.
-"""
 import re, sys, os
 
 TOKENS = os.path.join(os.path.dirname(__file__), "..",
@@ -25,7 +16,6 @@ def ratio(a, b):
     return (l1 + 0.05) / (l2 + 0.05)
 
 css = open(TOKENS).read()
-# :root block = light, .dark block = dark
 light_block = css.split(":root{")[1].split("}")[0]
 dark_block = css.split(".dark{")[1].split("}")[0]
 

@@ -59,11 +59,5 @@
   {{- partial "content-footer.html" . }}
 
 </article>
-{{- if $adv }}
-{{- $advJS := resources.Get "js/adventures.js" | minify | fingerprint }}
-{{- with $advJS }}
-<script defer src="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}"></script>
-{{- end }}
-{{- end }}
 
 {{- end }}

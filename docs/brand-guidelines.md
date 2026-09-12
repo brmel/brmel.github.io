@@ -7,7 +7,7 @@ content type by a single accent.
 > Feed this file to a design tool alongside any prompt so every asset — covers,
 > thumbnails, social cards, decks — comes out on-brand. Every value below is
 > **extracted from the live code**, specifically
-> [`assets/css/extended/tokens.css`](../assets/css/extended/tokens.css) and
+> [`assets/css/extended/00-tokens.css`](../assets/css/extended/00-tokens.css) and
 > [`layouts/partials/brand-mark.html`](../layouts/partials/brand-mark.html) —
 > not invented. Where this document and the CSS ever disagree, **the CSS wins
 > and this file is wrong**.
@@ -114,7 +114,7 @@ Warm-editorial. Paper + ink + a single accent. Light is the home theme.
 | `--bg-alt` | `#f2f0e9` | `#1c1b16` | cards, wells |
 | `--ink` | `#181715` | `#ece8dc` | headings, body |
 | `--ink-soft` | `#4a4843` | `#b8b3a2` | secondary text |
-| `--ink-mute` | `#8a877f` | `#807c70` | captions, eyebrows |
+| `--ink-mute` | `#6e6c65` | `#888477` | captions, eyebrows |
 | `--rule` | `#d9d6cb` | `#2c2a23` | hairlines, borders |
 | `--accent` | `#a8431a` | `#d97757` | mark, links, dots |
 | `--accent-soft` | `#c96b3e` | `#e89878` | hovers, fills |
@@ -200,11 +200,11 @@ doesn't fit one of these rows doesn't have a home yet — decide before building
 | **Resume** | The career, in one page | rust | career timeline, skills, certifications |
 | **Projects** | Show things built end-to-end, with the lessons | rust | eyebrow, stack chips, status, gallery |
 | **Tech** | Explain something learned by doing it | rust | article layout, figures |
-| **Adventures** | Honest first-person reviews of places | rust | eyebrow, verdict block, reel row |
+| **Adventures** | Honest first-person reviews of places | rust | eyebrow, verdict block |
 | **Thoughts** | Reflection — shorter, no artefact required | rust | plain article, no cover |
 
 **Layout-driven chrome is the rule.** In Adventures and Projects the eyebrow,
-verdict, chips, status and reel row all render from front matter. You write only
+verdict, chips and status all render from front matter. You write only
 prose. That is why those sections stay consistent — consistency is
 constructed, not remembered. Any new section follows the same rule.
 
@@ -238,9 +238,9 @@ throat-clearing, no words that would not survive being read aloud.
 | Eyebrow grammar | per §2 table |
 | Fonts | Instrument Serif / Inter Tight / JetBrains Mono only |
 | Accent rule | one accent, site-wide: `--accent` (§3) |
-| Colour source | `tokens.css`. No hex outside it, ever |
+| Colour source | `00-tokens.css`. No hex outside it, ever |
 | Contrast | ≥ 4.5:1 accent-on-background, checked before commit |
-| File names | `cover.jpg`, `ig-thumb.jpg`, `tt-thumb.jpg`, `photo-N.jpg` |
+| File names | `cover.jpg`, `photo-N.jpg` |
 | Tone | honest, curious, specific — one genuine con per piece |
 
 ---
@@ -322,8 +322,7 @@ PaperMod let them fall back differently. `scripts/check-og.py` runs locally and
 in CI and fails the build if any page ships an og:image that is missing,
 relative, unresolvable, or has no alt text.
 
-The built kit lives in [`docs/brand-kit/`](brand-kit/) — proofs, channel assets,
-and exported tokens. Regenerate rather than hand-editing.
+Social templates, logo files and channel art live in [`docs/brand-kit/`](brand-kit/).
 
 ---
 
@@ -334,4 +333,4 @@ and exported tokens. Regenerate rather than hand-editing.
 | [`adventures-playbook.md`](adventures-playbook.md) | How to publish an Adventures field note end-to-end |
 | [`projects-playbook.md`](projects-playbook.md) | How to publish a Project page end-to-end |
 | [`standalone-layout.md`](standalone-layout.md) | The full-page layout for self-contained articles |
-| [`brand-kit/`](brand-kit/) | Generated proofs, channel assets, exported tokens |
+| [`brand-kit/`](brand-kit/) | Logo, social templates, channel art, photo and voice guides |

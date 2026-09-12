@@ -68,7 +68,7 @@ lessons:
 | Field | Rule |
 |---|---|
 | `projectNo` | Manual and permanent. Sorts the index. Renumbering a published project breaks its identity. |
-| `domain` | Picks the accent from the register in [`tokens.css`](../assets/css/extended/tokens.css). Adding a domain means adding a hue **and** checking contrast — see brand-guidelines §3. |
+| `domain` | Short uppercase label in the eyebrow (`saas`, `vision`, …). Label only — the site has one accent. |
 | `status` | Localised via `i18n/*.yaml` (`project_status_*`). Don't type a free-text status. |
 | `pitch` | One sentence. If a non-engineer can't parse it, rewrite it. Not the tagline from the README. |
 | `stack` | The index card shows the **first four**, so order them by what matters. |

@@ -1,9 +1,2 @@
-{{- /* brand-fonts.html — preload the two faces above the fold.
-
-The faces themselves are declared in assets/css/extended/05-fonts.css and
-served from /fonts/, so there is no third-party request and nothing blocks
-render. Only the latin subsets of the body and display faces are preloaded:
-latin-ext and the mono face are gated by unicode-range and by code blocks, so
-preloading them would fetch bytes most pages never use. */ -}}
 <link rel="preload" href="/fonts/inter-tight-400-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/instrument-serif-400-latin.woff2" as="font" type="font/woff2" crossorigin>

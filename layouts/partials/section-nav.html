@@ -1,7 +1,6 @@
 {{- $section := .Section -}}
 {{- with site.GetPage (printf "/%s" $section) }}
 {{- $siblings := partial "func/section-pages.html" . -}}
-{{- /* Projects read in numbered order; everything else newest first. */ -}}
 {{- if eq $section "projects" }}
   {{- $siblings = sort $siblings "Params.projectNo" "asc" }}
 {{- else }}
@@ -16,10 +15,6 @@
   {{- if lt $idx (sub (len $siblings) 1) }}{{ $next = index $siblings (add $idx 1) }}{{ end }}
 {{- end }}
 
-{{- /* An untranslated sibling is marked "in English", the same convention the
-       list pages and the homepage use. Without it the French and Arabic
-       articles ended with two English titles under "Précédent"/"Suivant"
-       and no indication why. */ -}}
 <nav class="section-nav" aria-label="{{ i18n "section_nav_label" | default "Section navigation" }}">
   <a class="section-nav__back" href="{{ .RelPermalink }}">
     <span aria-hidden="true">←</span>

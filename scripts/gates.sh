@@ -1,12 +1,4 @@
 #!/usr/bin/env bash
-#
-# gates.sh — every gate, run against an existing public/.
-#
-# The list lives here and nowhere else. It used to live in check.sh and again in
-# .github/workflows/check.yml, and the two drifted: four gates were added
-# locally and never wired into CI, so the checks the repo relies on were not the
-# checks that ran. Build the site, then call this — locally, on a pull request,
-# and before a deploy.
 
 set -euo pipefail
 cd "$(dirname "$0")/.."

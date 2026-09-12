@@ -1,10 +1,3 @@
-/* 05-fonts.css — the three brand faces, self-hosted.
-
-Google Fonts was the only render-blocking request on the site and sent every
-visitor's IP to a third party. These are the latin and latin-ext subsets only:
-Arabic has no webfont here and falls back to the system stack by design.
-font-display:swap keeps text visible while a face loads. */
-
 @font-face{
   font-family:'Instrument Serif';
   font-style:italic;

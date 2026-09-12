@@ -9,7 +9,6 @@
   padding:var(--space-4) 0 var(--space-2);
 }
 
-/* recipe in 20-components.css; only the extent is local */
 .timeline-container::before{top:var(--space-5); bottom:var(--space-5);}
 
 .timeline-item{
@@ -46,10 +45,6 @@
   border-bottom:var(--hairline) solid color-mix(in srgb, var(--accent) 35%, transparent);
   transition:border-color var(--dur-1) var(--ease-standard);
 }
-/* The employer name is a standalone link on its own line — not inline in a
-   sentence — so WCAG 2.5.8's 24px minimum applies and its text height is 19px.
-   The hit area is grown with a centred overlay rather than min-height, which
-   would push the underline away from the text and change the design. */
 .timeline-org a::after{
   content:"";
   position:absolute;inset-inline:0;top:50%;
@@ -149,8 +144,7 @@
   width:28px;height:28px;
   fill:var(--bg);
   filter:drop-shadow(0 1px 3px rgba(0,0,0,.45));
-  transform:translateX(1px);          /* optical centring of the triangle */
-  transition:transform var(--dur-2) var(--ease-spring), fill var(--dur-2) var(--ease-standard);
+  transform:translateX(1px);  transition:transform var(--dur-2) var(--ease-spring), fill var(--dur-2) var(--ease-standard);
 }
 .video-thumb:hover .video-thumb__play{background:rgba(24,23,21,.18);}
 .video-thumb:hover .video-thumb__play svg{transform:scale(1.12) translateX(1px);fill:#fff;}

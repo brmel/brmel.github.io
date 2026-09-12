@@ -1,10 +1,3 @@
-{{- /*
-  llms.txt — the site as a map, for retrieval agents.
-  https://llmstxt.org/ : an H1, a blockquote summary, then linked sections.
-
-  Built from the same section merge the nav and the home page use, so it lists
-  exactly what a reader can reach and cannot drift out of date.
-*/ -}}
 # {{ site.Title }}
 
 > {{ site.Params.description }}

@@ -1,11 +1,6 @@
 User-agent: *
 Allow: /
 
-# /reports/ holds two generated artefacts, each embedded in an iframe on the
-# article that frames it: hydro-quebec-outage.html on
-# /tech/hydro-quebec-outage-analysis/ and montreal-forecast-reliability.html on
-# /tech/montreal-forecast-reliability/. Neither has navigation of its own, and
-# neither is a page anyone should land on from search — the articles are.
 Disallow: /reports/
 
 Sitemap: https://ibraverse.ca/sitemap.xml

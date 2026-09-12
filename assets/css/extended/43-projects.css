@@ -5,7 +5,6 @@
   max-width:var(--container-content);
   margin:0 auto;
 }
-/* recipe in 20-components.css; only the extent is local */
 .project-timeline::before{top:var(--space-2);bottom:var(--space-4);}
 .project-period{
   position:relative;
@@ -16,7 +15,6 @@
   margin:0 0 var(--space-4);
   font-size:var(--t-caption);
 }
-
 
 .project-grid{
   display:grid;

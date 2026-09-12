@@ -1,142 +1,48 @@
-# Ibraverse — Brand Package
+# Ibraverse — Brand Kit
 
-**Editorial field notes.** A quietly confident print magazine for honest, first-person reviews —
-hikes, restaurants, spas & stays, events, city walks — plus the daily *Operating Protocol*.
-Warm paper, ink-black type, **one rust accent**, a compass mark. This package establishes the
-Operating Protocol look across every surface, vector-only and production-ready.
+Templates and guides for everything made **outside** the site: social posts, video covers, channel
+art. The site's own colours, type and components are defined in code and documented in
+[`../brand-guidelines.md`](../brand-guidelines.md); where this kit and that file disagree, that file
+wins.
 
-**Version 1.0** · All SVG / HTML / CSS · sRGB · `‹PHOTO›` slots are placeholders, never faked.
+All artwork is SVG, sRGB, and uses the live palette: paper `#faf9f6`, ink `#181715`, ink-soft
+`#4a4843`, ink-mute `#6e6c65`, rule `#d9d6cb`, one accent `#a8431a`. `‹PHOTO›` slots are placeholders,
+never faked.
 
----
-
-## The hook (on every asset, reproducible by rule)
+## The hook, on every asset
 
 1. **Compass-aperture mark** — concentric circles r18 / r11 / r3-filled + 4 N/S/E/W ticks, 1.6 stroke, round caps.
-2. **Eyebrow** — `FIELD NOTE № {nnn} · {CATEGORY} · {PLACE}` · JetBrains Mono, uppercase, 0.12em · dots = accent.
-3. **One accent per asset**, chosen by category — used only on the mark, the `·` dots, the category bar, and links.
-4. **Layout DNA** — mark top-left → eyebrow → oversized serif title → photo fills the rest → thin category bar.
+2. **Eyebrow** — `FIELD NOTE № {nnn} · {CATEGORY} · {PLACE}` · JetBrains Mono, uppercase, 0.12em · dots in the accent.
+3. **One accent** — only on the mark, the `·` dots, the bottom bar, and links. Category is carried by the eyebrow text, not by colour.
+4. **Layout** — mark top-left → eyebrow → oversized serif title → photo fills the rest → thin accent bar.
 
----
-
-## Quick start
-
-1. **Tokens** → drop `06-web/tokens.css` into the repo (variable names already match `protocol.css`:
-   `--bg`, `--ink`, `--accent`, …). Or import `03-color/design-tokens.json` (W3C format) into your tool.
-2. **Theme** → `:root` is light; add `data-theme="dark"` for dark. Both are first-class.
-3. **Accent** → one colour site-wide (`--accent`). There is no per-category swap;
-   category is carried by the eyebrow text and badge icon, not by hue.
-   Only the accent changes.
-4. **Fonts** → Instrument Serif (display) · Inter Tight 400/500/600 (body/UI) · JetBrains Mono 400/500 (data).
-5. **See it all** → open `07-proofs/contact-sheet.html` (every component, 5 categories, light + dark).
-
----
+Fonts: Instrument Serif (display) · Inter Tight 400/500/600 (body) · JetBrains Mono 400/500 (data).
 
 ## What's inside
 
-### `01-foundations/`
-| File | What |
+| Folder | Files |
 |---|---|
-| `brand-guidelines.md` | The idea, the hook, the quality bar, how the system extends |
-| `color.md` · `swatches.svg` | Full palette, hex/RGB/HSL, computed WCAG pairings, new-hue rule |
-| `type.md` · `specimen.html` | Type scale (desktop/tablet/mobile), the eyebrow, live specimen |
-| `spacing-grid.md` | 8pt scale, containers, 12-col grid, safe-zones, radii, shadows |
-| `voice-tone.md` | Persona, do/don't, eyebrow grammar, 5-beat reel, headlines per category |
-| `photography.md` | Natural-light direction, crops, the 14px frame, treatment, `‹PHOTO›` |
-| `motion.md` | Duration/easing tokens, link/play-button/reveal micro-interactions |
+| `01-guides/` | `photography.md` (look, crops, frame, grade) · `voice-tone.md` (persona, eyebrow grammar, captions, 5-beat reel, headlines, verdict) |
+| `02-logo/` | `mark.svg` · `mark-circle.svg` · `wordmark-horizontal.svg` · `lockup-stacked.svg` · `favicon-16.svg` · `favicon-32.svg` · `app-icon-180.svg` · `app-icon-512.svg` · `mark-mono-ink.svg` · `mark-mono-paper.svg` · `clearspace-minsize.svg` · `misuse.svg` |
+| `03-components/` | `cover-1600x900.svg` · `cover-1600x2000.svg` · `social-9x16.svg` · `ig-4x5.svg` · `ig-1x1.svg` · `story-9x16.svg` · `reel-endcard.svg` · `og-1200x630.svg` · `carousel-1.svg` … `carousel-3.svg` |
+| `04-channels/` | `avatar.svg` (reads at 32px) · `youtube-banner-2560x1440.svg` (title-safe 1546×423) |
 
-### `02-logo/`
-`mark.svg` · `mark-circle.svg` · `wordmark-horizontal.svg` · `lockup-stacked.svg` ·
-`favicon-16.svg` · `favicon-32.svg` · `app-icon-180.svg` · `app-icon-512.svg` ·
-`mark-mono-ink.svg` · `mark-mono-paper.svg` · `clearspace-minsize.svg` · `misuse.svg`
-> Clear space **= the outer ring radius (X)**. Min size: 24px digital (full mark), 16px favicon
-> (simplified, no inner ring). Recolor only by swapping the single accent.
-
-### `03-color/`
-`tokens.css` (color + category system, protocol var names) · `design-tokens.json` (W3C) ·
-`category-accents.svg` (the 5 hues + line icons — trail, fork, steam, ticket, pin).
-
-### `04-components/`  *(canonical = restaurant master, light)*
-`cover-1600x900.svg` · `cover-1600x2000.svg` · `social-9x16.svg` · `ig-4x5.svg` · `ig-1x1.svg` ·
-`story-9x16.svg` · `reel-endcard.svg` · `og-1200x630.svg` · `carousel-1/2/3.svg` ·
-**`web-ui-kit.html`** (live: theme + category switch — header, eyebrow, badge, recs, verdict, buttons, links, tags, footer).
-
-### `05-channels/`
-`avatar.svg` (accent disc + knockout mark; reads at 32px) · `youtube-banner-2560x1440.svg` (title-safe 1546×423).
-
-### `06-web/`
-`tokens.css` (full repo drop-in: color + space + type + motion) · `adventures-brand.css`
-(PaperMod single.html extensions) · `reels.css` (the one-row click-to-load reels shortcode) ·
-`hugo-partial.html` (front-matter + header/verdict/icon partials + `reels` shortcode + JS).
-
-### `07-proofs/`
-`contact-sheet.html` — **the master board**, every component × 5 categories × light/dark, plus safe-zones.
-`proof-restaurant.svg` · `proof-hike.svg` · `proof-spa.svg` · `proof-event.svg` · `proof-city.svg`
-(cover + social + end-card, light & dark — proving only accent + eyebrow + photo change).
-
----
-
-## Color & accessibility (computed WCAG 2.1)
-
-| | Light | Dark |
-|---|---|---|
-| Paper / bg | `#faf9f6` | `#14130f` |
-| Ink (AAA) | `#181715` · 17.0:1 | `#ece8dc` · 15.2:1 |
-| Ink-soft (AAA) | `#4a4843` · 8.68:1 | `#b8b3a2` · 8.86:1 |
-| Rule | `#d9d6cb` | `#2c2a23` |
-
-**Category accents** (light on paper · dark on bg): Restaurant `#a8431a` 5.73 / `#d97757` 5.95 ·
-Hike `#3f6b3a` 5.91 / `#5d8a52` 4.62 · Spa `#2f6b6b` 5.80 / `#4f9a9a` 5.68 ·
-Event `#6b3a5d` 8.35 / `#9a5d86` **3.79** · City `#3a5a6b` 6.99 / `#5d86a0` 4.76.
-
-> **Two flags, both fixed.** ① `ink-mute` (3.41/4.46:1) is for **captions/meta only**, never body —
-> use `ink-soft`/`ink` for copy. ② **Event's dark accent (3.79:1)** passes for large text / the
-> category bar / dots, but not normal inline links on dark — so **links on dark are always underlined**
-> (the underline is the affordance). All five *light* accents clear AA on paper without caveat.
-
----
+Clear space around the mark = its outer ring radius. Minimum size: 24px (full mark), 16px (favicon,
+no inner ring).
 
 ## Export specs
 
-| Asset | Size (px) | Format | Notes |
-|---|---|---|---|
-| Article cover (wide / tall) | 1600×900 · 1600×2000 | SVG → PNG/JPG | sRGB · replace `‹PHOTO›` with graded photo at 14px frame |
-| Social / reel thumb | 1080×1920 | SVG → PNG | center-80% safe |
-| IG post | 1080×1350 · 1080×1080 | SVG → PNG/JPG | 64px safe |
-| Story | 1080×1920 | SVG → PNG | UI-safe 250 top / 320 bottom |
-| Reel end-card | 1080×1920 | SVG → PNG | — |
-| OG / share | 1200×630 | SVG → PNG | 64px safe |
-| Carousel | 1080×1350 ×3 | SVG → PNG | hook · proof · verdict+CTA |
-| Avatar | 512 → 180/32 | SVG → PNG | bold mark, reads tiny |
-| YouTube banner | 2560×1440 | SVG → PNG | title-safe 1546×423 |
-| Favicon / app icon | 16 · 32 · 180 · 512 | SVG → ICO/PNG | 16 = simplified mark |
+| Asset | Size (px) | Notes |
+|---|---|---|
+| Article cover (wide / tall) | 1600×900 · 1600×2000 | replace `‹PHOTO›` with the graded photo |
+| Social / reel thumb | 1080×1920 | centre-80% safe |
+| IG post | 1080×1350 · 1080×1080 | 64px safe |
+| Story | 1080×1920 | UI-safe 250 top / 320 bottom |
+| Reel end-card | 1080×1920 | — |
+| Carousel | 1080×1350 ×3 | hook · proof · verdict + CTA |
+| Avatar | 512 → 180 / 32 | bold mark |
+| YouTube banner | 2560×1440 | title-safe 1546×423 |
 
-All artwork is vector and resolution-independent; rasterize at **2× the target** for crisp social.
-Standalone SVGs reference the three families by name — install them (or embed) for exact type;
-the HTML files (`contact-sheet`, `web-ui-kit`, `specimen`) load the webfonts and render pixel-true.
-
----
-
-## Figma import structure
-
-Create a page **“Ibraverse / Brand”** with frames named to match the files, grouped:
-`Logo / mark`, `Logo / wordmark-horizontal`, `Logo / lockup-stacked`, `Logo / clearspace`, `Logo / misuse`;
-`Color / swatches`, `Color / category-accents`;
-`Type / specimen`;
-`Component / cover-1600x900`, `…/cover-1600x2000`, `…/social-9x16`, `…/ig-4x5`, `…/ig-1x1`, `…/story-9x16`,
-`…/reel-endcard`, `…/og-1200x630`, `…/carousel-1..3`;
-`Channel / avatar`, `Channel / youtube-banner`;
-`Proof / restaurant`, `…/hike`, `…/spa`, `…/event`, `…/city`.
-Drop each SVG into its frame, set fonts to Instrument Serif / Inter Tight / JetBrains Mono, and
-turn the accent into a Figma variable with a mode per category.
-
----
-
-## The rules, condensed
-
-- One accent per asset. Accent only on mark · `·` dots · category bar · links.
-- No font or color outside the tokens. Two surface levels max (paper→alt / bg→alt).
-- Everything on the 8pt grid. Optically center the mark. Balance the serif title (3–7 words).
-- Body text ≥ AA on its background. Photos are real; `‹PHOTO›` is a placeholder.
-- Every review carries **one genuine con**. The same recognizable series, whatever the subject.
-
-*Built on the Operating Protocol · ibraverse.ca · @ibraverse · © 2026 Ibraverse*
+Rasterize at 2× the target size. The SVGs name the fonts but don't embed them — install the three
+families before exporting. The site's Open Graph cards are not made here: they come from
+`scripts/og-cards.html` via `scripts/gen-og-cards.py`.

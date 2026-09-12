@@ -8,9 +8,6 @@
   {{- with site.Params.profileMode.bigPicture }}<p class="author-card__line">{{ . }}</p>{{ end }}
   <p class="author-card__links">
     <a href="{{ .RelPermalink }}">{{ i18n "author_resume" | default "The whole career →" }}</a>
-    {{- /* On a project page section-nav already offers "Back to Projects"
-           directly below this card, so linking it again here gave two adjacent
-           links to one destination with different labels and opposite arrows. */ -}}
     {{- if ne $.Section "projects" }}
     {{- with site.GetPage "/projects" }}
     <a href="{{ .RelPermalink }}">{{ i18n "author_projects" | default "Everything built →" }}</a>
