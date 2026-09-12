@@ -1,12 +1,12 @@
 ---
-title: "{{ replace .Name "-" " " | title }}"
+title: "{{ replace .File.ContentBaseName `-` ` ` | title }}"
 date: {{ .Date }}
 draft: true
 
 # --- brand chrome: everything below renders automatically, see
 # --- docs/projects-playbook.md. Do not hand-write the eyebrow or the chips.
 projectNo:                     # stable, never reused, never renumbered
-domain: "saas"                 # saas | mobile | data | infra  -> sets the accent
+domain: "saas"                 # saas | mobile | data | infra  -> eyebrow label
 status: "active"               # shipped | active | prototype | archived
 pitch: ""                      # ONE line a non-engineer understands
 stack: []                      # ["Flutter", "Firebase", …] — first 4 show on the card

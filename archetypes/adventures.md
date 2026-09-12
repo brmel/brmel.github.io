@@ -8,8 +8,8 @@ cover:
     image: "cover.jpg"
     alt: ""
     relative: true
-# --- field note: drives the eyebrow, accent, verdict, and reels ---
-category: "restaurant"   # restaurant | hike | spa | event | city → sets the accent
+# --- field note: drives the eyebrow, verdict, and reels ---
+category: "restaurant"   # restaurant | hike | spa | event | city → eyebrow label + badge icon
 fieldNote: 0             # → № 000 in the eyebrow
 place: ""                # → eyebrow place, e.g. "Old Montréal"
 rating: 0                # → verdict, out of 5
