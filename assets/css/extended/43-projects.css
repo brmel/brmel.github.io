@@ -5,13 +5,8 @@
   max-width:var(--container-content);
   margin:0 auto;
 }
-.project-timeline::before{
-  content:'';position:absolute;
-  top:var(--space-2);bottom:var(--space-4);
-  inset-inline-start:6px;width:var(--tl-rail);
-  background:linear-gradient(to bottom,
-    transparent, var(--rule) 6%, var(--rule) 94%, transparent);
-}
+/* recipe in 20-components.css; only the extent is local */
+.project-timeline::before{top:var(--space-2);bottom:var(--space-4);}
 .project-period{
   position:relative;
   padding-inline-start:var(--tl-gutter);
@@ -21,14 +16,7 @@
   margin:0 0 var(--space-4);
   font-size:var(--t-caption);
 }
-.project-period__year::before{
-  content:'';position:absolute;
-  inset-inline-start:calc(6px - (var(--tl-dot) / 2) + (var(--tl-rail) / 2));
-  width:var(--tl-dot);height:var(--tl-dot);
-  border-radius:var(--radius-pill);
-  background:var(--bg);border:2px solid var(--accent);
-  box-sizing:border-box;
-}
+
 
 .project-grid{
   display:grid;

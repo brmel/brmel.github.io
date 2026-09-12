@@ -9,15 +9,8 @@
   padding:var(--space-4) 0 var(--space-2);
 }
 
-.timeline-container::before{
-  content:'';
-  position:absolute;
-  top:var(--space-5); bottom:var(--space-5);
-  inset-inline-start:6px;
-  width:var(--tl-rail);
-  background:linear-gradient(to bottom,
-    transparent, var(--rule) 6%, var(--rule) 94%, transparent);
-}
+/* recipe in 20-components.css; only the extent is local */
+.timeline-container::before{top:var(--space-5); bottom:var(--space-5);}
 
 .timeline-item{
   position:relative;
@@ -26,17 +19,7 @@
 }
 .timeline-item:last-child{margin-bottom:0;}
 
-.timeline-marker{
-  position:absolute;
-  inset-inline-start:calc(6px - (var(--tl-dot) / 2) + (var(--tl-rail) / 2));
-  top:var(--space-6);
-  width:var(--tl-dot); height:var(--tl-dot);
-  border-radius:var(--radius-pill);
-  background:var(--bg);
-  border:2px solid var(--accent);
-  box-sizing:border-box;
-  z-index:1;
-}
+.timeline-marker{top:var(--space-6); z-index:1;}
 
 .timeline-content{padding:var(--space-5);}
 .timeline-date{margin:0 0 var(--space-2);}

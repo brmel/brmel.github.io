@@ -48,13 +48,9 @@
   text-align:start;
 }
 .post-content figure img{
-
-  width:auto;height:auto;max-width:100%;
+  /* Frame, radius, shadow and ground come from .u-frame in 20-components.css. */
+  width:auto;height:auto;
   margin-inline:0;
-  border:var(--hairline) solid var(--rule);
-  border-radius:var(--radius-sm);
-  box-shadow:var(--shadow-photo);
-  background:var(--bg-alt);
 }
 .post-content figure > figcaption,
 .post-content figure > figcaption > p{

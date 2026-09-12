@@ -90,14 +90,27 @@ a.u-chip:hover{border-color:var(--accent);color:var(--accent);}
   background:#fff;
 }
 
-.u-frame{
-  border:var(--hairline) solid var(--rule);
+/* The frame around any content image. Article figures restated every one of
+   these properties in 50-content.css, so a change had to be made twice and the
+   two had already drifted; they share this now and keep only their own layout.
+
+   The border is a mid tone rather than --rule because the images sit at both
+   luminance extremes: of 61 sampled, 36 average >180/255 (bright UI captures,
+   glaring on the ~26 dark page) and 13 average <100 (near-black on the ~249
+   light page). --rule tracks the theme — ~213 light, ~46 dark — so it is always
+   close to the page and never to the image. --ink-mute is ~108/~131 in the two
+   themes, so a softened mix of it separates a white screenshot and a black one
+   alike. The pixels are never altered: these are technical screenshots and
+   dimming them would misrepresent the tool on display. */
+.u-frame,
+.post-content figure img{
+  border:var(--hairline) solid color-mix(in srgb, var(--ink-mute) 55%, transparent);
   border-radius:var(--radius-sm);
   box-shadow:var(--shadow-photo);
   background:var(--bg-alt);
-  display:block;
   max-width:100%;
 }
+.u-frame{display:block;}
 
 .empty-section{
   text-align:center;
@@ -157,3 +170,31 @@ a.u-chip:hover{border-color:var(--accent);color:var(--accent);}
   border-bottom:var(--hairline) solid var(--rule);
 }
 .gmap-link a:hover{border-color:var(--accent);color:var(--accent);}
+
+/* ── Timeline rail and dot ───────────────────────────────────────────────────
+   The résumé career timeline and the projects index draw the same thing: a
+   vertical hairline that fades at both ends, with an accent ring sitting on it.
+   Both files had their own copy, including four hand-written 6px offsets that
+   have to agree or the ring drifts off the rail. The offset is now
+   --tl-rail-inset and the recipe lives here; each section sets only its own
+   top/bottom, because those depend on its surrounding spacing. */
+.timeline-container::before,
+.project-timeline::before{
+  content:'';
+  position:absolute;
+  inset-inline-start:var(--tl-rail-inset);
+  width:var(--tl-rail);
+  background:linear-gradient(to bottom,
+    transparent, var(--rule) 6%, var(--rule) 94%, transparent);
+}
+.timeline-marker,
+.project-period__year::before{
+  content:'';
+  position:absolute;
+  inset-inline-start:calc(var(--tl-rail-inset) - (var(--tl-dot) / 2) + (var(--tl-rail) / 2));
+  width:var(--tl-dot); height:var(--tl-dot);
+  border-radius:var(--radius-pill);
+  background:var(--bg);
+  border:2px solid var(--accent);
+  box-sizing:border-box;
+}
