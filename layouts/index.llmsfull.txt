@@ -2,9 +2,9 @@
   llms-full.txt — every page on the site as plain text, in one file, so an agent
   can read the corpus without crawling it. Same page set as llms.txt.
 
-  The Hydro-Québec report is a 1.4 MB interactive artefact in an iframe; its
-  prose is a caption, so it appears here as a title and a link rather than a
-  transcript.
+  The two report articles frame a large interactive artefact in an iframe. The
+  iframe cannot be transcribed, but each article now carries its findings in
+  prose, and that prose is included here like any other page.
 */ -}}
 # {{ site.Title }} — full text
 # {{ site.BaseURL }}

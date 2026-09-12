@@ -4,7 +4,7 @@
 The scripts here are small and defensive: they return early when an element is
 missing. That is the right behaviour and it is also why a renamed class fails
 silently — the feature simply stops, with no console error and no build error.
-The timeline lightbox and the comments loader both hang off exactly this.
+The timeline lightbox and the adventures filter both hang off exactly this.
 
 Rule: for each script, the pages that load it must contain every id and class
 it queries.
