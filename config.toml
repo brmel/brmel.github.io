@@ -189,6 +189,14 @@ enableEmoji = true
   # cannot express plural categories, so fixing it means either converting
   # i18n/ar.yaml to list form or patching the vendored theme.
   ShowReadingTime = true
+
+  # Collapsed by default: the longest article has 15 headings and an open list
+  # would push the opening paragraph off the screen. The theme only emits a TOC
+  # when the article has at least one heading, and none of ours has exactly one,
+  # so no page gets a single-item list. .toc a is already covered by the
+  # tap-target rule in 30-chrome.css.
+  ShowToc = true
+  TocOpen = false
   ShowShareButtons = true
   ShowPostNavLinks = false
   ShowBreadCrumbs = true

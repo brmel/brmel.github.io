@@ -1,0 +1,31 @@
+/* Table of contents.
+
+   PaperMod ships its own card shape — 8px radius, 7px padding, an 18px
+   body-font summary and disc bullets — and it renders directly above the series
+   card, where the two read as two different designs. This brings it onto the
+   same card and eyebrow conventions .series uses in 30-chrome.css. Colours need
+   no work: the theme's own rules resolve through the tokens mapped in
+   10-base.css. Selectors match the theme's specificity where it sets a
+   competing value, which is why summary is addressed as `.toc details summary`.
+
+   Its own file rather than appended to 30-chrome.css: that file was at 240 of
+   its 260-line budget, and the CSS gate asks for a split by concern. The
+   standalone layout renders no TOC, so this is not part of that bundle. */
+
+.toc{
+  max-width:var(--container-text);
+  margin:0 auto var(--space-6);
+  padding:var(--space-4) var(--space-5);
+  border-radius:var(--radius-md);
+}
+.toc details summary{
+  font-family:var(--font-label);font-size:var(--t-eyebrow);
+  letter-spacing:var(--track-eyebrow);text-transform:uppercase;color:var(--ink-mute);
+  margin-inline-start:0;
+}
+.toc .inner{margin:var(--space-3) 0 0;}
+.toc ul{list-style:none;margin:0;padding-inline-start:0;}
+.toc ul ul{padding-inline-start:var(--space-4);}
+.toc li{color:var(--ink-soft);line-height:1.6;}
+.toc a{color:var(--ink-soft);text-decoration:none;}
+.toc a:hover{color:var(--accent);box-shadow:none;}
