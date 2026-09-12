@@ -5,7 +5,7 @@
   --font-mono:"JetBrains Mono","IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
 
   --font-label:var(--font-mono);
-  --serif:var(--font-serif); --sans:var(--font-sans); --mono:var(--font-mono);
+  --sans:var(--font-sans); --mono:var(--font-mono);
 
   --bg:#faf9f6; --bg-alt:#f2f0e9; --ink:#181715; --ink-soft:#4a4843;
   --ink-mute:#6e6c65; --rule:#d9d6cb; --rule-soft:#e8e5da;
@@ -13,14 +13,13 @@
 
   --accent:#a8431a; --accent-soft:#c96b3e;
 
-  --t-display-xl:5.5rem; --t-display-l:4rem; --t-display-m:3rem; --t-display-s:2.125rem;
+  --t-display-l:4rem; --t-display-m:3rem; --t-display-s:2.125rem;
   --t-heading:1.5rem; --t-subhead:1.25rem; --t-body-l:1.125rem; --t-body:1rem;
   --t-caption:0.8125rem; --t-eyebrow:0.75rem; --t-data:0.8125rem;
 
   --t-micro:0.6875rem;
-  --lh-display:1.0; --lh-body:1.6; --track-eyebrow:0.12em;
+  --lh-body:1.6; --track-eyebrow:0.12em;
 
-  --fl-display-xl:clamp(2.75rem,1.6rem + 5.8vw,5.5rem);
   --fl-display-l:clamp(2.25rem,1.5rem + 3.8vw,4rem);
   --fl-display-m:clamp(1.875rem,1.35rem + 2.6vw,3rem);
 
@@ -61,8 +60,6 @@
 
   --dur-1:120ms; --dur-2:200ms; --dur-3:320ms; --dur-4:480ms; --dur-5:640ms;
   --ease-standard:cubic-bezier(.2,0,0,1);
-  --ease-out:cubic-bezier(.16,1,.3,1);
-  --ease-in-out:cubic-bezier(.65,0,.35,1);
   --ease-spring:cubic-bezier(.34,1.36,.64,1);
 }
 

@@ -20,8 +20,6 @@ ease in like a page settling, not like a UI showing off. If a motion draws atten
 | Token | cubic-bezier | Feel |
 |---|---|---|
 | `ease-standard` | `cubic-bezier(0.2, 0, 0, 1)` | default — settle in |
-| `ease-out` | `cubic-bezier(0.16, 1, 0.3, 1)` | reveals, entrances (expo-out) |
-| `ease-in-out` | `cubic-bezier(0.65, 0, 0.35, 1)` | moves that leave and return |
 | `ease-spring` | `cubic-bezier(0.34, 1.36, 0.64, 1)` | the play-button only — one gentle overshoot |
 
 ### Distance
@@ -36,8 +34,6 @@ ease in like a page settling, not like a UI showing off. If a motion draws atten
 :root{
   --dur-1:120ms; --dur-2:200ms; --dur-3:320ms; --dur-4:480ms; --dur-5:640ms;
   --ease-standard:cubic-bezier(.2,0,0,1);
-  --ease-out:cubic-bezier(.16,1,.3,1);
-  --ease-in-out:cubic-bezier(.65,0,.35,1);
   --ease-spring:cubic-bezier(.34,1.36,.64,1);
 }
 ```
@@ -77,12 +73,12 @@ a.link:hover{background-size:100% 1.5px;color:var(--accent-soft)}
 
 ### Page-load reveal
 - Sections rise on enter: `opacity 0→1` + `reveal-rise` (translateY 12px→0) over `--dur-4` with
-  `ease-out`, **staggered 60ms** per block (mark → eyebrow → title → photo → body). The compass mark
+  `ease-standard`, **staggered 60ms** per block (mark → eyebrow → title → photo → body). The compass mark
   may rotate its ticks in by 8° as it settles — subtle, once, never looping.
 - Driven by `IntersectionObserver`; runs once per element.
 
 ```css
-.reveal{opacity:0;transform:translateY(12px);transition:opacity var(--dur-4) var(--ease-out),transform var(--dur-4) var(--ease-out)}
+.reveal{opacity:0;transform:translateY(12px);transition:opacity var(--dur-4) var(--ease-standard),transform var(--dur-4) var(--ease-standard)}
 .reveal.in{opacity:1;transform:none}
 /* stagger via inline --i: transition-delay:calc(var(--i)*60ms) */
 ```
@@ -91,7 +87,7 @@ a.link:hover{background-size:100% 1.5px;color:var(--accent-soft)}
 
 ## 3. The compass mark, in motion
 
-- **Load:** ticks settle by rotating 8° → 0 once, over `--dur-4`, `ease-out`. The rings fade in. Never
+- **Load:** ticks settle by rotating 8° → 0 once, over `--dur-4`, `ease-standard`. The rings fade in. Never
   spins fully, never loops.
 - **Hover (interactive mark / logo link):** the center dot pulses scale `1 → 1.15 → 1` over `--dur-3`.
 - **Loading state:** if ever needed, the outer ring becomes a 0.75-turn `stroke-dasharray` spinner at
