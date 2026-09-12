@@ -51,6 +51,11 @@ enableGitInfo = true
       name = "Thoughts"
       url = "/thoughts/"
       weight = 6
+    [[languages.en.menu.main]]
+      identifier = "search"
+      name = "Search"
+      url = "/search/"
+      weight = 7
 
   [languages.fr]
     languageName = "Français"
@@ -98,6 +103,11 @@ enableGitInfo = true
       name = "Pensées"
       url = "/thoughts/"
       weight = 6
+    [[languages.fr.menu.main]]
+      identifier = "search"
+      name = "Recherche"
+      url = "/search/"
+      weight = 7
 
   [languages.ar]
     languageName = "العربية"
@@ -146,6 +156,11 @@ enableGitInfo = true
       name = "أفكار"
       url = "/thoughts/"
       weight = 6
+    [[languages.ar.menu.main]]
+      identifier = "search"
+      name = "بحث"
+      url = "/search/"
+      weight = 7
 
 [pagination]
   pagerSize = 10
@@ -309,7 +324,9 @@ enableEmoji = true
   isPlainText = true
 
 [outputs]
-  home = ["HTML", "RSS", "LLMS", "LLMSFULL"]
+  # JSON is the search index; fastsearch.js fetches ../index.json, which resolves
+  # to /index.json, /fr/index.json and /ar/index.json respectively.
+  home = ["HTML", "RSS", "JSON", "LLMS", "LLMSFULL"]
   page = ["HTML"]
   section = ["HTML", "RSS"]
 
