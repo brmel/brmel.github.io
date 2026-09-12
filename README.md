@@ -56,6 +56,18 @@ that had already shipped.
 | `check-rtl.py` | layout mirrors from logical properties alone — no physical `left`/`right` |
 | `check-js.py` | every selector a script reaches for exists on the pages that load it |
 
+## Generators
+
+Run by hand, not by the build. Each writes into the repo; commit the result.
+
+| Script | Writes | How |
+|---|---|---|
+| `scripts/gen-favicons.py` | `static/favicon.{ico,16,32,192,512}`, `apple-touch-icon.png` | serve `scripts/favicon-src.html`, screenshot the mark to `mark-512.png`, then `python3 scripts/gen-favicons.py mark-512.png` |
+| `scripts/gen-og-cards.py` | `static/og/*.jpg` | open `scripts/og-cards.html` at width 1200, full-page screenshot to `og-strip.png`, then `python3 scripts/gen-og-cards.py og-strip.png` |
+
+Both need Pillow. The card template uses the self-hosted faces from `/fonts`, so
+serve it from the site root rather than opening the file directly.
+
 ## Conventions
 
 - **Colours live in `assets/css/extended/00-tokens.css` and nowhere else.** The
