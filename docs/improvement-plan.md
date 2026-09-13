@@ -196,6 +196,19 @@ Lighthouse 12, 12 pages × mobile/desktop:
 
 ---
 
+## 4b. Result — 2026-09-13, `main` at `f8a6de5`, live site
+
+| Check | Baseline (§4) | Now |
+|---|---|---|
+| Lighthouse, 24 runs | perf 97–100, a11y 96 on the deep dive, SEO 66 on search (noindex) | 100 everywhere in every category except search SEO (noindex by design); deep dive mobile 97 in the batch, 100 in three reruns (LCP 1.5 s) |
+| Home mobile LCP | 2.2 s | 1.2 s |
+| axe-core, 60 runs, scrolled | 2 rules / 140 nodes, plus back-to-top outside a landmark | 0 |
+| Nu HTML Checker, site pages | 19 errors | 0 (gate) |
+| Links | 398, 0 broken | 411, 0 broken |
+| Tech list image bytes (3× phone) | 517 KB | 39 KB |
+| Sitemap | 79 URLs, 37 noindex | 42 URLs = 42 indexable pages (gate) |
+| Only open item | — | H1b: cache lifetimes, brotli, HSTS need a proxy (D1) |
+
 ## 5. Backlog
 
 Columns: **Where** is the starting point, **Done when** is the acceptance test, **Verify** is the
@@ -455,4 +468,4 @@ Needs decision D1 before starting.
 | A2 | `e0c670d` | agents had llms-full.txt (plain text, all pages) only | 14 articles also served as `index.md` via a Hugo output format; figures link their WebP renditions; gmap, reportframe, youtube render as links; `rel=alternate type=text/markdown` in every article head; noted in llms.txt | no shortcode or unintended HTML left in any .md (one inline SVG diagram kept); no original images published |
 | U7 | `8f59867` | 5-day Montréal forecast report; article and MeteoData page quoted its figures | 30-day report (14 Aug – 13 Sep); article and project figures rewritten from it; report follows the site theme and hides its own toggle; new cover | all 39 figures traced to the report; frame centred, sized to content, theme synced and toggles live at 390/1440 × light/dark; og and list thumbnail regenerated |
 | A3 | `0068359` | H2 headings up to 148 characters; sections mixed prose, H3 and non-link bullets; the reference parser raised on it | details before the first H2 (no headings), H2 sections are link lists, references under Optional | `llms_txt.parse_llms_file` parses it: Projects 10, Tech 9, Adventures 2, Thoughts 1, Optional 7 |
-| H1a | this commit | no CSP | meta CSP on every page | 17 page types, search, resume video lightbox, inline YouTube, report frame with theme sync: 0 violations (favicons only flag on localhost, where their absolute URL is another origin) |
+| H1a | `f8a6de5` | no CSP | meta CSP on every page | 17 page types, search, resume video lightbox, inline YouTube, report frame with theme sync: 0 violations (favicons only flag on localhost, where their absolute URL is another origin) |
