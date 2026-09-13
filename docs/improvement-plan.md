@@ -344,7 +344,7 @@ Moves first, so every later change lands in its final place.
 
 ### Phase 4 — SEO
 
-- [ ] **S1 · Sitemap lists only indexable pages.** Skip pages with `robotsNoIndex`.
+- [x] **S1 · Sitemap lists only indexable pages.** Skip pages with `robotsNoIndex`.
   - *Where:* `layouts/sitemap.xml`.
   - *Done when:* the 35 tag pages and `/search/` are gone from the sitemap, and every URL left
     returns 200 without `noindex`.
@@ -442,3 +442,4 @@ Needs decision D1 before starting.
 | P3 | `81fb8c6` | LCP image lazy-loaded on the barcode article (EN/AR, 390 and 1440) and project galleries at 1440 | first figure shortcode and first gallery image `fetchpriority=high`; gallery images eager (≤3, one row on desktop) | LCP element measured on 13 pages × 2 widths: no lazy LCP image, at most one high-priority image per page |
 | P4 | `66547ae` | 14 @font-face / 14 files; serif italic declared and shipped, rendered nowhere except one emphasised word on /projects/leorra/ | 12 / 12 | clean-context audit of 14 pages: each loads only the faces it renders (3–6 files, 89–207 KB), both preloads are used by first paint, no 404 |
 | P5 | dropped | 11 KB gzip | — | within budget; a second bundle path costs more than it saves |
+| S1 | this commit | sitemap listed 35 `noindex` tag pages and /search/ | 42 URLs = the 42 indexable pages | every sitemap URL resolves to a page without `noindex`, and every indexable page is listed |
