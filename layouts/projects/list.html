@@ -24,18 +24,6 @@
 <div class="post-content projects-intro">{{ . }}</div>
 {{- end }}
 
-{{- with .Params.startHere }}
-<nav class="start-here" aria-label="{{ i18n "projects_start_here" | default "Start here" }}">
-  <span class="u-eyebrow start-here__label">{{ i18n "projects_start_here" | default "Start here" }}</span>
-  <ul class="start-here__list">
-    {{- range . }}
-    {{- with site.GetPage (printf "/projects/%s" .) }}
-    <li><a href="{{ .RelPermalink }}">{{ .Title }}</a> <span class="start-here__why">{{ .Params.startHereWhy }}</span></li>
-    {{- end }}
-    {{- end }}
-  </ul>
-</nav>
-{{- end }}
 
 {{- $projects := sort (partial "func/section-pages.html" .) "Params.projectNo" "asc" }}
 

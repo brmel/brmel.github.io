@@ -6,7 +6,6 @@ domain: "saas"
 status: "active"
 pitch: "Answers Algerian construction questions in Arabic, French or English, and shows the building rule behind each answer."
 description: "Answers Algerian construction questions in Arabic, French or English, and shows the building rule behind each answer."
-startHereWhy: "an assistant that has to prove where its answer came from"
 metrics:
   - value: "3 languages"
     label: "Arabic, French and English, answered from one corpus"

@@ -6,7 +6,6 @@ domain: "infra"
 status: "active"
 pitch: "A robot arm you drive from your browser, to test robotics code against real physics before touching hardware."
 description: "A robot arm you drive from your browser, to test robotics code against real physics before touching hardware."
-startHereWhy: "robotics algorithms tested against real physics, in C++"
 metrics:
   - value: "4 nodes"
     label: "vision, tracking, trajectory and control, swappable while running"

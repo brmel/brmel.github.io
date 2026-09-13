@@ -6,7 +6,6 @@ domain: "data"
 status: "shipped"
 pitch: "I recorded every power cut in Québec for two months, to see how often the power really returns when they say it will."
 description: "I recorded every power cut in Québec for two months, to see how often the power really returns when they say it will."
-startHereWhy: "two months of data I collected, and a number nobody publishes"
 metrics:
   - value: "56 days"
     label: "of the outage map, recorded every minute"
