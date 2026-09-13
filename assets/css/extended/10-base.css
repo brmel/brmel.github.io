@@ -13,6 +13,12 @@
   --nav-width:1280px;
 }
 
+.list{background:var(--theme);}
+.list:not(.dark)::-webkit-scrollbar-track{background:0 0;}
+.list:not(.dark)::-webkit-scrollbar-thumb{border-color:var(--theme);}
+@media (max-width:768px){:root{--gap:var(--space-5);}}
+@media (max-width:600px){:root{--gap:var(--space-4);}}
+
 body{font-family:var(--font-sans);}
 
 .post-content{font-size:var(--prose-size);}
