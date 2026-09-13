@@ -15,3 +15,4 @@ echo "▸ links, duplicates and controls"; python3 ./scripts/checks/check-pages.
 echo "▸ direction safety";       python3 ./scripts/checks/check-rtl.py
 echo "▸ script selectors";       python3 ./scripts/checks/check-js.py
 echo "▸ html validity";          python3 ./scripts/checks/check-html.py
+echo "▸ search metadata";        python3 ./scripts/checks/check-seo.py

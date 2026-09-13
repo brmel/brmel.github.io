@@ -57,6 +57,7 @@ that had already shipped.
 | `check-pages.py` | no destination linked twice, no self-link, no unnamed control; every internal link resolves and every page is reachable |
 | `check-rtl.py` | layout mirrors from logical properties alone — no physical `left`/`right` |
 | `check-js.py` | every selector a script reaches for exists on the pages that load it |
+| `check-seo.py` | descriptions 50–160 characters and unique per language, canonical and hreflang x-default on every indexable page, JSON-LD type per section, sitemap lists exactly the indexable pages |
 | `check-html.py` | every page except the generated reports is valid HTML (Nu HTML Checker, pinned; needs Java) |
 
 ## Audit
