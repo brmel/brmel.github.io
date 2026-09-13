@@ -221,7 +221,7 @@ that locks it, so `main` stays green.
 
 - [x] **K3 · Redundant RTL script.** `extend_head.html` set `dir="rtl"` from JavaScript on pages
   whose `<html>` already carries it from `baseof.html` and `standalone.html`.
-- [ ] **K4 · Unused `customCSS` / `customJS`.** Read by two templates, set by no page. Per-article
+- [x] **K4 · Unused `customCSS` / `customJS`.** Read by two templates, set by no page. Per-article
   CSS would also escape the CSS gate; styling belongs in the section stylesheet.
 - [ ] **K5 · Stale standalone scaffold.** `docs/standalone-layout.md` is a draft content file, not
   a doc: comments, Google Analytics (removed), inline `<style>` advice. Delete it and document
@@ -382,4 +382,5 @@ Needs decision D1 before starting.
 | R2 | `985449d` | 31 partials, 20 project-owned mixed with theme names at the root | root = PaperMod names only; 8 domain folders | build byte-identical (386 files); bundle gate now follows partial calls instead of a list that skipped missing files |
 | R3 | `ecec54e` | `MyPhoto.jpg` | `profile.jpg` | build identical apart from the name (diffed) |
 | R4 | dropped | — | — | trial diffed: 3 tag indexes fell back to the theme template |
-| K3 | this commit | inline script on 12 Arabic pages | none | only AR pages changed; dir=rtl, mirrored nav, no errors at 390/1440 × light/dark |
+| K3 | `81d75b2` | inline script on 12 Arabic pages | none | only AR pages changed; dir=rtl, mirrored nav, no errors at 390/1440 × light/dark |
+| K4 | this commit | 2 unused hooks, 17 template lines | 0 | build byte-identical; playbook points styling at 44-adventures.css |

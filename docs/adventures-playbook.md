@@ -198,8 +198,8 @@ Every adventure gets a map — it's the reason people save the article.
 ### 2.4 Other visuals (optional, on-brand)
 
 - A simple **at-a-glance box** at the top (cost, time, metro) helps skimmers.
-- Keep any custom styling in a scoped CSS asset via `customCSS` front matter —
-  **never inline `<style>`** (see the layer-separation rule the codebase enforces).
+- Styling goes in `assets/css/extended/44-adventures.css`, built from tokens —
+  **never inline `<style>`**, and never a per-article stylesheet the CSS gate can't see.
 
 ---
 

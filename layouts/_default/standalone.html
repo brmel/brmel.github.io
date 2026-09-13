@@ -32,8 +32,6 @@
   {{- $bundle := . | resources.Concat "assets/css/standalone-bundle.css" | minify | fingerprint }}
   <link rel="stylesheet" href="{{ $bundle.RelPermalink }}" integrity="{{ $bundle.Data.Integrity }}">
   {{- end }}
-  {{- range .Params.customCSS }}{{ with resources.Get . }}{{ $c := . | minify | fingerprint }}
-  <link rel="stylesheet" href="{{ $c.RelPermalink }}" integrity="{{ $c.Data.Integrity }}">{{ end }}{{ end }}
 
 </head>
 <body id="top">
@@ -81,7 +79,5 @@
       <span>© {{ now.Format "2006" }} {{ .Site.Title }}</span>
     </div>
   </footer>
-  {{- range .Params.customJS }}{{ with resources.Get . }}{{ $j := . | minify | fingerprint }}
-  <script defer src="{{ $j.RelPermalink }}" integrity="{{ $j.Data.Integrity }}"></script>{{ end }}{{ end }}
 </body>
 </html>

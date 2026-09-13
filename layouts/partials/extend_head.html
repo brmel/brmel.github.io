@@ -1,14 +1,2 @@
 {{- partial "head/fonts.html" . }}
-{{- range .Params.customCSS }}
-{{- with resources.Get . }}
-{{- $css := . | minify | fingerprint }}
-<link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
-{{- end }}
-{{- end }}
-{{- range .Params.customJS }}
-{{- with resources.Get . }}
-{{- $js := . | minify | fingerprint }}
-<script defer src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}"></script>
-{{- end }}
-{{- end }}
 {{- partial "head/schema.html" . }}
