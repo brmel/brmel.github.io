@@ -48,7 +48,7 @@ layouts/
       origin.html          series navigation + original-publication credit
       related-project.html the project card at the foot
     adventures/
-      header.html · verdict.html · category-icon.html
+      header.html · verdict.html
     home/
       career.html          the experience data, one line per period
       sections.html        section cards

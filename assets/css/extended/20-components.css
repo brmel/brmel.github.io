@@ -64,7 +64,6 @@ a.u-card:hover,
 
 a.u-chip:hover{border-color:var(--accent);color:var(--accent);}
 
-.u-chip--accent{color:var(--accent);border-color:var(--accent);text-transform:uppercase;}
 
 .entry-lang{
   margin:var(--space-2) 0 0;

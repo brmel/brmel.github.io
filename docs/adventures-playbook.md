@@ -43,8 +43,8 @@ archetype that scaffolds the structure.
 The **header eyebrow and Verdict block render automatically** from front
 matter (`category`, `fieldNote`, `place`, `rating`, `goBack`, `bestFor`, `con`). You write only the prose body — the brand
 chrome is layout-driven, so every article is consistent by construction.
-`category` (restaurant / hike / spa / event / city) sets the eyebrow label and
-the badge icon. It does **not** set a colour: the site has one accent.
+`category` (restaurant / hike / spa / event / city) sets the eyebrow label. It does
+**not** set a colour: the site has one accent.
 
 - **Adventures** = places & experiences (Montreal + travel). The video pulls
   views from YouTube/IG/TikTok back to the site.

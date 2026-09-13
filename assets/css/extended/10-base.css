@@ -38,11 +38,6 @@ body{font-family:var(--font-sans);}
 }
 code,kbd,samp,pre,tt{font-family:var(--font-mono);}
 
-.post-content a{
-  color:var(--accent);
-  text-decoration-color:color-mix(in srgb,var(--accent) 45%,transparent);
-}
-.post-content a:hover{color:var(--accent-soft);}
 .post-tags a:hover{border-color:var(--accent);color:var(--accent);}
 
 a:focus-visible,button:focus-visible,.toc summary:focus-visible,.top-link:focus-visible,#theme-toggle:focus-visible{
@@ -50,6 +45,7 @@ a:focus-visible,button:focus-visible,.toc summary:focus-visible,.top-link:focus-
 }
 
 .post-content a{
+  color:var(--accent);
   text-decoration:underline;
   text-decoration-thickness:1px;
   text-underline-offset:0.18em;

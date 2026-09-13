@@ -78,14 +78,15 @@
   margin:0 0 var(--space-5);
 }
 .post-single .post-meta{
+  display:block;
   font-family:var(--font-label);
   font-size:var(--t-data);
   letter-spacing:.03em;
   color:var(--ink-mute);
-  display:flex;gap:var(--space-4);flex-wrap:wrap;
   padding-bottom:var(--space-6);
   border-bottom:var(--hairline) solid var(--rule);
 }
+.post-single .post-meta b{color:var(--accent);font-weight:400;}
 
 .post-entry:has(.entry-cover){
   display:flex;

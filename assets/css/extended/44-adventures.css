@@ -20,47 +20,6 @@
   margin:0 0 var(--space-5);
 }
 
-.adventures .post-meta b{color:var(--ink-soft);font-weight:500}
-
-.adventures .adventures figure{margin:var(--space-7) 0;text-align:center}
-
-.adventures figure figcaption{
-  font-family:var(--font-sans);font-style:italic;font-size:var(--t-caption);
-  color:var(--ink-soft);margin-top:var(--space-3);
-}
-
-.adventures .post-content{
-  max-width:var(--container-text);
-  font-size:var(--t-body-l);
-  line-height:1.62;
-  color:var(--ink);
-  text-wrap:pretty;
-}
-.adventures .post-content h2{
-  font-family:var(--font-serif);font-weight:400;font-size:var(--t-display-s);
-  line-height:1.08;letter-spacing:-0.005em;margin:var(--space-8) 0 var(--space-4);
-}
-.adventures .post-content h3{
-  font-family:var(--font-sans);font-weight:600;font-size:var(--t-heading);
-  margin:var(--space-6) 0 var(--space-3);
-}
-.adventures .post-content a{
-  color:var(--accent);text-decoration:none;
-  background:linear-gradient(var(--accent),var(--accent)) no-repeat;
-  background-size:0% 1.5px;background-position:0 100%;
-  transition:background-size var(--dur-1) var(--ease-standard),color var(--dur-1);
-}
-.adventures .post-content a:hover{background-size:100% 1.5px;color:var(--accent-soft)}
-.dark .adventures .post-content a{background-size:100% 1.5px;text-underline-offset:2px}
-
-.adventures .post-content blockquote{
-  border-inline-start:var(--hairline-strong) solid var(--accent);
-  margin:var(--space-6) 0;padding:var(--space-2) 0 var(--space-2) var(--space-5);
-  font-family:var(--font-serif);font-size:var(--t-display-s);line-height:1.2;color:var(--ink-soft);
-}
-
-.cat-badge{font-weight:500;letter-spacing:.1em;}
-.cat-badge svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.7}
 
 .verdict{
   position:relative;border-radius:var(--radius-md);padding:var(--space-2) var(--space-6) var(--space-5);
