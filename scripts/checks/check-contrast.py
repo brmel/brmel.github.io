@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-import re, sys, os
+import glob, re, sys, os
 
 TOKENS = os.path.join(os.path.dirname(__file__), "..", "..",
                       "assets", "css", "extended", "00-tokens.css")
@@ -37,10 +37,30 @@ for theme, block in (("light", light_block), ("dark", dark_block)):
             if r < AA:
                 fails.append(f"{theme}: --{fg} ({t[fg]}) on {bgname} ({bg}) = {r:.2f}:1")
 
+THEME = os.path.join(os.path.dirname(__file__), "..", "..", "themes", "PaperMod", "assets", "css")
+EXT = os.path.join(os.path.dirname(__file__), "..", "..", "assets", "css", "extended")
+light_tokens = tokens(light_block)
+syntax = {cls: col for cls, col in re.findall(
+    r"\.chroma \.([\w-]+)\s*\{[^}]*?(?<![-\w])color:\s*(#[0-9a-fA-F]{6})",
+    open(os.path.join(THEME, "includes", "chroma-styles.css")).read())
+    if cls not in ("ln", "lnt", "hl")}
+for f in glob.glob(os.path.join(EXT, "*.css")):
+    for classes, token in re.findall(r"\.chroma\s*:is\(([^)]*)\)\s*\{[^}]*?color:\s*var\(--([\w-]+)\)", open(f).read()):
+        for cls in re.findall(r"\.([\w-]+)", classes):
+            syntax[cls] = light_tokens[token]
+theme_vars = open(os.path.join(THEME, "core", "theme-vars.css")).read()
+code_bgs = ["#%02x%02x%02x" % tuple(map(int, m))
+            for m in re.findall(r"--code-block-bg:\s*rgb\((\d+),\s*(\d+),\s*(\d+)\)", theme_vars)]
+for cls, col in sorted(syntax.items()):
+    for theme, bg in zip(("light", "dark"), code_bgs):
+        checked += 1
+        if ratio(col, bg) < AA:
+            fails.append(f"{theme}: syntax .{cls} ({col}) on code background ({bg}) = {ratio(col, bg):.2f}:1")
+
 print(f"checked {checked} token/background pairs against {AA}:1")
 if fails:
     print(f"\n\u274c {len(fails)} below AA for normal text:")
     for f in fails:
         print("  ", f)
     sys.exit(1)
-print("\u2705 every text token clears AA on every surface, both themes")
+print("\u2705 every text token and syntax colour clears AA on its surface, both themes")

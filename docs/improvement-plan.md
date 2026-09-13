@@ -253,7 +253,7 @@ So every later item can prove its gain with one command.
   already on GitHub runners.
   - *Done when:* the gate fails on today's `<dl>` and `srcset` errors. It lands together with C1
     and C2 so `main` stays green.
-- [ ] **M3 · Syntax colours in the contrast gate.** `check-contrast.py` also reads the Chroma
+- [x] **M3 · Syntax colours in the contrast gate.** `check-contrast.py` also reads the Chroma
   highlight colours against the code-block background, in both themes.
   - *Done when:* it fails on today's comment colour, 3.6:1. Lands with C3.
 
@@ -410,5 +410,6 @@ Needs decision D1 before starting.
 | C2 | `83589a4` | ~15 duplicate-width srcsets; `sizes` at 760px (breakpoint is 768); gallery sized 310px (renders 389px); figure shortcode 43 lines with 9 unused params and an unreachable branch; 8 ignored `width`/`align` in content; duplicated media rule | 0 validator errors on site pages; sizes match layout; shortcode 21 lines, fails the build on a missing image | figure fig-w/src/width/height identical on all 9 pages; images checked at 390/1440 |
 | M1 | `6ecaad4` | manual tool runs | one command, exit 1 when under budget | live run matched §4 within noise; flags article a11y 96 (C3); resume mobile CLS 0.088 this run (look at in P4) |
 | M2 | `0c59735` | no HTML validation | gate on 130 pages, 2 s | fails on a reintroduced `<dl>` error; jar pinned by sha512; ran green in CI (run 34757852355) |
-| C3 | this commit | comments 3.61:1 (light) / 2.89:1 (dark); code element scrolls without focus | `--code-comment` 5.97:1 / 4.79:1; `pre` (tabindex=0) scrolls | axe 0 contrast / scrollable violations on 3 code pages × 2 widths × 2 themes; block sizes identical |
-| C3 fix | this commit | C3 pushed with the CSS gate failing on `.cm`/`.cpf` | gate counts the highlighter's class vocabulary as rendered | all gates pass; lesson: the commit chain now runs check.sh first |
+| C3 | `5439011` | comments 3.61:1 (light) / 2.89:1 (dark); code element scrolls without focus | `--code-comment` 5.97:1 / 4.79:1; `pre` (tabindex=0) scrolls | axe 0 contrast / scrollable violations on 3 code pages × 2 widths × 2 themes; block sizes identical |
+| C3 fix | `59e22d4` | C3 pushed with the CSS gate failing on `.cm`/`.cpf` | gate counts the highlighter's class vocabulary as rendered | all gates pass; lesson: the commit chain now runs check.sh first |
+| M3 | this commit | 16 token pairs | 142 pairs: tokens + every syntax colour after site overrides, on both code backgrounds | removing the comment override fails the gate |

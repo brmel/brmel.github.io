@@ -51,7 +51,7 @@ that had already shipped.
 | build | Hugo builds clean with `--cleanDestinationDir` |
 | `check-orphans.sh` | no asset is referenced by nothing; no image under `static/` |
 | `check-og.py` | every page has a resolvable, absolute `og:image` with alt text |
-| `check-contrast.py` | every text token clears WCAG AA on every surface, both themes |
+| `check-contrast.py` | every text token and syntax-highlighting colour clears WCAG AA on its surface, both themes |
 | `check-css.py` | explicit cascade order, colours only in tokens, no duplicated primitives, no dead classes |
 | `check-chrome.py` | one `h1`, a skip link and sized images on every page; every content page has a way back and a way to contribute |
 | `check-pages.py` | no destination linked twice, no self-link, no unnamed control; every internal link resolves and every page is reachable |
