@@ -115,6 +115,7 @@ everything that consumes it.
 | `40-home` `41-resume` `42-timeline` `43-projects` `44-adventures` `46-project-page` | one section each |
 | | `42-timeline` is the career timeline; the project index draws the same rail from the same tokens |
 | `50-content` | article body: figures, diagrams, embedded artefacts |
+| `60-print` | print: hides chrome, flattens cards; print spacing and type come from tokens |
 
 Section files **compose** the primitives; they never redeclare them.
 `scripts/checks/check-css.py` fails the build if they do, if a colour appears outside

@@ -1,0 +1,14 @@
+@media print{
+  @page{margin:12mm 14mm;}
+  .header,.footer,.site-mark,.top-link,.breadcrumbs,.content-footer,.section-nav,
+  .resume__print,.resume__mark,.video-thumb,.video-thumbnail,#lightbox,
+  .timeline-container::before,.timeline-marker,.u-bar{display:none!important;}
+  .main{padding:0;}
+  a{text-decoration:none;color:inherit;border:0!important;background:none!important;}
+  .timeline-item{padding-inline-start:0;}
+  .timeline-content{padding:0;background:none;border:0;box-shadow:none;overflow:visible;}
+  .timeline-work--media{display:block;}
+  .timeline-facts__row{grid-template-columns:var(--resume-gutter) 1fr;padding:var(--space-1) 0;}
+  .timeline-facts__row,.resume__skillgroup,.resume__record{break-inside:avoid;}
+  .timeline-date,.timeline-title,.timeline-org,.timeline-note,.u-rule-heading{break-after:avoid;}
+}

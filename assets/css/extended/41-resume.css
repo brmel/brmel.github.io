@@ -43,7 +43,6 @@
   display:grid;grid-template-columns:var(--resume-gutter) 1fr;gap:var(--space-4);
   padding:var(--space-3) 0;
 }
-.resume__skillgroup:last-child{border-bottom:0;}
 .resume__skillgroup dt{
   font-family:var(--font-label);font-size:var(--t-eyebrow);
   letter-spacing:.07em;text-transform:uppercase;color:var(--accent);
@@ -56,7 +55,6 @@
   display:grid;grid-template-columns:var(--resume-gutter) 1fr;gap:0 var(--space-4);
   padding:var(--space-4) 0;
 }
-.resume__record:last-child{border-bottom:0;}
 .resume__record-year{
   grid-row:span 2;
   font-family:var(--font-label);font-size:var(--t-eyebrow);
@@ -69,18 +67,6 @@
   .resume__skillgroup,
   .resume__record{grid-template-columns:1fr;gap:var(--space-1);}
   .resume__record-year{grid-row:auto;padding-top:0;}
-}
-
-@media print{
-  .header,.footer,.site-mark,.top-link,.breadcrumbs,
-  .content-footer,.content-actions,.share-buttons,.section-nav,.author-card,
-  .resume__print,.video-thumb,.video-thumbnail,#lightbox{display:none!important;}
-  a{text-decoration:none;color:inherit;}
-  .timeline-item{break-inside:avoid;}
-  .timeline-content{padding:0;background:none;border:0;box-shadow:none;}
-  .timeline-container::before,.timeline-marker{display:none;}
-  .timeline-item{padding-inline-start:0;}
-  .resume__section{margin-top:var(--space-6);}
 }
 
 .resume__print{
