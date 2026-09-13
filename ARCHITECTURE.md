@@ -174,6 +174,11 @@ Optional fields, each rendered by one partial:
 
 Adventures add the field-note fields documented in `docs/adventures-playbook.md`.
 
+A report is a Tech article with `layout: "standalone"`: the page owns its `<head>` and embeds a
+generated HTML file from `assets/reports/` with `{{< reportframe src="reports/<file>.html" >}}`,
+which sizes the frame to its content. `hideAutoHeader: true` drops the title block when the report
+has its own, and `fullBleed: true` lets the body use the full width.
+
 ## Languages
 
 English is the default and lives at the root; French and Arabic live under

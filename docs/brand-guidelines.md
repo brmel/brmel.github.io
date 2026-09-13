@@ -332,5 +332,4 @@ Social templates, logo files and channel art live in [`docs/brand-kit/`](brand-k
 |---|---|
 | [`adventures-playbook.md`](adventures-playbook.md) | How to publish an Adventures field note end-to-end |
 | [`projects-playbook.md`](projects-playbook.md) | How to publish a Project page end-to-end |
-| [`standalone-layout.md`](standalone-layout.md) | The full-page layout for self-contained articles |
 | [`brand-kit/`](brand-kit/) | Logo, social templates, channel art, photo and voice guides |

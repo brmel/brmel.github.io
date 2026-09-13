@@ -135,7 +135,7 @@ assets/
   reports/              generated report HTML, embedded by reportframe
 content/                page bundles per section; resume.{md,fr.md,ar.md}; search.*
 docs/
-  brand-guidelines.md · projects-playbook.md · adventures-playbook.md · standalone-layout.md
+  brand-guidelines.md · projects-playbook.md · adventures-playbook.md
   brand-kit/            logo, social templates, channel art, photo and voice guides
   improvement-plan.md   this file, deleted when the branch closes
 i18n/                   en · fr · ar
@@ -203,7 +203,7 @@ measure logged in §7.
 
 ### 5a. Order
 
-K1 → K2 → R1 → R2 → R3 → R4 → K3 → K4 → K5 → C4 → M1 → C1 → C2 → M2 → C3 → M3 → C5 → P1 → P2 → P3 → P4 → P5 →
+K1 → K2 → R1 → R2 → R3 → R4 → K3 → K4 → K5 → K6 → C4 → M1 → C1 → C2 → M2 → C3 → M3 → C5 → P1 → P2 → P3 → P4 → P5 →
 S1 → S2 → S3 → S4 → S5 → S6 → S7 → A1 → A2 → A3 → H1 → close (re-audit live, merge, fold rules into
 ARCHITECTURE.md and README.md, delete this file).
 
@@ -223,9 +223,15 @@ that locks it, so `main` stays green.
   whose `<html>` already carries it from `baseof.html` and `standalone.html`.
 - [x] **K4 · Unused `customCSS` / `customJS`.** Read by two templates, set by no page. Per-article
   CSS would also escape the CSS gate; styling belongs in the section stylesheet.
-- [ ] **K5 · Stale standalone scaffold.** `docs/standalone-layout.md` is a draft content file, not
+- [x] **K5 · Stale standalone scaffold.** `docs/standalone-layout.md` is a draft content file, not
   a doc: comments, Google Analytics (removed), inline `<style>` advice. Delete it and document
   the standalone front matter (`hideAutoHeader`, `fullBleed`) in ARCHITECTURE.md.
+
+- [ ] **K6 · Comments left in inline scripts and styles.** The first sweep covered template and
+  CSS comments; `//` and `/* */` inside `<script>` and `<style>` blocks in templates were missed
+  (`reportframe.html` has one).
+  - *Done when:* no comment in any template's inline script or style, and the build is identical
+    apart from minified output that already stripped them.
 
 ### Phase 0 — Measure in the repo
 
@@ -383,4 +389,5 @@ Needs decision D1 before starting.
 | R3 | `ecec54e` | `MyPhoto.jpg` | `profile.jpg` | build identical apart from the name (diffed) |
 | R4 | dropped | — | — | trial diffed: 3 tag indexes fell back to the theme template |
 | K3 | `81d75b2` | inline script on 12 Arabic pages | none | only AR pages changed; dir=rtl, mirrored nav, no errors at 390/1440 × light/dark |
-| K4 | this commit | 2 unused hooks, 17 template lines | 0 | build byte-identical; playbook points styling at 44-adventures.css |
+| K4 | `39dfa6c` | 2 unused hooks, 17 template lines | 0 | build byte-identical; playbook points styling at 44-adventures.css |
+| K5 | this commit | scaffold draft in docs/, `disableShare: false` ×2 | deleted; reports documented in ARCHITECTURE.md | build byte-identical |

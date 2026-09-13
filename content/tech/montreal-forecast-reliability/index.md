@@ -6,7 +6,6 @@ draft: false
 layout: "standalone"
 hideAutoHeader: true
 fullBleed: true
-disableShare: false
 summary: "Three forecast services, two places in Montréal, every prediction graded against the weather station beside it over five days. Temperature holds up. Rain does not — 70% of the rain calls never happened. Interactive report, gradeable from one hour ahead to twenty-four."
 description: "Three forecast services graded against the weather station next door over five days. Temperature holds up; 70% of the rain calls never happened."
 tags: ["Data Analysis", "Québec"]
