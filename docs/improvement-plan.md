@@ -203,7 +203,7 @@ measure logged in §7.
 
 ### 5a. Order
 
-K1 → K2 → R1 → R2 → R3 → R4 → C4 → M1 → C1 → C2 → M2 → C3 → M3 → C5 → P1 → P2 → P3 → P4 → P5 →
+K1 → K2 → R1 → R2 → R3 → R4 → K3 → K4 → K5 → C4 → M1 → C1 → C2 → M2 → C3 → M3 → C5 → P1 → P2 → P3 → P4 → P5 →
 S1 → S2 → S3 → S4 → S5 → S6 → S7 → A1 → A2 → A3 → H1 → close (re-audit live, merge, fold rules into
 ARCHITECTURE.md and README.md, delete this file).
 
@@ -218,6 +218,14 @@ that locks it, so `main` stays green.
   document each field.
   - *Done when:* `hugo new` on every archetype gives front matter with no `#`, and every hinted
     value is in a playbook.
+
+- [x] **K3 · Redundant RTL script.** `extend_head.html` set `dir="rtl"` from JavaScript on pages
+  whose `<html>` already carries it from `baseof.html` and `standalone.html`.
+- [ ] **K4 · Unused `customCSS` / `customJS`.** Read by two templates, set by no page. Per-article
+  CSS would also escape the CSS gate; styling belongs in the section stylesheet.
+- [ ] **K5 · Stale standalone scaffold.** `docs/standalone-layout.md` is a draft content file, not
+  a doc: comments, Google Analytics (removed), inline `<style>` advice. Delete it and document
+  the standalone front matter (`hideAutoHeader`, `fullBleed`) in ARCHITECTURE.md.
 
 ### Phase 0 — Measure in the repo
 
@@ -374,3 +382,4 @@ Needs decision D1 before starting.
 | R2 | `985449d` | 31 partials, 20 project-owned mixed with theme names at the root | root = PaperMod names only; 8 domain folders | build byte-identical (386 files); bundle gate now follows partial calls instead of a list that skipped missing files |
 | R3 | `ecec54e` | `MyPhoto.jpg` | `profile.jpg` | build identical apart from the name (diffed) |
 | R4 | dropped | — | — | trial diffed: 3 tag indexes fell back to the theme template |
+| K3 | this commit | inline script on 12 Arabic pages | none | only AR pages changed; dir=rtl, mirrored nav, no errors at 390/1440 × light/dark |

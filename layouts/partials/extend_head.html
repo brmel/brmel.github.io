@@ -1,7 +1,3 @@
-{{- if eq site.Language.LanguageDirection "rtl" }}
-<script>document.documentElement.setAttribute("dir", "rtl");</script>
-{{- end }}
-
 {{- partial "head/fonts.html" . }}
 {{- range .Params.customCSS }}
 {{- with resources.Get . }}
