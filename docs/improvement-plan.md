@@ -335,7 +335,7 @@ Moves first, so every later change lands in its final place.
 - [x] **P3 · LCP image priority.** On article pages, the cover or the first figure above the fold
   loads eagerly with `fetchpriority="high"`; every other image stays lazy.
   - *Done when:* the deep dive's mobile LCP ≤ 1.5 s and its perf ≥ 99.
-- [ ] **P4 · Fonts.** Audit which faces each page actually uses. Preload only the ones used above
+- [x] **P4 · Fonts.** Audit which faces each page actually uses. Preload only the ones used above
   the fold, and drop any face never rendered.
   - *Done when:* no unused font request in any Lighthouse run, and FCP is not worse.
 - [ ] **P5 · Unused CSS (evaluate).** About 10 KB unused on search and list pages. Split bundles
@@ -439,4 +439,5 @@ Needs decision D1 before starting.
 | U2b | `577ba97` | gutters 14px at ≤768px (jump from 53px at 769); light list pages on `bg-alt`, articles on paper | 16px ≤600, 24px 601–1024, centred column above; one background on every page | 14 page types × 11 widths (320–1440): symmetric gutters, no overflow, menu fits |
 | U6a | `e64763d` | article meta "date   ·1 min" (flex gap); adventures meta "By Ibraverse · May 2026 · 2 min read" in hard-coded English plus a chip repeating the eyebrow category; adventures prose on its own type scale with hover-only link underlines; dead canonical call, impossible `.adventures .adventures` selector, duplicated link rule | one localised "date · N min" line everywhere; adventures use the article prose; chip, icon partial and 4 rules removed | 5 articles × 390/1440 incl. FR/AR: 8px even spacing, same prose size, links underlined |
 | U6b | `03ffc14` | gallery cropped every image to 16:10 (phone screenshots showed their top third) | whole images, capped at 30rem tall, centred in their column | wingo/rekba/farkad/robonode × 1440/768/390: no crop, no overflow |
-| P3 | this commit | LCP image lazy-loaded on the barcode article (EN/AR, 390 and 1440) and project galleries at 1440 | first figure shortcode and first gallery image `fetchpriority=high`; gallery images eager (≤3, one row on desktop) | LCP element measured on 13 pages × 2 widths: no lazy LCP image, at most one high-priority image per page |
+| P3 | `81fb8c6` | LCP image lazy-loaded on the barcode article (EN/AR, 390 and 1440) and project galleries at 1440 | first figure shortcode and first gallery image `fetchpriority=high`; gallery images eager (≤3, one row on desktop) | LCP element measured on 13 pages × 2 widths: no lazy LCP image, at most one high-priority image per page |
+| P4 | this commit | 14 @font-face / 14 files; serif italic declared and shipped, rendered nowhere except one emphasised word on /projects/leorra/ | 12 / 12 | clean-context audit of 14 pages: each loads only the faces it renders (3–6 files, 89–207 KB), both preloads are used by first paint, no 404 |
