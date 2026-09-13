@@ -300,7 +300,7 @@ Moves first, so every later change lands in its final place.
   - README: "adventures (currently all drafts)" (both are published), "two files, ~80 lines"
     (one file, 71 lines), and "docs: … audit" (removed).
   - *Done when:* every path and count in both files matches `find` output.
-- [ ] **C5 · Phone navigation.** EN/FR menus overflow by 5–52px at 360–390px since Search was
+- [x] **C5 · Phone navigation.** EN/FR menus overflow by 5–52px at 360–390px since Search was
   added. Choose one of: keep the native scroll, a two-row wrap, or tighter spacing (§6, D3).
   - *Done when:* the chosen option is implemented, screenshots are taken at 360/375/390/414 in all
     three languages, and nothing is clipped without a visible way to reach it.
@@ -385,7 +385,7 @@ Needs decision D1 before starting.
 |---|---|---|
 | D1 | Keep GitHub Pages as is, or put Cloudflare in front? | H1 |
 | D2 | Reports: allow crawling `/reports/`, or move the findings into the wrapper page? | A1 |
-| D3 | Phone menu: native sideways scroll, two-row wrap, or tighter spacing? | C5 |
+| D3 | Phone menu — decided: compact two-row wrap (measured: +5px header at 360–390, no overflow; scroll clipped Search; tighter spacing needed 13px text) | C5 |
 
 ---
 
@@ -412,4 +412,5 @@ Needs decision D1 before starting.
 | M2 | `0c59735` | no HTML validation | gate on 130 pages, 2 s | fails on a reintroduced `<dl>` error; jar pinned by sha512; ran green in CI (run 34757852355) |
 | C3 | `5439011` | comments 3.61:1 (light) / 2.89:1 (dark); code element scrolls without focus | `--code-comment` 5.97:1 / 4.79:1; `pre` (tabindex=0) scrolls | axe 0 contrast / scrollable violations on 3 code pages × 2 widths × 2 themes; block sizes identical |
 | C3 fix | `59e22d4` | C3 pushed with the CSS gate failing on `.cm`/`.cpf` | gate counts the highlighter's class vocabulary as rendered | all gates pass; lesson: the commit chain now runs check.sh first |
-| M3 | this commit | 16 token pairs | 142 pairs: tokens + every syntax colour after site overrides, on both code backgrounds | removing the comment override fails the gate |
+| M3 | `0b77a5e` | 16 token pairs | 142 pairs: tokens + every syntax colour after site overrides, on both code backgrounds | removing the comment override fails the gate |
+| C5 | this commit | EN/FR menu overflowed 5–52px at 360–390, Search clipped, scrollbar visible | wraps to a centred second row, 40px taps | 5 pages × 10 widths (360–1440): 0 overflow, 0 clipped, no horizontal scroll; header 135→140px at 360–390, 135→100px at 414–600 |
