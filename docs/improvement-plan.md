@@ -368,10 +368,10 @@ Moves first, so every later change lands in its final place.
 
 ### Phase 5 — Agent readiness
 
-- [ ] **A1 · Report content reachable.** Today `robots.txt` blocks `/reports/`, so crawlers index
+- [x] **A1 · Report content reachable.** Today `robots.txt` blocks `/reports/`, so crawlers index
   only the ~600-word wrapper. Choose between allowing `/reports/` and moving the key findings into
   the wrapper as text (§6, D2).
-- [ ] **A2 · Markdown rendition per article.** A Hugo output format serves `index.md` beside each
+- [x] **A2 · Markdown rendition per article.** A Hugo output format serves `index.md` beside each
   page, linked with `rel="alternate" type="text/markdown"` and from `llms.txt`.
   - *Done when:* every article's `.md` returns 200 as `text/markdown` or `text/plain` and matches
     its HTML body.
@@ -396,7 +396,7 @@ Needs decision D1 before starting.
 | ID | Question | Blocks |
 |---|---|---|
 | D1 | Keep GitHub Pages as is, or put Cloudflare in front? | H1 |
-| D2 | Reports: allow crawling `/reports/`, or move the findings into the wrapper page? | A1 |
+| D2 | Reports — decided: findings live as prose on the article (since R5 every figure is in the crawlable page); `/reports/` stays disallowed so raw report files are not indexed as duplicates | A1 |
 | D3 | Phone menu — decided: compact two-row wrap (measured: +5px header at 360–390, no overflow; scroll clipped Search; tighter spacing needed 13px text) | C5 |
 
 ---
@@ -447,4 +447,6 @@ Needs decision D1 before starting.
 | S3 | dropped | 13 titles > 60 chars with suffix | — | needs a full fork of head.html; headlines are editorial |
 | S4 | `69568b9` | FR/AR Thoughts said "personal thoughts, philosophy and life experiences" (EN: engineering judgement); FR/AR Tech condensed; 33–69 chars | translated from the English: 91–150 chars | section pages and home cards in FR/AR render without overflow; AR resume/barcode kept (same meaning, denser script) |
 | S5 | `15999b7` | no `x-default` in page heads or sitemap | `x-default` → default-language version on every page and every translated sitemap entry | EN/FR/AR barcode heads list en, fr, ar, x-default; EN-only pages point x-default to themselves; HTML gate passes |
-| S7 | this commit | SEO rules checked by hand | `check-seo.py` in gates: 42 pages, 42 sitemap URLs | fails on a sitemap listing noindex pages (37) and on missing x-default (42) |
+| S7 | `8a64ecf` | SEO rules checked by hand | `check-seo.py` in gates: 42 pages, 42 sitemap URLs | fails on a sitemap listing noindex pages (37) and on missing x-default (42) |
+| A1 | no code change | report findings only inside a disallowed iframe (before R5) | article prose carries every figure; `/reports/` stays disallowed | 882, 70%, 1.21, 1,622, 90 false alarms, 16,561 found in the crawlable HTML |
+| A2 | this commit | agents had llms-full.txt (plain text, all pages) only | 14 articles also served as `index.md` via a Hugo output format; figures link their WebP renditions; gmap, reportframe, youtube render as links; `rel=alternate type=text/markdown` in every article head; noted in llms.txt | no shortcode or unintended HTML left in any .md (one inline SVG diagram kept); no original images published |

@@ -48,6 +48,7 @@ The numbers from each project, taken from the page they belong to.
 {{ end -}}
 - [Tags]({{ printf "%stags/" site.BaseURL }}): every subject on the site, {{ len site.Taxonomies.tags }} terms.
 - [Full text]({{ printf "%sllms-full.txt" site.BaseURL }}): every page above as plain text, in one file.
+- Markdown: every Tech, Thoughts and Adventures article is also served as markdown at its URL followed by `index.md`.
 - [Sitemap]({{ printf "%ssitemap.xml" site.BaseURL }})
 
 ## Languages

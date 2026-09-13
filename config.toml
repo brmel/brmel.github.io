@@ -273,6 +273,11 @@ enableEmoji = true
   mediaType = "text/plain"
   baseName = "llms-full"
   isPlainText = true
+[outputFormats.markdown]
+  mediaType = "text/markdown"
+  baseName = "index"
+  isPlainText = true
+  rel = "alternate"
 
 [outputs]
   home = ["HTML", "RSS", "JSON", "LLMS", "LLMSFULL"]
@@ -284,6 +289,12 @@ enableEmoji = true
 [[cascade]]
   [cascade.build]
     publishResources = false
+
+[[cascade]]
+  outputs = ["HTML", "markdown"]
+  [cascade._target]
+    kind = "page"
+    path = "{/tech/**,/thoughts/**,/adventures/**}"
 
 [[cascade]]
   robotsNoIndex = true
