@@ -2,7 +2,7 @@
 
 <article class="post-single project">
   {{ partial "breadcrumbs.html" . }}
-  {{ partial "project-header.html" . }}
+  {{ partial "project/header.html" . }}
 
   {{- with .Params.lede }}
   <div class="project-lede">{{ . | markdownify }}</div>
@@ -55,7 +55,7 @@
   </section>
   {{- end }}
 
-  {{- partial "content-footer.html" . }}
+  {{- partial "page-end/footer.html" . }}
 
 </article>
 {{- end }}

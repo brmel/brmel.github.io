@@ -13,11 +13,16 @@ all_css = "".join(r(f) for f in sorted(glob.glob(os.path.join(ROOT, "assets/css/
 reachable = sa_tpl
 for f in glob.glob(os.path.join(ROOT, "layouts/shortcodes/*.html")):
     reachable += r(os.path.relpath(f, ROOT))
-for p in ("content-footer", "content-actions", "share_icons", "section-nav",
-          "brand-mark", "author-card", "related-project"):
-    f = f"layouts/partials/{p}.html"
-    if os.path.exists(os.path.join(ROOT, f)):
-        reachable += r(f)
+seen, queue = set(), re.findall(r'partial(?:Cached)? "([^"]+)"', reachable)
+while queue:
+    p = queue.pop()
+    f = f"layouts/partials/{p}"
+    if p in seen or not os.path.exists(os.path.join(ROOT, f)):
+        continue
+    seen.add(p)
+    src = r(f)
+    reachable += src
+    queue += re.findall(r'partial(?:Cached)? "([^"]+)"', src)
 
 classes = set()
 for group in re.findall(r'class="([^"{}]+)"', reachable):

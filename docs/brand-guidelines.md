@@ -8,7 +8,7 @@ content type by a single accent.
 > thumbnails, social cards, decks — comes out on-brand. Every value below is
 > **extracted from the live code**, specifically
 > [`assets/css/extended/00-tokens.css`](../assets/css/extended/00-tokens.css) and
-> [`layouts/partials/brand-mark.html`](../layouts/partials/brand-mark.html) —
+> [`layouts/partials/brand/mark.html`](../layouts/partials/brand/mark.html) —
 > not invented. Where this document and the CSS ever disagree, **the CSS wins
 > and this file is wrong**.
 
@@ -44,7 +44,7 @@ rule, recognisable in one frame:
 
 1. **The compass-aperture mark** — concentric circles + 4 ticks (N/S/E/W). One
    implementation only:
-   [`layouts/partials/brand-mark.html`](../layouts/partials/brand-mark.html).
+   [`layouts/partials/brand/mark.html`](../layouts/partials/brand/mark.html).
    Never inline a second copy; never redraw it.
 
    ```svg
@@ -165,7 +165,7 @@ ratio('#a76e95', '#14130f')   # 4.70 -> passes
 ## 4. Type
 
 Loaded once site-wide — `extend_head.html` for PaperMod pages,
-`brand-fonts.html` for the standalone layout. Reuse; never add a family.
+`head/fonts.html` for the standalone layout. Reuse; never add a family.
 
 | Role | Font | Notes |
 |------|------|-------|
@@ -233,7 +233,7 @@ throat-clearing, no words that would not survive being read aloud.
 
 | Element | Lock |
 |---------|------|
-| Mark | `partials/brand-mark.html` only, in `--accent` or `--ink-mute` |
+| Mark | `partials/brand/mark.html` only, in `--accent` or `--ink-mute` |
 | Handle | `@ibraverse` on YouTube / IG / TikTok → all link to ibraverse.ca |
 | Eyebrow grammar | per §2 table |
 | Fonts | Instrument Serif / Inter Tight / JetBrains Mono only |

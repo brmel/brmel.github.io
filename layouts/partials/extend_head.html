@@ -2,7 +2,7 @@
 <script>document.documentElement.setAttribute("dir", "rtl");</script>
 {{- end }}
 
-{{- partial "brand-fonts.html" . }}
+{{- partial "head/fonts.html" . }}
 {{- range .Params.customCSS }}
 {{- with resources.Get . }}
 {{- $css := . | minify | fingerprint }}
@@ -15,4 +15,4 @@
 <script defer src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}"></script>
 {{- end }}
 {{- end }}
-{{- partial "schema.html" . }}
+{{- partial "head/schema.html" . }}

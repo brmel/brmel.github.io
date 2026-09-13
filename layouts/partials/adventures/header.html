@@ -18,6 +18,6 @@
   <span><b>{{ .Date.Format "Jan 2006" }}</b></span>
   <span>{{ .ReadingTime }} min read</span>
   {{- with .Params.category }}
-  <span class="u-chip u-chip--accent cat-badge">{{ partial "category-icon.html" . }}{{ . | upper }}</span>
+  <span class="u-chip u-chip--accent cat-badge">{{ partial "adventures/category-icon.html" . }}{{ . | upper }}</span>
   {{- end }}
 </div>

@@ -33,7 +33,7 @@
 
         <div class="timeline-work{{ with $w.video }} timeline-work--media{{ end }}">
           {{- with $w.video }}
-          {{- partial "video-thumb.html" (dict "id" . "alt" ($w.videoAlt | default $w.title)) }}
+          {{- partial "resume/video-thumb.html" (dict "id" . "alt" ($w.videoAlt | default $w.title)) }}
           {{- end }}
           <h4 class="timeline-work__title">
             {{- with $w.url }}<a href="{{ . }}" target="_blank" rel="noopener noreferrer">{{ $w.title }}</a>

@@ -9,9 +9,9 @@
   {{ .Content }}
 </div>
 {{- end }}
-{{- partial "home-career.html" . }}
-{{- partial "home-sections.html" . }}
-{{- partial "home-latest.html" . }}
+{{- partial "home/career.html" . }}
+{{- partial "home/sections.html" . }}
+{{- partial "home/latest.html" . }}
 {{- else }}
 
 {{- if not .IsHome | and .Title }}

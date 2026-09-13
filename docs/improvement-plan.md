@@ -145,11 +145,14 @@ layouts/
   partials/
     <theme names>       forks and theme hooks only, at the root     ← R2
     func/               partials that return values
-    article/            origin, content footer and actions, section nav, author card, verdict
-    home/               profile blocks, career line, sections, latest
-    project/            header, learning, related project
-    resume/             career timeline, video thumb
-    brand/              mark, fonts, category icon, social icon
+    page-end/           footer, actions, section nav, author card
+    article/            origin, related project
+    adventures/         header, verdict, category icon
+    home/               career, sections, latest
+    project/            header, learning
+    resume/             timeline, video thumb
+    brand/              mark, social icon
+    head/               fonts, schema
   shortcodes/           figure · gmap · reportframe
   index.llms.txt · index.llmsfull.txt · sitemap.xml
 scripts/
@@ -243,7 +246,7 @@ Moves first, so every later change lands in its final place.
   - *Where:* `gates.sh`, both workflows, README, ARCHITECTURE, and the relative paths inside the
     scripts.
   - *Done when:* check.sh and CI pass, and both generators run from their new location.
-- [ ] **R2 · Group project-owned partials by domain** (layout in §3). Theme names stay at the root.
+- [x] **R2 · Group project-owned partials by domain** (layout in §3). Theme names stay at the root.
   - *Where:* every `partial "…"` call; `check-bundles.py` if it names paths.
   - *Done when:* the build is byte-identical, and no partial at the root lacks
     a theme counterpart.
@@ -366,4 +369,5 @@ Needs decision D1 before starting.
 |---|---|---|---|---|
 | K1 | `e28e720` | 22 lines, 9 comments | 11 lines | same ignored set |
 | K2 | `70ed507` | 22 comment lines in 3 archetypes | 0; field docs in ARCHITECTURE.md and projects-playbook.md | all 4 archetypes scaffold and build |
-| R1 | this commit | 15 files flat in `scripts/` | entry points + `checks/` (9) + `generate/` (4) | gates pass; gates resolve the repo from any cwd; OG generator output byte-identical |
+| R1 | `18bd70c` | 15 files flat in `scripts/` | entry points + `checks/` (9) + `generate/` (4) | gates pass; gates resolve the repo from any cwd; OG generator output byte-identical |
+| R2 | this commit | 31 partials, 20 project-owned mixed with theme names at the root | root = PaperMod names only; 8 domain folders | build byte-identical (386 files); bundle gate now follows partial calls instead of a list that skipped missing files |

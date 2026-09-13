@@ -20,35 +20,59 @@ happened.
 
 ```
 layouts/
+  404.html · sitemap.xml · index.llms.txt · index.llmsfull.txt
   _default/
-    single.html        articles, thoughts, adventures
-    list.html          home + section indexes
+    baseof.html        page shell (fork)
+    single.html        articles, thoughts, adventures (fork)
+    list.html          home + section indexes (fork)
+    terms.html         tag index (fork)
     resume.html        the resume, rendered from front matter
-    standalone.html    full-bleed pages that own their <head> (the report)
+    standalone.html    full-bleed pages that own their <head> (the reports)
+    _markup/render-link.html   external links open in a new tab
   projects/
     single.html        project pages
     list.html          the project index
   partials/
+    header.html · footer.html · index_profile.html · post_meta.html · share_icons.html
+    social_icons.html · translation_list.html · templates/   PaperMod forks
+    extend_head.html · extend_footer.html                   PaperMod hooks
     func/              return values, not markup — call with `partial` and use the result
       section-pages.html   which pages a section lists, across languages
       og-image.html        which social card a page shares
-    content-footer.html    the common page ending — composes the three below
-      content-actions.html   improve · discuss
-      share_icons.html
-      section-nav.html       back + previous/next
-    brand-mark.html      the compass mark, single implementation
-    project-header.html  eyebrow, title, pitch, stack, links
-    article-origin.html  series navigation + original-publication credit
-    career-timeline.html the resume's periods, from `experience:` front matter
-    video-thumb.html     a poster frame that opens in the timeline lightbox
-    home-career.html     the same experience data, one line per period
-    home-sections.html   section cards
-    home-latest.html     latest across sections
-    projects-learning.html  what each project taught, at the foot of the index
+      og-src.html          the image file behind it
+    page-end/          the common page ending, on every content layout
+      footer.html          composes the three below and share_icons.html
+      actions.html         improve · discuss
+      section-nav.html     back + previous/next
+      author-card.html
+    article/
+      origin.html          series navigation + original-publication credit
+      related-project.html the project card at the foot
+    adventures/
+      header.html · verdict.html · category-icon.html
+    home/
+      career.html          the experience data, one line per period
+      sections.html        section cards
+      latest.html          latest across sections
+    project/
+      header.html          eyebrow, title, pitch, stack, links
+      learning.html        what each project taught, at the foot of the index
+    resume/
+      timeline.html        the resume's periods, from `experience:` front matter
+      video-thumb.html     a poster frame that opens in the timeline lightbox
+    brand/
+      mark.html            the compass mark, single implementation
+      social-icon.html
+    head/
+      fonts.html           font preloads
+      schema.html          JSON-LD
   shortcodes/
     figure.html        images through the pipeline, with srcset and dimensions
     gmap.html · reportframe.html
 ```
+
+A partial at the root of `partials/` is one PaperMod calls by name. Everything written for this site
+lives in the folder for its domain.
 
 ### `partials/func/`
 
@@ -132,7 +156,7 @@ lessons: ["…"]               # at least one real failure
 
 The resume is the same rule applied to a career. Each period is an entry under
 `experience:` — `period`, `role`, `org`, the `work` done, then `built`, `stack`,
-`tools` and one `learned` sentence — and `layouts/partials/career-timeline.html`
+`tools` and one `learned` sentence — and `layouts/partials/resume/timeline.html`
 renders it. It was prose in shortcodes until the three languages drifted: English
 listed three periods where French and Arabic listed two, and no gate could see
 it. Education is not a separate section; both degrees are periods, so a year, a
@@ -144,9 +168,9 @@ Optional fields, each rendered by one partial:
 
 | Field | Renders |
 |---|---|
-| `series`, `seriesPart` | the series box listing every part, in `article-origin.html` |
+| `series`, `seriesPart` | the series box listing every part, in `article/origin.html` |
 | `canonicalOriginal`, `canonicalOriginalName` | the "first published on" credit, same partial |
-| `relatedProject` | the project card at the foot, in `related-project.html` |
+| `relatedProject` | the project card at the foot, in `article/related-project.html` |
 
 Adventures add the field-note fields documented in `docs/adventures-playbook.md`.
 

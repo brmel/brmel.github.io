@@ -22,7 +22,7 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="{{ $og.url }}" />
   <meta name="twitter:image:alt" content="{{ $og.alt }}" />
-  {{- partial "brand-fonts.html" . }}
+  {{- partial "head/fonts.html" . }}
 
   {{- $css := slice }}
   {{- range (slice "css/extended/00-tokens.css" "css/extended/20-components.css" "css/extended/30-chrome.css" "css/standalone.css") }}
@@ -44,7 +44,7 @@
   <header class="sa-topbar">
     <div class="sa-wrap sa-topbar__inner">
       <a class="sa-brand" href="{{ "/" | relURL }}">
-        {{- partial "brand-mark.html" (dict "size" 20 "class" "sa-brand__mark") -}}
+        {{- partial "brand/mark.html" (dict "size" 20 "class" "sa-brand__mark") -}}
         <span>{{ .Site.Title }}</span>
       </a>
       <nav class="sa-nav" aria-label="Site navigation">
@@ -72,8 +72,8 @@
   </main>
 
   <div class="sa-wrap">
-    {{- partial "related-project.html" . }}
-    {{- partial "content-footer.html" . }}
+    {{- partial "article/related-project.html" . }}
+    {{- partial "page-end/footer.html" . }}
   </div>
   <footer class="sa-footer">
     <div class="sa-wrap sa-footer__inner">

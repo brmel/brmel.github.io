@@ -7,7 +7,7 @@
     <header class="post-header">
         {{ partial "breadcrumbs.html" . }}
         {{- if $adv }}
-        {{- partial "adventures-header.html" . }}
+        {{- partial "adventures/header.html" . }}
         {{- else }}
         <h1 class="post-title entry-hint-parent">
             {{ .Title }}
@@ -40,7 +40,7 @@
     {{- partial "toc.html" . }}
     {{- end }}
 
-    {{- partial "article-origin.html" . }}
+    {{- partial "article/origin.html" . }}
 
     {{- if .Content }}
     <div class="post-content">
@@ -51,12 +51,12 @@
     {{- end }}
 
     {{- if $adv }}
-    {{- if .Params.rating }}{{ partial "verdict.html" . }}{{ end }}
+    {{- if .Params.rating }}{{ partial "adventures/verdict.html" . }}{{ end }}
     {{- end }}
 
-    {{- partial "related-project.html" . }}
+    {{- partial "article/related-project.html" . }}
 
-  {{- partial "content-footer.html" . }}
+  {{- partial "page-end/footer.html" . }}
 
 </article>
 

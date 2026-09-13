@@ -8,13 +8,13 @@
   {{- end }}
 
   <div class="content-footer__row">
-    {{- partial "content-actions.html" . }}
+    {{- partial "page-end/actions.html" . }}
     {{- if (and site.Params.ShowShareButtons (ne .Params.disableShare true)) }}
     {{- partial "share_icons.html" . }}
     {{- end }}
   </div>
-  {{- partial "author-card.html" . }}
-  {{- partial "section-nav.html" . }}
+  {{- partial "page-end/author-card.html" . }}
+  {{- partial "page-end/section-nav.html" . }}
 
 </footer>
 {{- end }}

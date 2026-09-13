@@ -4,7 +4,7 @@
   {{ partial "breadcrumbs.html" . }}
 
   <header class="resume__head">
-    <span class="resume__mark">{{ partial "brand-mark.html" (dict "size" 32) }}</span>
+    <span class="resume__mark">{{ partial "brand/mark.html" (dict "size" 32) }}</span>
     <h1 class="resume__name">{{ site.Params.profileMode.title | default .Title }}</h1>
     {{- with .Params.role }}<p class="resume__role">{{ . }}</p>{{ end }}
     {{- with .Params.location }}<p class="resume__loc">{{ . }}</p>{{ end }}
@@ -12,7 +12,7 @@
     <ul class="resume__contact">
       {{- range . }}
       <li><a href="{{ .url }}"{{ if hasPrefix .url "http" }} target="_blank" rel="noopener noreferrer"{{ end }}>
-        {{- partial "social-icon.html" .url }}<span>{{ .label }}</span></a></li>
+        {{- partial "brand/social-icon.html" .url }}<span>{{ .label }}</span></a></li>
       {{- end }}
       <li><button type="button" class="resume__print" onclick="window.print()">{{ i18n "resume_print" | default "Save as PDF" }}</button></li>
     </ul>
@@ -26,7 +26,7 @@
   {{- with .Params.experience }}
   <section class="resume__section" aria-labelledby="resume-experience">
     <h2 class="u-rule-heading resume__h2" id="resume-experience">{{ i18n "resume_experience" | default "Experience" }}</h2>
-    {{- partial "career-timeline.html" $ }}
+    {{- partial "resume/timeline.html" $ }}
   </section>
   {{- end }}
 
@@ -61,7 +61,7 @@
   </section>
   {{- end }}
 
-  {{- partial "content-footer.html" . }}
+  {{- partial "page-end/footer.html" . }}
 
 </article>
 {{- end }}
