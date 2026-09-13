@@ -9,17 +9,13 @@
   var last = 0;
   function fit() {
     try {
-      // body.scrollHeight only: documentElement's includes the iframe's own
-      // viewport, so reading it back after setting the height ratchets the
-      // frame taller on every observation. That left the report ~24000px of
-      // blank space below its content.
       var h = f.contentWindow.document.body.scrollHeight;
       if (h > 200 && Math.abs(h - last) > 2) { last = h; f.style.height = h + 'px'; }
     } catch (e) {}
   }
   f.addEventListener('load', function () {
     fit();
-    [200, 600, 1500, 3000].forEach(function (t) { setTimeout(fit, t); });   // Plotly/Leaflet lay out late
+    [200, 600, 1500, 3000].forEach(function (t) { setTimeout(fit, t); });
     try { new ResizeObserver(fit).observe(f.contentWindow.document.body); } catch (e) {}
   });
   window.addEventListener('resize', fit);

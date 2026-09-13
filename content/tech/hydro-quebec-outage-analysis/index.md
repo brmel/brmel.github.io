@@ -17,8 +17,6 @@ cover:
 # layout carries no language switcher — this article never appears translated.
 ---
 
-<!-- DRAFT — numbers pulled from the generated report; verify before publishing. -->
-
 > How this was built, and what it changed my mind about:
 > [the HydroData project page](/projects/hydro-quebec/).
 

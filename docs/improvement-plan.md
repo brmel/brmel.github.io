@@ -227,7 +227,7 @@ that locks it, so `main` stays green.
   a doc: comments, Google Analytics (removed), inline `<style>` advice. Delete it and document
   the standalone front matter (`hideAutoHeader`, `fullBleed`) in ARCHITECTURE.md.
 
-- [ ] **K6 · Comments left in inline scripts and styles.** The first sweep covered template and
+- [x] **K6 · Comments left in inline scripts and styles.** The first sweep covered template and
   CSS comments; `//` and `/* */` inside `<script>` and `<style>` blocks in templates were missed
   (`reportframe.html` has one).
   - *Done when:* no comment in any template's inline script or style, and the build is identical
@@ -390,4 +390,5 @@ Needs decision D1 before starting.
 | R4 | dropped | — | — | trial diffed: 3 tag indexes fell back to the theme template |
 | K3 | `81d75b2` | inline script on 12 Arabic pages | none | only AR pages changed; dir=rtl, mirrored nav, no errors at 390/1440 × light/dark |
 | K4 | `39dfa6c` | 2 unused hooks, 17 template lines | 0 | build byte-identical; playbook points styling at 44-adventures.css |
-| K5 | this commit | scaffold draft in docs/, `disableShare: false` ×2 | deleted; reports documented in ARCHITECTURE.md | build byte-identical |
+| K5 | `d064cd7` | scaffold draft in docs/, `disableShare: false` ×2 | deleted; reports documented in ARCHITECTURE.md | build byte-identical |
+| K6 | this commit | 16 comment lines in inline JS and timeline.js; 2 stale DRAFT notes on published reports | 0 | build byte-identical; all 46 report figures checked against the generated reports first |

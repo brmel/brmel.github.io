@@ -6,7 +6,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (!lightbox || !lightboxVideo || !timelineContainer) return;
 
-    // The label is authored in the template so it follows the page language.
     const playLabel = timelineContainer.getAttribute('data-play-label') || 'Play video';
     let lastFocused = null;
 
@@ -37,8 +36,6 @@ document.addEventListener('DOMContentLoaded', function () {
         openLightbox();
     });
 
-    // Clicking the backdrop closes; clicks inside the dialog's own controls
-    // must not bubble up into that.
     lightbox.addEventListener('click', function (e) {
         if (e.target === lightbox) closeLightbox();
     });
@@ -47,23 +44,20 @@ document.addEventListener('DOMContentLoaded', function () {
     document.addEventListener('keydown', function (e) {
         if (!lightbox.classList.contains('active')) return;
         if (e.key === 'Escape') { closeLightbox(); return; }
-        // Only the close button is focusable in here, so Tab stays put.
         if (e.key === 'Tab' && lightboxClose) { e.preventDefault(); lightboxClose.focus(); }
     });
 
     function openLightbox() {
         lightbox.classList.add('active');
         lightbox.setAttribute('aria-hidden', 'false');
-        document.body.style.overflow = 'hidden';   // the page must not scroll behind it
+        document.body.style.overflow = 'hidden';
         lightboxClose && lightboxClose.focus();
     }
 
     function closeLightbox() {
         lightbox.classList.remove('active');
         lightbox.setAttribute('aria-hidden', 'true');
-        // removeAttribute, not src='': an empty src resolves to the page's own
-        // URL, which loads the whole page again inside the hidden frame.
-        lightboxVideo.removeAttribute('src');      // stops playback
+        lightboxVideo.removeAttribute('src');
         lightboxVideo.style.display = 'none';
         document.body.style.overflow = '';
         if (lastFocused) { lastFocused.focus(); lastFocused = null; }
