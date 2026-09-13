@@ -59,9 +59,8 @@
 .project-shot{margin:0;}
 
 .project-shot img{
-  width:100%;height:auto;
-  aspect-ratio:16/10;
-  object-fit:cover;object-position:top center;
+  display:block;width:auto;max-width:100%;height:auto;max-height:30rem;
+  margin-inline:auto;
 }
 
 .project-shot figcaption{
@@ -125,7 +124,6 @@
 
 @media (max-width:768px){
   .project-gallery__grid{grid-template-columns:1fr;}
-  .project-shot img{aspect-ratio:16/9;}
 }
 @media (max-width:600px){
   .project-links{margin-inline-start:0;}
