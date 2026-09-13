@@ -31,14 +31,14 @@ assets/
   css/extended/   NN-name.css — the number is the cascade order
   js/             two files, ~80 lines total
 static/og/        generated social cards
-scripts/          build gates and asset generators
+scripts/          check.sh and gates.sh; checks/ holds the gates, generate/ the asset generators
 docs/             brand system, playbooks, audit
 themes/PaperMod/  vendored theme; forked files carry a provenance header
 ```
 
 ## Gates
 
-`scripts/gates.sh` holds the list; `./scripts/check.sh` builds and runs it, and
+`scripts/gates.sh` holds the list of gates in `scripts/checks/`; `./scripts/check.sh` builds and runs it, and
 both workflows run the same script — on every pull request, and again before a
 deploy, plus a link crawl on top. They exist because each one caught a defect
 that had already shipped.
@@ -62,8 +62,8 @@ Run by hand, not by the build. Each writes into the repo; commit the result.
 
 | Script | Writes | How |
 |---|---|---|
-| `scripts/gen-favicons.py` | `static/favicon.{ico,16,32,192,512}`, `apple-touch-icon.png` | serve `scripts/favicon-src.html`, screenshot the mark to `mark-512.png`, then `python3 scripts/gen-favicons.py mark-512.png` |
-| `scripts/gen-og-cards.py` | `static/og/*.jpg` | open `scripts/og-cards.html` at width 1200, full-page screenshot to `og-strip.png`, then `python3 scripts/gen-og-cards.py og-strip.png` |
+| `scripts/generate/gen-favicons.py` | `static/favicon.{ico,16,32,192,512}`, `apple-touch-icon.png` | serve `scripts/generate/favicon-src.html`, screenshot the mark to `mark-512.png`, then `python3 scripts/generate/gen-favicons.py mark-512.png` |
+| `scripts/generate/gen-og-cards.py` | `static/og/*.jpg` | open `scripts/generate/og-cards.html` at width 1200, full-page screenshot to `og-strip.png`, then `python3 scripts/generate/gen-og-cards.py og-strip.png` |
 
 Both need Pillow. The card template uses the self-hosted faces from `/fonts`, so
 serve it from the site root rather than opening the file directly.

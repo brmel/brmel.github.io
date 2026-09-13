@@ -2,7 +2,7 @@
 import os, re, sys, glob, collections
 from urllib.parse import unquote
 
-ROOT = os.path.join(os.path.dirname(__file__), "..")
+ROOT = os.path.join(os.path.dirname(__file__), "..", "..")
 PUB = os.path.join(ROOT, "public")
 
 CHROME_WIDE = re.compile(r"class=[\"']?(?:nav|footer|site-mark|skip-link)")

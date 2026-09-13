@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import re, sys, glob, os
 
-ROOT = os.path.join(os.path.dirname(__file__), "..")
+ROOT = os.path.join(os.path.dirname(__file__), "..", "..")
 def r(p): return open(os.path.join(ROOT, p), encoding="utf-8").read()
 
 sa_tpl = r("layouts/_default/standalone.html")

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import os, re, sys, glob
 
-ROOT = os.path.join(os.path.dirname(__file__), "..")
+ROOT = os.path.join(os.path.dirname(__file__), "..", "..")
 EXT = os.path.join(ROOT, "assets", "css", "extended")
 MAX_LINES = 260
 TOKENS = "00-tokens.css"

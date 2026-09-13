@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import re, sys, glob, os
 
-ROOT = os.path.join(os.path.dirname(__file__), "..")
+ROOT = os.path.join(os.path.dirname(__file__), "..", "..")
 PHYS = re.compile(r'(?<![-\w])(margin-left|margin-right|padding-left|padding-right|'
                   r'border-left|border-right|text-align\s*:\s*(?:left|right)|(?<![\w-])left|(?<![\w-])right)\s*:')
 

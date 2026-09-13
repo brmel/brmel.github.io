@@ -13,7 +13,7 @@ consistent because it cannot be otherwise.
 
 Where that principle was not applied, the site drifted: four layouts each
 assembled their own page ending, and two of them ended up with none at all.
-Every gate in `scripts/` exists to catch a class of drift that had already
+Every gate in `scripts/checks/` exists to catch a class of drift that had already
 happened.
 
 ## Templates
@@ -92,17 +92,17 @@ everything that consumes it.
 | `50-content` | article body: figures, diagrams, embedded artefacts |
 
 Section files **compose** the primitives; they never redeclare them.
-`scripts/check-css.py` fails the build if they do, if a colour appears outside
+`scripts/checks/check-css.py` fails the build if they do, if a colour appears outside
 tokens, if a file exceeds 260 lines, or if a class is declared but never used.
 
-`scripts/check-bundles.py` covers the fault that shipped twice: two layouts
+`scripts/checks/check-bundles.py` covers the fault that shipped twice: two layouts
 assemble two different CSS bundles, and a class rendered by a shared partial but
 styled in a file only one bundle loads is invisible in the other, silently.
 `.report-frame` collapsed to a 300px iframe that way; `.related-project`
 rendered unstyled on the same page for the same reason. Anything a shared
 partial or a shortcode renders belongs in `20-components.css`.
 
-`scripts/check-pages.py` covers what a structural check cannot see: the same
+`scripts/checks/check-pages.py` covers what a structural check cannot see: the same
 destination linked twice on one page however differently the two links are
 dressed, a link pointing at its own page, an icon control with no accessible
 name, and internal links that resolve to nothing. It exists because every other

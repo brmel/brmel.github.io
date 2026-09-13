@@ -45,4 +45,4 @@ no inner ring).
 
 Rasterize at 2× the target size. The SVGs name the fonts but don't embed them — install the three
 families before exporting. The site's Open Graph cards are not made here: they come from
-`scripts/og-cards.html` via `scripts/gen-og-cards.py`.
+`scripts/generate/og-cards.html` via `scripts/generate/gen-og-cards.py`.

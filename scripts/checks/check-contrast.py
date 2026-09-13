@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import re, sys, os
 
-TOKENS = os.path.join(os.path.dirname(__file__), "..",
+TOKENS = os.path.join(os.path.dirname(__file__), "..", "..",
                       "assets", "css", "extended", "00-tokens.css")
 AA = 4.5
 

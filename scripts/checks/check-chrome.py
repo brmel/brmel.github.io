@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import os, re, sys, glob
 
-ROOT = os.path.join(os.path.dirname(__file__), "..")
+ROOT = os.path.join(os.path.dirname(__file__), "..", "..")
 PUB = os.path.join(ROOT, "public")
 
 CONTENT = ("tech/", "projects/", "thoughts/", "adventures/")

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import re, sys, glob, os, collections
 
-ROOT = os.path.join(os.path.dirname(__file__), "..")
+ROOT = os.path.join(os.path.dirname(__file__), "..", "..")
 PUB = os.path.join(ROOT, "public")
 
 SEL = re.compile(r"""(?:getElementById\(['"]([\w-]+)['"]\)|querySelector(?:All)?\(['"]([^'"]+)['"]\))""")

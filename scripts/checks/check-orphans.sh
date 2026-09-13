@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 set -euo pipefail
-cd "$(dirname "$0")/.."
+cd "$(dirname "$0")/../.."
 
 STRICT_DEFAULT=1
 STRICT="${STRICT:-$STRICT_DEFAULT}"

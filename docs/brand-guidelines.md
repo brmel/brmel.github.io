@@ -304,7 +304,7 @@ word title in Instrument Serif, thin accent bar at the bottom. Text in the
 Paper, large compass mark centred, `ibraverse.ca`, `@ibraverse`, accent bar.
 
 **Open Graph cards** — `static/og/<section>.jpg`, 1200×630, six sections from
-**one** template (`scripts/og-cards.html`, cut by `scripts/gen-og-cards.py`).
+**one** template (`scripts/generate/og-cards.html`, cut by `scripts/generate/gen-og-cards.py`).
 Six hand-designed cards would drift; one template cannot. Adding a section means
 editing the template and the `SECTIONS` list, not drawing an image.
 
@@ -318,7 +318,7 @@ Which card a page shares is resolved in one place,
 4. the home card
 
 `og:` and `twitter:` read the same resolver, so they cannot disagree — upstream
-PaperMod let them fall back differently. `scripts/check-og.py` runs locally and
+PaperMod let them fall back differently. `scripts/checks/check-og.py` runs locally and
 in CI and fails the build if any page ships an og:image that is missing,
 relative, unresolvable, or has no alt text.
 

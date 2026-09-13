@@ -2,7 +2,7 @@
 import os, re, sys
 from urllib.parse import urlparse
 
-ROOT = os.path.join(os.path.dirname(__file__), "..")
+ROOT = os.path.join(os.path.dirname(__file__), "..", "..")
 PUB = os.path.join(ROOT, "public")
 BASE = re.search(  # from config, so a domain change cannot fail CI silently
     r'^\s*baseURL\s*=\s*["\']([^"\']+)',

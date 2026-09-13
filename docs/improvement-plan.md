@@ -238,7 +238,7 @@ So every later item can prove its gain with one command.
 
 Moves first, so every later change lands in its final place.
 
-- [ ] **R1 · Split `scripts/`.** Gates into `scripts/checks/`. Generators and their HTML templates
+- [x] **R1 · Split `scripts/`.** Gates into `scripts/checks/`. Generators and their HTML templates
   into `scripts/generate/`. `check.sh` and `gates.sh` stay as entry points.
   - *Where:* `gates.sh`, both workflows, README, ARCHITECTURE, and the relative paths inside the
     scripts.
@@ -365,4 +365,5 @@ Needs decision D1 before starting.
 | Item | Commit | Before | After | Notes |
 |---|---|---|---|---|
 | K1 | `e28e720` | 22 lines, 9 comments | 11 lines | same ignored set |
-| K2 | this commit | 22 comment lines in 3 archetypes | 0; field docs in ARCHITECTURE.md and projects-playbook.md | all 4 archetypes scaffold and build |
+| K2 | `70ed507` | 22 comment lines in 3 archetypes | 0; field docs in ARCHITECTURE.md and projects-playbook.md | all 4 archetypes scaffold and build |
+| R1 | this commit | 15 files flat in `scripts/` | entry points + `checks/` (9) + `generate/` (4) | gates pass; gates resolve the repo from any cwd; OG generator output byte-identical |
