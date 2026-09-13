@@ -91,7 +91,4 @@
   .verdict dd{text-align:start;border-top:0;padding-block:var(--space-1) var(--space-4);padding-inline-start:0}
 }
 
-.adventures a:focus-visible,.adventures button:focus-visible{
-  outline:2px solid var(--accent);outline-offset:2px;border-radius:var(--radius-xs);
-}
 

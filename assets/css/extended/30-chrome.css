@@ -196,6 +196,7 @@
 .sa-nav__link{min-height:24px;display:inline-flex;align-items:center;}
 .resume__contact a{min-height:24px;}
 #menu li a{min-width:24px;text-align:center;}
+.footer .top-link,.footer .top-link:hover{border-bottom:0;}
 .rss-link{min-width:24px;min-height:24px;display:inline-flex;align-items:center;justify-content:center;}
 .lang-switch a{
   min-width:24px;min-height:24px;

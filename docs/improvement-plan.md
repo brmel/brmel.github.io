@@ -305,7 +305,7 @@ Moves first, so every later change lands in its final place.
   - *Done when:* the chosen option is implemented, screenshots are taken at 360/375/390/414 in all
     three languages, and nothing is clipped without a visible way to reach it.
 
-- [ ] **C6 · Back-to-top link outside a landmark.** Once a page scrolls, `#top-link` becomes visible
+- [x] **C6 · Back-to-top link outside a landmark.** Once a page scrolls, `#top-link` becomes visible
   outside `header`/`main`/`footer` (axe `region`), on every long page. The first axe matrix never
   scrolled, so it missed it.
   - *Done when:* axe run after scrolling reports 0 violations on the deep dive, home and resume.
@@ -413,4 +413,5 @@ Needs decision D1 before starting.
 | C3 | `5439011` | comments 3.61:1 (light) / 2.89:1 (dark); code element scrolls without focus | `--code-comment` 5.97:1 / 4.79:1; `pre` (tabindex=0) scrolls | axe 0 contrast / scrollable violations on 3 code pages × 2 widths × 2 themes; block sizes identical |
 | C3 fix | `59e22d4` | C3 pushed with the CSS gate failing on `.cm`/`.cpf` | gate counts the highlighter's class vocabulary as rendered | all gates pass; lesson: the commit chain now runs check.sh first |
 | M3 | `0b77a5e` | 16 token pairs | 142 pairs: tokens + every syntax colour after site overrides, on both code backgrounds | removing the comment override fails the gate |
-| C5 | this commit | EN/FR menu overflowed 5–52px at 360–390, Search clipped, scrollbar visible | wraps to a centred second row, 40px taps | 5 pages × 10 widths (360–1440): 0 overflow, 0 clipped, no horizontal scroll; header 135→140px at 360–390, 135→100px at 414–600 |
+| C5 | `d092b08` | EN/FR menu overflowed 5–52px at 360–390, Search clipped, scrollbar visible | wraps to a centred second row, 40px taps | 5 pages × 10 widths (360–1440): 0 overflow, 0 clipped, no horizontal scroll; header 135→140px at 360–390, 135→100px at 414–600 |
+| C6 | this commit | back-to-top outside a landmark once scrolled; no focus ring (theme `outline:0` beat the global rule); focus rule duplicated in 44-adventures.css | inside `<footer>`; 2px focus ring; one global focus rule | axe 0 after scroll on 4 pages × 2 widths × 2 themes; button position, size, colour identical to live |
