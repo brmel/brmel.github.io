@@ -12,7 +12,7 @@ PRIMITIVES = {
     "hover lift": re.compile(r"transform:translateY\(-2px\)"),
 }
 
-fails, warns = [], []
+fails = []
 files = sorted(glob.glob(os.path.join(EXT, "*.css")))
 
 for f in files:
@@ -27,10 +27,7 @@ for f in files:
     src = open(f).read()
     src = re.sub(r"/\*.*?\*/", "", src, flags=re.S)
     for m in re.findall(r"#[0-9a-fA-F]{3,8}\b", src):
-        if m.lower() in ("#fff", "#ffffff", "#000", "#000000"):
-            warns.append(f"{b}: raw {m} — acceptable only for a fixed ground (iframe, print)")
-        else:
-            fails.append(f"{b}: colour {m} defined outside {TOKENS}")
+        fails.append(f"{b}: colour {m} defined outside {TOKENS}")
 
 for f in files:
     n = sum(1 for _ in open(f))
@@ -58,21 +55,10 @@ for f in files:
     src = re.sub(r"/\*.*?\*/", "", open(f).read(), flags=re.S)
     declared |= set(re.findall(r"\.([a-z][a-z0-9_-]*(?:__[a-z0-9-]+)?(?:--[a-z0-9-]+)?)", src))
 
-IGNORE = {"dark", "active", "highlight", "post-content", "post-single", "post-header",
-          "post-footer", "post-tags", "post-title", "post-description", "post-meta",
-          "entry-header", "entry-content", "entry-footer", "entry-link", "entry-hint",
-          "entry-hint-parent", "first-entry", "page-header", "pagination", "prev", "next",
-          "share-buttons", "social-icons", "logo", "logo-switches", "lang-switch", "nav",
-          "main", "footer", "header", "profile", "profile_inner", "buttons", "button",
-          "button-inner", "top-link", "breadcrumbs", "terms-tags", "archive-month",
-          "paginav", "toc", "adventures", "align-center", "video-js", "vjs-tech"}
-dead = sorted(c for c in declared if c not in IGNORE and c not in markup)
-for c in dead:
-    warns.append(f"class .{c} is declared in CSS but appears in no template or content")
+for c in sorted(c for c in declared if c not in markup):
+    fails.append(f"class .{c} is declared in CSS but appears in no template or content")
 
 print(f"checked {len(files)} stylesheets, {len(declared)} classes")
-for w in warns:
-    print("  ⚠  " + w)
 if fails:
     print(f"\n❌ {len(fails)} problem(s):")
     for f in fails:

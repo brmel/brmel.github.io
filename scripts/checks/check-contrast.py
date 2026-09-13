@@ -24,13 +24,12 @@ def tokens(block):
 
 fails = []
 checked = 0
-for theme, block, base in (("light", light_block, None), ("dark", dark_block, None)):
+for theme, block in (("light", light_block), ("dark", dark_block)):
     t = tokens(block)
     if theme == "dark":
         merged = tokens(light_block); merged.update(t); t = merged
     bgs = [("--bg", t["bg"]), ("--bg-alt", t["bg-alt"])]
-    fgs = [k for k in t if k.startswith("ink") or k == "accent"
-           or k.startswith("cat-") and not k.endswith("-soft")]
+    fgs = [k for k in t if k.startswith("ink") or k == "accent"]
     for fg in sorted(fgs):
         for bgname, bg in bgs:
             r = ratio(t[fg], bg)

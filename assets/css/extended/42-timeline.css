@@ -147,7 +147,7 @@
   transform:translateX(1px);  transition:transform var(--dur-2) var(--ease-spring), fill var(--dur-2) var(--ease-standard);
 }
 .video-thumb:hover .video-thumb__play{background:rgba(24,23,21,.18);}
-.video-thumb:hover .video-thumb__play svg{transform:scale(1.12) translateX(1px);fill:#fff;}
+.video-thumb:hover .video-thumb__play svg{transform:scale(1.12) translateX(1px);fill:var(--media-ink);}
 .video-thumb:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
 
 #lightbox{
@@ -178,7 +178,7 @@
   aspect-ratio:16/9;height:auto;
   border-radius:var(--radius-md);
   box-shadow:var(--shadow-pop);
-  background:#000;border:0;
+  background:var(--media-ground);border:0;
 }
 
 @media (max-width:768px){

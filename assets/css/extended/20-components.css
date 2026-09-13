@@ -81,7 +81,7 @@ a.u-chip:hover{border-color:var(--accent);color:var(--accent);}
 }
 .dark .report-frame{
   border:var(--hairline) solid var(--rule);
-  background:#fff;
+  background:var(--frame-ground);
 }
 
 .u-frame,

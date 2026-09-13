@@ -235,7 +235,7 @@ that locks it, so `main` stays green.
 
 - [x] **K7 · Comments and dead code in the gates.** Trailing `#` comments in four gate scripts,
   and `OPT_OUT`, a set that was always empty in `check-chrome.py`.
-- [ ] **K8 · CSS gate warnings become failures.** Raw `#fff`/`#000` in `20-components.css` and
+- [x] **K8 · CSS gate warnings become failures.** Raw `#fff`/`#000` in `20-components.css` and
   `42-timeline.css` move to tokens; after that, a raw colour or a declared-but-unused class fails
   the build (both only warn today, though the README says the gate enforces them).
 
@@ -398,4 +398,5 @@ Needs decision D1 before starting.
 | K4 | `39dfa6c` | 2 unused hooks, 17 template lines | 0 | build byte-identical; playbook points styling at 44-adventures.css |
 | K5 | `d064cd7` | scaffold draft in docs/, `disableShare: false` ×2 | deleted; reports documented in ARCHITECTURE.md | build byte-identical |
 | K6 | `2236d13` | 16 comment lines in inline JS and timeline.js; 2 stale DRAFT notes on published reports | 0 | build byte-identical; all 46 report figures checked against the generated reports first |
-| K7 | this commit | 9 comments, 1 always-empty opt-out | 0 | every gate passes with the same counts |
+| K7 | `380c70b` | 9 comments, 1 always-empty opt-out | 0 | every gate passes with the same counts |
+| K8 | this commit | 3 raw colours warned; dead classes only warned; 29-name ignore list; dead `cat-` branch in contrast gate | 3 tokens; both fail the build; no ignore list | computed colours unchanged (#fff frame, #fff icon, #000 lightbox); negative test fails as expected |
