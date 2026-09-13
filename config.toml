@@ -19,7 +19,7 @@ enableGitInfo = true
       imageUrl = "images/profile.jpg"
       imageWidth = 380
       imageTitle = "Brahim Redouane Mellah"
-      bigPicture = "I develop and maintain industrial machine vision algorithms: geometry, calibration and edge measurement. I take them from prototype to deployment, with classical methods and with deep learning. I like C++, robotics, AI and machine vision, and I build and write about them here."
+      bigPicture = "I build industrial AI and machine vision products. Specializing in C++ and machine learning, I take algorithms from raw ideas to robust, factory-ready deployments. I build and write about robotics, cloud architecture, and mobile apps here—always driven by a deep foundation in math and physics."
     [[languages.en.menu.main]]
       identifier = "home"
       name = "Home"
@@ -71,7 +71,7 @@ enableGitInfo = true
       imageUrl = "images/profile.jpg"
       imageWidth = 380
       imageTitle = "Brahim Redouane Mellah"
-      bigPicture = "Je développe et maintiens des algorithmes de vision industrielle : géométrie, calibration et mesure de contours. Je les mène du prototype au déploiement, avec des méthodes classiques et avec de l'apprentissage profond. J'aime le C++, la robotique, l'IA et la vision industrielle, et c'est ce dont je parle ici."
+      bigPicture = "Je développe des solutions d'IA et de vision artificielle pour l'industrie. Spécialisé en C++ et en machine learning, je transforme des idées brutes en algorithmes robustes, prêts à être déployés en production. Ici, je crée et je partage mes connaissances sur la robotique, le cloud et les applications mobiles — avec toujours les mathématiques et la physique comme piliers."
     [[languages.fr.menu.main]]
       identifier = "home"
       name = "Accueil"
