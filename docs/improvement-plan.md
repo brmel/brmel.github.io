@@ -1,7 +1,7 @@
 # Improvement plan
 
 Working list for the `ImprovePerformance` branch: speed, SEO, agent readiness, accessibility,
-correctness and structure. Items run top to bottom, one at a time, and each one must leave the
+correctness and structure. Items run in the order of §5a, one at a time, and each one must leave the
 site measurably better or it is reverted.
 
 When every item is done or dropped, fold §2 and §3 into `ARCHITECTURE.md` and `README.md`, then
@@ -198,6 +198,24 @@ Lighthouse 12, 12 pages × mobile/desktop:
 Columns: **Where** is the starting point, **Done when** is the acceptance test, **Verify** is the
 measure logged in §7.
 
+### 5a. Order
+
+K1 → K2 → R1 → R2 → R3 → R4 → C4 → M1 → C1 → C2 → M2 → C3 → M3 → C5 → P1 → P2 → P3 → P4 → P5 →
+S1 → S2 → S3 → S4 → S5 → S6 → S7 → A1 → A2 → A3 → H1 → close (re-audit live, merge, fold rules into
+ARCHITECTURE.md and README.md, delete this file).
+
+Structure moves come first so later changes land in their final place. A fix lands before the gate
+that locks it, so `main` stays green.
+
+### Cleaning
+
+- [x] **K1 · `.gitignore`.** Only patterns this repo produces; no comments, no entries covered by
+  broader ones.
+- [ ] **K2 · Archetypes without comments.** The inline hints move into the playbooks, which already
+  document each field.
+  - *Done when:* `hugo new` on every archetype gives front matter with no `#`, and every hinted
+    value is in a playbook.
+
 ### Phase 0 — Measure in the repo
 
 So every later item can prove its gain with one command.
@@ -303,6 +321,10 @@ Moves first, so every later change lands in its final place.
 - [ ] **S6 · Report pages.** The standalone layout emits `hreflang`, canonical and `TechArticle`
   JSON-LD like every other article.
 
+- [ ] **S7 · SEO gate.** `checks/check-seo.py` asserts the §2 SEO rules on the build: title and
+  description length and uniqueness, sitemap only indexable, `hreflang` with `x-default`, JSON-LD
+  type per section. Lands once S1–S6 pass.
+
 ### Phase 5 — Agent readiness
 
 - [ ] **A1 · Report content reachable.** Today `robots.txt` blocks `/reports/`, so crawlers index
@@ -342,4 +364,4 @@ Needs decision D1 before starting.
 
 | Item | Commit | Before | After | Notes |
 |---|---|---|---|---|
-| | | | | |
+| K1 | see `git log` | 22 lines, 9 comments | 11 lines | same ignored set |
