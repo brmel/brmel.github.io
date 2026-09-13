@@ -57,9 +57,6 @@
 }
 .post-content figure > figcaption > p{margin-top:var(--space-1);}
 
-@media (max-width:768px){
-  .post-content figure{width:min(100%, var(--fig-w, 100%));}
-}
 
 .post-single .post-title{
   font-family:var(--font-serif);

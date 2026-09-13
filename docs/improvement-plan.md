@@ -285,7 +285,7 @@ Moves first, so every later change lands in its final place.
 - [x] **C1 · Verdict markup.** Wrap every `dt`/`dd` pair in a `div`, not just the last two.
   - *Where:* `partials/verdict.html`, `44-adventures.css`.
   - *Done when:* 0 validator errors, and the verdict looks pixel-identical in the Playwright matrix.
-- [ ] **C2 · `srcset` without duplicate widths.** When the image is smaller than the large
+- [x] **C2 · `srcset` without duplicate widths.** When the image is smaller than the large
   rendition, emit a single candidate.
   - *Where:* `shortcodes/figure.html`.
   - *Done when:* 0 duplicate-width errors, and figure widths are unchanged.
@@ -401,4 +401,5 @@ Needs decision D1 before starting.
 | K7 | `380c70b` | 9 comments, 1 always-empty opt-out | 0 | every gate passes with the same counts |
 | K8 | `9a6c9ba` | 3 raw colours warned; dead classes only warned; 29-name ignore list; dead `cat-` branch in contrast gate | 3 tokens; both fail the build; no ignore list | computed colours unchanged (#fff frame, #fff icon, #000 lightbox); negative test fails as expected |
 | C4 | `6bb8b76` | fork count 16, 3 stylesheets and 12 partials undocumented, stale README lines | counts, tree, tables and docs index match the repo | every backticked path and relative link in both files resolves |
-| C1 | this commit | 4 validator errors; phone labels one letter per line, verdict 1038px tall at 390px; physical `text-align:right` | 0 errors; labels on one line, 504px; logical properties | desktop pixel-identical (antialiasing only), tablet dividers continuous, phone stacks label over value; 2 pages × 3 widths × 2 themes |
+| C1 | `122dbe6` | 4 validator errors; phone labels one letter per line, verdict 1038px tall at 390px; physical `text-align:right` | 0 errors; labels on one line, 504px; logical properties | desktop pixel-identical (antialiasing only), tablet dividers continuous, phone stacks label over value; 2 pages × 3 widths × 2 themes |
+| C2 | this commit | ~15 duplicate-width srcsets; `sizes` at 760px (breakpoint is 768); gallery sized 310px (renders 389px); figure shortcode 43 lines with 9 unused params and an unreachable branch; 8 ignored `width`/`align` in content; duplicated media rule | 0 validator errors on site pages; sizes match layout; shortcode 21 lines, fails the build on a missing image | figure fig-w/src/width/height identical on all 9 pages; images checked at 390/1440 |

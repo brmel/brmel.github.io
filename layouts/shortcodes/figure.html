@@ -1,43 +1,21 @@
 {{- $src := .Get "src" -}}
-{{- $alt := .Get "alt" -}}
 {{- $caption := .Get "caption" -}}
 {{- $img := .Page.Resources.GetMatch $src -}}
-{{- $processable := and $img (in (slice "jpg" "jpeg" "png" "webp" "tif" "bmp" "gif") $img.MediaType.SubType) -}}
-
-{{- $small := "" }}{{ $large := "" }}{{ $displayW := 0 }}
-{{- if $processable }}
-  {{- $w := $img.Width }}
-  {{- $large = cond (gt $w 1600) ($img.Resize "1600x webp q82") ($img.Resize (printf "%dx webp q82" $w)) }}
-  {{- $small = cond (gt $w 800) ($img.Resize "800x webp q82") $large }}
-  {{- $col := site.Params.proseColumnPx | default 900 -}}
-  {{- $displayW = cond (gt $large.Width $col) $col $large.Width }}
-{{- end }}
-
-<figure{{ with .Get "class" }} class="{{ . }}"{{ else }}{{ if eq (.Get "align") "center" }} class="align-center"{{ end }}{{ end }}{{ if $displayW }} style="--fig-w:{{ $displayW }}px"{{ end }}>
-  {{- with .Get "link" }}<a href="{{ . }}"{{ with $.Get "target" }} target="{{ . }}"{{ end }}{{ with $.Get "rel" }} rel="{{ . }}"{{ end }}>{{ end -}}
-  {{- if $processable }}
+{{- if not $img }}{{ errorf "figure: %q is not in the bundle of %s" $src .Page.File.Path }}{{ end -}}
+{{- $large := $img.Resize (printf "%dx webp q82" (int (math.Min $img.Width 1600))) }}
+{{- $small := $large }}
+{{- if gt $img.Width 800 }}{{ $small = $img.Resize "800x webp q82" }}{{ end }}
+{{- $displayW := int (math.Min $large.Width (site.Params.proseColumnPx | default 900)) }}
+<figure style="--fig-w:{{ $displayW }}px">
   <img src="{{ $small.RelPermalink }}"
+       {{- if gt $large.Width $small.Width }}
        srcset="{{ $small.RelPermalink }} {{ $small.Width }}w, {{ $large.RelPermalink }} {{ $large.Width }}w"
-       sizes="(max-width: 760px) 100vw, {{ $displayW }}px"
+       sizes="(max-width: 768px) 100vw, {{ $displayW }}px"
+       {{- end }}
        width="{{ $large.Width }}" height="{{ $large.Height }}"
        loading="lazy" decoding="async"
-       alt="{{ with $alt }}{{ . }}{{ else }}{{ $caption | markdownify | plainify }}{{ end }}">
-  {{- else }}
-  {{- with $img }}{{ $src = .RelPermalink }}{{ end }}
-  <img src="{{ $src }}" loading="lazy" decoding="async"
-       {{- with .Get "width" }} width="{{ . }}"{{ end }}{{ with .Get "height" }} height="{{ . }}"{{ end }}
-       alt="{{ with $alt }}{{ . }}{{ else }}{{ $caption | markdownify | plainify }}{{ end }}">
-  {{- end }}
-  {{- with .Get "link" }}</a>{{ end }}
-  {{- if or (or (.Get "title") $caption) (.Get "attr") }}
-  <figcaption>
-    {{- with .Get "title" }}{{ . }}{{ end -}}
-    {{- if or $caption (.Get "attr") }}<p>
-      {{- $caption | markdownify -}}
-      {{- with .Get "attrlink" }}<a href="{{ . }}">{{ end -}}
-      {{- .Get "attr" | markdownify -}}
-      {{- with .Get "attrlink" }}</a>{{ end -}}
-    </p>{{ end -}}
-  </figcaption>
+       alt="{{ with .Get "alt" }}{{ . }}{{ else }}{{ $caption | markdownify | plainify }}{{ end }}">
+  {{- with $caption }}
+  <figcaption><p>{{ . | markdownify }}</p></figcaption>
   {{- end }}
 </figure>

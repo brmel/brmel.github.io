@@ -16,7 +16,7 @@ teeth looks trivial and is not. You can see the teeth. A vision system cannot:
 it has a grid of intensities, and everything you want to know has to come out
 of where those intensities change.
 
-{{< figure src="01-saw-blade.png" alt="A circular saw blade with the arbor hole at its centre" caption="Every number below comes from the arbor hole and one circle drawn through the teeth." align="center" width="50%" >}}
+{{< figure src="01-saw-blade.png" alt="A circular saw blade with the arbor hole at its centre" caption="Every number below comes from the arbor hole and one circle drawn through the teeth." >}}
 
 ## Do not count the teeth — measure across them
 
