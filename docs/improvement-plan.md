@@ -203,7 +203,7 @@ measure logged in §7.
 
 ### 5a. Order
 
-K1 → K2 → R1 → R2 → R3 → R4 → K3 → K4 → K5 → K6 → K7 → K8 → C4 → M1 → C1 → C2 → M2 → C3 → M3 → C5 → P1 → P2 → P3 → P4 → P5 →
+K1 → K2 → R1 → R2 → R3 → R4 → K3 → K4 → K5 → K6 → K7 → K8 → C4 → M1 → C1 → C2 → M2 → C3 → M3 → C5 → C6 → P1 → P2 → P3 → P4 → P5 →
 S1 → S2 → S3 → S4 → S5 → S6 → S7 → A1 → A2 → A3 → H1 → close (re-audit live, merge, fold rules into
 ARCHITECTURE.md and README.md, delete this file).
 
@@ -289,7 +289,7 @@ Moves first, so every later change lands in its final place.
   rendition, emit a single candidate.
   - *Where:* `shortcodes/figure.html`.
   - *Done when:* 0 duplicate-width errors, and figure widths are unchanged.
-- [ ] **C3 · Code blocks.** Comment colour ≥ 4.5:1 in both themes, and `tabindex="0"` on
+- [x] **C3 · Code blocks.** Comment colour ≥ 4.5:1 in both themes, and `tabindex="0"` on
   scrollable `pre` through the code-block render hook.
   - *Where:* `10-base.css` or tokens, `_markup/render-codeblock.html` only if Hugo cannot do it
     natively.
@@ -304,6 +304,11 @@ Moves first, so every later change lands in its final place.
   added. Choose one of: keep the native scroll, a two-row wrap, or tighter spacing (§6, D3).
   - *Done when:* the chosen option is implemented, screenshots are taken at 360/375/390/414 in all
     three languages, and nothing is clipped without a visible way to reach it.
+
+- [ ] **C6 · Back-to-top link outside a landmark.** Once a page scrolls, `#top-link` becomes visible
+  outside `header`/`main`/`footer` (axe `region`), on every long page. The first axe matrix never
+  scrolled, so it missed it.
+  - *Done when:* axe run after scrolling reports 0 violations on the deep dive, home and resume.
 
 ### Phase 3 — Speed
 
@@ -404,4 +409,5 @@ Needs decision D1 before starting.
 | C1 | `122dbe6` | 4 validator errors; phone labels one letter per line, verdict 1038px tall at 390px; physical `text-align:right` | 0 errors; labels on one line, 504px; logical properties | desktop pixel-identical (antialiasing only), tablet dividers continuous, phone stacks label over value; 2 pages × 3 widths × 2 themes |
 | C2 | `83589a4` | ~15 duplicate-width srcsets; `sizes` at 760px (breakpoint is 768); gallery sized 310px (renders 389px); figure shortcode 43 lines with 9 unused params and an unreachable branch; 8 ignored `width`/`align` in content; duplicated media rule | 0 validator errors on site pages; sizes match layout; shortcode 21 lines, fails the build on a missing image | figure fig-w/src/width/height identical on all 9 pages; images checked at 390/1440 |
 | M1 | `6ecaad4` | manual tool runs | one command, exit 1 when under budget | live run matched §4 within noise; flags article a11y 96 (C3); resume mobile CLS 0.088 this run (look at in P4) |
-| M2 | this commit | no HTML validation | gate on 130 pages, 2 s | fails on a reintroduced `<dl>` error; jar pinned by sha512 |
+| M2 | `0c59735` | no HTML validation | gate on 130 pages, 2 s | fails on a reintroduced `<dl>` error; jar pinned by sha512; ran green in CI (run 34757852355) |
+| C3 | this commit | comments 3.61:1 (light) / 2.89:1 (dark); code element scrolls without focus | `--code-comment` 5.97:1 / 4.79:1; `pre` (tabindex=0) scrolls | axe 0 contrast / scrollable violations on 3 code pages × 2 widths × 2 themes; block sizes identical |

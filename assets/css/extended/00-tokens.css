@@ -9,7 +9,7 @@
   --bg:#faf9f6; --bg-alt:#f2f0e9; --ink:#181715; --ink-soft:#4a4843;
   --ink-mute:#6e6c65; --rule:#d9d6cb; --rule-soft:#e8e5da;
   --paper:#faf9f6;
-  --frame-ground:#ffffff; --media-ground:#000000; --media-ink:#ffffff;
+  --frame-ground:#ffffff; --media-ground:#000000; --media-ink:#ffffff; --code-comment:#9399b2;
 
   --accent:#a8431a; --accent-soft:#c96b3e;
 

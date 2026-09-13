@@ -125,7 +125,9 @@
 }
 .post-content > :is(h2,h3,h4):first-child{margin-block-start:0;}
 
-.post-content pre{font-size:.8em;}
+.post-content pre{font-size:.8em;overflow-x:auto;}
+.post-content pre code{overflow-x:visible;width:max-content;min-width:100%;}
+.chroma :is(.c,.ch,.cm,.c1,.cs,.cp,.cpf,.sd,.sh){color:var(--code-comment);}
 .post-content figure > figcaption,
 .post-content figure > figcaption > p{font-size:.72em;letter-spacing:.02em;}
 
