@@ -320,7 +320,7 @@ Moves first, so every later change lands in its final place.
   - *Where:* PaperMod's `partials/cover.html` (fork it) or a list-only partial.
   - *Done when:* Lighthouse "properly size images" and "next-gen formats" pass on `/tech/`, saving
     about 426 KB.
-- [ ] **C7 · List eyebrow wraps mid-phrase on phones.** "AUGUST 20, 2026 · 3 MIN" breaks between
+- [x] **C7 · List eyebrow wraps mid-phrase on phones.** "AUGUST 20, 2026 · 3 MIN" breaks between
   "3" and "MIN" at 390px on list pages (live too).
   - *Done when:* date and reading time never split inside a unit at 360–414px in EN/FR/AR.
 
@@ -421,4 +421,5 @@ Needs decision D1 before starting.
 | C6 | `0915391` | back-to-top outside a landmark once scrolled; no focus ring (theme `outline:0` beat the global rule); focus rule duplicated in 44-adventures.css | inside `<footer>`; 2px focus ring; one global focus rule | axe 0 after scroll on 4 pages × 2 widths × 2 themes; button position, size, colour identical to live |
 | C6b | `ed3e8cf` | theme toggle and TOC summary had no keyboard focus ring (theme `outline:0`) | both use the global accent ring | tab walk on article (light/dark) and search: every focusable control shows a ring; the search input keeps the theme's border highlight |
 | P1 | `ab5e6fb` | `sizes=380px`, 380w/760w q72–q58: 131 KB on 2×/3× screens | `sizes` 180px/200px, 200w/400w q60: 12 KB at 1×, 44 KB at 2–3× | chosen file verified at 390@2x/3x, 768@2x, 1440@1x/2x; q60 vs q72 indistinguishable at 400px; LCP re-measured live at phase end |
-| P2 | this commit | list thumbnails served original JPEG/PNG + JPEG resizes with `sizes` 720px: 517 KB on /tech/ | site-owned `article/cover.html`, 100/200/300w WebP, `sizes=100px`: 39 KB at 3×, 23 KB at 2×; tag pages no longer ship hidden covers; theme cover path, the unused adventures hero and 3 config params removed | thumbnails pixel-equivalent at 390@3×; og gate passes |
+| P2 | `fbd2fb8` | list thumbnails served original JPEG/PNG + JPEG resizes with `sizes` 720px: 517 KB on /tech/ | site-owned `article/cover.html`, 100/200/300w WebP, `sizes=100px`: 39 KB at 3×, 23 KB at 2×; tag pages no longer ship hidden covers; theme cover path, the unused adventures hero and 3 config params removed | thumbnails pixel-equivalent at 390@3×; og gate passes |
+| C7 | this commit | "3 / MIN" and dates split across lines on EN/FR lists at 360–390px | each eyebrow unit is unbreakable | 4 list pages × 4 widths (320–414) × EN/FR/AR: 0 split units, no overflow |

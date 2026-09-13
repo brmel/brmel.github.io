@@ -90,7 +90,7 @@
     <span class="u-eyebrow entry-eyebrow">
       {{- with .Date }}<time datetime="{{ .Format "2006-01-02" }}">{{ time.Format (site.Params.DateFormat | default ":date_long") . }}</time>{{ end }}
 
-      {{- if ge .ReadingTime 2 }} <b aria-hidden="true">·</b> {{ i18n "read_time" .ReadingTime | default (printf "%d min" .ReadingTime) }}{{ end }}
+      {{- if ge .ReadingTime 2 }} <b aria-hidden="true">·</b> <span>{{ i18n "read_time" .ReadingTime | default (printf "%d min" .ReadingTime) }}</span>{{ end }}
     </span>
     {{- end }}
     <h2 class="entry-hint-parent">
