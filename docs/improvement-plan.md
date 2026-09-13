@@ -255,9 +255,10 @@ Moves first, so every later change lands in its final place.
   up by ID.
   - *Where:* `config.toml` (four references).
   - *Done when:* the build is identical apart from the file name, and no asset is left orphaned.
-- [ ] **R4 · Evaluate Hugo's current template layout** (`_partials/`, `_shortcodes/`, no
-  `_default/`). Adopt only if every PaperMod lookup still resolves with a byte-identical build.
-  Otherwise log "dropped: theme depends on legacy lookup" and stop.
+- [x] **R4 · Hugo's current template layout — dropped.** Moving to `_partials/`, `_shortcodes/`,
+  `_markup/` and a flat `layouts/` built identically except the tag indexes: the vendored theme's
+  `_default/terms.html` wins over the project fork under both `terms.html` and `taxonomy.html`.
+  Keeping it would need a theme workaround, so the legacy layout stays until PaperMod moves.
 
 ### Phase 2 — Correctness and cleaning
 
@@ -371,4 +372,5 @@ Needs decision D1 before starting.
 | K2 | `70ed507` | 22 comment lines in 3 archetypes | 0; field docs in ARCHITECTURE.md and projects-playbook.md | all 4 archetypes scaffold and build |
 | R1 | `18bd70c` | 15 files flat in `scripts/` | entry points + `checks/` (9) + `generate/` (4) | gates pass; gates resolve the repo from any cwd; OG generator output byte-identical |
 | R2 | `985449d` | 31 partials, 20 project-owned mixed with theme names at the root | root = PaperMod names only; 8 domain folders | build byte-identical (386 files); bundle gate now follows partial calls instead of a list that skipped missing files |
-| R3 | this commit | `MyPhoto.jpg` | `profile.jpg` | build identical apart from the name (diffed) |
+| R3 | `ecec54e` | `MyPhoto.jpg` | `profile.jpg` | build identical apart from the name (diffed) |
+| R4 | dropped | — | — | trial diffed: 3 tag indexes fell back to the theme template |
