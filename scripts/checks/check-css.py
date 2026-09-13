@@ -47,7 +47,8 @@ markup = ""
 for pat in ("layouts/**/*.html", "content/**/*.md", "assets/js/*.js"):
     for f in glob.glob(os.path.join(ROOT, pat), recursive=True):
         markup += open(f, encoding="utf-8", errors="ignore").read()
-for f in glob.glob(os.path.join(ROOT, "themes/PaperMod/layouts/**/*.html"), recursive=True):
+for f in glob.glob(os.path.join(ROOT, "themes/PaperMod/layouts/**/*.html"), recursive=True) + [
+        os.path.join(ROOT, "themes/PaperMod/assets/css/includes/chroma-styles.css")]:
     markup += open(f, encoding="utf-8", errors="ignore").read()
 
 declared = set()

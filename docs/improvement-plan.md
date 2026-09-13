@@ -411,3 +411,4 @@ Needs decision D1 before starting.
 | M1 | `6ecaad4` | manual tool runs | one command, exit 1 when under budget | live run matched §4 within noise; flags article a11y 96 (C3); resume mobile CLS 0.088 this run (look at in P4) |
 | M2 | `0c59735` | no HTML validation | gate on 130 pages, 2 s | fails on a reintroduced `<dl>` error; jar pinned by sha512; ran green in CI (run 34757852355) |
 | C3 | this commit | comments 3.61:1 (light) / 2.89:1 (dark); code element scrolls without focus | `--code-comment` 5.97:1 / 4.79:1; `pre` (tabindex=0) scrolls | axe 0 contrast / scrollable violations on 3 code pages × 2 widths × 2 themes; block sizes identical |
+| C3 fix | this commit | C3 pushed with the CSS gate failing on `.cm`/`.cpf` | gate counts the highlighter's class vocabulary as rendered | all gates pass; lesson: the commit chain now runs check.sh first |
