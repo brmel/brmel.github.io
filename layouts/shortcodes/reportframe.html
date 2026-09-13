@@ -14,7 +14,13 @@
     } catch (e) {}
   }
   f.addEventListener('load', function () {
-    f.contentWindow.document.documentElement.style.overflow = 'hidden';
+    var d = f.contentWindow.document;
+    d.documentElement.style.overflow = 'hidden';
+    var own = d.getElementById('theme-toggle');
+    if (own) own.style.display = 'none';
+    function theme() { d.documentElement.setAttribute('data-theme', document.body.classList.contains('dark') ? 'dark' : 'light'); }
+    theme();
+    new MutationObserver(theme).observe(document.body, { attributes: true, attributeFilter: ['class'] });
     fit();
     [200, 600, 1500, 3000].forEach(function (t) { setTimeout(fit, t); });
     try { new ResizeObserver(fit).observe(f.contentWindow.document.body); } catch (e) {}

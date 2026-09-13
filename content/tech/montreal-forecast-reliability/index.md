@@ -1,14 +1,14 @@
 ---
-title: "Montréal Forecast Reliability: Three Services, Two Places, 882 Comparisons"
+title: "Montréal Forecast Reliability: 30 Days of Forecasts, Checked Hour by Hour"
 date: 2026-08-20
 relatedProject: "meteodata"
 draft: false
-summary: "Three forecast services, two places in Montréal, every prediction graded against the weather station beside it over five days. Temperature holds up. Rain does not — 70% of the rain calls never happened. Interactive report, gradeable from one hour ahead to twenty-four."
-description: "Three forecast services graded against the weather station next door over five days. Temperature holds up; 70% of the rain calls never happened."
+summary: "Thirty days of Montréal weather forecasts, every one graded against the weather station beside it. Temperature holds up a day ahead. Rain does not: seven in ten rain calls never happened. Interactive report, from one hour ahead to three days."
+description: "Thirty days of Montréal forecasts graded against the station next door. Temperature is 1.3 °C off a day ahead; seven in ten rain calls were false alarms."
 tags: ["Data Analysis", "Québec"]
 cover:
     image: "cover.jpg"
-    alt: "The forecast reliability report, showing the two Montréal forecast points and the weather stations that grade them"
+    alt: "The top of the forecast report: a day ahead, the temperature forecast misses by 1.3 °C on average"
     relative: true
 ---
 
@@ -16,56 +16,61 @@ cover:
 > [the MeteoData project page](/projects/meteodata/).
 
 A forecast is a claim about the future that nobody goes back and grades. So I
-graded one: three services, two places in Montréal, every prediction checked
-against the weather station standing beside it.
+graded one: thirty days of Montréal forecasts, every prediction checked against
+the weather station standing beside it.
 
 ## What I measured
 
 Three forecasters — ECMWF, GFS and HRDPS, read through Open-Meteo — publish an
 hourly forecast a week ahead for **Parc Henri-Julien** and **Montréal–Trudeau**.
 I polled all three every five minutes and saved a copy only when one of them
-changed its mind. An Environment Canada station beside each point measures the
-real weather every minute.
+changed its mind. An Environment Canada station beside each point reports the
+real weather every two minutes.
 
 The rule that makes this a forecast test rather than a hindsight test: **only
 values published before the hour they describe are scored.** A service that
 restates a number afterwards is not forecasting. Truth is the station's reading
-at that moment, matched within five minutes — not an hourly average. That gave
-**1,622 tracked forecasts** and **147 scored hours**, compared six ways for
-**882 comparisons**.
+at that moment, matched within five minutes — not an hourly average. From
+**14 August to 13 September** that saved **1,515 forecast versions**, and
+something new arrived in **683 of 732 hours**.
+
+The numbers below are for the European model at Trudeau airport, the view the
+report shows.
 
 ## What came out
 
-**Temperature barely cares how far ahead you ask.** The average miss was
-**1.21 °C one hour ahead and 1.38 °C a full day ahead.** A day-ahead temperature
-forecast is very nearly as good as an hour-ahead one, which was not what I
-expected. It lands within 1 °C about half the time (49%) and within half a degree
-28% of the time, running **0.15 °C cold** on average.
+**Temperature barely cares how far ahead you ask, up to a day.** The average miss
+was **1.2 °C one hour ahead and 1.3 °C a full day ahead**, within 1 °C about half
+the time (53%, then 48%). Three days out it slips to **1.6 °C**, within 1 °C 42%
+of the time.
 
-**Rain is a different story.** One hour ahead, rain was forecast for 133 hours
-and arrived in **43** of them — **90 false alarms**, about two thirds of every
-rain call. Another **23** rainy hours arrived with nothing forecast at all. The
-headline "wrong 12.9% of hours" hides that asymmetry: the service is not vague
-about rain, it is systematically over-eager.
+**Rain is a different story.** One hour ahead the forecast caught **158 of 246**
+rainy hours and raised **389 false alarms** — **71%** of its rain calls — while
+88 rainy hours arrived with nothing forecast. A day ahead the false alarms are
+73%, three days ahead 84%. The headline "wrong 11% of hours" hides that
+asymmetry: most hours are dry, so the service looks accurate while being
+systematically over-eager about rain.
 
-**Humidity is flat and biased.** Off by roughly **7.7%** at every range from one
-hour to twenty-four, and consistently **3.3% too high**. A bias that stable is
-correctable; random error is not.
+**Rain amounts look good for the same reason.** The average miss is **0.25 mm**
+an hour ahead, but in the hours when it actually rained the forecast was
+**1.7 mm** off.
 
-**The services change their minds constantly.** **87% of forecasts were
-rewritten at least once** before the hour they described.
+**Humidity is flat.** Off by **7.3%** an hour ahead, **7.7%** a day ahead and
+**8.7%** three days ahead.
 
-**One measure could not be graded at all.** No station here reports cloud cover,
-so there is nothing to check the cloud forecast against. Sunshine stands in for
-it, and the honest answer is "not measurable".
+**The services change their minds constantly.** A new version typically arrived
+every **20 minutes**.
+
+**Cloud cover could not be graded at all.** Neither station reports it, so
+sunshine stands in: **74 W/m²** off a day ahead, within 100 W/m² three times in
+four.
 
 ## Caveats
 
-This is **four days and twenty hours** of August weather — 116 of 148 hours
-covered, longest quiet stretch ten hours. It is enough to show the shape of the
-errors and nowhere near enough to characterise a season. Parc Henri-Julien is
-graded from McTavish, 7.27 km away, so some of its gap is distance rather than
-forecast error.
+This is **one month** of late-summer weather in one city — enough to show the
+shape of the errors, not enough to characterise a year. Parc Henri-Julien has no
+station of its own and is graded from McTavish, **7.3 km** away, so some of its
+gap is distance rather than forecast error.
 
 ## The full report
 

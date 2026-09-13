@@ -7,28 +7,28 @@ status: "shipped"
 pitch: "I graded three weather services against the station next door, to find out which parts of a forecast you can actually believe."
 description: "I graded three weather services against the station next door, to find out which parts of a forecast you can actually believe."
 metrics:
-  - value: "882"
-    label: "forecasts graded against what a station actually recorded"
-  - value: "1.19 °C"
-    label: "average temperature miss, six hours ahead"
-  - value: "70%"
-    label: "of the rain calls never happened"
+  - value: "30 days"
+    label: "of forecasts graded against what a station actually recorded"
+  - value: "1.3 °C"
+    label: "average temperature miss, a day ahead"
+  - value: "71%"
+    label: "of the rain calls an hour ahead never happened"
 stack: ["Python", "asyncio", "httpx", "Docker", "Google Cloud Storage"]
 links:
   live: "/tech/montreal-forecast-reliability/"
 lede: |
   Three services publish an hourly forecast for two places in Montréal. An
   Environment Canada station sits beside each of them, measuring what actually
-  happens every minute. This records both for just under five days and grades
-  every prediction against the reading for the hour it described — at one hour
-  ahead, or three, six, twelve, twenty-four.
+  happens. This records both for thirty days and grades every prediction against
+  the reading for the hour it described — at one hour ahead, or three, six,
+  twelve, twenty-four, or three days.
 takeaway: "A forecast is not one prediction, it is six, and they are not equally good — averaging them into \"accurate\" is how the useful part gets hidden."
 lessons:
-  - "**The app is not bad at weather. It is bad at rain.** Temperature is genuinely good — 1.19 °C off six hours ahead, and it barely degrades out to a full day. Humidity holds. Then rain: 95 of 136 calls passed without a drop, 70% false alarms, and unlike temperature the precipitation error does not improve as the hour approaches. 0.40 mm at six hours is 0.40 mm at twenty-four. Getting one number for \"is the forecast accurate\" would have averaged the good half with the useless half and told me nothing."
+  - "**The app is not bad at weather. It is bad at rain.** Temperature is genuinely good — 1.2 °C off six hours ahead, and it barely degrades out to a full day. Humidity holds. Then rain: 419 of 583 calls six hours ahead passed without a drop, 72% false alarms, and unlike temperature the precipitation error does not improve as the hour approaches. 0.27 mm at six hours is 0.27 mm at twenty-four. Getting one number for \"is the forecast accurate\" would have averaged the good half with the useless half and told me nothing."
   - "**A forecast only counts if it was on record before the thing happened.** Services quietly restate values for hours that have already passed, and a scorer that reads the current file is grading hindsight and will report suspiciously good numbers. Only forecasts published strictly before the hour they describe are scored. This is the rule the whole result depends on, and it is invisible in the output — which is exactly why it is written into the report's method section rather than left in the code."
   - "**\"The truth\" needed defining before anything could be graded.** The station reports every minute; the forecast describes an hour. I match the instant, within ±5 minutes, and leave a forecast ungraded rather than score it against the wrong time — an unhelpful answer beats a confident wrong one. Rain is the exception and is compared against the hour it fell in, because that is the hour the station attributes it to."
   - "**One measure could not be measured, and saying so was better than substituting quietly.** No station here reports cloud cover. Sunshine stands in for it, and the report says \"not measurable\" in that row rather than printing a number that looks like the others. The temptation to fill the cell was real."
-  - "**Poll on change, not on schedule.** Reading three services every five minutes and storing a copy every time would have been mostly duplicates. A snapshot is saved only when a service has changed its mind, which is why five days of three forecasters fits in a file you can open — and why the record shows when each service revised, not just what it ended up saying."
+  - "**Poll on change, not on schedule.** Reading three services every five minutes and storing a copy every time would have been mostly duplicates. A snapshot is saved only when a service has changed its mind, which is why a month of three forecasters fits in a file you can open — and why the record shows when each service revised, not just what it ended up saying."
 tags: ["Python", "Data Analysis", "Québec"]
 ---
 
@@ -66,6 +66,6 @@ ask.
 
 [Read the report →](/tech/montreal-forecast-reliability/)
 
-Five days is short, and one summer week in one city is not a verdict on
+A month is short, and one late summer in one city is not a verdict on
 forecasting. It is enough to separate the measures that hold from the one that
 does not, which was the thing I actually wanted to know.
