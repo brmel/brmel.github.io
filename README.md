@@ -55,7 +55,6 @@ that had already shipped.
 | `check-css.py` | explicit cascade order, colours only in tokens, no duplicated primitives, no dead classes |
 | `check-chrome.py` | one `h1`, a skip link and sized images on every page; every content page has a way back and a way to contribute |
 | `check-pages.py` | no destination linked twice, no self-link, no unnamed control; every internal link resolves and every page is reachable |
-| `check-bundles.py` | every class the standalone layout renders is styled by a file it loads |
 | `check-rtl.py` | layout mirrors from logical properties alone — no physical `left`/`right` |
 | `check-js.py` | every selector a script reaches for exists on the pages that load it |
 | `check-html.py` | every page except the generated reports is valid HTML (Nu HTML Checker, pinned; needs Java) |

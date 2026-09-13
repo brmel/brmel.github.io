@@ -2,7 +2,7 @@
 {{- $r := resources.Get $src -}}
 {{- with $r -}}
 
-<iframe id="reportFrame" class="report-frame" src="{{ .RelPermalink }}" title="{{ $.Get `title` | default `Report` }}" loading="lazy"></iframe>
+<iframe id="reportFrame" class="report-frame u-breakout" src="{{ .RelPermalink }}" title="{{ $.Get `title` | default `Report` }}" loading="lazy"></iframe>
 <script>
 (function () {
   var f = document.getElementById('reportFrame'); if (!f) return;
@@ -14,6 +14,7 @@
     } catch (e) {}
   }
   f.addEventListener('load', function () {
+    f.contentWindow.document.documentElement.style.overflow = 'hidden';
     fit();
     [200, 600, 1500, 3000].forEach(function (t) { setTimeout(fit, t); });
     try { new ResizeObserver(fit).observe(f.contentWindow.document.body); } catch (e) {}
@@ -22,5 +23,5 @@
 })();
 </script>
 {{- else -}}
-{{- warnf "reportframe: resource %q not found in the page bundle" $src -}}
+{{- errorf "reportframe: %q is not in assets/" $src -}}
 {{- end -}}

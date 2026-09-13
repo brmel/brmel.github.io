@@ -21,7 +21,7 @@
 
   {{- $gallery := .Resources.Match "gallery/*" -}}
   {{- with $gallery }}
-  <section class="project-gallery" aria-labelledby="project-gallery-h">
+  <section class="project-gallery u-breakout" aria-labelledby="project-gallery-h">
     <h2 class="u-rule-heading" id="project-gallery-h">{{ i18n "project_gallery" | default "Gallery" }}</h2>
     <div class="project-gallery__grid">
       {{- range $i, $img := . }}

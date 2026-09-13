@@ -72,15 +72,24 @@ a.u-chip:hover{border-color:var(--accent);color:var(--accent);}
   letter-spacing:.08em;text-transform:uppercase;color:var(--ink-mute);
 }
 
+.u-breakout{
+  --breakout:min(100vw - var(--space-6) * 2, var(--container-content));
+  width:var(--breakout);
+  margin-inline:calc((100% - var(--breakout)) / 2);
+}
+@media (max-width:768px){
+  .u-breakout{--breakout:100%;}
+}
+
 .report-frame{
-  display:block;width:100%;min-height:100vh;
+  display:block;min-height:100vh;
   border:0;
   border-radius:var(--radius-md);
   box-shadow:var(--shadow-card);
   background:var(--bg);
 }
 .dark .report-frame{
-  border:var(--hairline) solid var(--rule);
+  outline:var(--hairline) solid var(--rule);
   background:var(--frame-ground);
 }
 

@@ -27,7 +27,6 @@ layouts/
     list.html          home + section indexes (fork)
     terms.html         tag index (fork)
     resume.html        the resume, rendered from front matter
-    standalone.html    full-bleed pages that own their <head> (the reports)
     _markup/render-link.html   external links open in a new tab
   projects/
     single.html        project pages
@@ -121,12 +120,8 @@ Section files **compose** the primitives; they never redeclare them.
 `scripts/checks/check-css.py` fails the build if they do, if a colour appears outside
 tokens, if a file exceeds 260 lines, or if a class is declared but never used.
 
-`scripts/checks/check-bundles.py` covers the fault that shipped twice: two layouts
-assemble two different CSS bundles, and a class rendered by a shared partial but
-styled in a file only one bundle loads is invisible in the other, silently.
-`.report-frame` collapsed to a 300px iframe that way; `.related-project`
-rendered unstyled on the same page for the same reason. Anything a shared
-partial or a shortcode renders belongs in `20-components.css`.
+Every page loads the same stylesheet. Anything a shared partial or a shortcode renders belongs in
+`20-components.css`; `.u-breakout` widens a block from the text column to the content width.
 
 `scripts/checks/check-pages.py` covers what a structural check cannot see: the same
 destination linked twice on one page however differently the two links are
@@ -176,10 +171,9 @@ Optional fields, each rendered by one partial:
 
 Adventures add the field-note fields documented in `docs/adventures-playbook.md`.
 
-A report is a Tech article with `layout: "standalone"`: the page owns its `<head>` and embeds a
-generated HTML file from `assets/reports/` with `{{< reportframe src="reports/<file>.html" >}}`,
-which sizes the frame to its content. `hideAutoHeader: true` drops the title block when the report
-has its own, and `fullBleed: true` lets the body use the full width.
+A report is an ordinary Tech article: prose in the text column, then the generated HTML from
+`assets/reports/` embedded with `{{< reportframe src="reports/<file>.html" >}}`, which widens to the
+content width and sizes the frame to its content.
 
 ## Languages
 

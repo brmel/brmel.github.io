@@ -12,7 +12,6 @@ echo "▸ colour contrast";        python3 ./scripts/checks/check-contrast.py
 echo "▸ css architecture";       python3 ./scripts/checks/check-css.py
 echo "▸ page chrome";            python3 ./scripts/checks/check-chrome.py
 echo "▸ links, duplicates and controls"; python3 ./scripts/checks/check-pages.py
-echo "▸ bundle scope";           python3 ./scripts/checks/check-bundles.py
 echo "▸ direction safety";       python3 ./scripts/checks/check-rtl.py
 echo "▸ script selectors";       python3 ./scripts/checks/check-js.py
 echo "▸ html validity";          python3 ./scripts/checks/check-html.py

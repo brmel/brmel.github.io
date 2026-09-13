@@ -310,6 +310,14 @@ Moves first, so every later change lands in its final place.
   scrolled, so it missed it.
   - *Done when:* axe run after scrolling reports 0 violations on the deep dive, home and resume.
 
+- [x] **R5 · Reports use the article layout (bug: report text ran edge to edge).** Both report
+  articles used `standalone.html`, a second page shell with its own top bar (no theme toggle,
+  languages or menu), footer, type and a 560px breakpoint. `fullBleed` removed the text column once
+  the reports gained prose, so paragraphs ran 0px from the right edge at every width. Reports are now
+  ordinary Tech articles; the frame widens with a shared `.u-breakout`, also used by the project
+  gallery. Removes `standalone.html`, `standalone.css`, `check-bundles.py`, three front-matter
+  params, one token and one i18n key. Also satisfies S6.
+
 ### Phase 3 — Speed
 
 - [x] **P1 · Profile photo.** `sizes` matches the displayed width (153–200px); renditions at 200w,
@@ -351,7 +359,7 @@ Moves first, so every later change lands in its final place.
 - [ ] **S4 · Descriptions 70–160 characters.** FR/AR section indexes and the AR barcode page.
   - *Done when:* 0 out of range, and each is written in its own language.
 - [ ] **S5 · `hreflang` `x-default`** on every translated page and in the sitemap.
-- [ ] **S6 · Report pages.** The standalone layout emits `hreflang`, canonical and `TechArticle`
+- [x] **S6 · Report pages.** The standalone layout emits `hreflang`, canonical and `TechArticle`
   JSON-LD like every other article.
 
 - [ ] **S7 · SEO gate.** `checks/check-seo.py` asserts the §2 SEO rules on the build: title and
@@ -422,4 +430,5 @@ Needs decision D1 before starting.
 | C6b | `ed3e8cf` | theme toggle and TOC summary had no keyboard focus ring (theme `outline:0`) | both use the global accent ring | tab walk on article (light/dark) and search: every focusable control shows a ring; the search input keeps the theme's border highlight |
 | P1 | `ab5e6fb` | `sizes=380px`, 380w/760w q72–q58: 131 KB on 2×/3× screens | `sizes` 180px/200px, 200w/400w q60: 12 KB at 1×, 44 KB at 2–3× | chosen file verified at 390@2x/3x, 768@2x, 1440@1x/2x; q60 vs q72 indistinguishable at 400px; LCP re-measured live at phase end |
 | P2 | `fbd2fb8` | list thumbnails served original JPEG/PNG + JPEG resizes with `sizes` 720px: 517 KB on /tech/ | site-owned `article/cover.html`, 100/200/300w WebP, `sizes=100px`: 39 KB at 3×, 23 KB at 2×; tag pages no longer ship hidden covers; theme cover path, the unused adventures hero and 3 config params removed | thumbnails pixel-equivalent at 390@3×; og gate passes |
-| C7 | this commit | "3 / MIN" and dates split across lines on EN/FR lists at 360–390px | each eyebrow unit is unbreakable | 4 list pages × 4 widths (320–414) × EN/FR/AR: 0 split units, no overflow |
+| C7 | `376294e` | "3 / MIN" and dates split across lines on EN/FR lists at 360–390px | each eyebrow unit is unbreakable | 4 list pages × 4 widths (320–414) × EN/FR/AR: 0 split units, no overflow |
+| R5 | this commit | report prose 26px left / 0px right at every width; separate shell without toggle, languages, menu, hreflang | text column like every article (278/275px at 1440, 31/28px at 390); frame 1200px centred; site header and SEO head | gallery geometry identical at 390–1920; frame height stable within 1s, no inner scrollbar, EN light/dark 390/768/1440 |

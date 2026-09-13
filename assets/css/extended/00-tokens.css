@@ -20,7 +20,6 @@
   --t-micro:0.6875rem;
   --lh-body:1.6; --track-eyebrow:0.12em;
 
-  --fl-display-l:clamp(2.25rem,1.5rem + 3.8vw,4rem);
   --fl-display-m:clamp(1.875rem,1.35rem + 2.6vw,3rem);
 
   --space-1:4px; --space-2:8px; --space-3:12px; --space-4:16px; --space-5:24px;

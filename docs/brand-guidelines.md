@@ -164,8 +164,7 @@ ratio('#a76e95', '#14130f')   # 4.70 -> passes
 
 ## 4. Type
 
-Loaded once site-wide — `extend_head.html` for PaperMod pages,
-`head/fonts.html` for the standalone layout. Reuse; never add a family.
+Loaded once site-wide from `head/fonts.html`. Reuse; never add a family.
 
 | Role | Font | Notes |
 |------|------|-------|

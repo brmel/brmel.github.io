@@ -3,9 +3,6 @@ title: "Hydro-Québec Outage Analysis: Two Months of Grid Reliability Data"
 date: 2026-06-01
 relatedProject: "hydro-quebec"
 draft: false
-layout: "standalone"
-hideAutoHeader: true
-fullBleed: true
 summary: "A two-month reliability study of Hydro-Québec's public outage feed — regional reliability, Montréal boroughs, ETA accuracy, causes, record outages, and the data pipeline behind it. Interactive charts + map."
 description: "Two months of Hydro-Québec's public outage feed, graded: regional reliability, Montréal boroughs, ETA accuracy and causes. Interactive charts and map."
 tags: ["Data Analysis", "Québec"]
@@ -13,8 +10,6 @@ cover:
     image: "cover.jpg"
     alt: "Montréal outage statistics from the Hydro-Québec reliability report"
     relative: true
-# English-only by design: no index.fr.md / index.ar.md, and the standalone
-# layout carries no language switcher — this article never appears translated.
 ---
 
 > How this was built, and what it changed my mind about:
