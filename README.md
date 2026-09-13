@@ -59,6 +59,13 @@ that had already shipped.
 | `check-rtl.py` | layout mirrors from logical properties alone — no physical `left`/`right` |
 | `check-js.py` | every selector a script reaches for exists on the pages that load it |
 
+## Audit
+
+`python3 scripts/audit.py [base-url]` runs Lighthouse (12 pages, mobile and desktop) and a
+full link crawl against the live site or a local server, and fails when a score is under the
+budget in `docs/improvement-plan.md`. It needs Node for `npx` and Chrome; nothing is installed
+into the repo.
+
 ## Generators
 
 Run by hand, not by the build. Each writes into the repo; commit the result.

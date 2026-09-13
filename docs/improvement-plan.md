@@ -159,7 +159,7 @@ scripts/
   check.sh · gates.sh   entry points
   checks/               one gate per file                           ← R1
   generate/             favicon and OG generators, with their HTML templates  ← R1
-  audit.sh              local Lighthouse, axe, validator, crawler run  ← M1
+  audit.py              Lighthouse and link crawl against budgets  ← M1
 static/                 verbatim files only: favicons, fonts, og, robots.txt, CNAME
 themes/PaperMod/        vendored, untouched
 ```
@@ -243,9 +243,9 @@ that locks it, so `main` stays green.
 
 So every later item can prove its gain with one command.
 
-- [ ] **M1 · Local audit script.** `scripts/audit.sh [base-url]` runs Lighthouse (mobile and
-  desktop, pages from §4), axe-core through Playwright (15 pages × 2 widths × 2 themes), the Nu
-  HTML Checker on `public/`, and a link crawl. It prints one summary table. Tools come from `npx`
+- [x] **M1 · Local audit script.** `scripts/audit.py [base-url]` runs Lighthouse (mobile and
+  desktop, pages from §4) and a link crawl against budgets. HTML validity lives in the M2 gate;
+  the axe matrix stays a Playwright step in the loop. It prints one summary table. Tools come from `npx`
   and a pinned `vnu.jar`; nothing is added to the repo's dependencies.
   - *Done when:* one command reproduces §4 within noise.
 - [ ] **M2 · HTML validity gate.** Add `checks/check-html.sh` running the pinned Nu checker on
@@ -402,4 +402,5 @@ Needs decision D1 before starting.
 | K8 | `9a6c9ba` | 3 raw colours warned; dead classes only warned; 29-name ignore list; dead `cat-` branch in contrast gate | 3 tokens; both fail the build; no ignore list | computed colours unchanged (#fff frame, #fff icon, #000 lightbox); negative test fails as expected |
 | C4 | `6bb8b76` | fork count 16, 3 stylesheets and 12 partials undocumented, stale README lines | counts, tree, tables and docs index match the repo | every backticked path and relative link in both files resolves |
 | C1 | `122dbe6` | 4 validator errors; phone labels one letter per line, verdict 1038px tall at 390px; physical `text-align:right` | 0 errors; labels on one line, 504px; logical properties | desktop pixel-identical (antialiasing only), tablet dividers continuous, phone stacks label over value; 2 pages × 3 widths × 2 themes |
-| C2 | this commit | ~15 duplicate-width srcsets; `sizes` at 760px (breakpoint is 768); gallery sized 310px (renders 389px); figure shortcode 43 lines with 9 unused params and an unreachable branch; 8 ignored `width`/`align` in content; duplicated media rule | 0 validator errors on site pages; sizes match layout; shortcode 21 lines, fails the build on a missing image | figure fig-w/src/width/height identical on all 9 pages; images checked at 390/1440 |
+| C2 | `83589a4` | ~15 duplicate-width srcsets; `sizes` at 760px (breakpoint is 768); gallery sized 310px (renders 389px); figure shortcode 43 lines with 9 unused params and an unreachable branch; 8 ignored `width`/`align` in content; duplicated media rule | 0 validator errors on site pages; sizes match layout; shortcode 21 lines, fails the build on a missing image | figure fig-w/src/width/height identical on all 9 pages; images checked at 390/1440 |
+| M1 | this commit | manual tool runs | one command, exit 1 when under budget | live run matched §4 within noise; flags article a11y 96 (C3); resume mobile CLS 0.088 this run (look at in P4) |
