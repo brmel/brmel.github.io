@@ -250,7 +250,7 @@ Moves first, so every later change lands in its final place.
   - *Where:* every `partial "…"` call; `check-bundles.py` if it names paths.
   - *Done when:* the build is byte-identical, and no partial at the root lacks
     a theme counterpart.
-- [ ] **R3 · Profile photo name.** `assets/images/MyPhoto.jpg` becomes `profile.jpg`. The
+- [x] **R3 · Profile photo name.** `assets/images/MyPhoto.jpg` becomes `profile.jpg`. The
   timeline images keep their names: they are YouTube video IDs, and `video-thumb.html` looks them
   up by ID.
   - *Where:* `config.toml` (four references).
@@ -370,4 +370,5 @@ Needs decision D1 before starting.
 | K1 | `e28e720` | 22 lines, 9 comments | 11 lines | same ignored set |
 | K2 | `70ed507` | 22 comment lines in 3 archetypes | 0; field docs in ARCHITECTURE.md and projects-playbook.md | all 4 archetypes scaffold and build |
 | R1 | `18bd70c` | 15 files flat in `scripts/` | entry points + `checks/` (9) + `generate/` (4) | gates pass; gates resolve the repo from any cwd; OG generator output byte-identical |
-| R2 | this commit | 31 partials, 20 project-owned mixed with theme names at the root | root = PaperMod names only; 8 domain folders | build byte-identical (386 files); bundle gate now follows partial calls instead of a list that skipped missing files |
+| R2 | `985449d` | 31 partials, 20 project-owned mixed with theme names at the root | root = PaperMod names only; 8 domain folders | build byte-identical (386 files); bundle gate now follows partial calls instead of a list that skipped missing files |
+| R3 | this commit | `MyPhoto.jpg` | `profile.jpg` | build identical apart from the name (diffed) |
