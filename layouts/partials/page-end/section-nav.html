@@ -1,5 +1,6 @@
-{{- $section := .Section -}}
-{{- with site.GetPage (printf "/%s" $section) }}
+{{- with .Section }}
+{{- $section := . }}
+{{- with site.GetPage (printf "/%s" .) }}
 {{- $siblings := partial "func/section-pages.html" . -}}
 {{- if eq $section "projects" }}
   {{- $siblings = sort $siblings "Params.projectNo" "asc" }}
@@ -7,33 +8,29 @@
   {{- $siblings = sort $siblings "Date" "desc" }}
 {{- end }}
 
-{{- $cur := $.RelPermalink -}}
 {{- $prev := false }}{{ $next := false }}{{ $idx := -1 }}
-{{- range $i, $p := $siblings }}{{ if eq $p.RelPermalink $cur }}{{ $idx = $i }}{{ end }}{{ end }}
+{{- range $i, $p := $siblings }}{{ if eq $p.RelPermalink $.RelPermalink }}{{ $idx = $i }}{{ end }}{{ end }}
 {{- if ge $idx 0 }}
   {{- if gt $idx 0 }}{{ $prev = index $siblings (sub $idx 1) }}{{ end }}
   {{- if lt $idx (sub (len $siblings) 1) }}{{ $next = index $siblings (add $idx 1) }}{{ end }}
 {{- end }}
 
 <nav class="section-nav" aria-label="{{ i18n "section_nav_label" | default "Section navigation" }}">
-  <a class="section-nav__back" href="{{ .RelPermalink }}">
-    <span aria-hidden="true">←</span>
-    {{ i18n "back_to" | default "Back to" }} {{ .Title }}
-  </a>
+  <a class="section-nav__link" href="{{ .RelPermalink }}"><span aria-hidden="true">←</span> {{ i18n "back_to" | default "Back to" }} {{ .Title }}</a>
   {{- if or $prev $next }}
   <div class="section-nav__siblings">
     {{- with $prev }}
-    <a class="u-card section-nav__sib section-nav__sib--prev" href="{{ .RelPermalink }}" rel="prev">
-      <span class="section-nav__dir">{{ i18n "previous" | default "Previous" }}</span>
+    <a class="section-nav__sib" href="{{ .RelPermalink }}" rel="prev">
+      <span class="section-nav__link"><span aria-hidden="true">←</span> {{ i18n "previous" | default "Previous" }}</span>
       <span class="section-nav__title">{{ .Title }}</span>
       {{- if ne .Lang site.Language.Lang }}
       <span class="entry-lang" title="{{ i18n "lang_en_only_title" | default "This write-up is in English" }}">{{ i18n "lang_en_only" | default "in English" }}</span>
       {{- end }}
     </a>
-    {{- else }}<span></span>{{ end }}
+    {{- end }}
     {{- with $next }}
-    <a class="u-card section-nav__sib section-nav__sib--next" href="{{ .RelPermalink }}" rel="next">
-      <span class="section-nav__dir">{{ i18n "next" | default "Next" }}</span>
+    <a class="section-nav__sib section-nav__sib--next" href="{{ .RelPermalink }}" rel="next">
+      <span class="section-nav__link">{{ i18n "next" | default "Next" }} <span aria-hidden="true">→</span></span>
       <span class="section-nav__title">{{ .Title }}</span>
       {{- if ne .Lang site.Language.Lang }}
       <span class="entry-lang" title="{{ i18n "lang_en_only_title" | default "This write-up is in English" }}">{{ i18n "lang_en_only" | default "in English" }}</span>
@@ -43,4 +40,5 @@
   </div>
   {{- end }}
 </nav>
+{{- end }}
 {{- end }}

@@ -7,7 +7,7 @@ PUB = os.path.join(ROOT, "public")
 CONTENT = ("tech/", "projects/", "thoughts/", "adventures/")
 
 REQUIRED = {
-    "way back":  re.compile(r"section-nav__back|sa-nav__link|breadcrumbs"),
+    "way back":  re.compile(r"section-nav__link|breadcrumbs"),
     "contribute": re.compile(r"content-actions"),
 }
 
