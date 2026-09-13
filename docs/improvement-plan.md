@@ -332,7 +332,7 @@ Moves first, so every later change lands in its final place.
   "3" and "MIN" at 390px on list pages (live too).
   - *Done when:* date and reading time never split inside a unit at 360–414px in EN/FR/AR.
 
-- [ ] **P3 · LCP image priority.** On article pages, the cover or the first figure above the fold
+- [x] **P3 · LCP image priority.** On article pages, the cover or the first figure above the fold
   loads eagerly with `fetchpriority="high"`; every other image stays lazy.
   - *Done when:* the deep dive's mobile LCP ≤ 1.5 s and its perf ≥ 99.
 - [ ] **P4 · Fonts.** Audit which faces each page actually uses. Preload only the ones used above
@@ -438,4 +438,5 @@ Needs decision D1 before starting.
 | U5 | `ce9cc91` | "Start here" block on /projects/ | removed with its CSS, `startHere`/`startHereWhy` front matter (4 files) and i18n key (3 languages) | /projects/ EN/FR/AR × 390/1440 × light/dark render without it, no overflow |
 | U2b | `577ba97` | gutters 14px at ≤768px (jump from 53px at 769); light list pages on `bg-alt`, articles on paper | 16px ≤600, 24px 601–1024, centred column above; one background on every page | 14 page types × 11 widths (320–1440): symmetric gutters, no overflow, menu fits |
 | U6a | `e64763d` | article meta "date   ·1 min" (flex gap); adventures meta "By Ibraverse · May 2026 · 2 min read" in hard-coded English plus a chip repeating the eyebrow category; adventures prose on its own type scale with hover-only link underlines; dead canonical call, impossible `.adventures .adventures` selector, duplicated link rule | one localised "date · N min" line everywhere; adventures use the article prose; chip, icon partial and 4 rules removed | 5 articles × 390/1440 incl. FR/AR: 8px even spacing, same prose size, links underlined |
-| U6b | this commit | gallery cropped every image to 16:10 (phone screenshots showed their top third) | whole images, capped at 30rem tall, centred in their column | wingo/rekba/farkad/robonode × 1440/768/390: no crop, no overflow |
+| U6b | `03ffc14` | gallery cropped every image to 16:10 (phone screenshots showed their top third) | whole images, capped at 30rem tall, centred in their column | wingo/rekba/farkad/robonode × 1440/768/390: no crop, no overflow |
+| P3 | this commit | LCP image lazy-loaded on the barcode article (EN/AR, 390 and 1440) and project galleries at 1440 | first figure shortcode and first gallery image `fetchpriority=high`; gallery images eager (≤3, one row on desktop) | LCP element measured on 13 pages × 2 widths: no lazy LCP image, at most one high-priority image per page |

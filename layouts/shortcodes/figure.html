@@ -13,7 +13,7 @@
        sizes="(max-width: 768px) 100vw, {{ $displayW }}px"
        {{- end }}
        width="{{ $large.Width }}" height="{{ $large.Height }}"
-       loading="lazy" decoding="async"
+       {{- if eq .Ordinal 0 }} fetchpriority="high"{{ else }} loading="lazy"{{ end }} decoding="async"
        alt="{{ with .Get "alt" }}{{ . }}{{ else }}{{ $caption | markdownify | plainify }}{{ end }}">
   {{- with $caption }}
   <figcaption><p>{{ . | markdownify }}</p></figcaption>
