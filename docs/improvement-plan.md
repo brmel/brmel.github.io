@@ -294,7 +294,7 @@ Moves first, so every later change lands in its final place.
   - *Where:* `10-base.css` or tokens, `_markup/render-codeblock.html` only if Hugo cannot do it
     natively.
   - *Done when:* axe 0 violations on the deep dive, and the deep dive's a11y score is 100.
-- [ ] **C4 · Docs match the code.**
+- [x] **C4 · Docs match the code.**
   - ARCHITECTURE: the partials tree is missing 12 partials, it says "Sixteen templates" where
     there are 15, and the stylesheet table is missing `05-fonts`, `31-toc`, `32-search`.
   - README: "adventures (currently all drafts)" (both are published), "two files, ~80 lines"
@@ -399,4 +399,5 @@ Needs decision D1 before starting.
 | K5 | `d064cd7` | scaffold draft in docs/, `disableShare: false` ×2 | deleted; reports documented in ARCHITECTURE.md | build byte-identical |
 | K6 | `2236d13` | 16 comment lines in inline JS and timeline.js; 2 stale DRAFT notes on published reports | 0 | build byte-identical; all 46 report figures checked against the generated reports first |
 | K7 | `380c70b` | 9 comments, 1 always-empty opt-out | 0 | every gate passes with the same counts |
-| K8 | this commit | 3 raw colours warned; dead classes only warned; 29-name ignore list; dead `cat-` branch in contrast gate | 3 tokens; both fail the build; no ignore list | computed colours unchanged (#fff frame, #fff icon, #000 lightbox); negative test fails as expected |
+| K8 | `9a6c9ba` | 3 raw colours warned; dead classes only warned; 29-name ignore list; dead `cat-` branch in contrast gate | 3 tokens; both fail the build; no ignore list | computed colours unchanged (#fff frame, #fff icon, #000 lightbox); negative test fails as expected |
+| C4 | this commit | fork count 16, 3 stylesheets and 12 partials undocumented, stale README lines | counts, tree, tables and docs index match the repo | every backticked path and relative link in both files resolves |

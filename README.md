@@ -13,8 +13,8 @@ hugo server            # http://localhost:1313
 ./scripts/check.sh     # everything CI runs, locally
 ```
 
-Requires Hugo **0.148.0 extended** — pinned in both workflows. Python 3 and
-Pillow for the asset and audit scripts.
+Requires Hugo **0.148.0 extended** — pinned in both workflows. The gates need
+Python 3 and nothing else; the generators also need Pillow.
 
 ## Layout
 
@@ -23,16 +23,19 @@ content/          markdown, one page bundle per article or project
   projects/       what was built, with galleries
   tech/           long-form technical writing
   thoughts/       shorter reflection
-  adventures/     field notes (currently all drafts)
+  adventures/     field notes
   resume.md       + .fr.md / .ar.md
+  search.md       + .fr.md / .ar.md
+archetypes/       one scaffold per section
 layouts/          templates; see ARCHITECTURE.md
-  partials/func/  partials that return a value rather than markup
 assets/
   css/extended/   NN-name.css — the number is the cascade order
-  js/             two files, ~80 lines total
+  js/             timeline.js, the resume video lightbox
+  reports/        generated report pages, embedded by the reportframe shortcode
+i18n/             en, fr, ar strings
 static/og/        generated social cards
 scripts/          check.sh and gates.sh; checks/ holds the gates, generate/ the asset generators
-docs/             brand system, playbooks, audit
+docs/             brand system, brand kit, playbooks, improvement plan
 themes/PaperMod/  vendored theme; forked files carry a provenance header
 ```
 
@@ -88,3 +91,5 @@ serve it from the site root rather than opening the file directly.
 | [docs/brand-guidelines.md](docs/brand-guidelines.md) | the design system, tokens, voice |
 | [docs/projects-playbook.md](docs/projects-playbook.md) | how to publish a project page |
 | [docs/adventures-playbook.md](docs/adventures-playbook.md) | how to publish a field note |
+| [docs/brand-kit/](docs/brand-kit/00-README.md) | logo, social templates, channel art |
+| [docs/improvement-plan.md](docs/improvement-plan.md) | the working list for the current branch |

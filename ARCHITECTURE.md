@@ -87,7 +87,7 @@ own directory makes the distinction visible at the call site: anything in
 
 ### Theme forks
 
-`themes/PaperMod/` is vendored. Sixteen templates are forked into `layouts/`;
+`themes/PaperMod/` is vendored. Fifteen templates are forked into `layouts/`;
 each carries a one-line header naming the upstream path and the commit it was
 taken from, so a future theme upgrade can be diffed rather than guessed. Nothing
 else in the theme is modified.
@@ -108,9 +108,11 @@ everything that consumes it.
 | | |
 |---|---|
 | `00-tokens` | design tokens; the only file that defines a colour |
+| `05-fonts` | self-hosted `@font-face` declarations |
 | `10-base` | theme variable remap, type, links, tables, code |
 | `20-components` | shared primitives — `.u-card`, `.u-bar`, `.u-eyebrow`, `.u-chip`, `.u-rule-heading`, `.u-frame` |
 | `30-chrome` | nav, mark, footers, section nav, content footer |
+| `31-toc` `32-search` | table of contents, search box |
 | `40-home` `41-resume` `42-timeline` `43-projects` `44-adventures` `46-project-page` | one section each |
 | | `42-timeline` is the career timeline; the project index draws the same rail from the same tokens |
 | `50-content` | article body: figures, diagrams, embedded artefacts |
