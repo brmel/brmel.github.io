@@ -6,17 +6,11 @@ draft: true
 summary: ""
 description: ""
 
-tags: []                       # existing terms first, see /tags/
+tags: []
 cover:
-    image: "cover.jpg"         # in this folder; the figure shortcode resizes it
-    alt: ""                    # required — check-og.py fails the build without it
+    image: "cover.jpg"
+    alt: ""
     relative: true
-
-# series: "Windows Memory Management"
-# seriesPart: 1
-# relatedProject: "meteodata"
-# canonicalOriginal: "https://www.linkedin.com/pulse/…"
-# canonicalOriginalName: "LinkedIn"
 ---
 
 Open with the concrete thing, not a preamble. One or two sentences.

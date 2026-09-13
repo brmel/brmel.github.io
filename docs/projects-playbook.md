@@ -50,7 +50,7 @@ every field below with a comment. It starts `draft: true`.
 
 ```yaml
 projectNo: 1                 # stable. Never reused, never renumbered.
-domain: "saas"               # saas | mobile | data | infra  → sets the accent
+domain: "saas"               # saas | mobile | data | infra  → eyebrow label
 status: "shipped"            # shipped | active | prototype | archived
 pitch: "Clinic ticketing that runs on one PC."
 stack: ["Electron", "TypeScript", "Firebase", "Ed25519"]
@@ -69,7 +69,7 @@ lessons:
 |---|---|
 | `projectNo` | Manual and permanent. Sorts the index. Renumbering a published project breaks its identity. |
 | `domain` | Short uppercase label in the eyebrow (`saas`, `vision`, …). Label only — the site has one accent. |
-| `status` | Localised via `i18n/*.yaml` (`project_status_*`). Don't type a free-text status. |
+| `status` | One of `shipped`, `active`, `prototype`, `archived`, localised via `i18n/*.yaml` (`project_status_*`). Don't type a free-text status. |
 | `pitch` | One sentence. If a non-engineer can't parse it, rewrite it. Not the tagline from the README. |
 | `stack` | The index card shows the **first four**, so order them by what matters. |
 | `links` | Keys are localised via `project_link_*`. An empty value is skipped, so leave unused keys blank rather than deleting them. |

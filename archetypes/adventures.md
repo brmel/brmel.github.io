@@ -8,13 +8,13 @@ cover:
     image: "cover.jpg"
     alt: ""
     relative: true
-category: "restaurant"   # restaurant | hike | spa | event | city → eyebrow label + badge icon
-fieldNote: 0             # → № 000 in the eyebrow
-place: ""                # → eyebrow place, e.g. "Old Montréal"
-rating: 0                # → verdict, out of 5
-goBack: ""               # verdict: would you go back?
-bestFor: ""              # verdict: who it's for
-con: ""                  # verdict: the one honest con
+category: "restaurant"
+fieldNote: 0
+place: ""
+rating: 0
+goBack: ""
+bestFor: ""
+con: ""
 ---
 
 One or two sentences that hook the reader and say where we are.

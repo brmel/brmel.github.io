@@ -211,7 +211,7 @@ that locks it, so `main` stays green.
 
 - [x] **K1 · `.gitignore`.** Only patterns this repo produces; no comments, no entries covered by
   broader ones.
-- [ ] **K2 · Archetypes without comments.** The inline hints move into the playbooks, which already
+- [x] **K2 · Archetypes without comments.** The inline hints move into the playbooks, which already
   document each field.
   - *Done when:* `hugo new` on every archetype gives front matter with no `#`, and every hinted
     value is in a playbook.
@@ -364,4 +364,5 @@ Needs decision D1 before starting.
 
 | Item | Commit | Before | After | Notes |
 |---|---|---|---|---|
-| K1 | see `git log` | 22 lines, 9 comments | 11 lines | same ignored set |
+| K1 | `e28e720` | 22 lines, 9 comments | 11 lines | same ignored set |
+| K2 | this commit | 22 comment lines in 3 archetypes | 0; field docs in ARCHITECTURE.md and projects-playbook.md | all 4 archetypes scaffold and build |

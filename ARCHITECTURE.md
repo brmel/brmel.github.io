@@ -138,6 +138,18 @@ listed three periods where French and Arabic listed two, and no gate could see
 it. Education is not a separate section; both degrees are periods, so a year, a
 degree and a school are written once.
 
+An article in Tech, Thoughts or Adventures declares `title`, `summary`, `description`, `tags`
+(reuse existing terms) and a `cover` with `alt` — `check-og.py` fails the build without the alt.
+Optional fields, each rendered by one partial:
+
+| Field | Renders |
+|---|---|
+| `series`, `seriesPart` | the series box listing every part, in `article-origin.html` |
+| `canonicalOriginal`, `canonicalOriginalName` | the "first published on" credit, same partial |
+| `relatedProject` | the project card at the foot, in `related-project.html` |
+
+Adventures add the field-note fields documented in `docs/adventures-playbook.md`.
+
 ## Languages
 
 English is the default and lives at the root; French and Arabic live under

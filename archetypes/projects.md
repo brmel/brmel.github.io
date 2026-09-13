@@ -3,17 +3,17 @@ title: "{{ replace .File.ContentBaseName `-` ` ` | title }}"
 date: {{ .Date }}
 draft: true
 
-projectNo:                     # stable, never reused, never renumbered
-domain: "saas"                 # saas | mobile | data | infra  -> eyebrow label
-status: "active"               # shipped | active | prototype | archived
-pitch: ""                      # ONE line a non-engineer understands
-stack: []                      # ["Flutter", "Firebase", …] — first 4 show on the card
+projectNo:
+domain: "saas"
+status: "active"
+pitch: ""
+stack: []
 links:
   live: ""
   repo: ""
-takeaway: ""                   # one sentence, feeds the learning block on /projects/
+takeaway: ""
 
-lessons:                       # 3–5 bullets. At least one must be a real failure.
+lessons:
   - ""
   - ""
   - ""
