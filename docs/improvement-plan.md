@@ -358,7 +358,7 @@ Moves first, so every later change lands in its final place.
 
 - [x] **S4 · Descriptions 70–160 characters.** FR/AR section indexes and the AR barcode page.
   - *Done when:* 0 out of range, and each is written in its own language.
-- [ ] **S5 · `hreflang` `x-default`** on every translated page and in the sitemap.
+- [x] **S5 · `hreflang` `x-default`** on every translated page and in the sitemap.
 - [x] **S6 · Report pages.** The standalone layout emits `hreflang`, canonical and `TechArticle`
   JSON-LD like every other article.
 
@@ -445,4 +445,5 @@ Needs decision D1 before starting.
 | S1 | `833b2bd` | sitemap listed 35 `noindex` tag pages and /search/ | 42 URLs = the 42 indexable pages | every sitemap URL resolves to a page without `noindex`, and every indexable page is listed |
 | S2 | `98d53e5` | every article `TechArticle`; education found by role-name prefixes, missing the Arabic bachelor's degree; multi-sentence fork header | TechArticle (tech) / BlogPosting (thoughts, adventures + contentLocation); `kind: "education"` on the degree entries; one-line header | JSON-LD parsed on every page: types match sections, headline/date/author/image/description present, alumniOf complete in EN/FR/AR. Review markup dropped: no field names the reviewed venue |
 | S3 | dropped | 13 titles > 60 chars with suffix | — | needs a full fork of head.html; headlines are editorial |
-| S4 | this commit | FR/AR Thoughts said "personal thoughts, philosophy and life experiences" (EN: engineering judgement); FR/AR Tech condensed; 33–69 chars | translated from the English: 91–150 chars | section pages and home cards in FR/AR render without overflow; AR resume/barcode kept (same meaning, denser script) |
+| S4 | `69568b9` | FR/AR Thoughts said "personal thoughts, philosophy and life experiences" (EN: engineering judgement); FR/AR Tech condensed; 33–69 chars | translated from the English: 91–150 chars | section pages and home cards in FR/AR render without overflow; AR resume/barcode kept (same meaning, denser script) |
+| S5 | this commit | no `x-default` in page heads or sitemap | `x-default` → default-language version on every page and every translated sitemap entry | EN/FR/AR barcode heads list en, fr, ar, x-default; EN-only pages point x-default to themselves; HTML gate passes |

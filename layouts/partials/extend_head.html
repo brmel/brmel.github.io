@@ -1,2 +1,5 @@
+{{- with index .AllTranslations 0 }}
+<link rel="alternate" hreflang="x-default" href="{{ .Permalink }}">
+{{- end }}
 {{- partial "head/fonts.html" . }}
 {{- partial "head/schema.html" . }}
