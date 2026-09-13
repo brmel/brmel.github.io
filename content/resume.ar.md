@@ -102,6 +102,7 @@ experience:
 
   - period: "2017 — 2019"
     role: "ماجستير في هندسة أنظمة التحكم"
+    kind: "education"
     org: "Polytechnique Montréal"
     url: "https://www.polymtl.ca/"
     note: "المعدل 3.87/4 · منحة مؤسسة الغرير — 1 من 100 من بين أكثر من 15,000 متقدم."
@@ -128,6 +129,7 @@ experience:
 
   - period: "2012 — 2017"
     role: "مهندس دولة في الهندسة الكهربائية — أنظمة التحكم"
+    kind: "education"
     org: "المدرسة الوطنية المتعددة التقنيات، الجزائر"
     url: "https://www.enp.edu.dz/en/"
     note: "المعدل 17.5/20 · الخامس من بين 1,400 طالب — ضمن أفضل 1% وطنيًا."

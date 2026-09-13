@@ -20,7 +20,7 @@
 {{- $person = merge $person (dict "worksFor" (dict "@type" "Organization" "name" .org "url" (.url | default ""))) }}
 {{- end }}
 {{- $edu := slice }}
-{{- range .Params.experience }}{{ if or (hasPrefix .role "M.Sc") (hasPrefix .role "B.Eng") (hasPrefix .role "Ingénieur") (hasPrefix .role "ماجستير") }}{{ $edu = $edu | append (dict "@type" "CollegeOrUniversity" "name" .org) }}{{ end }}{{ end }}
+{{- range where .Params.experience "kind" "education" }}{{ $edu = $edu | append (dict "@type" "CollegeOrUniversity" "name" .org) }}{{ end }}
 {{- with $edu }}{{ $person = merge $person (dict "alumniOf" .) }}{{ end }}
 {{- end }}
 
@@ -57,8 +57,8 @@
 
 {{- if and .IsPage (in (slice "tech" "thoughts" "adventures") .Section) }}
 {{- $og := partial "func/og-image.html" . }}
-{{- $graph = $graph | append (dict
-      "@type" "TechArticle"
+{{- $article := dict
+      "@type" (cond (eq .Section "tech") "TechArticle" "BlogPosting")
       "headline" .Title
       "url" .Permalink
       "description" (.Description | default .Summary | plainify | chomp)
@@ -70,7 +70,9 @@
       "keywords" (delimit (.Params.tags | default slice) ", ")
       "author" (dict "@id" (printf "%s#person" site.BaseURL))
       "publisher" (dict "@id" (printf "%s#person" site.BaseURL))
-      "mainEntityOfPage" (dict "@type" "WebPage" "@id" .Permalink)) }}
+      "mainEntityOfPage" (dict "@type" "WebPage" "@id" .Permalink) }}
+{{- with .Params.place }}{{ $article = merge $article (dict "contentLocation" (dict "@type" "Place" "name" .)) }}{{ end }}
+{{- $graph = $graph | append $article }}
 {{- end }}
 
 <script type="application/ld+json">{{ (dict "@context" "https://schema.org" "@graph" $graph) | jsonify | safeJS }}</script>

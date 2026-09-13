@@ -87,7 +87,7 @@ delete this file. Git keeps the history.
   and language.
 - The sitemap lists only indexable pages.
 - Each section's JSON-LD type matches its content: `TechArticle` for tech, `BlogPosting` for
-  thoughts, `BlogPosting` + `Review` for adventures, `SoftwareSourceCode` for projects.
+  thoughts, `BlogPosting` with `contentLocation` for adventures, `SoftwareSourceCode` for projects.
 
 ### Agents
 
@@ -348,7 +348,7 @@ Moves first, so every later change lands in its final place.
   - *Where:* `layouts/sitemap.xml`.
   - *Done when:* the 35 tag pages and `/search/` are gone from the sitemap, and every URL left
     returns 200 without `noindex`.
-- [ ] **S2 · JSON-LD per section** (types in §2). Adventures carry a `Review` with `itemReviewed`
+- [x] **S2 · JSON-LD per section** (types in §2). Adventures carry a `Review` with `itemReviewed`
   and `reviewRating` taken from `rating`.
   - *Where:* `partials/schema.html`, `templates/schema_json.html`.
   - *Done when:* each type is parsed and checked for required properties by M1, on every section.
@@ -442,4 +442,5 @@ Needs decision D1 before starting.
 | P3 | `81fb8c6` | LCP image lazy-loaded on the barcode article (EN/AR, 390 and 1440) and project galleries at 1440 | first figure shortcode and first gallery image `fetchpriority=high`; gallery images eager (≤3, one row on desktop) | LCP element measured on 13 pages × 2 widths: no lazy LCP image, at most one high-priority image per page |
 | P4 | `66547ae` | 14 @font-face / 14 files; serif italic declared and shipped, rendered nowhere except one emphasised word on /projects/leorra/ | 12 / 12 | clean-context audit of 14 pages: each loads only the faces it renders (3–6 files, 89–207 KB), both preloads are used by first paint, no 404 |
 | P5 | dropped | 11 KB gzip | — | within budget; a second bundle path costs more than it saves |
-| S1 | this commit | sitemap listed 35 `noindex` tag pages and /search/ | 42 URLs = the 42 indexable pages | every sitemap URL resolves to a page without `noindex`, and every indexable page is listed |
+| S1 | `833b2bd` | sitemap listed 35 `noindex` tag pages and /search/ | 42 URLs = the 42 indexable pages | every sitemap URL resolves to a page without `noindex`, and every indexable page is listed |
+| S2 | this commit | every article `TechArticle`; education found by role-name prefixes, missing the Arabic bachelor's degree; multi-sentence fork header | TechArticle (tech) / BlogPosting (thoughts, adventures + contentLocation); `kind: "education"` on the degree entries; one-line header | JSON-LD parsed on every page: types match sections, headline/date/author/image/description present, alumniOf complete in EN/FR/AR. Review markup dropped: no field names the reviewed venue |

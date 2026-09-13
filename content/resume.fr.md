@@ -108,6 +108,7 @@ experience:
 
   - period: "2017 — 2019"
     role: "M.Sc.A., génie des systèmes de contrôle"
+    kind: "education"
     org: "Polytechnique Montréal"
     url: "https://www.polymtl.ca/"
     note: "Moyenne 3,87/4 · Bourse de la Fondation Al Ghurair — 1 sur 100 parmi plus de 15 000 candidatures."
@@ -138,6 +139,7 @@ experience:
 
   - period: "2012 — 2017"
     role: "Ingénieur d'État, génie électrique — systèmes de contrôle"
+    kind: "education"
     org: "École Nationale Polytechnique, Alger"
     url: "https://www.enp.edu.dz/en/"
     note: "Moyenne 17,5/20 · 5e sur 1 400 — top 1 % national."

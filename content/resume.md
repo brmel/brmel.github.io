@@ -107,6 +107,7 @@ experience:
 
   - period: "2017 — 2019"
     role: "M.Sc., Control Systems Engineering"
+    kind: "education"
     org: "Polytechnique Montréal"
     url: "https://www.polymtl.ca/"
     note: "GPA 3.87/4 · Al Ghurair Foundation Scholarship — 1 of 100 selected from more than 15,000 applicants."
@@ -135,6 +136,7 @@ experience:
 
   - period: "2012 — 2017"
     role: "B.Eng., Electrical Engineering — Control Systems"
+    kind: "education"
     org: "École Nationale Polytechnique, Algiers"
     url: "https://www.enp.edu.dz/en/"
     note: "GPA 17.5/20 · graduated 5th of 1,400 — top 1% nationally."
