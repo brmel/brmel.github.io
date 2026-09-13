@@ -39,7 +39,7 @@ code,kbd,samp,pre,tt{font-family:var(--font-mono);}
 .post-content a:hover{color:var(--accent-soft);}
 .post-tags a:hover{border-color:var(--accent);color:var(--accent);}
 
-a:focus-visible,button:focus-visible,.top-link:focus-visible{
+a:focus-visible,button:focus-visible,.toc summary:focus-visible,.top-link:focus-visible,#theme-toggle:focus-visible{
   outline:2px solid var(--accent);outline-offset:2px;border-radius:var(--radius-xs);
 }
 
