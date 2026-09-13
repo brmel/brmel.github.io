@@ -14,7 +14,7 @@ hugo server            # http://localhost:1313
 ```
 
 Requires Hugo **0.148.0 extended** — pinned in both workflows. The gates need
-Python 3 and nothing else; the generators also need Pillow.
+Python 3 and Java; the generators also need Pillow.
 
 ## Layout
 
@@ -58,6 +58,7 @@ that had already shipped.
 | `check-bundles.py` | every class the standalone layout renders is styled by a file it loads |
 | `check-rtl.py` | layout mirrors from logical properties alone — no physical `left`/`right` |
 | `check-js.py` | every selector a script reaches for exists on the pages that load it |
+| `check-html.py` | every page except the generated reports is valid HTML (Nu HTML Checker, pinned; needs Java) |
 
 ## Audit
 

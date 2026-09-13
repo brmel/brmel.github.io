@@ -248,7 +248,7 @@ So every later item can prove its gain with one command.
   the axe matrix stays a Playwright step in the loop. It prints one summary table. Tools come from `npx`
   and a pinned `vnu.jar`; nothing is added to the repo's dependencies.
   - *Done when:* one command reproduces §4 within noise.
-- [ ] **M2 · HTML validity gate.** Add `checks/check-html.sh` running the pinned Nu checker on
+- [x] **M2 · HTML validity gate.** Add `checks/check-html.py` running the pinned Nu checker on
   site pages (generated `assets/reports/` excluded), wired into `gates.sh` and CI. Java is
   already on GitHub runners.
   - *Done when:* the gate fails on today's `<dl>` and `srcset` errors. It lands together with C1
@@ -403,4 +403,5 @@ Needs decision D1 before starting.
 | C4 | `6bb8b76` | fork count 16, 3 stylesheets and 12 partials undocumented, stale README lines | counts, tree, tables and docs index match the repo | every backticked path and relative link in both files resolves |
 | C1 | `122dbe6` | 4 validator errors; phone labels one letter per line, verdict 1038px tall at 390px; physical `text-align:right` | 0 errors; labels on one line, 504px; logical properties | desktop pixel-identical (antialiasing only), tablet dividers continuous, phone stacks label over value; 2 pages × 3 widths × 2 themes |
 | C2 | `83589a4` | ~15 duplicate-width srcsets; `sizes` at 760px (breakpoint is 768); gallery sized 310px (renders 389px); figure shortcode 43 lines with 9 unused params and an unreachable branch; 8 ignored `width`/`align` in content; duplicated media rule | 0 validator errors on site pages; sizes match layout; shortcode 21 lines, fails the build on a missing image | figure fig-w/src/width/height identical on all 9 pages; images checked at 390/1440 |
-| M1 | this commit | manual tool runs | one command, exit 1 when under budget | live run matched §4 within noise; flags article a11y 96 (C3); resume mobile CLS 0.088 this run (look at in P4) |
+| M1 | `6ecaad4` | manual tool runs | one command, exit 1 when under budget | live run matched §4 within noise; flags article a11y 96 (C3); resume mobile CLS 0.088 this run (look at in P4) |
+| M2 | this commit | no HTML validation | gate on 130 pages, 2 s | fails on a reintroduced `<dl>` error; jar pinned by sha512 |
