@@ -4,7 +4,7 @@ from urllib.parse import urlparse
 
 ROOT = os.path.join(os.path.dirname(__file__), "..", "..")
 PUB = os.path.join(ROOT, "public")
-BASE = re.search(  # from config, so a domain change cannot fail CI silently
+BASE = re.search(
     r'^\s*baseURL\s*=\s*["\']([^"\']+)',
     open(os.path.join(ROOT, "config.toml"), encoding="utf-8").read(),
     re.M).group(1).rstrip("/")
@@ -21,9 +21,9 @@ for root, _, files in os.walk(PUB):
         p = os.path.join(root, f)
         h = open(p, encoding="utf-8", errors="ignore").read()
         if "http-equiv=refresh" in h or 'http-equiv="refresh"' in h:
-            continue                                  # alias redirect, not a page
+            continue
         if os.path.relpath(p, PUB).startswith("reports" + os.sep):
-            continue     # generated report artifact embedded in an iframe, never shared directly
+            continue
         rel = os.path.relpath(p, PUB)
         checked += 1
 

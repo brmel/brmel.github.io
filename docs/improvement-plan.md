@@ -203,7 +203,7 @@ measure logged in §7.
 
 ### 5a. Order
 
-K1 → K2 → R1 → R2 → R3 → R4 → K3 → K4 → K5 → K6 → C4 → M1 → C1 → C2 → M2 → C3 → M3 → C5 → P1 → P2 → P3 → P4 → P5 →
+K1 → K2 → R1 → R2 → R3 → R4 → K3 → K4 → K5 → K6 → K7 → K8 → C4 → M1 → C1 → C2 → M2 → C3 → M3 → C5 → P1 → P2 → P3 → P4 → P5 →
 S1 → S2 → S3 → S4 → S5 → S6 → S7 → A1 → A2 → A3 → H1 → close (re-audit live, merge, fold rules into
 ARCHITECTURE.md and README.md, delete this file).
 
@@ -232,6 +232,12 @@ that locks it, so `main` stays green.
   (`reportframe.html` has one).
   - *Done when:* no comment in any template's inline script or style, and the build is identical
     apart from minified output that already stripped them.
+
+- [x] **K7 · Comments and dead code in the gates.** Trailing `#` comments in four gate scripts,
+  and `OPT_OUT`, a set that was always empty in `check-chrome.py`.
+- [ ] **K8 · CSS gate warnings become failures.** Raw `#fff`/`#000` in `20-components.css` and
+  `42-timeline.css` move to tokens; after that, a raw colour or a declared-but-unused class fails
+  the build (both only warn today, though the README says the gate enforces them).
 
 ### Phase 0 — Measure in the repo
 
@@ -391,4 +397,5 @@ Needs decision D1 before starting.
 | K3 | `81d75b2` | inline script on 12 Arabic pages | none | only AR pages changed; dir=rtl, mirrored nav, no errors at 390/1440 × light/dark |
 | K4 | `39dfa6c` | 2 unused hooks, 17 template lines | 0 | build byte-identical; playbook points styling at 44-adventures.css |
 | K5 | `d064cd7` | scaffold draft in docs/, `disableShare: false` ×2 | deleted; reports documented in ARCHITECTURE.md | build byte-identical |
-| K6 | this commit | 16 comment lines in inline JS and timeline.js; 2 stale DRAFT notes on published reports | 0 | build byte-identical; all 46 report figures checked against the generated reports first |
+| K6 | `2236d13` | 16 comment lines in inline JS and timeline.js; 2 stale DRAFT notes on published reports | 0 | build byte-identical; all 46 report figures checked against the generated reports first |
+| K7 | this commit | 9 comments, 1 always-empty opt-out | 0 | every gate passes with the same counts |

@@ -25,7 +25,7 @@ for f in files:
     if b == TOKENS:
         continue
     src = open(f).read()
-    src = re.sub(r"/\*.*?\*/", "", src, flags=re.S)          # ignore comments
+    src = re.sub(r"/\*.*?\*/", "", src, flags=re.S)
     for m in re.findall(r"#[0-9a-fA-F]{3,8}\b", src):
         if m.lower() in ("#fff", "#ffffff", "#000", "#000000"):
             warns.append(f"{b}: raw {m} — acceptable only for a fixed ground (iframe, print)")

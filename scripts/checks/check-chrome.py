@@ -5,7 +5,6 @@ ROOT = os.path.join(os.path.dirname(__file__), "..", "..")
 PUB = os.path.join(ROOT, "public")
 
 CONTENT = ("tech/", "projects/", "thoughts/", "adventures/")
-OPT_OUT = set()          # none today; add a path + a reason if that changes
 
 REQUIRED = {
     "way back":  re.compile(r"section-nav__back|sa-nav__link|breadcrumbs"),
@@ -30,10 +29,10 @@ for f in sorted(glob.glob(os.path.join(PUB, "**", "*.html"), recursive=True)):
     rel = os.path.relpath(f, PUB)
     url = "/" + rel.replace("index.html", "")
     if rel.startswith("reports" + os.sep):
-        continue                                    # embedded artefact, not a page
+        continue
     body = open(f, encoding="utf-8", errors="ignore").read()
     if "http-equiv=refresh" in body:
-        continue                                    # alias redirect
+        continue
 
     pages += 1
     n_h1 = len(re.findall(r"<h1[ >]", body))
@@ -50,8 +49,6 @@ for f in sorted(glob.glob(os.path.join(PUB, "**", "*.html"), recursive=True)):
     depth = stripped.rstrip("/").count("/")
     lang_prefixed = stripped[:3] in ("fr/", "ar/")
     if depth < (2 if lang_prefixed else 1):
-        continue                                    # section index
-    if url in OPT_OUT:
         continue
     checked += 1
     for name, pat in REQUIRED.items():

@@ -26,7 +26,7 @@ fails = []
 checked = 0
 for theme, block, base in (("light", light_block, None), ("dark", dark_block, None)):
     t = tokens(block)
-    if theme == "dark":                       # dark only redefines some tokens
+    if theme == "dark":
         merged = tokens(light_block); merged.update(t); t = merged
     bgs = [("--bg", t["bg"]), ("--bg-alt", t["bg-alt"])]
     fgs = [k for k in t if k.startswith("ink") or k == "accent"
