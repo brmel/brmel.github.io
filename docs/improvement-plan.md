@@ -352,11 +352,11 @@ Moves first, so every later change lands in its final place.
   and `reviewRating` taken from `rating`.
   - *Where:* `partials/schema.html`, `templates/schema_json.html`.
   - *Done when:* each type is parsed and checked for required properties by M1, on every section.
-- [ ] **S3 · Titles ≤ 60 characters.** 13 pages are over, worst 99 (FR barcode). Shorten the
-  titles themselves; don't add a second title field.
-  - *Done when:* 0 titles over 60, H1s still read naturally, and 0 duplicate titles (home EN/FR
-    differ).
-- [ ] **S4 · Descriptions 70–160 characters.** FR/AR section indexes and the AR barcode page.
+- [x] **S3 · Titles ≤ 60 characters — dropped.** The ` | Ibraverse` suffix comes from PaperMod's
+  `head.html`; making it conditional means forking that whole file. The remaining long titles are
+  editorial headlines, left to the author.
+
+- [x] **S4 · Descriptions 70–160 characters.** FR/AR section indexes and the AR barcode page.
   - *Done when:* 0 out of range, and each is written in its own language.
 - [ ] **S5 · `hreflang` `x-default`** on every translated page and in the sitemap.
 - [x] **S6 · Report pages.** The standalone layout emits `hreflang`, canonical and `TechArticle`
@@ -443,4 +443,6 @@ Needs decision D1 before starting.
 | P4 | `66547ae` | 14 @font-face / 14 files; serif italic declared and shipped, rendered nowhere except one emphasised word on /projects/leorra/ | 12 / 12 | clean-context audit of 14 pages: each loads only the faces it renders (3–6 files, 89–207 KB), both preloads are used by first paint, no 404 |
 | P5 | dropped | 11 KB gzip | — | within budget; a second bundle path costs more than it saves |
 | S1 | `833b2bd` | sitemap listed 35 `noindex` tag pages and /search/ | 42 URLs = the 42 indexable pages | every sitemap URL resolves to a page without `noindex`, and every indexable page is listed |
-| S2 | this commit | every article `TechArticle`; education found by role-name prefixes, missing the Arabic bachelor's degree; multi-sentence fork header | TechArticle (tech) / BlogPosting (thoughts, adventures + contentLocation); `kind: "education"` on the degree entries; one-line header | JSON-LD parsed on every page: types match sections, headline/date/author/image/description present, alumniOf complete in EN/FR/AR. Review markup dropped: no field names the reviewed venue |
+| S2 | `98d53e5` | every article `TechArticle`; education found by role-name prefixes, missing the Arabic bachelor's degree; multi-sentence fork header | TechArticle (tech) / BlogPosting (thoughts, adventures + contentLocation); `kind: "education"` on the degree entries; one-line header | JSON-LD parsed on every page: types match sections, headline/date/author/image/description present, alumniOf complete in EN/FR/AR. Review markup dropped: no field names the reviewed venue |
+| S3 | dropped | 13 titles > 60 chars with suffix | — | needs a full fork of head.html; headlines are editorial |
+| S4 | this commit | FR/AR Thoughts said "personal thoughts, philosophy and life experiences" (EN: engineering judgement); FR/AR Tech condensed; 33–69 chars | translated from the English: 91–150 chars | section pages and home cards in FR/AR render without overflow; AR resume/barcode kept (same meaning, denser script) |

@@ -1,4 +1,4 @@
 ---
 title: "Tech"
-description: "Articles techniques sur le traitement d'images, les maths et le code."
+description: "Comment les choses fonctionnent, appris en les construisant : traitement d'images et vision industrielle d'abord, puis mémoire, algorithmes et agents."
 ---
