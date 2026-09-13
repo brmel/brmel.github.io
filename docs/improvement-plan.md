@@ -375,7 +375,7 @@ Moves first, so every later change lands in its final place.
   page, linked with `rel="alternate" type="text/markdown"` and from `llms.txt`.
   - *Done when:* every article's `.md` returns 200 as `text/markdown` or `text/plain` and matches
     its HTML body.
-- [ ] **A3 · `llms.txt` headings.** Short section names as `##`, with the one-line description on
+- [x] **A3 · `llms.txt` headings.** Short section names as `##`, with the one-line description on
   the next line; the longest heading today is 148 characters.
   - *Done when:* it parses cleanly with the `llms-txt` reference parser.
 
@@ -450,4 +450,5 @@ Needs decision D1 before starting.
 | S7 | `8a64ecf` | SEO rules checked by hand | `check-seo.py` in gates: 42 pages, 42 sitemap URLs | fails on a sitemap listing noindex pages (37) and on missing x-default (42) |
 | A1 | no code change | report findings only inside a disallowed iframe (before R5) | article prose carries every figure; `/reports/` stays disallowed | 882, 70%, 1.21, 1,622, 90 false alarms, 16,561 found in the crawlable HTML |
 | A2 | `e0c670d` | agents had llms-full.txt (plain text, all pages) only | 14 articles also served as `index.md` via a Hugo output format; figures link their WebP renditions; gmap, reportframe, youtube render as links; `rel=alternate type=text/markdown` in every article head; noted in llms.txt | no shortcode or unintended HTML left in any .md (one inline SVG diagram kept); no original images published |
-| U7 | this commit | 5-day Montréal forecast report; article and MeteoData page quoted its figures | 30-day report (14 Aug – 13 Sep); article and project figures rewritten from it; report follows the site theme and hides its own toggle; new cover | all 39 figures traced to the report; frame centred, sized to content, theme synced and toggles live at 390/1440 × light/dark; og and list thumbnail regenerated |
+| U7 | `8f59867` | 5-day Montréal forecast report; article and MeteoData page quoted its figures | 30-day report (14 Aug – 13 Sep); article and project figures rewritten from it; report follows the site theme and hides its own toggle; new cover | all 39 figures traced to the report; frame centred, sized to content, theme synced and toggles live at 390/1440 × light/dark; og and list thumbnail regenerated |
+| A3 | this commit | H2 headings up to 148 characters; sections mixed prose, H3 and non-link bullets; the reference parser raised on it | details before the first H2 (no headings), H2 sections are link lists, references under Optional | `llms_txt.parse_llms_file` parses it: Projects 10, Tech 9, Adventures 2, Thoughts 1, Optional 7 |

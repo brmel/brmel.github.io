@@ -4,55 +4,46 @@
 
 {{ with site.GetPage "/" }}{{ .Plain | plainify | htmlUnescape | chomp }}{{ end }}
 
+Every Tech, Thoughts and Adventures article is also served as markdown at its URL followed by `index.md`.
+
+**Career**
+
+{{ with site.GetPage "/resume" }}{{ range .Params.experience -}}
+- {{ .period }} — {{ .role }}{{ with .org }}, {{ . }}{{ end }}{{ with .note }}. {{ . }}{{ end }}
+{{ with .built }}  - Built: {{ delimit . ", " }}
+{{ end }}{{ with .stack }}  - Stack: {{ delimit . ", " }}
+{{ end }}{{ with .tools }}  - Tools: {{ delimit . ", " }}
+{{ end }}{{ with .learned }}  - Learned: {{ . }}
+{{ end }}{{ end }}{{ end }}
+**Project facts**, taken from each project page:
+
+{{ range (sort (where (site.GetPage "/projects").Pages "Params.metrics" "!=" nil) "Date" "desc") -}}
+- {{ .Title }} ({{ .Permalink }})
+{{ range .Params.metrics }}  - {{ .value }}: {{ .label }}
+{{ end }}{{ with .Params.stack }}  - Built with: {{ delimit . ", " }}
+{{ end }}{{ with .Params.takeaway }}  - Lesson: {{ . }}
+{{ end }}{{ end }}
 {{ range site.Params.mainSections }}
 {{- $sec := site.GetPage (printf "/%s" .) }}
 {{- with $sec }}
 {{- $pages := partial "func/section-pages.html" . }}
 {{- with $pages }}
-## {{ $sec.Title }}{{ with $sec.Description }} — {{ . | plainify | htmlUnescape }}{{ end }}
+## {{ $sec.Title }}
 
 {{ range (sort . "Date" "desc") -}}
 - [{{ .Title | htmlUnescape }}]({{ .Permalink }}){{ with (or .Description .Params.pitch .Params.summary) }}: {{ . | plainify | htmlUnescape | chomp }}{{ end }}
 {{ end }}
-{{- end }}
-{{- end }}
-{{- end }}
-## Facts
-
-The numbers from each project, taken from the page they belong to.
-
-{{ range (sort (where (site.GetPage "/projects").Pages "Params.metrics" "!=" nil) "Date" "desc") -}}
-### {{ .Title }} — {{ .Permalink }}
-{{ range .Params.metrics }}- {{ .value }}: {{ .label }}
-{{ end }}{{ with .Params.stack }}- Built with: {{ delimit . ", " }}
-{{ end }}{{ with .Params.takeaway }}- Lesson: {{ . }}
 {{ end }}
-{{ end -}}
-
-## Career
-
-{{ with site.GetPage "/resume" }}{{ range .Params.experience -}}
-### {{ .period }} — {{ .role }}{{ with .org }}, {{ . }}{{ end }}
-{{ with .note }}{{ . }}
-{{ end }}{{ with .built }}- Built: {{ delimit . ", " }}
-{{ end }}{{ with .stack }}- Stack: {{ delimit . ", " }}
-{{ end }}{{ with .tools }}- Tools: {{ delimit . ", " }}
-{{ end }}{{ with .learned }}- Learned: {{ . }}
-{{ end }}
-{{ end }}{{ end -}}
-
-## Reference
+{{- end }}
+{{- end -}}
+## Optional
 
 {{ with site.GetPage "/resume" -}}
 - [{{ .Title }}]({{ .Permalink }}): {{ .Params.summary | default "Career history, skills and education." | plainify | htmlUnescape }}
 {{ end -}}
-- [Tags]({{ printf "%stags/" site.BaseURL }}): every subject on the site, {{ len site.Taxonomies.tags }} terms.
 - [Full text]({{ printf "%sllms-full.txt" site.BaseURL }}): every page above as plain text, in one file.
-- Markdown: every Tech, Thoughts and Adventures article is also served as markdown at its URL followed by `index.md`.
-- [Sitemap]({{ printf "%ssitemap.xml" site.BaseURL }})
-
-## Languages
-
+- [Tags]({{ printf "%stags/" site.BaseURL }}): every subject on the site, {{ len site.Taxonomies.tags }} terms.
+- [Sitemap]({{ printf "%ssitemap.xml" site.BaseURL }}): every indexable page.
 {{ range site.Home.AllTranslations -}}
-- {{ .Language.LanguageName }} ({{ .Language.Lang }}): {{ .Permalink }}
-{{ end }}
+- [{{ .Language.LanguageName }}]({{ .Permalink }}): the site in {{ .Language.LanguageName }}.
+{{ end -}}
