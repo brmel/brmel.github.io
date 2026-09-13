@@ -9,6 +9,6 @@
   .timeline-content{padding:0;background:none;border:0;box-shadow:none;overflow:visible;}
   .timeline-work--media{display:block;}
   .timeline-facts__row{grid-template-columns:var(--resume-gutter) 1fr;padding:var(--space-1) 0;}
-  .timeline-facts__row,.resume__skillgroup,.resume__record{break-inside:avoid;}
-  .timeline-date,.timeline-title,.timeline-org,.timeline-note,.u-rule-heading{break-after:avoid;}
+  .timeline-item,.resume__skillgroup,.resume__record{break-inside:avoid;}
+  .u-rule-heading{break-after:avoid;}
 }
