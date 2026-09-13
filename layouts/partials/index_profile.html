@@ -6,24 +6,16 @@
 
         {{- with .imageUrl }}
         {{- $img := resources.Get . }}
-        {{- with $img }}
-        {{- $w := .Width }}
-        {{- $x1 := .Resize "380x webp q72" }}
-
-        {{- $x2 := cond (ge $w 760) (.Resize "760x webp q58") $x1 }}
+        {{- if not $img }}{{ errorf "profileMode.imageUrl %q is not in assets/" . }}{{ end }}
+        {{- $src := $img.Resize "400x webp q60" }}
         <img class="profile__photo"
-             src="{{ $x1.RelPermalink }}"
-             srcset="{{ $x1.RelPermalink }} 380w, {{ $x2.RelPermalink }} 760w"
-             sizes="380px"
-             width="{{ $x1.Width }}" height="{{ $x1.Height }}"
+             src="{{ $src.RelPermalink }}"
+             srcset="{{ ($img.Resize "200x webp q60").RelPermalink }} 200w, {{ $src.RelPermalink }} 400w"
+             sizes="(max-width: 600px) 180px, 200px"
+             width="{{ $src.Width }}" height="{{ $src.Height }}"
              fetchpriority="high" decoding="async" draggable="false"
-             alt="{{ site.Params.profileMode.imageTitle | default (printf "%s" site.Title) }}"
+             alt="{{ site.Params.profileMode.imageTitle | default site.Title }}"
              title="{{ site.Params.profileMode.imageTitle }}" />
-        {{- else }}
-        <img class="profile__photo" src="{{ . | absURL }}" width="380" height="480"
-             fetchpriority="high" decoding="async" draggable="false"
-             alt="{{ site.Params.profileMode.imageTitle | default site.Title }}" />
-        {{- end }}
         {{- end }}
         <span>{{ .subtitle | markdownify }}</span>
         {{- partial "social_icons.html" -}}

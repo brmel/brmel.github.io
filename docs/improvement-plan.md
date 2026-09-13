@@ -312,7 +312,7 @@ Moves first, so every later change lands in its final place.
 
 ### Phase 3 — Speed
 
-- [ ] **P1 · Profile photo.** `sizes` matches the displayed width (153–200px); renditions at 200w,
+- [x] **P1 · Profile photo.** `sizes` matches the displayed width (153–200px); renditions at 200w,
   400w and 600w.
   - *Where:* `partials/index_profile.html`.
   - *Done when:* home image bytes drop from 131 KB to ≤ 20 KB on a 3× phone, and home LCP ≤ 1.5 s.
@@ -415,4 +415,5 @@ Needs decision D1 before starting.
 | M3 | `0b77a5e` | 16 token pairs | 142 pairs: tokens + every syntax colour after site overrides, on both code backgrounds | removing the comment override fails the gate |
 | C5 | `d092b08` | EN/FR menu overflowed 5–52px at 360–390, Search clipped, scrollbar visible | wraps to a centred second row, 40px taps | 5 pages × 10 widths (360–1440): 0 overflow, 0 clipped, no horizontal scroll; header 135→140px at 360–390, 135→100px at 414–600 |
 | C6 | `0915391` | back-to-top outside a landmark once scrolled; no focus ring (theme `outline:0` beat the global rule); focus rule duplicated in 44-adventures.css | inside `<footer>`; 2px focus ring; one global focus rule | axe 0 after scroll on 4 pages × 2 widths × 2 themes; button position, size, colour identical to live |
-| C6b | this commit | theme toggle and TOC summary had no keyboard focus ring (theme `outline:0`) | both use the global accent ring | tab walk on article (light/dark) and search: every focusable control shows a ring; the search input keeps the theme's border highlight |
+| C6b | `ed3e8cf` | theme toggle and TOC summary had no keyboard focus ring (theme `outline:0`) | both use the global accent ring | tab walk on article (light/dark) and search: every focusable control shows a ring; the search input keeps the theme's border highlight |
+| P1 | this commit | `sizes=380px`, 380w/760w q72–q58: 131 KB on 2×/3× screens | `sizes` 180px/200px, 200w/400w q60: 12 KB at 1×, 44 KB at 2–3× | chosen file verified at 390@2x/3x, 768@2x, 1440@1x/2x; q60 vs q72 indistinguishable at 400px; LCP re-measured live at phase end |
