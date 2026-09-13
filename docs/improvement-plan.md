@@ -203,7 +203,7 @@ measure logged in §7.
 
 ### 5a. Order
 
-K1 → K2 → R1 → R2 → R3 → R4 → K3 → K4 → K5 → K6 → K7 → K8 → C4 → M1 → C1 → C2 → M2 → C3 → M3 → C5 → C6 → P1 → P2 → P3 → P4 → P5 →
+K1 → K2 → R1 → R2 → R3 → R4 → K3 → K4 → K5 → K6 → K7 → K8 → C4 → M1 → C1 → C2 → M2 → C3 → M3 → C5 → C6 → P1 → P2 → C7 → P3 → P4 → P5 →
 S1 → S2 → S3 → S4 → S5 → S6 → S7 → A1 → A2 → A3 → H1 → close (re-audit live, merge, fold rules into
 ARCHITECTURE.md and README.md, delete this file).
 
@@ -316,10 +316,14 @@ Moves first, so every later change lands in its final place.
   400w and 600w.
   - *Where:* `partials/index_profile.html`.
   - *Done when:* home image bytes drop from 131 KB to ≤ 20 KB on a 3× phone, and home LCP ≤ 1.5 s.
-- [ ] **P2 · Index covers.** List-page covers render at card width in WebP with a correct `sizes`.
+- [x] **P2 · Index covers.** List-page covers render at card width in WebP with a correct `sizes`.
   - *Where:* PaperMod's `partials/cover.html` (fork it) or a list-only partial.
   - *Done when:* Lighthouse "properly size images" and "next-gen formats" pass on `/tech/`, saving
     about 426 KB.
+- [ ] **C7 · List eyebrow wraps mid-phrase on phones.** "AUGUST 20, 2026 · 3 MIN" breaks between
+  "3" and "MIN" at 390px on list pages (live too).
+  - *Done when:* date and reading time never split inside a unit at 360–414px in EN/FR/AR.
+
 - [ ] **P3 · LCP image priority.** On article pages, the cover or the first figure above the fold
   loads eagerly with `fetchpriority="high"`; every other image stays lazy.
   - *Done when:* the deep dive's mobile LCP ≤ 1.5 s and its perf ≥ 99.
@@ -416,4 +420,5 @@ Needs decision D1 before starting.
 | C5 | `d092b08` | EN/FR menu overflowed 5–52px at 360–390, Search clipped, scrollbar visible | wraps to a centred second row, 40px taps | 5 pages × 10 widths (360–1440): 0 overflow, 0 clipped, no horizontal scroll; header 135→140px at 360–390, 135→100px at 414–600 |
 | C6 | `0915391` | back-to-top outside a landmark once scrolled; no focus ring (theme `outline:0` beat the global rule); focus rule duplicated in 44-adventures.css | inside `<footer>`; 2px focus ring; one global focus rule | axe 0 after scroll on 4 pages × 2 widths × 2 themes; button position, size, colour identical to live |
 | C6b | `ed3e8cf` | theme toggle and TOC summary had no keyboard focus ring (theme `outline:0`) | both use the global accent ring | tab walk on article (light/dark) and search: every focusable control shows a ring; the search input keeps the theme's border highlight |
-| P1 | this commit | `sizes=380px`, 380w/760w q72–q58: 131 KB on 2×/3× screens | `sizes` 180px/200px, 200w/400w q60: 12 KB at 1×, 44 KB at 2–3× | chosen file verified at 390@2x/3x, 768@2x, 1440@1x/2x; q60 vs q72 indistinguishable at 400px; LCP re-measured live at phase end |
+| P1 | `ab5e6fb` | `sizes=380px`, 380w/760w q72–q58: 131 KB on 2×/3× screens | `sizes` 180px/200px, 200w/400w q60: 12 KB at 1×, 44 KB at 2–3× | chosen file verified at 390@2x/3x, 768@2x, 1440@1x/2x; q60 vs q72 indistinguishable at 400px; LCP re-measured live at phase end |
+| P2 | this commit | list thumbnails served original JPEG/PNG + JPEG resizes with `sizes` 720px: 517 KB on /tech/ | site-owned `article/cover.html`, 100/200/300w WebP, `sizes=100px`: 39 KB at 3×, 23 KB at 2×; tag pages no longer ship hidden covers; theme cover path, the unused adventures hero and 3 config params removed | thumbnails pixel-equivalent at 390@3×; og gate passes |

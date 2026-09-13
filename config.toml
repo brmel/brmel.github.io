@@ -246,11 +246,6 @@ enableEmoji = true
     title = "Instagram"
     url = "https://www.instagram.com/mellahredouane/"
 
-  [params.cover]
-    hidden = true
-    hiddenInList = false
-    hiddenInSingle = true
-
   repo = "https://github.com/brmel/brmel.github.io"
 
   tag = "tags"

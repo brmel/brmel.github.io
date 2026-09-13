@@ -137,7 +137,7 @@ Thumbnail rules (same template every time):
 - One **clear subject** + **3–5 word** bold text (e.g. "BEST BAGEL IN MTL").
 - High contrast, readable at tiny size. Face with expression if possible.
 - Same font + same color accent as your brand (§4).
-- Export ~1080px wide JPG. Name the article hero `cover.jpg`.
+- Export ~1080px wide JPG. Name it `cover.jpg`: it is the list thumbnail and the social card.
 
 ---
 

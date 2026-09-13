@@ -1,0 +1,11 @@
+{{- with .Params.cover.image }}
+{{- $img := $.Resources.GetMatch . }}
+{{- if not $img }}{{ errorf "cover %q is not in the bundle of %s" . $.File.Path }}{{ end }}
+{{- $src := $img.Resize "200x webp q75" }}
+<figure class="entry-cover">
+  <img src="{{ $src.RelPermalink }}"
+       srcset="{{ ($img.Resize "100x webp q75").RelPermalink }} 100w, {{ $src.RelPermalink }} 200w, {{ ($img.Resize "300x webp q75").RelPermalink }} 300w"
+       sizes="100px" width="{{ $src.Width }}" height="{{ $src.Height }}"
+       loading="lazy" decoding="async" alt="{{ $.Params.cover.alt }}">
+</figure>
+{{- end }}

@@ -292,8 +292,9 @@ Two rules that predate the policy and still hold:
 
 Same template every time — swap photo, accent, and words.
 
-**Article cover / hero — `cover.jpg`** (horizontal, ~1600px)
-Photo full-bleed; paper band with mark + eyebrow + serif title overlaid or below.
+**Article cover — `cover.jpg`** (horizontal, ~1200px)
+The list thumbnail (shown at 100px) and the page's social card. One clear subject, no text in
+the image: the title is rendered beside it.
 
 **Social / reel thumbnails — `ig-thumb.jpg` / `tt-thumb.jpg`** (9:16, 1080×1920)
 Paper background, photo in a rounded frame, compass mark top-left, eyebrow, 3–5
