@@ -1,0 +1,17 @@
+{{- /* The eyebrow and the title — the part every project page opens with,
+       whether or not it goes on to show a pitch and a stack. */ -}}
+{{- $no := .Params.projectNo -}}
+{{- $domain := .Params.domain | default "saas" -}}
+{{- $status := .Params.status | default "active" -}}
+
+<p class="project-eyebrow">
+  {{- partial "brand/mark.html" (dict "size" 16 "class" "brand-mark project-eyebrow__mark") -}}
+  <span class="u-eyebrow project-eyebrow__text">
+    {{- with $no }}{{ i18n "project_no" | default "Project" }} № {{ printf "%02d" . }}
+    <b class="project-eyebrow__dot" aria-hidden="true">·</b> {{ end -}}
+    {{ $domain | upper }}
+    <b class="project-eyebrow__dot" aria-hidden="true">·</b>
+    {{ i18n (printf "project_status_%s" $status) | default ($status | upper) }}
+  </span>
+</p>
+<h1 class="project-title">{{ .Title }}</h1>

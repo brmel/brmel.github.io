@@ -7,6 +7,7 @@ cd "$(dirname "$0")/.."
   echo "❌ no built site in public/ — run hugo first" >&2; exit 1; }
 
 echo "▸ orphaned assets";               ./scripts/checks/check-orphans.sh
+echo "▸ betting ledger";         python3 ./scripts/checks/check-paridata.py
 echo "▸ social cards";           python3 ./scripts/checks/check-og.py
 echo "▸ colour contrast";        python3 ./scripts/checks/check-contrast.py
 echo "▸ css architecture";       python3 ./scripts/checks/check-css.py

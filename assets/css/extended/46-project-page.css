@@ -1,6 +1,6 @@
 .project-head{
   max-width:var(--container-text);
-  margin:0 auto var(--space-7);
+  margin:0 auto var(--space-6);
 }
 .project-eyebrow{
   display:flex;align-items:center;gap:var(--space-2);
@@ -39,7 +39,7 @@
 
 .project-lede{
   max-width:var(--container-text);
-  margin:0 auto var(--space-7);
+  margin:0 auto var(--space-6);
   font-size:var(--t-body-l);
   line-height:1.6;
   color:var(--ink-soft);
@@ -48,7 +48,7 @@
 .project-lede p:last-child{margin-bottom:0;}
 .project-lede strong{color:var(--ink);font-weight:500;}
 
-.project-gallery{margin-bottom:var(--space-8);}
+.project-gallery{margin-bottom:var(--space-6);}
 
 .project-gallery__grid{
   display:grid;
@@ -71,7 +71,7 @@
 
 .project-metrics{
   max-width:var(--container-text);
-  margin:0 auto var(--space-8);
+  margin:0 auto var(--space-6);
   padding:var(--space-5) 0;
   border-top:var(--hairline) solid var(--rule);
   border-bottom:var(--hairline) solid var(--rule);
@@ -94,11 +94,11 @@
 
 .project-body{max-width:var(--container-text);margin:0 auto;}
 
-.project-body h2{margin-top:var(--space-8);}
+.project-body h2{margin-top:var(--space-6);}
 .project-body h2:first-child{margin-top:0;}
 
 .project-body blockquote{
-  margin:var(--space-8) 0;
+  margin:var(--space-6) 0;
   padding-inline-start:var(--space-5);
   border-inline-start:var(--hairline-strong) solid var(--accent);
   font-family:var(--font-serif);
@@ -107,7 +107,7 @@
   color:var(--ink);
 }
 .project-body blockquote p{margin:0;}
-.project-lessons{max-width:var(--container-text);margin:var(--space-9) auto 0;}
+.project-lessons{max-width:var(--container-text);margin:var(--space-7) auto 0;}
 .project-lessons__list{margin:0;padding:0;list-style:none;}
 .project-lessons__list li{
   position:relative;

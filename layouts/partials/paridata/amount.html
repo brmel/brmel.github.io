@@ -1,0 +1,14 @@
+{{- /* One figure, carried in both units and money so the toggle needs no
+       round-trip and the page is correct with scripts disabled. */ -}}
+{{- $v := .value -}}
+{{- $p := .profile -}}
+{{- $signed := default false .signed -}}
+{{- $sym := $p.staking.currencySymbol | default "$" -}}
+{{- $m := mul $v $p.staking.currencyPerUnit -}}
+{{- $sign := "" -}}
+{{- if $signed -}}{{- $sign = cond (ge $v 0.0) "+" "−" -}}
+{{- else if lt $v 0.0 -}}{{- $sign = "−" -}}{{- end -}}
+<span class="paridata-amount{{ with .class }} {{ . }}{{ end }}"
+  ><bdi class="paridata-amount__u" dir="ltr">{{ printf "%s%.2fu" $sign (math.Abs $v) }}</bdi
+  ><bdi class="paridata-amount__m" dir="ltr">{{ printf "%s%s%.2f" $sign $sym (math.Abs $m) }}</bdi
+></span>

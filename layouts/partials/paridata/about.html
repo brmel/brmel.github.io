@@ -1,0 +1,21 @@
+{{- /* What the page is, stated after the evidence rather than before it. */ -}}
+{{- $page := .page -}}
+{{- $p := .profile -}}
+
+<section class="paridata-about">
+  {{- with $page.Params.pitch }}<p class="project-pitch">{{ . }}</p>{{ end }}
+
+  {{- with $page.Params.stack }}
+  <ul class="project-stack" aria-label="{{ i18n `project_stack` | default `Stack` }}">
+    {{- range . }}<li class="u-chip">{{ . }}</li>{{ end }}
+  </ul>
+  {{- end }}
+
+  {{- with $page.Params.lede }}
+  <div class="project-lede">{{ . | markdownify }}</div>
+  {{- end }}
+
+  {{- if $p.sample }}
+  <p class="paridata-sample">{{ i18n "paridata_sample" }}</p>
+  {{- end }}
+</section>

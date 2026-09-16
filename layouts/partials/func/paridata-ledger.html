@@ -1,0 +1,83 @@
+{{- /* Returns the whole ledger, computed once: every ticket enriched with its
+       profit and the running balance, plus the totals the dashboard shows.
+       Callers render. Nobody else does arithmetic. */ -}}
+
+{{- $profile := site.Data.paridata.profile -}}
+{{- $defaultStake := $profile.staking.defaultStake -}}
+
+{{- $all := slice -}}
+{{- range $key, $file := site.Data.paridata -}}
+  {{- if ne $key "profile" -}}
+    {{- with $file.tickets -}}{{- $all = $all | append . -}}{{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- $all = sort $all "postedAt" -}}
+
+{{- $rows := slice -}}
+{{- $balance := 0.0 -}}
+{{- $staked := 0.0 -}}
+{{- $returned := 0.0 -}}
+{{- $won := 0 -}}{{- $lost := 0 -}}{{- $voided := 0 -}}{{- $pending := 0 -}}
+{{- $exposure := 0.0 -}}
+{{- $streak := 0 -}}{{- $worstStreak := 0 -}}
+
+{{- range $t := $all -}}
+  {{- $stake := $t.stake | default $defaultStake -}}
+
+  {{- /* A void leg returns its share of the stake, so its odds divide out. */ -}}
+  {{- $voidProduct := 1.0 -}}
+  {{- range $leg := $t.legs -}}
+    {{- if eq $leg.settlement "void" -}}{{- $voidProduct = mul $voidProduct $leg.odds -}}{{- end -}}
+  {{- end -}}
+  {{- $effOdds := div $t.odds $voidProduct -}}
+
+  {{- $profit := 0.0 -}}
+  {{- $settled := true -}}
+  {{- if eq $t.settlement "won" -}}
+    {{- $profit = mul $stake (sub $effOdds 1.0) -}}
+    {{- $won = add $won 1 -}}
+    {{- $streak = 0 -}}
+    {{- $staked = add $staked $stake -}}
+    {{- $returned = add $returned (mul $stake $effOdds) -}}
+  {{- else if eq $t.settlement "lost" -}}
+    {{- $profit = sub 0.0 $stake -}}
+    {{- $lost = add $lost 1 -}}
+    {{- $streak = add $streak 1 -}}
+    {{- if gt $streak $worstStreak -}}{{- $worstStreak = $streak -}}{{- end -}}
+    {{- $staked = add $staked $stake -}}
+  {{- else if eq $t.settlement "void" -}}
+    {{- $voided = add $voided 1 -}}
+  {{- else -}}
+    {{- $settled = false -}}
+    {{- $pending = add $pending 1 -}}
+    {{- $exposure = add $exposure $stake -}}
+  {{- end -}}
+
+  {{- if $settled -}}{{- $balance = add $balance $profit -}}{{- end -}}
+
+  {{- $rows = $rows | append (dict
+      "ticket" $t
+      "postedAt" $t.postedAt
+      "stake" $stake
+      "effOdds" $effOdds
+      "hasVoid" (ne $voidProduct 1.0)
+      "profit" $profit
+      "settled" $settled
+      "balance" $balance) -}}
+{{- end -}}
+
+{{- $decided := add $won $lost -}}
+{{- $settledCount := add $decided $voided -}}
+
+{{- return (dict
+    "profile" $profile
+    "rows" $rows
+    "balance" $balance
+    "staked" $staked
+    "returned" $returned
+    "roi" (cond (gt $staked 0.0) (mul (div $balance $staked) 100.0) 0.0)
+    "hitRate" (cond (gt $decided 0) (mul (div (float $won) (float $decided)) 100.0) 0.0)
+    "won" $won "lost" $lost "void" $voided "pending" $pending
+    "settledCount" $settledCount
+    "exposure" $exposure
+    "worstStreak" $worstStreak) -}}

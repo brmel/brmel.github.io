@@ -1,0 +1,27 @@
+{{- /* Three figures, one row: what went in, where it stands, and the rate.
+       Anything else the page can already be read for. */ -}}
+{{- $l := . -}}
+{{- $p := $l.profile -}}
+{{- $tone := cond (ge $l.balance 0.0) "paridata-amount--gain" "paridata-amount--loss" -}}
+{{- $roiTone := cond (ge $l.roi 0.0) "paridata-amount--gain" "paridata-amount--loss" -}}
+
+<dl class="project-metrics paridata-dash u-breakout">
+  <div class="project-metrics__item">
+    <dt class="project-metrics__value">
+      {{- partial "paridata/amount.html" (dict "value" $l.staked "profile" $p) -}}
+    </dt>
+    <dd class="project-metrics__label">{{ i18n "paridata_staked" }} · {{ $l.settledCount }} {{ i18n "paridata_settled" | lower }}</dd>
+  </div>
+  <div class="project-metrics__item paridata-dash__lead">
+    <dt class="project-metrics__value">
+      {{- partial "paridata/amount.html" (dict "value" $l.balance "profile" $p "signed" true "class" $tone) -}}
+    </dt>
+    <dd class="project-metrics__label">{{ i18n "paridata_balance" }}</dd>
+  </div>
+  <div class="project-metrics__item">
+    <dt class="project-metrics__value">
+      <bdi class="{{ $roiTone }}" dir="ltr">{{ printf "%+.1f" $l.roi | replaceRE "-" "−" }}%</bdi>
+    </dt>
+    <dd class="project-metrics__label">{{ i18n "paridata_roi" }}</dd>
+  </div>
+</dl>

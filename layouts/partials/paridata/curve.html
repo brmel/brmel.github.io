@@ -1,0 +1,68 @@
+{{- /* Cumulative balance against real dates, so a flat stretch reads as silence.
+       Below eight settled tickets a curve is noise, so there isn't one. */ -}}
+{{- $l := . -}}
+{{- $pts := where $l.rows "settled" true -}}
+{{- if ge (len $pts) 8 -}}
+
+{{- $W := 960.0 -}}{{- $H := 280.0 -}}
+{{- $padL := 10.0 -}}{{- $padR := 10.0 -}}{{- $padT := 18.0 -}}{{- $padB := 30.0 -}}
+
+{{- $ts := slice -}}{{- $bs := slice -}}
+{{- range $pts -}}
+  {{- $ts = $ts | append (float (time.AsTime .postedAt).Unix) -}}
+  {{- $bs = $bs | append .balance -}}
+{{- end -}}
+{{- $tS := sort $ts -}}
+{{- $tMin := index $tS 0 -}}{{- $tMax := index $tS (sub (len $tS) 1) -}}
+{{- $tSpan := sub $tMax $tMin -}}{{- if eq $tSpan 0.0 }}{{ $tSpan = 1.0 }}{{ end -}}
+
+{{- $bS := sort ($bs | append 0.0) -}}
+{{- $bLo := index $bS 0 -}}{{- $bHi := index $bS (sub (len $bS) 1) -}}
+{{- $bSpan := sub $bHi $bLo -}}{{- if eq $bSpan 0.0 }}{{ $bSpan = 1.0 }}{{ end -}}
+{{- $pad := mul $bSpan 0.14 -}}
+{{- $bLo = sub $bLo $pad -}}{{- $bHi = add $bHi $pad -}}
+{{- $bSpan = sub $bHi $bLo -}}
+
+{{- $plotW := sub $W (add $padL $padR) -}}
+{{- $plotH := sub $H (add $padT $padB) -}}
+{{- $zeroY := add $padT (mul (div (sub $bHi 0.0) $bSpan) $plotH) -}}
+
+{{- $line := "" -}}{{- $prevY := 0.0 -}}{{- $firstX := 0.0 -}}{{- $lastX := 0.0 -}}{{- $lastY := 0.0 -}}
+{{- range $i, $r := $pts -}}
+  {{- $x := add $padL (mul (div (sub (float (time.AsTime $r.postedAt).Unix) $tMin) $tSpan) $plotW) -}}
+  {{- $y := add $padT (mul (div (sub $bHi $r.balance) $bSpan) $plotH) -}}
+  {{- if eq $i 0 -}}
+    {{- $line = printf "M %.1f %.1f" $x $y -}}{{- $firstX = $x -}}
+  {{- else -}}
+    {{- $line = printf "%s L %.1f %.1f L %.1f %.1f" $line $x $prevY $x $y -}}
+  {{- end -}}
+  {{- $prevY = $y -}}{{- $lastX = $x -}}{{- $lastY = $y -}}
+{{- end -}}
+{{- $area := printf "%s L %.1f %.1f L %.1f %.1f Z" $line $lastX $zeroY $firstX $zeroY -}}
+
+<figure class="paridata-curve u-breakout">
+  <svg viewBox="0 0 {{ printf "%.0f" $W }} {{ printf "%.0f" $H }}" class="paridata-curve__svg"
+       role="img" preserveAspectRatio="none"
+       aria-label="{{ i18n "paridata_curve" }}: {{ printf "%+.2f" $l.balance }}u">
+    <defs>
+      <clipPath id="paridata-clip-gain">
+        <rect x="0" y="0" width="{{ printf "%.0f" $W }}" height="{{ printf "%.1f" $zeroY }}"/>
+      </clipPath>
+      <clipPath id="paridata-clip-loss">
+        <rect x="0" y="{{ printf "%.1f" $zeroY }}" width="{{ printf "%.0f" $W }}" height="{{ printf "%.1f" (sub $H $zeroY) }}"/>
+      </clipPath>
+    </defs>
+    <path d="{{ $area }}" class="paridata-curve__fill paridata-curve__fill--gain" clip-path="url(#paridata-clip-gain)"/>
+    <path d="{{ $area }}" class="paridata-curve__fill paridata-curve__fill--loss" clip-path="url(#paridata-clip-loss)"/>
+    <line class="paridata-curve__zero" x1="{{ printf "%.1f" $padL }}" y1="{{ printf "%.1f" $zeroY }}"
+          x2="{{ printf "%.1f" (sub $W $padR) }}" y2="{{ printf "%.1f" $zeroY }}"/>
+    <path d="{{ $line }}" class="paridata-curve__line"/>
+    <circle class="paridata-curve__dot" cx="{{ printf "%.1f" $lastX }}" cy="{{ printf "%.1f" $lastY }}" r="4"/>
+  </svg>
+  <figcaption class="paridata-curve__axis">
+    <bdi dir="ltr">{{ time.Format ":date_medium" (index $pts 0).postedAt | replaceRE `\x{200F}` "" }}</bdi>
+    <span>{{ i18n "paridata_curve" }}</span>
+    <bdi dir="ltr">{{ time.Format ":date_medium" (index $pts (sub (len $pts) 1)).postedAt | replaceRE `\x{200F}` "" }}</bdi>
+  </figcaption>
+</figure>
+{{- end -}}

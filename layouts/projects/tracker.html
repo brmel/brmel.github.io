@@ -1,0 +1,43 @@
+{{- define "main" }}
+{{- $l := partial "func/paridata-ledger.html" . }}
+{{- $p := $l.profile }}
+
+<article class="post-single project paridata" id="paridata" data-paridata="money">
+  {{ partial "breadcrumbs.html" . }}
+
+  <header class="project-head paridata-head">
+    {{- partial "project/identity.html" . -}}
+  </header>
+
+  <div class="paridata-toggle u-breakout" id="paridata-toggle" hidden>
+    <span class="paridata-toggle__label" id="paridata-toggle-label">{{ i18n "paridata_display" }}</span>
+    <span class="paridata-toggle__group" role="group" aria-labelledby="paridata-toggle-label">
+      <button type="button" class="paridata-toggle__btn" id="paridata-units" aria-pressed="false">{{ i18n "paridata_units" }}</button>
+      <button type="button" class="paridata-toggle__btn" id="paridata-money" aria-pressed="true">{{ $p.staking.currency }}</button>
+    </span>
+  </div>
+
+  {{ partial "paridata/dashboard.html" $l }}
+  {{ partial "paridata/curve.html" $l }}
+  {{ partial "paridata/ledger.html" (dict "ledger" $l "page" .) }}
+  {{ partial "paridata/about.html" (dict "page" . "profile" $p) }}
+
+  <div class="post-content project-body">
+    {{- partial "anchored_headings.html" .Content -}}
+  </div>
+
+  {{- with .Params.lessons }}
+  <section class="project-lessons" aria-labelledby="project-lessons-h">
+    <h2 class="u-rule-heading" id="project-lessons-h">{{ i18n "project_lessons" | default "What it taught me" }}</h2>
+    <ul class="project-lessons__list">
+      {{- range . }}<li>{{ . | markdownify }}</li>{{ end }}
+    </ul>
+  </section>
+  {{- end }}
+
+  {{- partial "page-end/footer.html" . }}
+
+  {{ $js := resources.Get "js/paridata.js" | resources.Minify | resources.Fingerprint }}
+  <script src="{{ $js.RelPermalink }}" defer></script>
+</article>
+{{- end }}

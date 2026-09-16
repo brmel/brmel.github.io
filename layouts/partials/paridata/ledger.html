@@ -1,0 +1,82 @@
+{{- /* Reads as a table, is really a list of <details>: legs, source and the
+       coupon photo open with no JavaScript, and stack into cards on a phone. */ -}}
+{{- $l := .ledger -}}
+{{- $page := .page -}}
+{{- $p := $l.profile -}}
+
+<section class="paridata-ledger u-breakout" aria-labelledby="paridata-ledger-h">
+  <h2 class="u-rule-heading" id="paridata-ledger-h">{{ i18n "paridata_ledger" }}</h2>
+
+  <div class="paridata-ledger__head" aria-hidden="true">
+    <span>{{ i18n "paridata_date" }}</span>
+    <span>{{ i18n "paridata_odds" }}</span>
+    <span>{{ i18n "paridata_stake" }}</span>
+    <span>{{ i18n "paridata_result" }}</span>
+    <span>{{ i18n "paridata_profit" }}</span>
+    <span>{{ i18n "paridata_balance" }}</span>
+  </div>
+
+  {{- range $r := sort $l.rows "postedAt" "desc" }}
+  {{- $t := $r.ticket }}
+  {{- $tone := cond (ge $r.profit 0.0) "paridata-amount--gain" "paridata-amount--loss" }}
+  <details class="paridata-row">
+    <summary class="paridata-row__summary">
+      <span class="paridata-row__date"><bdi dir="ltr">{{ time.Format ":date_medium" $t.postedAt | replaceRE `\x{200F}` "" }}</bdi></span>
+      <span class="paridata-row__odds"><bdi dir="ltr">{{ printf "%.2f" $t.odds }}</bdi></span>
+      <span class="paridata-row__stake">
+        {{- partial "paridata/amount.html" (dict "value" $r.stake "profile" $p) -}}
+      </span>
+      <span class="paridata-row__result">
+        <span class="u-chip paridata-chip" data-settlement="{{ $t.settlement }}">{{ i18n (printf "paridata_%s" $t.settlement) }}</span>
+      </span>
+      <span class="paridata-row__profit">
+        {{- if $r.settled -}}
+          {{- partial "paridata/amount.html" (dict "value" $r.profit "profile" $p "signed" true "class" $tone) -}}
+        {{- else -}}<bdi dir="ltr">—</bdi>{{- end -}}
+      </span>
+      <span class="paridata-row__balance">
+        {{- if $r.settled -}}
+          {{- partial "paridata/amount.html" (dict "value" $r.balance "profile" $p "signed" true) -}}
+        {{- else -}}<bdi dir="ltr">—</bdi>{{- end -}}
+      </span>
+    </summary>
+
+    <div class="paridata-row__detail">
+      <ol class="paridata-legs">
+        {{- range $leg := $t.legs }}
+        <li class="paridata-leg" data-settlement="{{ $leg.settlement }}">
+          <span class="paridata-leg__match">{{ $leg.home }} <span class="paridata-leg__v">v</span> {{ $leg.away }}</span>
+          <span class="paridata-leg__pick">{{ with $leg.competition }}{{ . }} · {{ end }}{{ $leg.selection }}</span>
+          <span class="paridata-leg__odds"><bdi dir="ltr">{{ with $leg.odds }}{{ printf "%.2f" . }}{{ end }}</bdi></span>
+          <span class="paridata-leg__state">{{ i18n (printf "paridata_%s" $leg.settlement) }}</span>
+        </li>
+        {{- end }}
+      </ol>
+
+      {{- if $r.hasVoid }}<p class="paridata-row__note">{{ i18n "paridata_voided_note" }}</p>{{ end }}
+      {{- if not $r.settled }}<p class="paridata-row__note">{{ i18n "paridata_pending_note" }}</p>{{ end }}
+      {{- with $t.notes }}<p class="paridata-row__note">{{ . }}</p>{{ end }}
+
+      {{- with $t.source.evidence }}
+      {{- with $page.Resources.GetMatch . }}
+      {{- $thumb := .Resize "320x webp q82" }}
+      <a class="paridata-row__shot" href="{{ .RelPermalink }}">
+        <img class="u-frame" src="{{ $thumb.RelPermalink }}" width="{{ $thumb.Width }}" height="{{ $thumb.Height }}"
+             loading="lazy" decoding="async" alt="{{ i18n "paridata_source" }}">
+      </a>
+      {{- end }}
+      {{- end }}
+
+      <p class="paridata-row__source">
+        <a href="{{ $t.source.url }}" target="_blank" rel="nofollow noopener noreferrer">{{ i18n "paridata_source" }} <span aria-hidden="true">↗</span></a>
+      </p>
+    </div>
+  </details>
+  {{- end }}
+
+  <nav class="paridata-pager" id="paridata-pager" hidden aria-label="{{ i18n "paridata_ledger" }}">
+    <button type="button" class="paridata-pager__btn" id="paridata-prev">{{ i18n "paridata_prev" }}</button>
+    <span class="paridata-pager__label" id="paridata-pagelabel" dir="ltr" aria-live="polite"></span>
+    <button type="button" class="paridata-pager__btn" id="paridata-next">{{ i18n "paridata_next" }}</button>
+  </nav>
+</section>
