@@ -7,7 +7,7 @@
   </h2>
   <ol class="home-career__list">
     {{- range . }}
-    <li class="home-career__item">
+    <li class="u-label-row home-career__item">
       <span class="u-eyebrow home-career__period"><bdi dir="ltr">{{ .period }}</bdi></span>
       <span class="home-career__role">{{ .role }}</span>
       {{- with .org }}<span class="home-career__org">{{ . }}</span>{{ end }}
@@ -20,7 +20,7 @@
     {{- end }}
   </ol>
   <p class="home-career__more">
-    <a href="{{ $resume.RelPermalink }}">{{ i18n "home_career_more" | default "Full resume →" }}</a>
+    <a class="u-eyebrow u-link" href="{{ $resume.RelPermalink }}">{{ i18n "home_career_more" | default "Full resume →" }}</a>
   </p>
 </section>
 {{- end }}

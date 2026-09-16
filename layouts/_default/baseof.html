@@ -17,7 +17,7 @@
 {{- end -}}
 " id="top">
     {{- partialCached "header.html" . .Page -}}
-    <main class="main" id="main">
+    <main class="main{{ block "main-width" . }}{{ end }}" id="main">
         {{- block "main" . }}{{ end }}
     </main>
     {{ partialCached "footer.html" . .Layout .Kind (.Param "hideFooter") (.Param "ShowCodeCopyButtons") -}}

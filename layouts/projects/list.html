@@ -1,3 +1,4 @@
+{{- define "main-width" }} main--wide{{ end }}
 {{- define "main" }}
 
 <header class="page-header">
@@ -31,7 +32,7 @@
 <div class="empty-section">
   <span class="empty-section__mark" aria-hidden="true"></span>
   <p class="empty-section__lead">{{ i18n "projects_empty_lead" | default "No projects published yet." }}</p>
-  <p class="empty-section__sub">{{ i18n "projects_empty_sub" | default "Write-ups are on the way — check back soon." }}</p>
+  <p class="u-eyebrow empty-section__sub">{{ i18n "projects_empty_sub" | default "Write-ups are on the way — check back soon." }}</p>
 </div>
 {{- else }}
 

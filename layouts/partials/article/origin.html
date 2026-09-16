@@ -3,7 +3,7 @@
 {{- $parts := where (where site.RegularPages "Section" "tech") "Params.series" $series }}
 {{- if gt (len $parts) 1 }}
 <nav class="u-card series" aria-label="{{ i18n "series_label" | default "Series" }}">
-  <p class="series__title">
+  <p class="u-eyebrow series__title">
     {{ i18n "series_label" | default "Series" }} <b aria-hidden="true">·</b> {{ $series }}
   </p>
   <ol class="series__list">
@@ -22,7 +22,7 @@
 {{- end }}
 
 {{- with .Params.canonicalOriginal }}
-<p class="article-origin">
+<p class="u-eyebrow article-origin">
   {{ i18n "originally_published" | default "Originally published on" }}
   <a href="{{ . }}" target="_blank" rel="noopener noreferrer">
     {{- $.Params.canonicalOriginalName | default "LinkedIn" }} <span aria-hidden="true">↗</span></a>

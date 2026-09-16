@@ -1,5 +1,5 @@
 <aside class="verdict" aria-labelledby="verdict-h">
-  <h2 id="verdict-h">{{ i18n "verdict_heading" | default "Verdict" }}</h2>
+  <h2 class="u-eyebrow" id="verdict-h">{{ i18n "verdict_heading" | default "Verdict" }}</h2>
   <dl>
     {{- with .Params.goBack }}<div><dt>{{ i18n "verdict_go_back" | default "Would I go back?" }}</dt><dd>{{ . }}</dd></div>{{ end }}
     {{- with .Params.bestFor }}<div><dt>{{ i18n "verdict_best_for" | default "Best for" }}</dt><dd>{{ . }}</dd></div>{{ end }}

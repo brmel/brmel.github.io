@@ -7,10 +7,10 @@
   {{- with .Params.role }}<p class="author-card__role">{{ . }}</p>{{ end }}
   {{- with site.Params.profileMode.bigPicture }}<p class="author-card__line">{{ . }}</p>{{ end }}
   <p class="author-card__links">
-    <a href="{{ .RelPermalink }}">{{ i18n "author_resume" | default "The whole career →" }}</a>
+    <a class="u-eyebrow u-link" href="{{ .RelPermalink }}">{{ i18n "author_resume" | default "The whole career →" }}</a>
     {{- if ne $.Section "projects" }}
     {{- with site.GetPage "/projects" }}
-    <a href="{{ .RelPermalink }}">{{ i18n "author_projects" | default "Everything built →" }}</a>
+    <a class="u-eyebrow u-link" href="{{ .RelPermalink }}">{{ i18n "author_projects" | default "Everything built →" }}</a>
     {{- end }}
     {{- end }}
   </p>

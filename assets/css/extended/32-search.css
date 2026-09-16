@@ -1,4 +1,15 @@
-.list #searchbox input[type="search"]::-webkit-search-cancel-button{
+#searchbox input{
+  padding:var(--space-3) var(--space-5);
+  font-size:var(--t-body-l);font-weight:400;color:var(--ink);
+  border:var(--hairline) solid var(--rule);border-radius:var(--radius-pill);
+  background:var(--bg-alt);
+  transition:border-color var(--dur-1) var(--ease-standard);
+}
+#searchbox input:focus{border-color:var(--accent);outline:0;box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 18%,transparent);}
+#searchbox input::-webkit-search-cancel-button{
   -webkit-appearance:none;
   appearance:none;
 }
+#searchResults{margin:var(--flow-block) 0 0;padding:0;}
+#searchResults .focus{transform:none;border:var(--hairline) solid var(--accent);}
+#searchResults .entry-header{font-family:var(--font-serif);font-size:var(--t-heading);line-height:1.2;}

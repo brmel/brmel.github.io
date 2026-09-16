@@ -16,12 +16,12 @@
 {{- end }}
 
 <nav class="section-nav" aria-label="{{ i18n "section_nav_label" | default "Section navigation" }}">
-  <a class="section-nav__link" href="{{ .RelPermalink }}"><span aria-hidden="true">←</span> {{ i18n "back_to" | default "Back to" }} {{ .Title }}</a>
+  <a class="u-eyebrow u-link section-nav__link" href="{{ .RelPermalink }}"><span aria-hidden="true">←</span> {{ i18n "back_to" | default "Back to" }} {{ .Title }}</a>
   {{- if or $prev $next }}
   <div class="section-nav__siblings">
     {{- with $prev }}
     <a class="section-nav__sib" href="{{ .RelPermalink }}" rel="prev">
-      <span class="section-nav__link"><span aria-hidden="true">←</span> {{ i18n "previous" | default "Previous" }}</span>
+      <span class="u-eyebrow u-link section-nav__link"><span aria-hidden="true">←</span> {{ i18n "previous" | default "Previous" }}</span>
       <span class="section-nav__title">{{ .Title }}</span>
       {{- if ne .Lang site.Language.Lang }}
       <span class="entry-lang" title="{{ i18n "lang_en_only_title" | default "This write-up is in English" }}">{{ i18n "lang_en_only" | default "in English" }}</span>
@@ -30,7 +30,7 @@
     {{- end }}
     {{- with $next }}
     <a class="section-nav__sib section-nav__sib--next" href="{{ .RelPermalink }}" rel="next">
-      <span class="section-nav__link">{{ i18n "next" | default "Next" }} <span aria-hidden="true">→</span></span>
+      <span class="u-eyebrow u-link section-nav__link">{{ i18n "next" | default "Next" }} <span aria-hidden="true">→</span></span>
       <span class="section-nav__title">{{ .Title }}</span>
       {{- if ne .Lang site.Language.Lang }}
       <span class="entry-lang" title="{{ i18n "lang_en_only_title" | default "This write-up is in English" }}">{{ i18n "lang_en_only" | default "in English" }}</span>

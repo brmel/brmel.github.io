@@ -8,7 +8,7 @@
   .timeline-item{padding-inline-start:0;}
   .timeline-content{padding:0;background:none;border:0;box-shadow:none;overflow:visible;}
   .timeline-work--media{display:block;}
-  .timeline-facts__row{grid-template-columns:var(--resume-gutter) 1fr;padding:var(--space-1) 0;}
+  .timeline-facts__row{grid-template-columns:var(--label-col) 1fr;padding:var(--space-1) 0;}
   .timeline-item,.resume__skillgroup,.resume__record{break-inside:avoid;}
   .u-rule-heading{break-after:avoid;}
 }

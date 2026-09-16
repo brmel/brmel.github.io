@@ -2,7 +2,7 @@
 {{- $r := resources.Get $src -}}
 {{- with $r -}}
 
-<iframe id="reportFrame" class="report-frame" src="{{ .RelPermalink }}" title="{{ $.Get `title` | default `Report` }}" loading="lazy"></iframe>
+<iframe id="reportFrame" class="report-frame u-wide" src="{{ .RelPermalink }}" title="{{ $.Get `title` | default `Report` }}" loading="lazy"></iframe>
 <script>
 (function () {
   var f = document.getElementById('reportFrame'); if (!f) return;

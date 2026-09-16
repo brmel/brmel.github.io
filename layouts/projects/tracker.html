@@ -1,9 +1,10 @@
+{{- define "main-width" }} main--wide{{ end }}
 {{- define "main" }}
 {{- $l := partial "func/paridata-ledger.html" . }}
 
 <article class="post-single project paridata" id="paridata">
-  {{ partial "breadcrumbs.html" . }}
   <header class="project-head">
+    {{- partial "breadcrumbs.html" . }}
     {{- partial "project/identity.html" . -}}
   </header>
 

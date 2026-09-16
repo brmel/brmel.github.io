@@ -1,4 +1,5 @@
 <header class="project-head">
+  {{- partial "breadcrumbs.html" . }}
   {{- partial "project/identity.html" . -}}
   {{- with .Params.pitch }}<p class="project-pitch">{{ . }}</p>{{ end }}
 
@@ -14,7 +15,7 @@
       {{- range $label, $url := . }}
       {{- if $url }}
       <li>
-        <a href="{{ $url }}" target="_blank" rel="noopener noreferrer">
+        <a class="u-eyebrow u-link" href="{{ $url }}" target="_blank" rel="noopener noreferrer">
           {{- i18n (printf "project_link_%s" $label) | default ($label | title) }} <span aria-hidden="true">↗</span>
         </a>
       </li>

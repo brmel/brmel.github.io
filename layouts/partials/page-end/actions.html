@@ -5,7 +5,7 @@
 {{- $body := printf "Page: %s\n\n" $.Permalink -}}
 <ul class="content-actions">
   <li>
-    <a href="{{ printf "%s/issues/new?title=%s&body=%s" $repo (urlquery $title) (urlquery $body) }}"
+    <a class="u-eyebrow" href="{{ printf "%s/issues/new?title=%s&body=%s" $repo (urlquery $title) (urlquery $body) }}"
        target="_blank" rel="noopener noreferrer">
       {{ i18n "discuss_page" | default "Found a problem? Open an issue" }} <span aria-hidden="true">↗</span>
     </a>

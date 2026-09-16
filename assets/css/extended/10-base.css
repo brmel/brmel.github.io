@@ -9,8 +9,8 @@
   --code-bg:var(--bg-alt);
   --border:var(--rule);
 
-  --main-width:900px;
-  --nav-width:1280px;
+  --main-width:var(--container-content);
+  --nav-width:var(--container-content);
 }
 
 .list{background:var(--theme);}
@@ -19,15 +19,25 @@
 @media (max-width:768px){:root{--gap:var(--space-5);}}
 @media (max-width:600px){:root{--gap:var(--space-4);}}
 
+.main{
+  --measure:var(--container-text);
+  padding-block:var(--flow-block) var(--flow-section);
+}
+.main--wide{--measure:var(--container-content);}
+.main > :not(.post-single,.u-wide),
+.post-single > :not(.post-content,.u-wide),
+.post-content > :not(.u-wide){max-inline-size:var(--measure);margin-inline:auto;}
+
 body{font-family:var(--font-sans);}
 
 .post-content{font-size:var(--prose-size);}
 .logo a,
-.first-entry .entry-header h1,
 .page-header h1,
 .page-404 h1,
 .profile_inner h1,
 .post-title,
+.project-title,
+.resume__name,
 .entry-header h2,
 .post-content h1,
 .post-content h2,
@@ -37,6 +47,33 @@ body{font-family:var(--font-sans);}
   letter-spacing:-0.01em;
 }
 code,kbd,samp,pre,tt{font-family:var(--font-mono);}
+
+.page-header,
+.post-header,
+.project-head,
+.resume__head{
+  display:flex;flex-direction:column;gap:var(--flow-tight);
+  margin-block:0 var(--flow-block);
+}
+.page-header h1,
+.page-404 h1,
+.post-title,
+.project-title,
+.resume__name{
+  margin:0;
+  font-size:var(--fl-display-m);line-height:1.05;letter-spacing:-0.015em;
+  color:var(--ink);text-wrap:balance;
+}
+.page-header .post-description,
+.post-header .post-description,
+.project-pitch{
+  margin:0;max-width:60ch;
+  font-size:var(--t-subhead);line-height:1.45;color:var(--ink-soft);
+}
+
+.breadcrumbs{font-size:var(--t-caption);color:var(--ink-mute);}
+.breadcrumbs a{font-size:inherit;color:inherit;transition:color var(--dur-1) var(--ease-standard);}
+.breadcrumbs a:hover{color:var(--accent);}
 
 .post-tags a:hover{border-color:var(--accent);color:var(--accent);}
 
@@ -61,14 +98,6 @@ a:focus-visible,button:focus-visible,.toc summary:focus-visible,.top-link:focus-
 .post-content h1 a,.post-content h2 a,.post-content h3 a,
 .post-content figure a{text-decoration:none;}
 
-.profile__photo{
-  border-radius:var(--radius-md);
-  object-fit:cover;
-  max-width:100%;
-  height:auto;
-  box-shadow:var(--shadow-photo);
-}
-
 table{width:100%;border-collapse:collapse;margin:var(--space-5) 0;}
 table th,table td{
   border:var(--hairline) solid var(--rule);
@@ -77,4 +106,4 @@ table th,table td{
 }
 table th{background:var(--bg-alt);font-weight:500;}
 
-.highlight{margin:var(--space-5) 0;border-radius:var(--radius-sm);overflow:hidden;}
+.highlight{margin-block:var(--space-5);border-radius:var(--radius-sm);overflow:hidden;}

@@ -1,7 +1,6 @@
 .workflow{
   display:block;width:100%;height:auto;
-  max-width:var(--container-content);
-  margin:var(--space-6) auto;
+  margin-block:var(--space-6);
   color:var(--accent);  overflow:visible;
 }
 .workflow rect{
@@ -58,36 +57,16 @@
 }
 .post-content figure > figcaption > p{margin-top:var(--space-1);}
 
-.post-single .post-title{
-  font-family:var(--font-serif);
-  font-weight:400;
-  font-size:var(--fl-display-m);
-  line-height:1.05;
-  letter-spacing:-0.015em;
-  color:var(--ink);
-  text-wrap:balance;
-  margin:0 0 var(--space-4);
-}
-.post-single .post-description{
-  font-family:var(--font-sans);
-  font-weight:500;
-  font-size:var(--t-subhead);
-  line-height:1.45;
-  color:var(--ink-soft);
-  max-width:60ch;
-  margin:0 0 var(--space-5);
-}
 .post-single .post-meta{
   display:block;
   font-family:var(--font-label);
   font-size:var(--t-data);
-  letter-spacing:.03em;
+  letter-spacing:var(--track-micro);
   color:var(--ink-mute);
-  padding-bottom:var(--space-6);
-  border-bottom:var(--hairline) solid var(--rule);
 }
 .post-single .post-meta b{color:var(--accent);font-weight:400;}
 
+.post-entry{padding:var(--space-5);margin-bottom:var(--space-4);}
 .post-entry:has(.entry-cover){
   display:flex;
   align-items:flex-start;
@@ -115,7 +94,6 @@
 .post-content h2{
   font-size:1.7em;
   margin-block:calc(var(--lh) * 1.2) calc(var(--lh) * 0.5);
-  margin-inline:0;
 }
 .post-content h3{
   font-size:1.3em;
@@ -127,7 +105,6 @@
 }
 .post-content > :is(h2,h3,h4):first-child{margin-block-start:0;}
 
-.post-content .report-frame{max-width:none;}
 .post-content pre{font-size:.8em;overflow-x:auto;}
 .post-content pre code{overflow-x:visible;width:max-content;min-width:100%;}
 .chroma :is(.c,.ch,.cm,.c1,.cs,.cp,.cpf,.sd,.sh){color:var(--code-comment);}

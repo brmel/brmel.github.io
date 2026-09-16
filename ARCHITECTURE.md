@@ -106,10 +106,10 @@ everything that consumes it.
 
 | | |
 |---|---|
-| `00-tokens` | design tokens; the only file that defines a colour |
+| `00-tokens` | design tokens; the only file that defines a colour. Spacing is `--flow-tight` / `--flow-block` / `--flow-section` |
 | `05-fonts` | self-hosted `@font-face` declarations |
-| `10-base` | theme variable remap, type, links, tables, code |
-| `20-components` | shared primitives — `.u-card`, `.u-bar`, `.u-eyebrow`, `.u-chip`, `.u-rule-heading`, `.u-frame` |
+| `10-base` | theme variable remap, the page frame, page headers, type, links, tables, code |
+| `20-components` | shared primitives — `.u-card`, `.u-bar`, `.u-eyebrow`, `.u-link`, `.u-chip`, `.u-label-row`, `.u-rule-heading`, `.u-frame` |
 | `30-chrome` | nav, mark, footers, section nav, content footer |
 | `31-toc` `32-search` | table of contents, search box |
 | `40-home` `41-resume` `42-timeline` `43-projects` `44-adventures` `45-tracker` `46-project-page` | one section each |
@@ -122,7 +122,27 @@ Section files **compose** the primitives; they never redeclare them.
 tokens, if a file exceeds 260 lines, or if a class is declared but never used.
 
 Every page loads the same stylesheet. Anything a shared partial or a shortcode renders belongs in
-`20-components.css`. Every block on a page sits in the one text column — nothing breaks out of it.
+`20-components.css`.
+
+### Page frame
+
+Two widths, one rule in `10-base.css`. The header, footer and `<main>` share the 1200px frame
+(`--container-content`), so the logo, wide blocks and the menu's end sit on the same two edges.
+Every block inside it is centred at the text measure (900px, `--container-text`) unless it opts out:
+
+- `.u-wide` on a block — a grid, gallery or report frame — gives it the full frame. Home section
+  cards, project galleries and report frames carry it.
+- a page whose body is itself a grid or a table sets the whole page to the frame with
+  `{{ define "main-width" }} main--wide{{ end }}`: the project index, the resume and PariData.
+  Headers, section rules and the page end then share the grid's edges.
+
+Nothing is sized from `100vw`, and no block sets its own `max-width` or `margin-inline:auto` —
+spacing between blocks is `margin-block` only. On phones a report frame runs to the screen edge,
+because the report brings its own padding.
+
+Every page header — list, article, project, resume — is the same flex column: breadcrumbs, title,
+description, meta, `--flow-tight` apart, `--flow-block` above the content. Rules belong to section
+headings (`.u-rule-heading`) and the page end, never to a header.
 
 `scripts/checks/check-pages.py` covers what a structural check cannot see: the same
 destination linked twice on one page however differently the two links are

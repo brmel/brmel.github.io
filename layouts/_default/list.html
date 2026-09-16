@@ -65,7 +65,7 @@
   <span class="empty-section__mark" aria-hidden="true"></span>
 
   <p class="empty-section__lead">{{ i18n "section_empty_lead" | default "Nothing published here yet." }}</p>
-  <p class="empty-section__sub">{{ i18n "section_empty_sub" | default "New work is on the way — check back soon." }}</p>
+  <p class="u-eyebrow empty-section__sub">{{ i18n "section_empty_sub" | default "New work is on the way — check back soon." }}</p>
 </div>
 {{- end }}
 
@@ -82,6 +82,7 @@
 {{- end }}
 
 <article class="{{ $class }}">
+  <span class="u-bar" aria-hidden="true"></span>
   {{- if not $term }}{{ partial "article/cover.html" . }}{{ end }}
 
   <div class="entry-text">

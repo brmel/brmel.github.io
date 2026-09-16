@@ -7,8 +7,8 @@
   </h2>
   <ul class="learning__list">
     {{- range . }}
-    <li class="learning__item">
-      <a class="learning__link" href="{{ .RelPermalink }}">{{ .Title }}</a>
+    <li class="u-label-row learning__item">
+      <a class="u-eyebrow u-link learning__link" href="{{ .RelPermalink }}">{{ .Title }}</a>
       <span class="learning__note">{{ .Params.takeaway }}</span>
     </li>
     {{- end }}
