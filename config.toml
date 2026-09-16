@@ -169,7 +169,6 @@ enableEmoji = true
   minifyOutput = true
 
 [params]
-  env = "production"
   title = "Ibraverse"
   mainSections = ["projects", "tech", "adventures", "thoughts"]
   images = ["images/profile.jpg"]
@@ -224,6 +223,9 @@ enableEmoji = true
     name = "instagram"
     title = "Instagram"
     url = "https://www.instagram.com/mellahredouane/"
+
+[services.googleAnalytics]
+  ID = "G-CHFGS2DHF6"
 
 [markup]
   [markup.highlight]

@@ -43,7 +43,9 @@ delete this file. Git keeps the history.
 - No dead code: every partial, class, token, i18n key, script and front-matter field has a reader.
 - Build with native, stable features: Hugo pipes, image processing, output formats, i18n; plain
   CSS; no JavaScript unless a page cannot work without it.
-- No third-party runtime requests. Fonts, scripts and images are self-hosted.
+- No third-party runtime requests except Google Analytics 4, which the owner asked back on 2026-09-16:
+  one ID in `[services.googleAnalytics]`, Hugo's built-in tag, allowed in the CSP. Fonts, other
+  scripts and images are self-hosted.
 
 ### CSS
 
