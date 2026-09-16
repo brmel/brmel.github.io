@@ -13,7 +13,7 @@ hugo server            # http://localhost:1313
 ./scripts/check.sh     # everything CI runs, locally
 ```
 
-Requires Hugo **0.148.0 extended** — pinned in both workflows. The gates need
+Requires Hugo **0.148.0 extended** — pinned in `.github/workflows/site.yml`. The gates need
 Python 3 and Java; the generators also need Pillow.
 
 ## Layout
@@ -26,39 +26,29 @@ content/          markdown, one page bundle per article or project
   adventures/     field notes
   resume.md       + .fr.md / .ar.md
   search.md       + .fr.md / .ar.md
+data/paridata/    PariData tickets, matches and profile; see docs/paridata-playbook.md
 archetypes/       one scaffold per section
 layouts/          templates; see ARCHITECTURE.md
-assets/
+assets/           everything that passes through Hugo Pipes
   css/extended/   NN-name.css — the number is the cascade order
-  js/             timeline.js, the resume video lightbox
+  js/             timeline.js (resume video lightbox), paridata.js (ledger controls)
+  images/         profile photo and resume video posters
+  paridata/       competition flags
   reports/        generated report pages, embedded by the reportframe shortcode
 i18n/             en, fr, ar strings
-static/og/        generated social cards
-scripts/          check.sh and gates.sh; checks/ holds the gates, generate/ the asset generators
+static/           copied as-is: favicons, fonts, generated social cards (og/), CNAME, robots.txt
+scripts/          check.sh builds and runs gates.sh; checks/ holds the gates, generate/ the asset generators
+.github/          site.yml: check every pull request; check, then deploy, on push to main
 docs/             brand system, brand kit, playbooks, improvement plan
 themes/PaperMod/  vendored theme; forked files carry a provenance header
 ```
 
 ## Gates
 
-`scripts/gates.sh` holds the list of gates in `scripts/checks/`; `./scripts/check.sh` builds and runs it, and
-both workflows run the same script — on every pull request, and again before a
-deploy, plus a link crawl on top. They exist because each one caught a defect
-that had already shipped.
-
-| Check | Asserts |
-|---|---|
-| build | Hugo builds clean with `--cleanDestinationDir` |
-| `check-orphans.sh` | no asset is referenced by nothing; no image under `static/` |
-| `check-og.py` | every page has a resolvable, absolute `og:image` with alt text |
-| `check-contrast.py` | every text token and syntax-highlighting colour clears WCAG AA on its surface, both themes |
-| `check-css.py` | explicit cascade order, colours only in tokens, no duplicated primitives, no dead classes |
-| `check-chrome.py` | one `h1`, a skip link and sized images on every page; every content page has a way back and a way to contribute |
-| `check-pages.py` | no destination linked twice, no self-link, no unnamed control; every internal link resolves and every page is reachable |
-| `check-rtl.py` | layout mirrors from logical properties alone — no physical `left`/`right` |
-| `check-js.py` | every selector a script reaches for exists on the pages that load it |
-| `check-seo.py` | descriptions 50–160 characters and unique per language, canonical and hreflang x-default on every indexable page, JSON-LD type per section, sitemap lists exactly the indexable pages |
-| `check-html.py` | every page except the generated reports is valid HTML (Nu HTML Checker, pinned; needs Java) |
+`scripts/gates.sh` is the list of gates in `scripts/checks/`, and `./scripts/check.sh` builds the
+site and runs it. CI runs the same script on every pull request and again before every deploy,
+then crawls every internal link. Each gate prints what it asserts when it passes; each exists
+because it caught a defect that had already shipped.
 
 ## Audit
 

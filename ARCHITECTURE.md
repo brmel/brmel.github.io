@@ -212,6 +212,7 @@ which removed Projects from the French nav entirely.
 
 ## Deployment
 
-Push to `main` → `.github/workflows/hugo.yml` builds and publishes to GitHub
-Pages. Pull requests run `.github/workflows/check.yml`, which is `check.sh` plus
-a link crawl. Both pin Hugo 0.148.0 extended.
+One workflow, `.github/workflows/site.yml`, pins Hugo 0.148.0 extended and runs
+`scripts/check.sh` plus an internal link crawl. On a pull request that is all it does
+(with an advisory external link crawl); on a push to `main` it then publishes
+`public/` to GitHub Pages.

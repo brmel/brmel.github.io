@@ -11,13 +11,12 @@ enableGitInfo = true
     [languages.en.params]
       author = "Ibraverse"
       description = "Senior Software Developer at Zebra Technologies working in machine vision, AI and image processing."
-      keywords = ["machine vision", "image processing", "computer vision", "industrial algorithms", "OpenCV", "C++", "control theory", "robotics", "AI", "Zebra Technologies", "Matrox", "real-time systems", "AI", "pattern matching", "edge detection", "calibration"]
+      keywords = ["machine vision", "image processing", "computer vision", "industrial algorithms", "OpenCV", "C++", "control theory", "robotics", "AI", "Zebra Technologies", "Matrox", "real-time systems", "pattern matching", "edge detection", "calibration"]
     [languages.en.params.profileMode]
       enabled = true
       title = "Brahim Redouane Mellah"
       subtitle = "Machine vision and AI · Zebra Technologies · Montréal"
       imageUrl = "images/profile.jpg"
-      imageWidth = 380
       imageTitle = "Brahim Redouane Mellah"
       bigPicture = "I build industrial AI and machine vision products. Specializing in C++ and machine learning, I take algorithms from raw ideas to robust, factory-ready deployments. I build and write about robotics, cloud architecture, and mobile apps here—always driven by a deep foundation in math and physics."
     [[languages.en.menu.main]]
@@ -63,13 +62,12 @@ enableGitInfo = true
     [languages.fr.params]
       author = "Ibraverse"
       description = "Développeur logiciel senior chez Zebra Technologies : vision industrielle, IA et traitement d'images."
-      keywords = ["vision industrielle", "traitement d'images", "vision par ordinateur", "algorithmes industriels", "OpenCV", "C++", "théorie du contrôle", "robotique", "IA", "Zebra Technologies", "Matrox", "systèmes temps réel", "IA", "appariement de motifs", "détection de contours", "calibration"]
+      keywords = ["vision industrielle", "traitement d'images", "vision par ordinateur", "algorithmes industriels", "OpenCV", "C++", "théorie du contrôle", "robotique", "IA", "Zebra Technologies", "Matrox", "systèmes temps réel", "appariement de motifs", "détection de contours", "calibration"]
     [languages.fr.params.profileMode]
       enabled = true
       title = "Brahim Redouane Mellah"
       subtitle = "Vision industrielle et IA · Zebra Technologies · Montréal"
       imageUrl = "images/profile.jpg"
-      imageWidth = 380
       imageTitle = "Brahim Redouane Mellah"
       bigPicture = "Je développe des solutions d'IA et de vision artificielle pour l'industrie. Spécialisé en C++ et en machine learning, je transforme des idées brutes en algorithmes robustes, prêts à être déployés en production. Ici, je crée et je partage mes connaissances sur la robotique, le cloud et les applications mobiles — avec toujours les mathématiques et la physique comme piliers."
     [[languages.fr.menu.main]]
@@ -116,13 +114,12 @@ enableGitInfo = true
     [languages.ar.params]
       author = "إبرافرس"
       description = "مطور برمجيات أول في Zebra Technologies في الرؤية الآلية والذكاء الاصطناعي ومعالجة الصور."
-      keywords = ["الرؤية الآلية", "معالجة الصور", "رؤية الكمبيوتر", "الخوارزميات الصناعية", "OpenCV", "C++", "نظرية التحكم", "الروبوتات", "الذكاء الاصطناعي", "Zebra Technologies", "Matrox", "أنظمة الوقت الحقيقي", "الذكاء الاصطناعي", "مطابقة الأنماط", "كشف الحواف"]
+      keywords = ["الرؤية الآلية", "معالجة الصور", "رؤية الكمبيوتر", "الخوارزميات الصناعية", "OpenCV", "C++", "نظرية التحكم", "الروبوتات", "الذكاء الاصطناعي", "Zebra Technologies", "Matrox", "أنظمة الوقت الحقيقي", "مطابقة الأنماط", "كشف الحواف"]
     [languages.ar.params.profileMode]
       enabled = true
       title = "إبراهيم رضوان ملاح"
       subtitle = "الرؤية الآلية والذكاء الاصطناعي · Zebra Technologies · مونتريال"
       imageUrl = "images/profile.jpg"
-      imageWidth = 380
       imageTitle = "إبراهيم رضوان ملاح"
       bigPicture = "أطوّر خوارزميات الرؤية الآلية الصناعية وأصونها: الهندسة الرياضية والمعايرة وقياس الحواف. آخذها من النموذج الأولي إلى النشر، بطرق تقليدية وبالتعلّم العميق. أحبّ C++‎ والروبوتات والذكاء الاصطناعي والرؤية الآلية، وعنها أبني وأكتب هنا."
     [[languages.ar.menu.main]]
@@ -164,8 +161,6 @@ enableGitInfo = true
 [pagination]
   pagerSize = 10
 enableRobotsTXT = true
-buildDrafts = false
-buildFuture = false
 
 enableEmoji = true
 
@@ -177,31 +172,17 @@ enableEmoji = true
   env = "production"
   title = "Ibraverse"
   mainSections = ["projects", "tech", "adventures", "thoughts"]
-  description = "Senior Software Developer at Zebra Technologies working in machine vision, AI and image processing. Industrial C++, algorithms shipped into products that run on factory floors."
-  keywords = ["machine vision", "image processing", "computer vision", "industrial algorithms", "OpenCV", "C++", "control theory", "robotics", "AI", "Zebra Technologies", "Matrox", "real-time systems", "AI", "pattern matching", "edge detection", "calibration"]
-  author = "Ibraverse"
   images = ["images/profile.jpg"]
   DateFormat = ":date_long"
   defaultTheme = "light"
-  disableThemeToggle = false
   ShowReadingTime = true
 
   ShowToc = true
-  TocOpen = false
   ShowShareButtons = true
-  ShowPostNavLinks = false
   ShowBreadCrumbs = true
   ShowCodeCopyButtons = true
-  ShowWordCount = false
   ShowRssButtonInSectionTermList = true
   UseHugoToc = true
-  disableSpecial1stPost = false
-  disableScrollToTop = false
-  hidemeta = false
-  hideAuthor = true
-  hideSummary = false
-  showtoc = false
-  tocopen = false
 
   repo = "https://github.com/brmel/brmel.github.io"
 
@@ -218,8 +199,6 @@ enableEmoji = true
 
   [params.label]
     text = "Ibraverse"
-    icon = "favicon.ico"
-    iconHeight = 35
 
   [[params.socialIcons]]
     name = "github"
@@ -246,20 +225,10 @@ enableEmoji = true
     title = "Instagram"
     url = "https://www.instagram.com/mellahredouane/"
 
-  repo = "https://github.com/brmel/brmel.github.io"
-
-  tag = "tags"
-
 [markup]
   [markup.highlight]
-    anchorLineNos = false
-    codeFences = true
     guessSyntax = true
-    lineNos = false
-    lineNumbersInTable = false
     noClasses = false
-    style = "github"
-    tabWidth = 4
 
   [markup.goldmark]
     [markup.goldmark.renderer]
