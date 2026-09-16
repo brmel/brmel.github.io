@@ -3,11 +3,8 @@
 
 <section class="paridata-panel paridata-about" aria-labelledby="paridata-about-h">
   <h2 class="paridata-heading" id="paridata-about-h">{{ i18n "paridata_about" }}</h2>
+  <div class="paridata-about__text">{{ $page.Content }}</div>
   <dl class="paridata-facts">
-    <div>
-      <dt>{{ i18n "paridata_tipster" }}</dt>
-      <dd><a href="{{ $p.tipster.profileUrl }}" target="_blank" rel="nofollow noopener noreferrer"><bdi dir="ltr">{{ $p.tipster.handle }}</bdi></a></dd>
-    </div>
     <div>
       <dt>{{ i18n "paridata_since" }}</dt>
       <dd>{{ time.Format ":date_long" $p.window.start | replaceRE `\x{200F}` "" }}</dd>
@@ -17,7 +14,6 @@
       <dd>{{ partial "paridata/amount.html" (dict "value" $p.staking.defaultStake "profile" $p) }}</dd>
     </div>
   </dl>
-  <div class="paridata-about__rules">{{ $page.Content }}</div>
   {{- if $p.sample }}
   <p class="paridata-sample">{{ i18n "paridata_sample" }}</p>
   {{- end }}

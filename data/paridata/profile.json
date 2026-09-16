@@ -1,11 +1,5 @@
 {
   "sample": true,
-  "tipster": {
-    "name": "Demo Tipster",
-    "handle": "@demo_tipster",
-    "platform": "tiktok",
-    "profileUrl": "https://example.com/@demo_tipster"
-  },
   "staking": {
     "defaultStake": 1,
     "currency": "CAD",

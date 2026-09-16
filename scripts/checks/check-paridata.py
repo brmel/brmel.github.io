@@ -32,16 +32,13 @@ def number(value):
 
 
 profile = load("profile.json")
-staking, tipster = profile.get("staking", {}), profile.get("tipster", {})
+staking = profile.get("staking", {})
 for key in ("defaultStake", "currencyPerUnit"):
     if not number(staking.get(key)) or staking[key] <= 0:
         fails.append(f"profile.json: staking.{key} must be a positive number")
 for key in ("currency", "currencySymbol"):
     if not staking.get(key):
         fails.append(f"profile.json: staking.{key} is required")
-for key in ("handle", "profileUrl"):
-    if not tipster.get(key):
-        fails.append(f"profile.json: tipster.{key} is required")
 if timestamp((profile.get("window") or {}).get("start")) is None:
     fails.append("profile.json: window.start must be an ISO date")
 
