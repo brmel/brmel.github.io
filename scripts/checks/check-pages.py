@@ -98,7 +98,7 @@ for html in pages.values():
         linked.add(unquote(t.split("#")[0]).rstrip("/") or "/")
 for url in pages:
     u = url.rstrip("/") or "/"
-    if u not in linked and not u.startswith(("/tags", "/en", "/404")) and u != "/":
+    if u not in linked and not u.startswith(("/en", "/404")) and u != "/":
         warns.append(f"{url}: nothing on the site links here")
 
 print(f"checked {len(pages)} pages")

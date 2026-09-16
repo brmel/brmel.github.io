@@ -42,7 +42,6 @@ Every Tech, Thoughts and Adventures article is also served as markdown at its UR
 - [{{ .Title }}]({{ .Permalink }}): {{ .Params.summary | default "Career history, skills and education." | plainify | htmlUnescape }}
 {{ end -}}
 - [Full text]({{ printf "%sllms-full.txt" site.BaseURL }}): every page above as plain text, in one file.
-- [Tags]({{ printf "%stags/" site.BaseURL }}): every subject on the site, {{ len site.Taxonomies.tags }} terms.
 - [Sitemap]({{ printf "%ssitemap.xml" site.BaseURL }}): every indexable page.
 {{ range site.Home.AllTranslations -}}
 - [{{ .Language.LanguageName }}]({{ .Permalink }}): the site in {{ .Language.LanguageName }}.

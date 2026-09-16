@@ -4,7 +4,7 @@ layout: "resume"
 disableShare: true
 summary: "مهندس رؤية آلية ومعالجة صور — Zebra Technologies وMatrox Imaging وPolytechnique Montréal."
 description: "مطور برمجيات أول متخصص في الرؤية الآلية ومعالجة الصور وأنظمة التحكم."
-aliases: ["/ar/timeline/", "/ar/about/"]
+aliases: ["/ar/timeline/"]
 role: "مطور برمجيات أول — الرؤية الآلية والذكاء الاصطناعي"
 location: "مونتريال، كيبك"
 contact:

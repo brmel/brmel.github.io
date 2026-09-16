@@ -1,6 +1,7 @@
 baseURL = "https://ibraverse.ca"
 defaultContentLanguage = "en"
 defaultContentLanguageInSubdir = false
+disableKinds = ["taxonomy", "term"]
 theme = "PaperMod"
 enableGitInfo = true
 
@@ -160,9 +161,7 @@ enableGitInfo = true
 
 [pagination]
   pagerSize = 10
-enableRobotsTXT = true
-
-enableEmoji = true
+  disableAliases = true
 
 [minify]
   disableXML = true
@@ -258,8 +257,6 @@ enableEmoji = true
   page = ["HTML"]
   section = ["HTML", "RSS"]
 
-[taxonomies]
-  tag = "tags"
 [[cascade]]
   [cascade.build]
     publishResources = false
@@ -269,9 +266,4 @@ enableEmoji = true
   [cascade._target]
     kind = "page"
     path = "{/tech/**,/thoughts/**,/adventures/**}"
-
-[[cascade]]
-  robotsNoIndex = true
-  [cascade._target]
-    kind = "{term,taxonomy}"
 
