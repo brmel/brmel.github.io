@@ -125,7 +125,8 @@
     "competition": "La Liga",
     "home": "Barcelona",
     "away": "Racing Santander",
-    "status": "scheduled"
+    "status": "played",
+    "score": { "home": 7, "away": 2 }
   },
   "2026-09-16-atletico-madrid-osasuna": {
     "date": "2026-09-16",
