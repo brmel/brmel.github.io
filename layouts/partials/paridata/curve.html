@@ -4,8 +4,8 @@
 {{- $pts := where $l.rows "settled" true -}}
 {{- if ge (len $pts) 8 -}}
 
-{{- $W := 960.0 -}}{{- $H := 280.0 -}}
-{{- $padL := 10.0 -}}{{- $padR := 10.0 -}}{{- $padT := 18.0 -}}{{- $padB := 30.0 -}}
+{{- $W := 960.0 -}}{{- $H := 260.0 -}}
+{{- $padL := 10.0 -}}{{- $padR := 10.0 -}}{{- $padT := 18.0 -}}{{- $padB := 18.0 -}}
 
 {{- $ts := slice -}}{{- $bs := slice -}}
 {{- range $pts -}}
@@ -40,10 +40,17 @@
 {{- end -}}
 {{- $area := printf "%s L %.1f %.1f L %.1f %.1f Z" $line $lastX $zeroY $firstX $zeroY -}}
 
-<figure class="paridata-curve u-breakout">
+{{- $from := time.Format ":date_medium" (index $pts 0).postedAt | replaceRE `\x{200F}` "" -}}
+{{- $to := time.Format ":date_medium" (index $pts (sub (len $pts) 1)).postedAt | replaceRE `\x{200F}` "" -}}
+
+<section class="paridata-curve" aria-labelledby="paridata-curve-h">
+  <h2 class="u-rule-heading paridata-curve__heading" id="paridata-curve-h">
+    {{ i18n "paridata_curve" }}
+    <bdi class="paridata-curve__range" dir="ltr">{{ $from }} — {{ $to }}</bdi>
+  </h2>
   <svg viewBox="0 0 {{ printf "%.0f" $W }} {{ printf "%.0f" $H }}" class="paridata-curve__svg"
        role="img" preserveAspectRatio="none"
-       aria-label="{{ i18n "paridata_curve" }}: {{ printf "%+.2f" $l.balance }}u">
+       aria-label="{{ i18n "paridata_curve" }}: {{ printf "%+.2f" $l.balance }}">
     <defs>
       <clipPath id="paridata-clip-gain">
         <rect x="0" y="0" width="{{ printf "%.0f" $W }}" height="{{ printf "%.1f" $zeroY }}"/>
@@ -59,10 +66,5 @@
     <path d="{{ $line }}" class="paridata-curve__line"/>
     <circle class="paridata-curve__dot" cx="{{ printf "%.1f" $lastX }}" cy="{{ printf "%.1f" $lastY }}" r="4"/>
   </svg>
-  <figcaption class="paridata-curve__axis">
-    <bdi dir="ltr">{{ time.Format ":date_medium" (index $pts 0).postedAt | replaceRE `\x{200F}` "" }}</bdi>
-    <span>{{ i18n "paridata_curve" }}</span>
-    <bdi dir="ltr">{{ time.Format ":date_medium" (index $pts (sub (len $pts) 1)).postedAt | replaceRE `\x{200F}` "" }}</bdi>
-  </figcaption>
-</figure>
+</section>
 {{- end -}}

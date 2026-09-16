@@ -13,7 +13,7 @@
 
   --accent:#a8431a; --accent-soft:#c96b3e;
 
-  --ink-gain:#1a5fb4; --ink-loss:#a02020;
+  --ink-gain:#0a4fd0; --ink-loss:#c1121f;
 
   --t-display-s:2.125rem;
   --t-heading:1.5rem; --t-subhead:1.25rem; --t-body-l:1.125rem; --t-body:1rem;
@@ -53,7 +53,7 @@
   --ink-mute:#888477; --rule:#2c2a23; --rule-soft:#1f1e18;
   --paper:#14130f;
   --accent:#d97757; --accent-soft:#e89878;
-  --ink-gain:#6aa9ee; --ink-loss:#f06b6b;
+  --ink-gain:#58a9ff; --ink-loss:#ff5c5c;
   --shadow-card:0 1px 2px rgba(0,0,0,.3),0 2px 8px rgba(0,0,0,.4);
   --shadow-photo:0 2px 8px rgba(0,0,0,.4);
   --shadow-pop:0 4px 12px rgba(0,0,0,.5),0 12px 32px rgba(0,0,0,.5);

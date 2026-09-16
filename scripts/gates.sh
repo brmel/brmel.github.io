@@ -12,6 +12,7 @@ echo "▸ social cards";           python3 ./scripts/checks/check-og.py
 echo "▸ colour contrast";        python3 ./scripts/checks/check-contrast.py
 echo "▸ css architecture";       python3 ./scripts/checks/check-css.py
 echo "▸ page chrome";            python3 ./scripts/checks/check-chrome.py
+echo "▸ section listings";       python3 ./scripts/checks/check-listings.py
 echo "▸ links, duplicates and controls"; python3 ./scripts/checks/check-pages.py
 echo "▸ direction safety";       python3 ./scripts/checks/check-rtl.py
 echo "▸ script selectors";       python3 ./scripts/checks/check-js.py

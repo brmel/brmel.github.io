@@ -3,6 +3,11 @@
        Callers render. Nobody else does arithmetic. */ -}}
 
 {{- $profile := site.Data.paridata.profile -}}
+{{- $comps := site.Data.paridata.competitions -}}
+{{- /* The flags that exist in assets/paridata/flags/. Naming them here guards a
+       typo in competitions.json from asking for a flag that isn't there, and is
+       what tells the orphan gate these files are in use. */ -}}
+{{- $known := slice "england" "spain" "italy" "france" "germany" "netherlands" "portugal" "europe" "mix" -}}
 {{- $defaultStake := $profile.staking.defaultStake -}}
 
 {{- $all := slice -}}
@@ -23,6 +28,18 @@
 
 {{- range $t := $all -}}
   {{- $stake := $t.stake | default $defaultStake -}}
+
+  {{- /* One label per ticket: the country when every leg shares it, else Mix. */ -}}
+  {{- $regions := slice -}}
+  {{- range $leg := $t.legs -}}
+    {{- with $leg.competition -}}
+      {{- with index $comps . -}}{{- $regions = $regions | append . -}}{{- end -}}
+    {{- end -}}
+  {{- end -}}
+  {{- $regions = uniq $regions -}}
+  {{- $region := "mix" -}}
+  {{- if eq (len $regions) 1 -}}{{- $region = index $regions 0 -}}{{- end -}}
+  {{- if not (in $known $region) -}}{{- $region = "mix" -}}{{- end -}}
 
   {{- /* A void leg returns its share of the stake, so its odds divide out. */ -}}
   {{- $voidProduct := 1.0 -}}
@@ -58,6 +75,7 @@
   {{- $rows = $rows | append (dict
       "ticket" $t
       "postedAt" $t.postedAt
+      "region" $region
       "stake" $stake
       "effOdds" $effOdds
       "hasVoid" (ne $voidProduct 1.0)
