@@ -112,7 +112,7 @@ everything that consumes it.
 | `20-components` | shared primitives — `.u-card`, `.u-bar`, `.u-eyebrow`, `.u-chip`, `.u-rule-heading`, `.u-frame` |
 | `30-chrome` | nav, mark, footers, section nav, content footer |
 | `31-toc` `32-search` | table of contents, search box |
-| `40-home` `41-resume` `42-timeline` `43-projects` `44-adventures` `46-project-page` | one section each |
+| `40-home` `41-resume` `42-timeline` `43-projects` `44-adventures` `45-tracker` `46-project-page` | one section each |
 | | `42-timeline` is the career timeline; the project index draws the same rail from the same tokens |
 | `50-content` | article body: figures, diagrams, embedded artefacts |
 | `60-print` | print: hides chrome, flattens cards; print spacing and type come from tokens |
@@ -122,7 +122,7 @@ Section files **compose** the primitives; they never redeclare them.
 tokens, if a file exceeds 260 lines, or if a class is declared but never used.
 
 Every page loads the same stylesheet. Anything a shared partial or a shortcode renders belongs in
-`20-components.css`; `.u-breakout` widens a block from the text column to the content width.
+`20-components.css`. Every block on a page sits in the one text column — nothing breaks out of it.
 
 `scripts/checks/check-pages.py` covers what a structural check cannot see: the same
 destination linked twice on one page however differently the two links are

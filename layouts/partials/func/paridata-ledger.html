@@ -1,101 +1,58 @@
-{{- /* Returns the whole ledger, computed once: every ticket enriched with its
-       profit and the running balance, plus the totals the dashboard shows.
-       Callers render. Nobody else does arithmetic. */ -}}
-
 {{- $profile := site.Data.paridata.profile -}}
-{{- $comps := site.Data.paridata.competitions -}}
-{{- /* The flags that exist in assets/paridata/flags/. Naming them here guards a
-       typo in competitions.json from asking for a flag that isn't there, and is
-       what tells the orphan gate these files are in use. */ -}}
-{{- $known := slice "england" "spain" "italy" "france" "germany" "netherlands" "portugal" "europe" "mix" -}}
-{{- $defaultStake := $profile.staking.defaultStake -}}
+{{- $competitions := site.Data.paridata.competitions -}}
+{{- $flags := slice "england" "spain" "italy" "france" "germany" "netherlands" "portugal" "europe" "mix" -}}
 
-{{- $all := slice -}}
-{{- range $key, $file := site.Data.paridata -}}
-  {{- if ne $key "profile" -}}
-    {{- with $file.tickets -}}{{- $all = $all | append . -}}{{- end -}}
-  {{- end -}}
+{{- $tickets := slice -}}
+{{- range $name, $file := site.Data.paridata -}}
+  {{- with $file.tickets -}}{{- $tickets = $tickets | append . -}}{{- end -}}
 {{- end -}}
-{{- $all = sort $all "postedAt" -}}
 
 {{- $rows := slice -}}
 {{- $balance := 0.0 -}}
 {{- $staked := 0.0 -}}
-{{- $returned := 0.0 -}}
-{{- $won := 0 -}}{{- $lost := 0 -}}{{- $voided := 0 -}}{{- $pending := 0 -}}
-{{- $exposure := 0.0 -}}
-{{- $streak := 0 -}}{{- $worstStreak := 0 -}}
+{{- $settledCount := 0 -}}
 
-{{- range $t := $all -}}
-  {{- $stake := $t.stake | default $defaultStake -}}
+{{- range $t := sort $tickets "postedAt" -}}
+  {{- $stake := $t.stake | default $profile.staking.defaultStake -}}
 
-  {{- /* One label per ticket: the country when every leg shares it, else Mix. */ -}}
   {{- $regions := slice -}}
+  {{- $voidOdds := 1.0 -}}
   {{- range $leg := $t.legs -}}
-    {{- with $leg.competition -}}
-      {{- with index $comps . -}}{{- $regions = $regions | append . -}}{{- end -}}
-    {{- end -}}
+    {{- with index $competitions ($leg.competition | default "") -}}{{- $regions = $regions | append . -}}{{- end -}}
+    {{- if eq $leg.settlement "void" -}}{{- $voidOdds = mul $voidOdds $leg.odds -}}{{- end -}}
   {{- end -}}
   {{- $regions = uniq $regions -}}
-  {{- $region := "mix" -}}
-  {{- if eq (len $regions) 1 -}}{{- $region = index $regions 0 -}}{{- end -}}
-  {{- if not (in $known $region) -}}{{- $region = "mix" -}}{{- end -}}
-
-  {{- /* A void leg returns its share of the stake, so its odds divide out. */ -}}
-  {{- $voidProduct := 1.0 -}}
-  {{- range $leg := $t.legs -}}
-    {{- if eq $leg.settlement "void" -}}{{- $voidProduct = mul $voidProduct $leg.odds -}}{{- end -}}
-  {{- end -}}
-  {{- $effOdds := div $t.odds $voidProduct -}}
+  {{- $region := cond (eq (len $regions) 1) (index $regions 0) "mix" -}}
+  {{- if not (in $flags $region) -}}{{- $region = "mix" -}}{{- end -}}
 
   {{- $profit := 0.0 -}}
-  {{- $settled := true -}}
+  {{- $settled := ne $t.settlement "pending" -}}
   {{- if eq $t.settlement "won" -}}
-    {{- $profit = mul $stake (sub $effOdds 1.0) -}}
-    {{- $won = add $won 1 -}}
-    {{- $streak = 0 -}}
-    {{- $staked = add $staked $stake -}}
-    {{- $returned = add $returned (mul $stake $effOdds) -}}
+    {{- $profit = mul $stake (sub (div $t.odds $voidOdds) 1.0) -}}
   {{- else if eq $t.settlement "lost" -}}
     {{- $profit = sub 0.0 $stake -}}
-    {{- $lost = add $lost 1 -}}
-    {{- $streak = add $streak 1 -}}
-    {{- if gt $streak $worstStreak -}}{{- $worstStreak = $streak -}}{{- end -}}
-    {{- $staked = add $staked $stake -}}
-  {{- else if eq $t.settlement "void" -}}
-    {{- $voided = add $voided 1 -}}
-  {{- else -}}
-    {{- $settled = false -}}
-    {{- $pending = add $pending 1 -}}
-    {{- $exposure = add $exposure $stake -}}
   {{- end -}}
-
-  {{- if $settled -}}{{- $balance = add $balance $profit -}}{{- end -}}
+  {{- if in (slice "won" "lost") $t.settlement -}}{{- $staked = add $staked $stake -}}{{- end -}}
+  {{- if $settled -}}
+    {{- $balance = add $balance $profit -}}
+    {{- $settledCount = add $settledCount 1 -}}
+  {{- end -}}
 
   {{- $rows = $rows | append (dict
       "ticket" $t
       "postedAt" $t.postedAt
       "region" $region
       "stake" $stake
-      "effOdds" $effOdds
-      "hasVoid" (ne $voidProduct 1.0)
+      "hasVoid" (ne $voidOdds 1.0)
       "profit" $profit
       "settled" $settled
       "balance" $balance) -}}
 {{- end -}}
-
-{{- $decided := add $won $lost -}}
-{{- $settledCount := add $decided $voided -}}
 
 {{- return (dict
     "profile" $profile
     "rows" $rows
     "balance" $balance
     "staked" $staked
-    "returned" $returned
-    "roi" (cond (gt $staked 0.0) (mul (div $balance $staked) 100.0) 0.0)
-    "hitRate" (cond (gt $decided 0) (mul (div (float $won) (float $decided)) 100.0) 0.0)
-    "won" $won "lost" $lost "void" $voided "pending" $pending
     "settledCount" $settledCount
-    "exposure" $exposure
-    "worstStreak" $worstStreak) -}}
+    "roi" (cond (gt $staked 0.0) (mul (div $balance $staked) 100.0) 0.0)) -}}

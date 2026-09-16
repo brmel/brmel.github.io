@@ -1,26 +1,20 @@
-{{- /* Three figures, one row: what went in, where it stands, and the rate. */ -}}
 {{- $l := . -}}
 {{- $p := $l.profile -}}
-{{- $tone := cond (ge $l.balance 0.0) "paridata-amount--gain" "paridata-amount--loss" -}}
-{{- $roiTone := cond (ge $l.roi 0.0) "paridata-amount--gain" "paridata-amount--loss" -}}
+{{- $balanceTone := cond (ge $l.balance 0.0) "gain" "loss" -}}
+{{- $roiTone := cond (ge $l.roi 0.0) "gain" "loss" -}}
 
 <dl class="paridata-dash">
-  <div class="u-card paridata-card">
-    <dt class="paridata-card__value">
-      {{- partial "paridata/amount.html" (dict "value" $l.staked "profile" $p) -}}
-    </dt>
-    <dd class="paridata-card__label">{{ i18n "paridata_staked" }} · {{ $l.settledCount }} {{ i18n "paridata_settled" | lower }}</dd>
+  <div class="paridata-card">
+    <dt class="paridata-card__label">{{ i18n "paridata_staked" }}</dt>
+    <dd class="paridata-card__value">{{ partial "paridata/amount.html" (dict "value" $l.staked "profile" $p) }}</dd>
+    <dd class="paridata-card__note">{{ $l.settledCount }} {{ i18n "paridata_settled" | lower }}</dd>
   </div>
-  <div class="u-card paridata-card paridata-card--lead">
-    <dt class="paridata-card__value">
-      {{- partial "paridata/amount.html" (dict "value" $l.balance "profile" $p "signed" true "class" $tone) -}}
-    </dt>
-    <dd class="paridata-card__label">{{ i18n "paridata_balance" }}</dd>
+  <div class="paridata-card paridata-card--lead" data-tone="{{ $balanceTone }}">
+    <dt class="paridata-card__label">{{ i18n "paridata_balance" }}</dt>
+    <dd class="paridata-card__value">{{ partial "paridata/amount.html" (dict "value" $l.balance "profile" $p "signed" true) }}</dd>
   </div>
-  <div class="u-card paridata-card">
-    <dt class="paridata-card__value">
-      <bdi class="{{ $roiTone }}" dir="ltr">{{ printf "%+.1f" $l.roi | replaceRE "-" "−" }}%</bdi>
-    </dt>
-    <dd class="paridata-card__label">{{ i18n "paridata_roi" }}</dd>
+  <div class="paridata-card" data-tone="{{ $roiTone }}">
+    <dt class="paridata-card__label">{{ i18n "paridata_roi" }}</dt>
+    <dd class="paridata-card__value"><bdi dir="ltr">{{ printf "%+.1f" $l.roi | replaceRE "-" "−" }}%</bdi></dd>
   </div>
 </dl>

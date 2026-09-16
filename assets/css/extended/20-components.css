@@ -71,20 +71,8 @@ a.u-chip:hover{border-color:var(--accent);color:var(--accent);}
   letter-spacing:.08em;text-transform:uppercase;color:var(--ink-mute);
 }
 
-/* Breakout matches the text column: a page must present one edge, not two.
-   Galleries and report frames used to run 300px wider than the prose beside
-   them, which read as two different page widths stacked on one screen. */
-.u-breakout{
-  --breakout:min(100vw - var(--space-6) * 2, var(--container-text));
-  width:var(--breakout);
-  margin-inline:calc((100% - var(--breakout)) / 2);
-}
-@media (max-width:768px){
-  .u-breakout{--breakout:100%;}
-}
-
 .report-frame{
-  display:block;min-height:100vh;
+  display:block;width:100%;min-height:100vh;
   border:0;
   border-radius:var(--radius-md);
   box-shadow:var(--shadow-card);

@@ -141,6 +141,12 @@ If a future section genuinely needs to be told apart by colour, scope the hue to
 a small badge — never to `--accent`, which paints headings, links, rules and
 bars across the whole page.
 
+**Data colour is not accent.** `--ink-gain` (blue) and `--ink-loss` (red) encode
+a result, so they may tint the surface that carries it — a ledger row, a result
+card, the area under a curve — in PariData. They never paint a heading, a link,
+a rule or the mark, and secondary text on a tinted surface uses `--ink-soft`:
+`--ink-mute` drops below AA on every tint.
+
 ### Contrast is a gate, not a preference
 
 Every colour must clear **4.5:1** against `--bg` in the theme it ships in, and

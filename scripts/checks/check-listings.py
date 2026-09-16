@@ -1,10 +1,4 @@
 #!/usr/bin/env python3
-"""A page nobody can navigate to may as well not be published.
-
-PariData built, rendered and passed every other gate while its card was the only
-way to reach it — so this asserts the reverse direction: every page in a listed
-section is linked from that section's index, in the language it lives in.
-"""
 import glob, os, re, sys
 
 ROOT = os.path.join(os.path.dirname(__file__), "..", "..")
@@ -35,7 +29,6 @@ for lang in LANGS:
             slug = os.path.basename(os.path.dirname(page))
             url = f"/{lang}{section}/{slug}/"
             checked += 1
-            # section indexes link either relatively or by absolute permalink
             linked = re.search(
                 r'href=["\']?(?:https?://[^/"\'\s>]+)?' + re.escape(url) + r'(?=["\'\s>])',
                 index_html)

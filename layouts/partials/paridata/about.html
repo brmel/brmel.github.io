@@ -1,20 +1,23 @@
-{{- /* What the page is, stated after the evidence rather than before it. */ -}}
 {{- $page := .page -}}
 {{- $p := .profile -}}
 
-<section class="paridata-about">
-  {{- with $page.Params.pitch }}<p class="project-pitch">{{ . }}</p>{{ end }}
-
-  {{- with $page.Params.stack }}
-  <ul class="project-stack" aria-label="{{ i18n `project_stack` | default `Stack` }}">
-    {{- range . }}<li class="u-chip">{{ . }}</li>{{ end }}
-  </ul>
-  {{- end }}
-
-  {{- with $page.Params.lede }}
-  <div class="project-lede">{{ . | markdownify }}</div>
-  {{- end }}
-
+<section class="paridata-panel paridata-about" aria-labelledby="paridata-about-h">
+  <h2 class="paridata-heading" id="paridata-about-h">{{ i18n "paridata_about" }}</h2>
+  <dl class="paridata-facts">
+    <div>
+      <dt>{{ i18n "paridata_tipster" }}</dt>
+      <dd><a href="{{ $p.tipster.profileUrl }}" target="_blank" rel="nofollow noopener noreferrer"><bdi dir="ltr">{{ $p.tipster.handle }}</bdi></a></dd>
+    </div>
+    <div>
+      <dt>{{ i18n "paridata_since" }}</dt>
+      <dd>{{ time.Format ":date_long" $p.window.start | replaceRE `\x{200F}` "" }}</dd>
+    </div>
+    <div>
+      <dt>{{ i18n "paridata_stake" }}</dt>
+      <dd>{{ partial "paridata/amount.html" (dict "value" $p.staking.defaultStake "profile" $p) }}</dd>
+    </div>
+  </dl>
+  <div class="paridata-about__rules">{{ $page.Content }}</div>
   {{- if $p.sample }}
   <p class="paridata-sample">{{ i18n "paridata_sample" }}</p>
   {{- end }}

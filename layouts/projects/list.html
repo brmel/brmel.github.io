@@ -25,7 +25,7 @@
 {{- end }}
 
 
-{{- $projects := sort (partial "func/section-pages.html" .) "Params.projectNo" "asc" }}
+{{- $projects := sort (partial "func/section-pages.html" .) "Params.projectNo" "desc" }}
 
 {{- if lt (len $projects) 1 }}
 <div class="empty-section">

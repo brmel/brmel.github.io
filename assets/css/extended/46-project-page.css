@@ -94,8 +94,6 @@
 
 .project-body{max-width:var(--container-text);margin:0 auto;}
 
-.project-body h2{margin-top:var(--space-6);}
-.project-body h2:first-child{margin-top:0;}
 
 .project-body blockquote{
   margin:var(--space-6) 0;
