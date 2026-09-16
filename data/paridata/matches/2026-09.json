@@ -132,6 +132,7 @@
     "competition": "La Liga",
     "home": "Atlético Madrid",
     "away": "Osasuna",
-    "status": "scheduled"
+    "status": "played",
+    "score": { "home": 4, "away": 0 }
   }
 }

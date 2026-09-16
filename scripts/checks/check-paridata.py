@@ -1,20 +1,22 @@
 #!/usr/bin/env python3
-import glob, json, os, re, sys
+import collections, glob, json, math, os, re, sys
 from datetime import date
 
 ROOT = os.path.join(os.path.dirname(__file__), "..", "..")
 DATA = os.path.join(ROOT, "data", "paridata")
 FLAGS = os.path.join(ROOT, "assets", "paridata", "flags")
 
+LANGS = ("en", "fr", "ar")
 MONTH_FILE = re.compile(r"^\d{4}-\d{2}\.json$")
 MATCH_ID = re.compile(r"^(\d{4}-\d{2}-\d{2})-[a-z0-9]+(?:-[a-z0-9]+)*$")
 TICKET_ID = re.compile(r"^(\d{4}-\d{2}-\d{2})-\d{2}$")
 IDENTIFYING = re.compile(r"https?://|www\.|@\w")
+PICK = re.compile(r"^(win|win-or-draw|goal):.+$|^draw$")
 MATCH_KEYS = {"date", "competition", "home", "away", "status", "score", "scorers"}
 STATUSES = {"scheduled", "played", "postponed"}
 TICKET_KEYS = {"id", "posted", "odds", "legs"}
 LEG_KEYS = {"match", "pick", "odds"}
-PICK = re.compile(r"^(win|win-or-draw|goal):.+$|^draw$")
+MAX_COUPON_SPAN_DAYS = 2
 fails = []
 
 
@@ -33,17 +35,17 @@ def iso_date(value):
         return None
 
 
-def number(value):
-    return isinstance(value, (int, float)) and not isinstance(value, bool)
+def odds(value):
+    return isinstance(value, (int, float)) and not isinstance(value, bool) and value > 1
 
 
 def month_files(folder):
     for path in sorted(glob.glob(os.path.join(DATA, folder, "*.json"))):
         name = os.path.basename(path)
-        if not MONTH_FILE.match(name):
+        if MONTH_FILE.match(name):
+            yield name[:7], load(path)
+        else:
             fails.append(f"{folder}/{name}: files are named YYYY-MM.json")
-            continue
-        yield name[:7], load(path)
 
 
 def anonymous(where, *values):
@@ -54,16 +56,26 @@ def anonymous(where, *values):
 
 profile = load(os.path.join(DATA, "profile.json")) or {}
 staking = profile.get("staking", {})
-if not number(staking.get("defaultStake")) or staking["defaultStake"] <= 0:
+if not isinstance(staking.get("defaultStake"), (int, float)) or staking["defaultStake"] <= 0:
     fails.append("profile.json: staking.defaultStake must be a positive number")
 for c in staking.get("currencies") or [None]:
-    if not c or not c.get("code") or not c.get("symbol") or not number(c.get("perUnit")) or c.get("decimals") not in (0, 1, 2, 3):
+    if not c or not c.get("code") or not c.get("symbol") or not isinstance(c.get("perUnit"), (int, float)) or c["perUnit"] <= 0 or c.get("decimals") not in (0, 1, 2, 3):
         fails.append("profile.json: every currency needs code, symbol, a positive perUnit and decimals 0 to 3")
+
+regions = load(os.path.join(DATA, "regions.json")) or {}
+for key, names in regions.items():
+    if not os.path.isfile(os.path.join(FLAGS, f"{key}.svg")):
+        fails.append(f"regions.json: {key!r} has no flag at assets/paridata/flags/{key}.svg")
+    for lang in LANGS:
+        if not (names or {}).get(lang):
+            fails.append(f"regions.json: {key!r} needs a {lang} name")
+if "mix" not in regions:
+    fails.append("regions.json: needs 'mix', used when a coupon crosses countries")
 
 competitions = load(os.path.join(DATA, "competitions.json")) or {}
 for name, region in competitions.items():
-    if not os.path.isfile(os.path.join(FLAGS, f"{region}.svg")):
-        fails.append(f"competitions.json: {name!r} maps to {region!r}, which has no flag")
+    if region not in regions:
+        fails.append(f"competitions.json: {name!r} maps to {region!r}, which is not in regions.json")
 
 matches = {}
 for month, data in month_files("matches"):
@@ -91,8 +103,8 @@ for month, data in month_files("matches"):
         status = m.get("status")
         if status not in STATUSES:
             fails.append(f"{where}: status must be one of {sorted(STATUSES)}")
-        score = m.get("score")
         if status == "played":
+            score = m.get("score")
             if not isinstance(score, dict) or set(score) != {"home", "away"} or not all(isinstance(v, int) and v >= 0 for v in score.values()):
                 fails.append(f"{where}: a played match needs score {{\"home\": n, \"away\": n}}")
         elif "score" in m or "scorers" in m:
@@ -101,6 +113,18 @@ for month, data in month_files("matches"):
             fails.append(f"{where}: scorers must be a list of player names")
         anonymous(where, m.get("home"), m.get("away"), *(m.get("scorers") or []))
         matches[mid] = m
+
+by_team = collections.defaultdict(list)
+for mid, m in matches.items():
+    day = iso_date(m.get("date"))
+    for team in (m.get("home"), m.get("away")):
+        if day and team:
+            by_team[team].append((day, mid))
+for team, games in by_team.items():
+    games.sort()
+    for (d1, a), (d2, b) in zip(games, games[1:]):
+        if (d2 - d1).days <= 1:
+            fails.append(f"{team} plays {a} and {b} within a day — one of those dates is wrong")
 
 seen = set()
 for month, data in month_files("tickets"):
@@ -115,22 +139,38 @@ for month, data in month_files("tickets"):
         if tid in seen:
             bad("duplicate id")
         seen.add(tid)
-        if t.get("odds") is not None and (not number(t["odds"]) or t["odds"] <= 1):
-            bad("odds must be a number above 1, or null when unknown")
+        if "odds" in t and not odds(t["odds"]):
+            bad("odds must be a number above 1")
         legs = t.get("legs")
         if not isinstance(legs, list) or not legs:
             bad("needs at least one leg")
             continue
 
-        first = None
+        idm = TICKET_ID.match(str(tid))
+        coupon_day = iso_date(idm.group(1)) if idm else None
+        if not coupon_day:
+            bad("id must be YYYY-MM-DD-NN, dated by its first match")
+        elif not idm.group(1).startswith(month):
+            bad(f"lives in tickets/{month}.json")
+
+        days, teams, leg_odds = [], [], []
         for i, leg in enumerate(legs, 1):
             for key in sorted(set(leg) - LEG_KEYS):
                 bad(f"leg {i} has unknown field {key!r}")
+            if "odds" in leg:
+                if odds(leg["odds"]):
+                    leg_odds.append(leg["odds"])
+                else:
+                    bad(f"leg {i} odds must be a number above 1")
             m = matches.get(leg.get("match"))
             if not m:
                 bad(f"leg {i} match {leg.get('match')!r} is not in data/paridata/matches")
                 continue
-            first = min(first or m["date"], m["date"])
+            day = date.fromisoformat(m["date"])
+            if coupon_day and not 0 <= (day - coupon_day).days <= MAX_COUPON_SPAN_DAYS:
+                bad(f"leg {i} is {m['home']}–{m['away']} on {day}, outside this coupon's days — check it points at the right week")
+            days.append(day)
+            teams += [m["home"], m["away"]]
             picks = leg.get("pick")
             if not isinstance(picks, list) or not picks:
                 bad(f"leg {i} pick must be a list, e.g. [\"win:{m['home']}\"]")
@@ -145,27 +185,31 @@ for month, data in month_files("tickets"):
                 if kind == "goal" and m.get("status") == "played" and "scorers" not in m:
                     bad(f"leg {i} picks a scorer but {leg['match']} has no scorers list")
                 anonymous(f"ticket {tid}", p)
-            if m.get("status") == "postponed" and not number(leg.get("odds")):
+            if m.get("status") == "postponed" and "odds" not in leg:
                 bad(f"leg {i} is on a postponed match and needs its odds to take them out of the coupon")
 
-        idm = TICKET_ID.match(str(tid))
-        if not idm:
-            bad("id must be YYYY-MM-DD-NN, dated by its first match")
-        elif first and idm.group(1) != first:
-            bad(f"id should be dated {first}, the day of its first match")
-        elif not idm.group(1).startswith(month):
-            bad(f"lives in tickets/{month}.json")
+        if "odds" not in t and len(leg_odds) != len(legs):
+            bad("needs its posted odds, or odds on every leg to estimate them")
+        if "odds" in t and odds(t["odds"]) and len(leg_odds) == len(legs):
+            product = math.prod(leg_odds)
+            if abs(product - t["odds"]) / t["odds"] > 0.01:
+                bad(f"odds {t['odds']} but the legs multiply to {product:.3f}")
+        for team, count in collections.Counter(teams).items():
+            if count > 1:
+                bad(f"{team} appears in {count} legs of the same coupon")
+        if coupon_day and days and min(days) > coupon_day:
+            bad(f"id should be dated {min(days)}, the day of its first match")
         if "posted" in t:
             posted = iso_date(t["posted"])
             if posted is None:
                 bad("posted must be YYYY-MM-DD")
-            elif first and posted > date.fromisoformat(first):
+            elif days and posted > min(days):
                 bad("posted after its first match was played")
 
-print(f"checked {len(matches)} match(es) and {len(seen)} ticket(s)")
+print(f"checked {len(matches)} match(es), {len(seen)} ticket(s), {len(by_team)} team calendar(s)")
 if fails:
     print(f"\n❌ {len(fails)} problem(s) in data/paridata:")
     for f in fails:
         print("  " + f)
     sys.exit(1)
-print("✅ every ticket points at a real match, picks are well formed, nothing identifies the account")
+print("✅ every coupon points at real, dated matches; picks, odds and calendars are coherent; nothing identifies the account")

@@ -155,8 +155,8 @@
 }
 .paridata-row:not([data-settlement="won"]):not([data-settlement="lost"]) .paridata-chip{color:var(--ink-soft);border-color:var(--rule);background:var(--bg);}
 .paridata-kind{font-weight:700;text-transform:uppercase;border-radius:var(--radius-xs);}
-.paridata-kind[data-kind="single"]{color:var(--ink-soft);border-color:var(--ink-mute);background:var(--bg);}
-.paridata-kind[data-kind="coupon"]{color:var(--accent);border-color:currentColor;background:color-mix(in srgb,var(--accent) 12%,var(--bg));}
+.paridata-kind{color:var(--ink);border-color:var(--ink-mute);background:var(--bg);}
+.paridata-kind[data-kind="single"]{color:var(--ink-soft);border-color:var(--rule);}
 
 .paridata-row__detail{padding-block:0 var(--space-4);padding-inline:var(--space-3) var(--space-4);}
 .paridata-legs{

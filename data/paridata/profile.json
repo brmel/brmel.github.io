@@ -3,7 +3,7 @@
     "defaultStake": 1,
     "currencies": [
       { "code": "CAD", "symbol": "$", "perUnit": 100, "decimals": 2 },
-      { "code": "DZD", "symbol": "DA", "perUnit": 100, "decimals": 0, "symbolAfter": true }
+      { "code": "DZD", "symbol": "DA", "perUnit": 10000, "decimals": 0, "symbolAfter": true }
     ]
   }
 }

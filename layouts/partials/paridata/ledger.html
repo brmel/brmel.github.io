@@ -23,7 +23,7 @@
         {{- with resources.Get (printf "paridata/flags/%s.svg" $r.region) }}
         <img class="paridata-flag" src="{{ .RelPermalink }}" width="24" height="16" alt="" loading="lazy" decoding="async">
         {{- end }}
-        <span class="paridata-row__compname">{{ i18n (printf "paridata_region_%s" $r.region) }}</span>
+        <span class="paridata-row__compname">{{ index (index $l.regions $r.region) site.Language.Lang }}</span>
       </span>
       <span class="paridata-row__tags">
         <span class="u-chip paridata-kind" data-kind="{{ $r.kind }}">
@@ -31,7 +31,7 @@
         </span>
         <span class="u-chip paridata-chip">{{ i18n (printf "paridata_%s" $r.state) }}</span>
       </span>
-      <span class="paridata-row__num paridata-row__odds" data-label="{{ i18n "paridata_odds" }}"><bdi dir="ltr">{{ with $r.odds }}{{ . }}{{ else }}—{{ end }}</bdi></span>
+      <span class="paridata-row__num paridata-row__odds" data-label="{{ i18n "paridata_odds" }}"><bdi dir="ltr">{{ if eq $r.oddsSource "estimated" }}≈{{ printf "%.2f" $r.odds }}{{ else }}{{ $r.odds }}{{ end }}</bdi></span>
       <span class="paridata-row__num paridata-row__stake" data-label="{{ i18n "paridata_stake" }}">{{ partial "paridata/amount.html" (dict "value" $r.stake "profile" $p) }}</span>
       <span class="paridata-row__profit">
         {{- if $r.counted }}{{ partial "paridata/amount.html" (dict "value" $r.profit "profile" $p "signed" true) }}{{ else }}<bdi dir="ltr">—</bdi>{{ end -}}
@@ -59,7 +59,7 @@
       </ol>
       {{- if $r.hasVoid }}<p class="paridata-row__note">{{ i18n "paridata_voided_note" }}</p>{{ end }}
       {{- if eq $r.state "pending" }}<p class="paridata-row__note">{{ i18n "paridata_pending_note" }}</p>{{ end }}
-      {{- if and (eq $r.state "won") (not $r.odds) }}<p class="paridata-row__note">{{ i18n "paridata_odds_unknown" }}</p>{{ end }}
+      {{- if eq $r.oddsSource "estimated" }}<p class="paridata-row__note">{{ i18n "paridata_odds_estimated" }}</p>{{ end }}
       {{- with $r.posted }}<p class="paridata-row__note">{{ i18n "paridata_posted" }} <bdi dir="ltr">{{ time.Format ":date_long" . | replaceRE $rlm "" }}</bdi></p>{{ end }}
     </div>
   </details>

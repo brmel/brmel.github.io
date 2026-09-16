@@ -6,7 +6,7 @@ cd "$(dirname "$0")/../.."
 STRICT_DEFAULT=1
 STRICT="${STRICT:-$STRICT_DEFAULT}"
 
-SEARCH_PATHS="content layouts config.toml assets"
+SEARCH_PATHS="content layouts config.toml assets data"
 
 is_whitelisted() {
   case "$1" in

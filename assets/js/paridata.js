@@ -6,16 +6,20 @@
     var stakeSymbol = document.getElementById('paridata-stake-symbol');
     if (!root || !toggle || !stakeField || !stakeInput || !stakeSymbol) return;
 
+    var phone = window.matchMedia('(max-width: 600px)');
     var buttons = Array.prototype.slice.call(toggle.querySelectorAll('button'));
-    var amounts = root.querySelectorAll('.paridata-amount');
-    var state = { mode: buttons[1].dataset.mode, stakes: {} };
+    var defaultButton = buttons[1];
+    var amounts = Array.prototype.map.call(root.querySelectorAll('.paridata-amount'), function (el) {
+        return { el: el, units: parseFloat(el.dataset.units), signed: el.hasAttribute('data-signed'), inCell: !!el.closest('.paridata-row') };
+    });
+    var state = { mode: defaultButton.dataset.mode, stakes: {} };
     try {
         var saved = JSON.parse(localStorage.getItem('paridata'));
         if (saved && saved.stakes) state = saved;
     } catch (e) {}
 
     function active() {
-        return buttons.filter(function (b) { return b.dataset.mode === state.mode; })[0] || buttons[1];
+        return buttons.filter(function (b) { return b.dataset.mode === state.mode; })[0] || defaultButton;
     }
 
     function stake(button) {
@@ -23,23 +27,33 @@
         return value >= 0 ? value : parseFloat(button.dataset.perUnit);
     }
 
-    function format(units, signed, button, compact) {
-        var sign = units < 0 ? '−' : (signed ? '+' : '');
-        if (!button.dataset.symbol) return sign + Math.abs(units).toFixed(2) + 'u';
-        var decimals = parseInt(button.dataset.decimals, 10);
-        var value = Math.abs(units * stake(button));
-        if (compact && value >= 1000) decimals = 0;
-        var n = compact && value >= 10000
-            ? value.toLocaleString('en-US', { notation: 'compact', maximumFractionDigits: value >= 100000 ? 0 : 1 })
-            : value.toLocaleString('en-US', { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
+    function money(sign, value, options, button) {
+        var n = value.toLocaleString('en-US', options);
         return button.hasAttribute('data-after') ? sign + n + ' ' + button.dataset.symbol : sign + button.dataset.symbol + n;
+    }
+
+    function format(amount, button) {
+        var sign = amount.units < 0 ? '−' : (amount.signed ? '+' : '');
+        if (!button.dataset.symbol) return sign + Math.abs(amount.units).toFixed(2) + 'u';
+        var value = Math.abs(amount.units * stake(button));
+        var decimals = parseInt(button.dataset.decimals, 10);
+        var fits = [
+            { minimumFractionDigits: decimals, maximumFractionDigits: decimals },
+            { maximumFractionDigits: 0 },
+            { notation: 'compact', maximumFractionDigits: 1 },
+            { notation: 'compact', maximumFractionDigits: 0 }
+        ];
+        var text = money(sign, value, fits[0], button);
+        var cellChars = phone.matches ? 9 : 11;
+        for (var i = 1; amount.inCell && text.length > cellChars && i < fits.length; i++) {
+            text = money(sign, value, fits[i], button);
+        }
+        return text;
     }
 
     function paintAmounts() {
         var button = active();
-        for (var i = 0; i < amounts.length; i++) {
-            amounts[i].textContent = format(parseFloat(amounts[i].dataset.units), amounts[i].hasAttribute('data-signed'), button, !!amounts[i].closest('.paridata-row'));
-        }
+        amounts.forEach(function (amount) { amount.el.textContent = format(amount, button); });
         try { localStorage.setItem('paridata', JSON.stringify(state)); } catch (e) {}
     }
 
@@ -62,6 +76,7 @@
     });
     stakeInput.addEventListener('change', function () { stakeInput.value = stake(active()); });
 
+    phone.addEventListener('change', paintAmounts);
     toggle.removeAttribute('hidden');
     select(active());
 

@@ -7,7 +7,7 @@
   <div class="paridata-card">
     <dt class="paridata-card__label">{{ i18n "paridata_staked" }}</dt>
     <dd class="paridata-card__value">{{ partial "paridata/amount.html" (dict "value" $l.staked "profile" $p) }}</dd>
-    <dd class="paridata-card__note">{{ $l.counted }} {{ i18n "paridata_counted" }}</dd>
+    <dd class="paridata-card__note">{{ $l.bets }} {{ i18n "paridata_bets" }}{{ with $l.estimated }} · {{ . }} {{ i18n "paridata_estimated" }}{{ end }}</dd>
   </div>
   <div class="paridata-card paridata-card--lead" data-tone="{{ $balanceTone }}">
     <dt class="paridata-card__label">{{ i18n "paridata_balance" }}</dt>

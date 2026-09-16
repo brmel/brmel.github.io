@@ -22,12 +22,11 @@
   },
   {
     "id": "2026-09-13-01",
-    "odds": null,
     "legs": [
-      { "match": "2026-09-13-levante-barcelona", "pick": ["win:Barcelona"] },
-      { "match": "2026-09-13-elversberg-bayern-munich", "pick": ["win:Bayern Munich"] },
-      { "match": "2026-09-13-brest-paris-saint-germain", "pick": ["win:Paris Saint-Germain"] },
-      { "match": "2026-09-13-manchester-united-manchester-city", "pick": ["win-or-draw:Manchester City", "goal:Erling Haaland"] }
+      { "match": "2026-09-13-levante-barcelona", "pick": ["win:Barcelona"], "odds": 1.15 },
+      { "match": "2026-09-13-elversberg-bayern-munich", "pick": ["win:Bayern Munich"], "odds": 1.17 },
+      { "match": "2026-09-13-brest-paris-saint-germain", "pick": ["win:Paris Saint-Germain"], "odds": 1.29 },
+      { "match": "2026-09-13-manchester-united-manchester-city", "pick": ["win-or-draw:Manchester City", "goal:Erling Haaland"], "odds": 2.13 }
     ]
   },
   {

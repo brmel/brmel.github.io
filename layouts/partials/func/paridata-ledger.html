@@ -1,6 +1,6 @@
 {{- $profile := site.Data.paridata.profile -}}
 {{- $competitions := site.Data.paridata.competitions -}}
-{{- $flags := slice "england" "spain" "italy" "france" "germany" "netherlands" "portugal" "europe" "mix" -}}
+{{- $stake := $profile.staking.defaultStake -}}
 
 {{- $matches := dict -}}
 {{- range site.Data.paridata.matches -}}{{- $matches = merge $matches . -}}{{- end -}}
@@ -10,24 +10,29 @@
 {{- $rows := slice -}}
 {{- $balance := 0.0 -}}
 {{- $staked := 0.0 -}}
-{{- $counted := 0 -}}
-{{- $stake := $profile.staking.defaultStake -}}
+{{- $bets := 0 -}}
+{{- $estimated := 0 -}}
 
 {{- range $t := sort $tickets "id" -}}
   {{- $legs := slice -}}{{- $regions := slice -}}{{- $dates := slice -}}
-  {{- $voidOdds := 1.0 -}}
+  {{- $legOdds := 1.0 -}}{{- $allLegOdds := true -}}{{- $voidOdds := 1.0 -}}
   {{- $anyLost := false -}}{{- $anyPending := false -}}{{- $allVoid := true -}}
 
   {{- range $leg := $t.legs -}}
     {{- $m := index $matches $leg.match -}}
     {{- if not $m }}{{ errorf "PariData %s: match %q is not in data/paridata/matches" $t.id $leg.match }}{{ end -}}
     {{- $dates = $dates | append $m.date -}}
-    {{- with index $competitions $m.competition }}{{ $regions = $regions | append . }}{{ end -}}
+    {{- $regions = $regions | append (index $competitions $m.competition) -}}
+    {{- with $leg.odds }}{{ $legOdds = mul $legOdds . }}{{ else }}{{ $allLegOdds = false }}{{ end -}}
 
     {{- $conditions := slice -}}
     {{- range $p := $leg.pick -}}
       {{- $parts := split $p ":" -}}
-      {{- $conditions = $conditions | append (dict "kind" (index $parts 0) "arg" (delimit (after 1 $parts) ":")) -}}
+      {{- $c := dict "kind" (index $parts 0) "arg" (delimit (after 1 $parts) ":") -}}
+      {{- if and (in (slice "win" "win-or-draw") $c.kind) (not (in (slice $m.home $m.away) $c.arg)) -}}
+        {{- errorf "PariData %s: %q is not playing in %s" $t.id $c.arg $leg.match -}}
+      {{- end -}}
+      {{- $conditions = $conditions | append $c -}}
     {{- end -}}
 
     {{- $state := "pending" -}}
@@ -55,42 +60,50 @@
     {{- $legs = $legs | append (dict "match" $m "conditions" $conditions "state" $state) -}}
   {{- end -}}
 
+  {{- $odds := $t.odds -}}
+  {{- $oddsSource := "posted" -}}
+  {{- if not $odds -}}
+    {{- if not $allLegOdds }}{{ errorf "PariData %s: needs its odds, or odds on every leg to estimate them" $t.id }}{{ end -}}
+    {{- $odds = div (math.Round (mul $legOdds 100)) 100.0 -}}
+    {{- $oddsSource = "estimated" -}}
+  {{- end -}}
+
   {{- $state := cond $anyLost "lost" (cond $anyPending "pending" (cond $allVoid "void" "won")) -}}
   {{- $profit := 0.0 -}}
-  {{- $isCounted := false -}}
-  {{- if and (eq $state "won") $t.odds -}}
-    {{- $profit = mul $stake (sub (div $t.odds $voidOdds) 1.0) -}}{{- $isCounted = true -}}
-  {{- else if eq $state "lost" -}}
-    {{- $profit = sub 0.0 $stake -}}{{- $isCounted = true -}}
-  {{- end -}}
-  {{- if $isCounted -}}
-    {{- $balance = add $balance $profit -}}{{- $staked = add $staked $stake -}}{{- $counted = add $counted 1 -}}
+  {{- if eq $state "won" }}{{ $profit = mul $stake (sub (div $odds $voidOdds) 1.0) }}{{ end -}}
+  {{- if eq $state "lost" }}{{ $profit = sub 0.0 $stake }}{{ end -}}
+  {{- $counted := in (slice "won" "lost") $state -}}
+  {{- if $counted -}}
+    {{- $balance = add $balance $profit -}}
+    {{- $staked = add $staked $stake -}}
+    {{- $bets = add $bets 1 -}}
+    {{- if eq $oddsSource "estimated" }}{{ $estimated = add $estimated 1 }}{{ end -}}
   {{- end -}}
 
   {{- $regions = uniq $regions -}}
-  {{- $region := cond (eq (len $regions) 1) (index $regions 0) "mix" -}}
-  {{- if not (in $flags $region) }}{{ $region = "mix" }}{{ end -}}
-
   {{- $rows = $rows | append (dict
       "id" $t.id
       "date" (index (sort $dates) 0)
       "posted" $t.posted
-      "odds" $t.odds
+      "odds" $odds
+      "oddsSource" $oddsSource
       "legs" $legs
       "kind" (cond (gt (len $legs) 1) "coupon" "single")
-      "region" $region
+      "region" (cond (eq (len $regions) 1) (index $regions 0) "mix")
       "state" $state
       "stake" $stake
       "profit" $profit
-      "counted" $isCounted
+      "counted" $counted
       "hasVoid" (ne $voidOdds 1.0)
       "balance" $balance) -}}
 {{- end -}}
 
 {{- return (dict
     "profile" $profile
+    "regions" site.Data.paridata.regions
     "rows" $rows
     "balance" $balance
     "staked" $staked
-    "counted" $counted
+    "bets" $bets
+    "estimated" $estimated
     "roi" (cond (gt $staked 0.0) (mul (div $balance $staked) 100.0) 0.0)) -}}

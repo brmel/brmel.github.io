@@ -1,0 +1,11 @@
+{
+  "england": { "en": "England", "fr": "Angleterre", "ar": "إنجلترا" },
+  "spain": { "en": "Spain", "fr": "Espagne", "ar": "إسبانيا" },
+  "italy": { "en": "Italy", "fr": "Italie", "ar": "إيطاليا" },
+  "france": { "en": "France", "fr": "France", "ar": "فرنسا" },
+  "germany": { "en": "Germany", "fr": "Allemagne", "ar": "ألمانيا" },
+  "netherlands": { "en": "Netherlands", "fr": "Pays-Bas", "ar": "هولندا" },
+  "portugal": { "en": "Portugal", "fr": "Portugal", "ar": "البرتغال" },
+  "europe": { "en": "Europe", "fr": "Europe", "ar": "أوروبا" },
+  "mix": { "en": "Mix", "fr": "Mixte", "ar": "متنوّع" }
+}
