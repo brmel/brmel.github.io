@@ -81,7 +81,7 @@
 {{- $class = "post-entry tag-entry" }}
 {{- end }}
 
-<article class="{{ $class }}">
+<article class="{{ $class }}"{{ partial "func/lang-attrs.html" . }}>
   <span class="u-bar" aria-hidden="true"></span>
   {{- if not $term }}{{ partial "article/cover.html" . }}{{ end }}
 
@@ -111,9 +111,7 @@
 
   <div class="entry-content"><p dir="auto">{{ $blurb }}</p></div>
   {{- end }}
-  {{- if ne .Lang site.Language.Lang }}
-  <p class="entry-lang">{{ i18n "lang_en_only" | default "in English" }}</p>
-  {{- end }}
+  {{- partial "lang/en-only.html" . }}
   </div>
   <a class="entry-link" aria-label="{{ .Title | plainify }}" href="{{ .Permalink }}"></a>
 </article>

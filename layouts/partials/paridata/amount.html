@@ -1,7 +1,8 @@
 {{- $v := .value -}}
 {{- $c := index .profile.staking.currencies 0 -}}
 {{- $sign := cond (lt $v 0.0) "−" (cond (default false .signed) "+" "") -}}
-{{- $n := lang.FormatNumberCustom (int $c.decimals) (math.Abs (mul $v $c.perUnit)) "- . ," -}}
+{{- $n := lang.FormatNumberCustom (int $c.decimals) (math.Abs (mul $v $c.perUnit)) (i18n "number_format") "|" -}}
+{{- $pattern := cond (default false $c.symbolAfter) "{sign}{n} {symbol}" (i18n "currency_pattern") -}}
 <bdi class="paridata-amount" dir="ltr" data-units="{{ printf "%.6f" $v }}"{{ if .signed }} data-signed{{ end }}>
-  {{- if $c.symbolAfter }}{{ $sign }}{{ $n }} {{ $c.symbol }}{{ else }}{{ $sign }}{{ $c.symbol }}{{ $n }}{{ end -}}
+  {{- replace (replace (replace $pattern "{sign}" $sign) "{symbol}" $c.symbol) "{n}" $n -}}
 </bdi>

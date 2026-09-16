@@ -46,20 +46,18 @@
     <h2 class="u-eyebrow project-period__year" id="projects-{{ $year }}"><bdi dir="ltr">{{ $year }}</bdi></h2>
     <div class="project-grid">
     {{- range where $projects "Date.Year" $year }}
-    <a class="u-card project-card" href="{{ .RelPermalink }}">
+    <a class="u-card project-card" href="{{ .RelPermalink }}"{{ partial "func/lang-attrs.html" . }}>
     <span class="u-bar" aria-hidden="true"></span>
     <span class="u-eyebrow project-card__eyebrow">
-      {{- with .Params.projectNo }}№ {{ printf "%02d" . }} <b aria-hidden="true">·</b> {{ end -}}
-      {{ .Params.domain | default "saas" | upper }}
+      {{- with .Params.projectNo }}{{ i18n "number_sign" }} {{ printf "%02d" . }} <b aria-hidden="true">·</b> {{ end -}}
+      {{ i18n (printf "project_domain_%s" (.Params.domain | default "saas")) }}
       <b aria-hidden="true">·</b>
       {{ i18n (printf "project_status_%s" (.Params.status | default "active")) | default (.Params.status | upper) }}
     </span>
     <span class="project-card__title">{{ .Title }}</span>
 
     {{- with .Params.pitch }}<span class="project-card__pitch" dir="auto">{{ . }}</span>{{ end }}
-    {{- if ne .Lang site.Language.Lang }}
-    <span class="u-chip project-card__lang" title="{{ i18n "lang_en_only_title" | default "This write-up is in English" }}">{{ i18n "lang_en_only" | default "in English" }}</span>
-    {{- end }}
+    {{- partial "lang/en-only.html" . }}
     {{- with .Params.links.live }}
 
     <span class="u-eyebrow project-card__live">{{ i18n "project_link_live" | default "Live" }} <span aria-hidden="true">↗</span></span>

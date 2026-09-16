@@ -5,7 +5,7 @@
   <span class="u-eyebrow author-card__label">{{ i18n "author_label" | default "Who wrote this" }}</span>
   <p class="author-card__name">{{ site.Params.profileMode.title | default site.Title }}</p>
   {{- with .Params.role }}<p class="author-card__role">{{ . }}</p>{{ end }}
-  {{- with site.Params.profileMode.bigPicture }}<p class="author-card__line">{{ . }}</p>{{ end }}
+  {{- with site.Home.Content }}<p class="author-card__line">{{ . | plainify | htmlUnescape | strings.TrimSpace }}</p>{{ end }}
   <p class="author-card__links">
     <a class="u-eyebrow u-link" href="{{ .RelPermalink }}">{{ i18n "author_resume" | default "The whole career →" }}</a>
     {{- if ne $.Section "projects" }}

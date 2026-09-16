@@ -1,5 +1,5 @@
 {{- $id := .id -}}
-{{- $alt := .alt | default "Video thumbnail" -}}
+{{- $alt := .alt | default (i18n "career_video") -}}
 {{- with resources.Get (printf "images/timeline/%s.jpg" $id) }}
 {{- $sm := .Resize "320x webp q80" }}
 {{- $lg := .Resize "480x webp q80" }}

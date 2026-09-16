@@ -1,7 +1,7 @@
 {{- $n := printf "%03d" (int (.Params.fieldNote | default 0)) -}}
 <div class="category-bar"></div>
 <p class="field-eyebrow">
-  <span>FIELD NOTE № {{ $n }}</span>
+  <span>{{ i18n "field_note" }} {{ i18n "number_sign" }} {{ $n }}</span>
   {{- with .Params.category }}
   <span class="sep">·</span>
   <span>{{ . | upper }}</span>

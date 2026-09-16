@@ -5,9 +5,9 @@
 <p class="project-eyebrow">
   {{- partial "brand/mark.html" (dict "size" 16 "class" "brand-mark project-eyebrow__mark") -}}
   <span class="u-eyebrow project-eyebrow__text">
-    {{- with $no }}{{ i18n "project_no" | default "Project" }} № {{ printf "%02d" . }}
+    {{- with $no }}{{ i18n "project_no" }} {{ i18n "number_sign" }} {{ printf "%02d" . }}
     <b class="project-eyebrow__dot" aria-hidden="true">·</b> {{ end -}}
-    {{ $domain | upper }}
+    {{ i18n (printf "project_domain_%s" $domain) }}
     <b class="project-eyebrow__dot" aria-hidden="true">·</b>
     {{ i18n (printf "project_status_%s" $status) | default ($status | upper) }}
   </span>

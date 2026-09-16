@@ -13,7 +13,7 @@
 {{- end }}
 
 {{- with or .Params.locale site.Language.LanguageCode site.Language.Lang }}
-  <meta property="og:locale" content="{{ . }}">
+  <meta property="og:locale" content="{{ replace . "-" "_" }}">
 {{- end }}
 
 {{- if .IsPage }}
@@ -42,5 +42,5 @@
 <meta property="og:image:height" content="630">
 
 {{- range .Translations }}
-<meta property="og:locale:alternate" content="{{ .Language.Lang }}">
+<meta property="og:locale:alternate" content="{{ replace (.Language.LanguageCode | default .Language.Lang) "-" "_" }}">
 {{- end }}

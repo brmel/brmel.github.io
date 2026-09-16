@@ -11,5 +11,10 @@
     </ul>
   </nav>
   {{- end }}
+  {{- with site.Home.Translations }}
+  <p class="page-404__langs">
+    {{- range . }}<a class="u-eyebrow u-link" href="{{ .Permalink }}" lang="{{ .Lang }}" hreflang="{{ .Lang }}">{{ .Language.LanguageName }}</a>{{ end }}
+  </p>
+  {{- end }}
 </article>
 {{- end }}

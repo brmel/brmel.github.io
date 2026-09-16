@@ -1,0 +1,34 @@
+{{- /* Fork of themes/PaperMod/_default/rss.xml @2d2f2c6 — diff before upgrading. */ -}}
+{{- $pages := slice }}
+{{- if .IsHome }}
+{{- range site.Params.mainSections }}{{ with site.GetPage (printf "/%s" .) }}{{ $pages = $pages | append (partial "func/section-pages.html" .) }}{{ end }}{{ end }}
+{{- else if .IsSection }}
+{{- $pages = partial "func/section-pages.html" . }}
+{{- else }}
+{{- $pages = .Pages }}
+{{- end }}
+{{- $pages = sort $pages "Date" "desc" }}
+{{- printf "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>" | safeHTML }}
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} · {{ site.Title }}{{ end }}</title>
+    <link>{{ .Permalink }}</link>
+    <description>{{ .Description | default site.Params.description }}</description>
+    <language>{{ site.Language.LanguageCode }}</language>
+    {{- with $pages }}
+    <lastBuildDate>{{ (index . 0).Lastmod.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</lastBuildDate>
+    {{- end }}
+    {{- with .OutputFormats.Get "RSS" }}
+    {{ printf "<atom:link href=%q rel=\"self\" type=%q />" .Permalink .MediaType | safeHTML }}
+    {{- end }}
+    {{- range $pages }}
+    <item>
+      <title>{{ .Title }}</title>
+      <link>{{ .Permalink }}</link>
+      <pubDate>{{ .PublishDate.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</pubDate>
+      <guid>{{ .Permalink }}</guid>
+      <description>{{ with .Description | html }}{{ . }}{{ else }}{{ .Summary | html }}{{ end }}</description>
+    </item>
+    {{- end }}
+  </channel>
+</rss>

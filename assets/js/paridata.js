@@ -28,13 +28,14 @@
     }
 
     function money(sign, value, options, button) {
-        var n = value.toLocaleString('en-US', options);
-        return button.hasAttribute('data-after') ? sign + n + ' ' + button.dataset.symbol : sign + button.dataset.symbol + n;
+        var n = value.toLocaleString(root.dataset.locale, options);
+        var pattern = button.hasAttribute('data-after') ? '{sign}{n}\u00a0{symbol}' : root.dataset.pattern;
+        return pattern.replace('{sign}', sign).replace('{symbol}', button.dataset.symbol).replace('{n}', n);
     }
 
     function format(amount, button) {
         var sign = amount.units < 0 ? '−' : (amount.signed ? '+' : '');
-        if (!button.dataset.symbol) return sign + Math.abs(amount.units).toFixed(2) + 'u';
+        if (!button.dataset.symbol) return sign + Math.abs(amount.units).toLocaleString(root.dataset.locale, { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + 'u';
         var value = Math.abs(amount.units * stake(button));
         var decimals = parseInt(button.dataset.decimals, 10);
         var fits = [

@@ -130,6 +130,8 @@
   transition:transform var(--dur-2) var(--ease-standard);
 }
 .paridata-row[open] .paridata-row__summary::after{transform:rotate(-135deg);}
+[dir="rtl"] .paridata-row__summary::after{transform:rotate(-45deg);}
+[dir="rtl"] .paridata-row[open] .paridata-row__summary::after{transform:rotate(135deg);}
 
 .paridata-row__date{font-weight:600;color:var(--ink);white-space:nowrap;}
 .paridata-row__comp{display:flex;align-items:center;gap:var(--space-2);}

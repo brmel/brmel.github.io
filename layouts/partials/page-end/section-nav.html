@@ -22,19 +22,15 @@
     {{- with $prev }}
     <a class="section-nav__sib" href="{{ .RelPermalink }}" rel="prev">
       <span class="u-eyebrow u-link section-nav__link"><span aria-hidden="true">←</span> {{ i18n "previous" | default "Previous" }}</span>
-      <span class="section-nav__title">{{ .Title }}</span>
-      {{- if ne .Lang site.Language.Lang }}
-      <span class="entry-lang" title="{{ i18n "lang_en_only_title" | default "This write-up is in English" }}">{{ i18n "lang_en_only" | default "in English" }}</span>
-      {{- end }}
+      <span class="section-nav__title"{{ partial "func/lang-attrs.html" . }}>{{ .Title }}</span>
+      {{- partial "lang/en-only.html" . }}
     </a>
     {{- end }}
     {{- with $next }}
     <a class="section-nav__sib section-nav__sib--next" href="{{ .RelPermalink }}" rel="next">
       <span class="u-eyebrow u-link section-nav__link">{{ i18n "next" | default "Next" }} <span aria-hidden="true">→</span></span>
-      <span class="section-nav__title">{{ .Title }}</span>
-      {{- if ne .Lang site.Language.Lang }}
-      <span class="entry-lang" title="{{ i18n "lang_en_only_title" | default "This write-up is in English" }}">{{ i18n "lang_en_only" | default "in English" }}</span>
-      {{- end }}
+      <span class="section-nav__title"{{ partial "func/lang-attrs.html" . }}>{{ .Title }}</span>
+      {{- partial "lang/en-only.html" . }}
     </a>
     {{- end }}
   </div>

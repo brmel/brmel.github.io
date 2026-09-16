@@ -29,7 +29,7 @@
 {{- if .IsHome }}
 {{- $graph = $graph | append (dict
       "@type" "WebSite"
-      "@id" (printf "%s#website" site.BaseURL)
+      "@id" (printf "%s#website" site.Home.Permalink)
       "url" site.BaseURL
       "name" site.Title
       "description" site.Params.description

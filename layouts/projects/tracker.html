@@ -2,7 +2,7 @@
 {{- define "main" }}
 {{- $l := partial "func/paridata-ledger.html" . }}
 
-<article class="post-single project paridata" id="paridata">
+<article class="post-single project paridata" id="paridata" data-locale="{{ i18n "number_locale" }}" data-pattern="{{ i18n "currency_pattern" }}">
   <header class="project-head">
     {{- partial "breadcrumbs.html" . }}
     {{- partial "project/identity.html" . -}}

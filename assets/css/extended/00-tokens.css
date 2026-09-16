@@ -1,7 +1,7 @@
 :root{
 
-  --font-serif:"Instrument Serif","Cormorant Garamond","Source Serif Pro",ui-serif,Georgia,"Times New Roman",serif;
-  --font-sans:"Inter Tight",ui-sans-serif,system-ui,-apple-system,"Segoe UI","Helvetica Neue",Arial,sans-serif;
+  --font-serif:"Instrument Serif","IBM Plex Sans Arabic","Cormorant Garamond","Source Serif Pro",ui-serif,Georgia,"Times New Roman",serif;
+  --font-sans:"Inter Tight","IBM Plex Sans Arabic",ui-sans-serif,system-ui,-apple-system,"Segoe UI","Helvetica Neue",Arial,sans-serif;
   --font-mono:"JetBrains Mono","IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
 
   --font-label:var(--font-mono);

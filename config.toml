@@ -5,6 +5,7 @@ theme = "PaperMod"
 enableGitInfo = true
 
   [languages.en]
+    languageCode = "en-CA"
     languageName = "English"
     weight = 1
     title = "Ibraverse"
@@ -18,7 +19,6 @@ enableGitInfo = true
       subtitle = "Machine vision and AI · Zebra Technologies · Montréal"
       imageUrl = "images/profile.jpg"
       imageTitle = "Brahim Redouane Mellah"
-      bigPicture = "I build industrial AI and machine vision products. Specializing in C++ and machine learning, I take algorithms from raw ideas to robust, factory-ready deployments. I build and write about robotics, cloud architecture, and mobile apps here—always driven by a deep foundation in math and physics."
     [[languages.en.menu.main]]
       identifier = "home"
       name = "Home"
@@ -56,6 +56,7 @@ enableGitInfo = true
       weight = 7
 
   [languages.fr]
+    languageCode = "fr-CA"
     languageName = "Français"
     weight = 2
     title = "Ibraverse"
@@ -69,7 +70,6 @@ enableGitInfo = true
       subtitle = "Vision industrielle et IA · Zebra Technologies · Montréal"
       imageUrl = "images/profile.jpg"
       imageTitle = "Brahim Redouane Mellah"
-      bigPicture = "Je développe des solutions d'IA et de vision artificielle pour l'industrie. Spécialisé en C++ et en machine learning, je transforme des idées brutes en algorithmes robustes, prêts à être déployés en production. Ici, je crée et je partage mes connaissances sur la robotique, le cloud et les applications mobiles — avec toujours les mathématiques et la physique comme piliers."
     [[languages.fr.menu.main]]
       identifier = "home"
       name = "Accueil"
@@ -107,12 +107,13 @@ enableGitInfo = true
       weight = 7
 
   [languages.ar]
+    languageCode = "ar"
     languageName = "العربية"
     languageDirection = "rtl"
     weight = 3
-    title = "إبرافرس"
+    title = "Ibraverse"
     [languages.ar.params]
-      author = "إبرافرس"
+      author = "Ibraverse"
       description = "مطور برمجيات أول في Zebra Technologies في الرؤية الآلية والذكاء الاصطناعي ومعالجة الصور."
       keywords = ["الرؤية الآلية", "معالجة الصور", "رؤية الكمبيوتر", "الخوارزميات الصناعية", "OpenCV", "C++", "نظرية التحكم", "الروبوتات", "الذكاء الاصطناعي", "Zebra Technologies", "Matrox", "أنظمة الوقت الحقيقي", "مطابقة الأنماط", "كشف الحواف"]
     [languages.ar.params.profileMode]
@@ -121,7 +122,6 @@ enableGitInfo = true
       subtitle = "الرؤية الآلية والذكاء الاصطناعي · Zebra Technologies · مونتريال"
       imageUrl = "images/profile.jpg"
       imageTitle = "إبراهيم رضوان ملاح"
-      bigPicture = "أطوّر خوارزميات الرؤية الآلية الصناعية وأصونها: الهندسة الرياضية والمعايرة وقياس الحواف. آخذها من النموذج الأولي إلى النشر، بطرق تقليدية وبالتعلّم العميق. أحبّ C++‎ والروبوتات والذكاء الاصطناعي والرؤية الآلية، وعنها أبني وأكتب هنا."
     [[languages.ar.menu.main]]
       identifier = "home"
       name = "الرئيسية"
@@ -195,6 +195,9 @@ enableEmoji = true
     safari_pinned_tab = "safari-pinned-tab.svg"
     theme_color = "#faf9f6"
     msapplication_TileColor = "#faf9f6"
+
+  [params.social]
+    twitter = "BrmelB"
 
   [params.label]
     text = "Ibraverse"

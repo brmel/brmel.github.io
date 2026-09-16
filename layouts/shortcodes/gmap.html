@@ -1,4 +1,4 @@
-{{- $title := .Get "title" | default "Map" -}}
+{{- $title := .Get "title" | default (i18n "map") -}}
 {{- with .Get "src" }}
 <div class="gmap">
   <iframe src="{{ . | safeURL }}" title="{{ $title }}" loading="lazy"

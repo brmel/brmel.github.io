@@ -1,6 +1,7 @@
 ---
 title: "Ibraverse"
 date: 2025-01-08
+outputs: ["HTML", "RSS", "JSON"]
 description: "Vision industrielle et traitement d'images chez Zebra Technologies. Projets personnels, articles techniques et carnets de terrain."
 ---
 Je développe et maintiens des algorithmes de vision industrielle :

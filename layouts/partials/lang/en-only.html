@@ -1,0 +1,3 @@
+{{- if ne .Lang site.Language.Lang }}
+<span class="entry-lang" lang="{{ site.Language.Lang }}" dir="{{ site.Language.LanguageDirection | default "ltr" }}" title="{{ i18n "lang_en_only_title" }}">{{ i18n "lang_en_only" }}</span>
+{{- end }}

@@ -36,7 +36,6 @@
   color:var(--ink-mute);letter-spacing:var(--track-micro);
 }
 .project-card__stack b{color:var(--accent);font-weight:400;}
-.project-card__lang{align-self:flex-start;text-transform:uppercase;}
 .project-card__live{
   align-self:flex-start;
   color:var(--accent);

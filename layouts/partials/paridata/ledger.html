@@ -31,7 +31,7 @@
         </span>
         <span class="u-chip paridata-chip">{{ i18n (printf "paridata_%s" $r.state) }}</span>
       </span>
-      <span class="paridata-row__num paridata-row__odds" data-label="{{ i18n "paridata_odds" }}"><bdi dir="ltr">{{ if eq $r.oddsSource "estimated" }}≈{{ printf "%.2f" $r.odds }}{{ else }}{{ $r.odds }}{{ end }}</bdi></span>
+      <span class="paridata-row__num paridata-row__odds" data-label="{{ i18n "paridata_odds" }}"><bdi dir="ltr">{{ if eq $r.oddsSource "estimated" }}≈{{ lang.FormatNumberCustom 2 $r.odds (i18n "number_format") "|" }}{{ else }}{{ $parts := split (string $r.odds) "." }}{{ lang.FormatNumberCustom (cond (gt (len $parts) 1) (len (index $parts 1)) 0) $r.odds (i18n "number_format") "|" }}{{ end }}</bdi></span>
       <span class="paridata-row__num paridata-row__stake" data-label="{{ i18n "paridata_stake" }}">{{ partial "paridata/amount.html" (dict "value" $r.stake "profile" $p) }}</span>
       <span class="paridata-row__profit">
         {{- if $r.counted }}{{ partial "paridata/amount.html" (dict "value" $r.profit "profile" $p "signed" true) }}{{ else }}<bdi dir="ltr">—</bdi>{{ end -}}

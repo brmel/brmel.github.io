@@ -33,7 +33,7 @@
              sizes="(max-width: 768px) 100vw, 390px"
              width="{{ $large.Width }}" height="{{ $large.Height }}"
              {{- if eq $i 0 }} fetchpriority="high"{{ end }} decoding="async"
-             alt="{{ $img.Title | default (printf "%s screenshot" $.Title) }}">
+             alt="{{ $img.Title | default (printf (i18n "project_screenshot") $.Title) }}">
         {{- with $img.Params.caption }}<figcaption>{{ . }}</figcaption>{{ end }}
       </figure>
       {{- end }}

@@ -1,5 +1,6 @@
 {{- with .Params.relatedProject }}
-{{- with site.GetPage (printf "/projects/%s" .) }}
+{{- $path := printf "/projects/%s" . }}
+{{- with or (site.GetPage $path) ((index site.Sites 0).GetPage $path) }}
 <aside class="related-project">
   <span class="u-eyebrow related-project__label">{{ i18n "related_project" | default "The project behind this" }}</span>
   <a class="related-project__link" href="{{ .RelPermalink }}">{{ .Title }}</a>
