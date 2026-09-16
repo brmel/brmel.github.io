@@ -1,7 +1,7 @@
 {{- define "main" }}
 {{- $l := partial "func/paridata-ledger.html" . }}
 
-<article class="post-single project paridata" id="paridata" data-paridata="money">
+<article class="post-single project paridata" id="paridata">
   {{ partial "breadcrumbs.html" . }}
   <header class="project-head">
     {{- partial "project/identity.html" . -}}
@@ -10,9 +10,18 @@
   <div class="paridata-toggle" id="paridata-toggle" hidden>
     <span id="paridata-toggle-label">{{ i18n "paridata_display" }}</span>
     <span class="paridata-toggle__group" role="group" aria-labelledby="paridata-toggle-label">
-      <button type="button" class="paridata-button" id="paridata-units" aria-pressed="false">{{ i18n "paridata_units" }}</button>
-      <button type="button" class="paridata-button" id="paridata-money" aria-pressed="true">{{ $l.profile.staking.currency }}</button>
+      <button type="button" class="paridata-button" data-mode="units" aria-pressed="false">{{ i18n "paridata_units" }}</button>
+      {{- range $i, $c := $l.profile.staking.currencies }}
+      <button type="button" class="paridata-button" data-mode="{{ $c.code }}" data-symbol="{{ $c.symbol }}" data-per-unit="{{ $c.perUnit }}" data-decimals="{{ $c.decimals }}"{{ if $c.symbolAfter }} data-after{{ end }} aria-pressed="{{ eq $i 0 }}">{{ $c.code }}</button>
+      {{- end }}
     </span>
+    <label class="paridata-stake" id="paridata-stake-field">
+      <span>{{ i18n "paridata_your_stake" }}</span>
+      <span class="paridata-stake__box" dir="ltr">
+        <input class="paridata-stake__input" id="paridata-stake" type="number" inputmode="decimal" min="0" step="any">
+        <span class="paridata-stake__symbol" id="paridata-stake-symbol"></span>
+      </span>
+    </label>
   </div>
 
   {{ partial "paridata/dashboard.html" $l }}

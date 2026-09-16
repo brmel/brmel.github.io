@@ -33,14 +33,19 @@ def number(value):
 
 profile = load("profile.json")
 staking = profile.get("staking", {})
-for key in ("defaultStake", "currencyPerUnit"):
-    if not number(staking.get(key)) or staking[key] <= 0:
-        fails.append(f"profile.json: staking.{key} must be a positive number")
-for key in ("currency", "currencySymbol"):
-    if not staking.get(key):
-        fails.append(f"profile.json: staking.{key} is required")
-if timestamp((profile.get("window") or {}).get("start")) is None:
-    fails.append("profile.json: window.start must be an ISO date")
+if not number(staking.get("defaultStake")) or staking["defaultStake"] <= 0:
+    fails.append("profile.json: staking.defaultStake must be a positive number")
+currencies = staking.get("currencies")
+if not isinstance(currencies, list) or not currencies:
+    fails.append("profile.json: staking.currencies needs at least one currency")
+for c in currencies or []:
+    code = c.get("code") or "?"
+    if not c.get("code") or not c.get("symbol"):
+        fails.append(f"profile.json: currency {code} needs a code and a symbol")
+    if not number(c.get("perUnit")) or c["perUnit"] <= 0:
+        fails.append(f"profile.json: currency {code} perUnit must be a positive number")
+    if c.get("decimals") not in (0, 1, 2, 3):
+        fails.append(f"profile.json: currency {code} decimals must be 0 to 3")
 
 competitions = load("competitions.json")
 for name, region in competitions.items():

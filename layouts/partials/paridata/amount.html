@@ -1,7 +1,7 @@
 {{- $v := .value -}}
-{{- $p := .profile -}}
+{{- $c := index .profile.staking.currencies 0 -}}
 {{- $sign := cond (lt $v 0.0) "−" (cond (default false .signed) "+" "") -}}
-<span class="paridata-amount{{ with .class }} {{ . }}{{ end }}"
-  ><bdi class="paridata-amount__u" dir="ltr">{{ printf "%s%.2fu" $sign (math.Abs $v) }}</bdi
-  ><bdi class="paridata-amount__m" dir="ltr">{{ printf "%s%s%.2f" $sign ($p.staking.currencySymbol | default "$") (math.Abs (mul $v $p.staking.currencyPerUnit)) }}</bdi
-></span>
+{{- $n := lang.FormatNumberCustom (int $c.decimals) (math.Abs (mul $v $c.perUnit)) "- . ," -}}
+<bdi class="paridata-amount" dir="ltr" data-units="{{ printf "%.6f" $v }}"{{ if .signed }} data-signed{{ end }}>
+  {{- if $c.symbolAfter }}{{ $sign }}{{ $n }} {{ $c.symbol }}{{ else }}{{ $sign }}{{ $c.symbol }}{{ $n }}{{ end -}}
+</bdi>

@@ -12,8 +12,8 @@ takeaway: "A record is only worth reading if it was fixed before the outcome was
 tags: ["Data Analysis"]
 ---
 
-We are following an influencer who promotes a betting app and shares football picks, to answer one question: would following them make you money, or lose it?
+PariData is a data project. It follows an influencer who promotes a betting app and shares football picks, to answer one question: would following them make you money, or lose it?
 
-- Every pick is recorded as it is posted, before the matches are played, with a link back to the post.
-- A coupon wins only if every match wins. A cancelled match is taken out of the coupon, not counted as a loss.
-- The money is hypothetical: it shows what a fixed stake would have returned. Nobody here placed a bet. 18+.
+- Each pick is stored as data with a link to the original post, and checked automatically before the page is published.
+- A coupon wins only if every match in it wins. A cancelled match is removed from the coupon.
+- All amounts are simulated with a fixed stake. No real bet was placed. 18+.

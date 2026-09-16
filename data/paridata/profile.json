@@ -2,11 +2,20 @@
   "sample": true,
   "staking": {
     "defaultStake": 1,
-    "currency": "CAD",
-    "currencyPerUnit": 10,
-    "currencySymbol": "$"
-  },
-  "window": {
-    "start": "2026-08-01"
+    "currencies": [
+      {
+        "code": "CAD",
+        "symbol": "$",
+        "perUnit": 10,
+        "decimals": 2
+      },
+      {
+        "code": "DZD",
+        "symbol": "DA",
+        "perUnit": 1000,
+        "decimals": 0,
+        "symbolAfter": true
+      }
+    ]
   }
 }

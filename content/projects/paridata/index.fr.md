@@ -12,8 +12,8 @@ takeaway: "Un relevé ne vaut d'être lu que s'il a été figé avant que le ré
 tags: ["Data Analysis"]
 ---
 
-Nous suivons un influenceur qui fait la promotion d'une application de paris et partage des pronostics de football, pour répondre à une seule question : le suivre fait-il gagner de l'argent, ou en perdre ?
+PariData est un projet de données. Il suit un influenceur qui fait la promotion d'une application de paris et partage des pronostics de football, pour répondre à une seule question : le suivre fait-il gagner de l'argent, ou en perdre ?
 
-- Chaque pronostic est enregistré dès sa publication, avant les matchs, avec un lien vers la publication.
-- Un combiné n'est gagnant que si tous ses matchs le sont. Un match annulé est retiré du combiné, pas compté comme perdu.
-- L'argent est fictif : il montre ce qu'une mise fixe aurait rapporté. Personne ici n'a parié. 18+.
+- Chaque pronostic est enregistré sous forme de données, avec un lien vers la publication d'origine, et vérifié automatiquement avant la mise en ligne.
+- Un combiné n'est gagnant que si tous ses matchs le sont. Un match annulé est retiré du combiné.
+- Tous les montants sont simulés avec une mise fixe. Aucun vrai pari n'a été placé. 18+.
