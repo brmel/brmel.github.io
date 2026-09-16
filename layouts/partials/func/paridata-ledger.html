@@ -2,50 +2,88 @@
 {{- $competitions := site.Data.paridata.competitions -}}
 {{- $flags := slice "england" "spain" "italy" "france" "germany" "netherlands" "portugal" "europe" "mix" -}}
 
+{{- $matches := dict -}}
+{{- range site.Data.paridata.matches -}}{{- $matches = merge $matches . -}}{{- end -}}
 {{- $tickets := slice -}}
 {{- range site.Data.paridata.tickets -}}{{- $tickets = $tickets | append . -}}{{- end -}}
 
 {{- $rows := slice -}}
 {{- $balance := 0.0 -}}
 {{- $staked := 0.0 -}}
-{{- $settledCount := 0 -}}
+{{- $counted := 0 -}}
+{{- $stake := $profile.staking.defaultStake -}}
 
-{{- range $t := sort $tickets "postedAt" -}}
-  {{- $stake := $t.stake | default $profile.staking.defaultStake -}}
-
-  {{- $regions := slice -}}
+{{- range $t := sort $tickets "id" -}}
+  {{- $legs := slice -}}{{- $regions := slice -}}{{- $dates := slice -}}
   {{- $voidOdds := 1.0 -}}
+  {{- $anyLost := false -}}{{- $anyPending := false -}}{{- $allVoid := true -}}
+
   {{- range $leg := $t.legs -}}
-    {{- with index $competitions ($leg.competition | default "") -}}{{- $regions = $regions | append . -}}{{- end -}}
-    {{- if eq $leg.settlement "void" -}}{{- $voidOdds = mul $voidOdds $leg.odds -}}{{- end -}}
+    {{- $m := index $matches $leg.match -}}
+    {{- if not $m }}{{ errorf "PariData %s: match %q is not in data/paridata/matches" $t.id $leg.match }}{{ end -}}
+    {{- $dates = $dates | append $m.date -}}
+    {{- with index $competitions $m.competition }}{{ $regions = $regions | append . }}{{ end -}}
+
+    {{- $conditions := slice -}}
+    {{- range $p := $leg.pick -}}
+      {{- $parts := split $p ":" -}}
+      {{- $conditions = $conditions | append (dict "kind" (index $parts 0) "arg" (delimit (after 1 $parts) ":")) -}}
+    {{- end -}}
+
+    {{- $state := "pending" -}}
+    {{- if eq $m.status "postponed" -}}
+      {{- $state = "void" -}}
+      {{- $voidOdds = mul $voidOdds $leg.odds -}}
+    {{- else if eq $m.status "played" -}}
+      {{- $state = "won" -}}
+      {{- range $c := $conditions -}}
+        {{- $mine := cond (eq $c.arg $m.home) $m.score.home $m.score.away -}}
+        {{- $theirs := cond (eq $c.arg $m.home) $m.score.away $m.score.home -}}
+        {{- $held := false -}}
+        {{- if eq $c.kind "win" }}{{ $held = gt $mine $theirs -}}
+        {{- else if eq $c.kind "win-or-draw" }}{{ $held = ge $mine $theirs -}}
+        {{- else if eq $c.kind "draw" }}{{ $held = eq $m.score.home $m.score.away -}}
+        {{- else if eq $c.kind "goal" }}{{ $held = in ($m.scorers | default slice) $c.arg -}}
+        {{- else }}{{ errorf "PariData %s: unknown pick %q" $t.id $c.kind }}{{ end -}}
+        {{- if not $held }}{{ $state = "lost" }}{{ end -}}
+      {{- end -}}
+    {{- end -}}
+
+    {{- if eq $state "lost" }}{{ $anyLost = true }}{{ end -}}
+    {{- if eq $state "pending" }}{{ $anyPending = true }}{{ end -}}
+    {{- if ne $state "void" }}{{ $allVoid = false }}{{ end -}}
+    {{- $legs = $legs | append (dict "match" $m "conditions" $conditions "state" $state) -}}
   {{- end -}}
+
+  {{- $state := cond $anyLost "lost" (cond $anyPending "pending" (cond $allVoid "void" "won")) -}}
+  {{- $profit := 0.0 -}}
+  {{- $isCounted := false -}}
+  {{- if and (eq $state "won") $t.odds -}}
+    {{- $profit = mul $stake (sub (div $t.odds $voidOdds) 1.0) -}}{{- $isCounted = true -}}
+  {{- else if eq $state "lost" -}}
+    {{- $profit = sub 0.0 $stake -}}{{- $isCounted = true -}}
+  {{- end -}}
+  {{- if $isCounted -}}
+    {{- $balance = add $balance $profit -}}{{- $staked = add $staked $stake -}}{{- $counted = add $counted 1 -}}
+  {{- end -}}
+
   {{- $regions = uniq $regions -}}
   {{- $region := cond (eq (len $regions) 1) (index $regions 0) "mix" -}}
-  {{- if not (in $flags $region) -}}{{- $region = "mix" -}}{{- end -}}
-
-  {{- $profit := 0.0 -}}
-  {{- $settled := ne $t.settlement "pending" -}}
-  {{- if eq $t.settlement "won" -}}
-    {{- $profit = mul $stake (sub (div $t.odds $voidOdds) 1.0) -}}
-  {{- else if eq $t.settlement "lost" -}}
-    {{- $profit = sub 0.0 $stake -}}
-  {{- end -}}
-  {{- if in (slice "won" "lost") $t.settlement -}}{{- $staked = add $staked $stake -}}{{- end -}}
-  {{- if $settled -}}
-    {{- $balance = add $balance $profit -}}
-    {{- $settledCount = add $settledCount 1 -}}
-  {{- end -}}
+  {{- if not (in $flags $region) }}{{ $region = "mix" }}{{ end -}}
 
   {{- $rows = $rows | append (dict
-      "ticket" $t
-      "postedAt" $t.postedAt
+      "id" $t.id
+      "date" (index (sort $dates) 0)
+      "posted" $t.posted
+      "odds" $t.odds
+      "legs" $legs
+      "kind" (cond (gt (len $legs) 1) "coupon" "single")
       "region" $region
-      "kind" (cond (gt (len $t.legs) 1) "coupon" "single")
-      "legs" (len $t.legs)
+      "state" $state
       "stake" $stake
-      "hasVoid" (ne $voidOdds 1.0)
       "profit" $profit
-      "settled" $settled
+      "counted" $isCounted
+      "hasVoid" (ne $voidOdds 1.0)
       "balance" $balance) -}}
 {{- end -}}
 
@@ -54,5 +92,5 @@
     "rows" $rows
     "balance" $balance
     "staked" $staked
-    "settledCount" $settledCount
+    "counted" $counted
     "roi" (cond (gt $staked 0.0) (mul (div $balance $staked) 100.0) 0.0)) -}}

@@ -1,83 +1,93 @@
-# PariData — adding and updating tickets
+# PariData — adding coupons and results
 
-Everything the page shows comes from `data/paridata/`. No template needs to change
-to add a ticket, settle one, or add a league.
+Everything the page shows comes from `data/paridata/`. A result is typed once, on
+the match; every coupon that uses that match settles from it, and the page works
+out won, lost or pending on its own.
 
 ```
 data/paridata/
-  profile.json          currencies, default stake, sample flag
-  competitions.json     competition name → flag
-  tickets/YYYY-MM.json  one file per month, a list of tickets
+  profile.json            stake per bet in each currency
+  competitions.json       competition name → flag
+  matches/YYYY-MM.json    every match, keyed by id, with its score once played
+  tickets/YYYY-MM.json    every coupon, as a list of legs pointing at matches
 ```
 
-## Add a ticket
+The experiment is anonymous: no links, handles, account names or screenshots of
+the influencer's posts anywhere in the data. The repository is public. The check
+rejects any link or `@handle` it finds.
 
-Open the file for the month the pick was posted — create it if it is the first of
-the month, starting with `[` and ending with `]` — and append:
+## 1 · Add the matches
+
+In `matches/` for the month the match is played, add one entry per match:
+
+```json
+"2026-09-19-sevilla-barcelona": {
+  "date": "2026-09-19",
+  "competition": "La Liga",
+  "home": "Sevilla",
+  "away": "Barcelona",
+  "status": "scheduled"
+}
+```
+
+The id is the date, then the home team, then the away team, lowercase with dashes.
+Check which team is at home on the official match page — preview sites and team
+fixture lists do not always put the home side first.
+
+## 2 · Add the coupon
+
+In `tickets/` for the month of its first match:
 
 ```json
 {
-  "id": "2026-10-03-01",
-  "postedAt": "2026-10-03T18:30:00Z",
-  "settlement": "pending",
-  "odds": 2.86,
+  "id": "2026-09-19-01",
+  "posted": "2026-09-19",
+  "odds": 2.64,
   "legs": [
-    {
-      "competition": "Premier League",
-      "home": "Tottenham",
-      "away": "Wolves",
-      "pick": "Tottenham to win",
-      "odds": 1.65,
-      "settlement": "pending"
-    }
+    { "match": "2026-09-19-sevilla-barcelona", "pick": ["win:Barcelona"] },
+    { "match": "2026-09-20-bournemouth-liverpool", "pick": ["win-or-draw:Liverpool"] }
   ]
 }
 ```
 
-A single bet has one leg; a coupon has several. The page works out which it is.
+- `id` — the date of the coupon's first match, then `01`, `02`… for that day.
+- `posted` — the day the coupon was posted, when known. Leave it out otherwise.
+- `odds` — the total odds as posted. Write `null` when unknown: a lost coupon still
+  counts, a won one is shown but left out of the totals until the odds are added.
+- `pick` — a list; every entry must hold for the leg to win:
 
-The experiment is anonymous: no links, handles, account names or screenshots of his
-posts anywhere in the data. The repository is public, so anything written here is
-published. The check rejects any link or `@handle` it finds.
+| Pick | Wins when |
+|---|---|
+| `win:Team` | that team wins |
+| `win-or-draw:Team` | that team does not lose |
+| `draw` | the match is drawn |
+| `goal:Player` | the player is in the match's `scorers` |
 
-## Settle a ticket
+Use the team name exactly as written in the match. A bet-builder leg such as
+"City win or draw + Haaland to score" is one leg with two picks.
 
-When the matches finish, set each leg's `settlement` to `won`, `lost` or `void`
-(postponed or cancelled), then set the ticket's own `settlement` to match: `lost`
-if any leg lost, `won` if every other leg won, `void` if every leg was void.
+## 3 · Enter the result
 
-## Fields
+When the match ends, change its status and add the score:
 
-| Field | Required | Meaning |
-|---|---|---|
-| `id` | yes | `YYYY-MM-DD-NN` — the posting date, then 01, 02… for that day |
-| `postedAt` | yes | when the pick was posted, ISO time in UTC |
-| `settlement` | yes | `pending`, `won`, `lost` or `void` |
-| `odds` | yes | total odds as posted |
-| `stake` | no | units, when the pick used more than the default stake |
-| `notes` | no | one short sentence shown under the matches |
-| `legs[].competition` | yes | must be a key in `competitions.json` |
-| `legs[].home`, `legs[].away` | yes | team names |
-| `legs[].pick` | yes | the bet in plain words: `Arsenal to win`, `Over 2.5 goals`, `Both teams to score` |
-| `legs[].odds` | no | required when the leg is `void` |
-| `legs[].settlement` | yes | as above |
-| `legs[].kickoffAt` | no | ISO time; must be after `postedAt` |
+```json
+"status": "played",
+"score": { "home": 1, "away": 2 }
+```
 
-## New league
+Add `"scorers": ["Player Name", …]` when any coupon has a `goal:` pick on that match.
+A postponed match is `"status": "postponed"`; the leg on it then needs its own
+`"odds"` so they can be taken out of the coupon.
 
-Add it to `competitions.json`, pointing at a flag in `assets/paridata/flags/`
-(`england`, `spain`, `italy`, `france`, `germany`, `netherlands`, `portugal`,
-`europe`). A coupon mixing countries shows as Mix on its own.
+The stake is the same for every coupon — `perUnit` in `profile.json`.
 
-## Check before publishing
+## 4 · Check before publishing
 
 ```bash
 python3 scripts/checks/check-paridata.py
+./scripts/check.sh
 ```
 
-It names the ticket and the problem: a link or handle, an unknown or misspelled field, a ticket in
-the wrong month file, total odds that do not match the legs, a settlement its
-legs contradict. `./scripts/check.sh` runs it with every other gate.
-
-Set `"sample": false` in `profile.json` once the tickets are real — that removes
-the sample-data notice from the page.
+The first names the match or coupon and the problem: a pick naming a team that is
+not playing, a coupon pointing at a match that does not exist, a played match with
+no score, a coupon dated differently from its first match, a link or handle.

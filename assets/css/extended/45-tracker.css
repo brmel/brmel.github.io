@@ -165,18 +165,33 @@
   border-block-start:var(--hairline) solid color-mix(in srgb,var(--tone) 25%,transparent);
 }
 .paridata-leg{
-  display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1.6fr) 3.5rem 5rem;gap:var(--space-3);align-items:baseline;
+  display:grid;grid-template-columns:6.5rem minmax(0,1.3fr) minmax(0,1.5fr) 5rem;gap:var(--space-3);align-items:center;
+  padding:var(--space-3);
+  background:var(--bg);
+  border-inline-start:var(--category-bar) solid var(--tone);
+  border-radius:var(--radius-sm);
   font-size:var(--t-caption);color:var(--ink-soft);
 }
-.paridata-leg__match{font-weight:600;color:var(--ink);}
-.paridata-leg__odds,
+.paridata-leg[data-settlement="pending"],
+.paridata-leg[data-settlement="void"]{border-inline-start-color:var(--rule);}
+.paridata-leg__date{font-family:var(--font-label);font-size:var(--t-micro);white-space:nowrap;}
+.paridata-leg__match{font-weight:600;color:var(--ink);text-align:start;}
+.paridata-leg__score,
+.paridata-leg__vs{
+  display:inline-block;margin-inline:.4ch;padding:1px 8px;
+  font-family:var(--font-label);font-weight:700;letter-spacing:.04em;
+  border-radius:var(--radius-xs);
+}
+.paridata-leg__score{color:var(--tone);background:color-mix(in srgb,var(--tone) 14%,var(--bg));}
+.paridata-leg__vs{color:var(--ink-soft);}
 .paridata-leg__state{
   text-align:end;
   font-family:var(--font-label);font-size:var(--t-micro);font-weight:700;
-  letter-spacing:.05em;text-transform:uppercase;
+  letter-spacing:.05em;text-transform:uppercase;color:var(--tone);
 }
-.paridata-leg__state{color:var(--tone);}
-.paridata-leg:not([data-settlement="won"]):not([data-settlement="lost"]) .paridata-leg__state{color:var(--ink-soft);}
+.paridata-leg[data-settlement="pending"] .paridata-leg__state,
+.paridata-leg[data-settlement="void"] .paridata-leg__state,
+.paridata-leg[data-settlement="pending"] .paridata-leg__score{color:var(--ink-soft);}
 .paridata-row__note{margin:var(--space-3) 0 0;font-size:var(--t-caption);color:var(--ink-soft);}
 
 .paridata-pager{
@@ -190,11 +205,6 @@
 .paridata-about__text p{margin:0 0 var(--space-4);font-size:var(--t-body-l);line-height:var(--lh-body);font-weight:500;color:var(--ink);}
 .paridata-about__text ul{margin:0;padding-inline-start:var(--space-5);font-size:var(--t-body);line-height:var(--lh-body);color:var(--ink-soft);}
 .paridata-about__text li + li{margin-block-start:var(--space-2);}
-.paridata-sample{
-  margin:var(--space-4) 0 0;padding-block-start:var(--space-3);
-  border-block-start:var(--hairline) solid var(--rule);
-  font-family:var(--font-label);font-size:var(--t-caption);color:var(--ink-mute);
-}
 
 @media (max-width:960px){
   .paridata-ledger__head{display:none;}
@@ -225,6 +235,8 @@
   .paridata-row__odds{grid-area:4 / 1 / 5 / 4;justify-self:start;}
   .paridata-row__stake{grid-area:4 / 1 / 5 / 4;justify-self:end;}
   .paridata-leg{grid-template-columns:minmax(0,1fr) auto;row-gap:var(--space-1);}
-  .paridata-leg__pick{grid-area:2 / 1;}
-  .paridata-leg__state{grid-area:2 / 2;}
+  .paridata-leg__date{grid-area:1 / 1;}
+  .paridata-leg__state{grid-area:1 / 2;}
+  .paridata-leg__match{grid-area:2 / 1 / 3 / 3;}
+  .paridata-leg__pick{grid-area:3 / 1 / 4 / 3;}
 }

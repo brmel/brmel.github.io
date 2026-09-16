@@ -1,134 +1,45 @@
 [
   {
-    "id": "2026-09-02-01",
-    "postedAt": "2026-09-02T16:15:00Z",
-    "settlement": "won",
-    "odds": 1.95,
+    "id": "2026-09-10-01",
+    "posted": "2026-09-10",
+    "odds": 2.344,
     "legs": [
-      {
-        "competition": "Premier League",
-        "home": "Chelsea",
-        "away": "West Ham",
-        "pick": "Chelsea to win",
-        "odds": 1.95,
-        "settlement": "won"
-      }
+      { "match": "2026-09-10-bayern-munich-bodo-glimt", "pick": ["win:Bayern Munich"] },
+      { "match": "2026-09-10-fenerbahce-roma", "pick": ["win-or-draw:Roma"] },
+      { "match": "2026-09-10-manchester-united-sabah", "pick": ["win:Manchester United"] }
     ]
   },
   {
-    "id": "2026-09-05-01",
-    "postedAt": "2026-09-05T17:00:00Z",
-    "settlement": "lost",
-    "odds": 3.35,
+    "id": "2026-09-12-01",
+    "posted": "2026-09-12",
+    "odds": 4.436,
     "legs": [
-      {
-        "competition": "La Liga",
-        "home": "Barcelona",
-        "away": "Mallorca",
-        "pick": "Barcelona to win",
-        "odds": 1.4,
-        "settlement": "won"
-      },
-      {
-        "competition": "Serie A",
-        "home": "Roma",
-        "away": "Bologna",
-        "pick": "Over 2.5 goals",
-        "odds": 1.65,
-        "settlement": "lost"
-      },
-      {
-        "competition": "Ligue 1",
-        "home": "Marseille",
-        "away": "Rennes",
-        "pick": "Marseille to win",
-        "odds": 1.45,
-        "settlement": "won"
-      }
-    ]
-  },
-  {
-    "id": "2026-09-08-01",
-    "postedAt": "2026-09-08T19:20:00Z",
-    "settlement": "lost",
-    "odds": 3.2,
-    "legs": [
-      {
-        "competition": "Bundesliga",
-        "home": "Dortmund",
-        "away": "Leipzig",
-        "pick": "Leipzig to win",
-        "odds": 3.2,
-        "settlement": "lost"
-      }
-    ]
-  },
-  {
-    "id": "2026-09-11-01",
-    "postedAt": "2026-09-11T15:05:00Z",
-    "settlement": "won",
-    "odds": 3.59,
-    "legs": [
-      {
-        "competition": "Premier League",
-        "home": "Newcastle",
-        "away": "Aston Villa",
-        "pick": "Newcastle to win",
-        "odds": 1.75,
-        "settlement": "won"
-      },
-      {
-        "competition": "Serie A",
-        "home": "Milan",
-        "away": "Fiorentina",
-        "pick": "Over 3.5 goals",
-        "odds": 2.05,
-        "settlement": "won"
-      }
+      { "match": "2026-09-12-liverpool-fulham", "pick": ["win:Liverpool"] },
+      { "match": "2026-09-12-real-madrid-rayo-vallecano", "pick": ["win:Real Madrid"] },
+      { "match": "2026-09-12-sunderland-arsenal", "pick": ["win:Arsenal"] },
+      { "match": "2026-09-12-lazio-milan", "pick": ["win-or-draw:Milan"] }
     ]
   },
   {
     "id": "2026-09-13-01",
-    "postedAt": "2026-09-13T12:40:00Z",
-    "settlement": "lost",
-    "odds": 1.7,
-    "stake": 2,
-    "notes": "Posted as a double-stake pick.",
+    "odds": null,
     "legs": [
-      {
-        "competition": "La Liga",
-        "home": "Sevilla",
-        "away": "Valencia",
-        "pick": "Sevilla to win",
-        "odds": 1.7,
-        "settlement": "lost"
-      }
+      { "match": "2026-09-13-levante-barcelona", "pick": ["win:Barcelona"] },
+      { "match": "2026-09-13-elversberg-bayern-munich", "pick": ["win:Bayern Munich"] },
+      { "match": "2026-09-13-brest-paris-saint-germain", "pick": ["win:Paris Saint-Germain"] },
+      { "match": "2026-09-13-manchester-united-manchester-city", "pick": ["win-or-draw:Manchester City", "goal:Erling Haaland"] }
     ]
   },
   {
-    "id": "2026-09-14-01",
-    "postedAt": "2026-09-14T18:30:00Z",
-    "settlement": "pending",
-    "odds": 2.86,
+    "id": "2026-09-15-01",
+    "odds": 2.643,
     "legs": [
-      {
-        "competition": "Premier League",
-        "home": "Tottenham",
-        "away": "Wolves",
-        "pick": "Tottenham to win",
-        "odds": 1.65,
-        "settlement": "pending",
-        "kickoffAt": "2026-09-15T14:00:00Z"
-      },
-      {
-        "competition": "Ligue 1",
-        "home": "Monaco",
-        "away": "Toulouse",
-        "pick": "Both teams to score",
-        "odds": 1.73,
-        "settlement": "pending",
-        "kickoffAt": "2026-09-15T16:00:00Z"
-      }
+      { "match": "2026-09-15-ajax-willem-ii", "pick": ["win:Ajax"] },
+      { "match": "2026-09-15-elche-real-madrid", "pick": ["win:Real Madrid"] },
+      { "match": "2026-09-15-ipswich-town-arsenal", "pick": ["win-or-draw:Arsenal"] },
+      { "match": "2026-09-15-liverpool-tottenham-hotspur", "pick": ["win-or-draw:Liverpool"] },
+      { "match": "2026-09-16-barcelona-racing-santander", "pick": ["win:Barcelona"] },
+      { "match": "2026-09-16-atletico-madrid-osasuna", "pick": ["win:Atlético Madrid"] }
     ]
   }
 ]

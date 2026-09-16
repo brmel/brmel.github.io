@@ -1,0 +1,137 @@
+{
+  "2026-09-10-bayern-munich-bodo-glimt": {
+    "date": "2026-09-10",
+    "competition": "Champions League",
+    "home": "Bayern Munich",
+    "away": "Bodø/Glimt",
+    "status": "played",
+    "score": { "home": 5, "away": 0 }
+  },
+  "2026-09-10-fenerbahce-roma": {
+    "date": "2026-09-10",
+    "competition": "Champions League",
+    "home": "Fenerbahçe",
+    "away": "Roma",
+    "status": "played",
+    "score": { "home": 1, "away": 1 }
+  },
+  "2026-09-10-manchester-united-sabah": {
+    "date": "2026-09-10",
+    "competition": "Champions League",
+    "home": "Manchester United",
+    "away": "Sabah",
+    "status": "played",
+    "score": { "home": 4, "away": 0 }
+  },
+  "2026-09-12-liverpool-fulham": {
+    "date": "2026-09-12",
+    "competition": "Premier League",
+    "home": "Liverpool",
+    "away": "Fulham",
+    "status": "played",
+    "score": { "home": 0, "away": 0 }
+  },
+  "2026-09-12-real-madrid-rayo-vallecano": {
+    "date": "2026-09-12",
+    "competition": "La Liga",
+    "home": "Real Madrid",
+    "away": "Rayo Vallecano",
+    "status": "played",
+    "score": { "home": 4, "away": 1 }
+  },
+  "2026-09-12-sunderland-arsenal": {
+    "date": "2026-09-12",
+    "competition": "Premier League",
+    "home": "Sunderland",
+    "away": "Arsenal",
+    "status": "played",
+    "score": { "home": 0, "away": 2 }
+  },
+  "2026-09-12-lazio-milan": {
+    "date": "2026-09-12",
+    "competition": "Serie A",
+    "home": "Lazio",
+    "away": "Milan",
+    "status": "played",
+    "score": { "home": 2, "away": 2 }
+  },
+  "2026-09-13-levante-barcelona": {
+    "date": "2026-09-13",
+    "competition": "La Liga",
+    "home": "Levante",
+    "away": "Barcelona",
+    "status": "played",
+    "score": { "home": 2, "away": 4 }
+  },
+  "2026-09-13-elversberg-bayern-munich": {
+    "date": "2026-09-13",
+    "competition": "Bundesliga",
+    "home": "Elversberg",
+    "away": "Bayern Munich",
+    "status": "played",
+    "score": { "home": 1, "away": 2 }
+  },
+  "2026-09-13-brest-paris-saint-germain": {
+    "date": "2026-09-13",
+    "competition": "Ligue 1",
+    "home": "Brest",
+    "away": "Paris Saint-Germain",
+    "status": "played",
+    "score": { "home": 0, "away": 1 }
+  },
+  "2026-09-13-manchester-united-manchester-city": {
+    "date": "2026-09-13",
+    "competition": "Premier League",
+    "home": "Manchester United",
+    "away": "Manchester City",
+    "status": "played",
+    "score": { "home": 0, "away": 1 },
+    "scorers": ["Erling Haaland"]
+  },
+  "2026-09-15-ajax-willem-ii": {
+    "date": "2026-09-15",
+    "competition": "Eredivisie",
+    "home": "Ajax",
+    "away": "Willem II",
+    "status": "played",
+    "score": { "home": 5, "away": 1 }
+  },
+  "2026-09-15-elche-real-madrid": {
+    "date": "2026-09-15",
+    "competition": "La Liga",
+    "home": "Elche",
+    "away": "Real Madrid",
+    "status": "played",
+    "score": { "home": 2, "away": 3 }
+  },
+  "2026-09-15-ipswich-town-arsenal": {
+    "date": "2026-09-15",
+    "competition": "Carabao Cup",
+    "home": "Ipswich Town",
+    "away": "Arsenal",
+    "status": "played",
+    "score": { "home": 2, "away": 4 }
+  },
+  "2026-09-15-liverpool-tottenham-hotspur": {
+    "date": "2026-09-15",
+    "competition": "Carabao Cup",
+    "home": "Liverpool",
+    "away": "Tottenham Hotspur",
+    "status": "played",
+    "score": { "home": 3, "away": 1 }
+  },
+  "2026-09-16-barcelona-racing-santander": {
+    "date": "2026-09-16",
+    "competition": "La Liga",
+    "home": "Barcelona",
+    "away": "Racing Santander",
+    "status": "scheduled"
+  },
+  "2026-09-16-atletico-madrid-osasuna": {
+    "date": "2026-09-16",
+    "competition": "La Liga",
+    "home": "Atlético Madrid",
+    "away": "Osasuna",
+    "status": "scheduled"
+  }
+}

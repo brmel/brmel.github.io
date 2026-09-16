@@ -1,21 +1,9 @@
 {
-  "sample": true,
   "staking": {
     "defaultStake": 1,
     "currencies": [
-      {
-        "code": "CAD",
-        "symbol": "$",
-        "perUnit": 10,
-        "decimals": 2
-      },
-      {
-        "code": "DZD",
-        "symbol": "DA",
-        "perUnit": 1000,
-        "decimals": 0,
-        "symbolAfter": true
-      }
+      { "code": "CAD", "symbol": "$", "perUnit": 100, "decimals": 2 },
+      { "code": "DZD", "symbol": "DA", "perUnit": 100, "decimals": 0, "symbolAfter": true }
     ]
   }
 }

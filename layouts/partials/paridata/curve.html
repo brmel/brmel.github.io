@@ -1,5 +1,5 @@
 {{- $l := . -}}
-{{- $pts := where $l.rows "settled" true -}}
+{{- $pts := where $l.rows "counted" true -}}
 {{- if ge (len $pts) 8 -}}
 
 {{- $W := 960.0 -}}{{- $H := 240.0 -}}{{- $pad := 12.0 -}}
@@ -7,7 +7,7 @@
 
 {{- $times := slice -}}{{- $balances := slice 0.0 -}}
 {{- range $pts -}}
-  {{- $times = $times | append (float (time.AsTime .postedAt).Unix) -}}
+  {{- $times = $times | append (float (time.AsTime .date).Unix) -}}
   {{- $balances = $balances | append .balance -}}
 {{- end -}}
 {{- $tMin := index (sort $times) 0 -}}
@@ -21,7 +21,7 @@
 
 {{- $line := "" -}}{{- $x := 0.0 -}}{{- $y := 0.0 -}}{{- $x0 := 0.0 -}}
 {{- range $i, $r := $pts -}}
-  {{- $nx := add $pad (mul (div (sub (float (time.AsTime $r.postedAt).Unix) $tMin) $tSpan) $plotW) -}}
+  {{- $nx := add $pad (mul (div (sub (float (time.AsTime $r.date).Unix) $tMin) $tSpan) $plotW) -}}
   {{- $ny := add $pad (mul (div (sub $bHi $r.balance) $bSpan) $plotH) -}}
   {{- if eq $i 0 -}}
     {{- $line = printf "M %.1f %.1f" $nx $ny -}}{{- $x0 = $nx -}}
@@ -37,7 +37,7 @@
   <h2 class="paridata-heading" id="paridata-curve-h">
     {{ i18n "paridata_curve" }}
     <bdi class="paridata-heading__aside" dir="ltr">
-      {{- time.Format ":date_medium" (index $pts 0).postedAt | replaceRE $rlm "" }} — {{ time.Format ":date_medium" (index $pts (sub (len $pts) 1)).postedAt | replaceRE $rlm "" -}}
+      {{- time.Format ":date_medium" (index $pts 0).date | replaceRE $rlm "" }} — {{ time.Format ":date_medium" (index $pts (sub (len $pts) 1)).date | replaceRE $rlm "" -}}
     </bdi>
   </h2>
   <svg class="paridata-curve__svg" viewBox="0 0 {{ $W }} {{ $H }}" preserveAspectRatio="none" role="img"

@@ -15,11 +15,10 @@
     <span>{{ i18n "paridata_profit" }}</span>
   </div>
 
-  {{- range $r := sort $l.rows "postedAt" "desc" }}
-  {{- $t := $r.ticket }}
-  <details class="paridata-row" data-settlement="{{ $t.settlement }}">
+  {{- range $r := sort $l.rows "id" "desc" }}
+  <details class="paridata-row" data-settlement="{{ $r.state }}">
     <summary class="paridata-grid paridata-row__summary">
-      <span class="paridata-row__date"><bdi dir="ltr">{{ time.Format ":date_medium" $t.postedAt | replaceRE $rlm "" }}</bdi></span>
+      <span class="paridata-row__date"><bdi dir="ltr">{{ time.Format ":date_medium" $r.date | replaceRE $rlm "" }}</bdi></span>
       <span class="paridata-row__comp">
         {{- with resources.Get (printf "paridata/flags/%s.svg" $r.region) }}
         <img class="paridata-flag" src="{{ .RelPermalink }}" width="24" height="16" alt="" loading="lazy" decoding="async">
@@ -28,31 +27,40 @@
       </span>
       <span class="paridata-row__tags">
         <span class="u-chip paridata-kind" data-kind="{{ $r.kind }}">
-          {{- if eq $r.kind "coupon" }}{{ i18n "paridata_kind_coupon" }} · <bdi dir="ltr">{{ $r.legs }}</bdi>{{ else }}{{ i18n "paridata_kind_single" }}{{ end -}}
+          {{- if eq $r.kind "coupon" }}{{ i18n "paridata_kind_coupon" }} · <bdi dir="ltr">{{ len $r.legs }}</bdi>{{ else }}{{ i18n "paridata_kind_single" }}{{ end -}}
         </span>
-        <span class="u-chip paridata-chip">{{ i18n (printf "paridata_%s" $t.settlement) }}</span>
+        <span class="u-chip paridata-chip">{{ i18n (printf "paridata_%s" $r.state) }}</span>
       </span>
-      <span class="paridata-row__num paridata-row__odds" data-label="{{ i18n "paridata_odds" }}"><bdi dir="ltr">{{ printf "%.2f" $t.odds }}</bdi></span>
+      <span class="paridata-row__num paridata-row__odds" data-label="{{ i18n "paridata_odds" }}"><bdi dir="ltr">{{ with $r.odds }}{{ . }}{{ else }}—{{ end }}</bdi></span>
       <span class="paridata-row__num paridata-row__stake" data-label="{{ i18n "paridata_stake" }}">{{ partial "paridata/amount.html" (dict "value" $r.stake "profile" $p) }}</span>
       <span class="paridata-row__profit">
-        {{- if $r.settled }}{{ partial "paridata/amount.html" (dict "value" $r.profit "profile" $p "signed" true) }}{{ else }}<bdi dir="ltr">—</bdi>{{ end -}}
+        {{- if $r.counted }}{{ partial "paridata/amount.html" (dict "value" $r.profit "profile" $p "signed" true) }}{{ else }}<bdi dir="ltr">—</bdi>{{ end -}}
       </span>
     </summary>
 
     <div class="paridata-row__detail">
       <ol class="paridata-legs">
-        {{- range $leg := $t.legs }}
-        <li class="paridata-leg" data-settlement="{{ $leg.settlement }}">
-          <span class="paridata-leg__match">{{ $leg.home }} – {{ $leg.away }}</span>
-          <span class="paridata-leg__pick">{{ $leg.competition }} · {{ $leg.pick }}</span>
-          <bdi class="paridata-leg__odds" dir="ltr">{{ with $leg.odds }}{{ printf "%.2f" . }}{{ end }}</bdi>
-          <span class="paridata-leg__state">{{ i18n (printf "paridata_%s" $leg.settlement) }}</span>
+        {{- range $leg := $r.legs }}
+        {{- $m := $leg.match }}
+        {{- $labels := slice }}
+        {{- range $c := $leg.conditions }}
+          {{- if eq $c.kind "draw" }}{{ $labels = $labels | append (i18n "paridata_pick_draw") }}
+          {{- else }}{{ $labels = $labels | append (printf (i18n (printf "paridata_pick_%s" (replace $c.kind "-" "_"))) $c.arg) }}{{ end }}
+        {{- end }}
+        <li class="paridata-leg" data-settlement="{{ $leg.state }}">
+          <span class="paridata-leg__date"><bdi dir="ltr">{{ time.Format ":date_medium" $m.date | replaceRE $rlm "" }}</bdi></span>
+          <span class="paridata-leg__match" dir="ltr">
+            {{- $m.home }} {{ if eq $m.status "played" }}<span class="paridata-leg__score">{{ $m.score.home }}–{{ $m.score.away }}</span>{{ else }}<span class="paridata-leg__vs">–</span>{{ end }} {{ $m.away -}}
+          </span>
+          <span class="paridata-leg__pick">{{ $m.competition }} · {{ delimit $labels " + " }}</span>
+          <span class="paridata-leg__state">{{ i18n (printf "paridata_%s" $leg.state) }}</span>
         </li>
         {{- end }}
       </ol>
       {{- if $r.hasVoid }}<p class="paridata-row__note">{{ i18n "paridata_voided_note" }}</p>{{ end }}
-      {{- if not $r.settled }}<p class="paridata-row__note">{{ i18n "paridata_pending_note" }}</p>{{ end }}
-      {{- with $t.notes }}<p class="paridata-row__note">{{ . }}</p>{{ end }}
+      {{- if eq $r.state "pending" }}<p class="paridata-row__note">{{ i18n "paridata_pending_note" }}</p>{{ end }}
+      {{- if and (eq $r.state "won") (not $r.odds) }}<p class="paridata-row__note">{{ i18n "paridata_odds_unknown" }}</p>{{ end }}
+      {{- with $r.posted }}<p class="paridata-row__note">{{ i18n "paridata_posted" }} <bdi dir="ltr">{{ time.Format ":date_long" . | replaceRE $rlm "" }}</bdi></p>{{ end }}
     </div>
   </details>
   {{- end }}
