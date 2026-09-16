@@ -20,6 +20,6 @@
     <main class="main{{ block "main-width" . }}{{ end }}" id="main">
         {{- block "main" . }}{{ end }}
     </main>
-    {{ partialCached "footer.html" . .Layout .Kind (.Param "hideFooter") (.Param "ShowCodeCopyButtons") -}}
+    {{ partialCached "footer.html" . .Layout .Kind (.Param "hideFooter") (.Param "ShowCodeCopyButtons") (strings.Contains .Content "<pre") -}}
 </body>
 </html>

@@ -1,0 +1,14 @@
+{{- with site.Config.Services.GoogleAnalytics.ID }}
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag() { dataLayer.push(arguments); }
+gtag('js', new Date());
+gtag('config', '{{ . }}');
+addEventListener('load', () => (window.requestIdleCallback || setTimeout)(() => {
+  const tag = document.createElement('script');
+  tag.async = true;
+  tag.src = 'https://www.googletagmanager.com/gtag/js?id={{ . }}';
+  document.head.appendChild(tag);
+}));
+</script>
+{{- end }}
