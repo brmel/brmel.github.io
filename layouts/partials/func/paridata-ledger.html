@@ -42,6 +42,8 @@
       "ticket" $t
       "postedAt" $t.postedAt
       "region" $region
+      "kind" (cond (gt (len $t.legs) 1) "coupon" "single")
+      "legs" (len $t.legs)
       "stake" $stake
       "hasVoid" (ne $voidOdds 1.0)
       "profit" $profit

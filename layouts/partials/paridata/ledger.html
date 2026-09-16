@@ -9,6 +9,7 @@
   <div class="paridata-grid paridata-ledger__head" aria-hidden="true">
     <span>{{ i18n "paridata_date" }}</span>
     <span>{{ i18n "paridata_competition" }}</span>
+    <span>{{ i18n "paridata_type" }}</span>
     <span>{{ i18n "paridata_result" }}</span>
     <span>{{ i18n "paridata_odds" }}</span>
     <span>{{ i18n "paridata_stake" }}</span>
@@ -26,9 +27,14 @@
         {{- end }}
         <span class="paridata-row__compname">{{ i18n (printf "paridata_region_%s" $r.region) }}</span>
       </span>
-      <span><span class="u-chip paridata-chip">{{ i18n (printf "paridata_%s" $t.settlement) }}</span></span>
-      <span class="paridata-row__num"><bdi dir="ltr">{{ printf "%.2f" $t.odds }}</bdi></span>
-      <span class="paridata-row__num">{{ partial "paridata/amount.html" (dict "value" $r.stake "profile" $p) }}</span>
+      <span class="paridata-row__tags">
+        <span class="u-chip paridata-kind" data-kind="{{ $r.kind }}">
+          {{- if eq $r.kind "coupon" }}{{ i18n "paridata_kind_coupon" }} · <bdi dir="ltr">{{ $r.legs }}</bdi>{{ else }}{{ i18n "paridata_kind_single" }}{{ end -}}
+        </span>
+        <span class="u-chip paridata-chip">{{ i18n (printf "paridata_%s" $t.settlement) }}</span>
+      </span>
+      <span class="paridata-row__num paridata-row__odds" data-label="{{ i18n "paridata_odds" }}"><bdi dir="ltr">{{ printf "%.2f" $t.odds }}</bdi></span>
+      <span class="paridata-row__num paridata-row__stake" data-label="{{ i18n "paridata_stake" }}">{{ partial "paridata/amount.html" (dict "value" $r.stake "profile" $p) }}</span>
       <span class="paridata-row__profit">
         {{- if $r.settled }}{{ partial "paridata/amount.html" (dict "value" $r.profit "profile" $p "signed" true) }}{{ else }}<bdi dir="ltr">—</bdi>{{ end -}}
       </span>
