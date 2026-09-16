@@ -4,11 +4,11 @@ from datetime import datetime
 
 ROOT = os.path.join(os.path.dirname(__file__), "..", "..")
 DATA = os.path.join(ROOT, "data", "paridata")
-BUNDLE = os.path.join(ROOT, "content", "projects", "paridata")
 FLAGS = os.path.join(ROOT, "assets", "paridata", "flags")
 
 SETTLEMENTS = {"pending", "won", "lost", "void"}
-TICKET_KEYS = {"id", "postedAt", "settlement", "odds", "stake", "source", "evidence", "notes", "legs"}
+TICKET_KEYS = {"id", "postedAt", "settlement", "odds", "stake", "notes", "legs"}
+IDENTIFYING = re.compile(r"https?://|www\.|@\w")
 LEG_KEYS = {"competition", "home", "away", "pick", "odds", "settlement", "kickoffAt"}
 MONTH_FILE = re.compile(r"^\d{4}-\d{2}\.json$")
 ID = re.compile(r"^(\d{4}-\d{2})-\d{2}-\d{2}$")
@@ -90,10 +90,9 @@ for path in sorted(glob.glob(os.path.join(DATA, "tickets", "*.json"))):
             bad("odds must be a number above 1")
         if "stake" in t and (not number(t["stake"]) or t["stake"] <= 0):
             bad("stake, when set, must be a positive number")
-        if not str(t.get("source", "")).startswith("http"):
-            bad("source must be the URL of the post")
-        if t.get("evidence") and not os.path.isfile(os.path.join(BUNDLE, t["evidence"])):
-            bad(f"evidence {t['evidence']!r} is not in the page bundle")
+        for text in [t.get("notes")] + [v for leg in t.get("legs") or [] for v in leg.values()]:
+            if isinstance(text, str) and IDENTIFYING.search(text):
+                bad(f"{text!r} contains a link or handle — the experiment stays anonymous")
 
         legs = t.get("legs")
         if not isinstance(legs, list) or not legs:
@@ -139,4 +138,4 @@ if fails:
     for f in fails:
         print("  " + f)
     sys.exit(1)
-print("✅ every ticket is sourced, consistent, and settles to what its legs say")
+print("✅ every ticket is anonymous, consistent, and settles to what its legs say")

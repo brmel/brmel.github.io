@@ -26,7 +26,7 @@
 
   {{ partial "paridata/dashboard.html" $l }}
   {{ partial "paridata/curve.html" $l }}
-  {{ partial "paridata/ledger.html" (dict "ledger" $l "page" .) }}
+  {{ partial "paridata/ledger.html" $l }}
   {{ partial "paridata/about.html" (dict "page" . "profile" $l.profile) }}
 
   {{- partial "page-end/footer.html" . }}

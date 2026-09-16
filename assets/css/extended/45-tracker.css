@@ -178,12 +178,6 @@
 .paridata-leg__state{color:var(--tone);}
 .paridata-leg:not([data-settlement="won"]):not([data-settlement="lost"]) .paridata-leg__state{color:var(--ink-soft);}
 .paridata-row__note{margin:var(--space-3) 0 0;font-size:var(--t-caption);color:var(--ink-soft);}
-.paridata-row__shot{display:block;margin-block-start:var(--space-3);}
-.paridata-row__source{
-  display:inline-block;margin-block-start:var(--space-3);
-  font-family:var(--font-label);font-size:var(--t-micro);font-weight:700;
-  letter-spacing:.06em;text-transform:uppercase;
-}
 
 .paridata-pager{
   display:flex;justify-content:center;align-items:center;gap:var(--space-4);

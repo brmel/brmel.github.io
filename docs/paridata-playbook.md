@@ -21,7 +21,6 @@ the month, starting with `[` and ending with `]` — and append:
   "postedAt": "2026-10-03T18:30:00Z",
   "settlement": "pending",
   "odds": 2.86,
-  "source": "https://www.tiktok.com/@account/video/123",
   "legs": [
     {
       "competition": "Premier League",
@@ -37,6 +36,10 @@ the month, starting with `[` and ending with `]` — and append:
 
 A single bet has one leg; a coupon has several. The page works out which it is.
 
+The experiment is anonymous: no links, handles, account names or screenshots of his
+posts anywhere in the data. The repository is public, so anything written here is
+published. The check rejects any link or `@handle` it finds.
+
 ## Settle a ticket
 
 When the matches finish, set each leg's `settlement` to `won`, `lost` or `void`
@@ -51,9 +54,7 @@ if any leg lost, `won` if every other leg won, `void` if every leg was void.
 | `postedAt` | yes | when the pick was posted, ISO time in UTC |
 | `settlement` | yes | `pending`, `won`, `lost` or `void` |
 | `odds` | yes | total odds as posted |
-| `source` | yes | link to the post |
 | `stake` | no | units, when the pick used more than the default stake |
-| `evidence` | no | screenshot path inside `content/projects/paridata/` |
 | `notes` | no | one short sentence shown under the matches |
 | `legs[].competition` | yes | must be a key in `competitions.json` |
 | `legs[].home`, `legs[].away` | yes | team names |
@@ -74,7 +75,7 @@ Add it to `competitions.json`, pointing at a flag in `assets/paridata/flags/`
 python3 scripts/checks/check-paridata.py
 ```
 
-It names the ticket and the problem: an unknown or misspelled field, a ticket in
+It names the ticket and the problem: a link or handle, an unknown or misspelled field, a ticket in
 the wrong month file, total odds that do not match the legs, a settlement its
 legs contradict. `./scripts/check.sh` runs it with every other gate.
 

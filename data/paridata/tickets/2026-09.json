@@ -4,7 +4,6 @@
     "postedAt": "2026-09-02T16:15:00Z",
     "settlement": "won",
     "odds": 1.95,
-    "source": "https://example.com/p/sep02",
     "legs": [
       {
         "competition": "Premier League",
@@ -21,7 +20,6 @@
     "postedAt": "2026-09-05T17:00:00Z",
     "settlement": "lost",
     "odds": 3.35,
-    "source": "https://example.com/p/sep05",
     "legs": [
       {
         "competition": "La Liga",
@@ -54,7 +52,6 @@
     "postedAt": "2026-09-08T19:20:00Z",
     "settlement": "lost",
     "odds": 3.2,
-    "source": "https://example.com/p/sep08",
     "legs": [
       {
         "competition": "Bundesliga",
@@ -71,7 +68,6 @@
     "postedAt": "2026-09-11T15:05:00Z",
     "settlement": "won",
     "odds": 3.59,
-    "source": "https://example.com/p/sep11",
     "legs": [
       {
         "competition": "Premier League",
@@ -97,7 +93,6 @@
     "settlement": "lost",
     "odds": 1.7,
     "stake": 2,
-    "source": "https://example.com/p/sep13",
     "notes": "Posted as a double-stake pick.",
     "legs": [
       {
@@ -115,7 +110,6 @@
     "postedAt": "2026-09-14T18:30:00Z",
     "settlement": "pending",
     "odds": 2.86,
-    "source": "https://example.com/p/sep14",
     "legs": [
       {
         "competition": "Premier League",
