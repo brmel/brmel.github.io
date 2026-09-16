@@ -60,7 +60,7 @@
       {{- if $r.hasVoid }}<p class="paridata-row__note">{{ i18n "paridata_voided_note" }}</p>{{ end }}
       {{- if eq $r.state "pending" }}<p class="paridata-row__note">{{ i18n "paridata_pending_note" }}</p>{{ end }}
       {{- if eq $r.oddsSource "estimated" }}<p class="paridata-row__note">{{ i18n "paridata_odds_estimated" }}</p>{{ end }}
-      {{- with $r.posted }}<p class="paridata-row__note">{{ i18n "paridata_posted" }} <bdi dir="ltr">{{ time.Format ":date_long" . | replaceRE $rlm "" }}</bdi></p>{{ end }}
+      {{- with $r.posted }}<p class="paridata-row__note">{{ i18n "paridata_posted" }} <bdi>{{ time.Format ":date_long" . | replaceRE $rlm "" }}</bdi></p>{{ end }}
     </div>
   </details>
   {{- end }}

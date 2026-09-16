@@ -8,7 +8,7 @@
   <ol class="home-career__list">
     {{- range . }}
     <li class="u-label-row home-career__item">
-      <span class="u-eyebrow home-career__period"><bdi dir="ltr">{{ .period }}</bdi></span>
+      <span class="u-eyebrow home-career__period"><bdi>{{ .period }}</bdi></span>
       <span class="home-career__role">{{ .role }}</span>
       {{- with .org }}<span class="home-career__org">{{ . }}</span>{{ end }}
       {{- with .built }}

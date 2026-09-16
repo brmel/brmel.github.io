@@ -29,6 +29,7 @@
 .post-content > :not(.u-wide){max-inline-size:var(--measure);margin-inline:auto;}
 
 body{font-family:var(--font-sans);}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth;}}
 
 .post-content{font-size:var(--prose-size);}
 .logo a,
@@ -81,7 +82,8 @@ a:focus-visible,button:focus-visible,.toc summary:focus-visible,.top-link:focus-
   outline:2px solid var(--accent);outline-offset:2px;border-radius:var(--radius-xs);
 }
 
-.post-content a{
+.post-content a,
+.project-lessons__list a{
   color:var(--accent);
   text-decoration:underline;
   text-decoration-thickness:1px;
@@ -90,7 +92,8 @@ a:focus-visible,button:focus-visible,.toc summary:focus-visible,.top-link:focus-
   transition:text-decoration-color var(--dur-1) var(--ease-standard),
              color var(--dur-1) var(--ease-standard);
 }
-.post-content a:hover{
+.post-content a:hover,
+.project-lessons__list a:hover{
   color:var(--accent-soft);
   text-decoration-color:var(--accent);
 }

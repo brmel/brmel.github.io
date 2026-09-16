@@ -1,4 +1,4 @@
-{{- $projects := where (sort .RegularPages "Date" "desc") "Params.takeaway" "!=" nil -}}
+{{- $projects := where (sort (partial "func/section-pages.html" .) "Date" "desc") "Params.takeaway" "!=" nil -}}
 
 {{- with $projects }}
 <section class="learning" aria-labelledby="learning-h">

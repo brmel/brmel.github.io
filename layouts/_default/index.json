@@ -1,0 +1,9 @@
+{{- /* Fork of themes/PaperMod/_default/index.json @2d2f2c6 — diff before upgrading. */ -}}
+{{- $pages := slice }}
+{{- range site.Params.mainSections }}{{ with site.GetPage (printf "/%s" .) }}{{ $pages = $pages | append (partial "func/section-pages.html" .) }}{{ end }}{{ end }}
+{{- with site.GetPage "/resume" }}{{ $pages = $pages | append . }}{{ end }}
+{{- $index := slice }}
+{{- range $pages }}
+{{- $index = $index | append (dict "title" (.Title | htmlUnescape) "content" (.Plain | htmlUnescape) "permalink" .Permalink "summary" (.Summary | plainify | htmlUnescape)) }}
+{{- end }}
+{{- $index | jsonify -}}

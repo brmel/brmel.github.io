@@ -76,6 +76,7 @@
                 </button>
                 {{- end }}
 
+                {{- $page := . }}
                 {{- $lang := .Lang}}
                 {{- $separator := or $label_text (not site.Params.disableThemeToggle)}}
                 {{- with site.Home.Translations }}
@@ -83,8 +84,10 @@
                     {{- if $separator }}<li>|</li>{{ end }}
                     {{- range . -}}
                     {{- if ne $lang .Lang }}
+                    {{- $to := . }}
+                    {{- with where $page.Translations "Lang" .Lang }}{{ $to = index . 0 }}{{ end }}
                     <li>
-                        <a href="{{- .Permalink -}}" title="{{ .Language.Params.languageAltTitle | default (.Language.LanguageName | emojify) | default (.Lang | title) }}">
+                        <a href="{{- $to.Permalink -}}" lang="{{ .Lang }}" hreflang="{{ .Lang }}" title="{{ .Language.Params.languageAltTitle | default (.Language.LanguageName | emojify) | default (.Lang | title) }}">
                             {{- if (and site.Params.displayFullLangName (.Language.LanguageName)) }}
                             {{- .Language.LanguageName | emojify -}}
                             {{- else }}
