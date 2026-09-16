@@ -172,6 +172,9 @@ Optional fields, each rendered by one partial:
 
 Adventures add the field-note fields documented in `docs/adventures-playbook.md`.
 
+PariData is the one page rendered from `data/` rather than front matter: tickets live in
+`data/paridata/tickets/`, documented in `docs/paridata-playbook.md`.
+
 A report is an ordinary Tech article: prose in the text column, then the generated HTML from
 `assets/reports/` embedded with `{{< reportframe src="reports/<file>.html" >}}`, which widens to the
 content width and sizes the frame to its content.

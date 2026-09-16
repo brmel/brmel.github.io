@@ -8,16 +8,19 @@ BUNDLE = os.path.join(ROOT, "content", "projects", "paridata")
 FLAGS = os.path.join(ROOT, "assets", "paridata", "flags")
 
 SETTLEMENTS = {"pending", "won", "lost", "void"}
+TICKET_KEYS = {"id", "postedAt", "settlement", "odds", "stake", "source", "evidence", "notes", "legs"}
+LEG_KEYS = {"competition", "home", "away", "pick", "odds", "settlement", "kickoffAt"}
+MONTH_FILE = re.compile(r"^\d{4}-\d{2}\.json$")
 ID = re.compile(r"^(\d{4}-\d{2})-\d{2}-\d{2}$")
-fails, seen, count = [], {}, 0
+fails, seen, count = [], set(), 0
 
 
-def load(name):
+def load(path):
     try:
-        return json.load(open(os.path.join(DATA, name), encoding="utf-8"))
+        return json.load(open(path, encoding="utf-8"))
     except (OSError, json.JSONDecodeError) as e:
-        fails.append(f"{name}: {e}")
-        return {}
+        fails.append(f"{os.path.relpath(path, DATA)}: {e}")
+        return None
 
 
 def timestamp(value):
@@ -31,7 +34,7 @@ def number(value):
     return isinstance(value, (int, float)) and not isinstance(value, bool)
 
 
-profile = load("profile.json")
+profile = load(os.path.join(DATA, "profile.json")) or {}
 staking = profile.get("staking", {})
 if not number(staking.get("defaultStake")) or staking["defaultStake"] <= 0:
     fails.append("profile.json: staking.defaultStake must be a positive number")
@@ -47,16 +50,19 @@ for c in currencies or []:
     if c.get("decimals") not in (0, 1, 2, 3):
         fails.append(f"profile.json: currency {code} decimals must be 0 to 3")
 
-competitions = load("competitions.json")
+competitions = load(os.path.join(DATA, "competitions.json")) or {}
 for name, region in competitions.items():
     if not os.path.isfile(os.path.join(FLAGS, f"{region}.svg")):
         fails.append(f"competitions.json: {name!r} maps to {region!r}, which has no flag in assets/paridata/flags/")
 
-for path in sorted(glob.glob(os.path.join(DATA, "[0-9][0-9][0-9][0-9]-[0-9][0-9].json"))):
-    month = os.path.basename(path)[:7]
-    tickets = load(os.path.basename(path)).get("tickets")
+for path in sorted(glob.glob(os.path.join(DATA, "tickets", "*.json"))):
+    name = os.path.basename(path)
+    if not MONTH_FILE.match(name):
+        fails.append(f"tickets/{name}: ticket files are named YYYY-MM.json")
+        continue
+    tickets = load(path)
     if not isinstance(tickets, list):
-        fails.append(f"{month}.json: no tickets array")
+        fails.append(f"tickets/{name}: must be a list of tickets")
         continue
 
     for t in tickets:
@@ -64,56 +70,63 @@ for path in sorted(glob.glob(os.path.join(DATA, "[0-9][0-9][0-9][0-9]-[0-9][0-9]
         tid = t.get("id", "<no id>")
         bad = lambda msg: fails.append(f"{tid}: {msg}")
 
+        for key in sorted(set(t) - TICKET_KEYS):
+            bad(f"unknown field {key!r}")
         m = ID.match(str(tid))
         if not m:
             bad("id must be YYYY-MM-DD-NN")
-        elif m.group(1) != month:
-            bad(f"lives in {month}.json but is dated {m.group(1)}")
+        elif f"{m.group(1)}.json" != name:
+            bad(f"is dated {m.group(1)} but lives in tickets/{name}")
         if tid in seen:
             bad("duplicate id")
-        seen[tid] = True
+        seen.add(tid)
 
         posted = timestamp(t.get("postedAt"))
         if posted is None:
             bad("postedAt must be an ISO timestamp")
+        if t.get("settlement") not in SETTLEMENTS:
+            bad(f"settlement must be one of {sorted(SETTLEMENTS)}")
         if not number(t.get("odds")) or t["odds"] <= 1:
             bad("odds must be a number above 1")
         if "stake" in t and (not number(t["stake"]) or t["stake"] <= 0):
             bad("stake, when set, must be a positive number")
-        if t.get("settlement") not in SETTLEMENTS:
-            bad(f"settlement must be one of {sorted(SETTLEMENTS)}")
-
-        source = t.get("source") or {}
-        if not source.get("url"):
-            bad("source.url is required")
-        if source.get("evidence") and not os.path.isfile(os.path.join(BUNDLE, source["evidence"])):
-            bad(f"evidence {source['evidence']!r} is not in the page bundle")
+        if not str(t.get("source", "")).startswith("http"):
+            bad("source must be the URL of the post")
+        if t.get("evidence") and not os.path.isfile(os.path.join(BUNDLE, t["evidence"])):
+            bad(f"evidence {t['evidence']!r} is not in the page bundle")
 
         legs = t.get("legs")
         if not isinstance(legs, list) or not legs:
             bad("needs at least one leg")
             continue
         for i, leg in enumerate(legs, 1):
-            if not leg.get("selection"):
-                bad(f"leg {i} has no selection")
-            if leg.get("settlement") not in SETTLEMENTS:
-                bad(f"leg {i} settlement must be one of {sorted(SETTLEMENTS)}")
-            if leg.get("settlement") == "void" and not number(leg.get("odds")):
-                bad(f"leg {i} is void and needs its odds")
+            for key in sorted(set(leg) - LEG_KEYS):
+                bad(f"leg {i} has unknown field {key!r}")
+            for key in ("competition", "home", "away", "pick"):
+                if not leg.get(key):
+                    bad(f"leg {i} needs {key}")
             if leg.get("competition") and leg["competition"] not in competitions:
                 bad(f"leg {i} competition {leg['competition']!r} is missing from competitions.json")
+            if leg.get("settlement") not in SETTLEMENTS:
+                bad(f"leg {i} settlement must be one of {sorted(SETTLEMENTS)}")
+            if "odds" in leg and (not number(leg["odds"]) or leg["odds"] <= 1):
+                bad(f"leg {i} odds must be a number above 1")
+            if leg.get("settlement") == "void" and not number(leg.get("odds")):
+                bad(f"leg {i} is void and needs its odds")
             kickoff = timestamp(leg["kickoffAt"]) if leg.get("kickoffAt") else None
+            if leg.get("kickoffAt") and kickoff is None:
+                bad(f"leg {i} kickoffAt must be an ISO timestamp")
             if kickoff and posted and kickoff < posted:
                 bad(f"leg {i} kicked off before the pick was posted")
 
         states = [leg.get("settlement") for leg in legs]
-        if all(s in SETTLEMENTS for s in states):
+        if t.get("settlement") in SETTLEMENTS and all(s in SETTLEMENTS for s in states):
             derived = ("pending" if "pending" in states else "lost" if "lost" in states
                        else "void" if all(s == "void" for s in states) else "won")
-            if t.get("settlement") in SETTLEMENTS and derived != t["settlement"]:
+            if derived != t["settlement"]:
                 bad(f"declared {t['settlement']!r} but its legs say {derived!r}")
 
-        if all(number(leg.get("odds")) for leg in legs) and number(t.get("odds")):
+        if number(t.get("odds")) and all(number(leg.get("odds")) for leg in legs):
             product = 1.0
             for leg in legs:
                 product *= leg["odds"]

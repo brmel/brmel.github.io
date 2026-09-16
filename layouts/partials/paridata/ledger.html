@@ -45,7 +45,7 @@
         {{- range $leg := $t.legs }}
         <li class="paridata-leg" data-settlement="{{ $leg.settlement }}">
           <span class="paridata-leg__match">{{ $leg.home }} – {{ $leg.away }}</span>
-          <span class="paridata-leg__pick">{{ with $leg.competition }}{{ . }} · {{ end }}{{ $leg.selection }}</span>
+          <span class="paridata-leg__pick">{{ $leg.competition }} · {{ $leg.pick }}</span>
           <bdi class="paridata-leg__odds" dir="ltr">{{ with $leg.odds }}{{ printf "%.2f" . }}{{ end }}</bdi>
           <span class="paridata-leg__state">{{ i18n (printf "paridata_%s" $leg.settlement) }}</span>
         </li>
@@ -54,10 +54,10 @@
       {{- if $r.hasVoid }}<p class="paridata-row__note">{{ i18n "paridata_voided_note" }}</p>{{ end }}
       {{- if not $r.settled }}<p class="paridata-row__note">{{ i18n "paridata_pending_note" }}</p>{{ end }}
       {{- with $t.notes }}<p class="paridata-row__note">{{ . }}</p>{{ end }}
-      {{- with $t.source.evidence }}{{ with $page.Resources.GetMatch . }}{{ $thumb := .Resize "320x webp q82" }}
+      {{- with $t.evidence }}{{ with $page.Resources.GetMatch . }}{{ $thumb := .Resize "320x webp q82" }}
       <a class="paridata-row__shot" href="{{ .RelPermalink }}"><img class="u-frame" src="{{ $thumb.RelPermalink }}" width="{{ $thumb.Width }}" height="{{ $thumb.Height }}" loading="lazy" decoding="async" alt="{{ i18n "paridata_source" }}"></a>
       {{- end }}{{ end }}
-      <a class="paridata-row__source" href="{{ $t.source.url }}" target="_blank" rel="nofollow noopener noreferrer">{{ i18n "paridata_source" }} <span aria-hidden="true">↗</span></a>
+      <a class="paridata-row__source" href="{{ $t.source }}" target="_blank" rel="nofollow noopener noreferrer">{{ i18n "paridata_source" }} <span aria-hidden="true">↗</span></a>
     </div>
   </details>
   {{- end }}

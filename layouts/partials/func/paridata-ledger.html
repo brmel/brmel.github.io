@@ -3,9 +3,7 @@
 {{- $flags := slice "england" "spain" "italy" "france" "germany" "netherlands" "portugal" "europe" "mix" -}}
 
 {{- $tickets := slice -}}
-{{- range $name, $file := site.Data.paridata -}}
-  {{- with $file.tickets -}}{{- $tickets = $tickets | append . -}}{{- end -}}
-{{- end -}}
+{{- range site.Data.paridata.tickets -}}{{- $tickets = $tickets | append . -}}{{- end -}}
 
 {{- $rows := slice -}}
 {{- $balance := 0.0 -}}

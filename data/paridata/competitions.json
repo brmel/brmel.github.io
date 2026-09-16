@@ -1,12 +1,12 @@
 {
-  "Premier League": "england",
   "Championship": "england",
-  "La Liga": "spain",
-  "Serie A": "italy",
+  "Premier League": "england",
+  "Champions League": "europe",
+  "Europa League": "europe",
   "Ligue 1": "france",
   "Bundesliga": "germany",
+  "Serie A": "italy",
   "Eredivisie": "netherlands",
   "Primeira Liga": "portugal",
-  "Champions League": "europe",
-  "Europa League": "europe"
+  "La Liga": "spain"
 }
