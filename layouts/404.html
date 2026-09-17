@@ -7,7 +7,7 @@
   {{- with site.Menus.main }}
   <nav class="page-404__routes" aria-label="{{ i18n "notfound_title" }}">
     <ul>
-      {{- range . }}<li><a class="u-eyebrow" href="{{ .URL | relLangURL }}">{{ .Name }}</a></li>{{ end }}
+      {{- range . }}<li><a class="u-eyebrow u-rule-link" href="{{ .URL | relLangURL }}">{{ .Name }}</a></li>{{ end }}
     </ul>
   </nav>
   {{- end }}

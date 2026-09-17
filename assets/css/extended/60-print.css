@@ -1,7 +1,7 @@
 @media print{
   @page{margin:12mm 14mm;}
   .header,.footer,.site-mark,.top-link,.breadcrumbs,.content-footer,.section-nav,
-  .resume__print,.resume__mark,.video-thumb,.video-thumbnail,#lightbox,
+  .resume__print,.resume__mark,.video-thumb,
   .timeline-container::before,.timeline-marker,.u-bar{display:none!important;}
   .main{padding:0;}
   a{text-decoration:none;color:inherit;border:0!important;background:none!important;}

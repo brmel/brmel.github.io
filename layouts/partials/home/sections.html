@@ -3,10 +3,10 @@
   {{- with site.GetPage (printf "/%s" .) }}
   {{- $pages := partial "func/section-pages.html" . }}
   {{- if ge (len $pages) 1 }}
-  <a class="u-card home-card" href="{{ .RelPermalink }}">
+  <a class="u-card u-tile" href="{{ .RelPermalink }}">
     <span class="u-bar" aria-hidden="true"></span>
-    <span class="home-card__title">{{ .Title }}</span>
-    {{- with .Description }}<span class="home-card__desc">{{ . }}</span>{{ end }}
+    <span class="u-tile__title">{{ .Title }}</span>
+    {{- with .Description }}<span class="u-tile__text">{{ . }}</span>{{ end }}
   </a>
   {{- end }}
   {{- end }}

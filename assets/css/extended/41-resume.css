@@ -6,20 +6,16 @@
   list-style:none;margin:var(--space-2) 0 0;padding:0;
   display:flex;flex-wrap:wrap;justify-content:center;gap:var(--space-2) var(--space-4);
 }
-.resume__contact a{
-  display:inline-flex;align-items:center;gap:.5ch;
-  color:var(--ink-mute);text-decoration:none;
-  border-bottom:var(--hairline) solid var(--rule);padding-bottom:2px;
-  transition:color var(--dur-1) var(--ease-standard),border-color var(--dur-1) var(--ease-standard);
-}
-.resume__contact a:hover{color:var(--accent);border-color:var(--accent);}
 .resume__contact svg{width:14px;height:14px;flex:0 0 auto;opacity:.85;}
 
 .resume__section{margin-block:var(--flow-section) 0;}
 .resume__section:first-of-type{margin-block-start:0;}
 
 .resume__skills,
-.resume__records{margin:0;padding:0;list-style:none;}
+.resume__records{
+  margin:0;padding:0;list-style:none;
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,520px),1fr));column-gap:var(--space-7);
+}
 .resume__skillgroup,
 .resume__record{padding:var(--space-3) 0;}
 .resume__skillgroup dt{color:var(--accent);}
@@ -30,17 +26,8 @@
 .resume__record-name{font-family:var(--font-serif);font-size:var(--t-subhead);color:var(--ink);}
 .resume__record-issuer{color:var(--ink-soft);font-size:var(--t-caption);}
 
-@media (min-width:1100px){
-  .resume__skills,
-  .resume__records{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:var(--space-7);}
-}
 @media (max-width:600px){
   .resume__record-year{grid-row:auto;padding-top:0;}
 }
 
-.resume__print{
-  background:none;border:0;padding:0 0 2px;cursor:pointer;
-  border-bottom:var(--hairline) solid var(--rule);
-  min-height:24px;
-}
-.resume__print:hover{color:var(--accent);border-color:var(--accent);}
+.resume__print{background:none;border-width:0 0 var(--hairline);padding:0 0 1px;cursor:pointer;font:inherit;letter-spacing:inherit;text-transform:inherit;}

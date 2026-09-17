@@ -5,14 +5,14 @@
   <h2 class="u-rule-heading home-career__heading" id="home-career-heading">
     {{ i18n "home_career" }}
   </h2>
-  <ol class="home-career__list">
+  <ol class="u-rows">
     {{- range . }}
     <li class="u-label-row home-career__item">
       <span class="u-eyebrow home-career__period"><bdi>{{ .period }}</bdi></span>
       <span class="home-career__role">{{ .role }}</span>
       {{- with .org }}<span class="home-career__org">{{ . }}</span>{{ end }}
       {{- with .built }}
-      <span class="home-career__built">
+      <span class="u-meta">
         {{- range $i, $b := first 2 . }}{{ if $i }} <b aria-hidden="true">·</b> {{ end }}{{ $b }}{{ end -}}
       </span>
       {{- end }}

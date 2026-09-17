@@ -13,7 +13,7 @@
   <h2 class="u-rule-heading home-latest__heading" id="home-latest-heading">
     {{ i18n "home_latest" }}
   </h2>
-  <ul class="home-latest__list">
+  <ul class="u-rows">
     {{- range . }}
     <li class="home-latest__item"{{ partial "func/lang-attrs.html" . }}>
       <a href="{{ .RelPermalink }}">

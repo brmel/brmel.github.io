@@ -40,7 +40,7 @@
     <h2 class="u-eyebrow project-period__year" id="projects-{{ $year }}"><bdi dir="ltr">{{ $year }}</bdi></h2>
     <div class="project-grid">
     {{- range where $projects "Date.Year" $year }}
-    <a class="u-card project-card" href="{{ .RelPermalink }}"{{ partial "func/lang-attrs.html" . }}>
+    <a class="u-card u-tile" href="{{ .RelPermalink }}"{{ partial "func/lang-attrs.html" . }}>
     <span class="u-bar" aria-hidden="true"></span>
     <span class="u-eyebrow project-card__eyebrow">
       {{- with .Params.projectNo }}{{ i18n "number_sign" }} {{ printf "%02d" . }} <b aria-hidden="true">·</b> {{ end -}}
@@ -48,16 +48,16 @@
       <b aria-hidden="true">·</b>
       {{ i18n (printf "project_status_%s" (.Params.status | default "active")) | default (.Params.status | upper) }}
     </span>
-    <span class="project-card__title">{{ .Title }}</span>
+    <span class="u-tile__title">{{ .Title }}</span>
 
-    {{- with .Params.pitch }}<span class="project-card__pitch" dir="auto">{{ . }}</span>{{ end }}
+    {{- with .Params.pitch }}<span class="u-tile__text" dir="auto">{{ . }}</span>{{ end }}
     {{- partial "lang/en-only.html" . }}
     {{- with .Params.links.live }}
 
     <span class="u-eyebrow project-card__live">{{ i18n "project_link_live" }} <span aria-hidden="true">↗</span></span>
     {{- end }}
     {{- with .Params.stack }}
-    <span class="project-card__stack">
+    <span class="u-meta">
       {{- range $i, $s := first 4 . }}{{ if $i }} <b aria-hidden="true">·</b> {{ end }}{{ $s }}{{ end -}}
     </span>
     {{- end }}

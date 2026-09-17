@@ -25,12 +25,7 @@
 
 .home-career,
 .home-sections{margin-block:0 var(--flow-section);}
-.home-career__list{list-style:none;margin:0;padding:0;}
-.home-career__item{
-  padding:var(--space-4) 0;
-  border-bottom:var(--hairline) solid var(--rule-soft);
-}
-.home-career__item:last-child{border-bottom:0;}
+.home-career__item{padding:var(--space-4) 0;}
 .home-career__period{grid-row:span 3;padding-top:3px;}
 .home-career__role{
   font-family:var(--font-serif);
@@ -39,11 +34,6 @@
   color:var(--ink);
 }
 .home-career__org{font-size:var(--t-caption);color:var(--ink-soft);}
-.home-career__built{
-  font-family:var(--font-label);font-size:var(--t-micro);
-  letter-spacing:var(--track-micro);color:var(--ink-mute);
-}
-.home-career__built b{color:var(--accent);font-weight:400;}
 .home-career__more{margin:var(--space-4) 0 0;}
 
 .home-sections{
@@ -51,27 +41,7 @@
   grid-template-columns:repeat(2,1fr);
   gap:var(--space-4);
 }
-.home-card{
-  display:flex;flex-direction:column;gap:var(--space-2);
-  padding:var(--space-5);
-  text-decoration:none;
-}
-.home-card__title{
-  font-family:var(--font-serif);
-  font-size:var(--t-heading);
-  line-height:1.15;
-  color:var(--ink);
-}
-.home-card__desc{
-  font-size:var(--t-caption);
-  line-height:1.5;
-  color:var(--ink-soft);
-  flex:1 1 auto;
-}
 
-.home-latest__list{list-style:none;margin:0;padding:0;}
-.home-latest__item{border-bottom:var(--hairline) solid var(--rule-soft);}
-.home-latest__item:last-child{border-bottom:0;}
 .home-latest__item a{
   display:flex;flex-direction:column;gap:var(--space-1);
   padding:var(--space-4) 0;
@@ -92,11 +62,10 @@
   color:var(--ink-soft);
 }
 
+.home-sections > :last-child:nth-child(odd){grid-column:1 / -1;}
 @media (min-width:1100px){
   .home-sections{grid-template-columns:repeat(4,1fr);}
-}
-@media (max-width:1099px){
-  .home-sections > :last-child:nth-child(odd){grid-column:1 / -1;}
+  .home-sections > :last-child:nth-child(odd){grid-column:auto;}
 }
 @media (max-width:600px){
   .profile .profile_inner{grid-template-columns:1fr;justify-items:center;text-align:center;}

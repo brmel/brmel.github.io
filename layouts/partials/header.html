@@ -14,7 +14,7 @@
             {{- if site.Title }}
             <a href="{{ "" | absLangURL }}" accesskey="h" title="{{ $label_text }} (Alt + H)">
 
-                {{ partial "brand/mark.html" (dict "size" 22 "class" "brand-mark brand-mark--logo") }}
+                {{ partial "brand/mark.html" (dict "size" 22 "class" "brand-mark") }}
                 {{- $label_text -}}
             </a>
             {{- end }}

@@ -1,5 +1,5 @@
 {{- with .Params.experience }}
-<div class="timeline-container" data-play-label="{{ i18n "career_play_video" }}">
+<div class="timeline-container">
   {{- range . }}
   {{- $p := . }}
   <article class="timeline-item">
@@ -64,18 +64,14 @@
   </article>
   {{- end }}
 </div>
-<div id="lightbox" role="dialog" aria-modal="true" aria-hidden="true"
-     aria-label="{{ i18n "career_video" }}">
-  <button type="button" id="lightbox-close" class="lightbox__close"
-          aria-label="{{ i18n "career_close_video" }}">
-    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-      <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
-    </svg>
-  </button>
-  <iframe id="lightbox-video" title="{{ i18n "career_video" }}" frameborder="0"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen
-    style="display: none;"></iframe>
-</div>
+<dialog class="lightbox" id="lightbox" aria-label="{{ i18n "career_video" }}">
+  <form method="dialog">
+    <button class="lightbox__close" aria-label="{{ i18n "career_close_video" }}">
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+    </button>
+  </form>
+  <iframe id="lightbox-video" title="{{ i18n "career_video" }}" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+</dialog>
 {{ $js := resources.Get "js/timeline.js" | resources.Minify | resources.Fingerprint }}
 <script src="{{ $js.RelPermalink }}" defer></script>
 {{- end }}

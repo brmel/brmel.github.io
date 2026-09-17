@@ -11,10 +11,10 @@
     {{- with .Params.contact }}
     <ul class="u-eyebrow resume__contact">
       {{- range . }}
-      <li><a href="{{ .url }}"{{ if hasPrefix .url "http" }} target="_blank" rel="noopener noreferrer"{{ end }}>
+      <li><a class="u-rule-link" href="{{ .url }}"{{ if hasPrefix .url "http" }} target="_blank" rel="noopener noreferrer"{{ end }}>
         {{- partial "brand/social-icon.html" .url }}<span>{{ .label }}</span></a></li>
       {{- end }}
-      <li><button type="button" class="u-eyebrow resume__print" onclick="window.print()">{{ i18n "resume_print" }}</button></li>
+      <li><button type="button" class="u-rule-link resume__print" onclick="window.print()">{{ i18n "resume_print" }}</button></li>
     </ul>
     {{- end }}
   </header>
