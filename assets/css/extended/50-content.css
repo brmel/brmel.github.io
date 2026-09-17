@@ -43,8 +43,7 @@
   width:auto;height:auto;
   margin-inline:0;
 }
-.post-content figure > figcaption,
-.post-content figure > figcaption > p{
+.post-content figure > figcaption{
   font-family:var(--font-label);
   font-weight:400;
   font-size:.72em;
@@ -55,12 +54,11 @@
   margin:var(--space-3) 0 0;
   text-align:start;
 }
-.post-content figure > figcaption > p{margin-top:var(--space-1);}
 
 .post-single .post-meta{
   display:block;
   font-family:var(--font-label);
-  font-size:var(--t-data);
+  font-size:var(--t-caption);
   letter-spacing:var(--track-micro);
   color:var(--ink-mute);
 }

@@ -40,101 +40,31 @@
 </header>
 {{- end }}
 
-{{- if .Content }}
-<div class="post-content">
-  {{- if not (.Param "disableAnchoredHeadings") }}
-  {{- partial "anchored_headings.html" .Content -}}
-  {{- else }}{{ .Content }}{{ end }}
-</div>
+{{- with .Content }}
+<div class="post-content">{{ partial "anchored_headings.html" . }}</div>
 {{- end }}
 
 {{- $pages := union .RegularPages .Sections }}
-
 {{- if eq .Kind "section" }}
 {{- $pages = partial "func/section-pages.html" . }}
 {{- end }}
-
-{{- $paginator := .Paginate $pages }}
-
-{{- if and .IsHome site.Params.homeInfoParams (eq $paginator.PageNumber 1) }}
-{{- partial "home_info.html" . }}
-{{- end }}
-
-{{- if and (not .IsHome) (lt (len $pages) 1) }}
-<div class="empty-section">
-  <span class="empty-section__mark" aria-hidden="true"></span>
-
-  <p class="empty-section__lead">{{ i18n "section_empty_lead" | default "Nothing published here yet." }}</p>
-  <p class="u-eyebrow empty-section__sub">{{ i18n "section_empty_sub" | default "New work is on the way — check back soon." }}</p>
-</div>
-{{- end }}
-
-{{- range $index, $page := $paginator.Pages }}
-
-{{- $class := "post-entry" }}
-
-{{- $user_preferred := or site.Params.disableSpecial1stPost site.Params.homeInfoParams }}
-{{- if (and $.IsHome (eq $paginator.PageNumber 1) (eq $index 0) (not $user_preferred)) }}
-{{- $class = "first-entry" }}
-{{- end }}
-
-<article class="{{ $class }}"{{ partial "func/lang-attrs.html" . }}>
+{{- range $pages }}
+<article class="post-entry"{{ partial "func/lang-attrs.html" . }}>
   <span class="u-bar" aria-hidden="true"></span>
   {{- partial "article/cover.html" . }}
 
   <div class="entry-text">
   <header class="entry-header">
-    {{- if not (.Param "hideMeta") }}
-    <span class="u-eyebrow entry-eyebrow">
-      {{- with .Date }}<time datetime="{{ .Format "2006-01-02" }}">{{ time.Format (site.Params.DateFormat | default ":date_long") . }}</time>{{ end }}
-
-      {{- if ge .ReadingTime 2 }} <b aria-hidden="true">·</b> <span>{{ i18n "read_time" .ReadingTime | default (printf "%d min" .ReadingTime) }}</span>{{ end }}
-    </span>
-    {{- end }}
-    <h2 class="entry-hint-parent">
-      {{- .Title }}
-      {{- if .Draft }}
-      <span class="entry-hint" title="Draft">
-        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" fill="currentColor">
-          <path
-            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
-        </svg>
-      </span>
-      {{- end }}
-    </h2>
+    <span class="u-eyebrow entry-eyebrow">{{ partial "post_meta.html" . }}</span>
+    <h2>{{ .Title }}</h2>
   </header>
-  {{- $blurb := or .Description .Params.pitch (printf "%s%s" (.Summary | plainify | htmlUnescape) (cond .Truncated "…" "")) }}
-  {{- if and $blurb (ne (.Param "hideSummary") true) }}
-
-  <div class="entry-content"><p dir="auto">{{ $blurb }}</p></div>
+  {{- with or .Description .Params.pitch (printf "%s%s" (.Summary | plainify | htmlUnescape) (cond .Truncated "…" "")) }}
+  <div class="entry-content"><p dir="auto">{{ . }}</p></div>
   {{- end }}
   {{- partial "lang/en-only.html" . }}
   </div>
   <a class="entry-link" aria-label="{{ .Title | plainify }}" href="{{ .Permalink }}"></a>
 </article>
-{{- end }}
-
-{{- if gt $paginator.TotalPages 1 }}
-<footer class="page-footer">
-  <nav class="pagination">
-    {{- if $paginator.HasPrev }}
-    <a class="prev" href="{{ $paginator.Prev.URL | absURL }}">
-      «&nbsp;{{ i18n "prev_page" }}&nbsp;
-      {{- if (.Param "ShowPageNums") }}
-      {{- sub $paginator.PageNumber 1 }}/{{ $paginator.TotalPages }}
-      {{- end }}
-    </a>
-    {{- end }}
-    {{- if $paginator.HasNext }}
-    <a class="next" href="{{ $paginator.Next.URL | absURL }}">
-      {{- i18n "next_page" }}&nbsp;
-      {{- if (.Param "ShowPageNums") }}
-      {{- add 1 $paginator.PageNumber }}/{{ $paginator.TotalPages }}
-      {{- end }}&nbsp;»
-    </a>
-    {{- end }}
-  </nav>
-</footer>
 {{- end }}
 
 {{- end }}

@@ -7,7 +7,6 @@ tags: ["Montreal", "Adventure"]
 cover:
     image: "cover.jpg"
     alt: ""
-    relative: true
 category: "restaurant"
 fieldNote: 0
 place: ""

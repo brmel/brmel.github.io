@@ -9,7 +9,6 @@ tags: ["Data Analysis", "Québec"]
 cover:
     image: "cover.jpg"
     alt: "The top of the forecast report: a day ahead, the temperature forecast misses by 1.3 °C on average"
-    relative: true
 ---
 
 {{< reportframe src="reports/montreal-forecast-reliability.html" title="Montréal Forecast Reliability Report" >}}

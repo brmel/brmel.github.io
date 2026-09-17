@@ -17,9 +17,6 @@ contact:
   - label: "X"
     url: "https://x.com/BrmelB"
 
-# Le parcours, période par période. La structure vient de
-# layouts/partials/career-timeline.html ; seuls les mots changent d'une langue
-# à l'autre. `learned` tient en une phrase — c'est la ligne qu'on retient.
 experience:
   - period: "2024 — Aujourd'hui"
     role: "Développeur logiciel senior"

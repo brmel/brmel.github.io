@@ -6,7 +6,7 @@
   {{- if or .Params.stack .Params.links }}
   <div class="project-meta">
     {{- with .Params.stack }}
-    <ul class="project-stack" aria-label="{{ i18n `project_stack` | default `Stack` }}">
+    <ul class="project-stack" aria-label="{{ i18n `project_stack` }}">
       {{- range . }}<li class="u-chip">{{ . }}</li>{{ end }}
     </ul>
     {{- end }}

@@ -8,7 +8,6 @@ tags: ["Python", "LLM", "AI"]
 cover:
     image: "05-chatbot-demo.jpg"
     alt: "The finished chatbot answering a question about pool availability, citing the pool's page as its source"
-    relative: true
 canonicalOriginal: "https://www.linkedin.com/pulse/how-i-used-generative-ai-llamaindex-rag-chainlit-create-mellah--ffmre"
 canonicalOriginalName: "LinkedIn"
 ---

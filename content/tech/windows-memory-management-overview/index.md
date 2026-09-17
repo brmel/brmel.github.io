@@ -9,7 +9,6 @@ seriesPart: 1
 cover:
     image: "02-virtual-vs-physical-memory.jpg"
     alt: "Diagram of virtual memory mapped onto physical memory and the page file"
-    relative: true
 canonicalOriginal: "https://www.linkedin.com/pulse/very-shallow-overview-windows-memory-management-mellah-thzse"
 canonicalOriginalName: "LinkedIn"
 ---

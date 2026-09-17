@@ -4,7 +4,7 @@
   <h2 class="paridata-heading" id="paridata-about-h">{{ i18n "paridata_about" }}</h2>
   <div class="paridata-about__text">{{ $page.Content }}</div>
   {{- with $page.Params.stack }}
-  <ul class="project-stack paridata-about__stack" aria-label="{{ i18n `project_stack` | default `Stack` }}">
+  <ul class="project-stack paridata-about__stack" aria-label="{{ i18n `project_stack` }}">
     {{- range . }}<li class="u-chip">{{ . }}</li>{{ end }}
   </ul>
   {{- end }}

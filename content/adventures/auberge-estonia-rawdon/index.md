@@ -5,7 +5,6 @@ draft: false
 summary: "A forest auberge in Rawdon, Lanaudière — free Nordic spa with hot tubs and a Finnish sauna, a cold-plunge lake, BBQ cabins, and hiking trails on the estate, all about an hour from Montréal."
 description: "A forest auberge in Rawdon, an hour from Montréal: free Nordic spa with hot tubs and a Finnish sauna, a cold-plunge lake, BBQ cabins and trails on the estate."
 tags: ["Québec", "Spa", "Getaway"]
-# --- field note ---
 category: "spa"
 fieldNote: 3
 place: "Rawdon, Lanaudière"

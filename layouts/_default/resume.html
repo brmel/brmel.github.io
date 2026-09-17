@@ -14,7 +14,7 @@
       <li><a href="{{ .url }}"{{ if hasPrefix .url "http" }} target="_blank" rel="noopener noreferrer"{{ end }}>
         {{- partial "brand/social-icon.html" .url }}<span>{{ .label }}</span></a></li>
       {{- end }}
-      <li><button type="button" class="u-eyebrow resume__print" onclick="window.print()">{{ i18n "resume_print" | default "Save as PDF" }}</button></li>
+      <li><button type="button" class="u-eyebrow resume__print" onclick="window.print()">{{ i18n "resume_print" }}</button></li>
     </ul>
     {{- end }}
   </header>
@@ -25,14 +25,14 @@
 
   {{- with .Params.experience }}
   <section class="resume__section" aria-labelledby="resume-experience">
-    <h2 class="u-rule-heading resume__h2" id="resume-experience">{{ i18n "resume_experience" | default "Experience" }}</h2>
+    <h2 class="u-rule-heading resume__h2" id="resume-experience">{{ i18n "resume_experience" }}</h2>
     {{- partial "resume/timeline.html" $ }}
   </section>
   {{- end }}
 
   {{- with .Params.skills }}
   <section class="resume__section" aria-labelledby="resume-skills">
-    <h2 class="u-rule-heading resume__h2" id="resume-skills">{{ i18n "resume_skills" | default "Skills" }}</h2>
+    <h2 class="u-rule-heading resume__h2" id="resume-skills">{{ i18n "resume_skills" }}</h2>
     <dl class="resume__skills">
       {{- range . }}
       <div class="u-label-row resume__skillgroup">
@@ -48,7 +48,7 @@
 
   {{- with .Params.certifications }}
   <section class="resume__section" aria-labelledby="resume-certs">
-    <h2 class="u-rule-heading resume__h2" id="resume-certs">{{ i18n "resume_certifications" | default "Certifications" }}</h2>
+    <h2 class="u-rule-heading resume__h2" id="resume-certs">{{ i18n "resume_certifications" }}</h2>
     <ul class="resume__records">
       {{- range . }}
       <li class="u-label-row resume__record">

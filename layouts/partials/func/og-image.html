@@ -6,12 +6,6 @@
 
     {{- with $.Resources.GetMatch . }}
       {{- $url = partial "func/og-src.html" . -}}
-    {{- else }}
-      {{- if eq $.Params.cover.relative true }}
-        {{- $url = (path.Join $.RelPermalink .) | absURL -}}
-      {{- else }}
-        {{- $url = . | absURL -}}
-      {{- end }}
     {{- end }}
     {{- $alt = $.Params.cover.alt | default $.Title -}}
   {{- end }}

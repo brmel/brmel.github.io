@@ -7,7 +7,6 @@ tags: ["Python", "Machine Learning"]
 cover:
     image: "01-kmeans-bug-repro.jpg"
     alt: "Scatter plot of the failing case, with input data points and cluster centres marked"
-    relative: true
 canonicalOriginal: "https://www.linkedin.com/pulse/how-i-fixed-ia-algorithm-scikit-learn-library-brahim-redouane-mellah--ne59e"
 canonicalOriginalName: "LinkedIn"
 ---

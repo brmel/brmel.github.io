@@ -5,7 +5,7 @@
 {{- $large := $img.Resize (printf "%dx webp q82" (int (math.Min $img.Width 1600))) }}
 {{- $small := $large }}
 {{- if gt $img.Width 800 }}{{ $small = $img.Resize "800x webp q82" }}{{ end }}
-{{- $displayW := int (math.Min $large.Width (site.Params.proseColumnPx | default 900)) }}
+{{- $displayW := int (math.Min $large.Width 900) }}
 <figure style="--fig-w:{{ $displayW }}px">
   <img src="{{ $small.RelPermalink }}"
        {{- if gt $large.Width $small.Width }}
@@ -16,6 +16,6 @@
        {{- if eq .Ordinal 0 }} fetchpriority="high"{{ else }} loading="lazy"{{ end }} decoding="async"
        alt="{{ with .Get "alt" }}{{ . }}{{ else }}{{ $caption | markdownify | plainify }}{{ end }}">
   {{- with $caption }}
-  <figcaption><p>{{ . | markdownify }}</p></figcaption>
+  <figcaption>{{ . | markdownify }}</figcaption>
   {{- end }}
 </figure>

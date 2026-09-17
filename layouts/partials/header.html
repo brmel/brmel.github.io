@@ -1,44 +1,10 @@
 {{- /* Fork of themes/PaperMod/partials/header.html @2d2f2c6 — diff before upgrading. */ -}}
 
-{{- if (not site.Params.disableThemeToggle) }}
-
-{{- if (eq site.Params.defaultTheme "light") }}
 <script>
     if (localStorage.getItem("pref-theme") === "dark") {
         document.body.classList.add('dark');
     }
-
 </script>
-
-{{- else if (eq site.Params.defaultTheme "dark") }}
-<script>
-    if (localStorage.getItem("pref-theme") === "light") {
-        document.body.classList.remove('dark')
-    }
-
-</script>
-{{- else }}
-
-<script>
-    if (localStorage.getItem("pref-theme") === "dark") {
-        document.body.classList.add('dark');
-    } else if (localStorage.getItem("pref-theme") === "light") {
-        document.body.classList.remove('dark')
-    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        document.body.classList.add('dark');
-    }
-
-</script>
-{{- end }}
-
-{{- else if (and (ne site.Params.defaultTheme "light") (ne site.Params.defaultTheme "dark"))}}
-<script>
-    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        document.body.classList.add('dark');
-    }
-
-</script>
-{{- end }}
 
 <a class="skip-link" href="#main">{{ i18n "skip_to_content" }}</a>
 <header class="header">
@@ -54,7 +20,7 @@
             {{- end }}
             <div class="logo-switches">
                 {{- if (not site.Params.disableThemeToggle) }}
-                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="{{ i18n "toggle_theme" | default "Toggle theme" }}">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="{{ i18n "toggle_theme" }}">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                         stroke-linejoin="round">
@@ -88,11 +54,7 @@
                     {{- with where $page.Translations "Lang" .Lang }}{{ $to = index . 0 }}{{ end }}
                     <li>
                         <a href="{{- $to.Permalink -}}" lang="{{ .Lang }}" hreflang="{{ .Lang }}" title="{{ .Language.Params.languageAltTitle | default (.Language.LanguageName | emojify) | default (.Lang | title) }}">
-                            {{- if (and site.Params.displayFullLangName (.Language.LanguageName)) }}
-                            {{- .Language.LanguageName | emojify -}}
-                            {{- else }}
                             {{- .Lang | title -}}
-                            {{- end -}}
                         </a>
                     </li>
                     {{- end -}}
@@ -124,14 +86,6 @@
                         {{- .Name -}}
                         {{ .Post -}}
                     </span>
-                    {{- if (findRE "://" .URL) }}&nbsp;
-                    <svg fill="none" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round"
-                        stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 24 24" height="12" width="12">
-                        <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"></path>
-                        <path d="M15 3h6v6"></path>
-                        <path d="M10 14L21 3"></path>
-                    </svg>
-                    {{- end }}
                 </a>
             </li>
             {{- end }}

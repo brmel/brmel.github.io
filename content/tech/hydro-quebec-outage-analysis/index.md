@@ -9,7 +9,6 @@ tags: ["Data Analysis", "Québec"]
 cover:
     image: "cover.jpg"
     alt: "Montréal outage statistics from the Hydro-Québec reliability report"
-    relative: true
 ---
 
 > How this was built, and what it changed my mind about:

@@ -159,10 +159,6 @@ enableGitInfo = true
       url = "/search/"
       weight = 7
 
-[pagination]
-  pagerSize = 10
-  disableAliases = true
-
 [minify]
   disableXML = true
   minifyOutput = true
@@ -171,7 +167,6 @@ enableGitInfo = true
   title = "Ibraverse"
   mainSections = ["projects", "tech", "adventures", "thoughts"]
   images = ["images/profile.jpg"]
-  DateFormat = ":date_long"
   defaultTheme = "light"
   ShowReadingTime = true
 
@@ -183,8 +178,6 @@ enableGitInfo = true
   UseHugoToc = true
 
   repo = "https://github.com/brmel/brmel.github.io"
-
-  proseColumnPx = 900
 
   [params.assets]
     favicon = "favicon.ico"

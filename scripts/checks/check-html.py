@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
 import base64, glob, hashlib, io, json, os, subprocess, sys, tarfile, urllib.request
-
-ROOT = os.path.join(os.path.dirname(__file__), "..", "..")
-PUB = os.path.join(ROOT, "public")
+from gate import PUB, finish
 VERSION = "26.9.7"
 INTEGRITY = "sha512-ZwoNfGQQBWCAEFMtz1fokv4PBC+WhF13QQA+Q/AFNyqnb57aAApnsyquMT+9dK8H96jzuGz9eydYMeaSisyYow=="
 JAR = os.path.join(os.path.expanduser("~"), ".cache", "ibraverse", f"vnu-{VERSION}.jar")
@@ -23,9 +21,5 @@ run = subprocess.run(["java", "-jar", JAR, "--errors-only", "--format", "json", 
 errors = [m for m in json.loads(run.stderr)["messages"] if m.get("type") == "error"]
 
 print(f"validated {len(pages)} pages with the Nu HTML Checker {VERSION}")
-if errors:
-    print(f"\n❌ {len(errors)} error(s):")
-    for m in errors:
-        print(f"  {os.path.relpath(m['url'].removeprefix('file:'), PUB)}:{m.get('lastLine', '?')}: {m['message']}")
-    sys.exit(1)
-print("✅ every page is valid HTML")
+finish([f"{os.path.relpath(m['url'].removeprefix('file:'), PUB)}:{m.get('lastLine', '?')}: {m['message']}" for m in errors],
+       "every page is valid HTML")

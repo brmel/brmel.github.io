@@ -164,13 +164,13 @@
   display:flex;align-items:center;justify-content:center;
   inline-size:44px;block-size:44px;
   padding:0;border:0;border-radius:var(--radius-pill);
-  background:color-mix(in srgb, var(--paper) 16%, transparent);
-  color:var(--paper);
+  background:color-mix(in srgb, var(--bg) 16%, transparent);
+  color:var(--bg);
   cursor:pointer;
   transition:background var(--dur-2) var(--ease-standard);
 }
-.lightbox__close:hover{background:color-mix(in srgb, var(--paper) 30%, transparent);}
-.lightbox__close:focus-visible{outline:2px solid var(--paper);outline-offset:3px;}
+.lightbox__close:hover{background:color-mix(in srgb, var(--bg) 30%, transparent);}
+.lightbox__close:focus-visible{outline:2px solid var(--bg);outline-offset:3px;}
 .lightbox__close svg{inline-size:22px;block-size:22px;}
 
 #lightbox iframe{

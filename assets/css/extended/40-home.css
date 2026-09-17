@@ -17,6 +17,7 @@
 .profile_inner h1{margin:0;}
 .profile_inner > span{color:var(--ink-soft);}
 .profile_inner .social-icons{margin-top:var(--space-2);}
+.profile_inner .social-icons svg{width:26px;height:26px;}
 
 .home-intro{margin-block:var(--flow-block) var(--flow-section);}
 .home-intro p{color:var(--ink-soft);}

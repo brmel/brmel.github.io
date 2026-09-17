@@ -6,7 +6,6 @@ summary: "Un exemple concret de l'importance du support de la couleur de premier
 cover:
     image: "01-boarding-pass-dark.jpeg"
     alt: "Code-barres en Mode Sombre"
-    relative: true
 ---
 
 Un jour, j'étais à l'aéroport de Düsseldorf pour prendre un vol. Je m'étais déjà enregistré en ligne et je n'avais que le code-barres sur mon téléphone.

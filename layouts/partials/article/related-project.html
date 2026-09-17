@@ -2,7 +2,7 @@
 {{- $path := printf "/projects/%s" . }}
 {{- with or (site.GetPage $path) ((index site.Sites 0).GetPage $path) }}
 <aside class="related-project">
-  <span class="u-eyebrow related-project__label">{{ i18n "related_project" | default "The project behind this" }}</span>
+  <span class="u-eyebrow related-project__label">{{ i18n "related_project" }}</span>
   <a class="related-project__link" href="{{ .RelPermalink }}">{{ .Title }}</a>
   <span class="related-project__pitch">{{ .Params.pitch }}</span>
 </aside>

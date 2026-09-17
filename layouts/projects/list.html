@@ -28,13 +28,7 @@
 
 {{- $projects := sort (partial "func/section-pages.html" .) "Params.projectNo" "desc" }}
 
-{{- if lt (len $projects) 1 }}
-<div class="empty-section">
-  <span class="empty-section__mark" aria-hidden="true"></span>
-  <p class="empty-section__lead">{{ i18n "projects_empty_lead" | default "No projects published yet." }}</p>
-  <p class="u-eyebrow empty-section__sub">{{ i18n "projects_empty_sub" | default "Write-ups are on the way — check back soon." }}</p>
-</div>
-{{- else }}
+
 
 {{- $years := slice }}
 {{- range $projects }}{{ $years = $years | append .Date.Year }}{{ end }}
@@ -60,7 +54,7 @@
     {{- partial "lang/en-only.html" . }}
     {{- with .Params.links.live }}
 
-    <span class="u-eyebrow project-card__live">{{ i18n "project_link_live" | default "Live" }} <span aria-hidden="true">↗</span></span>
+    <span class="u-eyebrow project-card__live">{{ i18n "project_link_live" }} <span aria-hidden="true">↗</span></span>
     {{- end }}
     {{- with .Params.stack }}
     <span class="project-card__stack">
@@ -75,7 +69,5 @@
 </div>
 
 {{- partial "project/learning.html" . }}
-
-{{- end }}
 
 {{- end }}

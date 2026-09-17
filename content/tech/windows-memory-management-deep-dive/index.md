@@ -9,7 +9,6 @@ seriesPart: 2
 cover:
     image: "02-vmmap-snapshot.jpg"
     alt: "VMMap snapshot showing memory states as columns and memory types as rows"
-    relative: true
 canonicalOriginal: "https://www.linkedin.com/pulse/delving-deep-windows-memory-management-brahim-redouane-mellah--uzaee"
 canonicalOriginalName: "LinkedIn"
 ---

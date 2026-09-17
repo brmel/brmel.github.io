@@ -8,7 +8,6 @@ tags: ["AI", "Testing", "Python"]
 cover:
     image: "04-domia-architecture.jpg"
     alt: "DOMIA architecture: the agent loop, its tools, and the drivers for web, mobile and desktop"
-    relative: true
 canonicalOriginal: "https://www.linkedin.com/pulse/concrete-example-how-ai-replace-software-testers-tnv-mellah--9vbxe"
 canonicalOriginalName: "LinkedIn"
 ---

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-import os, re, sys, glob
+import os, re, glob
+from gate import PUB, ROOT, finish
 
-ROOT = os.path.join(os.path.dirname(__file__), "..", "..")
 EXT = os.path.join(ROOT, "assets", "css", "extended")
 MAX_LINES = 260
 TOKENS = "00-tokens.css"
@@ -43,13 +43,11 @@ for f in files:
         if pat.search(src):
             fails.append(f"{b}: redeclares the '{name}' primitive — compose {COMPONENTS} instead")
 
-markup = ""
-for pat in ("layouts/**/*.html", "content/**/*.md", "assets/js/*.js"):
-    for f in glob.glob(os.path.join(ROOT, pat), recursive=True):
-        markup += open(f, encoding="utf-8", errors="ignore").read()
-for f in glob.glob(os.path.join(ROOT, "themes/PaperMod/layouts/**/*.html"), recursive=True) + [
-        os.path.join(ROOT, "themes/PaperMod/assets/css/includes/chroma-styles.css")]:
-    markup += open(f, encoding="utf-8", errors="ignore").read()
+markup = "".join(open(f, encoding="utf-8", errors="ignore").read()
+                 for pattern in ("**/*.html", "**/*.js") for f in glob.glob(os.path.join(PUB, pattern), recursive=True))
+markup += "".join(open(f, encoding="utf-8", errors="ignore").read()
+                  for pattern in ("assets/js/*.js", "layouts/**/*.html", "themes/PaperMod/assets/css/includes/chroma-styles.css")
+                  for f in glob.glob(os.path.join(ROOT, pattern), recursive=True))
 
 declared = set()
 for f in files:
@@ -57,12 +55,7 @@ for f in files:
     declared |= set(re.findall(r"\.([a-z][a-z0-9_-]*(?:__[a-z0-9-]+)?(?:--[a-z0-9-]+)?)", src))
 
 for c in sorted(c for c in declared if c not in markup):
-    fails.append(f"class .{c} is declared in CSS but appears in no template or content")
+    fails.append(f"class .{c} is declared in CSS but appears on no published page or script")
 
 print(f"checked {len(files)} stylesheets, {len(declared)} classes")
-if fails:
-    print(f"\n❌ {len(fails)} problem(s):")
-    for f in fails:
-        print("  " + f)
-    sys.exit(1)
-print("✅ cascade explicit · colours in tokens only · no oversized files · no duplicated primitives")
+finish(fails, "cascade explicit · colours in tokens only · no oversized files · no duplicated primitives · no dead classes")

@@ -8,7 +8,6 @@ description: "Counting the teeth on a saw blade looks trivial and is not. How ed
 cover:
     image: "01-saw-blade.png"
     alt: "A circular saw blade"
-    caption: "Counting the teeth is the easy half. Being able to say the count is right is the other one."
 ---
 
 A saw blade is a good way to explain edge measurement, because counting its

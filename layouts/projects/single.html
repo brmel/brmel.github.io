@@ -21,7 +21,7 @@
   {{- $gallery := .Resources.Match "gallery/*" -}}
   {{- with $gallery }}
   <section class="project-gallery u-wide" aria-labelledby="project-gallery-h">
-    <h2 class="u-rule-heading" id="project-gallery-h">{{ i18n "project_gallery" | default "Gallery" }}</h2>
+    <h2 class="u-rule-heading" id="project-gallery-h">{{ i18n "project_gallery" }}</h2>
     <div class="project-gallery__grid">
       {{- range $i, $img := . }}
       {{- $small := $img.Resize "640x webp q82" }}
@@ -46,7 +46,7 @@
   </div>
   {{- with .Params.lessons }}
   <section class="project-lessons" aria-labelledby="project-lessons-h">
-    <h2 class="u-rule-heading" id="project-lessons-h">{{ i18n "project_lessons" | default "What it taught me" }}</h2>
+    <h2 class="u-rule-heading" id="project-lessons-h">{{ i18n "project_lessons" }}</h2>
     <ul class="project-lessons__list">
       {{- range . }}<li>{{ . | markdownify }}</li>{{ end }}
     </ul>

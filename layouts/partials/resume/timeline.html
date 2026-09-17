@@ -1,11 +1,5 @@
-{{- $rails := slice
-      (dict "key" "built"   "i18n" "career_built"   "fallback" "Built")
-      (dict "key" "stack"   "i18n" "career_stack"   "fallback" "Stack")
-      (dict "key" "tools"   "i18n" "career_tools"   "fallback" "Tools")
--}}
-
 {{- with .Params.experience }}
-<div class="timeline-container" data-play-label="{{ i18n "career_play_video" | default "Play video" }}">
+<div class="timeline-container" data-play-label="{{ i18n "career_play_video" }}">
   {{- range . }}
   {{- $p := . }}
   <article class="timeline-item">
@@ -47,11 +41,11 @@
 
       {{- if or $p.built $p.stack $p.tools $p.learned }}
       <dl class="timeline-facts">
-        {{- range $rails }}
+        {{- range slice "built" "stack" "tools" }}
         {{- $rail := . }}
-        {{- with index $p $rail.key }}
+        {{- with index $p $rail }}
         <div class="timeline-facts__row">
-          <dt class="u-eyebrow timeline-facts__label">{{ i18n $rail.i18n | default $rail.fallback }}</dt>
+          <dt class="u-eyebrow timeline-facts__label">{{ i18n (printf "career_%s" $rail) }}</dt>
           <dd class="timeline-facts__value">
             {{- range $i, $v := . }}{{ if $i }} <b aria-hidden="true">·</b> {{ end }}{{ $v }}{{ end -}}
           </dd>
@@ -60,7 +54,7 @@
         {{- end }}
         {{- with $p.learned }}
         <div class="timeline-facts__row timeline-facts__row--learned">
-          <dt class="u-eyebrow timeline-facts__label">{{ i18n "career_learned" | default "Learned" }}</dt>
+          <dt class="u-eyebrow timeline-facts__label">{{ i18n "career_learned" }}</dt>
           <dd class="timeline-facts__value">{{ . | markdownify }}</dd>
         </div>
         {{- end }}
@@ -71,14 +65,14 @@
   {{- end }}
 </div>
 <div id="lightbox" role="dialog" aria-modal="true" aria-hidden="true"
-     aria-label="{{ i18n "career_video" | default "Video" }}">
+     aria-label="{{ i18n "career_video" }}">
   <button type="button" id="lightbox-close" class="lightbox__close"
-          aria-label="{{ i18n "career_close_video" | default "Close video" }}">
+          aria-label="{{ i18n "career_close_video" }}">
     <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
       <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
     </svg>
   </button>
-  <iframe id="lightbox-video" title="{{ i18n "career_video" | default "Video" }}" frameborder="0"
+  <iframe id="lightbox-video" title="{{ i18n "career_video" }}" frameborder="0"
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen
     style="display: none;"></iframe>
 </div>

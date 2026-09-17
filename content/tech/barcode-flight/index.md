@@ -6,7 +6,6 @@ summary: "A real-world example of why foreground color support in barcode readin
 cover:
     image: "01-boarding-pass-dark.jpeg"
     alt: "Barcode in Dark Mode"
-    relative: true
 ---
 
 One day I was in Düsseldorf airport to take a flight. I had already checked-in online and only had the barcode on my phone.

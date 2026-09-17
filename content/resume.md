@@ -17,9 +17,6 @@ contact:
   - label: "X"
     url: "https://x.com/BrmelB"
 
-# The career, one period at a time. Structure comes from
-# layouts/partials/career-timeline.html; only the words below change per
-# language. Keep `learned` to one sentence — it is the line a reader remembers.
 experience:
   - period: "2024 — Present"
     role: "Senior Software Developer"

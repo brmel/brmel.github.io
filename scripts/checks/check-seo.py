@@ -1,14 +1,10 @@
 #!/usr/bin/env python3
-import collections, glob, html, json, os, re, sys
+import collections, glob, html, json, os, re
 from urllib.parse import unquote
+from gate import BASE, LANGS, PUB, finish
 
-ROOT = os.path.join(os.path.dirname(__file__), "..", "..")
-PUB = os.path.join(ROOT, "public")
-BASE = re.search(r'^\s*baseURL\s*=\s*["\']([^"\']+)',
-                 open(os.path.join(ROOT, "config.toml"), encoding="utf-8").read(), re.M).group(1).rstrip("/")
 TYPES = {"tech": "TechArticle", "thoughts": "BlogPosting", "adventures": "BlogPosting",
          "projects": "SoftwareSourceCode"}
-LANGS = ("fr", "ar")
 
 fails, indexable = [], set()
 titles, descriptions = collections.defaultdict(list), collections.defaultdict(list)
@@ -52,9 +48,4 @@ fails += [f"sitemap is missing {u}" for u in sorted(indexable - listed)]
 fails += [f"sitemap lists {u}, which is not an indexable page" for u in sorted(listed - indexable)]
 
 print(f"checked {len(indexable)} indexable pages and {len(listed)} sitemap URLs")
-if fails:
-    print(f"\n❌ {len(fails)} problem(s):")
-    for x in fails:
-        print("  " + x)
-    sys.exit(1)
-print("✅ descriptions sized and unique, canonical and x-default everywhere, JSON-LD per section, sitemap exact")
+finish(fails, "descriptions sized and unique, canonical and x-default everywhere, JSON-LD per section, sitemap exact")

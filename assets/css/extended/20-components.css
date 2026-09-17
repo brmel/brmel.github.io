@@ -111,25 +111,6 @@ a.u-chip:hover{border-color:var(--accent);color:var(--accent);}
 }
 .u-frame{display:block;}
 
-.empty-section{
-  text-align:center;
-  margin-block:var(--flow-section);
-  padding:var(--space-8) var(--space-5);
-  border:var(--hairline) dashed var(--rule);
-  border-radius:var(--radius-md);
-  background:var(--bg-alt);
-}
-.empty-section__mark{
-  display:block;width:28px;height:28px;margin:0 auto var(--space-4);
-  border-radius:var(--radius-pill);border:2px solid var(--accent);
-  box-shadow:0 0 0 4px var(--bg),0 0 0 6px var(--rule);box-sizing:border-box;
-}
-.empty-section__lead{
-  font-family:var(--font-serif);font-size:var(--t-display-s);line-height:1.1;
-  color:var(--ink);margin:0 0 var(--space-2);text-transform:capitalize;
-}
-.empty-section__sub{margin:0;}
-
 @media (prefers-reduced-motion:reduce){
   a.u-card:hover,.u-card--interactive:hover,.post-entry:hover{transform:none;}
 }

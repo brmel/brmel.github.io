@@ -11,14 +11,14 @@
 {{- with $pages }}
 <section class="home-latest" aria-labelledby="home-latest-heading">
   <h2 class="u-rule-heading home-latest__heading" id="home-latest-heading">
-    {{ i18n "home_latest" | default "Latest" }}
+    {{ i18n "home_latest" }}
   </h2>
   <ul class="home-latest__list">
     {{- range . }}
     <li class="home-latest__item"{{ partial "func/lang-attrs.html" . }}>
       <a href="{{ .RelPermalink }}">
         <span class="u-eyebrow home-latest__meta">
-          {{- with .Date }}<time datetime="{{ .Format "2006-01-02" }}">{{ time.Format (site.Params.DateFormat | default ":date_long") . }}</time>{{ end }}
+          {{- with .Date }}<time datetime="{{ .Format "2006-01-02" }}">{{ time.Format ":date_long" . }}</time>{{ end }}
           {{- with .Section }}
             {{- $name := . }}
             {{- with site.GetPage (printf "/%s" .) }}{{ $name = .Title }}{{ end }}

@@ -3,7 +3,7 @@
 {{- with .Params.experience }}
 <section class="home-career" aria-labelledby="home-career-heading">
   <h2 class="u-rule-heading home-career__heading" id="home-career-heading">
-    {{ i18n "home_career" | default "Career" }}
+    {{ i18n "home_career" }}
   </h2>
   <ol class="home-career__list">
     {{- range . }}
@@ -20,7 +20,7 @@
     {{- end }}
   </ol>
   <p class="home-career__more">
-    <a class="u-eyebrow u-link" href="{{ $resume.RelPermalink }}">{{ i18n "home_career_more" | default "Full resume →" }}</a>
+    <a class="u-eyebrow u-link" href="{{ $resume.RelPermalink }}">{{ i18n "home_career_more" }}</a>
   </p>
 </section>
 {{- end }}

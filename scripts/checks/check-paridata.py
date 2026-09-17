@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-import collections, glob, json, math, os, re, sys
+import collections, glob, json, math, os, re
 from datetime import date
+from gate import ROOT, finish
 
-ROOT = os.path.join(os.path.dirname(__file__), "..", "..")
 DATA = os.path.join(ROOT, "data", "paridata")
 FLAGS = os.path.join(ROOT, "assets", "paridata", "flags")
 
@@ -207,9 +207,4 @@ for month, data in month_files("tickets"):
                 bad("posted after its first match was played")
 
 print(f"checked {len(matches)} match(es), {len(seen)} ticket(s), {len(by_team)} team calendar(s)")
-if fails:
-    print(f"\n❌ {len(fails)} problem(s) in data/paridata:")
-    for f in fails:
-        print("  " + f)
-    sys.exit(1)
-print("✅ every coupon points at real, dated matches; picks, odds and calendars are coherent; nothing identifies the account")
+finish(fails, "every coupon points at real, dated matches; picks, odds and calendars are coherent; nothing identifies the account")

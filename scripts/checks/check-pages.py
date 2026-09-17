@@ -1,45 +1,22 @@
 #!/usr/bin/env python3
-import os, re, sys, glob, collections
+import collections, os, re
 from urllib.parse import unquote
+from gate import BASE, PUB, finish, pages as built, url_of
 
-ROOT = os.path.join(os.path.dirname(__file__), "..", "..")
-PUB = os.path.join(ROOT, "public")
-
-CHROME_WIDE = re.compile(r"class=[\"']?(?:nav|footer|site-mark|skip-link)")
-
-BASE_URL = re.search(
-    r'^\s*baseURL\s*=\s*["\']([^"\']+)', open(os.path.join(ROOT, "config.toml"),
-    encoding="utf-8").read(), re.M).group(1)
-SELF_HOST = re.compile(
-    r"^https?://(?:www\.)?" + re.escape(BASE_URL.split("//", 1)[-1].strip("/")), re.I)
+SELF_HOST = re.compile(r"^https?://(?:www\.)?" + re.escape(BASE.split("//", 1)[-1]), re.I)
 HREF = re.compile(r'href=(?:"([^"]*)"|([^\s>]+))')
 
 def internal_targets(html):
-    """Every href that lands on this site, as a site-relative path.
-
-    Hugo emits absolute permalinks, so a pattern anchored on "/" sees none of
-    them: broken absolute links went unchecked and pages linked only that way
-    looked orphaned.
-    """
     for m in HREF.finditer(html):
         t = SELF_HOST.sub("", m.group(1) or m.group(2), count=1) or "/"
         if t.startswith("/"):
             yield t
 
-pages = {}
-for f in sorted(glob.glob(os.path.join(PUB, "**", "*.html"), recursive=True)):
-    body = open(f, encoding="utf-8", errors="ignore").read()
-    if "http-equiv=refresh" in body or 'http-equiv="refresh"' in body:
-        continue
-    rel = os.path.relpath(f, PUB)
-    if rel.startswith("reports" + os.sep):
-        continue
-    pages["/" + rel.replace("index.html", "").replace(os.sep, "/")] = body
+pages = {url_of(rel): html for rel, html in built()}
 
-fails, warns = [], []
+fails = []
 
 def main_of(html):
-    """Everything inside <main>, so site chrome is not counted as page content."""
     m = re.search(r"<main\b.*?</main>", html, re.S)
     return m.group(0) if m else html
 
@@ -53,7 +30,7 @@ for url, html in pages.items():
         if not href:
             continue
         target = (href.group(1) or href.group(2)).split("#")[0]
-        if not target or target.startswith(("mailto:", "tel:")) and False:
+        if not target:
             continue
         text = re.sub(r"<[^>]+>", "", inner).strip()
         label = re.search(r'(?:aria-label|title)=(?:"([^"]*)"|([^\s>]+))', attrs)
@@ -72,10 +49,6 @@ for url, html in pages.items():
         icons = {u[1] for u in uses}
         if len(icons) > 1:
             fails.append(f"{url}: {target[:44]} appears as text and as an icon")
-        elif len(texts) > 1:
-            warns.append(f"{url}: {target[:44]} linked {len(uses)}x with different words {sorted(texts)[:2]}")
-        else:
-            warns.append(f"{url}: {target[:44]} linked {len(uses)}x")
 
 def resolves(p):
     p = unquote(p.split("#")[0].split("?")[0])
@@ -99,14 +72,7 @@ for html in pages.values():
 for url in pages:
     u = url.rstrip("/") or "/"
     if u not in linked and not u.startswith(("/en", "/404")) and u != "/":
-        warns.append(f"{url}: nothing on the site links here")
+        fails.append(f"{url}: nothing on the site links here")
 
 print(f"checked {len(pages)} pages")
-for w in warns:
-    print("  ⚠  " + w)
-if fails:
-    print(f"\n❌ {len(fails)} problem(s):")
-    for f in fails:
-        print("  " + f)
-    sys.exit(1)
-print("✅ no repeated destinations, self-links, unnamed controls or dead internal links")
+finish(fails, "no mixed text/icon duplicates, self-links, unnamed controls, dead internal links or unlinked pages")

@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-import glob, re, sys, os
+import glob, re, os
+from gate import ROOT, finish
 
-TOKENS = os.path.join(os.path.dirname(__file__), "..", "..",
-                      "assets", "css", "extended", "00-tokens.css")
+TOKENS = os.path.join(ROOT, "assets", "css", "extended", "00-tokens.css")
 AA = 4.5
 
 def lum(h):
@@ -37,8 +37,8 @@ for theme, block in (("light", light_block), ("dark", dark_block)):
             if r < AA:
                 fails.append(f"{theme}: --{fg} ({t[fg]}) on {bgname} ({bg}) = {r:.2f}:1")
 
-THEME = os.path.join(os.path.dirname(__file__), "..", "..", "themes", "PaperMod", "assets", "css")
-EXT = os.path.join(os.path.dirname(__file__), "..", "..", "assets", "css", "extended")
+THEME = os.path.join(ROOT, "themes", "PaperMod", "assets", "css")
+EXT = os.path.join(ROOT, "assets", "css", "extended")
 light_tokens = tokens(light_block)
 syntax = {cls: col for cls, col in re.findall(
     r"\.chroma \.([\w-]+)\s*\{[^}]*?(?<![-\w])color:\s*(#[0-9a-fA-F]{6})",
@@ -58,9 +58,4 @@ for cls, col in sorted(syntax.items()):
             fails.append(f"{theme}: syntax .{cls} ({col}) on code background ({bg}) = {ratio(col, bg):.2f}:1")
 
 print(f"checked {checked} token/background pairs against {AA}:1")
-if fails:
-    print(f"\n\u274c {len(fails)} below AA for normal text:")
-    for f in fails:
-        print("  ", f)
-    sys.exit(1)
-print("\u2705 every text token and syntax colour clears AA on its surface, both themes")
+finish(fails, "every text token and syntax colour clears AA on its surface, both themes")

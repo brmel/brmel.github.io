@@ -17,9 +17,6 @@ contact:
   - label: "X"
     url: "https://x.com/BrmelB"
 
-# المسار المهني، مرحلة بمرحلة. البنية تأتي من
-# layouts/partials/career-timeline.html، ولا يتغير بين اللغات سوى النص.
-# اجعل `learned` جملة واحدة — فهي السطر الذي يبقى في ذهن القارئ.
 experience:
   - period: "2024 — الآن"
     role: "مطور برمجيات أول"

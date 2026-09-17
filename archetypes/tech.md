@@ -10,7 +10,6 @@ tags: []
 cover:
     image: "cover.jpg"
     alt: ""
-    relative: true
 ---
 
 Open with the concrete thing, not a preamble. One or two sentences.
