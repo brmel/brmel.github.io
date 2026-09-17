@@ -1,0 +1,18 @@
+{{- $links := slice }}
+{{- range $label, $url := .Params.links }}{{ if $url }}{{ $links = $links | append (dict "label" $label "url" $url) }}{{ end }}{{ end }}
+{{- if or .Params.stack $links }}
+<div class="project-meta">
+  {{- with $links }}
+  <ul class="project-links">
+    {{- range . }}
+    <li><a class="u-eyebrow u-link" href="{{ .url }}" target="_blank" rel="noopener noreferrer">{{ i18n (printf "project_link_%s" .label) | default (.label | title) }} <span aria-hidden="true">↗</span></a></li>
+    {{- end }}
+  </ul>
+  {{- end }}
+  {{- with .Params.stack }}
+  <ul class="project-stack" aria-label="{{ i18n "project_stack" }}">
+    {{- range . }}<li class="u-chip">{{ . }}</li>{{ end }}
+  </ul>
+  {{- end }}
+</div>
+{{- end }}

@@ -2,22 +2,11 @@
 {{- define "main" }}
 
 <article class="post-single resume">
-  <header class="resume__head">
-    {{- partial "breadcrumbs.html" . }}
-    <span class="resume__mark">{{ partial "brand/mark.html" (dict "size" 32) }}</span>
-    <h1 class="resume__name">{{ site.Params.profileMode.title | default .Title }}</h1>
-    {{- with .Params.role }}<p class="resume__role">{{ . }}</p>{{ end }}
-    {{- with .Params.location }}<p class="u-eyebrow resume__loc">{{ . }}</p>{{ end }}
-    {{- with .Params.contact }}
-    <ul class="u-eyebrow resume__contact">
-      {{- range . }}
-      <li><a class="u-rule-link" href="{{ .url }}"{{ if hasPrefix .url "http" }} target="_blank" rel="noopener noreferrer"{{ end }}>
-        {{- partial "brand/social-icon.html" .url }}<span>{{ .label }}</span></a></li>
-      {{- end }}
-      <li><button type="button" class="u-rule-link resume__print" onclick="window.print()">{{ i18n "resume_print" }}</button></li>
-    </ul>
-    {{- end }}
-  </header>
+  {{- $contact := "" }}
+  {{- with .Params.contact }}
+  {{- $contact = partial "resume/contact.html" . }}
+  {{- end }}
+  {{ partial "page-head/header.html" (dict "page" . "title" (site.Params.profileMode.title | default .Title) "extra" $contact) }}
 
   {{- with .Content }}
   <div class="post-content resume__body">{{ . }}</div>

@@ -172,9 +172,7 @@ enableGitInfo = true
 
   ShowToc = true
   ShowShareButtons = true
-  ShowBreadCrumbs = true
   ShowCodeCopyButtons = true
-  ShowRssButtonInSectionTermList = true
   UseHugoToc = true
 
   repo = "https://github.com/brmel/brmel.github.io"

@@ -140,7 +140,6 @@
 #menu li a{min-width:24px;text-align:center;}
 .footer .top-link,.footer .top-link:hover{border-bottom:0;}
 [dir="rtl"] .top-link{right:auto;left:30px;}
-.rss-link{min-width:24px;min-height:24px;display:inline-flex;align-items:center;justify-content:center;}
 .lang-switch a{
   min-width:24px;min-height:24px;
   display:inline-flex;align-items:center;justify-content:center;

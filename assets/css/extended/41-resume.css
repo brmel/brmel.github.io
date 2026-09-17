@@ -1,10 +1,6 @@
-.resume__head{text-align:center;}
-.resume__mark{display:flex;justify-content:center;color:var(--accent);}
-.resume__role{margin:0;color:var(--ink-soft);font-size:var(--t-body-l);}
-.resume__loc{margin:0;}
 .resume__contact{
   list-style:none;margin:var(--space-2) 0 0;padding:0;
-  display:flex;flex-wrap:wrap;justify-content:center;gap:var(--space-2) var(--space-4);
+  display:flex;flex-wrap:wrap;gap:var(--space-2) var(--space-4);
 }
 .resume__contact svg{width:14px;height:14px;flex:0 0 auto;opacity:.85;}
 

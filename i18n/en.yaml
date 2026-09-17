@@ -98,3 +98,4 @@ paridata_bets:
 paridata_estimated:
   one: "{{ .Count }} estimated"
   other: "{{ .Count }} estimated"
+breadcrumbs: "Breadcrumb"

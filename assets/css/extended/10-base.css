@@ -36,9 +36,6 @@ body{font-family:var(--font-sans);}
 .page-header h1,
 .page-404 h1,
 .profile_inner h1,
-.post-title,
-.project-title,
-.resume__name,
 .entry-header h2,
 .post-content h1,
 .post-content h2,
@@ -49,25 +46,17 @@ body{font-family:var(--font-sans);}
 }
 code,kbd,samp,pre,tt{font-family:var(--font-mono);}
 
-.page-header,
-.post-header,
-.project-head,
-.resume__head{
+.page-header{
   display:flex;flex-direction:column;gap:var(--flow-tight);
   margin-block:0 var(--flow-block);
 }
 .page-header h1,
-.page-404 h1,
-.post-title,
-.project-title,
-.resume__name{
+.page-404 h1{
   margin:0;
   font-size:var(--fl-display-m);line-height:1.05;letter-spacing:-0.015em;
   color:var(--ink);text-wrap:balance;
 }
-.page-header .post-description,
-.post-header .post-description,
-.project-pitch{
+.page-header__description{
   margin:0;max-width:60ch;
   font-size:var(--t-subhead);line-height:1.45;color:var(--ink-soft);
 }
@@ -75,6 +64,7 @@ code,kbd,samp,pre,tt{font-family:var(--font-mono);}
 .breadcrumbs{font-size:var(--t-caption);color:var(--ink-mute);}
 .breadcrumbs a{font-size:inherit;color:inherit;transition:color var(--dur-1) var(--ease-standard);}
 .breadcrumbs a:hover{color:var(--accent);}
+.breadcrumbs b{font-weight:400;color:var(--ink-mute);margin-inline:.25ch;}
 
 a:focus-visible,button:focus-visible,.toc summary:focus-visible,.top-link:focus-visible,#theme-toggle:focus-visible{
   outline:2px solid var(--accent);outline-offset:2px;border-radius:var(--radius-xs);

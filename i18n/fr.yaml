@@ -98,3 +98,4 @@ paridata_bets:
 paridata_estimated:
   one: "{{ .Count }} estimée"
   other: "{{ .Count }} estimées"
+breadcrumbs: "Fil d’Ariane"

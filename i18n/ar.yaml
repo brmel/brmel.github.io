@@ -113,3 +113,4 @@ paridata_estimated:
   few: "{{ .Count }} مُقدَّرة"
   many: "{{ .Count }} مُقدَّرة"
   other: "{{ .Count }} مُقدَّرة"
+breadcrumbs: "مسار التنقل"

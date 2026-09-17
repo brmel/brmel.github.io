@@ -1,17 +1,5 @@
 .projects-intro{margin-block:0 var(--flow-block);}
 
-.project-timeline{position:relative;}
-.project-timeline::before{top:var(--space-2);bottom:var(--space-4);}
-.project-period{
-  position:relative;
-  padding-inline-start:var(--tl-gutter);
-}
-.project-period + .project-period{margin-top:var(--flow-section);}
-.project-period__year{
-  margin:0 0 var(--space-4);
-  font-size:var(--t-caption);
-}
-
 .project-grid{
   display:grid;
   grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));

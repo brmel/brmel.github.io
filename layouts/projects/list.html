@@ -1,70 +1,32 @@
 {{- define "main-width" }} main--wide{{ end }}
 {{- define "main" }}
 
-<header class="page-header">
-  {{- partial "breadcrumbs.html" . }}
-  <h1>
-    {{ .Title }}
-
-    {{- if (.Param "ShowRssButtonInSectionTermList") }}
-    {{- with .OutputFormats.Get "rss" }}
-    <a class="rss-link" href="{{ .RelPermalink }}" title="RSS" aria-label="RSS">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-        stroke-linecap="round" stroke-linejoin="round" height="23">
-        <path d="M4 11a9 9 0 0 1 9 9" />
-        <path d="M4 4a16 16 0 0 1 16 16" />
-        <circle cx="5" cy="19" r="1" />
-      </svg>
-    </a>
-    {{- end }}
-    {{- end }}
-  </h1>
-  {{- with .Description }}<div class="post-description">{{ . | markdownify }}</div>{{ end }}
-</header>
+{{ partial "page-head/header.html" (dict "page" .) }}
 {{- with .Content }}
 <div class="post-content projects-intro">{{ . }}</div>
 {{- end }}
 
 
-{{- $projects := sort (partial "func/section-pages.html" .) "Params.projectNo" "desc" }}
-
-
-
-{{- $years := slice }}
-{{- range $projects }}{{ $years = $years | append .Date.Year }}{{ end }}
-{{- $years = sort (uniq $years) "value" "desc" }}
-
-<div class="project-timeline">
-  {{- range $year := $years }}
-  <section class="project-period" aria-labelledby="projects-{{ $year }}">
-    <h2 class="u-eyebrow project-period__year" id="projects-{{ $year }}"><bdi dir="ltr">{{ $year }}</bdi></h2>
-    <div class="project-grid">
-    {{- range where $projects "Date.Year" $year }}
-    <a class="u-card u-tile" href="{{ .RelPermalink }}"{{ partial "func/lang-attrs.html" . }}>
+<div class="project-grid">
+  {{- range sort (partial "func/section-pages.html" .) "Params.projectNo" "desc" }}
+  <a class="u-card u-tile" href="{{ .RelPermalink }}"{{ partial "func/lang-attrs.html" . }}>
     <span class="u-bar" aria-hidden="true"></span>
-    <span class="u-eyebrow project-card__eyebrow">
+    <span class="u-eyebrow">
       {{- with .Params.projectNo }}{{ i18n "number_sign" }} {{ printf "%02d" . }} <b aria-hidden="true">·</b> {{ end -}}
-      {{ i18n (printf "project_domain_%s" (.Params.domain | default "saas")) }}
-      <b aria-hidden="true">·</b>
+      <bdi>{{ .Date.Year }}</bdi> <b aria-hidden="true">·</b>
+      {{ i18n (printf "project_domain_%s" (.Params.domain | default "saas")) }} <b aria-hidden="true">·</b>
       {{ i18n (printf "project_status_%s" (.Params.status | default "active")) | default (.Params.status | upper) }}
     </span>
     <span class="u-tile__title">{{ .Title }}</span>
-
     {{- with .Params.pitch }}<span class="u-tile__text" dir="auto">{{ . }}</span>{{ end }}
     {{- partial "lang/en-only.html" . }}
     {{- with .Params.links.live }}
-
     <span class="u-eyebrow project-card__live">{{ i18n "project_link_live" }} <span aria-hidden="true">↗</span></span>
     {{- end }}
     {{- with .Params.stack }}
-    <span class="u-meta">
-      {{- range $i, $s := first 4 . }}{{ if $i }} <b aria-hidden="true">·</b> {{ end }}{{ $s }}{{ end -}}
-    </span>
+    <span class="u-meta">{{ range $i, $s := first 4 . }}{{ if $i }} <b aria-hidden="true">·</b> {{ end }}{{ $s }}{{ end }}</span>
     {{- end }}
-    </a>
-    {{- end }}
-    </div>
-  </section>
+  </a>
   {{- end }}
 </div>
 

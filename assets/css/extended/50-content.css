@@ -55,14 +55,6 @@
   text-align:start;
 }
 
-.post-single .post-meta{
-  display:block;
-  font-family:var(--font-label);
-  font-size:var(--t-caption);
-  letter-spacing:var(--track-micro);
-  color:var(--ink-mute);
-}
-.post-single .post-meta b{color:var(--accent);font-weight:400;}
 
 .post-entry{padding:var(--space-5);margin-bottom:var(--space-4);}
 .post-entry:has(.entry-cover){

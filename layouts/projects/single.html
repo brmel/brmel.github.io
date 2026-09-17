@@ -1,7 +1,7 @@
 {{- define "main" }}
 
 <article class="post-single project">
-  {{ partial "project/header.html" . }}
+  {{ partial "page-head/header.html" (dict "page" . "extra" (partial "project/meta.html" .)) }}
 
   {{- with .Params.lede }}
   <div class="project-lede">{{ . | markdownify }}</div>
