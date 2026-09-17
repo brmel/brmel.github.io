@@ -1,32 +1,54 @@
 {{- $src := .Get "src" -}}
-{{- $r := resources.Get $src -}}
-{{- with $r -}}
-
-<iframe id="reportFrame" class="report-frame u-wide" src="{{ .RelPermalink }}" title="{{ $.Get `title` | default (i18n `report`) }}" loading="lazy"></iframe>
+{{- with resources.Get $src -}}
+{{- $title := $.Get "title" -}}
+<figure class="report u-wide">
+  {{- with $.Page.Params.cover.image }}{{ with $.Page.Resources.GetMatch . }}
+  {{- $img := .Resize "1200x webp q80" }}
+  <img class="report__preview" src="{{ $img.RelPermalink }}" width="{{ $img.Width }}" height="{{ $img.Height }}" loading="lazy" decoding="async" alt="">
+  {{- end }}{{ end }}
+  <figcaption class="report__bar">
+    <button type="button" class="u-eyebrow u-link report__open" data-src="{{ .RelPermalink }}" data-title="{{ $title }}">{{ i18n "report_open" }}</button>
+    <a class="u-eyebrow u-rule-link" href="{{ .RelPermalink }}" target="_blank" rel="noopener">{{ i18n "report_newtab" }} <span aria-hidden="true">↗</span></a>
+  </figcaption>
+</figure>
 <script>
-(function () {
-  var f = document.getElementById('reportFrame'); if (!f) return;
-  var last = 0;
-  function fit() {
-    try {
-      var h = f.contentWindow.document.body.scrollHeight;
-      if (h > 200 && Math.abs(h - last) > 2) { last = h; f.style.height = h + 'px'; }
-    } catch (e) {}
-  }
-  f.addEventListener('load', function () {
-    var d = f.contentWindow.document;
-    d.documentElement.style.overflow = 'hidden';
-    var own = d.getElementById('theme-toggle');
-    if (own) own.style.display = 'none';
-    function theme() { d.documentElement.setAttribute('data-theme', document.body.classList.contains('dark') ? 'dark' : 'light'); }
-    theme();
-    new MutationObserver(theme).observe(document.body, { attributes: true, attributeFilter: ['class'] });
+document.querySelectorAll('.report__open').forEach((button) => button.addEventListener('click', () => {
+  const frame = document.createElement('iframe');
+  frame.className = 'report-frame u-wide';
+  frame.title = button.dataset.title;
+  frame.src = button.dataset.src;
+  button.closest('.report').replaceWith(frame);
+  const tokens = ['--ink', '--ink-soft', '--ink-mute', '--rule', '--rule-soft', '--bg', '--bg-alt', '--accent'];
+  const fit = () => { frame.style.height = frame.contentDocument.body.scrollHeight + 'px'; };
+  const brand = () => {
+    const page = getComputedStyle(document.body), t = Object.fromEntries(tokens.map((n) => [n, page.getPropertyValue(n).trim()]));
+    const root = frame.contentDocument.documentElement;
+    root.dataset.theme = document.body.classList.contains('dark') ? 'dark' : 'light';
+    Object.entries({
+      '--ink': t['--ink'], '--ink-2': t['--ink-soft'], '--muted': t['--ink-mute'], '--subtle': t['--ink-mute'],
+      '--border': t['--rule'], '--line': t['--rule'], '--grid': t['--rule-soft'],
+      '--bg': t['--bg'], '--white': t['--bg'], '--surface': t['--bg-alt'], '--raise': t['--bg-alt'], '--blue-bg': t['--bg-alt'],
+      '--blue': t['--accent'], '--accent-fill': t['--accent'], '--series-1': t['--accent'], '--label-1': t['--accent'],
+      '--series-2': t['--ink-soft'], '--label-2': t['--ink-soft']
+    }).forEach(([name, value]) => root.style.setProperty(name, value));
+  };
+  frame.addEventListener('load', () => {
+    const doc = frame.contentDocument;
+    const style = doc.createElement('style');
+    style.textContent = "@font-face{font-family:'Inter Tight';font-weight:400 600;src:url(/fonts/inter-tight-400-latin.woff2) format('woff2')}"
+      + "@font-face{font-family:'Instrument Serif';src:url(/fonts/instrument-serif-400-latin.woff2) format('woff2')}"
+      + "html{overflow:hidden}body{font-family:'Inter Tight',system-ui,sans-serif}h2,h3{font-family:'Instrument Serif',serif;font-weight:400}"
+      + "body>nav,body>header h1,.wrap>header h1,#theme-toggle{display:none}";
+    doc.head.appendChild(style);
+    doc.querySelectorAll('footer').forEach((el) => el.setAttribute('role', 'none'));
+    doc.querySelectorAll('iframe:not([title])').forEach((el) => { el.title = frame.title; });
+    doc.querySelectorAll('.table-wrap').forEach((el) => { el.tabIndex = 0; el.setAttribute('role', 'region'); el.setAttribute('aria-label', frame.title); });
+    brand();
+    new MutationObserver(brand).observe(document.body, { attributes: true, attributeFilter: ['class'] });
+    new ResizeObserver(fit).observe(doc.body);
     fit();
-    [200, 600, 1500, 3000].forEach(function (t) { setTimeout(fit, t); });
-    try { new ResizeObserver(fit).observe(f.contentWindow.document.body); } catch (e) {}
   });
-  window.addEventListener('resize', fit);
-})();
+}));
 </script>
 {{- else -}}
 {{- errorf "reportframe: %q is not in assets/" $src -}}
