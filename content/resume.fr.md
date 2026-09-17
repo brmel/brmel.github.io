@@ -1,7 +1,6 @@
 ---
 title: "CV"
 layout: "resume"
-disableShare: true
 summary: "Ingénieur en vision industrielle et traitement d'images — Zebra Technologies, Matrox Imaging, Polytechnique Montréal."
 description: "Développeur logiciel senior spécialisé en vision industrielle, traitement d'images et systèmes de contrôle."
 aliases: ["/fr/timeline/"]

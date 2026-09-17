@@ -76,6 +76,12 @@
 
 .entry-content{-webkit-line-clamp:unset;overflow:visible;}
 
+.post-content blockquote{
+  margin-block:var(--space-6);
+  padding-inline:var(--space-5) 0;
+  border-inline-start:var(--hairline-strong) solid var(--accent);
+  color:var(--ink);
+}
 .post-content :not(pre) > code{margin:0;padding:.1em .22em;font-size:.85em;}
 
 .post-content{
@@ -96,5 +102,6 @@
 .post-content > :is(h2,h3,h4):first-child{margin-block-start:0;}
 
 .post-content pre{font-size:.8em;overflow-x:auto;}
+.post-content .highlight:not(table){margin-block:var(--flow-block);}
 .post-content pre code{overflow-x:visible;width:max-content;min-width:100%;}
 .chroma :is(.c,.ch,.cm,.c1,.cs,.cp,.cpf,.sd,.sh){color:var(--code-comment);}

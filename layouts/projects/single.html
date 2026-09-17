@@ -18,12 +18,16 @@
   </dl>
   {{- end }}
 
+
+  <div class="post-content project-body">
+    {{- partial "anchored_headings.html" .Content -}}
+  </div>
   {{- $gallery := .Resources.Match "gallery/*" -}}
   {{- with $gallery }}
   <section class="project-gallery u-wide" aria-labelledby="project-gallery-h">
     <h2 class="u-rule-heading" id="project-gallery-h">{{ i18n "project_gallery" }}</h2>
     <div class="project-gallery__grid">
-      {{- range $i, $img := . }}
+      {{- range $img := . }}
       {{- $small := $img.Resize "640x webp q82" }}
       {{- $large := $img.Resize "1280x webp q82" }}
 
@@ -32,7 +36,7 @@
              srcset="{{ $small.RelPermalink }} 640w, {{ $large.RelPermalink }} 1280w"
              sizes="(max-width: 768px) 100vw, 390px"
              width="{{ $large.Width }}" height="{{ $large.Height }}"
-             {{- if eq $i 0 }} fetchpriority="high"{{ end }} decoding="async"
+             loading="lazy" decoding="async"
              alt="{{ $img.Title | default (printf (i18n "project_screenshot") $.Title) }}">
         {{- with $img.Params.caption }}<figcaption>{{ . }}</figcaption>{{ end }}
       </figure>
@@ -40,10 +44,6 @@
     </div>
   </section>
   {{- end }}
-
-  <div class="post-content project-body">
-    {{- partial "anchored_headings.html" .Content -}}
-  </div>
   {{- with .Params.lessons }}
   <section class="project-lessons" aria-labelledby="project-lessons-h">
     <h2 class="u-rule-heading" id="project-lessons-h">{{ i18n "project_lessons" }}</h2>

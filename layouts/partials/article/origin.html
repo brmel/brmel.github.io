@@ -1,7 +1,9 @@
 {{- with .Params.series }}
 {{- $series := . }}
 {{- $parts := where (where site.RegularPages "Section" "tech") "Params.series" $series }}
-{{- if gt (len $parts) 1 }}
+{{- if lt (len $parts) 2 }}
+{{- partial "article/original.html" $ }}
+{{- else }}
 <nav class="u-card series" aria-label="{{ i18n "series_label" }}">
   <p class="u-eyebrow series__title">
     {{ i18n "series_label" }} <b aria-hidden="true">·</b> {{ $series }}
@@ -17,14 +19,9 @@
     </li>
     {{- end }}
   </ol>
+  {{- partial "article/original.html" $ }}
 </nav>
 {{- end }}
-{{- end }}
-
-{{- with .Params.canonicalOriginal }}
-<p class="u-eyebrow article-origin">
-  {{ i18n "originally_published" }}
-  <a href="{{ . }}" target="_blank" rel="noopener noreferrer">
-    {{- $.Params.canonicalOriginalName | default "LinkedIn" }} <span aria-hidden="true">↗</span></a>
-</p>
+{{- else }}
+{{- partial "article/original.html" . }}
 {{- end }}

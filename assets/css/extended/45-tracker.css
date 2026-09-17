@@ -133,7 +133,7 @@
 [dir="rtl"] .paridata-row__summary::after{transform:rotate(-45deg);}
 [dir="rtl"] .paridata-row[open] .paridata-row__summary::after{transform:rotate(135deg);}
 
-.paridata-row__date{font-weight:600;color:var(--ink);white-space:nowrap;}
+.paridata-row__date{font-family:var(--font-label);font-size:var(--t-caption);font-weight:500;color:var(--ink);white-space:nowrap;}
 .paridata-row__comp{display:flex;align-items:center;gap:var(--space-2);}
 .paridata-row__tags{display:contents;}
 .paridata-row__tags > *{justify-self:start;white-space:nowrap;}

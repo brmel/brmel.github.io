@@ -22,7 +22,7 @@
           {{- with .Section }}
             {{- $name := . }}
             {{- with site.GetPage (printf "/%s" .) }}{{ $name = .Title }}{{ end }}
-            <span aria-hidden="true">·</span> {{ $name }}
+            <b aria-hidden="true">·</b> {{ $name }}
           {{- end }}
         </span>
         <span class="home-latest__title" dir="auto">{{ .Title }}</span>

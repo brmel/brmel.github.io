@@ -48,9 +48,7 @@ for f in glob.glob(os.path.join(EXT, "*.css")):
     for classes, token in re.findall(r"\.chroma\s*:is\(([^)]*)\)\s*\{[^}]*?color:\s*var\(--([\w-]+)\)", open(f).read()):
         for cls in re.findall(r"\.([\w-]+)", classes):
             syntax[cls] = light_tokens[token]
-theme_vars = open(os.path.join(THEME, "core", "theme-vars.css")).read()
-code_bgs = ["#%02x%02x%02x" % tuple(map(int, m))
-            for m in re.findall(r"--code-block-bg:\s*rgb\((\d+),\s*(\d+),\s*(\d+)\)", theme_vars)]
+code_bgs = [tokens(light_block)["code-ground"], tokens(dark_block)["code-ground"]]
 for cls, col in sorted(syntax.items()):
     for theme, bg in zip(("light", "dark"), code_bgs):
         checked += 1

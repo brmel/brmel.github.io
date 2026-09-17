@@ -8,6 +8,7 @@
   {{- $siblings = sort $siblings "Date" "desc" }}
 {{- end }}
 
+{{- $dated := ne $section "projects" }}
 {{- $prev := false }}{{ $next := false }}{{ $idx := -1 }}
 {{- range $i, $p := $siblings }}{{ if eq $p.RelPermalink $.RelPermalink }}{{ $idx = $i }}{{ end }}{{ end }}
 {{- if ge $idx 0 }}
@@ -21,14 +22,14 @@
   <div class="section-nav__siblings">
     {{- with $prev }}
     <a class="section-nav__sib" href="{{ .RelPermalink }}" rel="prev">
-      <span class="u-eyebrow u-link section-nav__link"><span aria-hidden="true">←</span> {{ i18n "previous" }}</span>
+      <span class="u-eyebrow u-link section-nav__link"><span aria-hidden="true">←</span> {{ i18n (cond $dated "newer" "previous") }}</span>
       <span class="section-nav__title"{{ partial "func/lang-attrs.html" . }}>{{ .Title }}</span>
       {{- partial "lang/en-only.html" . }}
     </a>
     {{- end }}
     {{- with $next }}
     <a class="section-nav__sib section-nav__sib--next" href="{{ .RelPermalink }}" rel="next">
-      <span class="u-eyebrow u-link section-nav__link">{{ i18n "next" }} <span aria-hidden="true">→</span></span>
+      <span class="u-eyebrow u-link section-nav__link">{{ i18n (cond $dated "older" "next") }} <span aria-hidden="true">→</span></span>
       <span class="section-nav__title"{{ partial "func/lang-attrs.html" . }}>{{ .Title }}</span>
       {{- partial "lang/en-only.html" . }}
     </a>

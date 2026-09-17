@@ -7,6 +7,7 @@
   --tertiary:var(--rule);
   --content:var(--ink);
   --code-bg:var(--bg-alt);
+  --code-block-bg:var(--code-ground);
   --border:var(--rule);
 
   --main-width:var(--container-content);

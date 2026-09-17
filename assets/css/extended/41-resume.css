@@ -14,7 +14,6 @@
 }
 .resume__skillgroup,
 .resume__record{padding:var(--space-3) 0;}
-.resume__skillgroup dt{color:var(--accent);}
 .resume__skillgroup dd{margin:0;color:var(--ink-soft);font-size:var(--t-body-l);line-height:1.6;}
 .resume__skillgroup dd span{color:var(--ink-mute);}
 

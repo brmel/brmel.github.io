@@ -1,0 +1,7 @@
+{{- with .Params.canonicalOriginal }}
+<p class="u-eyebrow article-origin">
+  {{ i18n "originally_published" }}
+  <a href="{{ . }}" target="_blank" rel="noopener noreferrer">
+    {{- $.Params.canonicalOriginalName | default "LinkedIn" }} <span aria-hidden="true">↗</span></a>
+</p>
+{{- end }}

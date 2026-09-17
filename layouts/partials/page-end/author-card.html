@@ -2,7 +2,7 @@
 {{- if and $resume (ne .RelPermalink $resume.RelPermalink) }}
 {{- with $resume }}
 <aside class="author-card">
-  <span class="u-eyebrow author-card__label">{{ i18n "author_label" }}</span>
+  <span class="u-eyebrow author-card__label">{{ i18n (cond (eq $.Section "projects") "author_label_project" "author_label") }}</span>
   <p class="author-card__name">{{ site.Params.profileMode.title | default site.Title }}</p>
   {{- with .Params.role }}<p class="author-card__role">{{ . }}</p>{{ end }}
   {{- with site.Home.Content }}<p class="author-card__line">{{ . | plainify | htmlUnescape | strings.TrimSpace }}</p>{{ end }}
