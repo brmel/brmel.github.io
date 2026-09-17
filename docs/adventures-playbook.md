@@ -28,7 +28,7 @@ archetype that scaffolds the structure.
 
 ```
 ┌───────────────────────────────────────┐
-│  FIELD NOTE № 004 · CATEGORY · PLACE   │  ← eyebrow + compass mark (auto)
+│  FIELD NOTE № 004 · CATEGORY · PLACE   │  ← eyebrow (auto)
 │  Big serif title                       │
 │  One-line hook sentence                │
 │  ## The place        + photo           │
@@ -225,7 +225,6 @@ tags: ["Montreal", "Old Port", "Walking"]
 cover:
     image: "cover.jpg"
     alt: "Old Port of Montreal at sunset"
-    relative: true
 category: "city"          # restaurant | hike | spa | event | city → label + icon
 fieldNote: 5              # → № 005 in the eyebrow
 place: "Old Port, Montréal"

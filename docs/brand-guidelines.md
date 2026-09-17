@@ -66,8 +66,15 @@ rule, recognisable in one frame:
    |---|---|---|
    | Adventures | `FIELD NOTE № {nn} · {CATEGORY} · {PLACE}` | `FIELD NOTE № 004 · HIKE · ADIRONDACKS` |
    | Projects | `PROJECT № {nn} · {DOMAIN} · {STATUS}` | `PROJECT № 01 · SAAS · SHIPPED` |
-   | Any list card | `{DATE} · {READ LENGTH}` | `1 JUNE 2026 · 6 MIN` |
+   | Project index card | `№ {nn} · {YEAR} · {DOMAIN} · {STATUS}` | `№ 11 · 2026 · DATA · IN PROGRESS` |
+   | Article page, any list card | `{DATE} · {READ LENGTH}` | `1 JUNE 2026 · 6 MIN` |
+   | Resume | `{LOCATION}` | `MONTRÉAL, QUÉBEC` |
    | Career period | `{YEARS}` | `2024 — PRESENT` |
+
+   Every label is translated (`FIELD NOTE`, `PROJECT`, the domain and status words, and
+   `№`, which is `رقم` in Arabic). The eyebrow sits between the breadcrumbs and the
+   title in the one page header (`partials/page-head/header.html`); a field note puts
+   its date line under the description.
 
    Two rules the eyebrow follows everywhere:
 
@@ -80,10 +87,12 @@ rule, recognisable in one frame:
 
    On a project *index* card the word `PROJECT` is dropped: the page is the
    project index, so it would repeat on every card. It stays on the project
-   page itself, where it is the only thing naming the section.
+   page itself, where it is the only thing naming the section. The year is on
+   the card because the index is one grid, not a timeline of year groups.
 
 3. **One accent, used sparingly** — the mark, the eyebrow dots, the category
-   bar, links. Never a filled background.
+   bar, links. Never a filled background, and never plain text that is not a
+   link: metric values, skill labels and verdict answers are ink.
 
 Layout is the same every time: mark top-left, eyebrow beside it, big serif title
 under, image fills the rest.
@@ -100,7 +109,8 @@ under, image fills the rest.
 on one screen, or in any colour that is not `--accent` or `--ink-mute`. The home
 hero used to carry a 40px mark directly under the nav's 22px one — the same
 signature twice within one screen height, which reads as a logo stacked on a
-logo rather than as a mark. The nav carries it there now.
+logo rather than as a mark. The resume head and the project eyebrow did the same
+until the page headers were unified. The nav carries it there now.
 
 ---
 
@@ -182,8 +192,8 @@ Scale: oversized serif title, small mono eyebrow above it, comfortable Inter
 Tight body. Generous line-height, lots of paper. Tokens: `--t-display-*`,
 `--t-body*`, `--t-eyebrow`, `--t-micro`, `--fl-display-*` for fluid sizes.
 
-**One rank, one size.** Every single page — article, project, field note,
-resume — opens at `--fl-display-m`; a section index opens one step down. This
+**One rank, one size.** Every page header — section index, article, project,
+field note, resume — opens at `--fl-display-m`. This
 was three sizes until the audit: an article title was 64px because
 `44-adventures.css` styled `.post-single .post-title`, which is every single
 page on the site, from a file scoped to one section.
@@ -241,7 +251,7 @@ throat-clearing, no words that would not survive being read aloud.
 | Mark | `partials/brand/mark.html` only, in `--accent` or `--ink-mute` |
 | Handle | `@ibraverse` on YouTube / IG / TikTok → all link to ibraverse.ca |
 | Eyebrow grammar | per §2 table |
-| Fonts | Instrument Serif / Inter Tight / JetBrains Mono only |
+| Fonts | Instrument Serif / Inter Tight / JetBrains Mono; IBM Plex Sans Arabic for Arabic script only (the three Latin faces have no Arabic glyphs) |
 | Accent rule | one accent, site-wide: `--accent` (§3) |
 | Colour source | `00-tokens.css`. No hex outside it, ever |
 | Contrast | ≥ 4.5:1 accent-on-background, checked before commit |
@@ -283,13 +293,13 @@ Consequences worth knowing:
 
 Two rules that predate the policy and still hold:
 
-- The language switcher must never offer a language that does not exist for the
-  current page. PaperMod's nav switcher points at each language's **home**, so
-  it cannot dead-end; `partials/translation_list.html` only renders when a
-  translation actually exists.
+- The language switcher must never dead-end. It goes to the current page's
+  translation when one exists and to that language's home otherwise.
 - Arabic is RTL and must be **checked**, not assumed: nav, breadcrumbs,
-  eyebrows, galleries and timelines all have to mirror. Numeric ranges need
-  isolating (`dir="ltr"`) or they render backwards.
+  eyebrows, galleries and timelines all have to mirror. Numbers and amounts are
+  isolated left-to-right; anything with words in it (a period like
+  `2024 — الآن`, a long date) uses a plain `<bdi>`, which picks its own
+  direction — forcing `dir="ltr"` on it renders it backwards.
 
 ---
 

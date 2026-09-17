@@ -53,7 +53,8 @@ delete this file. Git keeps the history.
 - The file number is the cascade. Shared primitives live in `20-components.css`, and section files
   compose them without redeclaring.
 - Logical properties only (`inline-start`, never `left`), so Arabic mirrors for free.
-- Two breakpoints: 600px and 768px. Files stay under 260 lines.
+- Breakpoints: 600px and 768px, plus 1100px for the four home cards and 960px for the ledger; a
+  grid that can size itself uses `auto-fit`/`auto-fill` instead of a query. Files stay under 260 lines.
 
 ### Templates
 
@@ -107,7 +108,7 @@ delete this file. Git keeps the history.
 | TBT | 0 ms |
 | HTML (gzip) | ≤ 20 KB |
 | CSS (gzip) | ≤ 15 KB |
-| JavaScript | none, except search and resume |
+| JavaScript | search, the resume video dialog, the PariData controls, the report loader, analytics after idle |
 | Image bytes above the fold | ≤ 60 KB |
 
 ### Quality gates (targets)
@@ -127,41 +128,27 @@ delete this file. Git keeps the history.
 Only the changes are marked. Everything else stays where it is.
 
 ```
-.github/workflows/      check.yml (pull requests) · hugo.yml (deploy on main)
+.github/workflows/      site.yml: check on pull requests, check then deploy on main
 archetypes/             one per section: adventures, projects, tech, thoughts, default
 assets/
   css/extended/         NN-name.css, cascade by number
-  css/standalone.css
-  images/               profile photo; timeline/ posters named by video ID  ← R3
-  js/                   timeline.js
-  reports/              generated report HTML, embedded by reportframe
+  images/               profile photo; timeline/ posters named by video ID
+  js/                   timeline.js (video dialog) · paridata.js
+  paridata/flags/       competition flags
+  reports/              generated report HTML, loaded on click by reportframe
 content/                page bundles per section; resume.{md,fr.md,ar.md}; search.*
+data/paridata/          tickets, matches, profile
 docs/
-  brand-guidelines.md · projects-playbook.md · adventures-playbook.md
+  brand-guidelines.md · projects-playbook.md · adventures-playbook.md · paridata-playbook.md
   brand-kit/            logo, social templates, channel art, photo and voice guides
-  improvement-plan.md   this file, deleted when the branch closes
+  improvement-plan.md   this file
 i18n/                   en · fr · ar
-layouts/
-  _default/             theme-level layouts and forks
-  projects/             project index and page
-  partials/
-    <theme names>       forks and theme hooks only, at the root     ← R2
-    func/               partials that return values
-    page-end/           footer, actions, section nav, author card
-    article/            origin, related project
-    adventures/         header, verdict, category icon
-    home/               career, sections, latest
-    project/            header, learning
-    resume/             timeline, video thumb
-    brand/              mark, social icon
-    head/               fonts, schema
-  shortcodes/           figure · gmap · reportframe
-  index.llms.txt · index.llmsfull.txt · sitemap.xml
+layouts/                see ARCHITECTURE.md for every folder
 scripts/
   check.sh · gates.sh   entry points
-  checks/               one gate per file                           ← R1
-  generate/             favicon and OG generators, with their HTML templates  ← R1
-  audit.py              Lighthouse and link crawl against budgets  ← M1
+  checks/               gate.py (shared) + one gate per file
+  generate/             favicon and OG generators, with their HTML templates
+  audit.py              Lighthouse and link crawl against budgets
 static/                 verbatim files only: favicons, fonts, og, robots.txt, CNAME
 themes/PaperMod/        vendored, untouched
 ```
@@ -407,6 +394,46 @@ Needs decision D1 before starting.
   - *Done when:* Lighthouse cache audits pass on every page, and the Mozilla Observatory grade is
     A or better.
 
+### Phase 7 — Audit of 2026-09-16
+
+Four read-only audits (code volume, languages and routes, accessibility and weight, brand per page and
+section) plus a live Lighthouse run. Done in the commits logged in §7:
+
+- [x] **B1 · Visible bugs.** Arabic reading time, reversed Arabic periods and dates, skip link, FR/AR
+  learning list and search index, language switcher, resume breadcrumbs, lessons links, stake focus.
+- [x] **B2 · Languages.** UI strings through i18n, English pages labelled and marked `lang="en"`, merged
+  feeds, FR/AR llms outputs dropped, multilingual root 404, number formats, og:locale, Arabic font.
+- [x] **B3 · Routes.** Tags and pagination removed; misplaced `enableRobotsTXT`/`enableEmoji` removed.
+- [x] **B4 · Weight.** Duplicate fonts, analytics after idle, copy script only where code is, reports
+  on click.
+- [x] **B5 · Less code.** Dead fork branches, shared gate helper, one icon partial, native dialog,
+  primitives, fewer breakpoints, dead tokens/params/fields/comments.
+- [x] **B6 · Brand.** One page header, accent discipline, page ends, warm code blocks, branded reports.
+
+Open — each needs a decision, content, or work outside this repo:
+
+- [ ] **B7 · `www.ibraverse.ca` certificate.** `https://www.` fails TLS: the `www` record is a CNAME to
+  `ibraverse.ca`, so Pages never issued a certificate for it. Point it at `brmel.github.io` (DNS).
+- [ ] **B8 · Report generators.** Self-host `plotly-cartesian` (430 KB instead of 1.1 MB), drop the
+  default template repeated in each chart, round the 14,973 long decimals, replace the folium maps with
+  static images, fix the CARTO basemap watermark ("API key required"), and the forecast heatmap caption
+  ("darker" while every cell is the same blue). Also one structure for both report articles.
+- [ ] **B9 · Consent.** Québec Law 25 expects tracking that can profile a visitor to be off by default.
+  Analytics loads for everyone; a consent choice is a decision (D4).
+- [ ] **B10 · Home `<title>`.** "Ibraverse" alone in EN/FR; changing it needs a `head.html` fork (S3).
+- [ ] **B11 · Search results.** Rendered by the theme's `fastsearch.js` (title and "»" only); the list
+  card look needs a fork of that script.
+- [ ] **B12 · Imagery.** Project cards could carry the first gallery image, but 6 of 11 projects have
+  no gallery; field notes have no photos. Content first.
+- [ ] **B13 · Content.** Resume video posters that read as stock, project status vocabulary (8 of 11
+  "in progress", including live ones), curly quotes in front-matter titles, voice of the imported
+  articles (left as written, D10).
+- [ ] **B14 · Theme CSS.** 45% of the theme's rules match nothing; trimming means overriding theme CSS
+  files (P5 kept one bundle).
+- [ ] **B15 · Duplication left on purpose.** PariData data checks in both `func/paridata-ledger.html`
+  (build-time errors) and `check-paridata.py`; the compass mark inlined in the OG and favicon generator
+  templates.
+
 ---
 
 ## 6. Decisions needed
@@ -415,7 +442,14 @@ Needs decision D1 before starting.
 |---|---|---|
 | D1 | Keep GitHub Pages as is, or put Cloudflare in front? | H1 |
 | D2 | Reports — decided: findings live as prose on the article (since R5 every figure is in the crawlable page); `/reports/` stays disallowed so raw report files are not indexed as duplicates | A1 |
-| D3 | Phone menu — decided: compact two-row wrap (measured: +5px header at 360–390, no overflow; scroll clipped Search; tighter spacing needed 13px text) | C5 |
+| D3 | Phone menu — decided: compact two-row wrap (measured: +5px header at 360–390, no overflow; scroll clipped Search; tighter spacing needed 13px text); since L1 a balanced 4 + 3 grid | C5 |
+| D4 | Analytics — decided 2026-09-16: Google Analytics 4 is back (property Ibraverse_personal_page, `G-CHFGS2DHF6`), loaded after the page is idle; consent banner not chosen | B9 |
+| D5 | Tags — decided: dropped (no tag pages; `tags:` feeds keywords) | B3 |
+| D6 | Social links — decided: keep all six (GitHub, LinkedIn, X, Email, Facebook, Instagram) | — |
+| D7 | Navigation — decided: keep Thoughts and Adventures as sections | — |
+| D8 | Reports — decided: preview + load on click, branded from the page's tokens; files untouched | B4 |
+| D9 | Arabic font — decided: IBM Plex Sans Arabic for Arabic script | B2 |
+| D10 | Article voice — decided: prose of imported articles is not edited | B13 |
 
 ---
 
@@ -471,4 +505,13 @@ Needs decision D1 before starting.
 | U7 | `8f59867` | 5-day Montréal forecast report; article and MeteoData page quoted its figures | 30-day report (14 Aug – 13 Sep); article and project figures rewritten from it; report follows the site theme and hides its own toggle; new cover | all 39 figures traced to the report; frame centred, sized to content, theme synced and toggles live at 390/1440 × light/dark; og and list thumbnail regenerated |
 | A3 | `0068359` | H2 headings up to 148 characters; sections mixed prose, H3 and non-link bullets; the reference parser raised on it | details before the first H2 (no headings), H2 sections are link lists, references under Optional | `llms_txt.parse_llms_file` parses it: Projects 10, Tech 9, Adventures 2, Thoughts 1, Optional 7 |
 | H1a | `f8a6de5` | no CSP | meta CSP on every page | 17 page types, search, resume video lightbox, inline YouTube, report frame with theme sync: 0 violations (favicons only flag on localhost, where their absolute URL is another origin) |
-| L1 | uncommitted | header 1328px wide, content and footer 900px: logo 214px left of every title at 1440; 7 blocks asked for 1200px and got 900px; reports squeezed to 900px, 358px with double padding on phones; block gaps 0/16/20/24/32/48/64/96px, breadcrumb touching the project eyebrow; double rules on /projects/ and project heads; menu flush to the screen edge at 768px and a lone "Search" row on phones; home photo an oval (theme radius won); tags page, search box and list cards on theme defaults; label typography declared ~20 times with 7 letter-spacings; Arabic labels 11–12px | one frame (1200px) for header, footer and wide blocks, 900px text measure from one rule; `main--wide` for the project index, resume and PariData; gaps 16/32/64px (12/24/48px on phones) from three tokens; one header component; rules on section headings and page end only; menu at the frame edge, 4+3 balanced rows on phones; `.u-eyebrow`/`.u-link`/`.u-label-row` composed in templates; list cards and tags on the site's card and chip; Arabic labels 13–14px; CSS 1,737 → 1,605 lines | 51 pages (EN/FR/AR) × 360/768/1024/1440: 0 overflow; blocks measured on 15 page types × 390–1920 sit on exactly two columns; report frame 0–390px at 390 with no page scroll; light/dark and RTL inspected; all gates pass |
+| L1 | `1b57db5` | header 1328px wide, content and footer 900px: logo 214px left of every title at 1440; 7 blocks asked for 1200px and got 900px; reports squeezed to 900px, 358px with double padding on phones; block gaps 0/16/20/24/32/48/64/96px, breadcrumb touching the project eyebrow; double rules on /projects/ and project heads; menu flush to the screen edge at 768px and a lone "Search" row on phones; home photo an oval (theme radius won); tags page, search box and list cards on theme defaults; label typography declared ~20 times with 7 letter-spacings; Arabic labels 11–12px | one frame (1200px) for header, footer and wide blocks, 900px text measure from one rule; `main--wide` for the project index, resume and PariData; gaps 16/32/64px (12/24/48px on phones) from three tokens; one header component; rules on section headings and page end only; menu at the frame edge, 4+3 balanced rows on phones; `.u-eyebrow`/`.u-link`/`.u-label-row` composed in templates; list cards and tags on the site's card and chip; Arabic labels 13–14px; CSS 1,737 → 1,605 lines | 51 pages (EN/FR/AR) × 360/768/1024/1440: 0 overflow; blocks measured on 15 page types × 390–1920 sit on exactly two columns; report frame 0–390px at 390 with no page scroll; light/dark and RTL inspected; all gates pass |
+| L0 | `aa434e6` | two workflows with their own build flags; `repo`/`tag` parsed as Instagram icon fields; ShowToc/showtoc conflict; README gates table 10 of 12 | one site.yml running check.sh; config 303 → 272 lines | build byte-identical except the deduplicated keywords meta |
+| GA | `da86404` | no analytics since 2026-09-11 | GA4 through Hugo's embedded tag, CSP allows it | 87 of 139 pages carry the tag; hit seen in Realtime from the live site |
+| B1 | `53b31df` | "a few seconds" on 6 Arabic cards; reversed periods; skip link left focus behind; FR learning 1 of 11; FR/AR search 3 of 24; switcher always home | plural forms, auto-direction bdi, CSS smooth scroll, merged lists and index, switcher to the translation | keyboard Tab after skip lands in main; 24 search entries per language |
+| B2 | `38ff520` | English UI strings in FR/AR; FR/AR home feeds 3 items; `$400.00` in French; og:locale `en` | i18n strings, lang/dir on English cards, merged feeds, `400,00 $`, `en_CA`, IBM Plex Sans Arabic | all gates; Arabic pages screenshotted |
+| B3 | `d34e2e1` | 139 HTML files, 50 redirect stubs, 105 tag files | 59 HTML files, 6 stubs | all gates |
+| B4 | `8c5c2cf` | 4–6 font files, 133–207 KB; gtag.js competing with first render | 3 files, 89 KB (Arabic 100 KB); gtag.js after load | page_view still sent (intercepted) |
+| B5 | `14aab27` `1acd026` | ~720 lines of dead branches, duplicate gate helpers, copied icons, hand-made modal | −953 / +334 lines; gate.py; native dialog | all gates; dialog keyboard-tested |
+| B6 | `323d8b8` `de3b39e` | four header variants; rust on plain text; slate code blocks | one page header; accent on mark, dots, bar, links; warm code ground | contrast gate on the new code ground |
+| B4b | `2080548` | report frame: 2.5 MB and 40+ requests on page load | 0 requests before the click; branded in light and dark | both reports load, fit and follow the theme |

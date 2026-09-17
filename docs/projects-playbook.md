@@ -14,7 +14,7 @@ to field notes).
 
 ```
 ┌──────────────────────────────────────────┐
-│ ⊙ PROJECT № 01 · SAAS · SHIPPED          │ ← eyebrow: mark + mono caps (auto)
+│ PROJECT № 01 · SAAS · SHIPPED            │ ← eyebrow: mono caps (auto)
 │ TikiPro                                  │ ← serif display title (auto)
 │ One line a non-engineer understands.     │ ← pitch (auto)
 │ [Electron][TypeScript][Firebase]  LIVE ↗ │ ← stack chips + links (auto)

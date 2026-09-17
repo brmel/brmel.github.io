@@ -31,12 +31,12 @@ archetypes/       one scaffold per section
 layouts/          templates; see ARCHITECTURE.md
 assets/           everything that passes through Hugo Pipes
   css/extended/   NN-name.css — the number is the cascade order
-  js/             timeline.js (resume video lightbox), paridata.js (ledger controls)
+  js/             timeline.js (resume video dialog), paridata.js (ledger controls)
   images/         profile photo and resume video posters
   paridata/       competition flags
-  reports/        generated report pages, embedded by the reportframe shortcode
+  reports/        generated report pages, loaded on click by the reportframe shortcode
 i18n/             en, fr, ar strings
-static/           copied as-is: favicons, fonts, generated social cards (og/), CNAME, robots.txt
+static/           copied as-is: favicons, fonts (Latin faces + IBM Plex Sans Arabic), social cards (og/), CNAME, robots.txt
 scripts/          check.sh builds and runs gates.sh; checks/ holds the gates, generate/ the asset generators
 .github/          site.yml: check every pull request; check, then deploy, on push to main
 docs/             brand system, brand kit, playbooks, improvement plan
