@@ -47,7 +47,7 @@
         <div class="timeline-facts__row">
           <dt class="u-eyebrow timeline-facts__label">{{ i18n (printf "career_%s" $rail) }}</dt>
           <dd class="timeline-facts__value">
-            {{- range $i, $v := . }}{{ if $i }} <b aria-hidden="true">·</b> {{ end }}{{ $v }}{{ end -}}
+            {{- partial "func/dots.html" . -}}
           </dd>
         </div>
         {{- end }}

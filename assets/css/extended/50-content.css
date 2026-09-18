@@ -8,7 +8,7 @@
   stroke:var(--rule);
   stroke-width:1;
 }
-.workflow .wf-store rect,.workflow rect.wf-store{fill:var(--bg-alt);stroke:var(--accent);}
+.workflow rect.wf-store{fill:var(--bg-alt);stroke:var(--accent);}
 .workflow rect.wf-out{fill:var(--bg-alt);stroke:var(--accent);stroke-width:1.5;}
 .workflow .wf-t{
   fill:var(--ink);font-family:var(--font-sans);font-size:13px;

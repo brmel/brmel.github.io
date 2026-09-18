@@ -1,14 +1,7 @@
 {{- $title := .Get "title" | default (i18n "map") -}}
-{{- with .Get "src" }}
-<div class="gmap">
-  <iframe src="{{ . | safeURL }}" title="{{ $title }}" loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
-</div>
-{{- else }}
 {{- with .Get "q" }}
 <p class="gmap-link">
   <a class="u-eyebrow u-rule-link" href="https://www.google.com/maps/search/?{{ (querify "api" "1" "query" .) | safeURL }}"
      target="_blank" rel="noopener noreferrer">{{ $title }} <span aria-hidden="true">↗</span></a>
 </p>
-{{- end }}
 {{- end }}

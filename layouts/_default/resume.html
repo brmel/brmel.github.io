@@ -27,7 +27,7 @@
       <div class="u-label-row resume__skillgroup">
         <dt class="u-eyebrow">{{ .group }}</dt>
         <dd>
-          {{- range $i, $s := .items }}{{ if $i }} <span aria-hidden="true">·</span> {{ end }}{{ $s }}{{ end -}}
+          {{- partial "func/dots.html" .items -}}
         </dd>
       </div>
       {{- end }}

@@ -6,7 +6,7 @@
 {{- else }}
 <nav class="u-card series" aria-label="{{ i18n "series_label" }}">
   <p class="u-eyebrow series__title">
-    {{ i18n "series_label" }} <b aria-hidden="true">·</b> {{ $series }}
+    {{ i18n "series_label" }} <b class="u-dot" aria-hidden="true">·</b> {{ $series }}
   </p>
   <ol class="series__list">
     {{- range sort $parts "Params.seriesPart" "asc" }}

@@ -3,7 +3,7 @@
 
 {{ partial "page-head/header.html" (dict "page" .) }}
 {{- with .Content }}
-<div class="post-content projects-intro">{{ . }}</div>
+<div class="post-content">{{ . }}</div>
 {{- end }}
 
 
@@ -12,9 +12,9 @@
   <a class="u-card u-tile" href="{{ .RelPermalink }}"{{ partial "func/lang-attrs.html" . }}>
     <span class="u-bar" aria-hidden="true"></span>
     <span class="u-eyebrow">
-      {{- with .Params.projectNo }}{{ i18n "number_sign" }} {{ printf "%02d" . }} <b aria-hidden="true">·</b> {{ end -}}
-      <bdi>{{ .Date.Year }}</bdi> <b aria-hidden="true">·</b>
-      {{ i18n (printf "project_domain_%s" (.Params.domain | default "saas")) }} <b aria-hidden="true">·</b>
+      {{- with .Params.projectNo }}{{ i18n "number_sign" }} {{ printf "%02d" . }} <b class="u-dot" aria-hidden="true">·</b> {{ end -}}
+      <bdi>{{ .Date.Year }}</bdi> <b class="u-dot" aria-hidden="true">·</b>
+      {{ i18n (printf "project_domain_%s" (.Params.domain | default "saas")) }} <b class="u-dot" aria-hidden="true">·</b>
       {{ i18n (printf "project_status_%s" (.Params.status | default "active")) | default (.Params.status | upper) }}
     </span>
     <span class="u-tile__title">{{ .Title }}</span>
@@ -24,7 +24,7 @@
     <span class="u-eyebrow project-card__live">{{ i18n "project_link_live" }} <span aria-hidden="true">↗</span></span>
     {{- end }}
     {{- with .Params.stack }}
-    <span class="u-meta">{{ range $i, $s := first 4 . }}{{ if $i }} <b aria-hidden="true">·</b> {{ end }}{{ $s }}{{ end }}</span>
+    <span class="u-meta">{{ partial "func/dots.html" (first 4 .) }}</span>
     {{- end }}
   </a>
   {{- end }}

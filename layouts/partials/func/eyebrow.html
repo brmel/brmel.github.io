@@ -12,6 +12,4 @@
     {{- with .Params.location }}{{ $parts = $parts | append . }}{{ end -}}
   {{- end -}}
 {{- end -}}
-{{- $escaped := slice -}}
-{{- range $parts }}{{ $escaped = $escaped | append (htmlEscape .) }}{{ end -}}
-{{- return (delimit $escaped ` <b aria-hidden="true">·</b> ` | safeHTML) -}}
+{{- return (partial "func/dots.html" $parts) -}}

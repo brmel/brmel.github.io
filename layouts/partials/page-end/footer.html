@@ -2,9 +2,7 @@
 <footer class="content-footer">
   <div class="content-footer__row">
     {{- partial "page-end/actions.html" . }}
-    {{- if (and site.Params.ShowShareButtons (ne .Params.disableShare true)) }}
     {{- partial "social_icons.html" . }}
-    {{- end }}
   </div>
   {{- partial "page-end/author-card.html" . }}
   {{- partial "page-end/section-nav.html" . }}
