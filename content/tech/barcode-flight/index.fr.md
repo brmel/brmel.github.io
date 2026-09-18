@@ -2,7 +2,7 @@
 title: "Comment le traitement d'image a sauvé mon vol : codes-barres et couleur de premier plan"
 date: 2025-12-03
 tags: ["Traitement d’Images"]
-summary: "Un exemple concret de l'importance du support de la couleur de premier plan dans la lecture de codes-barres."
+description: "Un exemple concret de l'importance du support de la couleur de premier plan dans la lecture de codes-barres."
 cover:
     image: "01-boarding-pass-dark.jpeg"
     alt: "Code-barres en Mode Sombre"

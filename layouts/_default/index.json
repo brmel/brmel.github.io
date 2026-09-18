@@ -4,6 +4,6 @@
 {{- with site.GetPage "/resume" }}{{ $pages = $pages | append . }}{{ end }}
 {{- $index := slice }}
 {{- range $pages }}
-{{- $index = $index | append (dict "title" (.Title | htmlUnescape) "content" (.Plain | htmlUnescape) "permalink" .Permalink "summary" (.Summary | plainify | htmlUnescape)) }}
+{{- $index = $index | append (dict "title" (.Title | htmlUnescape) "content" (.Plain | htmlUnescape) "permalink" .Permalink "summary" (.Description | default .Summary | plainify | htmlUnescape)) }}
 {{- end }}
 {{- $index | jsonify -}}

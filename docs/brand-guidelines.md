@@ -1,7 +1,7 @@
 # Ibraverse — Brand System
 
 The single source of truth for the **visual and verbal brand of the whole site**:
-Home, Resume, Projects, Tech, Adventures, Thoughts. One identity, flexed per
+Home, Resume, Projects, Tech, Adventures. One identity, flexed per
 content type by a single accent.
 
 > Feed this file to a design tool alongside any prompt so every asset — covers,
@@ -217,6 +217,10 @@ doesn't fit one of these rows doesn't have a home yet — decide before building
 | **Tech** | Explain something learned by doing it | rust | article layout, figures |
 | **Adventures** | Honest first-person reviews of places | rust | eyebrow, verdict block |
 | **Thoughts** | Reflection — shorter, no artefact required | rust | plain article, no cover |
+
+Thoughts is defined but not published: it held one article, and the section came down with it. The
+row stays because it is what the section is for when there is a second piece to put in it — bringing
+it back is the content plus its three menu entries and `mainSections` in `config.toml`.
 
 **Layout-driven chrome is the rule.** In Adventures and Projects the eyebrow,
 verdict, chips and status all render from front matter. You write only

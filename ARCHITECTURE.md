@@ -37,6 +37,7 @@ layouts/
     func/              return values, not markup: call with `partial` and use the result
       section-pages.html   which pages a section lists, across languages
       eyebrow.html         a single page's eyebrow line, by section
+      dots.html            a slice joined into one dot-separated, escaped string
       lang-attrs.html      lang/dir attributes for an English page listed on a FR/AR index
       og-image.html · og-src.html   which social card a page shares, and its file
       paridata-ledger.html          the PariData tickets, settled
@@ -58,7 +59,7 @@ layouts/
   shortcodes/
     figure.html        images through the pipeline, with srcset and dimensions
     gmap.html
-    reportframe.html   a report preview that loads the branded report frame on click
+    reportframe.html   the branded report frame, rendered in place
     *.markdown.md      the same shortcodes in the markdown output
 ```
 
@@ -75,6 +76,12 @@ own directory makes the distinction visible at the call site: anything in
 {{- $pages := partial "func/section-pages.html" . }}
 {{- $og := partial "func/og-image.html" . }}
 ```
+
+`dots.html` is the separator. Five templates used to write ` <b aria-hidden="true">·</b> ` and
+walk the index themselves, and one of them had drifted to a `<span>` that never got the accent.
+The glyph, the element, the `aria-hidden` and the escaping now live in one partial, and the dot
+carries `.u-dot` so it styles itself instead of depending on which ancestor it lands in.
+Breadcrumbs keep their own, deliberately muted, separator.
 
 ### Theme forks
 
@@ -101,7 +108,7 @@ everything that consumes it.
 | `00-tokens` | design tokens; the only file that defines a colour. Spacing is `--flow-tight` / `--flow-block` / `--flow-section` |
 | `05-fonts` | self-hosted `@font-face` declarations |
 | `10-base` | theme variable remap, the page frame, page headers, type, links, tables, code |
-| `20-components` | shared primitives — `.u-card`, `.u-bar`, `.u-tile`, `.u-eyebrow`, `.u-meta`, `.u-link`, `.u-rule-link`, `.u-chip`, `.u-rows`, `.u-label-row`, `.u-rule-heading`, `.u-frame` — and what shared partials and shortcodes render |
+| `20-components` | shared primitives — `.u-card`, `.u-bar`, `.u-tile`, `.u-eyebrow`, `.u-meta`, `.u-dot`, `.u-link`, `.u-rule-link`, `.u-chip`, `.u-rows`, `.u-label-row`, `.u-rule-heading`, `.u-frame` — and what shared partials and shortcodes render |
 | `30-chrome` | nav, mark, footers, section nav, content footer |
 | `31-toc` `32-search` | table of contents, search box |
 | `40-home` `41-resume` `42-timeline` `43-projects` `44-adventures` `45-tracker` `46-project-page` | one section each |
@@ -120,18 +127,29 @@ Every page loads the same stylesheet. Anything a shared partial or a shortcode r
 ### Page frame
 
 Two widths, one rule in `10-base.css`. The header, footer and `<main>` share the 1200px frame
-(`--container-content`), so the logo, wide blocks and the menu's end sit on the same two edges.
-Every block inside it is centred at the text measure (900px, `--container-text`) unless it opts out:
+(`--container-content`), so the logo, the menu's end and the page edges line up. **Every block
+inside a page sits at that page's measure — there is no per-block opt-out.** A page picks its
+measure once:
 
-- `.u-wide` on a block — a grid, gallery or report frame — gives it the full frame. Home section
-  cards, project galleries and report frames carry it.
-- a page whose body is itself a grid or a table sets the whole page to the frame with
+- by default it is the text measure (900px, `--container-text`). Home section cards, project
+  galleries and report frames sit on the same two edges as the prose beside them; a grid reflows
+  to the measure (`auto-fit` + `minmax`) rather than escaping it.
+- a page whose body is itself a grid or a table sets the whole page to the 1200px frame with
   `{{ define "main-width" }} main--wide{{ end }}`: the project index, the resume and PariData.
-  Headers, section rules and the page end then share the grid's edges.
+  Headers, section rules and the page end then share the grid's edges, so nothing exceeds anything
+  else there either.
 
 Nothing is sized from `100vw`, and no block sets its own `max-width` or `margin-inline:auto` —
-spacing between blocks is `margin-block` only. On phones a report frame runs to the screen edge,
-because the report brings its own padding.
+spacing between blocks is `margin-block` only.
+
+The measure rule names `.post-content` twice. That is deliberate: PaperMod margins `h3`–`h6`,
+`blockquote` and `iframe` by element, which outranks a single class and would left-align them out
+of the measure. A block escaping the text column was the whole class of bug this replaced, so the
+rule has to win.
+
+There used to be a `.u-wide` opt-out. Every block that carried it — the home section cards, the
+project galleries, the report frames — read as a bulge against the text it sat next to, so the
+class is gone rather than reapplied more carefully.
 
 Every page header — list, article, field note, project, PariData, resume, search — is
 `partials/page-head/header.html`: breadcrumbs, an eyebrow from `func/eyebrow.html`, the title, one
@@ -177,8 +195,11 @@ listed three periods where French and Arabic listed two, and no gate could see
 it. Education is not a separate section; both degrees are periods, so a year, a
 degree and a school are written once.
 
-An article in Tech, Thoughts or Adventures declares `title`, `summary`, `description`, `tags` and a
-`cover` (a file in the bundle) with `alt` — `check-og.py` fails the build without the alt. Tags are
+An article in Tech or Adventures declares `title`, `description`, `tags` and a
+`cover` (a file in the bundle) with `alt` — `check-og.py` fails the build without the alt.
+`description` is the one line the reader sees: on the section card, in the home feed, in the
+search index, the meta tag and the JSON-LD. Articles used to carry a `summary` as well, saying
+the same thing in different words; it was rendered nowhere, so it is gone. Tags are
 not a taxonomy: there are no tag pages; they feed the keywords meta tag and JSON-LD.
 Optional fields, each rendered by one partial:
 
@@ -195,11 +216,15 @@ PariData is the one page rendered from `data/` rather than front matter: tickets
 
 A report is an ordinary Tech article: prose in the text column, then the generated HTML from
 `assets/reports/` embedded with `{{< reportframe src="reports/<file>.html" title="…" >}}`. The
-shortcode shows the article's cover as a preview; the frame, and the report's megabytes, load only
-when the reader opens it. On load the frame script sets the report's own CSS variables from the
-page's live tokens (so both themes follow the site), loads the site fonts, hides the report's nav and
-duplicate title and patches its accessibility gaps. The report files and their generators stay
-untouched, so a regenerated report keeps working.
+article page **is** the report — one URL, reached in one click from the Tech list, with the site
+header on it. The shortcode renders the frame in place, `loading="lazy"`, so the report's megabytes
+arrive as the reader reaches them rather than behind a button. There is no preview card and no
+second route to the same content: a reader who wants the report is already looking at it.
+
+On load the frame script sets the report's own CSS variables from the page's live tokens (so both
+themes follow the site), loads the site fonts, hides the report's nav and duplicate title and
+patches its accessibility gaps. The report files and their generators stay untouched, so a
+regenerated report keeps working.
 
 ## Languages
 

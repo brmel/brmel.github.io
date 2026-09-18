@@ -7,5 +7,5 @@ description: "Vision industrielle et traitement d'images chez Zebra Technologies
 Je développe et maintiens des algorithmes de vision industrielle :
 géométrie, calibration et mesure de contours. Je les mène du prototype au
 déploiement, avec des méthodes classiques et avec de l'apprentissage profond.
-J'aime le C++, la robotique, l'IA et la vision industrielle. C'est ce que je
-construis et ce dont je parle ici.
+J'aime le C++, la robotique et l'IA. C'est ce que je construis et ce dont je
+parle ici.

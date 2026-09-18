@@ -432,7 +432,9 @@ Open — each needs a decision, content, or work outside this repo:
   files (P5 kept one bundle).
 - [ ] **B15 · Duplication left on purpose.** PariData data checks in both `func/paridata-ledger.html`
   (build-time errors) and `check-paridata.py`; the compass mark inlined in the OG and favicon generator
-  templates.
+  templates; `figure.html` and the project gallery each render a responsive image their own way —
+  their needs differ enough that one partial would be a parameter bag rather than a deeper module.
+  The dot separator, which was the third case, is now `func/dots.html`.
 
 ---
 
@@ -446,8 +448,8 @@ Open — each needs a decision, content, or work outside this repo:
 | D4 | Analytics — decided 2026-09-16: Google Analytics 4 is back (property Ibraverse_personal_page, `G-CHFGS2DHF6`), loaded after the page is idle; consent banner not chosen | B9 |
 | D5 | Tags — decided: dropped (no tag pages; `tags:` feeds keywords) | B3 |
 | D6 | Social links — decided: keep all six (GitHub, LinkedIn, X, Email, Facebook, Instagram) | — |
-| D7 | Navigation — decided: keep Thoughts and Adventures as sections | — |
-| D8 | Reports — decided: preview + load on click, branded from the page's tokens; files untouched | B4 |
+| D7 | Navigation — decided 2026-09-17: Adventures stays; Thoughts is unpublished until there is a second piece (content, three menu entries and `mainSections` removed; archetype and social card kept) | — |
+| D8 | Reports — decided 2026-09-17: the article page **is** the report, rendered in place and lazy-loaded, branded from the page's tokens; the preview card and the second "full page" route are gone; files untouched | B4 |
 | D9 | Arabic font — decided: IBM Plex Sans Arabic for Arabic script | B2 |
 | D10 | Article voice — decided: prose of imported articles is not edited | B13 |
 

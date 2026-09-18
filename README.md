@@ -22,7 +22,6 @@ Python 3 and Java; the generators also need Pillow.
 content/          markdown, one page bundle per article or project
   projects/       what was built, with galleries
   tech/           long-form technical writing
-  thoughts/       shorter reflection
   adventures/     field notes
   resume.md       + .fr.md / .ar.md
   search.md       + .fr.md / .ar.md
@@ -34,7 +33,7 @@ assets/           everything that passes through Hugo Pipes
   js/             timeline.js (resume video dialog), paridata.js (ledger controls)
   images/         profile photo and resume video posters
   paridata/       competition flags
-  reports/        generated report pages, loaded on click by the reportframe shortcode
+  reports/        generated report pages; the reportframe shortcode renders one in place
 i18n/             en, fr, ar strings
 static/           copied as-is: favicons, fonts (Latin faces + IBM Plex Sans Arabic), social cards (og/), CNAME, robots.txt
 scripts/          check.sh builds and runs gates.sh; checks/ holds the gates, generate/ the asset generators

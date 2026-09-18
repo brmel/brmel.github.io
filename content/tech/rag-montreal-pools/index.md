@@ -2,7 +2,6 @@
 title: "Building a Chatbot That Answers From Your Own Documents"
 date: 2024-09-03
 relatedProject: "batir"
-summary: "Montréal publishes every indoor pool schedule and no way to search them by time. A RAG chatbot over the scraped schedules, built in one afternoon — and why the result still made me uncomfortable."
 description: "A RAG chatbot over Montréal's indoor pool schedules: how retrieval over your own documents works, and why the result still made me uncomfortable."
 tags: ["Python", "LLM", "AI"]
 cover:

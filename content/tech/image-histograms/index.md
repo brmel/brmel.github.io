@@ -4,7 +4,7 @@ date: 2025-01-08
 draft: false
 tags: ["Industrial Vision", "Image Processing"]
 aliases: ["/posts/image-histograms/"]
-description: "Counting the teeth on a saw blade looks trivial and is not. How edge measurement actually solves it, and which part of the method decides whether it works."
+description: "How edge measurement counts the teeth on a saw blade, and which part of the method decides whether it works on a real image."
 cover:
     image: "01-saw-blade.png"
     alt: "A circular saw blade"
