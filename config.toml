@@ -46,11 +46,6 @@ enableGitInfo = true
       url = "/adventures/"
       weight = 5
     [[languages.en.menu.main]]
-      identifier = "thoughts"
-      name = "Thoughts"
-      url = "/thoughts/"
-      weight = 6
-    [[languages.en.menu.main]]
       identifier = "search"
       name = "Search"
       url = "/search/"
@@ -96,11 +91,6 @@ enableGitInfo = true
       name = "Aventures"
       url = "/adventures/"
       weight = 5
-    [[languages.fr.menu.main]]
-      identifier = "thoughts"
-      name = "Pensées"
-      url = "/thoughts/"
-      weight = 6
     [[languages.fr.menu.main]]
       identifier = "search"
       name = "Recherche"
@@ -149,11 +139,6 @@ enableGitInfo = true
       url = "/adventures/"
       weight = 5
     [[languages.ar.menu.main]]
-      identifier = "thoughts"
-      name = "أفكار"
-      url = "/thoughts/"
-      weight = 6
-    [[languages.ar.menu.main]]
       identifier = "search"
       name = "بحث"
       url = "/search/"
@@ -165,13 +150,12 @@ enableGitInfo = true
 
 [params]
   title = "Ibraverse"
-  mainSections = ["projects", "tech", "adventures", "thoughts"]
+  mainSections = ["projects", "tech", "adventures"]
   images = ["images/profile.jpg"]
   defaultTheme = "light"
   ShowReadingTime = true
 
   ShowToc = true
-  ShowShareButtons = true
   ShowCodeCopyButtons = true
   UseHugoToc = true
 
@@ -261,5 +245,5 @@ enableGitInfo = true
   outputs = ["HTML", "markdown"]
   [cascade._target]
     kind = "page"
-    path = "{/tech/**,/thoughts/**,/adventures/**}"
+    path = "{/tech/**,/adventures/**}"
 

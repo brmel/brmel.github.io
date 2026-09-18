@@ -22,7 +22,7 @@ lede: |
   how long they really last, and how often the announced restoration time holds.
 takeaway: "A number I collected myself changed my mind in a way the same number from someone else would not have."
 lessons:
-  - "**The headline finding was about me, not the utility.** Announced restoration times land within an hour about 5% of the time. My second reaction was recognising the same failure in my own estimates — that became [a whole piece of writing](/thoughts/estimates-and-the-five-percent/), and it is the only thing from this project I still think about."
+  - "**The headline finding was about me, not the utility.** Announced restoration times land within an hour about 5% of the time. My second reaction was recognising the same failure in my own estimates, and that is the only thing from this project I still think about."
   - "**Collect first, decide the question later.** I started polling before I knew what I was looking for. Every interesting result — ETA accuracy, regional spread, the 611-outage peak — came from questions I could not have asked on day one, and could only ask because the data was already on disk."
   - "**Hourly files with a close-then-upload rule made the whole thing restartable.** Snapshots land in the open hour's JSONL; only closed hours upload. The collector can die at any moment and lose at most one minute, which it did, more than once, over 56 days."
   - "**Public does not mean tidy.** The outage map ships KMZ geometry meant for rendering, not analysis. Turning polygons into per-municipality attribution was most of the work, and it is why the borough map exists at all."

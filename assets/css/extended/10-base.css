@@ -25,9 +25,11 @@
   padding-block:var(--flow-block) var(--flow-section);
 }
 .main--wide{--measure:var(--container-content);}
-.main > :not(.post-single,.u-wide),
-.post-single > :not(.post-content,.u-wide),
-.post-content > :not(.u-wide){max-inline-size:var(--measure);margin-inline:auto;}
+/* .post-content twice: PaperMod margins h3-h6, blockquote and iframe by element,
+   which outranks a single class and would left-align them out of the measure. */
+.main > :not(.post-single),
+.post-single > :not(.post-content),
+.post-content.post-content > *{max-inline-size:var(--measure);margin-inline:auto;}
 
 body{font-family:var(--font-sans);}
 @media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth;}}
@@ -38,14 +40,13 @@ body{font-family:var(--font-sans);}
 .page-404 h1,
 .profile_inner h1,
 .entry-header h2,
-.post-content h1,
 .post-content h2,
 .post-content h3{
   font-family:var(--font-serif);
   font-weight:400;
   letter-spacing:-0.01em;
 }
-code,kbd,samp,pre,tt{font-family:var(--font-mono);}
+code,kbd,samp,pre{font-family:var(--font-mono);}
 
 .page-header{
   display:flex;flex-direction:column;gap:var(--flow-tight);
@@ -87,7 +88,7 @@ a:focus-visible,button:focus-visible,.toc summary:focus-visible,.top-link:focus-
   text-decoration-color:var(--accent);
 }
 
-.post-content h1 a,.post-content h2 a,.post-content h3 a,
+.post-content h2 a,.post-content h3 a,
 .post-content figure a{text-decoration:none;}
 
 table{width:100%;border-collapse:collapse;margin:var(--space-5) 0;}

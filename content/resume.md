@@ -93,7 +93,7 @@ experience:
           Replaced older solvers in the geometry modules with non-linear
           optimisers, Levenberg–Marquardt among them, in a library whose
           existing behaviour thousands of installed applications depend on.
-    built: ["Pattern matching", "Edge detection", "Calibration", "Measurement and metrology"]
+    built: ["Pattern matching", "Edge detection", "Non-linear optimisation", "Memory investigations", "Calibration", "Measurement and metrology"]
     stack: ["C++", "non-linear optimisation", "Levenberg–Marquardt", "classical ML"]
     tools: ["Visual Studio", "Git", "SVN"]
     learned: >-

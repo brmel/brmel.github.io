@@ -93,7 +93,7 @@ experience:
           Remplacer d'anciens solveurs des modules de géométrie par des
           optimiseurs non linéaires, dont Levenberg–Marquardt, dans une
           bibliothèque dont des milliers d'applications installées dépendent.
-    built: ["Appariement de motifs", "Détection de contours", "Calibration", "Mesure et métrologie"]
+    built: ["Appariement de motifs", "Détection de contours", "Optimisation non linéaire", "Investigations mémoire", "Calibration", "Mesure et métrologie"]
     stack: ["C++", "optimisation non linéaire", "Levenberg–Marquardt", "apprentissage classique"]
     tools: ["Visual Studio", "Git", "SVN"]
     learned: >-
@@ -159,8 +159,8 @@ experience:
     tools: ["Unity-Pro (Schneider)", "Simatic-Manager (Siemens)", "Simulink", "LabVIEW"]
     learned: >-
       Le matériel se moque de l'élégance du modèle : la première machine
-      d'assemblage que j'ai programmée passait ses pannes sur des capteurs et
-      du câblage, pas sur la logique de commande travaillée tout le semestre.
+      d'assemblage que j'ai programmée tombait en panne à cause des capteurs et
+      du câblage, pas de la logique de commande travaillée tout le semestre.
 
 skills:
   - group: "Langages"

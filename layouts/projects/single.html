@@ -24,7 +24,7 @@
   </div>
   {{- $gallery := .Resources.Match "gallery/*" -}}
   {{- with $gallery }}
-  <section class="project-gallery u-wide" aria-labelledby="project-gallery-h">
+  <section class="project-gallery" aria-labelledby="project-gallery-h">
     <h2 class="u-rule-heading" id="project-gallery-h">{{ i18n "project_gallery" }}</h2>
     <div class="project-gallery__grid">
       {{- range $img := . }}
@@ -34,7 +34,7 @@
             <figure class="project-shot">
         <img class="u-frame" src="{{ $small.RelPermalink }}"
              srcset="{{ $small.RelPermalink }} 640w, {{ $large.RelPermalink }} 1280w"
-             sizes="(max-width: 768px) 100vw, 390px"
+             sizes="(max-width: 768px) 100vw, 290px"
              width="{{ $large.Width }}" height="{{ $large.Height }}"
              loading="lazy" decoding="async"
              alt="{{ $img.Title | default (printf (i18n "project_screenshot") $.Title) }}">

@@ -118,9 +118,7 @@
   line-height:1.6;
   color:var(--ink-soft);
 }
-.timeline-facts__value b{color:var(--accent);font-weight:400;}
 .timeline-facts__row--learned .timeline-facts__value{color:var(--ink);}
-.timeline-facts__value p{margin:0;}
 
 .video-thumb{
   position:relative;display:block;

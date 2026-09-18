@@ -13,7 +13,7 @@
       {{- with .org }}<span class="home-career__org">{{ . }}</span>{{ end }}
       {{- with .built }}
       <span class="u-meta">
-        {{- range $i, $b := first 2 . }}{{ if $i }} <b aria-hidden="true">·</b> {{ end }}{{ $b }}{{ end -}}
+        {{- partial "func/dots.html" (first 4 .) -}}
       </span>
       {{- end }}
     </li>

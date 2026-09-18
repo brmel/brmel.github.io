@@ -1,4 +1,4 @@
-<nav class="home-sections u-wide" aria-label="{{ i18n "sections" }}">
+<nav class="home-sections" aria-label="{{ i18n "sections" }}">
   {{- range site.Params.mainSections }}
   {{- with site.GetPage (printf "/%s" .) }}
   {{- $pages := partial "func/section-pages.html" . }}

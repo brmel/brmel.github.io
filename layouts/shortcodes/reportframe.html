@@ -1,23 +1,8 @@
 {{- $src := .Get "src" -}}
 {{- with resources.Get $src -}}
-{{- $title := $.Get "title" -}}
-<figure class="report u-wide">
-  {{- with $.Page.Params.cover.image }}{{ with $.Page.Resources.GetMatch . }}
-  {{- $img := .Resize "1200x webp q80" }}
-  <img class="report__preview" src="{{ $img.RelPermalink }}" width="{{ $img.Width }}" height="{{ $img.Height }}" loading="lazy" decoding="async" alt="">
-  {{- end }}{{ end }}
-  <figcaption class="report__bar">
-    <button type="button" class="u-eyebrow u-link report__open" data-src="{{ .RelPermalink }}" data-title="{{ $title }}">{{ i18n "report_open" }}</button>
-    <a class="u-eyebrow u-rule-link" href="{{ .RelPermalink }}" target="_blank" rel="noopener">{{ i18n "report_newtab" }} <span aria-hidden="true">↗</span></a>
-  </figcaption>
-</figure>
+<iframe class="report-frame" title="{{ $.Get "title" }}" src="{{ .RelPermalink }}" loading="lazy"></iframe>
 <script>
-document.querySelectorAll('.report__open').forEach((button) => button.addEventListener('click', () => {
-  const frame = document.createElement('iframe');
-  frame.className = 'report-frame u-wide';
-  frame.title = button.dataset.title;
-  frame.src = button.dataset.src;
-  button.closest('.report').replaceWith(frame);
+document.querySelectorAll('.report-frame').forEach((frame) => {
   const tokens = ['--ink', '--ink-soft', '--ink-mute', '--rule', '--rule-soft', '--bg', '--bg-alt', '--accent'];
   const fit = () => { frame.style.height = frame.contentDocument.body.scrollHeight + 'px'; };
   const brand = () => {
@@ -32,7 +17,7 @@ document.querySelectorAll('.report__open').forEach((button) => button.addEventLi
       '--series-2': t['--ink-soft'], '--label-2': t['--ink-soft']
     }).forEach(([name, value]) => root.style.setProperty(name, value));
   };
-  frame.addEventListener('load', () => {
+  const dress = () => {
     const doc = frame.contentDocument;
     const style = doc.createElement('style');
     style.textContent = "@font-face{font-family:'Inter Tight';font-weight:400 600;src:url(/fonts/inter-tight-400-latin.woff2) format('woff2')}"
@@ -47,8 +32,10 @@ document.querySelectorAll('.report__open').forEach((button) => button.addEventLi
     new MutationObserver(brand).observe(document.body, { attributes: true, attributeFilter: ['class'] });
     new ResizeObserver(fit).observe(doc.body);
     fit();
-  });
-}));
+  };
+  frame.addEventListener('load', dress);
+  if (frame.contentDocument && frame.contentDocument.readyState === 'complete' && frame.contentDocument.body.children.length) dress();
+});
 </script>
 {{- else -}}
 {{- errorf "reportframe: %q is not in assets/" $src -}}

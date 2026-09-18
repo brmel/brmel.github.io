@@ -10,7 +10,7 @@ PAGES = [
     ("article", "/tech/windows-memory-management-deep-dive/"),
     ("report", "/tech/montreal-forecast-reliability/"),
     ("adventure", "/adventures/auberge-estonia-rawdon/"),
-    ("thought", "/thoughts/estimates-and-the-five-percent/"), ("search", "/search/"),
+    ("search", "/search/"),
 ]
 NOINDEX = {"search"}
 CATEGORIES = ("performance", "accessibility", "best-practices", "seo")
