@@ -16,7 +16,7 @@ metrics:
 stack: ["TypeScript", "Playwright", "Electron", "AI SDK", "MCP", "SQLite"]
 links:
   live: ""
-  repo: ""
+  repo: "https://github.com/brmel/Domia"
 lede: |
   An agent that tests an application by reading the screen instead of the source.
   It works from the accessibility tree, acts on what is actually there, checks

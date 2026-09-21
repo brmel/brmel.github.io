@@ -16,7 +16,7 @@ metrics:
 stack: ["C++", "MuJoCo", "OpenCV", "Ruckig", "three.js", "Docker"]
 links:
   live: ""
-  repo: ""
+  repo: "https://github.com/brmel/robonode"
 lede: |
   An open platform for testing robotics algorithms in real physics. Pick an
   application, swap the node that finds the part or plans the motion, and watch a
