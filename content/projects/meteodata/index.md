@@ -28,6 +28,10 @@ lessons:
   - "**\"The truth\" needed defining before anything could be graded.** The station reports every minute; the forecast describes an hour. I match the instant, within ±5 minutes, and leave a forecast ungraded rather than score it against the wrong time — an unhelpful answer beats a confident wrong one. Rain is the exception and is compared against the hour it fell in, because that is the hour the station attributes it to."
   - "**One measure could not be measured, and saying so was better than substituting quietly.** No station here reports cloud cover. Sunshine stands in for it, and the report says \"not measurable\" in that row rather than printing a number that looks like the others. The temptation to fill the cell was real."
   - "**Poll on change, not on schedule.** Reading three services every five minutes and storing a copy every time would have been mostly duplicates. A snapshot is saved only when a service has changed its mind, which is why a month of three forecasters fits in a file you can open — and why the record shows when each service revised, not just what it ended up saying."
+resources:
+  - src: "gallery/01-forecast-report.png"
+    params:
+      caption: "The generated report. The headline is the answer to the question I started with; the tabs re-grade every measure, and the row of horizons re-asks it for one hour ahead or three days."
 tags: ["Python", "Data Analysis", "Québec"]
 ---
 
