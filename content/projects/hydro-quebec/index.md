@@ -20,7 +20,6 @@ lede: |
   Two months of Hydro-Québec's outage map, recorded every minute and turned into
   the reliability report the utility does not publish: where outages concentrate,
   how long they really last, and how often the announced restoration time holds.
-takeaway: "A number I collected myself changed my mind in a way the same number from someone else would not have."
 lessons:
   - "**The headline finding was about me, not the utility.** Announced restoration times land within an hour about 5% of the time. My second reaction was recognising the same failure in my own estimates, and that is the only thing from this project I still think about."
   - "**Collect first, decide the question later.** I started polling before I knew what I was looking for. Every interesting result — ETA accuracy, regional spread, the 611-outage peak — came from questions I could not have asked on day one, and could only ask because the data was already on disk."

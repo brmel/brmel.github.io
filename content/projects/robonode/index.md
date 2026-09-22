@@ -23,7 +23,6 @@ lede: |
   UR10e on a rail try it in a physics engine that does not flatter anybody:
   everything you can change is data, everything you can replace sits behind one
   interface.
-takeaway: "A simulator that lets your algorithm succeed is worse than no simulator, because you believe it."
 lessons:
   - "**The scenario has to be unfair or the result means nothing.** An easy cell makes every algorithm look competent. The default scene moves the target, delays the sensor, and puts a decoy in the bin that is the same colour as the part — so a tracker that assumes a stationary world misses visibly, and the log names what it hit rather than reporting a lower score."
   - "**One interface per capability, and the seam is the product.** Vision, tracking, trajectory and control are four typed slots with interchangeable versions and a bring-your-own option. Because the seam is owned, swapping a planner touches neither the UI, nor the CLI, nor the real-time loop — and that is the entire reason a stranger's algorithm can be dropped into a running cell at all."

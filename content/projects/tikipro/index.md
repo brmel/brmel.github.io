@@ -20,7 +20,6 @@ lede: |
   Clinic queue management that runs entirely on the one PC already sitting at
   reception: the desk view, the waiting-room screen and each doctor's queue, with
   no server, no per-seat licence and no patient record leaving the building.
-takeaway: "Non-technical users judge the software by the install. Everything before first launch is where mine failed."
 lessons:
   - "**The installer is the product for the first ten minutes.** The app refuses to start without a licence file, and the installer is not code-signed, so Windows SmartScreen blocks it. Two dead ends before anyone sees a feature. I now write the onboarding email before the release, because every warning it has to explain is a design failure I could have removed."
   - "**Manual beats automatic when the volume is low.** There is no automated licensing email anywhere. A request writes to Firestore, a function sends me a Telegram message, and I reply by hand. Building the automated flow would have taken a week and served maybe one clinic a month."

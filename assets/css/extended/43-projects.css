@@ -11,6 +11,3 @@
 }
 
 
-.learning{margin-block:var(--flow-section) 0;}
-.learning__item{padding:var(--space-3) 0;}
-.learning__note{color:var(--ink-soft);line-height:1.6;font-size:var(--t-caption);}

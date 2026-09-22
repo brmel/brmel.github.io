@@ -22,7 +22,6 @@ lede: |
   happens. This records both for thirty days and grades every prediction against
   the reading for the hour it described — at one hour ahead, or three, six,
   twelve, twenty-four, or three days.
-takeaway: "A forecast is not one prediction, it is six, and they are not equally good — averaging them into \"accurate\" is how the useful part gets hidden."
 lessons:
   - "**The app is not bad at weather. It is bad at rain.** Temperature is genuinely good — 1.2 °C off six hours ahead, and it barely degrades out to a full day. Humidity holds. Then rain: 419 of 583 calls six hours ahead passed without a drop, 72% false alarms, and unlike temperature the precipitation error does not improve as the hour approaches. 0.27 mm at six hours is 0.27 mm at twenty-four. Getting one number for \"is the forecast accurate\" would have averaged the good half with the useless half and told me nothing."
   - "**A forecast only counts if it was on record before the thing happened.** Services quietly restate values for hours that have already passed, and a scorer that reads the current file is grading hindsight and will report suspiciously good numbers. Only forecasts published strictly before the hour they describe are scored. This is the rule the whole result depends on, and it is invisible in the output — which is exactly why it is written into the report's method section rather than left in the code."

@@ -8,7 +8,6 @@ status: "active"
 pitch: "A public football tipster posts their picks. This records every one of them, flat-staked, and grades it against what actually happened."
 description: "Every pick a public football tipster posts, recorded flat-staked and graded against what actually happened. Nothing inferred, kept anonymous."
 stack: ["Hugo", "JSON", "Python"]
-takeaway: "A record is only worth reading if it was fixed before the outcome was known — so every gate here enforces that by construction, not by promise."
 tags: ["Data Analysis"]
 ---
 

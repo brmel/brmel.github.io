@@ -20,7 +20,6 @@ lede: |
   A group planning app built around the one thing a chat thread cannot do —
   end the conversation. A squad nominates options, everyone votes in real time,
   and one person locks the winner in.
-takeaway: "By the second site, deploying by hand was costing me more time than building the tooling would have."
 lessons:
   - "**The control plane was the best decision on the project.** Two web properties, two audiences, two visibility rules, and deploys were hand-run CLI commands. `Operator/` turned build → deploy → publish → rollback into one model across Firebase Hosting, this machine, and any server, with an audit trail and health-check auto-rollback. It cost a fortnight and paid for itself the first time a bad deploy needed reverting."
   - "**Every write goes through Cloud Functions, and that constraint aged well.** No client writes straight to Firestore. It felt heavy while building the first screen and stopped being negotiable the moment real-time voting arrived — the vote rules live in one place, not in every client version anyone has installed."

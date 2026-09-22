@@ -21,7 +21,6 @@ lede: |
   An agent that tests an application by reading the screen instead of the source.
   It works from the accessibility tree, acts on what is actually there, checks
   what changed, and keeps going until the task is done or it has a question.
-takeaway: "Run the cheap deterministic checks first; the model is for the questions they leave open."
 lessons:
   - "**The provider's defaults were the bug.** With the full setup — a 2,661-character persona prompt, 32 tools and a 6,337-character page snapshot — the model started returning empty responses: no text, no tool call. Intermittent on small pages, consistent on large ones. Gemini's *thinking* was consuming the output budget before it reached the answer, and the loop was reading the empty response as a finished task. The fix is one line of provider config plus a retry, and it lives in the adapter where provider quirks belong — but it cost days, because everything I could see said my prompt was wrong."
   - "**The cheap pass has to run first.** Fifteen verified findings on a real site in about 200ms, in pure functions, with no model and no browser. The agent is only spent on what the deterministic pass leaves open. It also means the thing can be demonstrated with no API key at all, which I did not plan and would not give up."

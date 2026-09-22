@@ -22,7 +22,6 @@ lede: |
   in and shows its working: seismic rules, concrete mixes, rebar spacing,
   permits — each answer cited against the code it came from. Operators tune the
   prompts, the retrieval and the corpus itself without anyone shipping code.
-takeaway: "If tuning a model needs a deploy, nobody tunes it — so the prompts, the retrieval settings and the corpus are data, not code."
 lessons:
   - "**An ungrounded answer is worse than no answer here.** Someone asking about rebar spacing is going to act on the reply. Every answer is retrieved from an Algerian-codes corpus and cited back to the document, which turns the interesting question from *how good is the model* into *how good is the corpus* — and that second question is one I can actually work on."
   - "**Everything an operator tunes lives in `data/`, not in the code.** Prompts, retrieval parameters and the corpus documents are editable from an admin console. The rule came from watching how these systems really get improved: someone reads a bad answer and wants to change one line of prompt. If that needs a pull request and a deploy, the bad answer stays."

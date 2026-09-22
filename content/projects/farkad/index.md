@@ -21,7 +21,6 @@ lede: |
   about your day — *two eggs, a big glass of water, walked forty minutes, slept
   badly* — and an agent pipeline files it across every area it touched, each
   entry editable next to the words it came from.
-takeaway: "One engine that handles every combination beats six that each handle one, but it has to be decided early — retrofitting it cost me a rewrite."
 lessons:
   - "**A decisions log with expiry dates outlives a design doc.** `DECISIONS.md` records every locked decision *and what no longer holds*. It exists because a navigation tab drifted three times in one session, twice from reasoning off a backlog of screens that were still only drawn. There is now a test that reads the spec table and fails when the code disagrees."
   - "**Cutting the brief was the work.** Coach, widgets, Siri and Assistant capture, Back Tap, push, share cards, custom pillars, image capture — all closed **unbuilt** on the same day, each with a written reason. The version that ships does one loop: speak, structure, correct, see. Everything that didn't serve that loop went."

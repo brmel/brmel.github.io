@@ -20,7 +20,6 @@ lede: |
   A marketplace for what Algerian families abroad already do informally —
   matching someone who needs a parcel moved with a traveller who has spare
   luggage. Twenty months of work, three languages, and it never launched.
-takeaway: "Rewriting from scratch two months in was the right call. What was missing at the end was never the architecture."
 lessons:
   - "**I threw away two months of work and it was correct.** The commit is still there: *Restart from a very clean project. Only login files are added* — 1,134 deletions against 45 insertions. The first version worked and was unextendable; everything lived in widgets. What followed was Domains / Application / Infrastructure / Presentation with value objects and validators, and adding the fourth feature cost about what the second did."
   - "**Layer discipline is measurable, and mine was lopsided.** 19 files of domain against 159 of presentation. The business rules were genuinely small and genuinely isolated — but I wrote eight test files, all for identification, and none for matching, trips or contracts. I tested the layer that was easy to test rather than the one that carried the risk."

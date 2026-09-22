@@ -21,7 +21,6 @@ Every Tech, Thoughts and Adventures article is also served as markdown at its UR
 - {{ .Title }} ({{ .Permalink }})
 {{ range .Params.metrics }}  - {{ .value }}: {{ .label }}
 {{ end }}{{ with .Params.stack }}  - Built with: {{ delimit . ", " }}
-{{ end }}{{ with .Params.takeaway }}  - Lesson: {{ . }}
 {{ end }}{{ end }}
 {{ range site.Params.mainSections }}
 {{- $sec := site.GetPage (printf "/%s" .) }}

@@ -20,7 +20,6 @@ lede: |
   Public transit for Algeria, in a country where no agency publishes a usable
   timetable. Two halves in order: a pipeline that manufactures a transit network
   out of open map data and estimates, and the rider app that makes it useful.
-takeaway: "When the data doesn't exist, the pipeline that produces it is the product, not the app on top of it."
 lessons:
   - "**I surveyed riders before writing the app, and it changed what I built.** The mapped rail network and the station-level survey came first. What people wanted was not a journey planner — it was knowing whether the thing they are standing at the stop for is actually coming."
   - "**One implementation, three triggers, and no regrets.** The business logic sits behind a FastAPI service, a Typer CLI and Prefect flows over a provider-agnostic data layer. Every rule has one home; the trigger is a detail. This is the decision I would keep on any project of this shape."
