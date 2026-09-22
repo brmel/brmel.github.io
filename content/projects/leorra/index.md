@@ -36,12 +36,12 @@ this: you ask until you find someone flying home with room in a suitcase. It
 works entirely on trust, which means it only reaches as far as your own network
 does.
 
-Leorra tried to make that a marketplace — senders post what needs moving,
-travellers post their route and spare kilos, the app matches them.
+I tried to turn that into a marketplace: senders post what needs moving,
+travellers post their route and spare kilos, and the app matches them.
 
 ## The product
 
-Listings, chat, contracts and matching all shipped, in three languages, with
+I shipped listings, chat, contracts and matching, in three languages, with the
 store screenshots ready. Identity verification, escrow and what happens when a
 package does not arrive: none of it.
 

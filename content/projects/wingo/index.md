@@ -32,7 +32,7 @@ tags: ["Flutter", "Firebase", "Mobile"]
 
 Five friends picking a restaurant will fill a group chat with links, three
 thumbs-up reactions and no decision, and two days later nobody has booked
-anything. The problem was never a shortage of options.
+anything. The problem was never a shortage of options — it was that nobody ever decided.
 
 ## The product
 
@@ -40,7 +40,7 @@ A squad nominates options, everyone votes in real time, and one person locks the
 winner in. The app opens on a curated list of what is on in Montréal this week,
 so the first screen is useful before you have a single friend on the platform.
 
-Two decisions shaped the rest. **Every write goes through a server function** —
+I made two decisions that shaped the rest. **Every write goes through a server function** —
 no client touches the database directly — so the voting rules live in one place
 rather than in whichever app version someone still has installed. And deploys go
 through a small control plane instead of hand-run commands: build, deploy,

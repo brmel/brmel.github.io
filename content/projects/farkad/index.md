@@ -31,10 +31,10 @@ tags: ["Flutter", "Python", "AI", "Firebase", "Mobile"]
 
 ## The story
 
-Every habit tracker asks you to become a data-entry clerk for your own life.
-Six taps for breakfast, a separate screen for water, a sleep slider you move
-without believing it. After about nine days you stop, and the app has learned
-nothing about you that it could not have asked.
+Every habit tracker asks you to become a data-entry clerk for your own life. Six
+taps for breakfast, a separate screen for water, a sleep slider you move without
+believing it. After about nine days you stop, and the app has learned nothing
+about you it could not have simply asked.
 
 The information was never the hard part.
 
@@ -45,11 +45,11 @@ badly* — and it comes back as structured entries across every area it touched,
 each one editable next to the words it came from.
 
 That last detail is the whole design. Free text means the failure mode is
-silent: the model does not refuse, it produces a confidently wrong number. The
-only correction interface that works is showing you your own sentence beside
-what was made of it.
+silent: the model does not refuse, it gives you a confidently wrong number. The
+only correction interface I found that works is showing you your own sentence
+beside what was made of it.
 
-Users choose which of six areas they track, and the obvious build is one parser
-per area. It is one engine instead, handling any combination, so adding an area
-is data rather than code. I made that decision two rewrites late, after the
-first version had already worked.
+You choose which of six areas to track, and the obvious build is one parser per
+area. I wrote one engine instead, handling any combination, so adding an area is
+data rather than code. I got to that two rewrites late, after the first version
+had already worked.

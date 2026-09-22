@@ -33,29 +33,29 @@ tags: ["AI", "Python", "RAG", "Algeria"]
 
 ## The story
 
-Algerian building codes exist, and they are not the problem. The problem is
-that finding the clause that applies to your slab means knowing which document
-to open, in a corpus written across two languages, and then reading it in a
-third if that is the one you think in.
+Algerian building codes exist, and they are not the problem. The problem is that
+finding the clause covering your slab means knowing which document to open, in a
+corpus written across two languages, and then reading it in a third if that is
+the one you think in.
 
-So the question gets asked to a colleague instead, and the answer is whatever
-that person remembers. For seismic rules and rebar spacing, "whatever someone
-remembers" is a load-bearing part of the process.
+So people ask a colleague instead, and the answer is whatever that person
+remembers. For seismic rules and rebar spacing, "whatever someone remembers" is
+holding up the building.
 
 ## The product
 
 You ask in Arabic, French or English and get an answer grounded in the corpus,
-with the source it came from attached. Three surfaces sit on one API: the chat
-itself, an operator console, and the service underneath.
+with the source attached. I put three surfaces on one API: the chat itself, an
+operator console, and the service underneath.
 
-The console is the part I would build first again. Prompts, retrieval settings,
-embedding configuration and the corpus documents are all editable there,
-because the real improvement loop for a system like this is someone reading a
-bad answer and wanting to change one line — and that loop dies if it needs a
+The console is the part I would build first if I started again. Prompts,
+retrieval settings, embedding configuration and the corpus documents are all
+editable there, because the real improvement loop is someone reading a bad
+answer and wanting to change one line — and that loop dies if it needs a
 release.
 
-Underneath, the backend is layered so the model provider is a detail: pure
-domain types, use-cases that depend on protocols rather than vendors, and the
-adapters at the edge. The retrieval sits on Postgres with pgvector rather than
-a separate vector service, which is one fewer system to run and one fewer
-place for the data to disagree with itself.
+Underneath, I layered the backend so the model provider is a detail: pure domain
+types, use-cases that depend on protocols rather than vendors, and the adapters
+at the edge. I put retrieval on Postgres with pgvector rather than a separate
+vector service, which leaves one fewer system to run and one fewer place for the
+data to disagree with itself.

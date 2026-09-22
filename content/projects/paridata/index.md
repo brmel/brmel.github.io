@@ -11,8 +11,8 @@ stack: ["Hugo", "JSON", "Python"]
 tags: ["Data Analysis"]
 ---
 
-PariData is a data project. It follows an influencer who promotes a betting app and shares football picks, to answer one question: would following them make you money, or lose it?
+PariData is a data project. I follow an influencer who promotes a betting app and posts football picks, to answer one question: would following them make you money, or lose it?
 
-- Each pick is stored as data when it is posted and checked automatically before the page is published. The influencer and the app stay anonymous.
+- I store each pick as data when it is posted, and it is checked automatically before the page is published. The influencer and the app stay anonymous.
 - A coupon wins only if every match in it wins. A cancelled match is removed from the coupon.
 - All amounts are simulated with a fixed stake. No real bet was placed. 18+.

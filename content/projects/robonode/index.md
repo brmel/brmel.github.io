@@ -44,34 +44,33 @@ resources:
 
 ## The story
 
-Testing a robotics algorithm usually means building everything around it first.
-A simulator, a robot model, a scene, a controller, a way to see what happened —
-days of setup before the idea you actually wanted to try gets to run once. So
-most algorithms are evaluated in a notebook, on a chart, or in a simulation
-gentle enough that they pass.
+Every time I wanted to try a robotics idea, I had to build everything around it
+first: a simulator, a robot model, a scene, a controller, and some way to see
+what happened. Days of setup before the idea itself got to run once. So I mostly
+judged algorithms in a notebook, on a chart, or in a simulation gentle enough
+that they passed.
 
-That is the part worth removing. Not the physics, and not the robot — the
-setup.
+That setup is what I wanted to remove — not the physics, and not the robot.
 
 ## The product
 
-One command brings up a cell in the browser: a UR10e on a rail, a conveyor, a
-bin, a pallet, and a running application you can watch. The physics is real. The arm is stopped by whatever is in its way, a grasp is
-a constraint on the part it actually caught, and the conveyor moves the
-workpiece by friction.
+One command brings up a robot cell in your browser: a UR10e on a rail, a
+conveyor, a bin, a pallet, and an application you can watch run. The physics is
+real, so the arm is stopped by whatever is in its way, a grasp holds the part it
+actually caught, and the conveyor moves the workpiece by friction.
 
-Four things in that cell are **nodes**: what sees, what tracks, what plans the
-path, and what controls the arm. Each is one typed interface with several
-implementations and an empty slot for yours. Open the editor, write a grasp
-offset, and it compiles into a sandbox and becomes another selectable version.
-Then run the same application against both and compare.
+Four things in that cell can be swapped: what sees, what tracks the part, what
+plans the path, and what drives the arm. Each one is a single interface with
+several implementations behind it and an empty slot for yours. You write a grasp
+offset in the editor, it compiles into a sandbox, and it becomes another version
+you can select — then you run the same application against both and compare.
 
-Breaking it is the demonstration. Switch tracking to the snapshot version and
-run the moving-bin application: the arm aims where the part *was* and misses,
-in the same way it would miss on a real line. Nothing about that failure needs
-a rig, a safety fence, or a technician.
+I like breaking it best. Switch tracking to the snapshot version, run the
+moving-bin application, and the arm aims where the part *was* and misses,
+exactly as it would on a real line. Seeing that cost me no rig, no safety fence
+and no technician.
 
-The engines underneath are borrowed on purpose: MuJoCo, OpenCV, Ruckig,
-Pinocchio. What I built is the boundary around them, the sandbox that lets a
-stranger's code run beside mine, and the one wire contract that the browser,
-the CLI and anything else all speak.
+I borrowed the hard parts on purpose — MuJoCo for physics, OpenCV for vision,
+Ruckig for trajectories, Pinocchio for kinematics. What I built is the boundary
+around them, the sandbox that lets a stranger's code run next to mine, and the
+one contract that the browser, the CLI and anything else all speak.
