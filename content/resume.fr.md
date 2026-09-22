@@ -22,29 +22,33 @@ experience:
     org: "Zebra Technologies"
     url: "https://www.zebra.com/us/en.html"
     work:
-      - title: "Des algorithmes sur lesquels d'autres livrent"
+      - title: "Les algorithmes sur lesquels d'autres livrent"
         url: "https://www.zebra.com/us/en/software/machine-vision-and-fixed-industrial-scanning-software/aurora-imaging-library.html"
         video: "m7KKRmOxRT0"
         videoAlt: "Démonstration de l'Aurora Imaging Library dans Aurora Vision Studio"
         text: >-
-          L'un des ingénieurs responsables des algorithmes de la bibliothèque.
-          Le travail va bien au-delà du code : fixer le comportement avec les
-          équipes UI, documentation et test avant la livraison, et entrer dans
-          les applications que les clients n'arrivent pas à faire fonctionner.
+          Je suis l'un des ingénieurs responsables des algorithmes de la
+          bibliothèque. Mon travail ne s'arrête pas au code : je fixe le
+          comportement avec les équipes UI, documentation et test avant la
+          livraison, et je vais voir de près les applications que les clients
+          n'arrivent pas à faire fonctionner.
       - title: "L'inspection qui s'exécute dans la caméra"
         url: "https://www.zebra.com/us/en/products/industrial-machine-vision-fixed-scanners/smart-sensors-and-cameras.html"
         video: "N2DfQzTPwog"
         videoAlt: "La caméra intelligente Aurora Focus en inspection sur un banc"
         text: >-
-          Porter la bibliothèque d'imagerie dans la caméra elle-même, pour que
-          l'inspection s'exécute sur l'appareil plutôt que sur un PC relié.
+          J'ai porté la bibliothèque d'imagerie dans la caméra elle-même, pour
+          que l'inspection s'exécute sur l'appareil plutôt que sur un PC relié.
+          Il a fallu faire tenir les algorithmes dans bien moins de mémoire et
+          surveiller chaque allocation.
     built: ["Aurora Imaging Library", "Caméra intelligente Aurora Focus"]
     stack: ["C++", "algorithmes de vision industrielle", "imagerie embarquée"]
     tools: ["Visual Studio", "Git / GitHub", "JIRA"]
     learned: >-
-      Une bibliothèque ne devient un produit que lorsque l'algorithme, la
-      documentation et les tests disent la même chose — et les désaccords
-      apparaissent dans l'application d'un client bien avant les tests.
+      J'ai appris qu'une bibliothèque n'est finie que lorsque l'algorithme, la
+      documentation et les tests disent la même chose. En général, je découvre
+      qu'ils se contredisent dans l'application d'un client, pas dans les
+      tests.
 
   - period: "2022 — 2024"
     role: "Développeur logiciel II"
@@ -53,25 +57,25 @@ experience:
     work:
       - title: "La géométrie sous les modules 2D"
         text: >-
-          Model Finder, Edge Finder, Measurement, Metrology, Calibration et
-          Bead — résoudre, implémenter et déboguer la géométrie, l'algèbre et
-          l'optimisation non linéaire qui les portent, et élargir les tests qui
-          les protègent. L'Advanced Geometric Matcher est passé d'un algorithme
-          interne à une API publique, conçue avec l'équipe.
+          J'ai résolu, implémenté et débogué la géométrie, l'algèbre et
+          l'optimisation non linéaire derrière Model Finder, Edge Finder,
+          Measurement, Metrology, Calibration et Bead, et j'ai élargi les tests
+          qui les protègent. J'ai aussi fait passer l'Advanced Geometric Matcher
+          d'un algorithme interne à une API publique, conçue avec l'équipe.
       - title: "Faire entrer l'apprentissage automatique dans une bibliothèque géométrique"
         video: "CS4cs9xVecg"
         videoAlt: "Notes de la spécialisation en apprentissage profond"
         text: >-
-          Intégrer l'apprentissage automatique classique dans des modules
-          jusque-là purement géométriques, puis documenter les nouvelles API et
-          écrire les exemples clients livrés avec. Encadrement de stagiaires.
+          J'ai fait entrer l'apprentissage automatique classique dans des
+          modules jusque-là purement géométriques, et j'ai écrit les nouvelles
+          API et les exemples clients livrés avec. J'ai encadré des stagiaires.
     built: ["API Advanced Geometric Matcher", "Modules 2D de la MIL", "Exemples d'API pour les clients"]
     stack: ["C++", "appariement géométrique", "métrologie", "optimisation non linéaire", "apprentissage classique"]
     tools: ["Visual Studio", "Git / GitHub", "JIRA", "Agile"]
     learned: >-
-      C'est en écrivant la documentation et les exemples qu'une API est
-      vraiment mise à l'épreuve — les questions qui reviennent portent sur
-      l'interface, presque jamais sur l'algorithme.
+      J'ai appris que c'est en écrivant la documentation et les exemples qu'une
+      API est vraiment mise à l'épreuve. Les questions qui reviennent portent
+      presque toujours sur l'interface, pas sur l'algorithme.
 
   - period: "2019 — 2022"
     role: "Développeur logiciel"
@@ -83,23 +87,26 @@ experience:
         video: "LcoPNbyuhZU"
         videoAlt: "Le traitement d'images industriel dans la Matrox Imaging Library"
         text: >-
-          Premier emploi après la maîtrise, sur les modules qui mesurent :
-          Calibration, Measurement et Metrology. Conception de l'Advanced
-          Geometric Matcher, l'algorithme devenu plus tard une API publique.
+          Mon premier emploi après la maîtrise, sur les modules qui mesurent :
+          Calibration, Measurement et Metrology. C'est là que j'ai conçu
+          l'Advanced Geometric Matcher, l'algorithme devenu plus tard une API
+          publique.
       - title: "Travailler dans une grande base de code C++"
         video: "sfLZ7v9gEnc"
         videoAlt: "Travail au cœur de la base de code de la Matrox Imaging Library"
         text: >-
-          Remplacer d'anciens solveurs des modules de géométrie par des
+          J'ai remplacé d'anciens solveurs des modules de géométrie par des
           optimiseurs non linéaires, dont Levenberg–Marquardt, dans une
-          bibliothèque dont des milliers d'applications installées dépendent.
+          bibliothèque dont des milliers d'applications installées dépendent
+          déjà.
     built: ["Appariement de motifs", "Détection de contours", "Optimisation non linéaire", "Investigations mémoire", "Calibration", "Mesure et métrologie"]
     stack: ["C++", "optimisation non linéaire", "Levenberg–Marquardt", "apprentissage classique"]
     tools: ["Visual Studio", "Git", "SVN"]
     learned: >-
-      Écrire un meilleur algorithme est la partie courte ; l'intégrer à une
-      bibliothèque dont d'autres dépendent déjà, sans changer une réponse sur
-      laquelle ils comptent, est la partie longue.
+      J'ai appris qu'écrire un meilleur algorithme est la partie facile.
+      L'intégrer à une bibliothèque dont des milliers d'applications dépendent
+      déjà, sans changer une réponse sur laquelle elles comptent, est la partie
+      difficile.
 
   - period: "2017 — 2019"
     role: "M.Sc.A., génie des systèmes de contrôle"
@@ -113,24 +120,24 @@ experience:
         videoAlt: "À propos de la bourse de la Fondation Al Ghurair"
         url: "https://www.alghurairfoundation.org/"
         text: >-
-          La bourse a été accordée au mérite académique et a financé la
+          La bourse a été accordée au mérite académique et a financé ma
           maîtrise. C'est la raison pour laquelle la suite de cette page se
           passe à Montréal.
       - title: "Des systèmes, pas seulement des cours"
         video: "UZbmuAs2K2w"
         videoAlt: "Robotique et contrôle temps réel pendant la maîtrise"
         text: >-
-          Chaque cours qui comptait se terminait par quelque chose qui devait
-          fonctionner : un robot qui devait atteindre le point, un contrôleur
-          qui devait tenir son échéance, une caméra qui devait dire au bras où
-          était la pièce.
+          J'ai terminé chaque cours qui comptait par quelque chose qui devait
+          vraiment fonctionner : un robot qui devait atteindre le point, un
+          contrôleur qui devait tenir son échéance, une caméra qui devait dire
+          au bras où était la pièce.
     built: ["Théorie du contrôle", "Robotique", "Traitement d'images"]
     stack: ["C++", "commande numérique", "détection et estimation", "commande stochastique et robuste", "traitement d'images"]
     tools: ["QNX", "ROS", "MATLAB / Simulink", "robots Fanuc"]
     learned: >-
-      Une loi de commande juste sur le papier et en retard de dix
-      millisecondes est fausse — l'échéance fait partie du cahier des charges,
-      pas des détails d'implémentation.
+      J'ai appris qu'une loi de commande peut être juste sur le papier et rester
+      fausse si elle arrive dix millisecondes trop tard. L'échéance fait partie
+      du cahier des charges.
 
   - period: "2012 — 2017"
     role: "Ingénieur d'État, génie électrique — systèmes de contrôle"
@@ -145,22 +152,23 @@ experience:
         text: >-
           Mathématiques, physique et programmation, de 9 h à 18 h, six jours
           par semaine, avec un classement final qui décide de l'école où l'on
-          entre. C'est de là que vient l'habitude de travailler un problème
-          jusqu'à ce qu'il soit réellement résolu.
+          entre. J'y ai appris à travailler un problème jusqu'à ce qu'il soit
+          réellement résolu.
       - title: "De l'ingénierie qui sort de la salle de cours"
         video: "eGPbNTXTd1I"
         videoAlt: "Projets de contrôle et d'automates pendant le diplôme d'ingénieur"
         text: >-
-          Le diplôme s'est terminé sur des systèmes de contrôle construits face
-          à du vrai matériel et à de vraies contraintes d'usine, plutôt qu'à
-          leurs simulations.
+          J'ai terminé le diplôme en construisant des systèmes de contrôle face
+          à du vrai matériel et à de vraies contraintes d'usine, pas à leurs
+          simulations.
     built: ["Régulateur de vitesse adaptatif pour véhicule autonome", "Programme d'automate pour une machine d'assemblage industrielle"]
     stack: ["C", "MATLAB", "VHDL", "conception de commande", "identification de procédés", "commande optimale"]
     tools: ["Unity-Pro (Schneider)", "Simatic-Manager (Siemens)", "Simulink", "LabVIEW"]
     learned: >-
-      Le matériel se moque de l'élégance du modèle : la première machine
-      d'assemblage que j'ai programmée tombait en panne à cause des capteurs et
-      du câblage, pas de la logique de commande travaillée tout le semestre.
+      J'ai appris que le matériel se moque de l'élégance du modèle. La première
+      machine d'assemblage que j'ai programmée tombait en panne à cause des
+      capteurs et du câblage, pas de la logique de commande sur laquelle j'avais
+      passé tout le semestre.
 
 skills:
   - group: "Langages"

@@ -22,29 +22,30 @@ experience:
     org: "Zebra Technologies"
     url: "https://www.zebra.com/us/en.html"
     work:
-      - title: "Owning algorithms other people ship on"
+      - title: "The algorithms other people ship on"
         url: "https://www.zebra.com/us/en/software/machine-vision-and-fixed-industrial-scanning-software/aurora-imaging-library.html"
         video: "m7KKRmOxRT0"
         videoAlt: "Walkthrough of the Aurora Imaging Library in Aurora Vision Studio"
         text: >-
-          One of the engineers responsible for the library's algorithms. The
-          work runs past the code: agreeing behaviour with the UI,
-          documentation and test teams before it ships, and going into the
-          applications customers cannot get working.
+          I am one of the engineers responsible for the algorithms in the
+          library. The job runs past writing them: I agree the behaviour with
+          the UI, documentation and test teams before it ships, and I go into
+          the customer applications that will not work to find out why.
       - title: "Inspection that runs on the camera"
         url: "https://www.zebra.com/us/en/products/industrial-machine-vision-fixed-scanners/smart-sensors-and-cameras.html"
         video: "N2DfQzTPwog"
         videoAlt: "The Aurora Focus smart camera inspecting parts on a bench"
         text: >-
-          Moving the imaging library onto the camera itself, so inspection runs
-          on the device rather than on a PC wired to it.
+          I moved the imaging library onto the camera itself, so inspection
+          runs on the device instead of a PC wired to it. That meant fitting
+          the algorithms into far less memory and watching every allocation.
     built: ["Aurora Imaging Library", "Aurora Focus smart camera"]
     stack: ["C++", "machine vision algorithms", "embedded / edge imaging"]
     tools: ["Visual Studio", "Git / GitHub", "JIRA"]
     learned: >-
-      A library is a product only when the algorithm, the documentation and the
-      tests agree — and the disagreements surface in a customer's application
-      long before they surface in a test suite.
+      I learned that a library is only finished when the algorithm, the
+      documentation and the tests agree with each other. I usually find out they
+      disagree in a customer's application, not in a test suite.
 
   - period: "2022 — 2024"
     role: "Software Developer II"
@@ -53,25 +54,25 @@ experience:
     work:
       - title: "The geometry underneath the 2D modules"
         text: >-
-          Model Finder, Edge Finder, Measurement, Metrology, Calibration and
-          Bead — solving, implementing and debugging the geometry, algebra and
-          non-linear optimisation underneath them, and widening the tests that
-          guard them. Took the Advanced Geometric Matcher from the algorithm it
-          had been to a public API, designed with the team.
+          I solved, implemented and debugged the geometry, algebra and
+          non-linear optimisation behind Model Finder, Edge Finder, Measurement,
+          Metrology, Calibration and Bead, and widened the tests that guard
+          them. I also took the Advanced Geometric Matcher from an algorithm to
+          a public API, designed with the team.
       - title: "Bringing machine learning into a geometric library"
         video: "CS4cs9xVecg"
         videoAlt: "Notes from the deep learning specialisation"
         text: >-
-          Brought classical machine learning into modules that had been purely
-          geometric, and documented the new APIs and customer examples that went
-          out with them. Supervised trainees and interns.
+          I brought classical machine learning into modules that had been
+          purely geometric, and wrote the new APIs and the customer examples
+          that shipped with them. I supervised trainees and interns.
     built: ["Advanced Geometric Matcher API", "MIL 2D modules", "customer-facing API examples"]
     stack: ["C++", "geometric matching", "metrology", "non-linear optimisation", "classical ML"]
     tools: ["Visual Studio", "Git / GitHub", "JIRA", "Agile"]
     learned: >-
-      Writing the documentation and the examples is where an API design gets
-      tested — the questions that come back are about the interface, almost
-      never about the algorithm.
+      I learned that writing the documentation and the examples is what really
+      tests an API design. The questions that come back are almost always about
+      the interface, not about the algorithm.
 
   - period: "2019 — 2022"
     role: "Software Developer"
@@ -83,23 +84,24 @@ experience:
         video: "LcoPNbyuhZU"
         videoAlt: "Industrial image processing in the Matrox Imaging Library"
         text: >-
-          First job after the master's, on the modules that measure things:
-          Calibration, Measurement and Metrology. Designed the Advanced
-          Geometric Matcher, the algorithm that later became a public API.
+          My first job after the master's, on the modules that measure things:
+          Calibration, Measurement and Metrology. I designed the Advanced
+          Geometric Matcher here — the algorithm that later became a public
+          API.
       - title: "Working inside a large C++ codebase"
         video: "sfLZ7v9gEnc"
         videoAlt: "Working through the Matrox Imaging Library codebase"
         text: >-
-          Replaced older solvers in the geometry modules with non-linear
+          I replaced older solvers in the geometry modules with non-linear
           optimisers, Levenberg–Marquardt among them, in a library whose
-          existing behaviour thousands of installed applications depend on.
+          behaviour thousands of installed applications already depend on.
     built: ["Pattern matching", "Edge detection", "Non-linear optimisation", "Memory investigations", "Calibration", "Measurement and metrology"]
     stack: ["C++", "non-linear optimisation", "Levenberg–Marquardt", "classical ML"]
     tools: ["Visual Studio", "Git", "SVN"]
     learned: >-
-      Writing a better algorithm is the short half of the job; getting it into a
-      library other people already depend on, without changing an answer they
-      rely on, is the long one.
+      I learned that writing a better algorithm is the easy half. Getting it
+      into a library thousands of applications already depend on, without
+      changing an answer they rely on, is the hard half.
 
   - period: "2017 — 2019"
     role: "M.Sc., Control Systems Engineering"
@@ -119,16 +121,17 @@ experience:
         video: "UZbmuAs2K2w"
         videoAlt: "Robotics and real-time control work during the master's"
         text: >-
-          Every course that mattered ended in something that had to run: a
-          robot that had to reach the point, a controller that had to hold its
-          deadline, a camera that had to tell the arm where the part was.
+          I finished every course that mattered with something that had to
+          actually run: a robot that had to reach the point, a controller that
+          had to hold its deadline, a camera that had to tell the arm where the
+          part was.
     built: ["Control theory", "Robotics", "Image processing"]
     stack: ["C++", "digital control", "detection and estimation", "stochastic and robust control", "image processing"]
     tools: ["QNX", "ROS", "MATLAB / Simulink", "Fanuc robots"]
     learned: >-
-      A control law that is correct on paper and late by ten milliseconds is
-      wrong — the deadline is part of the specification, not a detail of the
-      implementation.
+      I learned that a control law can be correct on paper and still be wrong
+      if it arrives ten milliseconds late. The deadline is part of the
+      specification.
 
   - period: "2012 — 2017"
     role: "B.Eng., Electrical Engineering — Control Systems"
@@ -142,22 +145,21 @@ experience:
         videoAlt: "The preparatory-class years in Algiers"
         text: >-
           Mathematics, physics and programming, nine to six, six days a week,
-          with the ranking at the end deciding which school you enter. It is
-          where the habit of working a problem until it is actually solved came
-          from.
+          with the ranking at the end deciding which school you enter. I learned
+          there to keep working a problem until it is actually solved.
       - title: "Engineering that left the classroom"
         video: "eGPbNTXTd1I"
         videoAlt: "Control systems and PLC projects during the engineering degree"
         text: >-
-          The degree ended in control systems built against real hardware and
-          real factory constraints rather than simulations of them.
+          I finished the degree building control systems against real hardware
+          and real factory constraints, not simulations of them.
     built: ["Adaptive cruise control for an autonomous vehicle", "PLC program for an industrial assembly machine"]
     stack: ["C", "MATLAB", "VHDL", "control design", "process identification", "optimal control"]
     tools: ["Unity-Pro (Schneider)", "Simatic-Manager (Siemens)", "Simulink", "LabVIEW"]
     learned: >-
-      Hardware does not care how elegant the model is: the first assembly
-      machine I programmed spent its faults on sensors and wiring, not on the
-      control logic I had spent the term on.
+      I learned that hardware does not care how elegant the model is. The first
+      assembly machine I programmed failed on sensors and wiring, not on the
+      control logic I had spent the whole term on.
 
 skills:
   - group: "Languages"

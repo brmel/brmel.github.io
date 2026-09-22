@@ -3,7 +3,16 @@ title: "Ibraverse"
 date: 2025-01-08
 description: "Machine vision and image processing at Zebra Technologies. Side projects, technical writing, and field notes."
 ---
-I develop and maintain industrial machine vision algorithms: geometry,
-calibration and edge measurement. I take them from prototype to deployment,
-with classical methods and with deep learning. I like C++, robotics and AI. I build
-and write about them here.
+I am passionate about solving maths and physics problems, and about writing good
+C++ for the image processing algorithms behind real products.
+
+I work on industrial machine vision at Zebra Technologies, and did the same at
+Matrox Imaging before the acquisition. What I actually work on:
+
+- **2D matchers** — finding a known shape in an image whatever its position, angle or lighting
+- **Metrology and measurement** — turning pixels into millimetres a factory can trust
+- **Edge detection and feature extraction**, and the signal processing underneath them
+- **Barcode reading with deep learning**, for codes that are damaged, blurred or badly lit
+- **Machine learning for image processing**, from classical classifiers to neural networks
+
+I like C++, robotics and AI. I build things outside work too, and write about them here.
