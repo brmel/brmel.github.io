@@ -1,7 +1,7 @@
 ---
 title: "Ibraverse"
 date: 2025-01-08
-description: "Machine vision and image processing at Zebra Technologies. Side projects, technical writing, and field notes."
+description: "Senior C++ developer working on industrial machine vision at Zebra Technologies. Projects, technical write-ups and field notes."
 ---
 I am passionate about solving maths and physics problems, and about writing good
 C++ for the image processing algorithms behind real products.

@@ -2,7 +2,7 @@
 title: "CV"
 layout: "resume"
 summary: "Ingénieur en vision industrielle et traitement d'images — Zebra Technologies, Matrox Imaging, Polytechnique Montréal."
-description: "Développeur logiciel senior spécialisé en vision industrielle, traitement d'images et systèmes de contrôle."
+description: "Développeur C++ senior : vision industrielle 2D et 3D, traitement d'images, optimisation non linéaire et systèmes de contrôle."
 aliases: ["/fr/timeline/"]
 role: "Développeur logiciel senior — vision industrielle et IA"
 location: "Montréal, Québec"

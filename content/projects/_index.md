@@ -1,4 +1,4 @@
 ---
 title: "Projects"
-description: "Things I built end to end — the problem, what it became, and what each one taught me."
+description: "Things I have built end to end — what problem each one solves, how it works, and what I learned building it."
 ---

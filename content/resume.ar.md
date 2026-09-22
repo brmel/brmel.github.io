@@ -2,7 +2,7 @@
 title: "السيرة الذاتية"
 layout: "resume"
 summary: "مهندس رؤية آلية ومعالجة صور — Zebra Technologies وMatrox Imaging وPolytechnique Montréal."
-description: "مطور برمجيات أول متخصص في الرؤية الآلية ومعالجة الصور وأنظمة التحكم."
+description: "مطوّر ‎C++‎ أول: الرؤية الآلية ثنائية وثلاثية الأبعاد، ومعالجة الصور، والتحسين غير الخطي، وأنظمة التحكم."
 aliases: ["/ar/timeline/"]
 role: "مطور برمجيات أول — الرؤية الآلية والذكاء الاصطناعي"
 location: "مونتريال، كيبك"

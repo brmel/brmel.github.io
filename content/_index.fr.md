@@ -2,7 +2,7 @@
 title: "Ibraverse"
 date: 2025-01-08
 outputs: ["HTML", "RSS", "JSON"]
-description: "Vision industrielle et traitement d'images chez Zebra Technologies. Projets personnels, articles techniques et carnets de terrain."
+description: "Développeur C++ senior en vision industrielle chez Zebra Technologies. Projets, articles techniques et carnets de terrain."
 ---
 J'aime résoudre des problèmes de mathématiques et de physique, et écrire du bon
 C++ pour les algorithmes de traitement d'images qui font tourner de vrais

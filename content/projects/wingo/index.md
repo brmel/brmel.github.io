@@ -4,8 +4,8 @@ date: 2026-08-04
 projectNo: 2
 domain: "mobile"
 status: "active"
-pitch: "Helps a group of friends pick where to go out, and settles it, instead of a chat that never decides."
-description: "Helps a group of friends pick where to go out, and settles it, instead of a chat that never decides."
+pitch: "Lets a group of friends nominate places, vote in real time, and lock in a decision instead of a chat that never ends."
+description: "Lets a group of friends nominate places, vote in real time, and lock in a decision instead of a chat that never ends."
 metrics:
   - value: "3 surfaces"
     label: "one Flutter app, an admin console and a marketing site on one backend"

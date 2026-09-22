@@ -26,7 +26,7 @@ AI, generative models, and the tools that are developed very quickly.
 I understand that this solution may seem overly engineered, and I agree. A
 simpler, less expensive solution could address this problem. However, with more
 advanced LLMs available, implementing a solution using an LLM can be achieved
-with just a few lines of code, allowing the LLM to analyze all the data.
+with just a few lines of code, allowing the LLM to analyse all the data.
 
 I truly felt this while tackling this challenge:
 

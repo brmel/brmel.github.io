@@ -1,4 +1,4 @@
 ---
 title: "Tech"
-description: "Comment les choses fonctionnent, appris en les construisant : traitement d'images et vision industrielle d'abord, puis mémoire, algorithmes et agents."
+description: "Articles techniques : traitement d'images et vision industrielle, mémoire Windows, algorithmes et agents IA."
 ---

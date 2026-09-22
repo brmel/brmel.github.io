@@ -1,4 +1,4 @@
 ---
 title: "Tech"
-description: "Long write-ups on how something works, learned by building it: image processing and machine vision first, then memory, algorithms and agents."
+description: "Technical write-ups on image processing and machine vision, Windows memory internals, algorithms and AI agents."
 ---

@@ -4,8 +4,8 @@ date: 2025-08-04
 projectNo: 1
 domain: "saas"
 status: "shipped"
-pitch: "Gives a small clinic a numbered queue on a screen, so patients stop asking who is next."
-description: "Gives a small clinic a numbered queue on a screen, so patients stop asking who is next."
+pitch: "A numbered queue on a waiting-room screen for small clinics, so patients stop asking who is next."
+description: "A numbered queue on a waiting-room screen for small clinics, so patients stop asking who is next."
 metrics:
   - value: "1 PC"
     label: "runs reception, the waiting-room board and every doctor"

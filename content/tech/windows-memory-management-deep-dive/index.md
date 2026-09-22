@@ -100,7 +100,7 @@ than you do.
 - If you try to reserve memory that is already reserved, the operation will fail.
 - If you try to use memory that is reserved but not committed, the operation will
   also fail.
-- Allocated memory is always initialized with 0 for Windows security reasons. A
+- Allocated memory is always initialised with 0 for Windows security reasons. A
   snapshot from Visual Studio confirms that.
 
 {{< figure src="03-virtualalloc-zero-initialised.jpg" alt="Visual Studio memory window showing freshly allocated memory filled with zeros" caption="Allocated memory using the VirtualAlloc function is always initialized." >}}
@@ -195,7 +195,7 @@ component called the heap manager, which manages allocations inside larger memor
 areas reserved using the page-granularity memory-allocation functions. The
 allocation granularity in the heap manager is relatively small: 8 bytes on 32-bit
 systems, and 16 bytes on 64-bit systems. The heap manager has been designed to
-optimize memory usage and performance in the case of these smaller allocations.
+optimise memory usage and performance in the case of these smaller allocations.
 
 {{< figure src="06-heap-api-layer.jpg" alt="Diagram of the Windows heap API layers above the virtual memory allocator" caption="Heap API layer." >}}
 
@@ -328,7 +328,7 @@ In this example, **page 2** is marked as *copy-on-write*. Therefore, when
 **Process B** wants to modify it, the memory manager creates a copy of **page 2**
 accessed only by **Process B** and marks it as *read-write*.
 
-{{< figure src="12-copy-on-write.jpg" alt="Diagram of two processes sharing pages, with one page copied on write for the second process" caption="Pages marked as copy-on-write are copied only when modified by the process, to optimize memory." >}}
+{{< figure src="12-copy-on-write.jpg" alt="Diagram of two processes sharing pages, with one page copied on write for the second process" caption="Pages marked as copy-on-write are copied only when modified by the process, to optimise memory." >}}
 
 **A mystery.** It remains unclear to me how to explain why certain pages of an
 image that are marked as *read* end up in the private working set and are
