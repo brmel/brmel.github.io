@@ -22,23 +22,28 @@ experience:
     org: "Zebra Technologies"
     url: "https://www.zebra.com/us/en.html"
     work:
-      - title: "The algorithms other people ship on"
+      - title: "Core 2D and 3D vision algorithms"
         url: "https://www.zebra.com/us/en/software/machine-vision-and-fixed-industrial-scanning-software/aurora-imaging-library.html"
         video: "m7KKRmOxRT0"
         videoAlt: "Walkthrough of the Aurora Imaging Library in Aurora Vision Studio"
         text: >-
-          I am one of the engineers responsible for the algorithms in the
-          library. The job runs past writing them: I agree the behaviour with
-          the UI, documentation and test teams before it ships, and I go into
-          the customer applications that will not work to find out why.
-      - title: "Inspection that runs on the camera"
+          I develop and maintain 2D and 3D algorithms in the library: I add
+          features, investigate and fix bugs, support customers whose
+          applications misbehave, and help plan the roadmap and the work that
+          completes each release. I specify API behaviour and backward
+          compatibility with the UI, documentation and QA teams before it
+          ships.
+      - title: "Image processing on the smart camera"
         url: "https://www.zebra.com/us/en/products/industrial-machine-vision-fixed-scanners/smart-sensors-and-cameras.html"
         video: "N2DfQzTPwog"
         videoAlt: "The Aurora Focus smart camera inspecting parts on a bench"
         text: >-
-          I moved the imaging library onto the camera itself, so inspection
-          runs on the device instead of a PC wired to it. That meant fitting
-          the algorithms into far less memory and watching every allocation.
+          I port image processing modules onto the Aurora Focus smart camera,
+          writing algorithms under tight memory and CPU constraints. The work is
+          full stack: I debug issues that cross the UI and the backend,
+          investigate multithreading and concurrency problems, work with the
+          test team on fixes, and implement features that make the camera
+          simpler to configure.
     built: ["Aurora Imaging Library", "Aurora Focus smart camera"]
     stack: ["C++", "machine vision algorithms", "embedded / edge imaging"]
     tools: ["Visual Studio", "Git / GitHub", "JIRA"]
@@ -52,20 +57,23 @@ experience:
     org: "Zebra Technologies"
     url: "https://www.zebra.com/us/en.html"
     work:
-      - title: "The geometry underneath the 2D modules"
+      - title: "Geometry and solvers behind the 2D modules"
         text: >-
-          I solved, implemented and debugged the geometry, algebra and
-          non-linear optimisation behind Model Finder, Edge Finder, Measurement,
-          Metrology, Calibration and Bead, and widened the tests that guard
-          them. I also took the Advanced Geometric Matcher from an algorithm to
-          a public API, designed with the team.
-      - title: "Bringing machine learning into a geometric library"
+          I maintained and extended the 2D modules — Model Finder, Edge Finder,
+          Measurement, Metrology, Calibration and Bead — implementing the
+          geometry, linear algebra and non-linear optimisation they run on,
+          fixing floating-point and stateful API bugs, and extending their
+          regression tests. I co-designed and shipped the public C++ API for the
+          Advanced Geometric Matcher.
+      - title: "Machine learning inside a geometric library"
         video: "CS4cs9xVecg"
         videoAlt: "Notes from the deep learning specialisation"
         text: >-
-          I brought classical machine learning into modules that had been
-          purely geometric, and wrote the new APIs and the customer examples
-          that shipped with them. I supervised trainees and interns.
+          I integrated classical machine learning — Random Forests and SVMs —
+          into modules that had been purely geometric, to classify patterns in
+          complex scenes. I wrote the new APIs, their documentation and the
+          customer examples that shipped with them, and mentored interns and
+          trainees on modern C++, multithreading and code review.
     built: ["Advanced Geometric Matcher API", "MIL 2D modules", "customer-facing API examples"]
     stack: ["C++", "geometric matching", "metrology", "non-linear optimisation", "classical ML"]
     tools: ["Visual Studio", "Git / GitHub", "JIRA", "Agile"]
@@ -80,21 +88,24 @@ experience:
     url: "https://video.matrox.com/en"
     note: "Matrox Imaging became part of Zebra Technologies in 2022; the work continued without a break."
     work:
-      - title: "Learning the industry"
+      - title: "Calibration, measurement and metrology"
         video: "LcoPNbyuhZU"
         videoAlt: "Industrial image processing in the Matrox Imaging Library"
         text: >-
-          My first job after the master's, on the modules that measure things:
-          Calibration, Measurement and Metrology. I designed the Advanced
-          Geometric Matcher here — the algorithm that later became a public
-          API.
-      - title: "Working inside a large C++ codebase"
+          My first job after the master's, on the measurement modules:
+          Calibration, Measurement and Metrology. I implemented and debugged
+          their algorithms, wrote tests and customer examples, and designed the
+          Advanced Geometric Matcher that later became a public API.
+      - title: "Non-linear solvers in a legacy C++ codebase"
         video: "sfLZ7v9gEnc"
         videoAlt: "Working through the Matrox Imaging Library codebase"
         text: >-
-          I replaced older solvers in the geometry modules with non-linear
-          optimisers, Levenberg–Marquardt among them, in a library whose
-          behaviour thousands of installed applications already depend on.
+          I modernised the geometric solvers in a multi-decade C++ codebase,
+          replacing older methods with non-linear optimisation including
+          Levenberg–Marquardt for sub-pixel accuracy and numerical stability. I
+          tracked down memory leaks and dangling references, and built
+          regression suites to protect behaviour that thousands of installed
+          applications depend on.
     built: ["Pattern matching", "Edge detection", "Non-linear optimisation", "Memory investigations", "Calibration", "Measurement and metrology"]
     stack: ["C++", "non-linear optimisation", "Levenberg–Marquardt", "classical ML"]
     tools: ["Visual Studio", "Git", "SVN"]
@@ -117,14 +128,14 @@ experience:
         text: >-
           The scholarship was awarded on academic merit and paid for the
           master's. It is the reason the rest of this page happens in Montréal.
-      - title: "Systems, not only coursework"
+      - title: "Control, robotics and real-time systems"
         video: "UZbmuAs2K2w"
         videoAlt: "Robotics and real-time control work during the master's"
         text: >-
-          I finished every course that mattered with something that had to
-          actually run: a robot that had to reach the point, a controller that
-          had to hold its deadline, a camera that had to tell the arm where the
-          part was.
+          I finished every course that mattered with something that had to run
+          on real hardware: robot control and trajectory execution, real-time
+          scheduling under QNX, image processing for part localisation, and
+          state estimation.
     built: ["Control theory", "Robotics", "Image processing"]
     stack: ["C++", "digital control", "detection and estimation", "stochastic and robust control", "image processing"]
     tools: ["QNX", "ROS", "MATLAB / Simulink", "Fanuc robots"]
@@ -147,12 +158,14 @@ experience:
           Mathematics, physics and programming, nine to six, six days a week,
           with the ranking at the end deciding which school you enter. I learned
           there to keep working a problem until it is actually solved.
-      - title: "Engineering that left the classroom"
+      - title: "Control systems on real hardware"
         video: "eGPbNTXTd1I"
         videoAlt: "Control systems and PLC projects during the engineering degree"
         text: >-
           I finished the degree building control systems against real hardware
-          and real factory constraints, not simulations of them.
+          and factory constraints: an adaptive cruise controller for an
+          autonomous vehicle, and a PLC program driving an industrial assembly
+          machine.
     built: ["Adaptive cruise control for an autonomous vehicle", "PLC program for an industrial assembly machine"]
     stack: ["C", "MATLAB", "VHDL", "control design", "process identification", "optimal control"]
     tools: ["Unity-Pro (Schneider)", "Simatic-Manager (Siemens)", "Simulink", "LabVIEW"]

@@ -65,12 +65,12 @@ several implementations behind it and an empty slot for yours. You write a grasp
 offset in the editor, it compiles into a sandbox, and it becomes another version
 you can select — then you run the same application against both and compare.
 
-I like breaking it best. Switch tracking to the snapshot version, run the
+The failure case is the point. Switch tracking to the snapshot version, run the
 moving-bin application, and the arm aims where the part *was* and misses,
-exactly as it would on a real line. Seeing that cost me no rig, no safety fence
-and no technician.
+exactly as it would on a real line — no rig, no safety fence, no technician.
 
-I borrowed the hard parts on purpose — MuJoCo for physics, OpenCV for vision,
-Ruckig for trajectories, Pinocchio for kinematics. What I built is the boundary
-around them, the sandbox that lets a stranger's code run next to mine, and the
-one contract that the browser, the CLI and anything else all speak.
+I reused the mature engines — MuJoCo for physics, OpenCV for vision, Ruckig for
+trajectory generation, Pinocchio for kinematics. What I wrote is the C++ around
+them: the typed interfaces each node implements, a fuel-bounded WASM sandbox for
+untrusted code, the real-time control loop and its safety gate, an HTTP and SSE
+wire protocol, and the browser client and CLI that both speak it.

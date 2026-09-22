@@ -44,12 +44,13 @@ that problem, because a person reads the screen.
 
 ## The product
 
-I wanted software that tests an application the way a person would. You ask
-Domia for something in plain language and it drives the app until it is done. It
-reads the accessibility tree — the same structure a screen reader uses — picks
-an action, acts on what is really there, looks at what changed, and decides
-again. One loop, no recorded steps, and the same loop whether it is driving a
-web page or a desktop app.
+You ask Domia for something in plain language and it drives the application
+until it is done. It reads the accessibility tree — the same structure a screen
+reader uses — picks an action, acts on what is really there, checks what
+changed, and decides again. One loop, no recorded steps, and the same loop for a
+web page or an Electron app. I built it as a TypeScript monorepo: an agent layer
+over any LLM provider, a Playwright tool layer, SQLite persistence, a tracing
+system, an Electron desktop app and a CLI, all behind one API.
 
 Judgement is the expensive part, so I spend it last. A deterministic pass over
 an origin's files, headers and HTML settles whatever it can in pure functions:
