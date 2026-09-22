@@ -17,5 +17,6 @@ même métier chez Matrox Imaging avant le rachat. Concrètement :
 - **Lecture de codes-barres par apprentissage profond**, pour les codes abîmés, flous ou mal éclairés
 - **Apprentissage automatique appliqué au traitement d'images**, des classifieurs classiques aux réseaux de neurones
 
-J'aime le C++, la robotique et l'IA. Je construis aussi des choses en dehors du
+Mes centres d'intérêt : le C++, le traitement d'images, la robotique et la
+théorie du contrôle, et l'IA. Je construis aussi des choses en dehors du
 travail, et j'en parle ici.

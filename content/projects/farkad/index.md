@@ -44,10 +44,10 @@ You say one line — *two eggs, a big glass of water, walked forty minutes, slep
 badly* — and it comes back as structured entries across every area it touched,
 each one editable next to the words it came from.
 
-That last detail is the whole design. Free text means the failure mode is
-silent: the model does not refuse, it gives you a confidently wrong number. The
-only correction interface I found that works is showing you your own sentence
-beside what was made of it.
+Showing the sentence beside the result is the part that matters. Free text
+fails silently: the model does not refuse, it gives you a confidently wrong
+number. The only correction interface I found that works is putting your own
+words next to what was made of them.
 
 You choose which of six areas to track, and the obvious build is one parser per
 area. I wrote one engine instead, handling any combination, so adding an area is

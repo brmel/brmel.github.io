@@ -15,4 +15,5 @@ Matrox Imaging before the acquisition. What I actually work on:
 - **Barcode reading with deep learning**, for codes that are damaged, blurred or badly lit
 - **Machine learning for image processing**, from classical classifiers to neural networks
 
-I like C++, robotics and AI. I build things outside work too, and write about them here.
+My core interests are C++, image processing, robotics and control theory, and AI.
+I build things outside work too, and write about them here.
