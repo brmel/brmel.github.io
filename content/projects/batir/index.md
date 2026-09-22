@@ -42,9 +42,6 @@ So the question gets asked to a colleague instead, and the answer is whatever
 that person remembers. For seismic rules and rebar spacing, "whatever someone
 remembers" is a load-bearing part of the process.
 
-> A general model will answer confidently in all three languages and cite
-> nothing. That is not an assistant, it is a liability with good grammar.
-
 ## The product
 
 You ask in Arabic, French or English and get an answer grounded in the corpus,

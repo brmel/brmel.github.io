@@ -53,9 +53,6 @@ gentle enough that they pass.
 That is the part worth removing. Not the physics, and not the robot — the
 setup.
 
-> A simulator that lets your algorithm succeed is worse than no simulator,
-> because you believe it.
-
 ## The product
 
 One command brings up a cell in the browser: a UR10e on a rail, a conveyor, a

@@ -34,9 +34,6 @@ Five friends picking a restaurant will fill a group chat with links, three
 thumbs-up reactions and no decision, and two days later nobody has booked
 anything. The problem was never a shortage of options.
 
-> It is the locking in, not the voting, that ends the argument. Before that
-> moment every message is only an opinion.
-
 ## The product
 
 A squad nominates options, everyone votes in real time, and one person locks the

@@ -38,9 +38,6 @@ I wanted one number. When they say the power is back at four, how often is it
 back at four? Nobody publishes that, so I wrote the map down every minute for
 fifty-six days and worked it out.
 
-> It is right about five percent of the time. The second thing I noticed was
-> that I estimate exactly the same way.
-
 ## The product
 
 A reliability report the utility does not produce: where outages concentrate,

@@ -37,9 +37,6 @@ and there is none to consume. Where a timetable does exist it describes an
 intention rather than a schedule — which is its own kind of missing data, and
 harder to detect than an empty file.
 
-> The app everyone wants cannot exist until someone builds the data underneath
-> it. The pipeline is the product; the app is the part you can see.
-
 ## The product
 
 Riders get bus, tram and metro in one app, in the three languages the country

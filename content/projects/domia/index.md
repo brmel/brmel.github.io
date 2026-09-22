@@ -41,9 +41,6 @@ The reason is that a test written against selectors has no idea what it is
 looking at. It knows there is an element at `.btn-primary`. It does not know
 there is a button that says *Continue*.
 
-> A person testing the same page never has that problem, because a person reads
-> the screen.
-
 ## The product
 
 Domia takes a request in plain language and drives the application until it is

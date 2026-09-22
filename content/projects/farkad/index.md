@@ -38,9 +38,6 @@ nothing about you that it could not have asked.
 
 The information was never the hard part.
 
-> You could say the whole day in one breath and a person would understand every
-> piece of it. So the sentence should be the interface.
-
 ## The product
 
 You say one line — *two eggs, a big glass of water, walked forty minutes, slept

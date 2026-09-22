@@ -39,9 +39,6 @@ does.
 Leorra tried to make that a marketplace — senders post what needs moving,
 travellers post their route and spare kilos, the app matches them.
 
-> For a stranger to hand another stranger a laptop at an airport, the trust
-> layer *is* the app. I built the marketplace instead.
-
 ## The product
 
 Listings, chat, contracts and matching all shipped, in three languages, with

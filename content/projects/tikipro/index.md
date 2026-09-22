@@ -40,9 +40,6 @@ The software that fixes this is built for hospitals — a server, a network, a
 per-seat licence, an IT contact. A three-doctor clinic has one PC at reception
 and a television on the wall.
 
-> The clinic never asked for software. It asked for the waiting room to stop
-> being an argument.
-
 ## The product
 
 Reception, the waiting-room board and each doctor's queue are three views of one
