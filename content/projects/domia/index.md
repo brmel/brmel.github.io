@@ -58,5 +58,33 @@ twenty findings in about a fifth of a second, with no model and no browser at
 all. The agent only picks up what is left. Every run is recorded as a tree and
 replays from its own tape without calling the model again.
 
+## What it prints
+
+The deterministic pass needs no model and no browser, so it runs on a clean
+checkout with no API key at all:
+
+```console
+$ domia audit https://example.com --sweep-only
+
+▶ sweep: https://example.com  (deterministic pass — no model)
+
+  11 requests in 215ms → 20 findings
+
+  ▲ serious  security       No Content-Security-Policy
+    verified · security.csp-missing · fix (S): Ship a CSP, starting in report-only mode.
+  ▲ serious  security       No HSTS
+    verified · security.hsts-missing · fix (S): Send HSTS with a long max-age once https is confirmed.
+  ● moderate files          No robots.txt
+    verified · files.robots-txt · fix (S): Publish /robots.txt.
+  ● moderate seo            No meta description
+    verified · seo.description-missing · fix (S): Add a meta description of 120–160 characters.
+  · minor    agentic        No /llms.txt
+    verified · agentic.llms-txt · fix (S): Publish /llms.txt.
+  …
+```
+
+Every finding carries the rule that produced it and the fix, sized. The agent is
+only spent on what this pass leaves open.
+
 It is a beta and it says so. What is missing is the ordinary part: entering a
 key from the desktop UI, proper empty states, and signed builds.
