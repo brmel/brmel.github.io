@@ -10,6 +10,7 @@
 </div>
 {{- end }}
 {{- partial "home/career.html" . }}
+{{- partial "home/featured.html" (dict "page" . ) }}
 {{- partial "home/sections.html" . }}
 {{- partial "home/latest.html" . }}
 {{- else }}
@@ -18,6 +19,10 @@
 
 {{- with .Content }}
 <div class="post-content">{{ partial "anchored_headings.html" . }}</div>
+{{- end }}
+
+{{- if eq .Kind "section" }}
+{{- partial "home/featured.html" (dict "page" . "section" .Section) }}
 {{- end }}
 
 {{- $pages := union .RegularPages .Sections }}

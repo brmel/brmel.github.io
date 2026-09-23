@@ -1,4 +1,4 @@
 ---
 title: "Projets"
-description: "Des projets menés de bout en bout — le problème que chacun résout, comment il fonctionne, et ce que j'ai appris en le construisant."
+description: "Des logiciels menés de bout en bout : simulation robotique, agents IA, pipelines de données, applications bureau et mobiles, et ce qu'ils m'ont appris."
 ---

@@ -1,5 +1,6 @@
 ---
 title: "Windows Memory Management: Virtual vs Physical, and How to Measure It"
+featured: 1
 date: 2023-11-29
 description: "An introduction to how the Windows Memory Manager separates virtual from physical memory, and a C++ tool for tracking a process's usage over time."
 tags: ["C++", "Windows", "Systems"]

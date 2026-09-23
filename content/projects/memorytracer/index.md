@@ -1,5 +1,6 @@
 ---
 title: "MemoryTracer"
+featured: 4
 date: 2024-01-09
 projectNo: 12
 domain: "infra"
@@ -22,10 +23,10 @@ lede: |
   reserved, private, working set, broken down by heap, stack, image and mapped
   file — on a schedule you control, and exports the result as CSV.
 lessons:
-  - "**A measuring tool has to be measured.** I checked every counter against Sysinternals VMMap, column for column, before trusting any of it. A memory tool that has never been compared to a known-good one is a number generator, and I would not have found the two counters I had wrong without it."
-  - "**The tracer must not move the number it is measuring.** Taking a snapshot allocated memory, which showed up in the snapshot. Reducing allocation on the snapshot path was not an optimisation, it was a correctness fix."
-  - "**64-bit broke the assumptions.** The approach I started from computed the process memory maximum in a way that was quietly wrong for 64-bit processes, and reported unused regions incorrectly. Both are the kind of bug you only see when you plot the total and it does not add up."
-  - "**Writing it up taught me more than building it.** Turning the measurements into [two articles](/tech/windows-memory-management-overview/) forced me to explain copy-on-write, private bytes and working set precisely enough that someone else could follow — and that is when I understood them."
+  - "**A measuring tool has to be measured.** I checked every counter against Sysinternals VMMap, column for column, before trusting any of it — and found two I had wrong. A memory tool that has never been compared to a known-good one is a number generator."
+  - "**The tracer must not move the number it measures.** Taking a snapshot allocated memory, which then showed up in the snapshot. Reducing allocation on the snapshot path was a correctness fix, not an optimisation."
+  - "**64-bit broke the assumptions.** The approach I started from computed the process memory maximum in a way that was wrong for 64-bit processes, and reported unused regions incorrectly. Both only show up when you plot the total and it does not add up."
+  - "**Writing it up taught me more than building it.** Turning the measurements into [two articles](/tech/windows-memory-management-overview/) forced me to explain copy-on-write, private bytes and working set precisely enough for someone else to follow."
 tags: ["C++", "Windows", "Systems"]
 resources:
   - src: "gallery/01-tracer-vs-vmmap.jpg"

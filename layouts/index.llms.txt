@@ -13,8 +13,9 @@ Every Tech, Thoughts and Adventures article is also served as markdown at its UR
 {{ with .built }}  - Built: {{ delimit . ", " }}
 {{ end }}{{ with .stack }}  - Stack: {{ delimit . ", " }}
 {{ end }}{{ with .tools }}  - Tools: {{ delimit . ", " }}
-{{ end }}{{ with .learned }}  - Learned: {{ . }}
-{{ end }}{{ end }}{{ end }}
+{{ end }}{{ with .learned }}  - Learned:
+{{ range (split (strings.TrimSpace .) "\n") }}    {{ strings.TrimSpace . }}
+{{ end }}{{ end }}{{ end }}{{ end }}
 **Project facts**, taken from each project page:
 
 {{ range (sort (where (site.GetPage "/projects").Pages "Params.metrics" "!=" nil) "Date" "desc") -}}

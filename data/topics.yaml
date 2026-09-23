@@ -1,0 +1,15 @@
+# Topic groups for /tags/. Order here is the order on the page.
+# Any tag not listed falls into the trailing "more" group automatically.
+groups:
+  - key: "systems"
+    tags: ["C++", "Systems", "Windows"]
+  - key: "vision"
+    tags: ["Machine Vision", "Robotics", "Simulation", "Machine Learning"]
+  - key: "ai"
+    tags: ["AI", "LLM", "RAG", "Testing"]
+  - key: "data"
+    tags: ["Data Analysis", "Québec"]
+  - key: "platforms"
+    tags: ["Python", "TypeScript", "Flutter", "Firebase", "Mobile", "Desktop", "Clean Architecture"]
+  - key: "places"
+    tags: ["Algeria", "Transit", "Adirondacks", "Hiking", "Spa", "Getaway"]

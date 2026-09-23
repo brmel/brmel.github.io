@@ -1,0 +1,69 @@
+{{- define "main" }}
+{{ partial "page-head/header.html" (dict "page" .) }}
+
+{{- with .Content }}
+<div class="post-content">{{ partial "anchored_headings.html" . }}</div>
+{{- end }}
+
+{{- /* All terms come from the default language: the writing originates in
+       English, so every language shows the same clusters. */ -}}
+{{- $default := index site.Sites 0 -}}
+{{- $terms := slice -}}
+{{- with $default.GetPage "/tags" }}
+  {{- range .Pages }}
+    {{- $terms = $terms | append (dict "title" .Title "url" .RelPermalink "count" (len .Pages)) -}}
+  {{- end }}
+{{- end }}
+
+{{- $placed := slice -}}
+<div class="topics">
+{{- range site.Data.topics.groups }}
+  {{- $group := . -}}
+  {{- $rows := slice -}}
+  {{- range .tags }}
+    {{- $tag := . -}}
+    {{- range $terms }}
+      {{- if eq (lower .title) (lower $tag) }}
+        {{- $rows = $rows | append . -}}
+        {{- $placed = $placed | append (lower .title) -}}
+      {{- end }}
+    {{- end }}
+  {{- end }}
+  {{- with $rows }}
+  <section class="topics__group">
+    <h2 class="u-rule-heading">{{ i18n (printf "topics_group_%s" $group.key) }}</h2>
+    <ul class="topics__list">
+      {{- range . }}
+      <li class="topics__item">
+        <a class="topics__link" href="{{ .url }}">
+          <span class="topics__name" dir="auto">{{ .title }}</span>
+          <span class="topics__count" aria-hidden="true">{{ .count }}</span>
+          <span class="u-sr-only">{{ i18n "topics_count" .count }}</span>
+        </a>
+      </li>
+      {{- end }}
+    </ul>
+  </section>
+  {{- end }}
+{{- end }}
+
+{{- $rest := slice -}}
+{{- range $terms }}{{ if not (in $placed (lower .title)) }}{{ $rest = $rest | append . }}{{ end }}{{ end }}
+{{- with $rest }}
+  <section class="topics__group">
+    <h2 class="u-rule-heading">{{ i18n "topics_group_more" }}</h2>
+    <ul class="topics__list">
+      {{- range sort . "count" "desc" }}
+      <li class="topics__item">
+        <a class="topics__link" href="{{ .url }}">
+          <span class="topics__name" dir="auto">{{ .title }}</span>
+          <span class="topics__count" aria-hidden="true">{{ .count }}</span>
+          <span class="u-sr-only">{{ i18n "topics_count" .count }}</span>
+        </a>
+      </li>
+      {{- end }}
+    </ul>
+  </section>
+{{- end }}
+</div>
+{{- end }}

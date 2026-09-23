@@ -2,21 +2,28 @@
 title: "Ibraverse"
 date: 2025-01-08
 outputs: ["HTML", "RSS", "JSON"]
-description: "Développeur C++ senior en vision industrielle chez Zebra Technologies. Projets, articles techniques et carnets de terrain."
+description: "Ingénieur C++ senior chez Zebra Technologies : algorithmes de vision 2D et 3D, solveurs numériques et systèmes bas niveau. Projets et articles techniques."
 ---
-J'aime résoudre des problèmes de mathématiques et de physique, et écrire du bon
-C++ pour les algorithmes de traitement d'images qui font tourner de vrais
-produits.
+Ingénieur C++ senior chez Zebra Technologies. Je suis responsable des
+algorithmes 2D et 3D de l'Aurora Imaging Library — solveurs géométriques,
+calibration et métrologie tournant en usine — et je les porte sur une caméra
+intelligente sous fortes contraintes de mémoire et de processeur. C++17/20
+moderne, Windows et Linux, sept ans sur la même base de code : Matrox Imaging
+d'abord, puis Zebra après le rachat.
 
-Je travaille en vision industrielle chez Zebra Technologies, et je faisais le
-même métier chez Matrox Imaging avant le rachat. Concrètement :
+Concrètement :
 
-- **Recherche de motifs 2D** — retrouver une forme connue dans une image, quels que soient sa position, son angle ou l'éclairage
-- **Métrologie et mesure** — convertir des pixels en millimètres sur lesquels une usine peut s'appuyer
-- **Détection de contours et extraction de caractéristiques**, et le traitement du signal qui les sous-tend
-- **Lecture de codes-barres par apprentissage profond**, pour les codes abîmés, flous ou mal éclairés
-- **Apprentissage automatique appliqué au traitement d'images**, des classifieurs classiques aux réseaux de neurones
+- **Algorithmes numériques** — optimisation non linéaire et Levenberg–Marquardt, précision sous-pixel, et comportement en virgule flottante protégé par des suites de régression
+- **Systèmes bas niveau** — mémoire virtuelle, working set, tas et fichiers mappés. J'ai écrit [MemoryTracer](/projects/memorytracer/) pour le mesurer et [deux articles](/tech/windows-memory-management-overview/) pour l'expliquer
+- **Multithreading et concurrence** — conditions de course dans une bibliothèque dont dépendent des milliers d'applications installées
+- **Vision industrielle** — appariement de motifs 2D, détection de contours, métrologie, SIFT et homographie, et apprentissage profond pour les codes-barres abîmés ou mal éclairés
+- **Pratiques d'ingénierie** — CMake, GTest, sanitizers et Valgrind, revue de code, et suites de régression qui protègent des milliers d'applications installées
 
-Mes centres d'intérêt : le C++, le traitement d'images, la robotique et la
-théorie du contrôle, et l'IA. Je construis aussi des choses en dehors du
-travail, et j'en parle ici.
+J'écris aussi la documentation des API et les exemples de code livrés avec la
+bibliothèque, j'assiste les clients qui déboguent leurs propres applications, et
+je définis le comportement des API avec les équipes UI, documentation et QA
+avant chaque livraison.
+
+En dehors du travail : [une cellule robotique dans un moteur physique](/projects/robonode/),
+[un agent qui teste des applications web](/projects/domia/), et des
+[articles](/tech/) sur ce que chacun m'a appris.

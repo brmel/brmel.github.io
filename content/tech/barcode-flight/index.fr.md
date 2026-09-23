@@ -1,8 +1,8 @@
 ---
-title: "Comment le traitement d'images a sauvé mon vol : codes-barres et couleur de premier plan"
+title: "Pourquoi une carte d'embarquement en mode sombre ne se scanne pas : codes-barres et couleur de premier plan"
 date: 2025-12-03
-tags: ["Traitement d’Images"]
-description: "Un exemple concret de l'importance du support de la couleur de premier plan dans la lecture de codes-barres."
+tags: ["Machine Vision"]
+description: "Pourquoi un lecteur de codes-barres a besoin d'un réglage de couleur de premier plan, et ce qui se passe à une porte d'embarquement quand il ne l'a pas."
 cover:
     image: "01-boarding-pass-dark.jpeg"
     alt: "Code-barres en Mode Sombre"

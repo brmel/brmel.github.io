@@ -1,9 +1,12 @@
 baseURL = "https://ibraverse.ca"
 defaultContentLanguage = "en"
 defaultContentLanguageInSubdir = false
-disableKinds = ["taxonomy", "term"]
+disableKinds = []
 theme = "PaperMod"
 enableGitInfo = true
+
+[taxonomies]
+  tag = "tags"
 
   [languages.en]
     languageCode = "en-CA"
@@ -12,12 +15,13 @@ enableGitInfo = true
     title = "Ibraverse"
     [languages.en.params]
       author = "Ibraverse"
-      description = "Senior Software Developer at Zebra Technologies working in machine vision, AI and image processing."
+      description = "Senior C++ engineer at Zebra Technologies: 2D and 3D vision algorithms, numerical solvers, low-level systems and concurrency."
       keywords = ["machine vision", "image processing", "computer vision", "industrial algorithms", "OpenCV", "C++", "control theory", "robotics", "AI", "Zebra Technologies", "Matrox", "real-time systems", "pattern matching", "edge detection", "calibration"]
+      bio = "Senior C++ engineer at Zebra Technologies — modern C++, real-time image processing, 2D/3D vision algorithms and low-level systems, in Montréal."
     [languages.en.params.profileMode]
       enabled = true
       title = "Brahim Redouane Mellah"
-      subtitle = "Machine vision and AI · Zebra Technologies · Montréal"
+      subtitle = "Senior C++ engineer · real-time image processing and low-level systems · Zebra Technologies · Montréal"
       imageUrl = "images/profile.jpg"
       imageTitle = "Brahim Redouane Mellah"
     [[languages.en.menu.main]]
@@ -46,6 +50,11 @@ enableGitInfo = true
       url = "/adventures/"
       weight = 5
     [[languages.en.menu.main]]
+      identifier = "topics"
+      name = "Topics"
+      url = "/tags/"
+      weight = 6
+    [[languages.en.menu.main]]
       identifier = "search"
       name = "Search"
       url = "/search/"
@@ -58,12 +67,13 @@ enableGitInfo = true
     title = "Ibraverse"
     [languages.fr.params]
       author = "Ibraverse"
-      description = "Développeur logiciel senior chez Zebra Technologies : vision industrielle, IA et traitement d'images."
+      description = "Ingénieur C++ senior chez Zebra Technologies : algorithmes de vision 2D et 3D, solveurs numériques, systèmes bas niveau et concurrence."
       keywords = ["vision industrielle", "traitement d'images", "vision par ordinateur", "algorithmes industriels", "OpenCV", "C++", "théorie du contrôle", "robotique", "IA", "Zebra Technologies", "Matrox", "systèmes temps réel", "appariement de motifs", "détection de contours", "calibration"]
+      bio = "Ingénieur C++ senior chez Zebra Technologies — C++ moderne, traitement d'images temps réel, algorithmes de vision 2D/3D et systèmes bas niveau, à Montréal."
     [languages.fr.params.profileMode]
       enabled = true
       title = "Brahim Redouane Mellah"
-      subtitle = "Vision industrielle et IA · Zebra Technologies · Montréal"
+      subtitle = "Ingénieur C++ senior · traitement d'images temps réel et systèmes bas niveau · Zebra Technologies · Montréal"
       imageUrl = "images/profile.jpg"
       imageTitle = "Brahim Redouane Mellah"
     [[languages.fr.menu.main]]
@@ -92,6 +102,11 @@ enableGitInfo = true
       url = "/adventures/"
       weight = 5
     [[languages.fr.menu.main]]
+      identifier = "topics"
+      name = "Sujets"
+      url = "/tags/"
+      weight = 6
+    [[languages.fr.menu.main]]
       identifier = "search"
       name = "Recherche"
       url = "/search/"
@@ -105,12 +120,13 @@ enableGitInfo = true
     title = "Ibraverse"
     [languages.ar.params]
       author = "Ibraverse"
-      description = "مطور برمجيات أول في Zebra Technologies في الرؤية الآلية والذكاء الاصطناعي ومعالجة الصور."
+      description = "مهندس ‎C++‎ أول في Zebra Technologies: خوارزميات الرؤية ثنائية وثلاثية الأبعاد، والحلّالات العددية، والأنظمة منخفضة المستوى، والتزامن."
       keywords = ["الرؤية الآلية", "معالجة الصور", "رؤية الكمبيوتر", "الخوارزميات الصناعية", "OpenCV", "C++", "نظرية التحكم", "الروبوتات", "الذكاء الاصطناعي", "Zebra Technologies", "Matrox", "أنظمة الوقت الحقيقي", "مطابقة الأنماط", "كشف الحواف"]
+      bio = "مهندس ‎C++‎ أول في Zebra Technologies — ‎C++‎ الحديثة، ومعالجة الصور في الوقت الحقيقي، وخوارزميات الرؤية ثنائية وثلاثية الأبعاد، والأنظمة منخفضة المستوى، في مونتريال."
     [languages.ar.params.profileMode]
       enabled = true
       title = "إبراهيم رضوان ملاح"
-      subtitle = "الرؤية الآلية والذكاء الاصطناعي · Zebra Technologies · مونتريال"
+      subtitle = "مهندس ‎C++‎ أول · معالجة الصور في الوقت الحقيقي والأنظمة منخفضة المستوى · Zebra Technologies · مونتريال"
       imageUrl = "images/profile.jpg"
       imageTitle = "إبراهيم رضوان ملاح"
     [[languages.ar.menu.main]]
@@ -138,6 +154,11 @@ enableGitInfo = true
       name = "مغامرات"
       url = "/adventures/"
       weight = 5
+    [[languages.ar.menu.main]]
+      identifier = "topics"
+      name = "المواضيع"
+      url = "/tags/"
+      weight = 6
     [[languages.ar.menu.main]]
       identifier = "search"
       name = "بحث"

@@ -1,5 +1,6 @@
 {{- if not (.Param "hideContentFooter") }}
 <footer class="content-footer">
+  {{- partial "page-end/tags.html" . }}
   <div class="content-footer__row">
     {{- partial "page-end/actions.html" . }}
     {{- partial "social_icons.html" . }}

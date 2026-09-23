@@ -1,0 +1,25 @@
+{{- /* Pages carrying this term, with the default language's pages merged in.
+       Mirrors func/section-pages.html: most writing exists only in English,
+       so a French or Arabic topic page would otherwise look empty. */ -}}
+{{- $pages := .Pages -}}
+{{- $lang := site.Language.Lang -}}
+{{- $default := index site.Sites 0 -}}
+
+{{- if ne $lang $default.Language.Lang -}}
+  {{- $have := slice -}}
+  {{- range $pages -}}
+    {{- with .File }}{{ $have = $have | append .ContentBaseName }}{{ end -}}
+  {{- end -}}
+
+  {{- with $default.GetPage .RelPermalink -}}
+    {{- range .Pages -}}
+      {{- $base := "" -}}
+      {{- with .File }}{{ $base = .ContentBaseName }}{{ end -}}
+      {{- if not (in $have $base) -}}
+        {{- $pages = $pages | append . -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+
+{{- return $pages -}}

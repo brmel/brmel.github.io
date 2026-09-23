@@ -186,3 +186,21 @@
 @media (prefers-reduced-motion:reduce){
   .video-thumb:hover .video-thumb__play svg{transform:translateX(1px);}
 }
+
+/* "Learned" carries several points now, so give it the full grid width and
+   the same accent-rule marker the project lessons use. */
+.timeline-facts__row--learned{grid-column:1 / -1;}
+.timeline-facts__row--learned .timeline-facts__value ul{
+  margin:0;padding:0;list-style:none;
+}
+.timeline-facts__row--learned .timeline-facts__value li{
+  position:relative;
+  padding-block:var(--space-2);
+  padding-inline:var(--space-5) 0;
+  line-height:1.6;
+}
+.timeline-facts__row--learned .timeline-facts__value li::before{
+  content:"";position:absolute;inset-inline-start:0;top:calc(var(--space-2) + 0.7em);
+  width:10px;height:var(--hairline-strong);background:var(--accent);
+}
+.timeline-facts__row--learned .timeline-facts__value li > p{margin:0;}

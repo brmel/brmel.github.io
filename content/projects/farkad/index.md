@@ -22,10 +22,10 @@ lede: |
   badly* — and an agent pipeline files it across every area it touched, each
   entry editable next to the words it came from.
 lessons:
-  - "**A decisions log with expiry dates outlives a design doc.** `DECISIONS.md` records every locked decision *and what no longer holds*. It exists because a navigation tab drifted three times in one session, twice from reasoning off a backlog of screens that were still only drawn. There is now a test that reads the spec table and fails when the code disagrees."
-  - "**Cutting the brief was the work.** Coach, widgets, Siri and Assistant capture, Back Tap, push, share cards, custom pillars, image capture — all closed **unbuilt** on the same day, each with a written reason. The version that ships does one loop: speak, structure, correct, see. Everything that didn't serve that loop went."
-  - "**One engine, every configuration.** Users pick which of six pillars they track, and the naive design is a parser per pillar. Instead one pipeline handles any combination, so adding a pillar is data rather than code. Getting there meant rewriting the first two passes after they had already worked."
-  - "**Free-text input means the failure mode is silent.** The model doesn't refuse — it produces a confidently wrong number. Every generated field stays editable next to the sentence it came from, because the only workable correction UI is showing your own words back to you."
+  - "**A decisions log with expiry dates outlives a design doc.** `DECISIONS.md` records every locked decision and what no longer holds. It exists because one navigation tab drifted three times in a single session, twice from reasoning off screens that were still only drawn. A test now reads the spec table and fails when the code disagrees."
+  - "**Cutting the brief was the work.** Coach, widgets, Siri and Assistant capture, Back Tap, push, share cards, custom pillars, image capture — all closed unbuilt on the same day, each with a written reason. The shipped version does one loop: speak, structure, correct, see."
+  - "**One engine, every configuration.** Users pick which of six pillars they track. The naive design is a parser per pillar; instead one pipeline handles any combination, so adding a pillar is data rather than code. Getting there meant rewriting the first two passes after they already worked."
+  - "**Free-text input fails silently.** The model does not refuse — it returns a confidently wrong number. Every generated field stays editable next to the sentence it came from, because showing someone their own words back is the only correction UI that works."
 tags: ["Flutter", "Python", "AI", "Firebase", "Mobile"]
 ---
 

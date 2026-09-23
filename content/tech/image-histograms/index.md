@@ -1,10 +1,11 @@
 ---
 title: "Edge Measurement in Industrial Vision: Counting Saw Blade Teeth"
+featured: 2
 date: 2025-01-08
 draft: false
-tags: ["Industrial Vision", "Image Processing"]
+tags: ["Machine Vision"]
 aliases: ["/posts/image-histograms/"]
-description: "How edge measurement counts the teeth on a saw blade, and which part of the method decides whether it works on a real image."
+description: "How edge measurement counts the teeth on a saw blade, and why it works on real images where thresholding does not."
 cover:
     image: "01-saw-blade.png"
     alt: "A circular saw blade"

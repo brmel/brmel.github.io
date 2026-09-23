@@ -1,8 +1,8 @@
 ---
-title: "How an Image-Processing Feature Saved My Flight: Barcodes and Foreground Colour"
+title: "Why a Dark-Mode Boarding Pass Will Not Scan: Barcodes and Foreground Colour"
 date: 2025-12-03
-tags: ["Image Processing"]
-description: "A real-world example of why foreground colour support in barcode reading matters."
+tags: ["Machine Vision"]
+description: "Why barcode readers need a foreground-colour setting, and what happens at an airport gate when they do not have one."
 cover:
     image: "01-boarding-pass-dark.jpeg"
     alt: "Barcode in Dark Mode"

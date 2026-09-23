@@ -1,0 +1,30 @@
+{{- define "main" }}
+{{ partial "page-head/header.html" (dict "page" .) }}
+
+{{- $pages := partial "func/term-pages.html" . }}
+{{- range sort $pages "Date" "desc" }}
+<article class="post-entry"{{ partial "func/lang-attrs.html" . }}>
+  <span class="u-bar" aria-hidden="true"></span>
+  {{- partial "article/cover.html" . }}
+
+  <div class="entry-text">
+  <header class="entry-header">
+    <span class="u-eyebrow entry-eyebrow">
+      {{- partial "post_meta.html" . }}
+      {{- with .Section }}
+        {{- $name := . }}
+        {{- with site.GetPage (printf "/%s" .) }}{{ $name = .Title }}{{ end }}
+        <b class="u-dot" aria-hidden="true">·</b> {{ $name }}
+      {{- end }}
+    </span>
+    <h2>{{ .Title }}</h2>
+  </header>
+  {{- with or .Description .Params.pitch (printf "%s%s" (.Summary | plainify | htmlUnescape) (cond .Truncated "…" "")) }}
+  <div class="entry-content"><p dir="auto">{{ . }}</p></div>
+  {{- end }}
+  {{- partial "lang/en-only.html" . }}
+  </div>
+  <a class="entry-link" aria-label="{{ .Title | plainify }}" href="{{ .Permalink }}"></a>
+</article>
+{{- end }}
+{{- end }}

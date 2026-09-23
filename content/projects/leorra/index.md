@@ -17,14 +17,15 @@ stack: ["Flutter", "Dart", "Firebase", "BLoC", "Clean Architecture", "get_it"]
 links:
   live: ""
 lede: |
-  A marketplace for what Algerian families abroad already do informally —
+  A marketplace for something Algerian families abroad already do informally:
   matching someone who needs a parcel moved with a traveller who has spare
-  luggage. Twenty months of work, three languages, and it never launched.
+  luggage. Twenty months of design and build, across three languages. It was
+  never released.
 lessons:
-  - "**I threw away two months of work and it was correct.** The commit is still there: *Restart from a very clean project. Only login files are added* — 1,134 deletions against 45 insertions. The first version worked and was unextendable; everything lived in widgets. What followed was Domains / Application / Infrastructure / Presentation with value objects and validators, and adding the fourth feature cost about what the second did."
-  - "**Layer discipline is measurable, and mine was lopsided.** 19 files of domain against 159 of presentation. The business rules were genuinely small and genuinely isolated — but I wrote eight test files, all for identification, and none for matching, trips or contracts. I tested the layer that was easy to test rather than the one that carried the risk."
-  - "**Trust was the product, and I built the marketplace instead.** Listings, chat, contracts, matching — all shipped. Identity verification, escrow, dispute handling, what happens when a package does not arrive: none of it. For a stranger to hand another stranger a laptop at an airport, the trust layer *is* the app, and I treated it as a later phase."
-  - "**Twenty months, three languages, store screenshots — and it never launched.** The gap between the last feature commit and the last commit of any kind is a translation pass. What was missing was never another feature."
+  - "**I rewrote two months of work and it was the right call.** The commit is still there: *Restart from a very clean project. Only login files are added* — 1,134 deletions against 45 insertions. The first version worked and could not be extended; everything lived in widgets. What replaced it was Domain / Application / Infrastructure / Presentation with value objects and validators, and the fourth feature cost about what the second did."
+  - "**Layer discipline is measurable, and mine was lopsided.** 19 domain files against 159 presentation files. The business rules were genuinely small and genuinely isolated, but I wrote eight test files, all for identification, and none for matching, trips or contracts. I tested the layer that was easy to test, not the one carrying the risk."
+  - "**Trust was the product, and I built the marketplace instead.** Listings, chat, contracts and matching all shipped. Identity verification, escrow, dispute handling and what happens when a package does not arrive did not. For a stranger to hand another stranger a laptop at an airport, the trust layer is the app, and I treated it as a later phase."
+  - "**The gap between the last feature commit and the last commit of any kind is a translation pass.** Twenty months, three languages and store screenshots, and what was missing at the end was never another feature."
 tags: ["Flutter", "Firebase", "Mobile", "Clean Architecture"]
 ---
 

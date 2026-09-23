@@ -1,8 +1,8 @@
 ---
-title: "How AI Agents Will Replace Software Testers: Building One That Tests a Live Site"
+title: "Building an AI Agent That Tests a Live Website End to End"
 date: 2026-04-07
 relatedProject: "domia"
-description: "A practical guide to what AI agents actually are, and DOMIA — an autonomous end-to-end testing agent built on Google ADK and Gemini."
+description: "What an AI agent is, and DOMIA: an autonomous end-to-end testing agent built on Google ADK and Gemini."
 tags: ["AI", "Testing", "Python"]
 cover:
     image: "04-domia-architecture.jpg"

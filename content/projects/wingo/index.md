@@ -21,9 +21,9 @@ lede: |
   end the conversation. A squad nominates options, everyone votes in real time,
   and one person locks the winner in.
 lessons:
-  - "**The control plane was the best decision on the project.** Two web properties, two audiences, two visibility rules, and deploys were hand-run CLI commands. `Operator/` turned build → deploy → publish → rollback into one model across Firebase Hosting, this machine, and any server, with an audit trail and health-check auto-rollback. It cost a fortnight and paid for itself the first time a bad deploy needed reverting."
+  - "**The control plane was the best decision on the project.** Two web properties, two audiences, two visibility rules, and deploys were hand-run CLI commands. `Operator/` turned build → deploy → publish → rollback into one model across Firebase Hosting, this machine and any server, with an audit trail and health-check auto-rollback. It cost a fortnight and paid for itself the first time a bad deploy needed reverting."
   - "**Every write goes through Cloud Functions, and that constraint aged well.** No client writes straight to Firestore. It felt heavy while building the first screen and stopped being negotiable the moment real-time voting arrived — the vote rules live in one place, not in every client version anyone has installed."
-  - "**Both hosting sites are 404 today, and I only found out writing this page.** Nothing monitors them, because the app never launched and I stopped deploying. A control plane with an audit trail and no uptime check is only half the problem solved."
+  - "**Both hosting sites are 404 today, and I found out writing this page.** Nothing monitors them, because the app never launched and I stopped deploying. A control plane with an audit trail and no uptime check is half the problem solved."
   - "**Onboarding got built twice.** The first version explained the app; the second shows you the button. Four coach-mark steps replaced a tour nobody finished."
 tags: ["Flutter", "Firebase", "Mobile"]
 ---

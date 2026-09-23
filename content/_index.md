@@ -1,19 +1,26 @@
 ---
 title: "Ibraverse"
 date: 2025-01-08
-description: "Senior C++ developer working on industrial machine vision at Zebra Technologies. Projects, technical write-ups and field notes."
+description: "Senior C++ engineer at Zebra Technologies: 2D and 3D vision algorithms, numerical solvers and low-level systems. Projects, write-ups and field notes."
 ---
-I am passionate about solving maths and physics problems, and about writing good
-C++ for the image processing algorithms behind real products.
+Senior C++ engineer at Zebra Technologies. I own 2D and 3D algorithms inside the
+Aurora Imaging Library — geometric solvers, calibration and metrology running on
+factory floors — and port them onto a smart camera under tight memory and CPU
+budgets. Modern C++17/20, Windows and Linux, seven years on the same codebase:
+Matrox Imaging first, then Zebra after the acquisition.
 
-I work on industrial machine vision at Zebra Technologies, and did the same at
-Matrox Imaging before the acquisition. What I actually work on:
+What that consists of:
 
-- **2D matchers** — finding a known shape in an image whatever its position, angle or lighting
-- **Metrology and measurement** — turning pixels into millimetres a factory can trust
-- **Edge detection and feature extraction**, and the signal processing underneath them
-- **Barcode reading with deep learning**, for codes that are damaged, blurred or badly lit
-- **Machine learning for image processing**, from classical classifiers to neural networks
+- **Numerical algorithms** — non-linear optimisation and Levenberg–Marquardt, sub-pixel accuracy, and floating-point behaviour defended by regression suites
+- **Low-level systems** — virtual memory, working set, heap and mapped files. I wrote [MemoryTracer](/projects/memorytracer/) to measure it and [two articles](/tech/windows-memory-management-overview/) explaining it
+- **Multithreading and concurrency** — race conditions in a library thousands of installed applications depend on
+- **Machine vision** — 2D pattern matching, edge detection, metrology, SIFT and homography, and deep learning for damaged or badly lit barcodes
+- **Engineering practice** — CMake, GTest, sanitizers and Valgrind, code review, and regression suites that protect thousands of installed applications
 
-My core interests are C++, image processing, robotics and control theory, and AI.
-I build things outside work too, and write about them here.
+I also write the API documentation and the code examples that ship with the
+library, support customers debugging their own applications, and agree API
+behaviour with the UI, documentation and QA teams before each release.
+
+Outside work: [a robot cell in a physics engine](/projects/robonode/), [an agent
+that tests web applications](/projects/domia/), and [write-ups](/tech/) of what
+each one taught me.
