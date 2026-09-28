@@ -1,43 +1,22 @@
 {{- /* Fork of themes/PaperMod/partials/templates/opengraph.html @2d2f2c6 — diff before upgrading. */ -}}
 <meta property="og:url" content="{{ .Permalink }}">
-{{- with or site.Title site.Params.title | plainify }}
-  <meta property="og:site_name" content="{{ . }}">
-{{- end }}
-
-{{- with or .Title site.Title site.Params.title | plainify }}
-  <meta property="og:title" content="{{ . }}">
-{{- end }}
-
-{{- with or .Description .Summary site.Params.description | plainify | htmlUnescape | chomp }}
-  <meta property="og:description" content="{{ . }}">
-{{- end }}
-
-{{- with or .Params.locale site.Language.LanguageCode site.Language.Lang }}
-  <meta property="og:locale" content="{{ replace . "-" "_" }}">
-{{- end }}
-
+{{- with or site.Title site.Params.title | plainify }}<meta property="og:site_name" content="{{ . }}">{{ end }}
+{{- with or .Title site.Title site.Params.title | plainify }}<meta property="og:title" content="{{ . }}">{{ end }}
+{{- with or .Description .Summary site.Params.description | plainify | htmlUnescape | chomp }}<meta property="og:description" content="{{ . }}">{{ end }}
+{{- with or .Params.locale site.Language.LanguageCode site.Language.Lang }}<meta property="og:locale" content="{{ replace . "-" "_" }}">{{ end }}
 {{- if .IsPage }}
   <meta property="og:type" content="article">
-  {{- with .Section }}
-    <meta property="article:section" content="{{ . }}">
-  {{- end }}
-  {{- $ISO8601 := "2006-01-02T15:04:05-07:00" }}
-  {{- with .PublishDate }}
-    <meta property="article:published_time" {{ .Format $ISO8601 | printf "content=%q" | safeHTMLAttr }}>
-  {{- end }}
-  {{- with .Lastmod }}
-    <meta property="article:modified_time" {{ .Format $ISO8601 | printf "content=%q" | safeHTMLAttr }}>
-  {{- end }}
+  {{- with .Section }}<meta property="article:section" content="{{ . }}">{{ end }}
+  {{- with .PublishDate }}<meta property="article:published_time" content="{{ .Format "2006-01-02T15:04:05-07:00" }}">{{ end }}
+  {{- with .Lastmod }}<meta property="article:modified_time" content="{{ .Format "2006-01-02T15:04:05-07:00" }}">{{ end }}
 {{- else }}
   <meta property="og:type" content="website">
 {{- end }}
-
 {{- $og := partial "func/og-image.html" . }}
 <meta property="og:image" content="{{ $og.url }}">
 <meta property="og:image:alt" content="{{ $og.alt }}">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-
 {{- range .Translations }}
 <meta property="og:locale:alternate" content="{{ replace (.Language.LanguageCode | default .Language.Lang) "-" "_" }}">
 {{- end }}

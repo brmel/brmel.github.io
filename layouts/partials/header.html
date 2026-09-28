@@ -1,11 +1,5 @@
 {{- /* Fork of themes/PaperMod/partials/header.html @2d2f2c6 — diff before upgrading. */ -}}
-
-<script>
-    if (localStorage.getItem("pref-theme") === "dark") {
-        document.body.classList.add('dark');
-    }
-</script>
-
+<script>if (localStorage.getItem("pref-theme") === "dark") document.body.classList.add('dark');</script>
 <a class="skip-link" href="#main">{{ i18n "skip_to_content" }}</a>
 <header class="header">
     <nav class="nav">
@@ -13,7 +7,6 @@
             {{- $label_text := (site.Params.label.text | default site.Title) }}
             {{- if site.Title }}
             <a href="{{ "" | absLangURL }}" accesskey="h" title="{{ $label_text }} (Alt + H)">
-
                 {{ partial "brand/mark.html" (dict "size" 22 "class" "brand-mark") }}
                 {{- $label_text -}}
             </a>
@@ -21,71 +14,40 @@
             <div class="logo-switches">
                 {{- if (not site.Params.disableThemeToggle) }}
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="{{ i18n "toggle_theme" }}">
-                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                    </svg>
-                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="5"></circle>
-                        <line x1="12" y1="1" x2="12" y2="3"></line>
-                        <line x1="12" y1="21" x2="12" y2="23"></line>
-                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                        <line x1="1" y1="12" x2="3" y2="12"></line>
-                        <line x1="21" y1="12" x2="23" y2="12"></line>
-                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                    </svg>
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
                 </button>
                 {{- end }}
-
                 {{- $page := . }}
-                {{- $lang := .Lang}}
-                {{- $separator := or $label_text (not site.Params.disableThemeToggle)}}
                 {{- with site.Home.Translations }}
                 <ul class="lang-switch">
-                    {{- if $separator }}<li>|</li>{{ end }}
-                    {{- range . -}}
-                    {{- if ne $lang .Lang }}
+                    {{- if or $label_text (not site.Params.disableThemeToggle) }}<li>|</li>{{ end }}
+                    {{- range . }}
+                    {{- if ne $page.Lang .Lang }}
                     {{- $to := . }}
                     {{- with where $page.Translations "Lang" .Lang }}{{ $to = index . 0 }}{{ end }}
                     <li>
-                        <a href="{{- $to.Permalink -}}" lang="{{ .Lang }}" hreflang="{{ .Lang }}" title="{{ .Language.Params.languageAltTitle | default (.Language.LanguageName | emojify) | default (.Lang | title) }}">
-                            {{- .Lang | title -}}
-                        </a>
+                        <a href="{{ $to.Permalink }}" lang="{{ .Lang }}" hreflang="{{ .Lang }}" title="{{ .Language.Params.languageAltTitle | default (.Language.LanguageName | emojify) | default (.Lang | title) }}">{{ .Lang | title }}</a>
                     </li>
-                    {{- end -}}
-                    {{- end}}
+                    {{- end }}
+                    {{- end }}
                 </ul>
                 {{- end }}
             </div>
         </div>
-        {{- $currentPage := . }}
         <ul id="menu">
             {{- range site.Menus.main }}
-
             {{- $hide := false }}
             {{- with site.GetPage .URL }}
-            {{- if eq .Kind "section" }}
-
-            {{- if lt (len (partial "func/section-pages.html" .)) 1 }}{{ $hide = true }}{{ end }}
-            {{- end }}
+            {{- if and (eq .Kind "section") (lt (len (partial "func/section-pages.html" .)) 1) }}{{ $hide = true }}{{ end }}
             {{- end }}
             {{- if not $hide }}
-            {{- $menu_item_url := (cond (strings.HasSuffix .URL "/") .URL (printf "%s/" .URL) ) | absLangURL }}
-            {{- $page_url:= $currentPage.Permalink | absLangURL }}
-            {{- $is_search := eq (site.GetPage .KeyName).Layout `search` }}
+            {{- $menu_item_url := (cond (strings.HasSuffix .URL "/") .URL (printf "%s/" .URL)) | absLangURL }}
+            {{- $page_url := $.Permalink | absLangURL }}
+            {{- $is_search := eq (site.GetPage .KeyName).Layout "search" }}
             <li>
-                <a href="{{ .URL | absLangURL }}" title="{{ .Title | default .Name }} {{- cond $is_search (" (Alt + /)" | safeHTMLAttr) ("" | safeHTMLAttr ) }}"
-                {{- cond $is_search (" accesskey=/" | safeHTMLAttr) ("" | safeHTMLAttr ) }}>
-                    <span {{- if eq $menu_item_url $page_url }} class="active" {{- end }}>
-                        {{- .Pre }}
-                        {{- .Name -}}
-                        {{ .Post -}}
-                    </span>
+                <a href="{{ .URL | absLangURL }}" title="{{ .Title | default .Name }}{{ cond $is_search " (Alt + /)" "" }}"{{ cond $is_search " accesskey=/" "" | safeHTMLAttr }}>
+                    <span{{ if eq $menu_item_url $page_url }} class="active"{{ end }}>{{ .Pre }}{{ .Name }}{{ .Post }}</span>
                 </a>
             </li>
             {{- end }}

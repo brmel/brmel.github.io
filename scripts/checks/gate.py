@@ -21,6 +21,11 @@ def url_of(rel):
     return "/" + rel.replace(os.sep, "/").removesuffix("index.html")
 
 
+def clean_parts(url):
+    parts = [p for p in url.strip("/").split("/") if p]
+    return parts[1:] if parts and parts[0] in LANGS else parts
+
+
 def finish(fails, ok):
     if fails:
         print(f"\n❌ {len(fails)} problem(s):")

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import collections, glob, html, json, os, re
 from urllib.parse import unquote
-from gate import BASE, LANGS, PUB, finish
+from gate import BASE, PUB, clean_parts, finish
 
 TYPES = {"tech": "TechArticle", "thoughts": "BlogPosting", "adventures": "BlogPosting",
          "projects": "SoftwareSourceCode"}
@@ -28,9 +28,7 @@ for f in sorted(glob.glob(os.path.join(PUB, "**", "index.html"), recursive=True)
         fails.append(f"{url}: no canonical link")
     if "hreflang=x-default" not in h:
         fails.append(f"{url}: no hreflang x-default")
-    parts = [p for p in url.strip("/").split("/") if p]
-    if parts and parts[0] in LANGS:
-        parts = parts[1:]
+    parts = clean_parts(url)
     if len(parts) == 2 and parts[0] in TYPES:
         types = {n.get("@type") for ld in re.findall(r"<script type=application/ld\+json>(.*?)</script>", h, re.S)
                  for n in json.loads(ld).get("@graph", [])}

@@ -1,4 +1,3 @@
-{{- $limit := 5 -}}
 {{- $pages := slice -}}
 {{- range site.Params.mainSections -}}
   {{- with site.GetPage (printf "/%s" .) -}}
@@ -6,27 +5,24 @@
   {{- end -}}
 {{- end -}}
 {{- $pages = where $pages "Params.hiddenInHomeList" "!=" true -}}
-{{- $pages = first $limit (sort $pages "Date" "desc") -}}
+{{- $pages = first 5 (sort $pages "Date" "desc") -}}
 
 {{- with $pages }}
 <section class="home-latest" aria-labelledby="home-latest-heading">
-  <h2 class="u-rule-heading home-latest__heading" id="home-latest-heading">
-    {{ i18n "home_latest" }}
-  </h2>
+  <h2 class="u-rule-heading" id="home-latest-heading">{{ i18n "home_latest" }}</h2>
   <ul class="u-rows">
     {{- range . }}
-    <li class="home-latest__item"{{ partial "func/lang-attrs.html" . }}>
+    <li class="feed-item"{{ partial "func/lang-attrs.html" . }}>
       <a href="{{ .RelPermalink }}">
-        <span class="u-eyebrow home-latest__meta">
+        <span class="u-eyebrow feed-meta">
           {{- with .Date }}<time datetime="{{ .Format "2006-01-02" }}">{{ time.Format ":date_long" . }}</time>{{ end }}
           {{- with .Section }}
-            {{- $name := . }}
-            {{- with site.GetPage (printf "/%s" .) }}{{ $name = .Title }}{{ end }}
+            {{- $name := . }}{{ with site.GetPage (printf "/%s" .) }}{{ $name = .Title }}{{ end }}
             <b class="u-dot" aria-hidden="true">·</b> {{ $name }}
           {{- end }}
         </span>
-        <span class="home-latest__title" dir="auto">{{ .Title }}</span>
-        {{- with (or .Description .Params.pitch .Params.summary) }}<span class="home-latest__sum" dir="auto">{{ . }}</span>{{ end }}
+        <span class="feed-title" dir="auto">{{ .Title }}</span>
+        {{- with (or .Description .Params.pitch .Params.summary) }}<span class="feed-sum" dir="auto">{{ . }}</span>{{ end }}
         {{- partial "lang/en-only.html" . }}
       </a>
     </li>

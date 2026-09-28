@@ -3,9 +3,9 @@
 {{- $stake := $profile.staking.defaultStake -}}
 
 {{- $matches := dict -}}
-{{- range site.Data.paridata.matches -}}{{- $matches = merge $matches . -}}{{- end -}}
+{{- range site.Data.paridata.matches }}{{ $matches = merge $matches . }}{{ end -}}
 {{- $tickets := slice -}}
-{{- range site.Data.paridata.tickets -}}{{- $tickets = $tickets | append . -}}{{- end -}}
+{{- range site.Data.paridata.tickets }}{{ $tickets = $tickets | append . }}{{ end -}}
 
 {{- $rows := slice -}}
 {{- $balance := 0.0 -}}
@@ -69,9 +69,7 @@
   {{- end -}}
 
   {{- $state := cond $anyLost "lost" (cond $anyPending "pending" (cond $allVoid "void" "won")) -}}
-  {{- $profit := 0.0 -}}
-  {{- if eq $state "won" }}{{ $profit = mul $stake (sub (div $odds $voidOdds) 1.0) }}{{ end -}}
-  {{- if eq $state "lost" }}{{ $profit = sub 0.0 $stake }}{{ end -}}
+  {{- $profit := cond (eq $state "won") (mul $stake (sub (div $odds $voidOdds) 1.0)) (cond (eq $state "lost") (sub 0.0 $stake) 0.0) -}}
   {{- $counted := in (slice "won" "lost") $state -}}
   {{- if $counted -}}
     {{- $balance = add $balance $profit -}}
@@ -81,29 +79,7 @@
   {{- end -}}
 
   {{- $regions = uniq $regions -}}
-  {{- $rows = $rows | append (dict
-      "id" $t.id
-      "date" (index (sort $dates) 0)
-      "posted" $t.posted
-      "odds" $odds
-      "oddsSource" $oddsSource
-      "legs" $legs
-      "kind" (cond (gt (len $legs) 1) "coupon" "single")
-      "region" (cond (eq (len $regions) 1) (index $regions 0) "mix")
-      "state" $state
-      "stake" $stake
-      "profit" $profit
-      "counted" $counted
-      "hasVoid" (ne $voidOdds 1.0)
-      "balance" $balance) -}}
+  {{- $rows = $rows | append (dict "id" $t.id "date" (index (sort $dates) 0) "posted" $t.posted "odds" $odds "oddsSource" $oddsSource "legs" $legs "kind" (cond (gt (len $legs) 1) "coupon" "single") "region" (cond (eq (len $regions) 1) (index $regions 0) "mix") "state" $state "stake" $stake "profit" $profit "counted" $counted "hasVoid" (ne $voidOdds 1.0) "balance" $balance) -}}
 {{- end -}}
 
-{{- return (dict
-    "profile" $profile
-    "regions" site.Data.paridata.regions
-    "rows" $rows
-    "balance" $balance
-    "staked" $staked
-    "bets" $bets
-    "estimated" $estimated
-    "roi" (cond (gt $staked 0.0) (mul (div $balance $staked) 100.0) 0.0)) -}}
+{{- return (dict "profile" $profile "regions" site.Data.paridata.regions "rows" $rows "balance" $balance "staked" $staked "bets" $bets "estimated" $estimated "roi" (cond (gt $staked 0.0) (mul (div $balance $staked) 100.0) 0.0)) -}}

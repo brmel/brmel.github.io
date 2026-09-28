@@ -6,7 +6,6 @@
 <div class="post-content">{{ . }}</div>
 {{- end }}
 
-
 <div class="project-grid">
   {{- range sort (partial "func/section-pages.html" .) "Params.projectNo" "desc" }}
   <a class="u-card u-tile" href="{{ .RelPermalink }}"{{ partial "func/lang-attrs.html" . }}>

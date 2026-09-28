@@ -1,39 +1,14 @@
 {{- /* Fork of themes/PaperMod/partials/templates/schema_json.html @2d2f2c6 — diff before upgrading. */ -}}
 {{- if and .Parent (not .IsHome) }}
-{{- $url := replace .Parent.Permalink ( printf "%s" site.Home.Permalink) "" }}
-{{- $lang_url := strings.TrimPrefix ( printf "%s/" .Lang) $url }}
-{{- $bc_list := (split $lang_url "/")}}
-
-{{- $scratch := newScratch }}
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-  {{- range $index, $element := $bc_list }}
-
-    {{- $scratch.Add "path" (printf "%s/" $element ) | safeJS }}
-    {{- $bc_pg := site.GetPage ($scratch.Get "path") -}}
-
-    {{- if (and ($bc_pg) (gt (len . ) 0))}}
-    {{- if (and $index)}}, {{end }}
-    {
-      "@type": "ListItem",
-      "position": {{ add 1 $index  }},
-      "name": {{ $bc_pg.Name }},
-      "item": {{ $bc_pg.Permalink | safeHTML }}
-    }
-    {{- end }}
-
+{{- $path := "" }}{{- $items := slice }}
+{{- range split (strings.TrimPrefix (printf "%s/" .Lang) (replace .Parent.Permalink site.Home.Permalink "")) "/" }}
+  {{- $path = printf "%s%s/" $path . }}
+  {{- with site.GetPage $path }}
+    {{- $items = $items | append (dict "@type" "ListItem" "position" (add (len $items) 1) "name" .Name "item" .Permalink) }}
   {{- end }}
-  {{- if (ge (len $bc_list) 2) }}, {{end }}
-    {
-      "@type": "ListItem",
-      "position": {{len $bc_list}},
-      "name": {{ .Name }},
-      "item": {{ .Permalink | safeHTML }}
-    }
-  ]
-}
+{{- end }}
+{{- $items = $items | append (dict "@type" "ListItem" "position" (add (len $items) 1) "name" .Name "item" .Permalink) }}
+<script type="application/ld+json">
+{{ dict "@context" "https://schema.org" "@type" "BreadcrumbList" "itemListElement" $items | jsonify (dict "indent" "  ") | safeJS }}
 </script>
 {{- end }}

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-import glob, re, os
+import glob, os, re
 from gate import ROOT, finish
 
 TOKENS = os.path.join(ROOT, "assets", "css", "extended", "00-tokens.css")
@@ -16,44 +16,34 @@ def ratio(a, b):
     return (l1 + 0.05) / (l2 + 0.05)
 
 css = open(TOKENS).read()
-light_block = css.split(":root{")[1].split("}")[0]
-dark_block = css.split(".dark{")[1].split("}")[0]
+tokens = lambda block: dict(re.findall(r"--([\w-]+)\s*:\s*(#[0-9a-fA-F]{6})", block))
+light_tokens = tokens(css.split(":root{")[1].split("}")[0])
+dark_tokens = {**light_tokens, **tokens(css.split(".dark{")[1].split("}")[0])}
 
-def tokens(block):
-    return dict(re.findall(r"--([\w-]+)\s*:\s*(#[0-9a-fA-F]{6})", block))
-
-fails = []
-checked = 0
-for theme, block in (("light", light_block), ("dark", dark_block)):
-    t = tokens(block)
-    if theme == "dark":
-        merged = tokens(light_block); merged.update(t); t = merged
+fails, checked = [], 0
+for theme, t in (("light", light_tokens), ("dark", dark_tokens)):
     bgs = [("--bg", t["bg"]), ("--bg-alt", t["bg-alt"])]
-    fgs = [k for k in t if k.startswith("ink") or k == "accent"]
-    for fg in sorted(fgs):
+    fgs = sorted(k for k in t if k.startswith("ink") or k == "accent")
+    for fg in fgs:
         for bgname, bg in bgs:
             r = ratio(t[fg], bg)
             checked += 1
-            if r < AA:
-                fails.append(f"{theme}: --{fg} ({t[fg]}) on {bgname} ({bg}) = {r:.2f}:1")
+            if r < AA: fails.append(f"{theme}: --{fg} ({t[fg]}) on {bgname} ({bg}) = {r:.2f}:1")
 
 THEME = os.path.join(ROOT, "themes", "PaperMod", "assets", "css")
-EXT = os.path.join(ROOT, "assets", "css", "extended")
-light_tokens = tokens(light_block)
 syntax = {cls: col for cls, col in re.findall(
     r"\.chroma \.([\w-]+)\s*\{[^}]*?(?<![-\w])color:\s*(#[0-9a-fA-F]{6})",
-    open(os.path.join(THEME, "includes", "chroma-styles.css")).read())
-    if cls not in ("ln", "lnt", "hl")}
-for f in glob.glob(os.path.join(EXT, "*.css")):
+    open(os.path.join(THEME, "includes", "chroma-styles.css")).read()) if cls not in ("ln", "lnt", "hl")}
+for f in glob.glob(os.path.join(ROOT, "assets", "css", "extended", "*.css")):
     for classes, token in re.findall(r"\.chroma\s*:is\(([^)]*)\)\s*\{[^}]*?color:\s*var\(--([\w-]+)\)", open(f).read()):
-        for cls in re.findall(r"\.([\w-]+)", classes):
-            syntax[cls] = light_tokens[token]
-code_bgs = [tokens(light_block)["code-ground"], tokens(dark_block)["code-ground"]]
+        for cls in re.findall(r"\.([\w-]+)", classes): syntax[cls] = light_tokens[token]
+
+code_bgs = [light_tokens["code-ground"], dark_tokens["code-ground"]]
 for cls, col in sorted(syntax.items()):
     for theme, bg in zip(("light", "dark"), code_bgs):
         checked += 1
-        if ratio(col, bg) < AA:
-            fails.append(f"{theme}: syntax .{cls} ({col}) on code background ({bg}) = {ratio(col, bg):.2f}:1")
+        if ratio(col, bg) < AA: fails.append(f"{theme}: syntax .{cls} ({col}) on code background ({bg}) = {ratio(col, bg):.2f}:1")
 
 print(f"checked {checked} token/background pairs against {AA}:1")
 finish(fails, "every text token and syntax colour clears AA on its surface, both themes")
+

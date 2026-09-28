@@ -6,13 +6,7 @@
   <h2 class="paridata-heading" id="paridata-ledger-h">{{ i18n "paridata_ledger" }}</h2>
 
   <div class="paridata-grid paridata-ledger__head" aria-hidden="true">
-    <span>{{ i18n "paridata_date" }}</span>
-    <span>{{ i18n "paridata_competition" }}</span>
-    <span>{{ i18n "paridata_type" }}</span>
-    <span>{{ i18n "paridata_result" }}</span>
-    <span>{{ i18n "paridata_odds" }}</span>
-    <span>{{ i18n "paridata_stake" }}</span>
-    <span>{{ i18n "paridata_profit" }}</span>
+    {{ range slice "date" "competition" "type" "result" "odds" "stake" "profit" }}<span>{{ i18n (printf "paridata_%s" .) }}</span>{{ end }}
   </div>
 
   {{- range $r := sort $l.rows "id" "desc" }}
@@ -44,8 +38,7 @@
         {{- $m := $leg.match }}
         {{- $labels := slice }}
         {{- range $c := $leg.conditions }}
-          {{- if eq $c.kind "draw" }}{{ $labels = $labels | append (i18n "paridata_pick_draw") }}
-          {{- else }}{{ $labels = $labels | append (printf (i18n (printf "paridata_pick_%s" (replace $c.kind "-" "_"))) $c.arg) }}{{ end }}
+          {{- $labels = $labels | append (cond (eq $c.kind "draw") (i18n "paridata_pick_draw") (printf (i18n (printf "paridata_pick_%s" (replace $c.kind "-" "_"))) $c.arg)) }}
         {{- end }}
         <li class="paridata-leg" data-settlement="{{ $leg.state }}">
           <span class="paridata-leg__date"><bdi dir="ltr">{{ time.Format ":date_medium" $m.date | replaceRE $rlm "" }}</bdi></span>

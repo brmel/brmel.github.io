@@ -24,41 +24,16 @@ enableGitInfo = true
       subtitle = "Senior C++ engineer · real-time image processing and low-level systems · Zebra Technologies · Montréal"
       imageUrl = "images/profile.jpg"
       imageTitle = "Brahim Redouane Mellah"
-    [[languages.en.menu.main]]
-      identifier = "home"
-      name = "Home"
-      url = "/"
-      weight = 1
-    [[languages.en.menu.main]]
-      identifier = "resume"
-      name = "Resume"
-      url = "/resume/"
-      weight = 2
-    [[languages.en.menu.main]]
-      identifier = "projects"
-      name = "Projects"
-      url = "/projects/"
-      weight = 3
-    [[languages.en.menu.main]]
-      identifier = "tech"
-      name = "Tech"
-      url = "/tech/"
-      weight = 4
-    [[languages.en.menu.main]]
-      identifier = "adventures"
-      name = "Adventures"
-      url = "/adventures/"
-      weight = 5
-    [[languages.en.menu.main]]
-      identifier = "topics"
-      name = "Topics"
-      url = "/tags/"
-      weight = 6
-    [[languages.en.menu.main]]
-      identifier = "search"
-      name = "Search"
-      url = "/search/"
-      weight = 7
+    [languages.en.menu]
+      main = [
+        { identifier = "home", name = "Home", url = "/", weight = 1 },
+        { identifier = "resume", name = "Resume", url = "/resume/", weight = 2 },
+        { identifier = "projects", name = "Projects", url = "/projects/", weight = 3 },
+        { identifier = "tech", name = "Tech", url = "/tech/", weight = 4 },
+        { identifier = "adventures", name = "Adventures", url = "/adventures/", weight = 5 },
+        { identifier = "topics", name = "Topics", url = "/tags/", weight = 6 },
+        { identifier = "search", name = "Search", url = "/search/", weight = 7 },
+      ]
 
   [languages.fr]
     languageCode = "fr-CA"
@@ -76,41 +51,16 @@ enableGitInfo = true
       subtitle = "Ingénieur C++ senior · traitement d'images temps réel et systèmes bas niveau · Zebra Technologies · Montréal"
       imageUrl = "images/profile.jpg"
       imageTitle = "Brahim Redouane Mellah"
-    [[languages.fr.menu.main]]
-      identifier = "home"
-      name = "Accueil"
-      url = "/"
-      weight = 1
-    [[languages.fr.menu.main]]
-      identifier = "resume"
-      name = "CV"
-      url = "/resume/"
-      weight = 2
-    [[languages.fr.menu.main]]
-      identifier = "projects"
-      name = "Projets"
-      url = "/projects/"
-      weight = 3
-    [[languages.fr.menu.main]]
-      identifier = "tech"
-      name = "Tech"
-      url = "/tech/"
-      weight = 4
-    [[languages.fr.menu.main]]
-      identifier = "adventures"
-      name = "Aventures"
-      url = "/adventures/"
-      weight = 5
-    [[languages.fr.menu.main]]
-      identifier = "topics"
-      name = "Sujets"
-      url = "/tags/"
-      weight = 6
-    [[languages.fr.menu.main]]
-      identifier = "search"
-      name = "Recherche"
-      url = "/search/"
-      weight = 7
+    [languages.fr.menu]
+      main = [
+        { identifier = "home", name = "Accueil", url = "/", weight = 1 },
+        { identifier = "resume", name = "CV", url = "/resume/", weight = 2 },
+        { identifier = "projects", name = "Projets", url = "/projects/", weight = 3 },
+        { identifier = "tech", name = "Tech", url = "/tech/", weight = 4 },
+        { identifier = "adventures", name = "Aventures", url = "/adventures/", weight = 5 },
+        { identifier = "topics", name = "Sujets", url = "/tags/", weight = 6 },
+        { identifier = "search", name = "Recherche", url = "/search/", weight = 7 },
+      ]
 
   [languages.ar]
     languageCode = "ar"
@@ -129,41 +79,16 @@ enableGitInfo = true
       subtitle = "مهندس ‎C++‎ أول · معالجة الصور في الوقت الحقيقي والأنظمة منخفضة المستوى · Zebra Technologies · مونتريال"
       imageUrl = "images/profile.jpg"
       imageTitle = "إبراهيم رضوان ملاح"
-    [[languages.ar.menu.main]]
-      identifier = "home"
-      name = "الرئيسية"
-      url = "/"
-      weight = 1
-    [[languages.ar.menu.main]]
-      identifier = "resume"
-      name = "السيرة الذاتية"
-      url = "/resume/"
-      weight = 2
-    [[languages.ar.menu.main]]
-      identifier = "projects"
-      name = "المشاريع"
-      url = "/projects/"
-      weight = 3
-    [[languages.ar.menu.main]]
-      identifier = "tech"
-      name = "تقنية"
-      url = "/tech/"
-      weight = 4
-    [[languages.ar.menu.main]]
-      identifier = "adventures"
-      name = "مغامرات"
-      url = "/adventures/"
-      weight = 5
-    [[languages.ar.menu.main]]
-      identifier = "topics"
-      name = "المواضيع"
-      url = "/tags/"
-      weight = 6
-    [[languages.ar.menu.main]]
-      identifier = "search"
-      name = "بحث"
-      url = "/search/"
-      weight = 7
+    [languages.ar.menu]
+      main = [
+        { identifier = "home", name = "الرئيسية", url = "/", weight = 1 },
+        { identifier = "resume", name = "السيرة الذاتية", url = "/resume/", weight = 2 },
+        { identifier = "projects", name = "المشاريع", url = "/projects/", weight = 3 },
+        { identifier = "tech", name = "تقنية", url = "/tech/", weight = 4 },
+        { identifier = "adventures", name = "مغامرات", url = "/adventures/", weight = 5 },
+        { identifier = "topics", name = "المواضيع", url = "/tags/", weight = 6 },
+        { identifier = "search", name = "بحث", url = "/search/", weight = 7 },
+      ]
 
 [minify]
   disableXML = true
@@ -202,30 +127,14 @@ enableGitInfo = true
   [params.label]
     text = "Ibraverse"
 
-  [[params.socialIcons]]
-    name = "github"
-    title = "GitHub"
-    url = "https://github.com/brmel"
-  [[params.socialIcons]]
-    name = "linkedin"
-    title = "LinkedIn"
-    url = "https://www.linkedin.com/in/brahim-redouane-mellah/"
-  [[params.socialIcons]]
-    name = "x"
-    title = "X"
-    url = "https://x.com/BrmelB"
-  [[params.socialIcons]]
-    name = "email"
-    title = "Email"
-    url = "mailto:mellah.brahim.redouane@gmail.com"
-  [[params.socialIcons]]
-    name = "facebook"
-    title = "Facebook"
-    url = "https://www.facebook.com/mellah.brahim.redouane"
-  [[params.socialIcons]]
-    name = "instagram"
-    title = "Instagram"
-    url = "https://www.instagram.com/mellahredouane/"
+  socialIcons = [
+    { name = "github", title = "GitHub", url = "https://github.com/brmel" },
+    { name = "linkedin", title = "LinkedIn", url = "https://www.linkedin.com/in/brahim-redouane-mellah/" },
+    { name = "x", title = "X", url = "https://x.com/BrmelB" },
+    { name = "email", title = "Email", url = "mailto:mellah.brahim.redouane@gmail.com" },
+    { name = "facebook", title = "Facebook", url = "https://www.facebook.com/mellah.brahim.redouane" },
+    { name = "instagram", title = "Instagram", url = "https://www.instagram.com/mellahredouane/" },
+  ]
 
 [services.googleAnalytics]
   ID = "G-CHFGS2DHF6"

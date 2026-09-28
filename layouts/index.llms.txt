@@ -10,10 +10,10 @@ Every Tech, Thoughts and Adventures article is also served as markdown at its UR
 
 {{ with site.GetPage "/resume" }}{{ range .Params.experience -}}
 - {{ .period }} — {{ .role }}{{ with .org }}, {{ . }}{{ end }}{{ with .note }}. {{ . }}{{ end }}
-{{ with .built }}  - Built: {{ delimit . ", " }}
-{{ end }}{{ with .stack }}  - Stack: {{ delimit . ", " }}
-{{ end }}{{ with .tools }}  - Tools: {{ delimit . ", " }}
-{{ end }}{{ with .learned }}  - Learned:
+{{ with .built }}  - Built: {{ delimit . ", " }}{{ end }}
+{{ with .stack }}  - Stack: {{ delimit . ", " }}{{ end }}
+{{ with .tools }}  - Tools: {{ delimit . ", " }}{{ end }}
+{{ with .learned }}  - Learned:
 {{ range (split (strings.TrimSpace .) "\n") }}    {{ strings.TrimSpace . }}
 {{ end }}{{ end }}{{ end }}{{ end }}
 **Project facts**, taken from each project page:
@@ -24,15 +24,11 @@ Every Tech, Thoughts and Adventures article is also served as markdown at its UR
 {{ end }}{{ with .Params.stack }}  - Built with: {{ delimit . ", " }}
 {{ end }}{{ end }}
 {{ range site.Params.mainSections }}
-{{- $sec := site.GetPage (printf "/%s" .) }}
-{{- with $sec }}
-{{- $pages := partial "func/section-pages.html" . }}
-{{- with $pages }}
-## {{ $sec.Title }}
+{{- with site.GetPage (printf "/%s" .) }}
+## {{ .Title }}
 
-{{ range (sort . "Date" "desc") -}}
+{{ range (sort (partial "func/section-pages.html" .) "Date" "desc") -}}
 - [{{ .Title | htmlUnescape }}]({{ .Permalink }}){{ with (or .Description .Params.pitch .Params.summary) }}: {{ . | plainify | htmlUnescape | chomp }}{{ end }}
-{{ end }}
 {{ end }}
 {{- end }}
 {{- end -}}

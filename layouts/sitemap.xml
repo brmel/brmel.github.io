@@ -1,26 +1,19 @@
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-  xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  {{ range .Data.Pages }}
-    {{- if and .Permalink (not .Params.robotsNoIndex) -}}
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  {{- range .Data.Pages }}
+    {{- if and .Permalink (not .Params.robotsNoIndex) }}
     <url>
-      <loc>{{ .Permalink }}</loc>{{ if not .Lastmod.IsZero }}
-      <lastmod>{{ safeHTML ( .Lastmod.Format "2006-01-02T15:04:05-07:00" ) }}</lastmod>{{ end }}{{ if .IsTranslated }}{{ range .Translations }}
-      <xhtml:link
-                  rel="alternate"
-                  hreflang="{{ .Language.Lang }}"
-                  href="{{ .Permalink }}"
-                  />{{ end }}
-      <xhtml:link
-                  rel="alternate"
-                  hreflang="{{ .Language.Lang }}"
-                  href="{{ .Permalink }}"
-                  />
-      <xhtml:link
-                  rel="alternate"
-                  hreflang="x-default"
-                  href="{{ (index .AllTranslations 0).Permalink }}"
-                  />{{ end }}
+      <loc>{{ .Permalink }}</loc>
+      {{- if not .Lastmod.IsZero }}
+      <lastmod>{{ safeHTML (.Lastmod.Format "2006-01-02T15:04:05-07:00") }}</lastmod>
+      {{- end }}
+      {{- if .IsTranslated }}
+      {{- range .Translations }}
+      <xhtml:link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ .Permalink }}"/>
+      {{- end }}
+      <xhtml:link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ .Permalink }}"/>
+      <xhtml:link rel="alternate" hreflang="x-default" href="{{ (index .AllTranslations 0).Permalink }}"/>
+      {{- end }}
     </url>
-    {{- end -}}
-  {{ end }}
+    {{- end }}
+  {{- end }}
 </urlset>

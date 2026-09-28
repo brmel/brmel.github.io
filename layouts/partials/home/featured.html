@@ -1,9 +1,5 @@
-{{- /* Hand-picked entry points, ordered by `featured` in front matter rather
-       than by date. Pass "section" to limit it to one section. */ -}}
-{{- $ctx := .page -}}
 {{- $only := .section | default "" -}}
 {{- $heading := .heading | default (i18n "featured_heading") -}}
-
 {{- $pages := slice -}}
 {{- range site.Params.mainSections -}}
   {{- if or (eq $only "") (eq $only .) -}}
@@ -17,23 +13,20 @@
 
 {{- with $pages }}
 <section class="home-featured" aria-labelledby="home-featured-heading">
-  <h2 class="u-rule-heading home-featured__heading" id="home-featured-heading">{{ $heading }}</h2>
+  <h2 class="u-rule-heading" id="home-featured-heading">{{ $heading }}</h2>
   <ol class="u-rows">
     {{- range . }}
-    <li class="home-featured__item"{{ partial "func/lang-attrs.html" . }}>
+    <li class="feed-item"{{ partial "func/lang-attrs.html" . }}>
       <a href="{{ .RelPermalink }}">
-        <span class="u-eyebrow home-featured__meta">
+        <span class="u-eyebrow feed-meta">
           {{- with .Section }}
-            {{- $name := . }}
-            {{- with site.GetPage (printf "/%s" .) }}{{ $name = .Title }}{{ end }}
+            {{- $name := . }}{{ with site.GetPage (printf "/%s" .) }}{{ $name = .Title }}{{ end }}
             {{ $name }}
           {{- end }}
-          {{- with .Params.tags }}
-            <b class="u-dot" aria-hidden="true">·</b> {{ index . 0 }}
-          {{- end }}
+          {{- with .Params.tags }}<b class="u-dot" aria-hidden="true">·</b> {{ index . 0 }}{{ end }}
         </span>
-        <span class="home-featured__title" dir="auto">{{ .Title }}</span>
-        {{- with (or .Description .Params.pitch) }}<span class="home-featured__sum" dir="auto">{{ . }}</span>{{ end }}
+        <span class="feed-title" dir="auto">{{ .Title }}</span>
+        {{- with (or .Description .Params.pitch) }}<span class="feed-sum" dir="auto">{{ . }}</span>{{ end }}
         {{- partial "lang/en-only.html" . }}
       </a>
     </li>

@@ -1,0 +1,25 @@
+{{- $p := . -}}{{- $sec := false -}}
+{{- if reflect.IsMap . }}{{ $p = .page }}{{ $sec = .showSection }}{{ end -}}
+<article class="post-entry"{{ partial "func/lang-attrs.html" $p }}>
+  <span class="u-bar" aria-hidden="true"></span>
+  {{- partial "article/cover.html" $p }}
+
+  <div class="entry-text">
+  <header class="entry-header">
+    <span class="u-eyebrow entry-eyebrow">
+      {{- partial "post_meta.html" $p -}}
+      {{- if and $sec $p.Section }}
+        {{- $name := $p.Section -}}
+        {{- with site.GetPage (printf "/%s" $p.Section) }}{{ $name = .Title }}{{ end }}
+        <b class="u-dot" aria-hidden="true">·</b> {{ $name }}
+      {{- end }}
+    </span>
+    <h2>{{ $p.Title }}</h2>
+  </header>
+  {{- with or $p.Description $p.Params.pitch (printf "%s%s" ($p.Summary | plainify | htmlUnescape) (cond $p.Truncated "…" "")) }}
+  <div class="entry-content"><p dir="auto">{{ . }}</p></div>
+  {{- end }}
+  {{- partial "lang/en-only.html" $p }}
+  </div>
+  <a class="entry-link" aria-label="{{ $p.Title | plainify }}" href="{{ $p.Permalink }}"></a>
+</article>

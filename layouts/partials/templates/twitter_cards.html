@@ -5,12 +5,6 @@
 <meta name="twitter:image:alt" content="{{ $og.alt }}">
 <meta name="twitter:title" content="{{ .Title | plainify }}">
 <meta name="twitter:description" content="{{ with .Description }}{{ . }}{{ else }}{{ if .IsPage }}{{ .Summary }}{{ else }}{{ site.Params.description }}{{ end }}{{ end }}">
-{{- with site.Params.social }}
-  {{- if reflect.IsMap . }}
-    {{- with .twitter }}
-      {{- $content := . }}
-      {{- if not (strings.HasPrefix . "@") }}{{ $content = printf "@%v" . }}{{ end }}
-<meta name="twitter:site" content="{{ $content }}">
-    {{- end }}
-  {{- end }}
+{{- with site.Params.social.twitter }}
+<meta name="twitter:site" content="{{ cond (strings.HasPrefix . "@") . (printf "@%v" .) }}">
 {{- end }}

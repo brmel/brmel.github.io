@@ -1,26 +1,17 @@
-{{- $person := dict
-      "@type" "Person"
-      "@id" (printf "%s#person" site.BaseURL)
-      "name" (site.Params.profileMode.title | default site.Title)
-      "url" site.BaseURL
--}}
+{{- $authorId := printf "%s#person" site.BaseURL -}}
+{{- $person := dict "@type" "Person" "@id" $authorId "name" (site.Params.profileMode.title | default site.Title) "url" site.BaseURL -}}
 
 {{- with site.GetPage "/resume" }}
-{{- $sameAs := slice }}
-{{- range .Params.contact }}{{ if hasPrefix .url "http" }}{{ $sameAs = $sameAs | append .url }}{{ end }}{{ end }}
-{{- $skills := slice }}
-{{- range .Params.skills }}{{ range .items }}{{ $skills = $skills | append . }}{{ end }}{{ end }}
+{{- $sameAs := slice }}{{ range .Params.contact }}{{ if hasPrefix .url "http" }}{{ $sameAs = $sameAs | append .url }}{{ end }}{{ end }}
+{{- $skills := slice }}{{ range .Params.skills }}{{ range .items }}{{ $skills = $skills | append . }}{{ end }}{{ end }}
+{{- $edu := slice }}{{ range where .Params.experience "kind" "education" }}{{ $edu = $edu | append (dict "@type" "CollegeOrUniversity" "name" .org) }}{{ end }}
 {{- $person = merge $person (dict
       "jobTitle" (.Params.role | default "")
       "description" (.Params.description | default "")
       "address" (dict "@type" "PostalAddress" "addressLocality" (.Params.location | default ""))
       "sameAs" $sameAs
       "knowsAbout" (first 20 $skills)) }}
-{{- with index .Params.experience 0 }}
-{{- $person = merge $person (dict "worksFor" (dict "@type" "Organization" "name" .org "url" (.url | default ""))) }}
-{{- end }}
-{{- $edu := slice }}
-{{- range where .Params.experience "kind" "education" }}{{ $edu = $edu | append (dict "@type" "CollegeOrUniversity" "name" .org) }}{{ end }}
+{{- with index .Params.experience 0 }}{{ $person = merge $person (dict "worksFor" (dict "@type" "Organization" "name" .org "url" (.url | default ""))) }}{{ end }}
 {{- with $edu }}{{ $person = merge $person (dict "alumniOf" .) }}{{ end }}
 {{- end }}
 
@@ -28,48 +19,31 @@
 
 {{- if .IsHome }}
 {{- $graph = $graph | append (dict
-      "@type" "WebSite"
-      "@id" (printf "%s#website" site.Home.Permalink)
-      "url" site.BaseURL
-      "name" site.Title
-      "description" site.Params.description
-      "inLanguage" site.Language.Lang
-      "publisher" (dict "@id" (printf "%s#person" site.BaseURL))) }}
+      "@type" "WebSite" "@id" (printf "%s#website" site.Home.Permalink) "url" site.BaseURL
+      "name" site.Title "description" site.Params.description "inLanguage" site.Language.Lang
+      "publisher" (dict "@id" $authorId)) }}
 {{- end }}
 
-{{- if eq .Section "projects" }}{{ if .IsPage }}
+{{- if and (eq .Section "projects") .IsPage }}
 {{- $og := partial "func/og-image.html" . }}
 {{- $work := dict
-      "@type" "SoftwareSourceCode"
-      "name" .Title
-      "url" .Permalink
-      "description" (.Description | default .Params.pitch)
-      "abstract" .Params.pitch
-      "author" (dict "@id" (printf "%s#person" site.BaseURL))
-      "programmingLanguage" (.Params.stack | default slice)
-      "image" $og.url
-      "inLanguage" .Lang
-      "dateCreated" (.Date.Format "2006-01-02")
+      "@type" "SoftwareSourceCode" "name" .Title "url" .Permalink
+      "description" (.Description | default .Params.pitch) "abstract" .Params.pitch
+      "author" (dict "@id" $authorId) "programmingLanguage" (.Params.stack | default slice)
+      "image" $og.url "inLanguage" .Lang "dateCreated" (.Date.Format "2006-01-02")
       "keywords" (delimit (.Params.tags | default slice) ", ") -}}
 {{- with .Params.links.live }}{{ if . }}{{ $work = merge $work (dict "codeRepository" .) }}{{ end }}{{ end }}
 {{- $graph = $graph | append $work }}
-{{- end }}{{ end }}
+{{- end }}
 
 {{- if and .IsPage (in (slice "tech" "thoughts" "adventures") .Section) }}
 {{- $og := partial "func/og-image.html" . }}
 {{- $article := dict
-      "@type" (cond (eq .Section "tech") "TechArticle" "BlogPosting")
-      "headline" .Title
-      "url" .Permalink
-      "description" (.Description | default .Summary | plainify | chomp)
-      "image" $og.url
-      "inLanguage" .Lang
-      "datePublished" (.Date.Format "2006-01-02")
-      "dateModified" ((.Lastmod | default .Date).Format "2006-01-02")
-      "wordCount" .WordCount
-      "keywords" (delimit (.Params.tags | default slice) ", ")
-      "author" (dict "@id" (printf "%s#person" site.BaseURL))
-      "publisher" (dict "@id" (printf "%s#person" site.BaseURL))
+      "@type" (cond (eq .Section "tech") "TechArticle" "BlogPosting") "headline" .Title "url" .Permalink
+      "description" (.Description | default .Summary | plainify | chomp) "image" $og.url "inLanguage" .Lang
+      "datePublished" (.Date.Format "2006-01-02") "dateModified" ((.Lastmod | default .Date).Format "2006-01-02")
+      "wordCount" .WordCount "keywords" (delimit (.Params.tags | default slice) ", ")
+      "author" (dict "@id" $authorId) "publisher" (dict "@id" $authorId)
       "mainEntityOfPage" (dict "@type" "WebPage" "@id" .Permalink) }}
 {{- with .Params.place }}{{ $article = merge $article (dict "contentLocation" (dict "@type" "Place" "name" .)) }}{{ end }}
 {{- $graph = $graph | append $article }}

@@ -5,18 +5,15 @@
 <div class="post-content">{{ partial "anchored_headings.html" . }}</div>
 {{- end }}
 
-{{- /* All terms come from the default language: the writing originates in
-       English, so every language shows the same clusters. */ -}}
-{{- $default := index site.Sites 0 -}}
 {{- $terms := slice -}}
-{{- with $default.GetPage "/tags" }}
+{{- with (index site.Sites 0).GetPage "/tags" }}
   {{- range .Pages }}
     {{- $terms = $terms | append (dict "title" .Title "url" .RelPermalink "count" (len .Pages)) -}}
   {{- end }}
 {{- end }}
 
 {{- $placed := slice -}}
-<div class="topics">
+{{- $clusters := slice -}}
 {{- range site.Data.topics.groups }}
   {{- $group := . -}}
   {{- $rows := slice -}}
@@ -30,30 +27,22 @@
     {{- end }}
   {{- end }}
   {{- with $rows }}
-  <section class="topics__group">
-    <h2 class="u-rule-heading">{{ i18n (printf "topics_group_%s" $group.key) }}</h2>
-    <ul class="topics__list">
-      {{- range . }}
-      <li class="topics__item">
-        <a class="topics__link" href="{{ .url }}">
-          <span class="topics__name" dir="auto">{{ .title }}</span>
-          <span class="topics__count" aria-hidden="true">{{ .count }}</span>
-          <span class="u-sr-only">{{ i18n "topics_count" .count }}</span>
-        </a>
-      </li>
-      {{- end }}
-    </ul>
-  </section>
+    {{- $clusters = $clusters | append (dict "title" (i18n (printf "topics_group_%s" $group.key)) "items" .) -}}
   {{- end }}
 {{- end }}
 
 {{- $rest := slice -}}
 {{- range $terms }}{{ if not (in $placed (lower .title)) }}{{ $rest = $rest | append . }}{{ end }}{{ end }}
 {{- with $rest }}
+  {{- $clusters = $clusters | append (dict "title" (i18n "topics_group_more") "items" (sort . "count" "desc")) -}}
+{{- end }}
+
+<div class="topics">
+{{- range $clusters }}
   <section class="topics__group">
-    <h2 class="u-rule-heading">{{ i18n "topics_group_more" }}</h2>
+    <h2 class="u-rule-heading">{{ .title }}</h2>
     <ul class="topics__list">
-      {{- range sort . "count" "desc" }}
+      {{- range .items }}
       <li class="topics__item">
         <a class="topics__link" href="{{ .url }}">
           <span class="topics__name" dir="auto">{{ .title }}</span>

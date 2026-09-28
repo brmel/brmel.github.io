@@ -5,11 +5,7 @@
 <head>
     {{- partial "head.html" . }}
 </head>
-<body class="
-{{- if (or (ne .Kind `page` ) (eq .Layout `archives`) (eq .Layout `search`)) -}}
-{{- print "list" -}}
-{{- end -}}
-" id="top">
+<body class="{{ cond (or (ne .Kind "page") (eq .Layout "archives") (eq .Layout "search")) "list" "" }}" id="top">
     {{- partialCached "header.html" . .Page -}}
     <main class="main{{ block "main-width" . }}{{ end }}" id="main">
         {{- block "main" . }}{{ end }}
