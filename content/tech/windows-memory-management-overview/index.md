@@ -13,14 +13,14 @@ canonicalOriginal: "https://www.linkedin.com/pulse/very-shallow-overview-windows
 canonicalOriginalName: "LinkedIn"
 ---
 
-Here is how hard it is to say how much memory a process is using: the people who
-build Windows have not agreed on it. Task Manager has labelled the same
+Even the people who build Windows don't agree on how much memory a process is
+using. Task Manager has labelled the same
 quantities differently across versions, and the
 [Sysinternals](https://learn.microsoft.com/en-us/sysinternals) team criticised
 one of those choices publicly.
 
 I came to this from C++ and an electrical engineering background, where the
-question of what the hardware is actually doing is not academic. After Mark
+question of what the hardware is doing isn't academic. After Mark
 Russinovich's talks on [Virtual
 Memory](https://youtu.be/AjTl53I_qzY?si=TONF91WbNu6d5Ra4) and [Physical Memory
 management in Windows](https://youtu.be/6KZdNsq1YV4?si=xpSamR2OSN-xyjr1) I
@@ -95,8 +95,8 @@ welcome.
 ## Debug virtual and physical memory usage
 
 VMMap and RAMMap are excellent at what they do, which is capture the state of
-virtual and physical memory at one moment. What they are not built for is
-watching that state change: you cannot set the sampling interval, and getting
+virtual and physical memory at one moment. They aren't built for
+watching that state change: you can't set the sampling interval, and getting
 the numbers out in a form you can plot is awkward. A leak that only shows up
 over an hour is invisible to a snapshot.
 
@@ -107,9 +107,9 @@ the virtual memory of a specific process over time. It allows you to display dat
 on the screen, export well-formatted data to a file, and provides control over
 the snapshot frequency.
 
-Call it from your own code as a callback, to control exactly when a snapshot is
-taken. Or run it from a separate process, if you would rather not touch the code
-you are measuring.
+Call it from your own code as a callback, to control when a snapshot is
+taken. Or run it from a separate process, if you'd rather not touch the code
+you're measuring.
 
 This is an example of tracking virtual memory usage of the process with id
 `32404`:
@@ -131,7 +131,7 @@ MyMemTracer.Export(Duration, PeriodT);
 
 {{< figure src="04-memorytracker-virtual-by-type.jpg" alt="Exported table of virtual memory usage grouped by memory type" caption="Virtual memory usage exported using MemoryTracker, regrouped by type." >}}
 
-{{< figure src="05-memorytracker-virtual-timeline.jpg" alt="Exported chart of virtual memory usage over time, grouped by memory type" caption="The same export over time — the view VMMap's snapshots cannot give you." >}}
+{{< figure src="05-memorytracker-virtual-timeline.jpg" alt="Exported chart of virtual memory usage over time, grouped by memory type" caption="The same export over time, which VMMap's snapshots can't give you." >}}
 
 {{< figure src="06-memorytracker-private-bytes.jpg" alt="Exported chart of the process's private bytes grouped by memory type" caption="Private bytes of process usage exported using MemoryTracker, regrouped by memory type." >}}
 

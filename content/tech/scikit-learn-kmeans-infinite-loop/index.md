@@ -11,18 +11,17 @@ canonicalOriginal: "https://www.linkedin.com/pulse/how-i-fixed-ia-algorithm-scik
 canonicalOriginalName: "LinkedIn"
 ---
 
-The boundaries are where a mathematical algorithm tells you what it really is.
 An implementation can be correct on every well-behaved input and still have a
-state it cannot leave, and the only way to find that state is to go looking for
+state it can't get out of, and the only way to find that state is to go looking for
 it.
 
 I went looking in
 [scikit-learn's K-means](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html)
 and found one: an input that makes it loop forever. Three conditions have to
-line up, and the last of them is the interesting part — the code that handles
-empty clusters creates the empty cluster it is handling.
+line up, and the last of them is the interesting part: the code that handles
+empty clusters creates the empty cluster it's handling.
 
-Below: what K-means does, how the loop happens, and what came of reporting it.
+I'll go through what K-means does, how the loop happens, and what came of reporting it.
 
 > **Personal opinion.** I think everyone should help make open source better
 > however they can, as long as it doesn't hurt their business. Open source is a
@@ -76,7 +75,7 @@ loop:
 
 Here is a minimal example that reproduced the bug:
 
-{{< figure src="01-kmeans-bug-repro.jpg" alt="Scatter plot of the failing case: green input data points, several of them duplicated at the same coordinates, and blue cluster centres" caption="A example that reproduced the bug. Green marks the input data, blue the cluster centres — note the duplicated points sharing coordinates." >}}
+{{< figure src="01-kmeans-bug-repro.jpg" alt="Scatter plot of the failing case: green input data points, several of them duplicated at the same coordinates, and blue cluster centres" caption="An example that reproduced the bug. Green marks the input data, blue the cluster centres. Note the duplicated points sharing coordinates." >}}
 
 ## The fix
 
@@ -101,9 +100,8 @@ opinion.
 
 ## The lessons
 
-- The dangerous edge case was not an input the author failed to imagine. It was
-  the repair code itself, which had never been run against the situation it
-  creates.
+- The dangerous edge case was the repair code itself, which had never been run
+  against the situation it creates.
 - Reporting a bug well is most of the contribution. A reproducible case and the
   three conditions that produce it is what let someone else fix this in days.
 

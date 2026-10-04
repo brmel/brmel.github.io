@@ -8,23 +8,23 @@ category: "hike"
 fieldNote: 2
 place: "Adirondacks, NY"
 rating: 4.7
-goBack: "Yes — top of the list."
-bestFor: "A long but easy-graded day with three world-class views."
-con: "It's a full ~11 miles — mostly flat, but a long day on your feet."
+goBack: "Yes, top of the list."
+bestFor: "A long but easy-graded day with three viewpoints."
+con: "It's a full ~11 miles: mostly flat, but a long day on your feet."
 ---
 
-Eleven miles, almost no scrambling, and it ends at a cliff over a lake shaped like a Norwegian fjord — Indian Head & Rainbow Falls is the most bang-for-effort hike I've done in the Adirondacks.
+Eleven miles, almost no scrambling, and it ends at a cliff over a lake shaped like a Norwegian fjord. Indian Head & Rainbow Falls is the most bang-for-effort hike I've done in the Adirondacks.
 
 ## The place
 
 Indian Head is a rock ledge high above Lower Ausable Lake, deep in the
 Adirondack High Peaks near Keene Valley, NY. The lake below is long, narrow,
-and walled by mountains on both sides — from the top it reads like a fjord. Add
+and walled by mountains on both sides. From the top it reads like a fjord. Add
 Rainbow Falls, a ~150-foot cascade in a mossy gorge, and a side trip to
-Fish Hawk Cliffs, and you get three world-class viewpoints in one loop.
+Fish Hawk Cliffs, and you get three viewpoints in one loop.
 
-The land is the Adirondack Mountain Reserve (AMR) — private, but open to
-hikers through a conservation easement. That comes with rules (below) — read them
+The land is the Adirondack Mountain Reserve (AMR): private, but open to
+hikers through a conservation easement. That comes with rules (below), so read them
 before you go.
 
 ## What I did
@@ -43,20 +43,20 @@ to Rainbow Falls before the long, easy walk back on Lake Road.
 
 ## Recommendations
 
-- **Go for:** the Indian Head vista over Lower Ausable Lake — one of the best
+- **Go for:** the Indian Head vista over Lower Ausable Lake, one of the best
   views in the Northeast for relatively little climbing.
 - **Do the loop:** up via Gill Brook (waterfalls), down via the steep Indian
-  Head trail to Lake Road. Add Fish Hawk Cliffs — it's 5 minutes away.
+  Head trail to Lake Road. Add Fish Hawk Cliffs, which is 5 minutes away.
 - **Reservation (important):** AMR requires a free reservation to park/hike
-  May 1 – Oct 31. Book ahead at hikeamr.org — no reservation, no entry.
+  May 1 – Oct 31. Book ahead at hikeamr.org: no reservation, no entry.
 - **No dogs.** Strictly enforced on AMR land.
 - **Distance / time:** ~10.8–11 mi loop, 6–7 hours with breaks. Long but
-  mostly flat — start early.
-- **Budget:** free (reservation is free; bring your own food/water — no services
+  mostly flat, so start early.
+- **Budget:** free (reservation is free; bring your own food/water: no services
   on trail).
-- **Best time:** late spring to mid-October; fall foliage is spectacular.
+- **Best time:** late spring to mid-October. Fall for the foliage.
 - **Getting there:** trailhead parking at St. Huberts / Ausable Club, Keene
   Valley, NY. ~2h from Montréal, ~2h from Albany.
 - **Bring:** 2L+ water, layers (the ledge is windy), real hiking shoes, and a
-  paper/offline map — no cell service.
+  paper/offline map, since there's no cell service.
 

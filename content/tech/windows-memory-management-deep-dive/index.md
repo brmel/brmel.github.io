@@ -1,7 +1,7 @@
 ---
 title: "Windows Memory Management in Depth: Private Data, Stack, Heap and Mapped Files"
 date: 2024-01-10
-description: "Windows memory states and types — private data, stack, heap, mapped files, images — with VirtualAlloc, file-mapping and std::vector examples."
+description: "Windows memory states and types (private data, stack, heap, mapped files, images), with VirtualAlloc, file-mapping and std::vector examples."
 tags: ["C++", "Windows", "Systems"]
 series: "Windows Memory Management"
 seriesPart: 2
@@ -13,11 +13,11 @@ canonicalOriginalName: "LinkedIn"
 ---
 
 If you don't want to be embarrassed due to your program running out of virtual
-memory — which could cause many passengers to miss their flights — perhaps you
+memory (which could cause many passengers to miss their flights), perhaps you
 should take a 5-minute break and read this article on how Windows manages
 virtual memory for processes, and the tools you can use to monitor it.
 
-{{< figure src="01-hero.jpg" alt="Airport departure board" caption="Running out of virtual memory is not always a quiet failure." >}}
+{{< figure src="01-hero.jpg" alt="Airport departure board" caption="Running out of virtual memory isn't always a quiet failure." >}}
 
 Before reading this article, I strongly recommend reading the first article that
 discusses the basics of Windows virtual memory management:
@@ -47,7 +47,7 @@ try to define each one of them briefly:
 
 - **Size, Reserved** — total amount of memory reserved by the memory manager for
   the process.
-- **Committed** — reserved memory that is actually in use, and when accessed,
+- **Committed** — reserved memory that is in use, and when accessed,
   ultimately translates to valid pages in physical memory (either RAM or the
   paging file).
 - **Private** — committed memory that is private, meaning it is only used by the
@@ -91,8 +91,8 @@ LPVOID MemPtr2 = VirtualAlloc(desiredAddress, size, MEM_COMMIT | MEM_RESERVE, PA
 
 The first parameter of the `VirtualAlloc` function is the base address of the
 memory block you want to allocate, and `NULL` means that the Memory Manager will
-decide. Choosing the address yourself is occasionally what you want, and
-usually not — the Memory Manager has more information about the address space
+decide. Choosing the address yourself is occasionally useful, but
+usually the Memory Manager has more information about the address space
 than you do.
 
 **Important notes about `VirtualAlloc`:**
@@ -103,9 +103,9 @@ than you do.
 - Allocated memory is always initialised with 0 for Windows security reasons. A
   snapshot from Visual Studio confirms that.
 
-{{< figure src="03-virtualalloc-zero-initialised.jpg" alt="Visual Studio memory window showing freshly allocated memory filled with zeros" caption="Allocated memory using the VirtualAlloc function is always initialized." >}}
+{{< figure src="03-virtualalloc-zero-initialised.jpg" alt="Visual Studio memory window showing freshly allocated memory filled with zeros" caption="Allocated memory using the VirtualAlloc function is always initialised." >}}
 
-Committing memory does not necessarily mean that it is actually in RAM.
+Committing memory doesn't necessarily mean that it is in RAM.
 Committed memory means that Windows **guarantees** it will be able to provide you
 with RAM when needed. You can force the Memory Manager to allocate RAM by using
 the memory (touching it), as demonstrated in this example:
@@ -124,9 +124,9 @@ for (int i = 0; i < 200000000; i++)
     *((int*)(MemPtr) + i) = i;
 ```
 
-After each `for` loop (1, 2, and 3), we observe the growth of the working set —
-and consequently the used RAM — of the process each time we access more memory.
-Reserved and committed memory do not move, because both were allocated and
+After each `for` loop (1, 2, and 3), we observe the growth of the working set
+(and consequently the used RAM) of the process each time we access more memory.
+Reserved and committed memory don't move, because both were allocated and
 committed in advance. Only the working set grows.
 
 {{< figure src="04-working-set-growth.jpg" alt="VMMap showing the working set growing across three runs while reserved and committed stay constant" caption="The process working set grows when memory is used." >}}
@@ -210,7 +210,7 @@ specified heap.
 **Example with C++ STL containers.** When you call the `reserve` memory function
 of a `std::vector` container, memory is both reserved and committed in the heap.
 In this example, we can observe how both the `reserve` and `resize` functions
-actually reserve and commit memory.
+reserve and commit memory.
 
 ```cpp
 // 1
@@ -346,13 +346,13 @@ currently 64 KB on Windows. This results in some regions that cannot be used.
 For 32-bit machines, unused regions caused a significant issue as an application
 could potentially run out of virtual memory due to memory fragmentation. However,
 for 64-bit machines this is no longer a concern, because the virtual memory space
-is very large — encompassing approximately 17.4 million terabytes of memory.
+is very large, approximately 17.4 million terabytes of memory.
 
 ### 7 — Managed heap
 
 Managed heap is memory allocated and managed by
 [.NET's garbage collector](https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/fundamentals).
-It will not be discussed in this article.
+I won't cover it in this article.
 
 ## Memory Tracer
 
@@ -367,13 +367,13 @@ well-formatted data to a file, and provides control over the snapshot frequency.
 
 Memory Tracer attempts to reproduce the exact results as VMMap. However, there is
 **no guarantee of accuracy**: VMMap appears to query virtual memory through
-interfaces that are not public, so the two will not always agree.
+interfaces that are not public, so the two won't always agree.
 
 **Future improvements:**
 
 - There is no heap tracing, so all data in the heap will be in the *private data*
   row. If you know an efficient way to traverse the heap and determine if a
-  virtual address is within the heap, we can discuss it — because I am very
+  virtual address is within the heap, we can discuss it, because I'm very
   curious.
 - We should avoid allocating memory when taking a snapshot and exporting data, to
   prevent influencing the process being examined.

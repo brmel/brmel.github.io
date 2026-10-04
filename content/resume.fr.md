@@ -2,7 +2,7 @@
 title: "CV"
 layout: "resume"
 summary: "Ingénieur C++ senior — Zebra Technologies, Matrox Imaging, Polytechnique Montréal."
-description: "Ingénieur C++ senior, sept ans sur des algorithmes de vision 2D et 3D : C++17/20 moderne, traitement d'images temps réel et optimisation non linéaire."
+description: "Ingénieur C++ senior, sept ans sur des algorithmes de vision 2D et 3D : C++17/20 moderne, traitement d'images temps réel et optimisation non linéaire."
 aliases: ["/fr/timeline/"]
 role: "Développeur logiciel senior — C++ moderne, traitement d'images temps réel, algorithmes de vision 2D/3D"
 location: "Montréal, Québec"
@@ -28,11 +28,11 @@ experience:
         videoAlt: "Démonstration de l'Aurora Imaging Library dans Aurora Vision Studio"
         text: >-
           Je développe et maintiens les algorithmes 2D et 3D de la
-          bibliothèque : j'ajoute des fonctionnalités, j'investigue et corrige
-          des bogues, et j'assiste directement les clients dont les
-          applications tombent en production. J'écris la documentation des API
+          bibliothèque : j'ajoute des fonctionnalités, je cherche la cause des
+          bogues et je les corrige, et j'assiste directement les clients dont
+          les applications plantent en production. J'écris la documentation des API
           et les exemples de code livrés avec chaque version, et je définis le
-          comportement des API et la compatibilité ascendante avec les équipes
+          comportement des API et la rétrocompatibilité avec les équipes
           UI, documentation et QA avant la livraison. Je participe aussi à la
           planification de la feuille de route.
       - title: "Traitement d'images sur la caméra intelligente"
@@ -42,31 +42,31 @@ experience:
         text: >-
           Je porte des modules de traitement d'images sur la caméra
           intelligente Aurora Focus, en écrivant des algorithmes qui tiennent
-          dans des budgets mémoire et processeur serrés. Le travail couvre
-          toute la pile : je débogue des problèmes qui traversent l'interface
-          et le backend, je corrige des bogues de multithreading et de
+          dans des budgets mémoire et processeur serrés. Je touche à
+          toutes les couches : je débogue des problèmes qui vont de l'interface
+          au backend, je corrige des bogues de multithreading et de
           concurrence, je travaille avec l'équipe QA sur la reproduction et la
           validation des correctifs, et je développe des fonctionnalités qui
           simplifient la configuration de la caméra.
       - title: "Apprentissage profond pour l'OCR et la lecture de codes-barres"
         text: >-
-          Je travaille sur le volet apprentissage profond de la bibliothèque :
+          Je travaille sur le volet apprentissage profond de la bibliothèque :
           des modèles qui lisent les caractères et les codes que les décodeurs
           classiques ne savent pas lire — abîmés, flous, peu contrastés, ou
-          imprimés sur des surfaces courbes et réfléchissantes. Le travail va
-          de l'entraînement et l'évaluation des modèles à l'intégration de
-          l'inférence dans le pipeline C++, en tenant le même budget de latence
-          et de mémoire que la voie classique.
+          imprimés sur des surfaces courbes et réfléchissantes. J'entraîne et
+          j'évalue les modèles, puis j'intègre l'inférence dans le pipeline
+          C++, en tenant le même budget de latence et de mémoire que la voie
+          classique.
     built: ["Aurora Imaging Library", "Caméra intelligente Aurora Focus", "OCR par apprentissage profond", "Lecture de codes-barres par apprentissage profond"]
     stack: ["C++", "algorithmes de vision industrielle", "apprentissage profond", "OCR", "apprentissage automatique", "imagerie embarquée"]
     tools: ["Visual Studio", "Git / GitHub", "CMake", "GTest", "clang-tidy / clang-format", "SonarQube", "Valgrind & sanitizers", "gdb", "JIRA", "Confluence", "Agile / Scrum", "CI/CD"]
     learned: |-
-      - L'apprentissage profond prend tout son sens là où les décodeurs classiques s'arrêtent — codes abîmés, flous, peu contrastés — et leur cède partout ailleurs sur la latence et la prévisibilité. Choisir quelle moitié du problème confier à un modèle, c'est l'essentiel de la conception.
-      - Un modèle qui gagne sur un jeu de test peut échouer sur le terrain, parce que les échecs d'un client sont les images que personne n'a pensé à mettre dans le jeu de test. La métrique utile est la façon dont il échoue, pas sa fréquence d'échec.
+      - L'apprentissage profond prend tout son sens là où les décodeurs classiques s'arrêtent (codes abîmés, flous, peu contrastés) et leur cède partout ailleurs sur la latence et la prévisibilité. Choisir quelle moitié du problème confier à un modèle, c'est l'essentiel de la conception.
+      - Un modèle qui gagne sur un jeu de test peut échouer sur le terrain, parce que les échecs d'un client sont les images que personne n'a pensé à mettre dans le jeu de test. Ce qui compte, c'est comment il échoue, plus que combien de fois.
       - Faire tourner l'inférence dans un pipeline temps réel est d'abord un problème de mémoire et de débit, ensuite un problème d'apprentissage. Le prétraitement, les allocations et la localité de cache décident si un modèle tient dans le budget d'une image.
-      - Sur la caméra intelligente, la contrainte est toute la conception. Le working set, les allocations sur le chemin critique et la marge processeur éliminent des approches bien avant la précision.
-      - L'essentiel du métier se joue autour de l'algorithme : la documentation de référence, les exemples livrés, le contrat d'API convenu avec les équipes UI et QA, et les applications clientes qui révèlent les bogues qu'une suite de tests ne voit pas.
-      - Livrer dans une équipe de cette taille tient autant du processus que du code. Une fonctionnalité est spécifiée dans Confluence, suivie dans JIRA, conditionnée à clang-tidy, clang-format et SonarQube en revue, puis prouvée par GTest et les sanitizers avant d'atteindre une branche de livraison. Un changement qui passe la revue mais pas l'outillage n'est pas livré.
+      - Sur la caméra intelligente, ce sont les contraintes qui dictent toute la conception. Le working set, les allocations sur le chemin critique et la marge processeur éliminent des approches bien avant la précision.
+      - L'essentiel du métier se joue autour de l'algorithme : la documentation de référence, les exemples livrés, le contrat d'API convenu avec les équipes UI et QA, et les applications clientes qui révèlent les bogues qu'une suite de tests ne voit pas.
+      - Livrer dans une équipe de cette taille tient autant du processus que du code. Une fonctionnalité est spécifiée dans Confluence, suivie dans JIRA, conditionnée à clang-tidy, clang-format et SonarQube en revue, puis prouvée par GTest et les sanitizers avant d'atteindre une branche de livraison.
 
   - period: "2022 — 2024"
     role: "Développeur logiciel II"
@@ -75,8 +75,8 @@ experience:
     work:
       - title: "Géométrie et solveurs des modules 2D"
         text: >-
-          J'ai maintenu et étendu les modules 2D — Model Finder, Edge Finder,
-          Measurement, Metrology, Calibration et Bead — en implémentant la
+          J'ai maintenu et étendu les modules 2D (Model Finder, Edge Finder,
+          Measurement, Metrology, Calibration et Bead) en implémentant la
           géométrie, l'algèbre linéaire et l'optimisation non linéaire qui les
           font tourner, en corrigeant des bogues de virgule flottante et d'API à
           état, et en étendant leurs tests de régression. J'ai co-conçu et livré
@@ -85,8 +85,8 @@ experience:
         video: "CS4cs9xVecg"
         videoAlt: "Notes de la spécialisation en apprentissage profond"
         text: >-
-          J'ai intégré de l'apprentissage automatique classique — forêts
-          aléatoires et SVM — dans des modules jusque-là purement géométriques,
+          J'ai intégré de l'apprentissage automatique classique (forêts
+          aléatoires et SVM) dans des modules jusque-là purement géométriques,
           pour classifier des motifs dans des scènes complexes. J'ai écrit les
           nouvelles API, leur documentation de référence et les exemples
           clients livrés avec, et j'ai encadré des stagiaires et des
@@ -96,10 +96,10 @@ experience:
     stack: ["C++", "appariement géométrique", "métrologie", "optimisation non linéaire", "apprentissage classique"]
     tools: ["Visual Studio", "Git / GitHub", "CMake", "GTest", "JIRA", "Confluence", "Agile / Scrum", "revue de code"]
     learned: |-
-      - C'est en écrivant la documentation et les exemples qu'une API est vraiment mise à l'épreuve. Presque toutes les questions renvoyées par les clients portaient sur l'interface, pas sur l'algorithme.
-      - Une API C++ publique est une promesse qu'on ne peut pas retirer. Le nommage, l'ordre des paramètres, le comportement par défaut et la remontée des erreurs survivent à tous les détails d'implémentation derrière eux.
-      - L'apprentissage automatique classique dans une bibliothèque géométrique doit rester diagnosticable. Une forêt aléatoire qui classe un motif doit échouer d'une manière qu'un ingénieur support peut expliquer à un client, ce qui a écarté des modèles que je ne pouvais pas inspecter.
-      - Les bogues d'API à état et les écarts en virgule flottante sont les deux défauts que les tests de régression attrapent et que la revue de code laisse passer. Les deux ne ressemblent à rien dans un diff.
+      - C'est en écrivant la documentation et les exemples qu'une API est vraiment mise à l'épreuve. Presque toutes les questions des clients portaient sur l'interface, pas sur l'algorithme.
+      - Une API C++ publique, une fois livrée, on ne peut plus revenir dessus. Le nommage, l'ordre des paramètres, le comportement par défaut et la remontée des erreurs survivent à tous les détails d'implémentation derrière eux.
+      - L'apprentissage automatique classique dans une bibliothèque géométrique doit pouvoir se diagnostiquer. Une forêt aléatoire qui classe un motif doit échouer d'une manière qu'un ingénieur support peut expliquer à un client, ce qui a écarté des modèles que je ne pouvais pas inspecter.
+      - Les bogues d'API à état et les écarts en virgule flottante sont les deux défauts que les tests de régression attrapent et que la revue de code laisse passer. Dans un diff, les deux passent inaperçus.
       - Encadrer des stagiaires m'a obligé à dire pourquoi et pas seulement quoi, et c'est là que j'ai trouvé les habitudes que je ne savais pas défendre.
 
   - period: "2019 — 2022"
@@ -112,7 +112,7 @@ experience:
         video: "LcoPNbyuhZU"
         videoAlt: "Le traitement d'images industriel dans la Matrox Imaging Library"
         text: >-
-          Mon premier poste après la maîtrise, sur les modules de mesure :
+          Mon premier poste après la maîtrise, sur les modules de mesure :
           Calibration, Measurement et Metrology. J'ai implémenté et débogué
           leurs algorithmes, écrit les tests et les exemples clients, et conçu
           l'Advanced Geometric Matcher, livré plus tard comme API publique.
@@ -139,18 +139,18 @@ experience:
     stack: ["C++", "optimisation non linéaire", "Levenberg–Marquardt", "stabilité numérique", "apprentissage classique"]
     tools: ["Visual Studio", "Git", "SVN", "GTest", "VMMap", "Valgrind", "JIRA", "Confluence"]
     learned: |-
-      - Écrire un meilleur algorithme est la moitié facile. Le livrer dans une bibliothèque dont des milliers d'applications dépendent déjà, sans changer une réponse sur laquelle elles comptent, est la moitié difficile.
+      - Écrire un meilleur algorithme, c'est la partie facile. Le livrer dans une bibliothèque dont des milliers d'applications dépendent déjà, sans changer une réponse sur laquelle elles comptent, c'est la partie difficile.
       - L'optimisation non linéaire ne vaut que par son estimation initiale et son critère d'arrêt. Levenberg–Marquardt converge proprement dans un article et oscille sur des données réelles tant que ces deux points ne sont pas réglés.
-      - La précision sous-pixel est un problème de stabilité numérique. L'ordre des opérations, le conditionnement de la matrice et la tolérance de comparaison décident des deux dernières décimales, pas les maths au tableau.
-      - Dans une base de code C++ vieille de plusieurs décennies, les bogues mémoire qui coûtent du temps sont les références pendantes et une propriété que personne n'a écrite. Les fuites, au moins, se signalent.
-      - Construire la suite de régression avant de toucher à l'algorithme. C'est la seule chose qui rende possible la modification de code numérique hérité.
+      - La précision sous-pixel est un problème de stabilité numérique. L'ordre des opérations, le conditionnement de la matrice et la tolérance de comparaison décident des deux dernières décimales.
+      - Dans une base de code C++ vieille de plusieurs décennies, les bogues mémoire qui coûtent du temps sont les références pendantes et la propriété des objets que personne n'a documentée. Les fuites, au moins, se signalent.
+      - Construire la suite de régression avant de toucher à l'algorithme. C'est la seule chose qui permette de modifier du code numérique hérité.
 
   - period: "2017 — 2019"
     role: "M.Sc.A., génie des systèmes de contrôle"
     kind: "education"
     org: "Polytechnique Montréal"
     url: "https://www.polymtl.ca/"
-    note: "Moyenne 3,87/4 · Bourse de la Fondation Al Ghurair — 1 sur 100 parmi plus de 15 000 candidatures."
+    note: "Moyenne 3,87/4 · Bourse de la Fondation Al Ghurair — 1 sur 100 parmi plus de 15 000 candidatures."
     work:
       - title: "Comment je suis arrivé au Canada"
         video: "BPkj-VETeX0"
@@ -164,7 +164,7 @@ experience:
         videoAlt: "Robotique et contrôle temps réel pendant la maîtrise"
         text: >-
           Chaque cours important se terminait par un projet tournant sur du
-          vrai matériel : commande de robot et exécution de trajectoires,
+          vrai matériel : commande de robot et exécution de trajectoires,
           ordonnancement temps réel sous QNX, traitement d'images pour la
           localisation de pièces, et estimation d'état. Les cours couvraient le
           traitement d'images, la détection et l'estimation de signaux, la
@@ -184,16 +184,16 @@ experience:
     tools: ["QNX", "ROS", "MATLAB / Simulink", "robots Fanuc", "Georgia Tech Robotarium"]
     learned: |-
       - Une loi de commande peut être juste sur le papier et rester fausse si elle arrive dix millisecondes trop tard. L'échéance fait partie du cahier des charges.
-      - La géométrie est la partie facile de l'appariement de caractéristiques. SIFT produit des candidats ; tout ce qui fait fonctionner un panorama ou un localisateur de pièces, c'est le rejet des aberrants ensuite.
-      - L'estimation d'état est là où j'ai appris à pondérer un modèle et une mesure selon ce que chacun ment.
-      - Exécuter des algorithmes de consensus sur la flotte réelle du Robotarium plutôt qu'en simulation montre à quel point un algorithme distribué porte sur ce qui se passe quand un robot cesse de répondre.
+      - La géométrie est la partie facile de l'appariement de caractéristiques. SIFT produit des candidats ; tout ce qui fait fonctionner un panorama ou un localisateur de pièces, c'est le rejet des points aberrants qui suit.
+      - C'est en estimation d'état que j'ai appris à pondérer un modèle et une mesure selon à quel point chacun ment.
+      - Faire tourner des algorithmes de consensus sur la flotte réelle du Robotarium plutôt qu'en simulation m'a montré quelle part d'un algorithme distribué tient à ce qui se passe quand un robot cesse de répondre.
 
   - period: "2012 — 2017"
     role: "Ingénieur d'État, génie électrique — systèmes de contrôle"
     kind: "education"
     org: "École Nationale Polytechnique, Alger"
     url: "https://www.enp.edu.dz/en/"
-    note: "Moyenne 17,5/20 · 5e sur 1 400 — top 1 % national."
+    note: "Moyenne 17,5/20 · 5e sur 1 400 — top 1 % national."
     work:
       - title: "Deux années de classes préparatoires d'abord"
         video: "VjwIGG7Lbt0"
@@ -207,7 +207,7 @@ experience:
         videoAlt: "Projets de contrôle et d'automates pendant le diplôme d'ingénieur"
         text: >-
           J'ai construit des systèmes de contrôle face à du vrai matériel et à
-          des contraintes d'usine : un régulateur de vitesse adaptatif pour
+          des contraintes d'usine : un régulateur de vitesse adaptatif pour
           véhicule autonome, et un programme d'automate pilotant une machine
           d'assemblage industrielle.
     built: ["Régulateur de vitesse adaptatif pour véhicule autonome", "Programme d'automate pour une machine d'assemblage industrielle"]
@@ -215,8 +215,8 @@ experience:
     tools: ["Unity-Pro (Schneider)", "Simatic-Manager (Siemens)", "Simulink", "LabVIEW"]
     learned: |-
       - La première machine d'assemblage que j'ai programmée tombait en panne à cause des capteurs et du câblage, pas de la logique de commande sur laquelle j'avais passé tout le semestre.
-      - Un programme d'automate s'écrit pour celui qui le déboguera à trois heures du matin sur un plancher d'usine, pas pour celui qui l'écrit.
-      - Identifier un procédé à partir de mesures réelles est plus difficile que concevoir le régulateur qui suit. L'erreur habite le modèle.
+      - Un programme d'automate s'écrit pour celui qui le déboguera à trois heures du matin sur un plancher d'usine.
+      - Identifier un procédé à partir de mesures réelles est plus difficile que concevoir le régulateur qui suit. L'erreur est dans le modèle.
 
 skills:
   - group: "Langages"

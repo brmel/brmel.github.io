@@ -40,29 +40,29 @@ experience:
         videoAlt: "The Aurora Focus smart camera inspecting parts on a bench"
         text: >-
           I port image processing modules onto the Aurora Focus smart camera,
-          writing algorithms that fit tight memory and CPU budgets. The work
-          spans the whole stack: I debug problems that cross the UI and the
+          writing algorithms that fit tight memory and CPU budgets. I work
+          across the whole stack: I debug problems that cross the UI and the
           backend, fix multithreading and concurrency bugs, work with the QA
           team on reproducing and validating fixes, and build features that
           make the camera easier to configure.
       - title: "Deep learning for OCR and barcode reading"
         text: >-
           I work on the deep learning side of the library: models that read
-          characters and codes the classical decoders cannot — damaged,
+          characters and codes the classical decoders can't: damaged,
           blurred, low-contrast, or printed on curved and reflective surfaces.
-          The work runs from training and evaluating the models to integrating
-          inference into the C++ pipeline and keeping it inside the same
-          latency and memory budget the classical path already meets.
+          I train and evaluate the models, integrate inference into the C++
+          pipeline, and keep it inside the same latency and memory budget the
+          classical path already meets.
     built: ["Aurora Imaging Library", "Aurora Focus smart camera", "Deep learning OCR", "Barcode reading with deep learning"]
     stack: ["C++", "machine vision algorithms", "deep learning", "OCR", "machine learning", "embedded / edge imaging"]
     tools: ["Visual Studio", "Git / GitHub", "CMake", "GTest", "clang-tidy / clang-format", "SonarQube", "Valgrind & sanitizers", "gdb", "JIRA", "Confluence", "Agile / Scrum", "CI/CD"]
     learned: |-
-      - Deep learning earns its place exactly where the classical decoders stop — damaged, blurred and low-contrast codes — and loses to them everywhere else on latency and predictability. Choosing which half of the problem goes to a model is most of the design work.
-      - A model that wins on a benchmark can still lose in the field, because a customer's failures are the images nobody thought to put in the test set. The useful metric is how it fails, not how often.
-      - Running inference inside a real-time pipeline is a memory and throughput problem before it is a machine learning one. Preprocessing, allocation and cache locality decide whether a model fits the frame budget at all.
-      - On the smart camera, the constraint is the whole design. Working set, allocation on the hot path and CPU headroom rule out approaches on the desktop build long before accuracy does.
-      - Most of this job sits around the algorithm: the reference documentation, the shipped examples, the API contract agreed with the UI and QA teams, and the customer applications that surface the bugs a test suite does not.
-      - Shipping on a team this size is as much process as code. A feature is specified in Confluence, tracked in JIRA, gated on clang-tidy, clang-format and SonarQube at review, and proven with GTest and sanitizers before it reaches a release branch. A change that passes review but not the tooling has not shipped.
+      - Deep learning earns its place where the classical decoders stop (damaged, blurred and low-contrast codes) and loses to them everywhere else on latency and predictability. Choosing which half of the problem goes to a model is most of the design work.
+      - A model that wins on a benchmark can still lose in the field, because a customer's failures are the images nobody thought to put in the test set. How it fails tells you more than how often it fails.
+      - Running inference inside a real-time pipeline is a memory and throughput problem before it's a machine learning one. Preprocessing, allocation and cache locality decide whether a model fits the frame budget at all.
+      - On the smart camera, the constraints drive the whole design. Working set, allocation on the hot path and CPU headroom rule out approaches on the desktop build long before accuracy does.
+      - Most of this job sits around the algorithm: the reference documentation, the shipped examples, the API contract agreed with the UI and QA teams, and the customer applications that surface the bugs a test suite doesn't.
+      - Shipping on a team this size is as much process as code. A feature is specified in Confluence, tracked in JIRA, gated on clang-tidy, clang-format and SonarQube at review, and proven with GTest and sanitizers before it reaches a release branch.
 
   - period: "2022 — 2024"
     role: "Software Developer II"
@@ -71,8 +71,8 @@ experience:
     work:
       - title: "Geometry and solvers behind the 2D modules"
         text: >-
-          I maintained and extended the 2D modules — Model Finder, Edge Finder,
-          Measurement, Metrology, Calibration and Bead — implementing the
+          I maintained and extended the 2D modules (Model Finder, Edge Finder,
+          Measurement, Metrology, Calibration and Bead), implementing the
           geometry, linear algebra and non-linear optimisation they run on,
           fixing floating-point and stateful API bugs, and extending their
           regression tests. I co-designed and shipped the public C++ API for the
@@ -81,7 +81,7 @@ experience:
         video: "CS4cs9xVecg"
         videoAlt: "Notes from the deep learning specialisation"
         text: >-
-          I integrated classical machine learning — Random Forests and SVMs —
+          I integrated classical machine learning (Random Forests and SVMs)
           into modules that had been purely geometric, to classify patterns in
           complex scenes. I wrote the new APIs, their reference documentation
           and the customer examples that shipped with them, and mentored
@@ -91,11 +91,11 @@ experience:
     stack: ["C++", "geometric matching", "metrology", "non-linear optimisation", "classical ML"]
     tools: ["Visual Studio", "Git / GitHub", "CMake", "GTest", "JIRA", "Confluence", "Agile / Scrum", "code review"]
     learned: |-
-      - Writing the documentation and the examples is how an API design gets tested. Almost every question that came back from customers was about the interface, not the algorithm.
-      - A public C++ API is a promise you cannot withdraw. Naming, parameter order, default behaviour and how errors are reported outlive every implementation detail behind them.
-      - Classical machine learning inside a geometric library has to stay diagnosable. A Random Forest that classifies a pattern must fail in a way a support engineer can explain to a customer, which ruled out models I could not inspect.
-      - Stateful API bugs and floating-point differences are the two failures that regression tests catch and code review does not. Both look like nothing in a diff.
-      - Mentoring interns made me say why and not just what, and that is where I found the habits I could not actually defend.
+      - Writing the documentation and the examples is how an API design gets tested. Almost every question that came back from customers was about the interface rather than the algorithm.
+      - Once a C++ API is public, you can't take it back. Naming, parameter order, default behaviour and how errors are reported outlive every implementation detail behind them.
+      - Classical machine learning inside a geometric library has to stay diagnosable. A Random Forest that classifies a pattern must fail in a way a support engineer can explain to a customer, which ruled out models I couldn't inspect.
+      - Stateful API bugs and floating-point differences are the two failures that regression tests catch and code review doesn't. Both look like nothing in a diff.
+      - Mentoring interns made me say why and not just what, and that's where I found the habits I couldn't defend.
 
   - period: "2019 — 2022"
     role: "Software Developer"
@@ -135,9 +135,9 @@ experience:
     learned: |-
       - Writing a better algorithm is the easy half. Shipping it into a library thousands of applications already depend on, without changing an answer they rely on, is the hard half.
       - Non-linear optimisation is only as good as its initial guess and its stopping rule. Levenberg–Marquardt converges cleanly in a paper and oscillates on real data until both of those are right.
-      - Sub-pixel accuracy is a numerical-stability problem. The order of operations, the conditioning of the matrix and the tolerance you compare against decide the last two decimals, not the maths on the whiteboard.
+      - Sub-pixel accuracy is a numerical-stability problem. The order of operations, the conditioning of the matrix and the tolerance you compare against decide the last two decimals.
       - In a multi-decade C++ codebase the memory bugs that cost time are dangling references and ownership nobody wrote down. Leaks at least announce themselves.
-      - Build the regression suite before touching the algorithm. It is the only thing that makes changing legacy numerical code possible at all.
+      - I build the regression suite before touching the algorithm. It's the only thing that makes changing legacy numerical code possible at all.
 
   - period: "2017 — 2019"
     role: "M.Sc., Control Systems Engineering"
@@ -152,7 +152,7 @@ experience:
         url: "https://www.alghurairfoundation.org/"
         text: >-
           The scholarship was awarded on academic merit and paid for the
-          master's. It is how I came to Montréal.
+          master's. It's how I came to Montréal.
       - title: "Control, robotics and real-time systems"
         video: "UZbmuAs2K2w"
         videoAlt: "Robotics and real-time control work during the master's"
@@ -175,8 +175,8 @@ experience:
     stack: ["C++", "SIFT", "homography", "digital control", "detection and estimation", "stochastic and robust control", "image processing"]
     tools: ["QNX", "ROS", "MATLAB / Simulink", "Fanuc robots", "Georgia Tech Robotarium"]
     learned: |-
-      - A control law can be correct on paper and still be wrong if it arrives ten milliseconds late. The deadline is part of the specification.
-      - Geometry is the cheap part of feature matching. SIFT produces candidates; everything that makes a panorama or a part-locator actually work is the outlier rejection afterwards.
+      - A control law can be correct on paper and still be wrong if it arrives ten milliseconds late.
+      - Geometry is the cheap part of feature matching. SIFT produces candidates; everything that makes a panorama or a part-locator work is the outlier rejection afterwards.
       - State estimation is where I learned to weigh a model against a measurement in proportion to how much each one lies.
       - Running consensus algorithms on the real Robotarium fleet instead of in simulation showed how much of a distributed algorithm is about what happens when one robot stops answering.
 
@@ -205,7 +205,7 @@ experience:
     tools: ["Unity-Pro (Schneider)", "Simatic-Manager (Siemens)", "Simulink", "LabVIEW"]
     learned: |-
       - The first assembly machine I programmed failed on sensors and wiring, not on the control logic I had spent the whole term on.
-      - A PLC program is written for whoever debugs it at three in the morning on a factory floor, not for whoever wrote it.
+      - A PLC program is written for whoever debugs it at three in the morning on a factory floor.
       - Identifying a process from real measurements is harder than designing the controller that follows it. The error lives in the model.
 
 skills:

@@ -18,13 +18,13 @@ links:
   live: "/tech/hydro-quebec-outage-analysis/"
 lede: |
   Two months of Hydro-Québec's outage map, recorded every minute and turned into
-  the reliability report the utility does not publish: where outages concentrate,
+  the reliability report the utility doesn't publish: where outages concentrate,
   how long they really last, and how often the announced restoration time holds.
 lessons:
-  - "**Announced restoration times land within the hour about 5% of the time.** That is the headline number across 16,561 outages, and it is the figure the utility does not publish."
-  - "**Collect first, decide the question later.** I started polling before I knew what I was looking for. ETA accuracy, regional spread and the 611-outage peak were all questions I could not have asked on day one, and could only answer because the data was already on disk."
+  - "**Announced restoration times land within the hour about 5% of the time.** That's the headline number across 16,561 outages, and the utility doesn't publish it."
+  - "**I collected first and decided the question later.** I started polling before I knew what I was looking for. ETA accuracy, regional spread and the 611-outage peak were all questions I couldn't have asked on day one, and could only answer because the data was already on disk."
   - "**Hourly files with a close-then-upload rule made the collector restartable.** Snapshots land in the open hour JSONL file and only closed hours upload, so a crash loses at most one minute. It crashed more than once over 56 days."
-  - "**Public data is not tidy data.** The outage map ships KMZ geometry meant for rendering, not analysis. Turning those polygons into per-municipality attribution was most of the work, and it is why the borough map exists at all."
+  - "**The public data wasn't tidy.** The outage map ships KMZ geometry meant for rendering. Turning those polygons into per-municipality attribution was most of the work, and it's why the borough map exists at all."
 tags: ["Python", "Data Analysis", "Québec"]
 ---
 
@@ -40,7 +40,7 @@ fifty-six days and worked it out.
 
 ## The product
 
-A reliability report the utility does not produce: where outages concentrate,
+A reliability report the utility doesn't produce: where outages concentrate,
 how long they really last, which causes dominate, and how far the published
 estimates fall from what happened. The Montréal borough map exists because the
 raw feed ships geometry meant for drawing, not for counting, and turning
@@ -48,7 +48,7 @@ polygons into per-municipality attribution was most of the work.
 
 The collector is deliberately dull. Snapshots append to the open hour's file and
 only closed hours upload, so it can die at any moment and lose at most one
-minute — which it did, more than once, over eight weeks.
+minute. It died more than once over eight weeks.
 
 I started polling before I knew the question. Every result worth having came
 from something I could not have thought to ask on day one, and could only ask

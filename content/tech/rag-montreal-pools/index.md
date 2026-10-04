@@ -39,7 +39,7 @@ indoor swimming pools. The city's website lists all the indoor pools along with
 their availability:
 [Indoor swimming pools](https://montreal.ca/lieux?mtl_content.lieux.available_activities.code=ACT0&mtl_content.lieux.installation.code=PISI).
 
-The downside is that you cannot search for an available pool at a specific time,
+The downside is that you can't search for an available pool at a specific time,
 as each pool has its own schedule, which varies significantly. Some pools have
 their schedules embedded as a table on the website, like this one:
 [Bain Émard](https://montreal.ca/en/places/bain-emard).
@@ -56,19 +56,19 @@ time-consuming and very manual.
 ## II — Large language models
 
 I decided to use a Large Language Model (LLM) like ChatGPT to address this
-problem. LLMs excel at understanding complex text — such as pool schedules — and
+problem. LLMs excel at understanding complex text, such as pool schedules, and
 grasping concepts related to time and space, like pool opening and closing times,
 or pools nearest to a particular address.
 
-One challenge is that pool schedules change frequently, and recent schedules were
-not included in the LLMs' training data. So, how can we solve this problem?
+One challenge is that pool schedules change frequently, and recent schedules weren't
+included in the LLMs' training data. So, how can we solve this problem?
 
 Here are three possible solutions:
 
 - **Fine-tune the model using recent data.** Fine-tuning involves updating the
   model's weights by training it with a new dataset. This is effective if you
   have a large, "static" dataset that was not available during the initial
-  training of the LLM — by *static*, I mean data that does not change over time.
+  training of the LLM. By *static*, I mean data that doesn't change over time.
   However, this approach can be costly and resource-intensive.
 - **Provide the entire database alongside the user's query.** This technique
   involves including the entire database with the user's query as a prompt,
@@ -159,13 +159,13 @@ websites.
 Using some Python packages, I was able to successfully create a text that
 contains the pool schedule for each pool:
 
-{{< figure src="02-pools-dataset.jpg" alt="Directory listing of one text file per Montréal indoor pool" caption="Montréal indoor pools dataset — one file per pool." >}}
+{{< figure src="02-pools-dataset.jpg" alt="Directory listing of one text file per Montréal indoor pool" caption="Montréal indoor pools dataset: one file per pool." >}}
 
 To achieve this, we need to extract all tables and relevant information from each
 pool's HTML page, such as the pool's address and any exceptional closures.
 
 There are tools that can help automate this process, such as LlamaIndex's web
-readers — see
+readers. See
 [data connectors](https://docs.llamaindex.ai/en/stable/module_guides/loading/connector/)
 and the [web reader package](https://llamahub.ai/l/readers/llama-index-readers-web).
 
@@ -176,7 +176,7 @@ Each pool has its own file with a schedule that looks something like this:
 ### B. Create the embeddings
 
 When a user asks a question about a specific pool, we need to search the database
-for relevant information, combine this information — also known as context — with
+for relevant information, combine this information (also known as context) with
 the user's query, and then use the LLM to generate a response.
 
 To find relevant information in the database, we can use various search methods,
@@ -189,7 +189,7 @@ So, once the dataset of text files is ready, we need to represent each word or
 phrase with a special vector in a high-dimensional vector space, where words with
 similar meanings will be close to each other.
 
-[LlamaIndex](https://www.llamaindex.ai/) was used to handle data preprocessing.
+I used [LlamaIndex](https://www.llamaindex.ai/) to handle data preprocessing.
 
 {{< figure src="04-embeddings.jpg" alt="Diagram of text being converted into vectors in a high-dimensional embedding space" caption="Text becomes vectors; similar meanings land close together." >}}
 
@@ -208,7 +208,7 @@ parsing, and more.
 
 ## IV — Demo
 
-I will not say anything here, and let you see this beauty of an LLM alive:
+I won't say anything here, and let you see this beauty of an LLM alive:
 
 {{< figure src="05-chatbot-demo.jpg" alt="The chatbot answering a question about which pool is open next, and linking to the pool's page on the city website" caption="ChatGPT used in a RAG system to answer questions about Montréal pools." >}}
 
@@ -217,8 +217,8 @@ I will not say anything here, and let you see this beauty of an LLM alive:
 - As a software developer, I always aim to find exact solutions that are
   deterministic and proven through mathematics, physics, and science. Working
   with LLMs made me uncomfortable because I couldn't fully trust them, even
-  though the responses were accurate in my case. There is no guarantee — that I
-  am aware of — that the model will consistently perform well and continue to
+  though the responses were accurate in my case. As far as I know, there's no
+  guarantee that the model will consistently perform well and continue to
   provide reliable results. This is why in my demo I provide the URL to the pool
   website as a source.
 - Due to the AI boom, there are countless tools available, with many attempting

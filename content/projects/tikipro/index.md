@@ -21,9 +21,9 @@ lede: |
   reception: the desk view, the waiting-room screen and each doctor's queue, with
   no server, no per-seat licence and no patient record leaving the building.
 lessons:
-  - "**The installer is the product for the first ten minutes.** The app refuses to start without a licence file, and the installer is not code-signed, so Windows SmartScreen blocks it — two dead ends before anyone sees a feature. I now write the onboarding email before the release, because every warning it has to explain is a design failure I could have removed."
-  - "**Manual beats automatic when the volume is low.** There is no automated licensing email anywhere. A request writes to Firestore, a function sends me a Telegram message, and I reply by hand. The automated flow would have taken a week to serve maybe one clinic a month."
-  - "**Rate limits need names.** Installer downloads are capped at 3 a day and 10 a week across *all* visitors, not per person. Obvious in the code, invisible from outside: onboarding several clinics in one afternoon hits the cap and looks like an outage."
+  - "**For the first ten minutes, all anyone sees is the installer.** The app refuses to start without a licence file, and the installer is not code-signed, so Windows SmartScreen blocks it: two dead ends before anyone sees a feature. I now write the onboarding email before the release, because every warning it has to explain is a design failure I could have removed."
+  - "**Licensing is manual, because the volume is low.** There is no automated licensing email anywhere. A request writes to Firestore, a function sends me a Telegram message, and I reply by hand. The automated flow would have taken a week to serve maybe one clinic a month."
+  - "**Nothing says when the download cap is hit.** Installer downloads are capped at 3 a day and 10 a week across *all* visitors, not per person. Obvious in the code, invisible from outside: onboarding several clinics in one afternoon hits the cap and looks like an outage."
   - "**Offline licensing removed a whole class of support calls.** Ed25519-signed licence keys are verified locally with no phone-home, so a clinic with a dead internet connection still opens the app. Clinics lose connectivity often enough that this stopped being optional."
 tags: ["Desktop", "TypeScript", "Firebase"]
 ---
@@ -31,12 +31,12 @@ tags: ["Desktop", "TypeScript", "Firebase"]
 ## The story
 
 A clinic's waiting room runs on shouting. Someone calls a name, half the room
-does not hear it, and whoever stepped outside loses their turn. The cost nobody
+doesn't hear it, and whoever stepped outside loses their turn. The cost nobody
 puts in a feature list is the staff time: the receptionist spends the day
 re-explaining the order to people certain they were skipped, and every one of
 those conversations happens while somebody else waits.
 
-The software that fixes this is built for hospitals — a server, a network, a
+The software that fixes this is built for hospitals: a server, a network, a
 per-seat licence, an IT contact. The clinic I built this for has three doctors,
 one PC at reception, and a television on the wall.
 

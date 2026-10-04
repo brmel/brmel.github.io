@@ -22,9 +22,9 @@ lede: |
   luggage. Twenty months of design and build, across three languages. It was
   never released.
 lessons:
-  - "**I rewrote two months of work and it was the right call.** The commit is still there: *Restart from a very clean project. Only login files are added* — 1,134 deletions against 45 insertions. The first version worked and could not be extended; everything lived in widgets. What replaced it was Domain / Application / Infrastructure / Presentation with value objects and validators, and the fourth feature cost about what the second did."
-  - "**Layer discipline is measurable, and mine was lopsided.** 19 domain files against 159 presentation files. The business rules were genuinely small and genuinely isolated, but I wrote eight test files, all for identification, and none for matching, trips or contracts. I tested the layer that was easy to test, not the one carrying the risk."
-  - "**Trust was the product, and I built the marketplace instead.** Listings, chat, contracts and matching all shipped. Identity verification, escrow, dispute handling and what happens when a package does not arrive did not. For a stranger to hand another stranger a laptop at an airport, the trust layer is the app, and I treated it as a later phase."
+  - "**I rewrote two months of work and it was the right call.** The commit is still there: *Restart from a very clean project. Only login files are added*, with 1,134 deletions against 45 insertions. The first version worked and couldn't be extended; everything lived in widgets. What replaced it was Domain / Application / Infrastructure / Presentation with value objects and validators, and the fourth feature cost about what the second did."
+  - "**Layer discipline is measurable, and mine was lopsided.** 19 domain files against 159 presentation files. The business rules were small and isolated, but I wrote eight test files, all for identification, and none for matching, trips or contracts. I tested the layer that was easy to test, not the one carrying the risk."
+  - "**What people needed was trust, and I built the marketplace instead.** Listings, chat, contracts and matching all shipped. Identity verification, escrow, dispute handling and what happens when a package does not arrive did not. For a stranger to hand another stranger a laptop at an airport, the trust layer is the app, and I treated it as a later phase."
   - "**The gap between the last feature commit and the last commit of any kind is a translation pass.** Twenty months, three languages and store screenshots, and what was missing at the end was never another feature."
 tags: ["Flutter", "Firebase", "Mobile", "Clean Architecture"]
 ---
@@ -46,11 +46,11 @@ I shipped listings, chat, contracts and matching, in three languages, with the
 store screenshots ready. Identity verification, escrow and what happens when a
 package does not arrive: none of it.
 
-Two months in I deleted the working version and started again — the commit says
+Two months in I deleted the working version and started again. The commit says
 *restart from a very clean project*, 1,134 deletions against 45 insertions. The
 first build worked and could not be extended; everything lived in the widgets.
 What replaced it separated domain from application from interface, and the
 fourth feature cost about what the second had.
 
-That was the right call and I would make it again. It is also not why the
+That was the right call and I'd make it again. It's also not why the
 project stopped.

@@ -21,10 +21,10 @@ lede: |
   timetable. Two halves in order: a pipeline that manufactures a transit network
   out of open map data and estimates, and the rider app that makes it useful.
 lessons:
-  - "**I surveyed riders before writing the app, and it changed what I built.** The mapped rail network and the station-level survey came first. What people wanted was not a journey planner — it was knowing whether the vehicle they are standing at the stop for is actually coming."
-  - "**One implementation, three triggers.** The business logic sits behind a FastAPI service, a Typer CLI and Prefect flows, over a provider-agnostic data layer. Every rule has one home and the trigger is a detail. This is the decision I would keep on any project of this shape."
-  - "**Transit feeds break constantly, so diffing became a product surface.** A feed refresh classifies every change by severity — 4 blocking, 4 critical, 24 high, 641 medium in one run across 281 stations and 374 edges — because publishing a broken timetable is worse than publishing a stale one. That screen exists because I shipped a bad feed once."
-  - "**The hard part is that the data does not exist.** No Algerian agency publishes usable GTFS. Most of the work is producing a feed at all — merging OpenStreetMap geometry, timetable estimates and coarse town-centre positions into something a router can use — and then defending it from its own upstreams."
+  - "**I surveyed riders before writing the app, and it changed what I built.** The mapped rail network and the station-level survey came first. What people wanted was not a journey planner. It was knowing whether the vehicle they are standing at the stop for is actually coming."
+  - "**One implementation, three triggers.** The business logic sits behind a FastAPI service, a Typer CLI and Prefect flows, over a provider-agnostic data layer. Every rule has one home and the trigger is a detail. This is the decision I'd keep on any project of this shape."
+  - "**Transit feeds break constantly, so diffing became a product surface.** A feed refresh classifies every change by severity (4 blocking, 4 critical, 24 high, 641 medium in one run across 281 stations and 374 edges), because publishing a broken timetable is worse than publishing a stale one. That screen exists because I shipped a bad feed once."
+  - "**The hard part is that the data doesn't exist.** No Algerian agency publishes usable GTFS. Most of the work is producing a feed at all (merging OpenStreetMap geometry, timetable estimates and coarse town-centre positions into something a router can use), and then defending it from its own upstreams."
 tags: ["Python", "Transit", "Algeria"]
 ---
 
@@ -34,17 +34,17 @@ In Algiers you find out when the bus comes by standing where the bus comes and
 waiting. No agency publishes a usable timetable, and the mapping apps everyone
 already has show nothing, for the same reason: they consume open transit data,
 and there is none to consume. Where a timetable does exist it describes an
-intention rather than a schedule — which is its own kind of missing data, and
+intention rather than a schedule, which is its own kind of missing data, and
 harder to detect than an empty file.
 
 ## The product
 
 Riders get bus, tram and metro in one app, in the three languages the country
-actually reads in. Underneath it I built a pipeline that manufactures a network
+reads in. Underneath it I built a pipeline that manufactures a network
 out of sources never meant to be one: map geometry, timetable estimates, coarse
 positions. It publishes the result as a standard transit feed.
 
-The piece I did not expect to build is the review screen. Every candidate feed
+The piece I didn't expect to build is the review screen. Every candidate feed
 is compared against the published one and every change is graded before anything
 ships: routes removed, calendars changed, stations that quietly vanished. You
 approve a release rather than accept it, because publishing a broken timetable

@@ -3,13 +3,13 @@ title: "Ibraverse"
 date: 2025-01-08
 description: "Senior C++ engineer at Zebra Technologies: 2D and 3D vision algorithms, numerical solvers and low-level systems. Projects, write-ups and field notes."
 ---
-Senior C++ engineer at Zebra Technologies. I own 2D and 3D algorithms inside the
-Aurora Imaging Library — geometric solvers, calibration and metrology running on
-factory floors — and port them onto a smart camera under tight memory and CPU
+I'm a senior C++ engineer at Zebra Technologies. I own 2D and 3D algorithms inside the
+Aurora Imaging Library (geometric solvers, calibration and metrology running on
+factory floors) and port them onto a smart camera under tight memory and CPU
 budgets. Modern C++17/20, Windows and Linux, seven years on the same codebase:
 Matrox Imaging first, then Zebra after the acquisition.
 
-What that consists of:
+In practice, that means:
 
 - **Numerical algorithms** — non-linear optimisation and Levenberg–Marquardt, sub-pixel accuracy, and floating-point behaviour defended by regression suites
 - **Low-level systems** — virtual memory, working set, heap and mapped files. I wrote [MemoryTracer](/projects/memorytracer/) to measure it and [two articles](/tech/windows-memory-management-overview/) explaining it
