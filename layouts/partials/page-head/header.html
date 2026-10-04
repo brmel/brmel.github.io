@@ -2,7 +2,7 @@
 <header class="page-header">
   {{- partial "page-head/crumbs.html" $p }}
   {{- $eyebrow := partial "func/eyebrow.html" $p }}
-  {{- $meta := and $p.IsPage (in (slice "tech" "thoughts" "adventures") $p.Section) }}
+  {{- $meta := and $p.IsPage (in (slice "tech" "adventures") $p.Section) }}
   {{- if and $meta (not $eyebrow) }}{{ $eyebrow = partial "post_meta.html" $p }}{{ $meta = false }}{{ end }}
   {{- with $eyebrow }}<p class="u-eyebrow">{{ . }}</p>{{ end }}
   <h1>{{ .title | default $p.Title }}</h1>

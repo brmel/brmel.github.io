@@ -13,8 +13,8 @@
     <span class="u-eyebrow">
       {{- with .Params.projectNo }}{{ i18n "number_sign" }} {{ printf "%02d" . }} <b class="u-dot" aria-hidden="true">·</b> {{ end -}}
       <bdi>{{ .Date.Year }}</bdi> <b class="u-dot" aria-hidden="true">·</b>
-      {{ i18n (printf "project_domain_%s" (.Params.domain | default "saas")) }} <b class="u-dot" aria-hidden="true">·</b>
-      {{ i18n (printf "project_status_%s" (.Params.status | default "active")) | default (.Params.status | upper) }}
+      {{ i18n (printf "project_domain_%s" .Params.domain) }} <b class="u-dot" aria-hidden="true">·</b>
+      {{ i18n (printf "project_status_%s" .Params.status) }}
     </span>
     <span class="u-tile__title">{{ .Title }}</span>
     {{- with .Params.pitch }}<span class="u-tile__text" dir="auto">{{ . }}</span>{{ end }}

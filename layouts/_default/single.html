@@ -1,11 +1,9 @@
 {{- /* Fork of themes/PaperMod/_default/single.html @2d2f2c6 — diff before upgrading. */ -}}
 {{- define "main" }}
 
-{{- $adv := eq .Section "adventures" }}
-
-<article class="post-single{{ if $adv }} adventures{{ end }}">
+<article class="post-single">
     {{ partial "page-head/header.html" (dict "page" .) }}
-    {{- if and (.Param "ShowToc") (ge .ReadingTime 5) }}
+    {{- if ge .ReadingTime 5 }}
     {{- partial "toc.html" . }}
     {{- end }}
 
@@ -15,9 +13,7 @@
     <div class="post-content">{{ partial "anchored_headings.html" .Content }}</div>
     {{- end }}
 
-    {{- if $adv }}
-    {{- if .Params.rating }}{{ partial "adventures/verdict.html" . }}{{ end }}
-    {{- end }}
+    {{- partial "adventures/verdict.html" . }}
 
     {{- partial "article/related-project.html" . }}
 

@@ -1,6 +1,4 @@
-{{- /* Clickable topics at the foot of an article or project page. */ -}}
-{{- $terms := .GetTerms "tags" }}
-{{- with $terms }}
+{{- with .GetTerms "tags" }}
 <nav class="page-tags" aria-label="{{ i18n "page_tags" }}">
   <span class="u-eyebrow page-tags__label">{{ i18n "page_tags" }}</span>
   <ul class="page-tags__list">

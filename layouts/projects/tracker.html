@@ -2,7 +2,7 @@
 {{- define "main" }}
 {{- $l := partial "func/paridata-ledger.html" . }}
 
-<article class="post-single project paridata" id="paridata" data-locale="{{ i18n "number_locale" }}" data-pattern="{{ i18n "currency_pattern" }}">
+<article class="post-single paridata" id="paridata" data-locale="{{ i18n "number_locale" }}" data-pattern="{{ i18n "currency_pattern" }}">
   {{ partial "page-head/header.html" (dict "page" .) }}
 
   <div class="paridata-toggle" id="paridata-toggle" hidden>
@@ -25,7 +25,7 @@
   {{ partial "paridata/dashboard.html" $l }}
   {{ partial "paridata/curve.html" $l }}
   {{ partial "paridata/ledger.html" $l }}
-  {{ partial "paridata/about.html" (dict "page" . "profile" $l.profile) }}
+  {{ partial "paridata/about.html" . }}
 
   {{- partial "page-end/footer.html" . }}
 

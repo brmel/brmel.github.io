@@ -1,20 +1,12 @@
 {{- with .Section }}
-{{- $section := . }}
-{{- with site.GetPage (printf "/%s" .) }}
-{{- $siblings := partial "func/section-pages.html" . -}}
-{{- if eq $section "projects" }}
-  {{- $siblings = sort $siblings "Params.projectNo" "asc" }}
-{{- else }}
-  {{- $siblings = sort $siblings "Date" "desc" }}
-{{- end }}
-
-{{- $dated := ne $section "projects" }}
-{{- $prev := false }}{{ $next := false }}{{ $idx := -1 }}
-{{- range $i, $p := $siblings }}{{ if eq $p.RelPermalink $.RelPermalink }}{{ $idx = $i }}{{ end }}{{ end }}
-{{- if ge $idx 0 }}
-  {{- if gt $idx 0 }}{{ $prev = index $siblings (sub $idx 1) }}{{ end }}
-  {{- if lt $idx (sub (len $siblings) 1) }}{{ $next = index $siblings (add $idx 1) }}{{ end }}
-{{- end }}
+{{- $dated := ne . "projects" }}
+{{- with site.GetPage . }}
+{{- $siblings := sort (partial "func/section-pages.html" .) (cond $dated "Date" "Params.projectNo") (cond $dated "desc" "asc") }}
+{{- $prev := false }}{{ $next := false }}
+{{- range $i, $p := $siblings }}{{ if eq $p.RelPermalink $.RelPermalink }}
+  {{- if gt $i 0 }}{{ $prev = index $siblings (sub $i 1) }}{{ end }}
+  {{- if lt $i (sub (len $siblings) 1) }}{{ $next = index $siblings (add $i 1) }}{{ end }}
+{{- end }}{{ end }}
 
 <nav class="section-nav" aria-label="{{ i18n "section_nav_label" }}">
   <a class="u-eyebrow u-link section-nav__link" href="{{ .RelPermalink }}"><span aria-hidden="true">←</span> {{ i18n "back_to" }} {{ .Title }}</a>

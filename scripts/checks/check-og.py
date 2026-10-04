@@ -4,8 +4,7 @@ from urllib.parse import urlparse
 from gate import PUB, finish, pages
 
 def meta(html, key):
-    return re.search(rf'<meta property={key}[^>]*content="([^"]*)"', html) or re.search(
-        rf'<meta property="{key}"[^>]*content="([^"]*)"', html)
+    return re.search(rf'<meta property="?{key}"?[^>]*content="([^"]*)"', html)
 
 fails, checked = [], 0
 for rel, html in pages():

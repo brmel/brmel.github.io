@@ -1,14 +1,4 @@
 {{- $pages := or .RegularPages .Pages -}}
-{{- $default := index site.Sites 0 -}}
-{{- if ne site.Language.Lang $default.Language.Lang -}}
-  {{- $have := slice -}}
-  {{- range $pages }}{{ with .File }}{{ $have = $have | append .ContentBaseName }}{{ end }}{{ end -}}
-  {{- $target := cond (ne .Section "") (printf "/%s" .Section) .RelPermalink -}}
-  {{- with $default.GetPage $target -}}
-    {{- range (or .RegularPages .Pages) -}}
-      {{- $base := "" }}{{ with .File }}{{ $base = .ContentBaseName }}{{ end -}}
-      {{- if not (in $have $base) }}{{ $pages = $pages | append . }}{{ end -}}
-    {{- end -}}
-  {{- end -}}
-{{- end -}}
+{{- $have := slice }}{{ range $pages }}{{ $have = $have | append .Path }}{{ end -}}
+{{- with (index site.Sites 0).GetPage .Path }}{{ $pages = $pages | append (where (or .RegularPages .Pages) "Path" "not in" $have) }}{{ end -}}
 {{- return $pages -}}

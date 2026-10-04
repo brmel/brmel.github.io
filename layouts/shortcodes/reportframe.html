@@ -3,19 +3,17 @@
 <iframe class="report-frame" title="{{ $.Get "title" }}" src="{{ .RelPermalink }}" loading="lazy"></iframe>
 <script>
 document.querySelectorAll('.report-frame').forEach((frame) => {
-  const tokens = ['--ink', '--ink-soft', '--ink-mute', '--rule', '--rule-soft', '--bg', '--bg-alt', '--accent'];
   const fit = () => { frame.style.height = frame.contentDocument.body.scrollHeight + 'px'; };
   const brand = () => {
-    const page = getComputedStyle(document.body), t = Object.fromEntries(tokens.map((n) => [n, page.getPropertyValue(n).trim()]));
-    const root = frame.contentDocument.documentElement;
+    const page = getComputedStyle(document.body), root = frame.contentDocument.documentElement;
     root.dataset.theme = document.body.classList.contains('dark') ? 'dark' : 'light';
     Object.entries({
-      '--ink': t['--ink'], '--ink-2': t['--ink-soft'], '--muted': t['--ink-mute'], '--subtle': t['--ink-mute'],
-      '--border': t['--rule'], '--line': t['--rule'], '--grid': t['--rule-soft'],
-      '--bg': t['--bg'], '--white': t['--bg'], '--surface': t['--bg-alt'], '--raise': t['--bg-alt'], '--blue-bg': t['--bg-alt'],
-      '--blue': t['--accent'], '--accent-fill': t['--accent'], '--series-1': t['--accent'], '--label-1': t['--accent'],
-      '--series-2': t['--ink-soft'], '--label-2': t['--ink-soft']
-    }).forEach(([name, value]) => root.style.setProperty(name, value));
+      '--ink': '--ink', '--ink-2': '--ink-soft', '--muted': '--ink-mute', '--subtle': '--ink-mute',
+      '--border': '--rule', '--line': '--rule', '--grid': '--rule-soft',
+      '--bg': '--bg', '--white': '--bg', '--surface': '--bg-alt', '--raise': '--bg-alt', '--blue-bg': '--bg-alt',
+      '--blue': '--accent', '--accent-fill': '--accent', '--series-1': '--accent', '--label-1': '--accent',
+      '--series-2': '--ink-soft', '--label-2': '--ink-soft'
+    }).forEach(([name, token]) => root.style.setProperty(name, page.getPropertyValue(token).trim()));
   };
   const dress = () => {
     const doc = frame.contentDocument;
@@ -34,7 +32,7 @@ document.querySelectorAll('.report-frame').forEach((frame) => {
     fit();
   };
   frame.addEventListener('load', dress);
-  if (frame.contentDocument && frame.contentDocument.readyState === 'complete' && frame.contentDocument.body.children.length) dress();
+  if (frame.contentDocument?.readyState === 'complete' && frame.contentDocument.body.children.length) dress();
 });
 </script>
 {{- else -}}

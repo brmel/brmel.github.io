@@ -1,7 +1,5 @@
 baseURL = "https://ibraverse.ca"
 defaultContentLanguage = "en"
-defaultContentLanguageInSubdir = false
-disableKinds = []
 theme = "PaperMod"
 enableGitInfo = true
 
@@ -17,7 +15,7 @@ enableGitInfo = true
       author = "Ibraverse"
       description = "Senior C++ engineer at Zebra Technologies: 2D and 3D vision algorithms, numerical solvers, low-level systems and concurrency."
       keywords = ["machine vision", "image processing", "computer vision", "industrial algorithms", "OpenCV", "C++", "control theory", "robotics", "AI", "Zebra Technologies", "Matrox", "real-time systems", "pattern matching", "edge detection", "calibration"]
-      bio = "Senior C++ engineer at Zebra Technologies — modern C++, real-time image processing, 2D/3D vision algorithms and low-level systems, in Montréal."
+      bio = "Senior C++ engineer at Zebra Technologies in Montréal: modern C++, real-time image processing, 2D/3D vision algorithms and low-level systems."
     [languages.en.params.profileMode]
       enabled = true
       title = "Brahim Redouane Mellah"
@@ -42,7 +40,7 @@ enableGitInfo = true
     title = "Ibraverse"
     [languages.fr.params]
       author = "Ibraverse"
-      description = "Ingénieur C++ senior chez Zebra Technologies : algorithmes de vision 2D et 3D, solveurs numériques, systèmes bas niveau et concurrence."
+      description = "Ingénieur C++ senior chez Zebra Technologies : algorithmes de vision 2D et 3D, solveurs numériques, systèmes bas niveau et concurrence."
       keywords = ["vision industrielle", "traitement d'images", "vision par ordinateur", "algorithmes industriels", "OpenCV", "C++", "théorie du contrôle", "robotique", "IA", "Zebra Technologies", "Matrox", "systèmes temps réel", "appariement de motifs", "détection de contours", "calibration"]
       bio = "Ingénieur C++ senior chez Zebra Technologies — C++ moderne, traitement d'images temps réel, algorithmes de vision 2D/3D et systèmes bas niveau, à Montréal."
     [languages.fr.params.profileMode]
@@ -72,7 +70,7 @@ enableGitInfo = true
       author = "Ibraverse"
       description = "مهندس ‎C++‎ أول في Zebra Technologies: خوارزميات الرؤية ثنائية وثلاثية الأبعاد، والحلّالات العددية، والأنظمة منخفضة المستوى، والتزامن."
       keywords = ["الرؤية الآلية", "معالجة الصور", "رؤية الكمبيوتر", "الخوارزميات الصناعية", "OpenCV", "C++", "نظرية التحكم", "الروبوتات", "الذكاء الاصطناعي", "Zebra Technologies", "Matrox", "أنظمة الوقت الحقيقي", "مطابقة الأنماط", "كشف الحواف"]
-      bio = "مهندس ‎C++‎ أول في Zebra Technologies — ‎C++‎ الحديثة، ومعالجة الصور في الوقت الحقيقي، وخوارزميات الرؤية ثنائية وثلاثية الأبعاد، والأنظمة منخفضة المستوى، في مونتريال."
+      bio = "مهندس ‎C++‎ أول في Zebra Technologies بمونتريال: ‎C++‎ الحديثة، ومعالجة الصور في الوقت الحقيقي، وخوارزميات الرؤية ثنائية وثلاثية الأبعاد، والأنظمة منخفضة المستوى."
     [languages.ar.params.profileMode]
       enabled = true
       title = "إبراهيم رضوان ملاح"
@@ -95,24 +93,20 @@ enableGitInfo = true
   minifyOutput = true
 
 [params]
-  title = "Ibraverse"
   mainSections = ["projects", "tech", "adventures"]
-  images = ["images/profile.jpg"]
   defaultTheme = "light"
-  ShowReadingTime = true
-
-  ShowToc = true
-  ShowCodeCopyButtons = true
   UseHugoToc = true
-
   repo = "https://github.com/brmel/brmel.github.io"
+  socialIcons = [
+    { name = "github", title = "GitHub", url = "https://github.com/brmel" },
+    { name = "linkedin", title = "LinkedIn", url = "https://www.linkedin.com/in/brahim-redouane-mellah/" },
+    { name = "x", title = "X", url = "https://x.com/BrmelB" },
+    { name = "email", title = "Email", url = "mailto:mellah.brahim.redouane@gmail.com" },
+    { name = "facebook", title = "Facebook", url = "https://www.facebook.com/mellah.brahim.redouane" },
+    { name = "instagram", title = "Instagram", url = "https://www.instagram.com/mellahredouane/" },
+  ]
 
   [params.assets]
-    favicon = "favicon.ico"
-    favicon16x16 = "favicon-16x16.png"
-    favicon32x32 = "favicon-32x32.png"
-    apple_touch_icon = "apple-touch-icon.png"
-    safari_pinned_tab = "safari-pinned-tab.svg"
     theme_color = "#faf9f6"
     msapplication_TileColor = "#faf9f6"
 
@@ -123,18 +117,6 @@ enableGitInfo = true
 
   [params.social]
     twitter = "BrmelB"
-
-  [params.label]
-    text = "Ibraverse"
-
-  socialIcons = [
-    { name = "github", title = "GitHub", url = "https://github.com/brmel" },
-    { name = "linkedin", title = "LinkedIn", url = "https://www.linkedin.com/in/brahim-redouane-mellah/" },
-    { name = "x", title = "X", url = "https://x.com/BrmelB" },
-    { name = "email", title = "Email", url = "mailto:mellah.brahim.redouane@gmail.com" },
-    { name = "facebook", title = "Facebook", url = "https://www.facebook.com/mellah.brahim.redouane" },
-    { name = "instagram", title = "Instagram", url = "https://www.instagram.com/mellahredouane/" },
-  ]
 
 [services.googleAnalytics]
   ID = "G-CHFGS2DHF6"
@@ -156,16 +138,9 @@ enableGitInfo = true
   mediaType = "text/plain"
   baseName = "llms-full"
   isPlainText = true
-[outputFormats.markdown]
-  mediaType = "text/markdown"
-  baseName = "index"
-  isPlainText = true
-  rel = "alternate"
 
 [outputs]
   home = ["HTML", "RSS", "JSON", "LLMS", "LLMSFULL"]
-  page = ["HTML"]
-  section = ["HTML", "RSS"]
 
 [[cascade]]
   [cascade.build]

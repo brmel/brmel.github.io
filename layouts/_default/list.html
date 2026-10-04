@@ -1,18 +1,19 @@
 {{- /* Fork of themes/PaperMod/_default/list.html @2d2f2c6 — diff before upgrading. */ -}}
 {{- define "main" }}
 
-{{- if (and site.Params.profileMode.enabled .IsHome) }}
+{{- if .IsHome }}
+{{- $pages := partial "func/main-pages.html" . }}
 
 {{- partial "index_profile.html" . }}
-{{- if .Content }}
+{{- with .Content }}
 <div class="post-content home-intro">
-  {{ .Content }}
+  {{ . }}
 </div>
 {{- end }}
 {{- partial "home/career.html" . }}
-{{- partial "home/featured.html" (dict "page" . ) }}
+{{- partial "home/featured.html" $pages }}
 {{- partial "home/sections.html" . }}
-{{- partial "home/latest.html" . }}
+{{- partial "home/latest.html" $pages }}
 {{- else }}
 
 {{ partial "page-head/header.html" (dict "page" .) }}
@@ -21,16 +22,10 @@
 <div class="post-content">{{ partial "anchored_headings.html" . }}</div>
 {{- end }}
 
-{{- if eq .Kind "section" }}
-{{- partial "home/featured.html" (dict "page" . "section" .Section) }}
-{{- end }}
-
-{{- $pages := union .RegularPages .Sections }}
-{{- if eq .Kind "section" }}
-{{- $pages = partial "func/section-pages.html" . }}
-{{- end }}
+{{- $pages := partial "func/section-pages.html" . }}
+{{- partial "home/featured.html" $pages }}
 {{- range $pages }}
-{{- partial "article/entry.html" . }}
+{{- partial "article/entry.html" (dict "page" .) }}
 {{- end }}
 
 {{- end }}

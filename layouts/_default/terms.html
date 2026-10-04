@@ -7,33 +7,18 @@
 
 {{- $terms := slice -}}
 {{- with (index site.Sites 0).GetPage "/tags" }}
-  {{- range .Pages }}
-    {{- $terms = $terms | append (dict "title" .Title "url" .RelPermalink "count" (len .Pages)) -}}
-  {{- end }}
+  {{- range .Pages }}{{ $terms = $terms | append (dict "key" (lower .Title) "title" .Title "url" .RelPermalink "count" (len .Pages)) }}{{ end }}
 {{- end }}
 
 {{- $placed := slice -}}
 {{- $clusters := slice -}}
 {{- range site.Data.topics.groups }}
   {{- $group := . -}}
-  {{- $rows := slice -}}
-  {{- range .tags }}
-    {{- $tag := . -}}
-    {{- range $terms }}
-      {{- if eq (lower .title) (lower $tag) }}
-        {{- $rows = $rows | append . -}}
-        {{- $placed = $placed | append (lower .title) -}}
-      {{- end }}
-    {{- end }}
-  {{- end }}
-  {{- with $rows }}
-    {{- $clusters = $clusters | append (dict "title" (i18n (printf "topics_group_%s" $group.key)) "items" .) -}}
-  {{- end }}
+  {{- $items := slice -}}
+  {{- range .tags }}{{ $placed = $placed | append (lower .) }}{{ $items = $items | append (where $terms "key" (lower .)) }}{{ end -}}
+  {{- with $items }}{{ $clusters = $clusters | append (dict "title" (i18n (printf "topics_group_%s" $group.key)) "items" .) }}{{ end -}}
 {{- end }}
-
-{{- $rest := slice -}}
-{{- range $terms }}{{ if not (in $placed (lower .title)) }}{{ $rest = $rest | append . }}{{ end }}{{ end }}
-{{- with $rest }}
+{{- with where $terms "key" "not in" $placed }}
   {{- $clusters = $clusters | append (dict "title" (i18n "topics_group_more") "items" (sort . "count" "desc")) -}}
 {{- end }}
 

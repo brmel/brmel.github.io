@@ -5,11 +5,11 @@
 <head>
     {{- partial "head.html" . }}
 </head>
-<body class="{{ cond (or (ne .Kind "page") (eq .Layout "archives") (eq .Layout "search")) "list" "" }}" id="top">
-    {{- partialCached "header.html" . .Page -}}
+<body class="{{ cond (or (ne .Kind "page") (eq .Layout "search")) "list" "" }}" id="top">
+    {{- partial "header.html" . -}}
     <main class="main{{ block "main-width" . }}{{ end }}" id="main">
         {{- block "main" . }}{{ end }}
     </main>
-    {{ partialCached "footer.html" . .Layout .Kind (.Param "hideFooter") (.Param "ShowCodeCopyButtons") (strings.Contains .Content "<pre") -}}
+    {{ partialCached "footer.html" . .Kind (strings.Contains .Content "<pre") -}}
 </body>
 </html>

@@ -1,12 +1,11 @@
-{{- with .Params.series }}
-{{- $series := . }}
-{{- $parts := where (where site.RegularPages "Section" "tech") "Params.series" $series }}
+{{- $parts := slice }}
+{{- with .Params.series }}{{ $parts = where site.RegularPages "Params.series" . }}{{ end }}
 {{- if lt (len $parts) 2 }}
-{{- partial "article/original.html" $ }}
+{{- partial "article/original.html" . }}
 {{- else }}
 <nav class="u-card series" aria-label="{{ i18n "series_label" }}">
   <p class="u-eyebrow series__title">
-    {{ i18n "series_label" }} <b class="u-dot" aria-hidden="true">·</b> {{ $series }}
+    {{ i18n "series_label" }} <b class="u-dot" aria-hidden="true">·</b> {{ .Params.series }}
   </p>
   <ol class="series__list">
     {{- range sort $parts "Params.seriesPart" "asc" }}
@@ -19,9 +18,6 @@
     </li>
     {{- end }}
   </ol>
-  {{- partial "article/original.html" $ }}
+  {{- partial "article/original.html" . }}
 </nav>
-{{- end }}
-{{- else }}
-{{- partial "article/original.html" . }}
 {{- end }}

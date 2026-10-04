@@ -11,7 +11,6 @@ stack: []
 links:
   live: ""
   repo: ""
-takeaway: ""
 
 lessons:
   - ""

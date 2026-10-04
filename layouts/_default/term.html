@@ -1,8 +1,6 @@
 {{- define "main" }}
 {{ partial "page-head/header.html" (dict "page" .) }}
-
-{{- $pages := partial "func/term-pages.html" . }}
-{{- range sort $pages "Date" "desc" }}
+{{- range sort (partial "func/section-pages.html" .) "Date" "desc" }}
 {{- partial "article/entry.html" (dict "page" . "showSection" true) }}
 {{- end }}
 {{- end }}

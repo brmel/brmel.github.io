@@ -1,32 +1,16 @@
-{{- $only := .section | default "" -}}
-{{- $heading := .heading | default (i18n "featured_heading") -}}
-{{- $pages := slice -}}
-{{- range site.Params.mainSections -}}
-  {{- if or (eq $only "") (eq $only .) -}}
-    {{- with site.GetPage (printf "/%s" .) -}}
-      {{- $pages = $pages | append (partial "func/section-pages.html" .) -}}
-    {{- end -}}
-  {{- end -}}
-{{- end -}}
-{{- $pages = where $pages "Params.featured" "!=" nil -}}
-{{- $pages = sort $pages "Params.featured" "asc" -}}
-
-{{- with $pages }}
+{{- with sort (where . "Params.featured" "!=" nil) "Params.featured" "asc" }}
 <section class="home-featured" aria-labelledby="home-featured-heading">
-  <h2 class="u-rule-heading" id="home-featured-heading">{{ $heading }}</h2>
+  <h2 class="u-rule-heading" id="home-featured-heading">{{ i18n "featured_heading" }}</h2>
   <ol class="u-rows">
     {{- range . }}
     <li class="feed-item"{{ partial "func/lang-attrs.html" . }}>
       <a href="{{ .RelPermalink }}">
         <span class="u-eyebrow feed-meta">
-          {{- with .Section }}
-            {{- $name := . }}{{ with site.GetPage (printf "/%s" .) }}{{ $name = .Title }}{{ end }}
-            {{ $name }}
-          {{- end }}
-          {{- with .Params.tags }}<b class="u-dot" aria-hidden="true">·</b> {{ index . 0 }}{{ end }}
+          {{ (site.GetPage .Section).Title }}
+          {{- with .Params.tags }} <b class="u-dot" aria-hidden="true">·</b> {{ index . 0 }}{{ end }}
         </span>
         <span class="feed-title" dir="auto">{{ .Title }}</span>
-        {{- with (or .Description .Params.pitch) }}<span class="feed-sum" dir="auto">{{ . }}</span>{{ end }}
+        {{- with .Description }}<span class="feed-sum" dir="auto">{{ . }}</span>{{ end }}
         {{- partial "lang/en-only.html" . }}
       </a>
     </li>

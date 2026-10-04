@@ -1,11 +1,10 @@
 #!/usr/bin/env python3
 import collections, glob, json, math, os, re
 from datetime import date
-from gate import ROOT, finish
+from gate import CONFIG, ROOT, finish
 
 DATA = os.path.join(ROOT, "data", "paridata")
 FLAGS = os.path.join(ROOT, "assets", "paridata", "flags")
-LANGS = ("en", "fr", "ar")
 MONTH_FILE = re.compile(r"^\d{4}-\d{2}\.json$")
 MATCH_ID = re.compile(r"^(\d{4}-\d{2}-\d{2})-[a-z0-9]+(?:-[a-z0-9]+)*$")
 TICKET_ID = re.compile(r"^(\d{4}-\d{2}-\d{2})-\d{2}$")
@@ -53,7 +52,7 @@ regions = load(os.path.join(DATA, "regions.json")) or {}
 for key, names in regions.items():
     if not os.path.isfile(os.path.join(FLAGS, f"{key}.svg")):
         fails.append(f"regions.json: {key!r} has no flag at assets/paridata/flags/{key}.svg")
-    for lang in LANGS:
+    for lang in CONFIG["languages"]:
         if not (names or {}).get(lang): fails.append(f"regions.json: {key!r} needs a {lang} name")
 if "mix" not in regions: fails.append("regions.json: needs 'mix', used when a coupon crosses countries")
 

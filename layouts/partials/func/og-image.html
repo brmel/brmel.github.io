@@ -1,38 +1,17 @@
 {{- $url := "" -}}
-{{- $alt := "" -}}
-
-{{- with .Params.cover }}
-  {{- with .image }}
-
-    {{- with $.Resources.GetMatch . }}
-      {{- $url = partial "func/og-src.html" . -}}
-    {{- end }}
-    {{- $alt = $.Params.cover.alt | default $.Title -}}
-  {{- end }}
-{{- end }}
-
+{{- $alt := printf "%s — %s" (.Title | plainify) site.Title -}}
+{{- with .Params.cover.image }}{{ with $.Resources.GetMatch . }}
+  {{- $url = partial "func/og-src.html" . -}}
+  {{- $alt = $.Params.cover.alt | default $.Title -}}
+{{- end }}{{ end }}
+{{- if not $url }}{{ with .Resources.Match "gallery/*" }}
+  {{- $url = partial "func/og-src.html" (index . 0) -}}
+{{- end }}{{ end }}
 {{- if not $url }}
-  {{- with .Resources.Match "gallery/*" }}
-    {{- with index . 0 }}
-      {{- $url = partial "func/og-src.html" . -}}
-      {{- $alt = printf "%s — %s" ($.Title | plainify) site.Title -}}
-    {{- end }}
-  {{- end }}
+  {{- $name := .Section }}
+  {{- if not $name }}{{ with .File }}{{ $name = .ContentBaseName }}{{ end }}{{ end }}
+  {{- $card := printf "og/%s.jpg" $name -}}
+  {{- if not (fileExists (printf "static/%s" $card)) }}{{ $card = "og/home.jpg" }}{{ end -}}
+  {{- $url = $card | absURL -}}
 {{- end }}
-
-{{- if not $url }}
-  {{- $section := .Section | default "home" -}}
-  {{- if .IsHome }}{{ $section = "home" }}{{ end -}}
-
-  {{- if and (not .IsHome) (eq $section "home") }}
-    {{- with .File }}{{ $section = .ContentBaseName }}{{ end }}
-  {{- end }}
-  {{- $candidate := printf "og/%s.jpg" $section -}}
-  {{- if not (fileExists (printf "static/%s" $candidate)) }}
-    {{- $candidate = "og/home.jpg" -}}
-  {{- end }}
-  {{- $url = $candidate | absURL -}}
-  {{- $alt = printf "%s — %s" (.Title | plainify) site.Title -}}
-{{- end }}
-
 {{- return dict "url" $url "alt" $alt -}}

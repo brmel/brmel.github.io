@@ -1,13 +1,4 @@
-{{- $size := 24 -}}
-{{- $class := "brand-mark" -}}
-{{- $title := "" -}}
-{{- if reflect.IsMap . -}}
-  {{- with .size }}{{ $size = . }}{{ end -}}
-  {{- with .class }}{{ $class = . }}{{ end -}}
-  {{- with .title }}{{ $title = . }}{{ end -}}
-{{- end -}}
-<svg class="{{ $class }}" width="{{ $size }}" height="{{ $size }}" viewBox="0 0 40 40" fill="none"
-  {{- if $title }} role="img" aria-label="{{ $title }}"{{ else }} aria-hidden="true" focusable="false"{{ end }}>
+<svg class="{{ .class }}" width="{{ .size }}" height="{{ .size }}" viewBox="0 0 40 40" fill="none" aria-hidden="true" focusable="false">
   <circle cx="20" cy="20" r="18" stroke="currentColor" stroke-width="1.5"/>
   <circle cx="20" cy="20" r="11" stroke="currentColor" stroke-width="1.5"/>
   <circle cx="20" cy="20" r="3" fill="currentColor"/>

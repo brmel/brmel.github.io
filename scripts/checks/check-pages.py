@@ -29,7 +29,7 @@ for url, html in pages.items():
     seen = collections.defaultdict(list)
 
     for attrs, inner in ANCHOR.findall(body_text):
-        href = re.search(r'href=(?:"([^"]*)"|([^\s>]+))', attrs)
+        href = HREF.search(attrs)
         if not href: continue
         target = (href.group(1) or href.group(2)).split("#")[0]
         if not target: continue

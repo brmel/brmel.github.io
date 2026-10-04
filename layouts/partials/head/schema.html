@@ -28,15 +28,15 @@
 {{- $og := partial "func/og-image.html" . }}
 {{- $work := dict
       "@type" "SoftwareSourceCode" "name" .Title "url" .Permalink
-      "description" (.Description | default .Params.pitch) "abstract" .Params.pitch
+      "description" .Description "abstract" .Params.pitch
       "author" (dict "@id" $authorId) "programmingLanguage" (.Params.stack | default slice)
       "image" $og.url "inLanguage" .Lang "dateCreated" (.Date.Format "2006-01-02")
       "keywords" (delimit (.Params.tags | default slice) ", ") -}}
-{{- with .Params.links.live }}{{ if . }}{{ $work = merge $work (dict "codeRepository" .) }}{{ end }}{{ end }}
+{{- with .Params.links.live }}{{ $work = merge $work (dict "codeRepository" .) }}{{ end }}
 {{- $graph = $graph | append $work }}
 {{- end }}
 
-{{- if and .IsPage (in (slice "tech" "thoughts" "adventures") .Section) }}
+{{- if and .IsPage (in (slice "tech" "adventures") .Section) }}
 {{- $og := partial "func/og-image.html" . }}
 {{- $article := dict
       "@type" (cond (eq .Section "tech") "TechArticle" "BlogPosting") "headline" .Title "url" .Permalink

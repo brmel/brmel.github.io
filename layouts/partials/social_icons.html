@@ -2,7 +2,7 @@
 <div class="social-icons">
     {{- range site.Params.socialIcons }}
     <a href="{{ .url | safeURL }}" target="_blank" rel="noopener noreferrer me" aria-label="{{ .title }}" title="{{ .title }}">
-        {{- partial "brand/social-icon.html" .url }}
+        {{- partial "brand/social-icon.html" .name }}
     </a>
     {{- end }}
 </div>

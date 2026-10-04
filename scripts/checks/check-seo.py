@@ -1,20 +1,17 @@
 #!/usr/bin/env python3
 import collections, glob, html, json, os, re
 from urllib.parse import unquote
-from gate import BASE, PUB, clean_parts, finish
+from gate import BASE, PUB, clean_parts, finish, pages, url_of
 
-TYPES = {"tech": "TechArticle", "thoughts": "BlogPosting", "adventures": "BlogPosting",
-         "projects": "SoftwareSourceCode"}
+TYPES = {"tech": "TechArticle", "adventures": "BlogPosting", "projects": "SoftwareSourceCode"}
 
 fails, indexable = [], set()
 titles, descriptions = collections.defaultdict(list), collections.defaultdict(list)
 
-for f in sorted(glob.glob(os.path.join(PUB, "**", "index.html"), recursive=True)):
-    h = open(f, encoding="utf-8", errors="ignore").read()
-    if "http-equiv=refresh" in h[:800] or re.search(r'name=robots content=["\']?noindex', h):
+for rel, h in pages("index.html"):
+    if re.search(r'name=robots content=["\']?noindex', h):
         continue
-    rel = os.path.relpath(os.path.dirname(f), PUB).replace(os.sep, "/")
-    url = "/" if rel == "." else f"/{rel}/"
+    url = url_of(rel)
     indexable.add(BASE + url)
     lang = re.search(r"<html lang=([\w-]+)", h).group(1)
     title = html.unescape(re.search(r"<title>(.*?)</title>", h, re.S).group(1))

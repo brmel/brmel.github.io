@@ -1,12 +1,8 @@
 {{- define "main-width" }} main--wide{{ end }}
 {{- define "main" }}
 
-<article class="post-single resume">
-  {{- $contact := "" }}
-  {{- with .Params.contact }}
-  {{- $contact = partial "resume/contact.html" . }}
-  {{- end }}
-  {{ partial "page-head/header.html" (dict "page" . "title" (site.Params.profileMode.title | default .Title) "extra" $contact) }}
+<article class="post-single">
+  {{ partial "page-head/header.html" (dict "page" . "title" (site.Params.profileMode.title | default .Title) "extra" (partial "resume/contact.html" .Params.contact)) }}
 
   {{- with .Content }}
   <div class="post-content resume__body">{{ . }}</div>

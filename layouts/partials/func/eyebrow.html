@@ -2,8 +2,8 @@
 {{- if .IsPage -}}
   {{- if eq .Section "projects" -}}
     {{- with .Params.projectNo }}{{ $parts = $parts | append (printf "%s %s %02d" (i18n "project_no") (i18n "number_sign") .) }}{{ end -}}
-    {{- $parts = $parts | append (i18n (printf "project_domain_%s" (.Params.domain | default "saas"))) -}}
-    {{- $parts = $parts | append (i18n (printf "project_status_%s" (.Params.status | default "active"))) -}}
+    {{- $parts = $parts | append (i18n (printf "project_domain_%s" .Params.domain)) -}}
+    {{- $parts = $parts | append (i18n (printf "project_status_%s" .Params.status)) -}}
   {{- else if eq .Section "adventures" -}}
     {{- $parts = $parts | append (printf "%s %s %03d" (i18n "field_note") (i18n "number_sign") (int (.Params.fieldNote | default 0))) -}}
     {{- with .Params.category }}{{ $parts = $parts | append . }}{{ end -}}

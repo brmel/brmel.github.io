@@ -57,7 +57,6 @@ jobs:
           args: >-
             --no-progress
             --max-concurrency 4
-            --exclude-path public
             --scheme https
             "content/**/*.md"
           fail: false

@@ -2,6 +2,6 @@
   <li><button type="button" class="u-rule-link resume__print" onclick="window.print()">{{ i18n "resume_print" }}</button></li>
   {{- range . }}
   <li><a class="u-rule-link" href="{{ .url }}"{{ if hasPrefix .url "http" }} target="_blank" rel="noopener noreferrer"{{ end }}>
-    {{- partial "brand/social-icon.html" .url }}<span>{{ .label }}</span></a></li>
+    {{- range where site.Params.socialIcons "url" .url }}{{ partial "brand/social-icon.html" .name }}{{ end }}<span>{{ .label }}</span></a></li>
   {{- end }}
 </ul>

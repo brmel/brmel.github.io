@@ -1,0 +1,3 @@
+{{- $pages := slice -}}
+{{- range site.Params.mainSections }}{{ with site.GetPage . }}{{ $pages = $pages | append (partial "func/section-pages.html" .) }}{{ end }}{{ end -}}
+{{- return $pages -}}

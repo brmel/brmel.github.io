@@ -1,5 +1,3 @@
-{{- /* Join a slice into one dot-separated, escaped string. The separator's glyph,
-       its element and its aria-hidden live here and nowhere else. */ -}}
-{{- $escaped := slice -}}
-{{- range . }}{{ $escaped = $escaped | append (htmlEscape .) }}{{ end -}}
-{{- return (delimit $escaped ` <b class="u-dot" aria-hidden="true">·</b> ` | safeHTML) -}}
+{{- $items := slice -}}
+{{- range . }}{{ $items = $items | append (printf "<bdi>%s</bdi>" (htmlEscape .)) }}{{ end -}}
+{{- return (delimit $items ` <b class="u-dot" aria-hidden="true">·</b> ` | safeHTML) -}}

@@ -1,44 +1,31 @@
 {{- /* Fork of themes/PaperMod/partials/footer.html @2d2f2c6 — diff before upgrading. */ -}}
-{{- if not (.Param "hideFooter") }}
 <footer class="footer">
-    {{- if (not site.Params.disableScrollToTop) }}
     <a href="#top" aria-label="{{ i18n "go_to_top" }}" title="{{ i18n "go_to_top" }} (Alt + G)" class="top-link" id="top-link" accesskey="g">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
             <path d="M12 6H0l6-6z" />
         </svg>
     </a>
-    {{- end }}
-    <span>&copy; {{ now.Year }} <a href="{{ "" | absLangURL }}">{{ site.Params.label.text | default site.Title }}</a></span>
+    <span>&copy; {{ now.Year }} <a href="{{ "" | absLangURL }}">{{ site.Title }}</a></span>
     {{- with site.Home.OutputFormats.Get "rss" }}
     · <a href="{{ .RelPermalink }}" type="application/rss+xml">RSS</a>
     {{- end }}
 </footer>
-{{- end }}
-
 
 {{- partial "extend_footer.html" . }}
 
-{{- if (not site.Params.disableScrollToTop) }}
 <script>
     const topBtn = document.getElementById("top-link");
-    window.onscroll = () => {
-        const show = (document.documentElement.scrollTop || document.body.scrollTop) > 800;
+    onscroll = () => {
+        const show = scrollY > 800;
         topBtn.style.visibility = show ? "visible" : "hidden";
         topBtn.style.opacity = show ? "1" : "0";
     };
-</script>
-{{- end }}
-
-{{- if (not site.Params.disableThemeToggle) }}
-<script>
     document.getElementById("theme-toggle").addEventListener("click", () => {
-        const isDark = document.body.classList.toggle('dark');
-        localStorage.setItem("pref-theme", isDark ? 'dark' : 'light');
+        localStorage.setItem("pref-theme", document.body.classList.toggle("dark") ? "dark" : "light");
     });
 </script>
-{{- end }}
 
-{{- if and (eq .Kind "page") (.Param "ShowCodeCopyButtons") (strings.Contains .Content "<pre") }}
+{{- if and (eq .Kind "page") (strings.Contains .Content "<pre") }}
 <script>
     document.querySelectorAll('pre > code').forEach((code) => {
         const btn = document.createElement('button');

@@ -2,9 +2,9 @@
 
 > {{ site.Params.description }}
 
-{{ with site.GetPage "/" }}{{ .Plain | plainify | htmlUnescape | chomp }}{{ end }}
+{{ site.Home.Plain | plainify | htmlUnescape | chomp }}
 
-Every Tech, Thoughts and Adventures article is also served as markdown at its URL followed by `index.md`.
+Every Tech and Adventures article is also served as markdown at its URL followed by `index.md`.
 
 **Career**
 
@@ -28,7 +28,7 @@ Every Tech, Thoughts and Adventures article is also served as markdown at its UR
 ## {{ .Title }}
 
 {{ range (sort (partial "func/section-pages.html" .) "Date" "desc") -}}
-- [{{ .Title | htmlUnescape }}]({{ .Permalink }}){{ with (or .Description .Params.pitch .Params.summary) }}: {{ . | plainify | htmlUnescape | chomp }}{{ end }}
+- [{{ .Title | htmlUnescape }}]({{ .Permalink }}){{ with .Description }}: {{ . | plainify | htmlUnescape | chomp }}{{ end }}
 {{ end }}
 {{- end }}
 {{- end -}}

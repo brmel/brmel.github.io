@@ -1,11 +1,9 @@
 {{- /* Fork of themes/PaperMod/_default/rss.xml @2d2f2c6 — diff before upgrading. */ -}}
-{{- $pages := slice }}
+{{- $pages := .Pages }}
 {{- if .IsHome }}
-{{- range site.Params.mainSections }}{{ with site.GetPage (printf "/%s" .) }}{{ $pages = $pages | append (partial "func/section-pages.html" .) }}{{ end }}{{ end }}
+{{- $pages = partial "func/main-pages.html" . }}
 {{- else if .IsSection }}
 {{- $pages = partial "func/section-pages.html" . }}
-{{- else }}
-{{- $pages = .Pages }}
 {{- end }}
 {{- $pages = sort $pages "Date" "desc" }}
 {{- printf "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>" | safeHTML }}
@@ -27,7 +25,7 @@
       <link>{{ .Permalink }}</link>
       <pubDate>{{ .PublishDate.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</pubDate>
       <guid>{{ .Permalink }}</guid>
-      <description>{{ with .Description | html }}{{ . }}{{ else }}{{ .Summary | html }}{{ end }}</description>
+      <description>{{ .Description | html }}</description>
     </item>
     {{- end }}
   </channel>

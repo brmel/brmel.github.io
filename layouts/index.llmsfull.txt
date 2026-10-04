@@ -11,7 +11,7 @@
 {{ with .Date }}{{ .Format "2006-01-02" }}{{ end }}{{ with .Params.tags }} · {{ delimit . ", " }}{{ end }}
 --------------------------------------------------------------------------------
 
-{{ with (or .Description .Params.pitch .Params.summary) }}{{ . | plainify | htmlUnescape | chomp }}
+{{ with .Description }}{{ . | plainify | htmlUnescape | chomp }}
 
 {{ end }}{{ .Plain | plainify | htmlUnescape | chomp }}
 {{ end }}

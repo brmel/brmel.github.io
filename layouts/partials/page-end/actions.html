@@ -1,15 +1,10 @@
-{{- $repo := site.Params.repo -}}
-{{- with .File }}
-{{- if $repo }}
-{{- $title := printf "%s: " ($.Title | plainify) -}}
-{{- $body := printf "Page: %s\n\n" $.Permalink -}}
+{{- with site.Params.repo }}
 <ul class="content-actions">
   <li>
-    <a class="u-eyebrow u-rule-link" href="{{ printf "%s/issues/new?title=%s&body=%s" $repo (urlquery $title) (urlquery $body) }}"
+    <a class="u-eyebrow u-rule-link" href="{{ printf "%s/issues/new?title=%s&body=%s" . (urlquery (printf "%s: " ($.Title | plainify))) (urlquery (printf "Page: %s\n\n" $.Permalink)) }}"
        target="_blank" rel="noopener noreferrer">
       {{ i18n "discuss_page" }} <span aria-hidden="true">↗</span>
     </a>
   </li>
 </ul>
-{{- end }}
 {{- end }}

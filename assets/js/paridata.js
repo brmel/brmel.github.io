@@ -4,7 +4,6 @@
     const stakeField = document.getElementById('paridata-stake-field');
     const stakeInput = document.getElementById('paridata-stake');
     const stakeSymbol = document.getElementById('paridata-stake-symbol');
-    if (!root || !toggle || !stakeField || !stakeInput || !stakeSymbol) return;
 
     const phone = window.matchMedia('(max-width: 600px)');
     const buttons = [...toggle.querySelectorAll('button')];
@@ -79,11 +78,11 @@
 
     const PER_PAGE = 10;
     const rows = document.querySelectorAll('.paridata-row');
+    if (rows.length <= PER_PAGE) return;
     const pager = document.getElementById('paridata-pager');
     const prev = document.getElementById('paridata-prev');
     const next = document.getElementById('paridata-next');
     const label = document.getElementById('paridata-pagelabel');
-    if (rows.length <= PER_PAGE || !pager || !prev || !next || !label) return;
 
     const totalPages = Math.ceil(rows.length / PER_PAGE);
     let currentPage = 0;

@@ -1,8 +1,7 @@
 <nav class="home-sections" aria-label="{{ i18n "sections" }}">
   {{- range site.Params.mainSections }}
   {{- with site.GetPage (printf "/%s" .) }}
-  {{- $pages := partial "func/section-pages.html" . }}
-  {{- if ge (len $pages) 1 }}
+  {{- if partial "func/section-pages.html" . }}
   <a class="u-card u-tile" href="{{ .RelPermalink }}">
     <span class="u-bar" aria-hidden="true"></span>
     <span class="u-tile__title">{{ .Title }}</span>

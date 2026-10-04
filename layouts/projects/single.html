@@ -1,6 +1,6 @@
 {{- define "main" }}
 
-<article class="post-single project">
+<article class="post-single">
   {{ partial "page-head/header.html" (dict "page" . "extra" (partial "project/meta.html" .)) }}
 
   {{- with .Params.lede }}

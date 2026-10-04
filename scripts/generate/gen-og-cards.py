@@ -2,7 +2,7 @@
 import sys, os
 from PIL import Image
 
-SECTIONS = ["home", "resume", "projects", "tech", "adventures", "thoughts"]
+SECTIONS = ["home", "resume", "projects", "tech", "adventures"]
 W, H = 1200, 630
 
 src = sys.argv[1] if len(sys.argv) > 1 else "og-strip.png"
