@@ -1,115 +1,68 @@
-# Ibraverse — Voice & Tone
+# Voice and tone: field notes and social formats
 
-> Honest, curious, specific. First person. One genuine con, every time.
+The site voice, its rules and the tells to cut are in [voice.md](../../voice.md). This file adds what
+is specific to Adventures field notes and to social posts and reels.
 
----
+## Persona
 
-## 1. Persona
+A careful friend who went, paid attention and tells you what it was like, including the part that
+wasn't great. An engineer's eye on hikes, dinners, saunas, shows and streets. Calm, precise, never
+breathless.
 
-Ibraverse is a careful friend who actually went, paid attention, and tells you the truth — including
-the part that wasn't great. An engineer's eye (image processing, control theory) pointed at the
-ordinary world: hikes, dinners, saunas, shows, streets. **Calm, precise, generous, never breathless.**
-
-Not a critic performing taste. Not an influencer selling enthusiasm. A field scientist of small
-pleasures who writes the note down so the next person walks in informed.
-
-**Three words:** *honest · curious · specific.*
-
----
-
-## 2. Do / Don't
+## Field-note rules
 
 | Do | Don't |
 |---|---|
-| Write in **first person** — "I went," "I'd go back." | Use the royal "we" or faceless brand-speak. |
-| Be **specific**: the dish, the trail junction, the water temp. | Generalize: "amazing food," "stunning views." |
-| Give **one genuine con** in every review. | Pretend nothing was wrong, or pad with fake cons. |
-| Quantify when honest: "11 tables," "4.2 km," "42°C plunge." | Invent precision or stats for flavor. |
-| Use plain words; let the serif title carry the drama. | Reach for "hidden gem," "must-visit," "game-changer." |
-| Recommend an **action**: go early, book the glass, skip the app. | End on a shrug. Always leave a verdict. |
-| Let dry humor sit quietly in a clause. | Use exclamation marks or emoji in body copy. |
-| Credit the place and the people honestly. | Punch down, or review the staff as theater. |
+| Write "I went", "I'd go back". | Use "we" or brand-speak. |
+| Name the dish, the trail junction, the water temperature. | Write "amazing food", "stunning views". |
+| Give one genuine con in every review. | Leave the con out, or pad with a fake one. |
+| Quantify what was measured: "11 tables", "4.2 km", "42°C plunge". | Invent precision. |
+| End on an action: go early, book the glass, skip the app. | End without a verdict. |
+| Let dry humour sit in a clause. | Use exclamation marks or emoji in body copy. |
+| Credit the place and the people. | Punch down or review the staff as theatre. |
 
----
+## Captions
 
-## 3. The eyebrow grammar (canonical)
+Captions name the moment and the time: "Golden hour, handheld. The dining room at 18:40." or "The
+ridge clears just after seven." One line, about twelve words at most, never restating the title.
 
-```
-FIELD NOTE № {nnn} · {CATEGORY} · {PLACE / REGION}
-```
-- `{nnn}` zero-padded to 3 digits. `{CATEGORY}` ∈ {RESTAURANT, HIKE, SPA / STAY, EVENT, CITY / WALK}.
-- `{PLACE / REGION}` is a real, locatable place — neighbourhood, park, town. Uppercase, in `ink-mute`.
-- The `·` dots are accent. Never improvise the structure; the consistency *is* the brand.
+## Headlines
 
----
+Three to seven words, sentence case, set in Instrument Serif. The con lives in the body.
 
-## 4. Caption style
+| Category | Examples |
+|---|---|
+| Restaurant | "A quiet table by the window", "Worth the detour, loud after seven" |
+| Hike | "The ridge clears just after seven", "Mud to the knees, view to the coast" |
+| Spa / stay | "Steam, cedar, and a cold plunge", "The sauna earns the drive" |
+| Event | "Front row, back of the mix", "Small room, enormous sound" |
+| City / walk | "An hour east of the noise", "All staircases, no regrets" |
 
-Captions name the **moment and the time**, not the obvious.
+## Reel beats
 
-- Good: "Golden hour, handheld. The dining room at 18:40." / "The ridge clears just after seven."
-- Good: "&lt;PHOTO&gt; — second plunge, 42°C, before the cold."
-- Avoid: "Beautiful view!" / "So good 😍" / restating the title.
-- Keep to one line (≤ ~12 words). Inter Tight caption, `ink-soft`. Photo credit in `ink-mute` if needed.
+Every reel and carousel follows five beats, about 25 seconds in all.
 
----
+1. **Hook** (0–2 s): the verdict at a glance or the one surprising detail, three to five words on
+   screen, the strongest shot in the first frame.
+2. **Place** (2–6 s): where this is, the eyebrow's context.
+3. **Proof** (6–14 s): the dish, the climb, the water, the seat. Fast cuts.
+4. **Con** (14–20 s): the one honest drawback. Never skipped.
+5. **Verdict** (20–25 s): would I go back, for whom, one tip, then the end card (mark,
+   `ibraverse.ca`, `@ibraverse`).
 
-## 5. The 5-beat reel structure
+On-screen text uses the serif title for beats 1 and 5, the eyebrow for beat 2 and captions for 3 and 4.
 
-Every reel (and the carousel) follows the same five beats. Same skeleton, any subject.
+## Verdict
 
-1. **Hook** *(0–2s)* — the verdict-in-a-glance or the one surprising detail. 3–5 words on screen.
-2. **Place** *(2–6s)* — where we are, set the scene, the eyebrow context.
-3. **Proof** *(6–14s)* — the specifics: the dish, the climb, the water, the seat. Show, don't sell.
-4. **The Con** *(14–20s)* — the one honest drawback. This is the trust beat; never skip it.
-5. **Verdict** *(20–25s)* — would I go back, for whom, and the one actionable tip. End-card: mark + CTA.
-
-On-screen text uses the **serif title** for beats 1 & 5, the **eyebrow** for 2, captions for 3–4.
-
----
-
-## 6. Example headlines per category
-
-Titles are Instrument Serif, 3–7 words, sentence case, optically balanced. One con lives in the body,
-not the title.
-
-**Restaurant**
-- "A quiet table by the window"
-- "Worth the detour, loud after seven"
-- "The bread outran the cod"
-
-**Hike**
-- "The ridge clears just after seven"
-- "Short climb, unreasonable payoff"
-- "Mud to the knees, view to the coast"
-
-**Spa / Stay**
-- "Steam, cedar, and a cold plunge"
-- "Quiet by design, thin by accident"
-- "The sauna earns the drive"
-
-**Event**
-- "Front row, back of the mix"
-- "Small room, enormous sound"
-- "Late start, early magic"
-
-**City / Walk**
-- "An hour east of the noise"
-- "All staircases, no regrets"
-- "The long way is the right way"
-
----
-
-## 7. Verdict block — the standard close
-
-Every field note ends with a structured verdict, rendered from front matter (see `docs/adventures-playbook.md`):
+Every field note ends with the verdict block rendered from front matter
+([adventures playbook](../../adventures-playbook.md)):
 
 ```
 VERDICT
-Would I go back?  → Yes, for the early seating.
-Best for          → A slow dinner for two.
-The one con       → The room gets loud after seven.
-Field rating      → 4.2 / 5
+Would I go back?  Yes, for the early seating.
+Best for          A slow dinner for two.
+The one con       The room gets loud after seven.
+Field rating      4.2 / 5
 ```
 
-Honest, scannable, always present. The rating is out of 5, one decimal, and must match the prose.
+The rating is out of 5 with one decimal and agrees with the prose.

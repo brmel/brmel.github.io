@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(hugo *)",
+      "Bash(./scripts/check.sh)",
+      "Bash(./scripts/gates.sh)",
+      "Bash(python3 scripts/checks/*)",
+      "Bash(python3 scripts/audit.py *)",
+      "Bash(node .claude/skills/verify-site/responsive.mjs)",
+      "Bash(git status *)",
+      "Bash(git diff *)",
+      "Bash(git log *)",
+      "Bash(git show *)"
+    ]
+  }
+}

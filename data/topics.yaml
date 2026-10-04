@@ -1,5 +1,3 @@
-# Topic groups for /tags/. Order here is the order on the page.
-# Any tag not listed falls into the trailing "more" group automatically.
 groups:
   - key: "systems"
     tags: ["C++", "Systems", "Windows"]

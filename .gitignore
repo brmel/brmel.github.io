@@ -3,8 +3,10 @@
 .hugo_build.lock
 node_modules/
 .playwright-mcp/
-.claude/
+.claude/settings.local.json
+.claude/worktrees/
 .vscode/
 .idea/
 *.swp
 .DS_Store
+__pycache__/

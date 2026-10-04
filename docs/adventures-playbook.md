@@ -1,247 +1,77 @@
-# Adventures Playbook — Montreal articles with a voice/face video review
+# Adventures playbook
 
-How to publish an Adventures article that **goes viral and stays on-brand**:
-a written article with photos, a map, and honest recommendations, paired with a
-short **face + voice video review** (you on camera explaining the place) posted to
-YouTube, Instagram and TikTok.
+How to publish a field note: a written review of a place with photos, a map link and a verdict,
+paired with a short vertical video posted to YouTube, Instagram and TikTok. Every field note has the
+same structure so readers learn the format once.
 
-The whole point is a **repeatable pattern**: every article looks the same, every
-reel follows the same beats, so the audience learns your format and the work gets
-faster each time. Treat this file as the single source of truth — follow it
-article-by-article and don't improvise the structure.
-
-**Photographs must be yours and must be of the place.** The two field notes
-published in August 2026 shipped as drafts carrying one stock file reused as the
-hero of both a Rawdon spa and an Adirondack summit; they went live without
-images rather than with borrowed ones.
-
-`gmap` takes a real embed URL from Google Maps → Share → "Embed a map". The
-`q="place name"` form renders a link, not an iframe: Google refuses to frame the
-legacy `maps.google.com/maps?output=embed` URL and it came out as a blank box.
-
-Tools available: the `figure` and `gmap` shortcodes, and an `adventures`
-archetype that scaffolds the structure.
-
----
-
-## 0. The format in one picture
+## The page
 
 ```
 ┌───────────────────────────────────────┐
-│  FIELD NOTE № 004 · CATEGORY · PLACE   │  ← eyebrow (auto)
-│  Big serif title                       │
-│  One-line hook sentence                │
-│  ## The place        + photo           │
-│  ## What I did       + photo           │
-│  ## Map              (gmap)            │
-│  ## Recommendations  (scannable list)  │
+│ Home · Adventures                      │ breadcrumbs (auto)
+│ FIELD NOTE № 004 · HIKE · ADIRONDACKS  │ eyebrow from fieldNote, category, place (auto)
+│ Title                                  │
+│ description                            │
+│ date · N min                           │ (auto)
+│ hook sentence                          │
+│ ## The place          + photo          │
+│ ## What I did         + photo          │
+│ map link (gmap)                        │
+│ ## Recommendations    fixed list       │
 ├───────────────────────────────────────┤
-│  VERDICT  (goBack / bestFor / con / ★) │  ← structured, from front matter (auto)
+│ VERDICT  go back · best for · con · ★  │ from front matter (auto)
 └───────────────────────────────────────┘
 ```
 
-The **header eyebrow and Verdict block render automatically** from front
-matter (`category`, `fieldNote`, `place`, `rating`, `goBack`, `bestFor`, `con`). You write only the prose body — the brand
-chrome is layout-driven, so every article is consistent by construction.
-`category` (restaurant / hike / spa / event / city) sets the eyebrow label. It does
-**not** set a colour: the site has one accent.
-
-- **Adventures** = places & experiences (Montreal + travel). The video pulls
-  views from YouTube/IG/TikTok back to the site.
-- **Lifestyle** = health/training/protocols. Different section — don't mix.
-- One article = one **page bundle**: `content/adventures/<slug>/index.md` + all
-  its images in the same folder.
-
----
-
-## 1. The VIDEO — record voice (and face) for the article
-
-This is the growth engine. The video is filmed *as if* narrating the article:
-you talk through the place, the article is the written version of the same script.
-
-### 1.1 Format & specs (all platforms, one shoot)
-
-| Thing | Spec |
-|-------|------|
-| Aspect ratio | **9:16 vertical** (1080×1920) |
-| Length | **15–45s** (sweet spot 22–30s). Shorts/Reels/TikTok all favor short + replays |
-| Frame rate | 30fps (60fps if lots of motion) |
-| Face | Yes if comfortable — a face in the first frame lifts watch-time. Talking-head + b-roll cutaways beats voice-over-only |
-| Voice | Clear, close mic. Phone earbuds mic > built-in. Record in a quiet spot or add it as voice-over later |
-| Captions | **Always burn in subtitles** — most people watch muted. Auto-captions in CapCut/IG/TikTok, then fix typos |
-| Orientation | Lock phone, never switch landscape |
-
-### 1.2 The viral structure — same beats every time
-
-Reproducibility = the audience recognizes your pattern. Use these 5 beats in
-**every** reel:
-
-1. **Hook (0–3s)** — the make-or-break. Say the payoff first, on camera.
-   - Templates: *"This is the best [thing] in Montreal and almost nobody knows it."*
-     / *"Don't go to [place] before you watch this."* / *"I found a [X] in Montreal
-     that costs [Y]."*
-   - Show the most striking shot in frame 1. No slow intros, no "hey guys".
-2. **Context (3–8s)** — what it is, where, why it matters. One sentence.
-3. **Payoff / proof (8–20s)** — the actual experience: the food, the view, the
-   thing. Fast cuts, 1.5–3s per shot. This is the substance.
-4. **Honest take (20–30s)** — one real opinion (a pro AND a con). Honesty =
-   trust = shares.
-5. **CTA (last 2–3s)** — drive to the site + loop.
-   - *"Full guide, map, and prices on ibraverse.ca"* / *"Save this for your next
-     trip."* / *"Follow for more Montreal spots."*
-   - End on a frame that loops back to the hook (boosts replays = algorithm gold).
-
-### 1.3 Shooting guidelines
-
-- **B-roll, lots of it.** Film 5–10 short clips per spot: wide establishing,
-  medium, close-up detail, a moving shot (walk-in / pan), your reaction. Variety
-  lets you cut fast.
-- **Stabilize.** Both hands, elbows tucked, or a small gimbal. Shaky = unwatchable.
-- **Light.** Shoot toward the light on your face; golden hour (1h after sunrise /
-  before sunset) for exteriors. Avoid harsh noon overhead.
-- **Audio first.** Bad video survives, bad audio doesn't. Re-record voice-over
-  indoors if the location was noisy.
-- **Get the establishing shot + a signage shot** (name of the place) — anchors
-  the viewer.
-- **Vertical safe zone:** keep faces/text in the **center 80%** — platform UI
-  (captions, buttons) covers top ~10% and bottom ~20%.
-
-### 1.4 Editing guidelines (CapCut / InShot / Premiere)
-
-- **Cut on motion / on the beat.** No dead air. First cut within 1.5s.
-- **Pacing:** 1.5–3s per shot. Speed-ramp boring transitions (walking → 2×).
-- **Music:** use a **trending** audio (TikTok/IG surface trending-audio videos
-  more). Keep it low under your voice (-18 to -12 dB).
-- **Text overlay:** put the hook as on-screen text too (people read before they
-  hear). Big, high-contrast, center-safe.
-- **Branding:** same intro font, same caption style, same end-card every time
-  (see §4). Consistency = recognizable brand.
-- **Export:** 1080×1920, H.264, ~10–15 Mbps. Same export preset each time.
-
-### 1.5 Post to all 3 platforms (more reach, one file)
-
-- **YouTube** → upload as a **Short** (≤60s, vertical). Grab the 11-char video ID.
-- **Instagram** → post as a **Reel**. Copy the reel URL.
-- **TikTok** → post. Copy the video URL.
-- Write platform captions with 1 hook line + 3–5 hashtags (`#montreal #mtlfood
-  #montreallife` + 1 niche tag). Same hook wording across platforms.
-- **Cross-link:** caption says "full guide on ibraverse.ca"; the article links
-  the clips in its body.
-
-### 1.6 Thumbnails / covers
-
-YouTube auto-generates one; **override it** for consistency. IG/TikTok have no
-public auto-thumbnail, so you supply one.
-
-Thumbnail rules (same template every time):
-- One **clear subject** + **3–5 word** bold text (e.g. "BEST BAGEL IN MTL").
-- High contrast, readable at tiny size. Face with expression if possible.
-- Same font + same color accent as your brand (§4).
-- Export ~1080px wide JPG. Name it `cover.jpg`: it is the list thumbnail and the social card.
-
----
-
-## 2. The WRITTEN article — text, photos, map, visuals
-
-The article is the SEO + reference layer: it ranks on Google, holds the map and
-prices the reel can't, and gives the reel somewhere to send people.
-
-### 2.1 Text guidelines
-
-- **Voice:** first person, conversational, the way you talked in the reel. Short
-  sentences. No travel-brochure fluff.
-- **Lead with the hook** — the first sentence mirrors the reel's hook. Don't
-  warm up.
-- **Length:** 300–700 words. Enough for Google, short enough to read on a phone.
-- **Scannable:** `##` headings, short paragraphs (2–3 sentences), bold the key
-  noun in a line. People skim.
-- **Be specific & honest:** name the dish, the price, the street, the metro. One
-  genuine con builds more trust than five pros.
-- **One idea per section.** Keep the fixed structure (The place / What I did /
-  Map / Recommendations / Verdict) so every article reads the same.
-- **SEO:** put the place name + city in the title, the first sentence, and one
-  heading. Fill `summary` (used on Google + social cards) with the hook.
-
-### 2.2 Photos & images
-
-- **Hero/cover:** one strong horizontal-ish photo → `cover.jpg`, set in front
-  matter `cover.image`. Shows in the list, on Google, on social shares.
-- **In-body:** 3–6 photos via the `figure` shortcode. Alternate wide (scene) and
-  close (detail). Every photo earns its place — cut filler.
-- **Optimize before commit (mandatory — repo is public + must stay fast):**
-  - Resize to **≤1600px** wide.
-  - Compress: JPEG quality ~80, or WebP. Target **<300KB** per photo.
-  - Strip EXIF (removes GPS/personal metadata — privacy + size).
-  - Tool: `sips` (mac), `squoosh.app`, or ImageMagick:
-    `magick in.jpg -resize 1600x -strip -quality 80 out.jpg`
-- **Always set `alt`** — accessibility + SEO.
-- **Captions** add context and are scannable — use them.
-
-```text
-{{< figure src="photo-1.jpg" alt="Cobblestone street in the Old Port" caption="Rue de la Commune at golden hour" >}}
-```
-
-### 2.3 Map
-
-Every adventure gets a map — it's the reason people save the article.
-
-```text
-{{< gmap q="Schwartz's Deli, Montreal" title="Schwartz's Deli" >}}
-```
-
-- Quick pin: `q="Place Name, Montreal"`.
-- Styled map / exact pin: Google Maps → **Share → Embed a map** → copy `src=`:
-  `{{< gmap src="https://www.google.com/maps/embed?pb=..." title="..." >}}`
-- Multi-stop route/day: build a **Google My Maps**, embed its `src`. Great for
-  "a day in [neighborhood]" articles.
-
-### 2.4 Other visuals (optional, on-brand)
-
-- A simple **at-a-glance box** at the top (cost, time, metro) helps skimmers.
-- Styling goes in `assets/css/extended/44-adventures.css`, built from tokens —
-  **never inline `<style>`**, and never a per-article stylesheet the CSS gate can't see.
-
----
-
-## 3. Build an article — step by step
+## 1. Scaffold
 
 ```bash
-hugo new adventures/old-port-walk/index.md
+hugo new adventures/<slug>/index.md
 ```
 
-Uses `archetypes/adventures.md`, scaffolds `draft: true` + field-note front
-matter + figures + recommendations. Put every photo in the same `content/adventures/old-port-walk/`
-folder.
+This copies `archetypes/adventures.md` (front matter, figures, map, recommendations) with
+`draft: true`. Every photo goes in the same bundle, `content/adventures/<slug>/`.
 
-### Front matter
+## 2. Front matter
 
 ```yaml
----
 title: "A Walk Through the Old Port"
 date: 2026-06-01
 draft: true
-summary: "One-line teaser = the reel's hook. Shown in the list + Google + social."
-tags: ["Montreal", "Old Port", "Walking"]
+description: "The reel's hook in one line: list card, home feed, search, Google and social cards."
+tags: ["Montréal", "Walking"]
 cover:
-    image: "cover.jpg"
-    alt: "Old Port of Montreal at sunset"
-category: "city"          # restaurant | hike | spa | event | city → label + icon
-fieldNote: 5              # → № 005 in the eyebrow
+  image: "cover.jpg"
+  alt: "Old Port of Montréal at sunset"
+category: "city"
+fieldNote: 5
 place: "Old Port, Montréal"
-rating: 4.2               # verdict, out of 5
-goBack: "Yes — first-evening material."
+rating: 4.2
+goBack: "Yes, on a first evening in town."
 bestFor: "A free sunset walk after the crowds thin."
-con: "Touristy — skip the terraces on the square."
----
+con: "Touristy: skip the terraces on the square."
 ```
 
-### Body order: hook sentence → photos → map → recommendations. Stop there.
+| Field | Rule |
+|---|---|
+| `description` | 50–160 characters, unique per language. |
+| `cover` | `image` must be a file in the bundle (the build fails otherwise); `alt` is required (`check-og.py`). It is the list thumbnail and the social card. |
+| `category` | `restaurant`, `hike`, `spa`, `event` or `city`; printed as the eyebrow label. |
+| `fieldNote` | The note's number, shown as `№ 005`. |
+| `place` | A real, locatable place; the eyebrow's last part and the JSON-LD `contentLocation`. |
+| `rating` | Out of 5, one decimal, consistent with the prose. The verdict block renders only when it is set. |
+| `goBack`, `bestFor`, `con` | The verdict rows. `con` is one genuine drawback. |
+| `tags` | Topic pages; a new tag needs a topic page, as in the [projects playbook](projects-playbook.md#5-new-tags). |
 
-The Verdict is **not** written in the body — it renders from
-`rating`/`goBack`/`bestFor`/`con` above. This keeps every article identical in
-structure.
+## 3. The text
 
-Recommendations block (keep this exact shape every article):
+- First person, the way the reel talks. The first sentence is the reel's hook.
+- 300–700 words, `##` headings, paragraphs of two or three sentences.
+- Name the dish, the price, the street, the trail junction, the metro. One genuine con.
+- Place name and city in the title, the first sentence and one heading.
+- The verdict is never written in the body; it renders from front matter.
+
+Recommendations, same shape every time:
 
 ```markdown
 - **Go for:** what it's best at
@@ -252,69 +82,51 @@ Recommendations block (keep this exact shape every article):
 - **Getting there:** metro / parking
 ```
 
----
+Voice: [voice.md](voice.md) and, for field notes and social formats, [voice-tone](brand-kit/01-guides/voice-tone.md).
 
-## 4. Theme & branding — make it recognizable
+## 4. Photos and map
 
-Consistency is what makes content "reproducible" and builds a brand. Lock these
-once and reuse forever:
+Photos are your own and show the place. Grade and crops: [photography](brand-kit/01-guides/photography.md).
 
-| Element | Lock it |
-|---------|---------|
-| **Name/handle** | Same on YouTube / IG / TikTok (e.g. @ibraverse). Link all to ibraverse.ca |
-| **Colors** | Reuse the site palette from `assets/css/extended/00-tokens.css` (`--ink`, `--accent`). Same accent in thumbnails + text overlays |
-| **Font** | One display font for thumbnails/overlays; one body font (site default) |
-| **Intro** | Same 1–2s opener (logo flash or signature line) on every reel |
-| **End card** | Same CTA frame: "ibraverse.ca" + follow prompt |
-| **Caption style** | Same subtitle font/position/animation every reel |
-| **Tone** | Honest, curious, specific. Same persona on camera and in text |
-| **Naming** | Files always `cover.jpg`, `photo-N.jpg` |
+- `cover.jpg` plus three to six in-body photos, alternating wide scene and close detail.
+- Before committing: long edge ≤ 1600px, about 300 KB or less, EXIF stripped
+  (`magick in.jpg -resize 1600x -strip -quality 80 out.jpg`).
+- In the body: `{{< figure src="photo-1.jpg" alt="…" caption="…" >}}`. Captions name the moment and
+  the time. The first figure loads with high priority, the rest lazily.
+- Map: `{{< gmap q="Place name, City" title="…" >}}` renders a link to a Google Maps search.
+- Styling goes in `assets/css/extended/44-adventures.css` from tokens; no inline `<style>`.
 
-A viewer should know it's yours from the first frame and the article should feel
-like the same series every time.
+## 5. The video
 
----
+One shoot for YouTube Shorts, Instagram Reels and TikTok, narrating the same story as the article.
 
-## 5. Preview → publish
+| | |
+|---|---|
+| Format | 9:16, 1080×1920, 30 fps (60 with fast motion), phone locked vertical |
+| Length | 15–45 s, about 25 s |
+| Structure | the five beats in [voice-tone](brand-kit/01-guides/voice-tone.md#reel-beats) |
+| Face and voice | a face in the first frame; close mic, quiet spot, or voice-over recorded indoors |
+| Captions | burned in, corrected after auto-captioning |
+| Safe zone | faces and text in the centre 80%; platform UI covers the top 10% and bottom 20% |
+| Export | H.264, 10–15 Mbps, the same preset every time |
 
-```bash
-hugo server -D      # -D shows drafts → http://localhost:1313/adventures/
-```
+- Film five to ten clips per place: wide establishing shot, signage, medium, close detail, a moving
+  shot, your reaction. Stabilise with both hands or a gimbal; shoot towards the light.
+- Cut within the first 1.5 s, 1.5–3 s per shot, no dead air. Music under the voice at −18 to −12 dB.
+- Put the hook on screen as text too. Same caption style and end card every time.
+- Post the same hook line on all three platforms with three to five hashtags, and link the clips from
+  the article body.
+- Thumbnail: one clear subject, three to five words, site palette and fonts, about 1080px wide.
 
-When happy: `draft: false`, commit, push. Article then appears in Adventures, the
-home feed, and RSS.
+## 6. Translations
 
----
+`index.fr.md` and `index.ar.md` in the same bundle share its images; only the prose and the
+front-matter strings change. Each needs its own `title` and `description`.
 
-## 6. Translations (optional, matches the rest of the site)
+## 7. Checklist
 
-Site is trilingual (en/fr/ar). To translate an adventure, add siblings in the
-same folder — shortcodes/images are shared, only prose changes:
-
-```
-content/adventures/old-port-walk/
-  index.md      # English (default)
-  index.fr.md   # Français
-  index.ar.md   # العربية (RTL handled automatically)
-```
-
----
-
-## 7. Per-article checklist
-
-**Video**
-- [ ] 9:16, 15–45s, hook in first 3s, face in frame 1
-- [ ] 5 beats: hook → context → payoff → honest take → CTA
-- [ ] Burned-in captions, trending audio low under voice
-- [ ] Posted to YouTube Short + IG Reel + TikTok, same hook caption
-- [ ] Thumbnail made (on-brand font + accent)
-
-**Article**
-- [ ] `hugo new adventures/<slug>/index.md`
-- [ ] Clips linked from the article body
-- [ ] First sentence = reel hook; 300–700 words; scannable headings
-- [ ] `cover.jpg` set; 3–6 photos, all ≤1600px / <300KB / EXIF-stripped / `alt` set
-- [ ] `gmap` added
-- [ ] Recommendations + Verdict in the fixed shape
-- [ ] Previewed `hugo server -D`
-- [ ] `draft: false`, commit, push
+- [ ] Video: 9:16, hook in the first seconds, five beats, captions, posted to all three platforms.
+- [ ] Front matter complete; `rating`, `goBack`, `bestFor`, `con` agree with the prose.
+- [ ] `cover.jpg` and three to six photos, resized, stripped, with `alt`.
+- [ ] Map link and recommendations in the fixed shape; clips linked.
+- [ ] `draft: false`, `./scripts/check.sh` passes, and the page is checked with the `verify-site` skill.

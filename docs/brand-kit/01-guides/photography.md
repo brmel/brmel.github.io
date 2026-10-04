@@ -1,72 +1,51 @@
-# Ibraverse — Photography Direction
+# Photography
 
-Photos are the only thing in the system we don't draw. They must feel **honest, first-person, and
-present** — like you were there, not like a catalog. Every render in this kit uses a clearly-labeled
-`<PHOTO>` placeholder; **never fake or AI-generate the final imagery.**
+Photos are the one part of the brand that is not drawn. They are first-person, taken by the author at
+the place, and never stock or generated. Templates in this kit mark the photo area with a `‹PHOTO›`
+placeholder.
 
----
+## Look
 
-## 1. The look
+- Natural light: golden hour and the hour after, window light indoors. No flash or strobes.
+- Real scenes: a plate with a bite taken, a muddy trail, steam on the glass.
+- Eye level or slightly above a table, the trail as seen walking it. Hands welcome; faces optional.
+- Warm, slightly desaturated colour. Nothing neon, nothing crushed to black.
+- One clear subject with negative space around it.
 
-- **Natural light, always.** Golden hour and the soft hour after are the house style. Window light
-  indoors. No on-camera flash, no studio strobes.
-- **Honest, not stock.** Real plates with a bite taken, trails with mud, steam on the glass, a seat
-  that's actually yours. A little imperfection reads as truth.
-- **Present-tense, first person.** Eye-level or slightly above a table; the trail as you'd see it
-  walking it. Hands in frame are welcome. Faces optional and incidental.
-- **Quiet color.** Warm, slightly desaturated, paper-friendly. Nothing neon; nothing crushed to black.
-- **One subject.** Compose for a single clear thing — the dish, the ridline, the doorway. Negative
-  space is good; it's where the eyebrow and title breathe.
+Avoid over-styling, obvious filters, heavy HDR, vignettes, flat midday glare, mixed white balance,
+people used as props, unintended logos and licence plates, and anything that contradicts the written
+con.
 
-## 2. What to avoid
-
-- Stock-y over-styling, fake "lifestyle," obvious filters, heavy HDR, vignette gimmicks.
-- Flat midday glare, mixed white balance, dirty-sensor skies.
-- People as props. Logos and license plates you didn't mean to feature.
-- Anything that contradicts the written con — the photo must tell the same truth as the words.
-
----
-
-## 3. Crop ratios (match the components)
+## Crops
 
 | Ratio | Pixels | Used in |
 |---|---|---|
-| **16:9** | 1600×900 | Article hero (wide cover) |
-| **4:5** | 1080×1350 | Instagram post, carousel, tall cover detail |
-| **1:1** | 1080×1080 | IG square, avatars-of-place, thumbnails |
-| **9:16** | 1080×1920 | Reel / story / social cover (photo fills, paper band overlays) |
-| **3:2** | 1500×1000 | In-article inline images |
+| 16:9 | 1600×900 | wide cover |
+| 4:5 | 1080×1350 | Instagram post, carousel, tall cover |
+| 1:1 | 1080×1080 | Instagram square, thumbnails |
+| 9:16 | 1080×1920 | reel, story, social cover |
+| 3:2 | 1500×1000 | in-article images |
 
-Always shoot wider than the tightest crop you need, so the same frame can ride 16:9 and 9:16.
+Shoot wider than the tightest crop so one frame serves both 16:9 and 9:16.
 
-## 4. How photos sit in the templates
+## Placement
 
-- **Framed (social):** social covers, posts, carousels and reels put the photo in a **14px rounded
-  frame** (`--radius-md`) with `--shadow-photo`.
-- **Full-bleed:** article heroes may bleed a photo to the edge with a **paper band** carrying the mark,
-  eyebrow, and title over solid paper (never text directly on the photo unless inside a scrim).
-- **Inset (site):** in-article images sit in the prose column (`--container-text`, 900px, never
-  upscaled) with an 8px frame (`--radius-sm`), captioned beneath. The `figure` shortcode does this.
-- The photo never touches the mark or the eyebrow — keep `space-5` (24px) clearance minimum.
+- **Site**: in-article images sit in the 900px text column, never upscaled, with an 8px radius
+  (`--radius-sm`) and the caption beneath; the `figure` shortcode does this.
+- **Social**: covers, posts, carousels and reels frame the photo with a 14px radius (`--radius-md`)
+  and `--shadow-photo`. Text sits on a paper band, never directly on the photo. Keep at least 24px
+  between the photo and the mark or eyebrow.
 
+## Grade
 
-## 5. Treatment (grade)
+1. **None** (default): accurate and warm.
+2. **Subtle warm**, for a mixed set: +150–250 K, slightly lifted shadows, −4 to −8 saturation. No LUTs,
+   duotone or rust tint; the rust belongs to the accent.
 
-Two grades only:
+Keep skin tones true; drop the grade if it fights the food or the landscape.
 
-1. **None (default).** Accurate, warm, true. Let the natural light do the work.
-2. **Subtle warm.** A whisper of warmth for cohesion when a set is mixed: temp +150–250K, a touch of
-   lifted shadows, −4 to −8 saturation. Never a heavy or stylized LUT. No duotone, no rust-tint —
-   the rust lives in the accent, not the photo.
+## The `‹PHOTO›` placeholder
 
-Keep skin tones honest. If a grade fights the food or the landscape, drop it.
-
-## 6. The `<PHOTO>` placeholder (in this kit)
-
-Every render marks the image area with a labeled placeholder so nothing is faked:
-
-- A `--bg-alt` fill at the exact crop, **14px rounded**, with a centered tag:
-  `‹PHOTO›` plus the intended ratio and a one-line art-direction note (e.g. *"golden hour, the
-  dining room, 16:9"*). A faint corner-tick and the compass mark watermark sit at 6% opacity.
-- When producing a real asset, replace the placeholder with the graded photo at the same frame and
-  radius — nothing else moves.
+A `--bg-alt` fill at the exact crop with a 14px radius and a centred tag: `‹PHOTO›`, the ratio and a
+one-line art direction ("golden hour, the dining room, 16:9"), with a corner tick and the mark at 6%
+opacity. A real asset replaces it at the same frame and radius.

@@ -1,39 +1,31 @@
-# Projects Playbook
+# Projects playbook
 
-How to publish a project page. Follow it page by page and don't improvise the
-structure — the point is that every project looks the same, so the reader learns
-the format once and the work gets faster each time.
+How to publish a project page. Every project page has the same structure, rendered by
+`layouts/projects/single.html`; the author writes front matter, two prose sections and the lessons.
 
-Companion to [`brand-guidelines.md`](brand-guidelines.md) (the identity) and
-[`adventures-playbook.md`](adventures-playbook.md) (the same discipline applied
-to field notes).
-
----
-
-## 0. The format in one picture
+## The page
 
 ```
 ┌──────────────────────────────────────────┐
-│ PROJECT № 01 · SAAS · SHIPPED            │ ← eyebrow: mono caps (auto)
-│ TikiPro                                  │ ← serif display title (auto)
-│ One line a non-engineer understands.     │ ← pitch (auto)
-│ [Electron][TypeScript][Firebase]  LIVE ↗ │ ← stack chips + links (auto)
+│ Home · Projects                           │ breadcrumbs (auto)
+│ PROJECT № 01 · SAAS · SHIPPED             │ eyebrow from projectNo, domain, status (auto)
+│ TikiPro                                   │ title
+│ One line a non-engineer understands.      │ pitch
+│ LIVE ↗  REPO ↗  [Electron][TypeScript]    │ links and stack chips (auto)
+│ lede                                      │ three sentences
+│ 1 PC · … · …                              │ metrics row
 ├──────────────────────────────────────────┤
-│ GALLERY  — screenshots from gallery/     │ ← auto, from the page bundle
+│ ## The story                              │ prose
+│ ## The product                            │ prose
 ├──────────────────────────────────────────┤
-│ ## The story      ← you write this       │
-│ ## The product    ← and this             │
-├──────────────────────────────────────────┤
-│ WHAT IT TAUGHT ME — lessons (auto)       │ ← from front matter
+│ GALLERY                                   │ gallery/ images (auto)
+│ LESSONS                                   │ lessons (auto)
+│ topics · discuss · author · back/next     │ page end (auto)
 └──────────────────────────────────────────┘
 ```
 
-**Everything marked (auto) renders from front matter or the page bundle.** You
-write two prose sections and a list of lessons. That is the whole job. If you
-find yourself hand-writing an eyebrow, a chip row, or a gallery, stop — the
-layout already does it and hand-rolling it is how sections drift apart.
-
----
+The project index card shows `№ {nn} · {year} · {domain} · {status}`, the title, the pitch, a "Live"
+marker when `links.live` is set, and the first four `stack` entries.
 
 ## 1. Scaffold
 
@@ -41,150 +33,86 @@ layout already does it and hand-rolling it is how sections drift apart.
 hugo new projects/<slug>/index.md
 ```
 
-That copies [`archetypes/projects.md`](../archetypes/projects.md), which contains
-every field below with a comment. It starts `draft: true`.
+This copies `archetypes/projects.md` with `draft: true`. Pick the next free number:
 
----
+```bash
+grep -h '^projectNo:' content/projects/*/index.md | sort -n -k2 | tail -1
+```
 
 ## 2. Front matter
 
-```yaml
-projectNo: 1                 # stable. Never reused, never renumbered.
-domain: "saas"               # saas | mobile | data | infra  → eyebrow label
-status: "shipped"            # shipped | active | prototype | archived
-pitch: "Clinic ticketing that runs on one PC."
-stack: ["Electron", "TypeScript", "Firebase", "Ed25519"]
-links:
-  live: "https://tikipro.web.app"
-  repo: ""
-metrics:                     # exactly three, the page's evidence at a glance
-  - value: "1 PC"
-    label: "runs reception, the board and every doctor"
-takeaway: "One sentence."    # feeds the learning block on /projects/
-lessons:
-  - "**Bold lead.** Then the detail."
-```
-
 | Field | Rule |
 |---|---|
-| `projectNo` | Manual and permanent. Sorts the index. Renumbering a published project breaks its identity. |
-| `domain` | Short uppercase label in the eyebrow (`saas`, `vision`, …). Label only — the site has one accent. |
-| `status` | One of `shipped`, `active`, `prototype`, `archived`, localised via `i18n/*.yaml` (`project_status_*`). Don't type a free-text status. |
-| `pitch` | One sentence. If a non-engineer can't parse it, rewrite it. Not the tagline from the README. |
-| `stack` | The index card shows the **first four**, so order them by what matters. |
-| `links` | Keys are localised via `project_link_*`. An empty value is skipped, so leave unused keys blank rather than deleting them. |
-| `lessons` | 3–5 bullets, markdown allowed. **At least one must be a real failure.** |
-| `metrics` | Exactly three. A number and what it counts, shown above the gallery. Every figure must also appear, sourced, in the page below — this row is the index, not the evidence. If a project has no honest numbers, it has no metrics row. |
-| `takeaway` | One sentence for the learning block. Not a summary of the lessons — the single thing you'd tell someone starting the same project. |
-
----
+| `title`, `date` | The year of `date` shows on the index card. |
+| `projectNo` | Unique and permanent. The index lists the highest first; previous/next follow the number. |
+| `domain` | `saas`, `data`, `infra` or `mobile`, shown through `project_domain_<domain>` in `i18n/*.yaml`. A new domain needs that key in all three files. |
+| `status` | `shipped`, `active` (shown as "In progress") or `archived`, through `project_status_<status>`. |
+| `pitch` | One sentence a non-engineer can parse. It is the header line, the index card text, the related-project card and the JSON-LD abstract. |
+| `description` | 50–160 characters, unique per language; the meta description, search and `llms.txt`. Usually identical to `pitch`. |
+| `lede` | Markdown, three sentences: the problem, what the project does, what changed. |
+| `stack` | Chips on the page; the index card shows the first four, so order by importance. |
+| `links` | `live` renders as a localised "Live ↗"; any other key (`repo`) renders title-cased. Empty values are skipped. |
+| `metrics` | Three `value` + `label` pairs above the body. Every figure also appears, sourced, in the body. They feed the "Project facts" in `llms.txt`. A project with no honest numbers has no metrics. |
+| `lessons` | Three to five markdown strings, each with a bold lead, at least one a real failure. |
+| `tags` | Topic pages; see [publishing a new tag](#new-tags). |
+| `featured` | Optional. `featured: N` lists the project under "Start here" on the home page, lowest number first. |
+| `resources` | Optional `title` (alt text) and `params.caption` per gallery image. |
 
 ## 3. The prose
 
-Two sections, in this order. Both are for a reader who has never heard of the
-project.
+Two sections, both for a reader who has never heard of the project. Aim for about 220 words: the lede,
+metrics and lessons carry the rest. Never reuse README prose.
 
-**`## The story`** — why it existed. What problem, for whom, and why you built it
-instead of using something that already worked. Lead with the human situation,
-not the architecture.
+- `## The story`: why it existed. The problem, for whom, and why it was built instead of using
+  something that already worked. Lead with the situation.
+- `## The product`: what it became. Screens, flows, the one or two decisions that made it work,
+  numbers where they exist.
 
-**`## The product`** — what it actually became. Screens, flows, the one or two
-decisions that made it work. Concrete numbers wherever you have them.
-
-**One blockquote, once.** Between the two sections, set the single line worth
-remembering as a `>` blockquote. It renders as a pull quote and it is the thing
-a reader carries away if they read nothing else — so it is a judgement, not a
-summary.
-
-**Aim for 220 words.** The lede says what the thing is, the metrics carry the
-numbers, the lessons carry the detail. The body only has to carry the story, and
-the versions of these pages that ran to 500 words were repeating the other
-three.
-
-> **Never copy README prose.** A README is written for a contributor who has
-> already decided to care. A project page is written for someone deciding whether
-> to. They are different documents with different jobs.
-
----
+Voice: [voice.md](voice.md).
 
 ## 4. The gallery
 
-Drop images into the page bundle under `gallery/`, numbered so they order
-predictably:
+Images in `gallery/` inside the bundle, numbered so they sort:
 
 ```
 content/projects/<slug>/
 ├── index.md
 └── gallery/
     ├── 01-waiting-room-board.png
-    ├── 02-marketing-site.png
-    └── 03-release-feed.png
+    └── 02-marketing-site.png
 ```
 
-They render automatically — resized, converted to WebP, fingerprinted, and
-served with `srcset`. Nothing to write in the markdown.
+They render after the body at 640px and 1280px in WebP, and the first one is the page's social card.
+Give each a `title` under `resources:`; it becomes the alt text, and without it the alt is the file
+path.
 
-**Before committing any image:**
+```yaml
+resources:
+  - src: "gallery/01-waiting-room-board.png"
+    title: "The waiting-room board showing three called tickets"
+    params:
+      caption: "The board in the clinic's waiting room."
+```
 
-- [ ] **No private data.** Real names, phone numbers, emails, addresses, real
-      user records. Use the app's demo or seed data. QA-evidence folders are
-      full of real runs — check every frame, not just the first.
-- [ ] **No secrets.** API keys, tokens, project IDs, signed URLs in a visible
-      address bar.
-- [ ] **Compressed.** Cap the long edge around 1400px; Hugo handles the rest.
-      Report the added weight in the PR.
-- [ ] Capture from the **live public surface** where one exists — it is current,
-      correctly sized, and cannot leak anything that isn't already public.
+Before committing an image:
 
-Aim for three to six. A gallery of one looks like a placeholder.
+- [ ] No private data: real names, phone numbers, emails, addresses, user records. Use demo or seed data.
+- [ ] No secrets: API keys, tokens, project IDs, signed URLs in an address bar.
+- [ ] Long edge around 1400px.
+- [ ] Captured from the live public surface where there is one.
 
----
+Three to six images.
 
-## 5. Lessons
+## 5. New tags
 
-The section that makes the page worth reading, and the one most likely to come
-out as marketing.
-
-- **At least one real failure.** A lessons list with no scars reads as a
-  brochure. The site's voice rule is that one genuine con builds more trust than
-  five pros — that applies here more than anywhere.
-- **Specific over general.** "Rate limits need names" with the actual limits
-  beats "monitoring is important".
-- **Bold lead, then the detail.** Scannable first, readable second.
-- Write them when the project is fresh. Reconstructed lessons are always
-  flatter than remembered ones.
-
----
+A tag is a topic page. A tag no page used before needs `content/tags/<tag>/_index.md` with a `title`
+and a 50–160 character `description`, and a place in a group in `data/topics.yaml` (otherwise it is
+listed under "More"). A French or Arabic page carrying the tag needs `_index.fr.md` / `_index.ar.md`
+there too.
 
 ## 6. Publish
 
-```bash
-./scripts/check.sh          # build + orphaned assets
-hugo server                 # then read the page at 1440px and 390px
-```
-
 - [ ] `draft: false`
-- [ ] Page renders in **en / fr / ar**; Arabic mirrors (eyebrow, chips, gallery,
-      lesson ticks all use logical properties, so this should be free — verify
-      anyway)
-- [ ] Every external link resolves
-- [ ] `projectNo` doesn't collide with a published project
-- [ ] The card on `/projects/` still reads as the same design system as the
-      others — screenshot the grid, not just the page
-- [ ] Changing `domain:` changes the accent and **nothing else**; that is the
-      test that you used the mechanism rather than working around it
-
----
-
-## 7. Registry
-
-| № | Project | Domain | Status |
-|---|---|---|---|
-| 01 | TikiPro | saas | shipped |
-| 02 | Wingo | mobile | active |
-| 03 | Rekba | infra | active |
-| 04 | Farkad | mobile | active |
-| 05 | HydroData | data | shipped |
-| 06 | Leorra | mobile | archived |
-
-Keep this table current — it is the fastest way to check the next free number.
+- [ ] `./scripts/check.sh` passes.
+- [ ] The page and the `/projects/` grid checked with the `verify-site` skill, in EN, FR and AR.
+- [ ] Every external link resolves.
