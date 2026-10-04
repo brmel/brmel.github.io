@@ -8,7 +8,7 @@
 .project-gallery__grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:var(--space-4);align-items:start;}
 .project-shot{margin:0;}
 .project-shot img{display:block;width:auto;max-width:100%;height:auto;max-height:30rem;margin-inline:auto;}
-.project-shot figcaption{margin-top:var(--space-2);font-family:var(--font-label);font-size:var(--t-micro);color:var(--ink-mute);line-height:1.45;}
+.project-shot figcaption{margin-top:var(--space-2);font-family:var(--font-label);font-size:var(--t-caption);color:var(--ink-mute);line-height:1.45;}
 
 .project-metrics{
   margin-block:0 var(--flow-block);padding:var(--space-5) 0;border-block:var(--hairline) solid var(--rule);
@@ -17,7 +17,7 @@
 .project-metrics__item{display:flex;flex-direction:column;gap:var(--space-1);}
 .project-metrics__value{font-family:var(--font-serif);font-weight:400;font-size:var(--t-display-s);line-height:1;color:var(--ink);}
 .project-metrics__label{
-  margin:0;font-family:var(--font-label);font-size:var(--t-micro);
+  margin:0;font-family:var(--font-label);font-size:var(--t-eyebrow);
   letter-spacing:var(--track-micro);text-transform:uppercase;color:var(--ink-mute);line-height:1.4;
 }
 

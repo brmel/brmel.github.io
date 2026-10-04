@@ -1,6 +1,4 @@
-/* ---- /tags/ : topic clusters ---- */
-.topics__group{margin-block:0 var(--flow-section);}
-.topics__group .u-rule-heading{margin-bottom:var(--space-4);}
+.topics__group{margin-block:0 var(--flow-block);}
 .topics__list{
   list-style:none;margin:0;padding:0;
   display:flex;flex-wrap:wrap;gap:var(--space-2);
@@ -19,13 +17,12 @@
 .topics__name{font-size:var(--t-caption);overflow-wrap:anywhere;}
 .topics__count{
   font-family:var(--font-label);
-  font-size:var(--t-micro);
+  font-size:var(--t-eyebrow);
   color:var(--ink-mute);
   font-variant-numeric:tabular-nums;
 }
 .topics__link:hover .topics__count{color:var(--accent);}
 
-/* ---- topics listed at the foot of an article ---- */
 .page-tags{
   display:flex;flex-wrap:wrap;align-items:center;
   gap:var(--space-2) var(--space-3);

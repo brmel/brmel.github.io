@@ -16,9 +16,7 @@
 
   --t-display-s:2.125rem;
   --t-heading:1.5rem; --t-subhead:1.25rem; --t-body-l:1.125rem; --t-body:1rem;
-  --t-caption:0.8125rem; --t-eyebrow:0.75rem;
-
-  --t-micro:0.6875rem;
+  --t-caption:0.875rem; --t-eyebrow:0.75rem;
   --lh-body:1.6; --track-eyebrow:0.12em; --track-micro:0.05em;
 
   --fl-display-m:clamp(1.875rem,1.35rem + 2.6vw,3rem);
@@ -78,4 +76,4 @@
   *{animation:none!important;transition-duration:.01ms!important}
 }
 
-[lang="ar"]{--font-label:var(--font-sans);--track-eyebrow:normal;--track-micro:normal;--t-eyebrow:0.875rem;--t-micro:0.8125rem;}
+[lang="ar"]{--font-label:var(--font-sans);--track-eyebrow:normal;--track-micro:normal;--t-eyebrow:0.875rem;}

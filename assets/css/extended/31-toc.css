@@ -3,7 +3,7 @@
   padding:var(--space-4) var(--space-5);
   border-radius:var(--radius-md);
 }
-.toc details summary{margin-inline-start:0;}
+.toc details summary{margin-inline-start:0;padding-block:var(--space-1);}
 .toc .inner{margin:var(--space-3) 0 0;}
 .toc ul{list-style:none;margin:0;padding-inline-start:0;}
 .toc ul ul{padding-inline-start:var(--space-4);}

@@ -25,17 +25,15 @@
   padding-block:var(--flow-block) var(--flow-section);
 }
 .main--wide{--measure:var(--container-content);}
-/* .post-content twice: PaperMod margins h3-h6, blockquote and iframe by element,
-   which outranks a single class and would left-align them out of the measure. */
 .main > :not(.post-single),
 .post-single > :not(.post-content),
 .post-content.post-content > *{max-inline-size:var(--measure);margin-inline:auto;}
 
-body{font-family:var(--font-sans);}
+body{font-family:var(--font-sans);font-size:var(--t-body-l);}
 @media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth;}}
 
 .post-content{font-size:var(--prose-size);}
-.logo a,
+.logo > a,
 .page-header h1,
 .page-404 h1,
 .profile_inner h1,
@@ -63,10 +61,10 @@ code,kbd,samp,pre{font-family:var(--font-mono);}
   font-size:var(--t-subhead);line-height:1.45;color:var(--ink-soft);
 }
 
-.breadcrumbs{font-size:var(--t-caption);color:var(--ink-mute);}
+.breadcrumbs{gap:0 .5ch;font-size:var(--t-caption);line-height:1.75;color:var(--ink-mute);}
 .breadcrumbs a{font-size:inherit;color:inherit;transition:color var(--dur-1) var(--ease-standard);}
 .breadcrumbs a:hover{color:var(--accent);}
-.breadcrumbs b{font-weight:400;color:var(--ink-mute);margin-inline:.25ch;}
+.breadcrumbs b{font-weight:400;}
 
 a:focus-visible,button:focus-visible,.toc summary:focus-visible,.top-link:focus-visible,#theme-toggle:focus-visible{
   outline:2px solid var(--accent);outline-offset:2px;border-radius:var(--radius-xs);

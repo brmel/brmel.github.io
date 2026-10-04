@@ -4,7 +4,7 @@
 .workflow rect.wf-out{stroke:var(--accent);stroke-width:1.5;}
 .workflow .wf-t{fill:var(--ink);font-family:var(--font-sans);font-size:13px;text-anchor:middle;font-weight:500;}
 .workflow .wf-s{fill:var(--ink-soft);font-family:var(--font-label);font-size:10.5px;text-anchor:middle;letter-spacing:.02em;}
-.workflow .wf-lane-label{fill:var(--ink-mute);font-family:var(--font-label);font-size:var(--t-micro);letter-spacing:.14em;}
+.workflow .wf-lane-label{fill:var(--ink-mute);font-family:var(--font-label);font-size:var(--t-eyebrow);letter-spacing:.14em;}
 .workflow .wf-edge path{fill:none;stroke:var(--accent);stroke-width:1.5;}
 @media (max-width:768px){.workflow .wf-t{font-size:15px}.workflow .wf-s{font-size:12px}}
 
@@ -22,16 +22,17 @@
 }
 
 .post-entry{padding:var(--space-5);margin-bottom:var(--space-4);}
-.post-entry:has(.entry-cover){display:flex;align-items:flex-start;gap:var(--space-5);}
+.post-entry:has(.entry-cover){display:flex;flex-wrap:wrap;align-items:flex-start;gap:var(--space-4) var(--space-5);}
 .entry-cover{margin:0;flex:0 0 auto;}
-.entry-text{flex:1 1 auto;min-width:0;}
+.entry-text{flex:1 1 16rem;min-width:0;}
 .entry-cover img{
   width:100px;height:100px;object-fit:contain;
   border:var(--hairline) solid var(--rule);border-radius:var(--radius-sm);background:var(--bg-alt);
 }
 .entry-eyebrow{display:block;margin-bottom:var(--space-2);}
 .entry-eyebrow > *{white-space:nowrap;}
-.entry-content{-webkit-line-clamp:unset;overflow:visible;}
+.entry-header h2{font-size:var(--t-heading);}
+.entry-content{-webkit-line-clamp:unset;overflow:visible;font-size:var(--t-body);}
 
 .post-content blockquote{
   margin-block:var(--space-6);padding-inline:var(--space-5) 0;
@@ -43,7 +44,7 @@
 .post-content h3{font-size:1.3em;margin-block:calc(var(--lh) * 1) calc(var(--lh) * 0.4);}
 .post-content h4{font-size:1.1em;margin-block:calc(var(--lh) * 0.9) calc(var(--lh) * 0.35);}
 .post-content > :is(h2,h3,h4):first-child{margin-block-start:0;}
-.post-content pre{font-size:.8em;overflow-x:auto;}
+.post-content pre{overflow-x:auto;}
 .post-content .highlight:not(table){margin-block:var(--flow-block);}
-.post-content pre code{overflow-x:visible;width:max-content;min-width:100%;}
+.post-content pre code{font-size:.75em;overflow-x:visible;width:max-content;min-width:100%;}
 .chroma :is(.c,.ch,.cm,.c1,.cs,.cp,.cpf,.sd,.sh){color:var(--code-comment);}
