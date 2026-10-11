@@ -2,7 +2,7 @@ groups:
   - key: "systems"
     tags: ["C++", "Systems", "Windows"]
   - key: "vision"
-    tags: ["Machine Vision", "Robotics", "Simulation", "Machine Learning"]
+    tags: ["Machine Vision", "Robotics", "Simulation", "Machine Learning", "Mathematics"]
   - key: "ai"
     tags: ["AI", "LLM", "RAG", "Testing"]
   - key: "data"

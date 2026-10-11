@@ -12,7 +12,7 @@ document.querySelectorAll('.report-frame').forEach((frame) => {
       '--border': '--rule', '--line': '--rule', '--grid': '--rule-soft',
       '--bg': '--bg', '--white': '--bg', '--surface': '--bg-alt', '--raise': '--bg-alt', '--blue-bg': '--bg-alt',
       '--blue': '--accent', '--accent-fill': '--accent', '--series-1': '--accent', '--label-1': '--accent',
-      '--series-2': '--ink-soft', '--label-2': '--ink-soft'
+      '--series-2': '--ink-soft', '--label-2': '--ink-soft', '--cool': '--ink-gain'
     }).forEach(([name, token]) => root.style.setProperty(name, page.getPropertyValue(token).trim()));
   };
   const dress = () => {

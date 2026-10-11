@@ -27,6 +27,7 @@ Add a row in the same change that makes a decision.
 | 2026-09-13 | Titles may run past 60 characters. | The ` \| Ibraverse` suffix comes from PaperMod's `head.html`; making it conditional means forking the whole file. |
 | 2026-09-18 | `description` is the only summary line of a page. | Articles also carried a `summary` that said the same thing in other words and rendered nowhere. |
 | 2026-09-18 | A report article is the report: prose, then the frame rendered in place, lazy-loaded, themed from the page's tokens. `/reports/` stays disallowed in `static/robots.txt`. | One URL and one click instead of a preview and a second route. Every figure is in the crawlable prose, so the raw report files would only be indexed as duplicates. |
+| 2026-10-11 | Maths is LaTeX in the markdown, rendered to MathML at build time, with no script or maths font. | Hugo ships KaTeX, so the page gets real equations with no third-party request and no JavaScript; browsers render MathML natively. A thin space follows `\cos` and `\sin` because Chrome drops the function-application gap. |
 | 2026-09-21 | No pull-quote in project stories. | All nine pages had one in the same slot, so it read as a template. |
 | 2026-09-21 | No one-line `takeaway` per project and no aggregated learning list. | Read together the takeaways were one formula; lessons stay on each project, where they can be specific. |
 | 2026-09-22 | British/Canadian spelling (colour, behaviour, optimise). | The English was mixed while titles already said Colour. |
