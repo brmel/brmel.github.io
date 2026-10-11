@@ -153,7 +153,7 @@ and `llms.txt` read the same data.
 
 A report is a Tech article: prose with every figure, then
 `{{< reportframe src="reports/<file>.html" title="…" >}}`. The frame loads lazily; on load its
-script maps the page's tokens onto the report's CSS variables (both themes), loads the site fonts,
+script sizes the frame to the report, maps the page's tokens onto the report's CSS variables (both themes), loads the site fonts,
 hides the report's own nav and title, and patches its accessibility gaps. Report files and their
 generators stay untouched.
 
