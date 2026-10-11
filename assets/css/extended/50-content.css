@@ -45,6 +45,7 @@
 .post-content h4{font-size:1.1em;margin-block:calc(var(--lh) * 0.9) calc(var(--lh) * 0.35);}
 .post-content > :is(h2,h3,h4):first-child{margin-block-start:0;}
 .post-content pre{overflow-x:auto;}
+.post-content math[display="block"]{margin-block:var(--flow-tight);}
 .post-content .highlight:not(table){margin-block:var(--flow-block);}
 .post-content pre code{font-size:.75em;overflow-x:visible;width:max-content;min-width:100%;}
 .chroma :is(.c,.ch,.cm,.c1,.cs,.cp,.cpf,.sd,.sh){color:var(--code-comment);}

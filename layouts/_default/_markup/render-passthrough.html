@@ -1,0 +1,7 @@
+{{- with try (transform.ToMath .Inner (dict "displayMode" (eq .Type "block"))) -}}
+  {{- with .Err -}}
+    {{- errorf "math in %s: %s" $.Page.File.Path . -}}
+  {{- else -}}
+    {{- .Value -}}
+  {{- end -}}
+{{- end -}}

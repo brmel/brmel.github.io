@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Where Two Ellipses Meet</title>
+<style>
+:root{
+  --ink:#181715;--ink-2:#4a4843;--muted:#6e6c65;--border:#d9d6cb;--grid:#e8e5da;
+  --bg:#faf9f6;--surface:#f2f0e9;--series-1:#a8431a;--cool:#0a4fd0;color-scheme:light dark;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ink:#ece8dc;--ink-2:#b8b3a2;--muted:#888477;--border:#2c2a23;--grid:#1f1e18;
+    --bg:#14130f;--surface:#1c1b16;--series-1:#d97757;--cool:#58a9ff;
+  }
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5;font-size:16px;padding:16px}
+header h1{font-size:1.5rem;font-weight:500;margin-block-end:16px}
+main{display:grid;gap:20px}
+.presets{display:flex;flex-wrap:wrap;gap:8px}
+.presets button,.walk button{
+  font:inherit;font-size:.875rem;color:var(--ink);background:var(--surface);
+  border:1px solid var(--border);border-radius:999px;padding:4px 14px;min-height:32px;cursor:pointer
+}
+.presets button[aria-pressed="true"]{border-color:var(--ink);background:var(--bg)}
+button:focus-visible,input:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+figure{display:grid;gap:8px}
+.plane{width:100%;max-width:560px;justify-self:center;aspect-ratio:1;display:block;background:var(--bg);border:1px solid var(--border);border-radius:8px}
+.grid line{stroke:var(--grid);stroke-width:1}
+.grid .axis{stroke:var(--border)}
+.e1{fill:none;stroke:var(--series-1);stroke-width:2}
+.e2{fill:none;stroke:var(--cool);stroke-width:2;stroke-dasharray:6 4}
+.hit{fill:var(--ink);stroke:var(--bg);stroke-width:2}
+.hit.touch{fill:var(--bg);stroke:var(--ink);stroke-width:2.5}
+.walker{fill:var(--series-1);stroke:var(--bg);stroke-width:2}
+.tag{fill:var(--ink);font-weight:600}
+.keys{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 18px;font-size:.875rem;color:var(--ink-2)}
+.keys span{display:inline-flex;align-items:center;gap:6px}
+.keys svg{width:28px;height:12px}
+.answer{display:grid;gap:8px}
+.count{font-size:1.25rem}
+.count strong{font-size:2rem;font-weight:600;font-variant-numeric:tabular-nums}
+table{border-collapse:collapse;font-variant-numeric:tabular-nums;font-size:.9375rem;width:100%;max-width:420px}
+th,td{text-align:end;padding:4px 10px;border-block-end:1px solid var(--border)}
+th:first-child,td:first-child,th:last-child,td:last-child{text-align:start}
+th{font-weight:500;color:var(--muted);font-size:.8125rem}
+.note{color:var(--ink-2);font-size:.9375rem}
+.strip{width:100%;display:block;background:var(--bg);border:1px solid var(--border);border-radius:8px}
+.zero{stroke:var(--ink-2);stroke-width:1;stroke-dasharray:3 3}
+.curve{fill:none;stroke:var(--series-1);stroke-width:2}
+.cursor{stroke:var(--ink);stroke-width:1}
+.root{fill:var(--ink);stroke:var(--bg);stroke-width:2}
+.root.touch{fill:var(--bg);stroke:var(--ink);stroke-width:2.5}
+.ticks{display:flex;justify-content:space-between;font-size:.75rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.walk-bar{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px}
+.walk output{font-variant-numeric:tabular-nums;color:var(--ink-2);font-size:.9375rem}
+figcaption{color:var(--ink-2);font-size:.9375rem}
+.controls{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+fieldset{border:1px solid var(--border);border-radius:8px;padding:12px 14px;display:grid;gap:6px}
+legend{padding-inline:6px;font-weight:600;display:inline-flex;align-items:center;gap:6px}
+legend svg{width:28px;height:12px}
+.row{display:grid;grid-template-columns:7.5em 1fr 3.5em;align-items:center;gap:8px;font-size:.9375rem}
+.row output{text-align:end;font-variant-numeric:tabular-nums}
+input[type=range]{width:100%;height:24px;accent-color:var(--series-1)}
+.second input[type=range]{accent-color:var(--cool)}
+</style>
+</head>
+<body>
+<header><h1>Where two ellipses meet</h1></header>
+<main>
+  <div class="presets" role="group" aria-label="Examples">
+    <button type="button" data-preset="four">Four points</button>
+    <button type="button" data-preset="three">Three points</button>
+    <button type="button" data-preset="two">Two points</button>
+    <button type="button" data-preset="touch">Touching</button>
+    <button type="button" data-preset="apart">Apart</button>
+    <button type="button" data-preset="inside">One inside</button>
+    <button type="button" data-preset="same">Same ellipse</button>
+  </div>
+
+  <figure>
+    <svg class="plane" id="plane" viewBox="-6 -6 12 12" role="img" aria-labelledby="plane-title">
+      <title id="plane-title">The two ellipses on a grid from −6 to 6, with their intersection points numbered</title>
+      <g class="grid" id="grid"></g>
+      <g transform="scale(1,-1)">
+        <ellipse class="e1" id="e1" vector-effect="non-scaling-stroke"></ellipse>
+        <ellipse class="e2" id="e2" vector-effect="non-scaling-stroke"></ellipse>
+        <g id="hits"></g>
+        <circle class="walker" id="walker" vector-effect="non-scaling-stroke"></circle>
+      </g>
+      <g id="tags"></g>
+    </svg>
+    <div class="keys">
+      <span><svg viewBox="0 0 28 12" aria-hidden="true"><line x1="0" y1="6" x2="28" y2="6" class="e1"/></svg>Ellipse 1</span>
+      <span><svg viewBox="0 0 28 12" aria-hidden="true"><line x1="0" y1="6" x2="28" y2="6" class="e2"/></svg>Ellipse 2</span>
+      <span><svg viewBox="0 0 28 12" aria-hidden="true"><circle cx="14" cy="6" r="4.5" class="hit"/></svg>crosses</span>
+      <span><svg viewBox="0 0 28 12" aria-hidden="true"><circle cx="14" cy="6" r="4" class="hit touch"/></svg>touches</span>
+    </div>
+  </figure>
+
+  <section class="answer" aria-live="polite">
+    <p class="count"><strong id="count">0</strong> <span id="count-label">points</span></p>
+    <table id="table">
+      <thead><tr><th scope="col">#</th><th scope="col">x</th><th scope="col">y</th><th scope="col">How</th></tr></thead>
+      <tbody id="rows"></tbody>
+    </table>
+    <p class="note" id="note" hidden></p>
+  </section>
+
+  <figure class="walk">
+    <svg class="strip" id="strip" viewBox="0 0 360 120" preserveAspectRatio="none" role="img" aria-labelledby="strip-title">
+      <title id="strip-title">g(t) for t from 0 to 360 degrees: above the dashed line the walker is outside ellipse 2, below it inside</title>
+      <line class="zero" x1="0" y1="60" x2="360" y2="60" vector-effect="non-scaling-stroke"/>
+      <path class="curve" id="curve" vector-effect="non-scaling-stroke"/>
+      <line class="cursor" id="cursor" y1="0" y2="120" vector-effect="non-scaling-stroke"/>
+    </svg>
+    <div class="ticks" aria-hidden="true"><span>0°</span><span>90°</span><span>180°</span><span>270°</span><span>360°</span></div>
+    <figcaption>Walk once around ellipse 1 and read ellipse 2's equation at every step. Above the dashed line the walker is outside ellipse 2, below it inside; every time the curve meets the line is an intersection point.</figcaption>
+    <div class="walk-bar">
+      <button type="button" id="play" aria-pressed="true">Pause the walk</button>
+      <output id="walk-readout" for="play"></output>
+    </div>
+  </figure>
+
+  <form class="controls" id="controls">
+    <fieldset>
+      <legend><svg viewBox="0 0 28 12" aria-hidden="true"><line x1="0" y1="6" x2="28" y2="6" class="e1"/></svg>Ellipse 1</legend>
+      <div class="row"><label for="e1-h">centre h</label><input type="range" id="e1-h" min="-4" max="4" step="0.1"><output for="e1-h"></output></div>
+      <div class="row"><label for="e1-k">centre k</label><input type="range" id="e1-k" min="-4" max="4" step="0.1"><output for="e1-k"></output></div>
+      <div class="row"><label for="e1-a">semi-axis a</label><input type="range" id="e1-a" min="0.2" max="4" step="0.1"><output for="e1-a"></output></div>
+      <div class="row"><label for="e1-b">semi-axis b</label><input type="range" id="e1-b" min="0.2" max="4" step="0.1"><output for="e1-b"></output></div>
+      <div class="row"><label for="e1-theta">angle θ</label><input type="range" id="e1-theta" min="0" max="180" step="1"><output for="e1-theta"></output></div>
+    </fieldset>
+    <fieldset class="second">
+      <legend><svg viewBox="0 0 28 12" aria-hidden="true"><line x1="0" y1="6" x2="28" y2="6" class="e2"/></svg>Ellipse 2</legend>
+      <div class="row"><label for="e2-h">centre h</label><input type="range" id="e2-h" min="-4" max="4" step="0.1"><output for="e2-h"></output></div>
+      <div class="row"><label for="e2-k">centre k</label><input type="range" id="e2-k" min="-4" max="4" step="0.1"><output for="e2-k"></output></div>
+      <div class="row"><label for="e2-a">semi-axis a</label><input type="range" id="e2-a" min="0.2" max="4" step="0.1"><output for="e2-a"></output></div>
+      <div class="row"><label for="e2-b">semi-axis b</label><input type="range" id="e2-b" min="0.2" max="4" step="0.1"><output for="e2-b"></output></div>
+      <div class="row"><label for="e2-theta">angle θ</label><input type="range" id="e2-theta" min="0" max="180" step="1"><output for="e2-theta"></output></div>
+    </fieldset>
+  </form>
+</main>
+
+<script>
+const TAU = 2 * Math.PI;
+
+function at(e, t) {
+  const c = Math.cos(e.theta), s = Math.sin(e.theta), x = e.a * Math.cos(t), y = e.b * Math.sin(t);
+  return { x: e.h + c * x - s * y, y: e.k + s * x + c * y };
+}
+
+function walk(e1, e2) {
+  const c2 = Math.cos(e2.theta), s2 = Math.sin(e2.theta), d = e1.theta - e2.theta;
+  const cd = Math.cos(d), sd = Math.sin(d), dx = e1.h - e2.h, dy = e1.k - e2.k;
+  return {
+    q0: [(c2 * dx + s2 * dy) / e2.a, (-s2 * dx + c2 * dy) / e2.b],
+    qc: [e1.a * cd / e2.a, e1.a * sd / e2.b],
+    qs: [-e1.b * sd / e2.a, e1.b * cd / e2.b],
+  };
+}
+
+function g(w, t) {
+  const c = Math.cos(t), s = Math.sin(t);
+  const x = w.q0[0] + w.qc[0] * c + w.qs[0] * s, y = w.q0[1] + w.qc[1] * c + w.qs[1] * s;
+  return x * x + y * y - 1;
+}
+
+const dot = (u, v) => u[0] * v[0] + u[1] * v[1];
+
+function fourier({ q0, qc, qs }) {
+  return [
+    dot(q0, q0) + (dot(qc, qc) + dot(qs, qs)) / 2 - 1,
+    2 * dot(q0, qc), 2 * dot(q0, qs),
+    (dot(qc, qc) - dot(qs, qs)) / 2, dot(qc, qs),
+  ];
+}
+
+const wrap = (t) => ((t % TAU) + TAU) % TAU;
+
+const mul = (p, q) => [p[0] * q[0] - p[1] * q[1], p[0] * q[1] + p[1] * q[0]];
+const div = (p, q) => {
+  const n = q[0] * q[0] + q[1] * q[1];
+  return [(p[0] * q[0] + p[1] * q[1]) / n, (p[1] * q[0] - p[0] * q[1]) / n];
+};
+
+function roots(c) {
+  const m = c.map((z) => div(z, c[0])), n = m.length - 1;
+  let z = Array.from({ length: n }, (_, i) => [Math.cos(0.4 + TAU * i / n), Math.sin(0.4 + TAU * i / n)]);
+  for (let it = 0; it < 500; it++) {
+    let moved = 0;
+    z = z.map((zi, i) => {
+      let p = [1, 0], q = [1, 0];
+      for (let j = 1; j <= n; j++) p = [p[0] * zi[0] - p[1] * zi[1] + m[j][0], p[0] * zi[1] + p[1] * zi[0] + m[j][1]];
+      z.forEach((zj, j) => { if (j !== i) q = mul(q, [zi[0] - zj[0], zi[1] - zj[1]]); });
+      if (!q[0] && !q[1]) return zi;
+      const step = div(p, q);
+      moved = Math.max(moved, Math.hypot(step[0], step[1]) / Math.max(1, Math.hypot(zi[0], zi[1])));
+      return [zi[0] - step[0], zi[1] - step[1]];
+    });
+    if (moved <= 1e-15) break;
+  }
+  return z;
+}
+
+function turningPoints([, a1, b1, a2, b2]) {
+  const p1 = [b1, a1], p2 = [2 * b2, 2 * a2], conj = (z) => [z[0], -z[1]];
+  const c = Math.hypot(...p2) <= 1e-8 * Math.hypot(...p1)
+    ? [p1, [0, 0], conj(p1)]
+    : [p2, p1, [0, 0], conj(p1), conj(p2)];
+  const ts = roots(c).filter((z) => z[0] || z[1]).map((z) => wrap(Math.atan2(z[1], z[0]))).sort((x, y) => x - y);
+  return ts.filter((t, i) => i === 0 || t - ts[i - 1] > 1e-12);
+}
+
+function bisect(w, lo, hi) {
+  const below = g(w, lo) < 0;
+  for (;;) {
+    const mid = (lo + hi) / 2;
+    if (mid <= lo || mid >= hi) return mid;
+    if ((g(w, mid) < 0) === below) lo = mid;
+    else hi = mid;
+  }
+}
+
+function intersect(e1, e2) {
+  if (Math.max(e2.a, e2.b) < Math.max(e1.a, e1.b)) [e1, e2] = [e2, e1];
+  const w = walk(e1, e2), f = fourier(w), [a0, a1, b1, a2, b2] = f;
+  const tol = 64 * Number.EPSILON * ((Math.hypot(...w.q0) + Math.hypot(...w.qc) + Math.hypot(...w.qs)) ** 2 + 1);
+  if (Math.abs(a1) + Math.abs(b1) + Math.abs(a2) + Math.abs(b2) <= tol) {
+    return Math.abs(a0) <= tol ? { kind: 'same' } : { kind: 'points', points: [] };
+  }
+  const ts = turningPoints(f), n = ts.length;
+  const signs = ts.map((t) => { const v = g(w, t); return Math.abs(v) <= tol ? 0 : Math.sign(v); });
+  const found = [];
+  for (let i = 0; i < n; i++) {
+    if (signs[i] === 0) {
+      const others = [];
+      for (let j = 1; j < n; j++) if (signs[(i + j) % n]) others.push(signs[(i + j) % n]);
+      found.push([ts[i], !others.length || others[0] === others[others.length - 1] ? 'touch' : 'cross']);
+    }
+    const next = (i + 1) % n;
+    if (signs[i] * signs[next] < 0) found.push([wrap(bisect(w, ts[i], ts[next] + (next === 0 ? TAU : 0))), 'cross']);
+  }
+  return { kind: 'points', points: found.map(([t, kind]) => ({ ...at(e1, t), kind })) };
+}
+</script>
+
+<script>
+const PRESETS = {
+  four: [[0, 0, 3, 1.2, 20], [0.5, 0.3, 2.6, 1, 110]],
+  three: [[0, 0, 2, 2, 0], [0, 1, 1.6, 3, 0]],
+  two: [[-1.2, -0.4, 2.4, 1.4, 30], [1.8, 0.6, 2, 0.9, 150]],
+  touch: [[-1.5, 0, 2, 1, 0], [2.5, 0, 2, 1.5, 0]],
+  apart: [[-2.5, -1.8, 1.6, 1, 30], [2.2, 1.8, 2, 1, 140]],
+  inside: [[0, 0, 3.6, 2.6, 10], [0.6, 0.3, 1.6, 0.8, 50]],
+  same: [[0, 0, 3, 1.5, 30], [0, 0, 1.5, 3, 120]],
+};
+const FIELDS = ['h', 'k', 'a', 'b', 'theta'];
+const SVG = 'http://www.w3.org/2000/svg';
+const $ = (id) => document.getElementById(id);
+const input = (n, f) => $(`e${n}-${f}`);
+const fmt = (v) => (Math.abs(v) < 5e-4 ? 0 : v).toFixed(3).replace('-', '−');
+const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+let state, walker = 0, playing = !still, last = 0;
+
+function ellipse(n) {
+  const [h, k, a, b, deg] = FIELDS.map((f) => Number(input(n, f).value));
+  return { h, k, a, b, theta: deg * Math.PI / 180, deg };
+}
+
+function grid() {
+  const g = $('grid');
+  for (let i = -6; i <= 6; i++) {
+    for (const [x1, y1, x2, y2] of [[i, -6, i, 6], [-6, i, 6, i]]) {
+      const l = document.createElementNS(SVG, 'line');
+      Object.entries({ x1, y1, x2, y2, 'vector-effect': 'non-scaling-stroke' }).forEach(([k, v]) => l.setAttribute(k, v));
+      if (i === 0) l.classList.add('axis');
+      g.append(l);
+    }
+  }
+}
+
+function place(el, e) {
+  el.setAttribute('cx', e.h);
+  el.setAttribute('cy', e.k);
+  el.setAttribute('rx', e.a);
+  el.setAttribute('ry', e.b);
+  el.setAttribute('transform', `rotate(${e.deg} ${e.h} ${e.k})`);
+}
+
+function paramOn(e, p) {
+  const c = Math.cos(e.theta), s = Math.sin(e.theta), dx = p.x - e.h, dy = p.y - e.k;
+  return wrap(Math.atan2((-s * dx + c * dy) / e.b, (c * dx + s * dy) / e.a));
+}
+
+function squash(v) {
+  return 60 - 52 * v / (1 + Math.abs(v));
+}
+
+function render() {
+  const e1 = ellipse(1), e2 = ellipse(2), unit = 12 / $('plane').clientWidth;
+  place($('e1'), e1);
+  place($('e2'), e2);
+  FIELDS.forEach((f) => [1, 2].forEach((n) => {
+    const v = Number(input(n, f).value);
+    input(n, f).nextElementSibling.value = f === 'theta' ? `${v}°` : v.toFixed(1);
+  }));
+
+  const result = intersect(e1, e2), points = result.kind === 'points' ? result.points : [];
+  $('hits').replaceChildren(...points.map((p, i) => {
+    const c = document.createElementNS(SVG, 'circle');
+    c.setAttribute('class', `hit ${p.kind}`);
+    c.setAttribute('cx', p.x);
+    c.setAttribute('cy', p.y);
+    c.setAttribute('r', 5.5 * unit);
+    c.setAttribute('vector-effect', 'non-scaling-stroke');
+    return c;
+  }));
+  $('tags').replaceChildren(...points.map((p, i) => {
+    const t = document.createElementNS(SVG, 'text');
+    t.setAttribute('class', 'tag');
+    t.setAttribute('x', p.x + 9 * unit);
+    t.setAttribute('y', -p.y - 9 * unit);
+    t.setAttribute('font-size', 14 * unit);
+    t.textContent = i + 1;
+    return t;
+  }));
+
+  $('count').textContent = result.kind === 'same' ? '∞' : points.length;
+  $('count-label').textContent = result.kind === 'same' ? 'points: the same ellipse twice'
+    : points.length === 1 ? 'point' : 'points';
+  $('table').hidden = !points.length;
+  $('rows').replaceChildren(...points.map((p, i) => {
+    const tr = document.createElement('tr');
+    [i + 1, fmt(p.x), fmt(p.y), p.kind === 'touch' ? 'touches' : 'crosses'].forEach((v) => {
+      const td = document.createElement('td');
+      td.textContent = v;
+      tr.append(td);
+    });
+    return tr;
+  }));
+  const note = result.kind === 'same'
+    ? 'Two different descriptions, one curve: swap the axes and turn by 90° and you get the same ellipse back.'
+    : points.length ? '' : 'No point in common: one ellipse is outside the other, or inside it.';
+  $('note').textContent = note;
+  $('note').hidden = !note;
+
+  const w = walk(e1, e2), d = [];
+  for (let deg = 0; deg <= 360; deg++) d.push(`${deg ? 'L' : 'M'}${deg} ${squash(g(w, deg * Math.PI / 180)).toFixed(2)}`);
+  $('curve').setAttribute('d', d.join(''));
+  $('strip').querySelectorAll('.root').forEach((r) => r.remove());
+  points.forEach((p) => {
+    const r = document.createElementNS(SVG, 'circle');
+    r.setAttribute('class', `root ${p.kind}`);
+    r.setAttribute('cx', paramOn(e1, p) * 180 / Math.PI);
+    r.setAttribute('cy', 60);
+    r.setAttribute('r', 5 * 360 / $('strip').clientWidth);
+    r.setAttribute('vector-effect', 'non-scaling-stroke');
+    $('strip').append(r);
+  });
+  state = { e1, w, unit };
+  moveWalker();
+}
+
+function moveWalker() {
+  const p = at(state.e1, walker), v = g(state.w, walker), deg = walker * 180 / Math.PI;
+  $('walker').setAttribute('cx', p.x);
+  $('walker').setAttribute('cy', p.y);
+  $('walker').setAttribute('r', 4.5 * state.unit);
+  $('cursor').setAttribute('x1', deg);
+  $('cursor').setAttribute('x2', deg);
+  const where = Math.abs(v) < 1e-3 ? 'on ellipse 2' : v > 0 ? 'outside ellipse 2' : 'inside ellipse 2';
+  $('walk-readout').value = `t = ${Math.round(deg)}° · g(t) = ${fmt(v)} · ${where}`;
+}
+
+function tick(now) {
+  if (playing) {
+    walker = wrap(walker + Math.min(now - last, 50) / 1000 * TAU / 10);
+    moveWalker();
+  }
+  last = now;
+  requestAnimationFrame(tick);
+}
+
+function preset(name) {
+  PRESETS[name].forEach((values, i) => FIELDS.forEach((f, j) => { input(i + 1, f).value = values[j]; }));
+  document.querySelectorAll('[data-preset]').forEach((b) => b.setAttribute('aria-pressed', b.dataset.preset === name));
+  render();
+}
+
+function setPlaying(on) {
+  playing = on;
+  $('play').setAttribute('aria-pressed', on);
+  $('play').textContent = on ? 'Pause the walk' : 'Start the walk';
+}
+
+grid();
+document.querySelectorAll('[data-preset]').forEach((b) => b.addEventListener('click', () => preset(b.dataset.preset)));
+$('controls').addEventListener('input', () => {
+  document.querySelectorAll('[data-preset]').forEach((b) => b.setAttribute('aria-pressed', 'false'));
+  render();
+});
+$('play').addEventListener('click', () => setPlaying(!playing));
+new ResizeObserver(() => state && render()).observe($('plane'));
+setPlaying(playing);
+preset('four');
+requestAnimationFrame(tick);
+</script>
+</body>
+</html>

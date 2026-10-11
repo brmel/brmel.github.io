@@ -38,6 +38,7 @@ write prose; consistency comes from the templates.
 | `layouts/_default/rss.xml` | feeds |
 | `layouts/_default/single.markdown.md` | the markdown twin of every Tech and Adventures page |
 | `layouts/_default/_markup/render-link.html` | external links open in a new tab |
+| `layouts/_default/_markup/render-passthrough.html` | LaTeX between `$$ … $$` (block) or `\( … \)` (inline) becomes MathML at build time through `transform.ToMath`; the markdown twin keeps the LaTeX |
 | `layouts/projects/list.html` | the project index: one grid, highest `projectNo` first |
 | `layouts/projects/single.html` | a project page |
 | `layouts/projects/tracker.html` | PariData, from `data/paridata/` |
@@ -88,7 +89,7 @@ Fifteen files are forks of PaperMod, each with a one-line header naming the upst
 
 These share a theme or Hugo name, are written here from scratch, and carry no header:
 `extend_head.html`, `extend_footer.html`, `google_analytics.html`, `shortcodes/figure.html`,
-`_default/terms.html`, `_markup/render-link.html`, `sitemap.xml`.
+`_default/terms.html`, `_markup/render-link.html`, `_markup/render-passthrough.html`, `sitemap.xml`.
 
 ## Stylesheets
 
