@@ -3,7 +3,7 @@
 <iframe class="report-frame" title="{{ $.Get "title" }}" src="{{ .RelPermalink }}" loading="lazy"></iframe>
 <script>
 document.querySelectorAll('.report-frame').forEach((frame) => {
-  const fit = () => { frame.style.height = frame.contentDocument.body.scrollHeight + 'px'; };
+  const fit = () => { frame.style.minHeight = 0; frame.style.height = frame.contentDocument.body.scrollHeight + 'px'; };
   const brand = () => {
     const page = getComputedStyle(document.body), root = frame.contentDocument.documentElement;
     root.dataset.theme = document.body.classList.contains('dark') ? 'dark' : 'light';
