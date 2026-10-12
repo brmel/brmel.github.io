@@ -172,8 +172,9 @@ function g(w, t) {
 }
 
 const dot = (u, v) => u[0] * v[0] + u[1] * v[1];
+const wrap = (t) => ((t % TAU) + TAU) % TAU;
 
-function fourier({ q0, qc, qs }) {
+function coefficients({ q0, qc, qs }) {
   return [
     dot(q0, q0) + (dot(qc, qc) + dot(qs, qs)) / 2 - 1,
     2 * dot(q0, qc), 2 * dot(q0, qs),
@@ -181,72 +182,91 @@ function fourier({ q0, qc, qs }) {
   ];
 }
 
-const wrap = (t) => ((t % TAU) + TAU) % TAU;
+const wave = ([c0, c1, s1, c2, s2], t) =>
+  c0 + c1 * Math.cos(t) + s1 * Math.sin(t) + c2 * Math.cos(2 * t) + s2 * Math.sin(2 * t);
+const slope = ([, c1, s1, c2, s2], t) =>
+  -c1 * Math.sin(t) + s1 * Math.cos(t) - 2 * c2 * Math.sin(2 * t) + 2 * s2 * Math.cos(2 * t);
+const bend = ([, c1, s1, c2, s2], t) =>
+  -c1 * Math.cos(t) - s1 * Math.sin(t) - 4 * c2 * Math.cos(2 * t) - 4 * s2 * Math.sin(2 * t);
+const signOf = (x) => (x < 0 ? -1 : 1);
 
-const mul = (p, q) => [p[0] * q[0] - p[1] * q[1], p[0] * q[1] + p[1] * q[0]];
-const div = (p, q) => {
-  const n = q[0] * q[0] + q[1] * q[1];
-  return [(p[0] * q[0] + p[1] * q[1]) / n, (p[1] * q[0] - p[0] * q[1]) / n];
-};
-
-function roots(c) {
-  const m = c.map((z) => div(z, c[0])), n = m.length - 1;
-  let z = Array.from({ length: n }, (_, i) => [Math.cos(0.4 + TAU * i / n), Math.sin(0.4 + TAU * i / n)]);
-  for (let it = 0; it < 500; it++) {
-    let moved = 0;
-    z = z.map((zi, i) => {
-      let p = [1, 0], q = [1, 0];
-      for (let j = 1; j <= n; j++) p = [p[0] * zi[0] - p[1] * zi[1] + m[j][0], p[0] * zi[1] + p[1] * zi[0] + m[j][1]];
-      z.forEach((zj, j) => { if (j !== i) q = mul(q, [zi[0] - zj[0], zi[1] - zj[1]]); });
-      if (!q[0] && !q[1]) return zi;
-      const step = div(p, q);
-      moved = Math.max(moved, Math.hypot(step[0], step[1]) / Math.max(1, Math.hypot(zi[0], zi[1])));
-      return [zi[0] - step[0], zi[1] - step[1]];
-    });
-    if (moved <= 1e-15) break;
+function cubicRoots(a2, a1, a0) {
+  const p = a1 - a2 * a2 / 3, q = 2 * a2 ** 3 / 27 - a2 * a1 / 3 + a0, d = (q / 2) ** 2 + (p / 3) ** 3;
+  let xs = [0];
+  if (d > 0) {
+    const u = Math.cbrt(-q / 2 - signOf(q) * Math.sqrt(d));
+    xs = [u ? u - p / (3 * u) : 0];
+  } else if (p < 0) {
+    const rho = Math.sqrt(-p / 3), angle = Math.acos(Math.max(-1, Math.min(1, -q / (2 * rho ** 3))));
+    xs = [0, 1, 2].map((k) => 2 * rho * Math.cos((angle - 2 * Math.PI * k) / 3));
   }
-  return z;
+  return xs.map((x) => x - a2 / 3);
 }
 
-function turningPoints([, a1, b1, a2, b2]) {
-  const p1 = [b1, a1], p2 = [2 * b2, 2 * a2], conj = (z) => [z[0], -z[1]];
-  const c = Math.hypot(...p2) <= 1e-8 * Math.hypot(...p1)
-    ? [p1, [0, 0], conj(p1)]
-    : [p2, p1, [0, 0], conj(p1), conj(p2)];
-  const ts = roots(c).filter((z) => z[0] || z[1]).map((z) => wrap(Math.atan2(z[1], z[0]))).sort((x, y) => x - y);
-  return ts.filter((t, i) => i === 0 || t - ts[i - 1] > 1e-12);
+function quadratic(b, c) {
+  const d = b * b - 4 * c;
+  if (d < 0) return [[-b / 2, Math.sqrt(-d) / 2], [-b / 2, -Math.sqrt(-d) / 2]];
+  const y1 = (-b - signOf(b) * Math.sqrt(d)) / 2;
+  return [[y1, 0], [y1 ? c / y1 : 0, 0]];
 }
 
-function bisect(w, lo, hi) {
-  const below = g(w, lo) < 0;
-  for (;;) {
-    const mid = (lo + hi) / 2;
-    if (mid <= lo || mid >= hi) return mid;
-    if ((g(w, mid) < 0) === below) lo = mid;
-    else hi = mid;
+function quartic(A, B, C, D, E) {
+  const a = B / A, b = C / A, c = D / A, d = E / A;
+  let best = null;
+  for (const y of cubicRoots(-b, a * c - 4 * d, 4 * b * d - a * a * d - c * c)) {
+    const sa = Math.sqrt(Math.max(a * a / 4 - b + y, 0)), sb = Math.sqrt(Math.max(y * y / 4 - d, 0));
+    const options = [[a / 2, a / 2, y / 2, y / 2]];
+    if (sa) {
+      const a1 = a / 2 + sa, a2 = a / 2 - sa, b1 = (c - a1 * y) / (a2 - a1);
+      options.push([a1, a2, b1, y - b1]);
+    }
+    if (sb) {
+      const b1 = y / 2 + sb, b2 = y / 2 - sb, a1 = (c - a * b1) / (b2 - b1);
+      options.push([a1, a - a1, b1, b2]);
+    }
+    for (const [a1, a2, b1, b2] of options) {
+      const miss = Math.abs(b1 + b2 + a1 * a2 - b) + Math.abs(a1 * b2 + a2 * b1 - c) + Math.abs(b1 * b2 - d);
+      if (!best || miss < best[0]) best = [miss, a1, b1, a2, b2];
+    }
   }
+  const [, a1, b1, a2, b2] = best;
+  return [...quadratic(a1, b1), ...quadratic(a2, b2)];
 }
 
 function intersect(e1, e2) {
   if (Math.max(e2.a, e2.b) < Math.max(e1.a, e1.b)) [e1, e2] = [e2, e1];
-  const w = walk(e1, e2), f = fourier(w), [a0, a1, b1, a2, b2] = f;
-  const tol = 64 * Number.EPSILON * ((Math.hypot(...w.q0) + Math.hypot(...w.qc) + Math.hypot(...w.qs)) ** 2 + 1);
-  if (Math.abs(a1) + Math.abs(b1) + Math.abs(a2) + Math.abs(b2) <= tol) {
-    return Math.abs(a0) <= tol ? { kind: 'same' } : { kind: 'points', points: [] };
+  const w = walk(e1, e2), f = coefficients(w), [c0, c1, s1, c2, s2] = f;
+  const size = (Math.hypot(...w.q0) + Math.hypot(...w.qc) + Math.hypot(...w.qs)) ** 2 + 1;
+  const tol = 64 * Number.EPSILON * size;
+  if (Math.abs(c1) + Math.abs(s1) + Math.abs(c2) + Math.abs(s2) <= tol) {
+    return Math.abs(c0) <= tol ? { kind: 'same' } : { kind: 'points', points: [] };
   }
-  const ts = turningPoints(f), n = ts.length;
-  const signs = ts.map((t) => { const v = g(w, t); return Math.abs(v) <= tol ? 0 : Math.sign(v); });
-  const found = [];
-  for (let i = 0; i < n; i++) {
-    if (signs[i] === 0) {
-      const others = [];
-      for (let j = 1; j < n; j++) if (signs[(i + j) % n]) others.push(signs[(i + j) % n]);
-      found.push([ts[i], !others.length || others[0] === others[others.length - 1] ? 'touch' : 'cross']);
-    }
-    const next = (i + 1) % n;
-    if (signs[i] * signs[next] < 0) found.push([wrap(bisect(w, ts[i], ts[next] + (next === 0 ? TAU : 0))), 'cross']);
+  let phi = 0;
+  for (let k = 1; k < 8; k++) {
+    if (Math.abs(wave(f, k * Math.PI / 4 + Math.PI)) > Math.abs(wave(f, phi + Math.PI))) phi = k * Math.PI / 4;
   }
-  return { kind: 'points', points: found.map(([t, kind]) => ({ ...at(e1, t), kind })) };
+  const cp = Math.cos(phi), sp = Math.sin(phi), c2p = Math.cos(2 * phi), s2p = Math.sin(2 * phi);
+  const k1 = c1 * cp + s1 * sp, l1 = -c1 * sp + s1 * cp, k2 = c2 * c2p + s2 * s2p, l2 = -c2 * s2p + s2 * c2p;
+  const ts = quartic(c0 - k1 + k2, 2 * l1 - 4 * l2, 2 * c0 - 6 * k2, 2 * l1 + 4 * l2, c0 + k1 + k2)
+    .filter(([re, im]) => Math.abs(im) <= 1e-3 * (1 + Math.hypot(re, im)))
+    .map(([re]) => re)
+    .sort((x, y) => x - y)
+    .map((x) => phi + 2 * Math.atan(x))
+    .filter((t) => Math.abs(wave(f, t)) <= tol + 1e-7 * Math.abs(slope(f, t)));
+  const groups = [];
+  for (const t of ts) {
+    const last = groups.length ? groups[groups.length - 1] : null;
+    const gap = last ? t - last[last.length - 1] : 1, mid = last ? (t + last[last.length - 1]) / 2 : t;
+    if (last && gap <= 1e-3 && Math.abs(wave(f, mid)) <= tol + Math.abs(bend(f, mid)) * gap * gap / 32) last.push(t);
+    else groups.push([t]);
+  }
+  return {
+    kind: 'points',
+    points: groups.map((grp) => ({
+      ...at(e1, grp.reduce((sum, t) => sum + t, 0) / grp.length),
+      kind: grp.length > 1 ? 'touch' : 'cross',
+    })),
+  };
 }
 </script>
 
