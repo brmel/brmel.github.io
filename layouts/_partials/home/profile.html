@@ -3,9 +3,9 @@
   {{- with resources.Get site.Params.photo }}
   {{- $src := .Fill "400x400 webp q60 Smart" }}
   <picture>
-    <source type="image/avif" srcset="{{ (.Fill "200x200 avif Smart").RelPermalink }} 200w, {{ (.Fill "400x400 avif Smart").RelPermalink }} 400w" sizes="(max-width: 600px) 160px, 200px">
+    <source type="image/avif" srcset="{{ (.Fill "200x200 avif Smart").RelPermalink }} 200w, {{ (.Fill "400x400 avif Smart").RelPermalink }} 400w" sizes="(max-width: 600px) 128px, 200px">
     <img class="profile__photo" src="{{ $src.RelPermalink }}" srcset="{{ (.Fill "200x200 webp q60 Smart").RelPermalink }} 200w, {{ $src.RelPermalink }} 400w"
-         sizes="(max-width: 600px) 160px, 200px" width="{{ $src.Width }}" height="{{ $src.Height }}"
+         sizes="(max-width: 600px) 128px, 200px" width="{{ $src.Width }}" height="{{ $src.Height }}"
          fetchpriority="high" decoding="async" alt="{{ site.Params.name }}">
   </picture>
   {{- else }}{{ errorf "params.photo %q is not in assets/" site.Params.photo }}

@@ -2,13 +2,13 @@
 title: "Indian Head & Rainbow Falls: The Adirondacks’ Best Day Hike"
 date: 2026-05-31
 description: "An 11-mile loop to a fjord-like vista over Lower Ausable Lake and a 150-foot waterfall — the most rewarding easy-graded hike in the Adirondack High Peaks."
-tags: ["Adirondacks", "Hiking"]
+tags: ["Hiking"]
 category: "hike"
 place: "Adirondacks, NY"
 rating: 4.7
 goBack: "Yes, top of the list."
 bestFor: "A long but easy-graded day with three viewpoints."
-con: "It’s a full ~11 miles: mostly flat, but a long day on your feet."
+con: "Mostly flat, but a long day on your feet."
 ---
 
 Eleven miles, almost no scrambling, and it ends at a cliff over a lake shaped like a Norwegian fjord. Indian Head & Rainbow Falls is the most bang-for-effort hike I've done in the Adirondacks.

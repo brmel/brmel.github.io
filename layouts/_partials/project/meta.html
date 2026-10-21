@@ -5,7 +5,11 @@
   {{- with $links }}
   <ul class="project-links">
     {{- range . }}
+    {{- if hasPrefix .url "/" }}
+    <li><a class="u-eyebrow u-link" href="{{ .url | relLangURL }}">{{ i18n "project_link_writeup" }}</a></li>
+    {{- else }}
     <li><a class="u-eyebrow u-link" href="{{ .url }}" target="_blank" rel="noopener noreferrer">{{ i18n (printf "project_link_%s" .label) }} <span aria-hidden="true">↗</span></a></li>
+    {{- end }}
     {{- end }}
   </ul>
   {{- end }}

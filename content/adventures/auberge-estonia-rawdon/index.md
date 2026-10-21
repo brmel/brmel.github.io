@@ -2,7 +2,7 @@
 title: "Auberge Estonia: Nordic Spa Cabins in Rawdon, One Hour from Montréal"
 date: 2026-05-31
 description: "Eight rooms and a few chalets in the Rawdon woods, an hour from Montréal, where the Nordic spa is free for guests and dinner is whatever you brought."
-tags: ["Québec", "Spa", "Getaway"]
+tags: ["Québec", "Spa"]
 category: "spa"
 place: "Rawdon, Lanaudière"
 rating: 4.5
@@ -16,7 +16,7 @@ An hour from Montréal, in the Rawdon woods: two Nordic hot tubs steaming under 
 ## The place
 
 Auberge Estonia (Estonia Hébergement Nature) sits in the forested hills of
-Rawdon, in Québec's Lanaudière region, about one hour from Montréal.
+Rawdon, in Québec's Lanaudière region.
 It's small and nature-first: 8 rooms in the inn (each with a private
 bathroom) and a handful of mini-chalets scattered in the woods.
 
@@ -45,7 +45,7 @@ It's a do-nothing-on-purpose kind of place: quiet, wooded, no crowds.
 - **Do the circuit right:** hot tub → cold lake/plunge → rest by the fire, a few
   rounds. Bring sandals, a robe, and a warm layer for between rounds.
 - **Self-cater:** chalets have a BBQ + kitchenette and the inn has a shared
-  kitchen, so bring groceries. Restaurants are ~10 min away in Rawdon village.
+  kitchen, so bring groceries.
 - **Nearby:** Dorwin Falls (Rawdon's ~18 m / 60 ft waterfall) and La
   Source Bains Nordiques are both close, so they're easy add-ons.
 - **Best time:** summer for lake swims and trails; winter for sauna-to-snow and a

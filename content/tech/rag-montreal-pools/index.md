@@ -17,19 +17,7 @@ issues and financial losses. For example, Air Canada had to pay compensation bec
 misleading response from an LLM:
 [Washington Post article](https://www.washingtonpost.com/travel/2024/02/18/air-canada-airline-chatbot-ruling/).
 
-This article is for educational purposes only, to show what AI, generative
-models and the fast-developing tools around them can do.
-
-I understand that this solution may seem overly engineered, and I agree. A
-simpler, less expensive solution could address this problem. However, with more
-advanced LLMs available, an LLM-based solution takes just a few lines of code,
-and the LLM can analyse all the data.
-
-I felt this while working on the problem:
-
-> Software ate the world. Now AI is eating software.
-
-## I — The problem
+## The problem
 
 I started swimming a couple of weeks ago, and fortunately, Montréal has many
 indoor swimming pools. The city's website lists all the indoor pools along with
@@ -50,7 +38,7 @@ Since I didn't have a fixed time to go to the pool, I found myself constantly
 navigating through pool websites to find the next available slot, which was
 time-consuming and very manual.
 
-## II — Large language models
+## Large language models
 
 I decided to use an LLM like ChatGPT to address this problem. LLMs excel at understanding complex text, such as pool schedules, and
 grasping concepts related to time and space, like pool opening and closing times,
@@ -82,7 +70,7 @@ Here are three possible solutions:
 
 {{< figure src="01-rag-pipeline-diagram.jpg" alt="Diagram of a basic RAG pipeline, from documents through indexing and retrieval to the language model" caption="A basic RAG pipeline. Source: [DeepLearning.AI — Building and Evaluating Advanced RAG](https://learn.deeplearning.ai/courses/building-evaluating-advanced-rag/lesson/2/advanced-rag-pipeline)." >}}
 
-## III — The design and implementation
+## The design and implementation
 
 The pipeline has two halves that run at different times. Everything on the left
 happens once, offline, when the schedules are collected. Everything on the right
@@ -136,7 +124,7 @@ happens per question:
   </g>
 </svg>
 
-### A. Prepare the dataset
+### Prepare the dataset
 
 We need to collect data on all the indoor pools. I tried to automate this process
 as much as possible, but there is room for improvement to handle more complex
@@ -159,7 +147,7 @@ Each pool has its own file with a schedule that looks something like this:
 
 {{< figure src="03-pool-schedule-example.jpg" alt="Extracted pool schedule as plain text, with days, times and activity types" caption="Example of a pool schedule after extraction." >}}
 
-### B. Create the embeddings
+### Create the embeddings
 
 When a user asks a question about a specific pool, we need to search the database
 for relevant information, combine this information (also known as context) with
@@ -184,7 +172,7 @@ convert text into vectors. This same model will later be used to embed the user'
 query and search the database. It's important to use the same model for both the
 user query and the database embeddings.
 
-### C. Prepare the prompt
+### Prepare the prompt
 
 With the embeddings ready, we need to obtain the user query, create an embedding
 for it, search the database for relevant documents, and prepare the prompt for
@@ -192,13 +180,13 @@ the LLM. Tools like [ChainLit](https://docs.chainlit.io/get-started/overview) ca
 be used to create the chatbot, handling server creation, message history, themes,
 parsing, and more.
 
-## IV — Demo
+## Demo
 
 I won't say anything here. Here's the chatbot running:
 
 {{< figure src="05-chatbot-demo.jpg" alt="The chatbot answering a question about which pool is open next, and linking to the pool's page on the city website" caption="ChatGPT used in a RAG system to answer questions about Montréal pools." >}}
 
-## V — The lesson
+## The lesson
 
 - As a software developer, I always aim to find exact solutions that are
   deterministic and proven through mathematics, physics, and science. Working

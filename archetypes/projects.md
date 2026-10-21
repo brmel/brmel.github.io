@@ -4,7 +4,6 @@ date: {{ .Date }}
 draft: true
 
 projectNo:
-domain: "saas"
 status: "active"
 pitch: ""
 description: ""

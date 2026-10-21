@@ -3,7 +3,6 @@ title: "RoboNode"
 featured: 5
 date: 2026-08-01
 projectNo: 8
-domain: "infra"
 status: "active"
 pitch: "A robot arm you drive from your browser, to test robotics code against real physics before touching hardware."
 description: "A robot arm you drive from your browser, to test robotics code against real physics before touching hardware."
@@ -12,8 +11,6 @@ metrics:
     label: "vision, tracking, trajectory and control, swappable while running"
   - value: "1 command"
     label: "docker compose up, then a robot cell in the browser"
-  - value: "Sandboxed"
-    label: "third-party algorithms run isolated from the cell"
 stack: ["C++", "MuJoCo", "OpenCV", "Ruckig", "three.js", "Docker"]
 links:
   live: ""
@@ -27,10 +24,9 @@ lede: |
 lessons:
   - "**I made the default scenario unfair on purpose.** An easy cell makes every algorithm look competent. The default scene moves the target, delays the sensor, and puts a decoy in the bin the same colour as the part, so a tracker that assumes a stationary world misses visibly and the log names what it hit rather than reporting a lower score."
   - "**One interface per capability.** Vision, tracking, trajectory and control are four typed slots with interchangeable versions and a bring-your-own option. Swapping a planner doesn’t touch the UI, the CLI or the real-time loop, which is the entire reason a stranger’s algorithm can be dropped into a running cell."
-  - "**I reused the mature engines and wrote the glue.** MuJoCo for physics, Ruckig for trajectories, OpenCV for vision, Pinocchio for kinematics — none of them reimplemented. What I built is the modular boundary and the swap-and-compare experience around them."
   - "**Third-party code runs in a sandbox, outside my process.** User algorithms compile into a fuel-bounded VM with no host surface, so a runaway loop stops instead of taking the cell with it. The moment a platform invites strangers to write control code, that stops being optional."
   - "**Every action in the UI has a command-line equivalent, and that wasn’t free.** One contract, three surfaces (web, CLI and other clients), with the wire format defined once. It costs discipline on every feature, and it’s why the platform can be driven by a script, a person or an agent without three implementations drifting apart."
-tags: ["C++", "Systems", "Robotics", "Simulation"]
+tags: ["C++", "Robotics"]
 resources:
   - src: "gallery/01-dashboard.png"
     params:

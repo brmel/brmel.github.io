@@ -1,7 +1,7 @@
 ---
 title: "Resume"
 layout: "resume"
-lastmod: 2026-10-20
+lastmod: 2026-10-21
 description: "Senior Software Developer, seven years on 2D and 3D machine vision algorithms in modern C++: real-time image processing, numerical optimisation and memory."
 aliases: ["/timeline/", "/about/"]
 role: "Senior Software Developer in Montréal, building machine vision and image processing algorithms in modern C++"
@@ -54,7 +54,6 @@ experience:
       - A model that wins on a benchmark can still lose in the field, because a customer’s failures are the images nobody thought to put in the test set. How it fails tells you more than how often it fails.
       - Running inference inside a real-time pipeline is a memory and throughput problem before it’s a machine learning one. Preprocessing, allocation and cache locality decide whether a model fits the frame budget at all.
       - On the smart camera, the constraints drive the whole design. Working set, allocation on the hot path and CPU headroom rule out approaches on the desktop build long before accuracy does.
-      - Most of this job sits around the algorithm: the reference documentation, the shipped examples, the API contract agreed with the UI and QA teams, and the customer applications that surface the bugs a test suite doesn’t.
 
   - period: "2022 — 2024"
     role: "Software Developer II"
@@ -128,14 +127,13 @@ experience:
       - Non-linear optimisation is only as good as its initial guess and its stopping rule. Levenberg–Marquardt converges cleanly in a paper and oscillates on real data until both of those are right.
       - Sub-pixel accuracy is a numerical-stability problem. The order of operations, the conditioning of the matrix and the tolerance you compare against decide the last two decimals.
       - In a multi-decade C++ codebase the memory bugs that cost time are dangling references and ownership nobody wrote down. Leaks at least announce themselves.
-      - I build the regression suite before touching the algorithm. It’s the only thing that makes changing legacy numerical code possible at all.
 
   - period: "2017 — 2019"
     role: "M.Eng., Electrical Engineering — Control Systems"
     kind: "education"
     org: "Polytechnique Montréal"
     url: "https://www.polymtl.ca/"
-    note: "Professional master’s with an industrial internship · GPA 3.87/4 · Al Ghurair Foundation Scholarship — 1 of 100 selected from more than 15,000 applicants."
+    note: "Professional master’s with an industrial internship · GPA 3.87/4 · Al Ghurair Foundation Scholarship — 1 of 100 selected from more than 15,000 applicants."
     work:
       - title: "How I got to Canada"
         video: "BPkj-VETeX0"
@@ -171,7 +169,7 @@ experience:
     kind: "education"
     org: "École Nationale Polytechnique, Algiers"
     url: "https://www.enp.edu.dz/en/"
-    note: "GPA 17.5/20 · graduated 5th of 1,400 — top 1% nationally."
+    note: "GPA 17.5/20 · graduated 5th of 1,400 — top 1% nationally."
     work:
       - title: "Two years of preparatory classes first"
         video: "VjwIGG7Lbt0"
@@ -196,30 +194,31 @@ experience:
 
 skills:
   - group: "Languages"
-    items: ["C++ (17/20)", "C", "Python", "TypeScript", "Dart / Flutter", "MATLAB", "VHDL", "SQL"]
+    items: ["C++17 / C++20", "C", "Python", "TypeScript", "Dart / Flutter", "MATLAB", "VHDL", "SQL"]
   - group: "Machine vision"
     items: ["Aurora Imaging Library (formerly Matrox Imaging Library)", "OpenCV", "geometric matching", "pattern matching", "calibration", "metrology", "edge measurement", "SIFT", "homography", "2D and 3D transforms"]
   - group: "Maths & algorithms"
     items: ["non-linear optimisation", "Levenberg–Marquardt", "non-linear least squares", "linear algebra", "numerical stability", "control theory", "classical ML", "deep learning"]
   - group: "C++ & systems"
-    items: ["modern C++ (templates, STL)", "multithreading and concurrency", "real-time image processing", "virtual memory and working set", "CMake", "GTest", "Clang / LLVM", "ASan / MSan", "Valgrind", "gdb", "cross-platform Windows and Linux", "QNX", "ROS", "Docker"]
+    items: ["modern C++ (templates, STL)", "multithreading and concurrency", "real-time image processing", "virtual memory and working set", "CMake", "GTest", "Clang / LLVM", "ASan / MSan", "Valgrind", "gdb", "cross-platform Windows and Linux", "QNX", "ROS", "Docker"]
   - group: "Cloud & backend"
     items: ["Google Cloud", "Firebase", "Cloud Functions", "Firestore", "Cloud Storage", "FastAPI", "Prefect"]
   - group: "Tools & practice"
-    items: ["Visual Studio", "Git / GitHub", "SVN", "CI/CD", "code review", "clang-tidy / clang-format", "SonarQube", "JIRA", "Confluence", "Agile / Scrum", "Simulink", "LabVIEW", "Unity-Pro (Schneider)", "Simatic-Manager (Siemens)"]
+    items: ["Visual Studio", "Git / GitHub", "SVN", "CI/CD", "code review", "clang-tidy / clang-format", "SonarQube", "JIRA", "Confluence", "Agile / Scrum", "Simulink", "LabVIEW", "Unity-Pro (Schneider)", "Simatic-Manager (Siemens)"]
   - group: "Spoken"
     items: ["French", "English", "Arabic"]
 certifications:
   - year: "2023"
-    name: "Neural Networks and Deep Learning · Convolutional Neural Networks"
+    name: "Neural Networks and Deep Learning · Convolutional Neural Networks"
     issuer: "DeepLearning.AI"
   - year: "2023"
     name: "Machine Learning: Classification"
     issuer: "University of Washington"
 ---
 
+- **Machine vision** — 2D and 3D algorithms that find, measure and inspect parts in factory images: pattern matching, edge detection, calibration and metrology
+- **Machine learning, prototype to production** — taking a model from a first prototype to a tested, documented feature of a C++ library that ships to customers
+- **Deep learning evaluation** — testing deep learning models for object detection and text detection, including damaged, blurred and low-contrast codes
+- **Constrained hardware** — optimising vision algorithms to fit the memory and processing limits of smart cameras
 - **Numerical algorithms** — non-linear optimisation for sub-pixel accuracy, with regression tests that guard every numerical result
-- **Memory and performance** — how Windows manages a program's memory. I wrote [MemoryTracer](/projects/memorytracer/) to measure it and [two articles](/tech/windows-memory-management-overview/) explaining it
-- **Concurrency** — keeping multithreaded code safe in a library thousands of installed applications depend on
-- **Machine vision** — finding, measuring and reading objects in images: pattern matching, edge detection, metrology, and deep learning for damaged or badly lit barcodes
-- **Engineering practice** — code review, automated tests and memory checks with CMake, GTest, sanitizers and Valgrind
+- **Modern C++** — safe multithreaded code, memory measured with [MemoryTracer](/projects/memorytracer/) and explained in [two articles](/tech/windows-memory-management-overview/), code review, automated tests and sanitizers

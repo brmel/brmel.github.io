@@ -7,7 +7,7 @@ How to publish a project page. Every project page has the same structure, render
 
 ```
 ┌──────────────────────────────────────────┐
-│ 2025 · SaaS · Shipped                     │ eyebrow from date, domain, status (auto)
+│ 2025 · Shipped                            │ eyebrow from date and status (auto)
 │ TikiPro                                   │ title
 │ One line a non-engineer understands.      │ pitch
 │ Live ↗  Repo ↗  [Electron][TypeScript]    │ links and stack chips (auto)
@@ -23,7 +23,7 @@ How to publish a project page. Every project page has the same structure, render
 ```
 
 The project index card is the same card as every list on the site: the first gallery image as a 16:9
-thumbnail (the compass mark when there is none), `{year} · {domain} · {status}`, the title and the
+thumbnail (the compass mark when there is none), `{year} · {status}`, the title and the
 pitch.
 
 ## 1. Scaffold
@@ -44,15 +44,14 @@ grep -h '^projectNo:' content/projects/*/index.md | sort -n -k2 | tail -1
 |---|---|
 | `title`, `date` | The year of `date` shows on the index card. |
 | `projectNo` | Unique and permanent. The index lists the highest first. |
-| `domain` | `saas`, `data`, `infra` or `mobile`, shown through `project_domain_<domain>` in `i18n/*.yaml`. A new domain needs that key in all three files. |
 | `status` | `shipped`, `active` (shown as "In progress") or `archived`, through `project_status_<status>`. |
 | `pitch` | One sentence a non-engineer can parse. It is the header line, the index card text and the JSON-LD abstract. |
 | `description` | 50–160 characters, unique per language; the meta description, search and `llms.txt`. Usually identical to `pitch`. |
-| `lede` | Markdown, three sentences: the problem, what the project does, what changed. |
+| `lede` | Markdown, three sentences: the problem, what the project does, what changed. It must add to the pitch, not restate it. |
 | `stack` | Chips under the page header, in order of importance. |
-| `links` | `live` and `repo`, each rendered through the `project_link_<key>` string in the three `i18n/*.yaml` files; a new key needs that string first. Empty values are skipped. |
-| `metrics` | Three `value` + `label` pairs above the body. Every figure also appears, sourced, in the body. They feed the "Project facts" in `llms.txt`. A project with no honest numbers has no metrics. |
-| `lessons` | Three to five markdown strings, each with a bold lead, at least one a real failure. |
+| `links` | `live` and `repo`, each rendered through the `project_link_<key>` string in the three `i18n/*.yaml` files; a new key needs that string first. A link that starts with `/` points at a page on this site: it shows as "Write-up" (`project_link_writeup`) and opens in the same tab. Empty values are skipped. |
+| `metrics` | Up to three `value` + `label` pairs above the body; a value is a number, never a word ("Offline", "Cited"). Every figure also appears, sourced, in the body. They feed the "Project facts" in `llms.txt`. A project with no honest numbers has no metrics. |
+| `lessons` | Three to five markdown strings, each with a bold lead, at least one a real failure. A lesson never repeats a paragraph of the prose or a metric: each fact lives in one place. |
 | `tags` | Topic pages; see [publishing a new tag](#new-tags). |
 | `featured` | Optional. `featured: N` lists the project under "Start here" on the home page, lowest number first; four show. |
 | `resources` | Optional `params.caption` per gallery image. Alt text is "<title> screenshot"; the first image is the index-card thumbnail. |
@@ -64,7 +63,7 @@ metrics and lessons carry the rest. Never reuse README prose.
 
 - `## The story`: why it existed. The problem, for whom, and why it was built instead of using
   something that already worked. Lead with the situation.
-- `## The product`: what it became. Screens, flows, the one or two decisions that made it work,
+- `## The product`: what it became; left out when the lede and lessons already say it. Screens, flows, the one or two decisions that made it work,
   numbers where they exist.
 
 Voice: [voice.md](voice.md).

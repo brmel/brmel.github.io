@@ -2,15 +2,12 @@
 title: "Bâtir"
 date: 2026-07-25
 projectNo: 9
-domain: "saas"
 status: "active"
 pitch: "Answers Algerian construction questions in Arabic, French or English, and shows the building rule behind each answer."
 description: "Answers Algerian construction questions in Arabic, French or English, and shows the building rule behind each answer."
 metrics:
   - value: "3 languages"
     label: "Arabic, French and English, answered from the same documents"
-  - value: "Cited"
-    label: "every answer points back to the document it came from"
   - value: "5 stages"
     label: "fetch, promote, deploy, re-ingest, verify"
 stack: ["Python", "FastAPI", "Next.js", "Postgres + pgvector", "LlamaIndex", "Gemini"]
@@ -25,7 +22,6 @@ lede: |
   an admin console, with no deploy.
 lessons:
   - "**Every answer is retrieved and cited.** Someone asking about rebar spacing will act on the reply, so nothing is generated without a source. Each answer comes from an Algerian-codes corpus and links back to the document it came from, which makes corpus quality the thing to work on rather than model quality."
-  - "**Everything an operator tunes lives in `data/`, outside the code.** Prompts, retrieval parameters and corpus documents are all editable from an admin console. If fixing one line of a prompt needs a pull request and a deploy, the bad answer stays in production."
   - "**I publish the corpus in stages, like a release.** Fetch, promote dev to prod, deploy the markdown, rebuild the index, verify. A retrieval index can regress silently, and the staging step is what catches it before a user gets a wrong citation."
   - "**One schema for both sides.** The frontend response types are generated from the API’s OpenAPI schema instead of written twice. It removes the bug where the backend renames a field and the UI renders `undefined` for three weeks."
   - "**Three languages is a retrieval problem, not a translation pass.** Right-to-left layout is the small half. The hard half is that a question arrives in one language while the regulation that answers it was written in another."

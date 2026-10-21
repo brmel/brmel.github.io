@@ -6,8 +6,11 @@ description: "Développeur logiciel senior chez Zebra Technologies : algorithme
 ---
 Je développe les algorithmes de vision 2D et 3D de l'Aurora Imaging Library, la
 bibliothèque de vision industrielle de Zebra : les outils de géométrie, de
-calibration et de mesure qui tournent en usine. Je les adapte aussi aux caméras
-intelligentes de Zebra, où la mémoire et la puissance de calcul sont limitées.
+calibration et de mesure qui tournent en usine. Dans cette bibliothèque, je fais passer des
+modèles d'apprentissage automatique du prototype à la production, j'évalue des modèles d'apprentissage
+profond pour la détection d'objets et de texte, et j'optimise les algorithmes
+pour les caméras intelligentes de Zebra, où la mémoire et la puissance de calcul
+sont limitées.
 C++ moderne sous Windows et Linux, sept ans sur la même base de code : Matrox
 Imaging d'abord, puis Zebra après le rachat.
 

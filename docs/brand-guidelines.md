@@ -23,7 +23,7 @@ Three elements appear on every asset.
    | Placement | Size | Colour |
    |---|---|---|
    | Nav logo, every page | 22px | `--accent` |
-   | List card with no image | 64px, centred on an accent-tinted thumbnail | `--accent` |
+   | List card with no image | 64px, centred on a `--bg-alt` thumbnail | `--accent` |
    | Social cards, end-cards | large, centred | `--accent` |
 
    Never inside body copy, as a bullet or spinner, or in another colour.

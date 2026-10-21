@@ -2,7 +2,6 @@
 title: "Rekba"
 date: 2024-11-21
 projectNo: 3
-domain: "infra"
 status: "active"
 pitch: "A bus, tram and metro app for Algeria, where no usable timetable existed until I built one."
 description: "A bus, tram and metro app for Algeria, where no usable timetable existed until I built one."
@@ -44,13 +43,3 @@ Riders get bus, tram and metro in one app, in the three languages the country
 reads in. Underneath it I built a pipeline that manufactures a network
 out of sources never meant to be one: map geometry, timetable estimates, coarse
 positions. It publishes the result as a standard transit feed.
-
-The piece I didn't expect to build is the review screen. Every candidate feed
-is compared against the published one and every change is graded before anything
-ships: routes removed, calendars changed, stations that quietly vanished. You
-approve a release rather than accept it, because publishing a broken timetable
-to someone standing at a stop is worse than publishing an old one.
-
-I surveyed riders before writing any of it, and what they wanted was not a
-journey planner. It was knowing whether the thing they are standing there for is
-actually coming.
