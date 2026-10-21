@@ -13,7 +13,6 @@ metrics:
     label: "docker compose up, then a robot cell in the browser"
 stack: ["C++", "MuJoCo", "OpenCV", "Ruckig", "three.js", "Docker"]
 links:
-  live: ""
   repo: "https://github.com/brmel/robonode"
 lede: |
   An open platform for testing robotics algorithms in real physics. Pick an

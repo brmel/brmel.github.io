@@ -9,6 +9,9 @@ rating: 4.5
 goBack: "Yes, easy yes."
 bestFor: "A low-key Nordic-spa weekend for a couple or small group."
 con: "You self-cater, so bring groceries; restaurants are ~10 min away."
+cover:
+  image: "cover.jpg"
+  alt: "Illustration: a steaming wooden hot tub and a lit A-frame cabin by a lake in a pine forest at night"
 ---
 
 An hour from Montréal, in the Rawdon woods: two Nordic hot tubs steaming under the trees, a Finnish sauna, a lake to cold-plunge into, and a BBQ cabin to come back to. Auberge Estonia is the low-key spa weekend that doesn't cost spa-resort money.

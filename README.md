@@ -27,4 +27,3 @@ hugo server -M         # http://localhost:1313
 | [docs/decisions.md](docs/decisions.md) | why things are the way they are |
 | [docs/roadmap.md](docs/roadmap.md) | the next improvements, one small step at a time |
 | [docs/backlog.md](docs/backlog.md) | open work |
-| [docs/brand-kit/00-README.md](docs/brand-kit/00-README.md) | logo, social templates, channel art |

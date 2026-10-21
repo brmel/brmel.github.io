@@ -85,7 +85,6 @@ topics_count:
   one: "{{ .Count }} page"
   other: "{{ .Count }} pages"
 featured_heading: "Start here"
-updated: "Updated"
 toc: "Contents"
 code_copy: "Copy"
 code_copied: "Copied"

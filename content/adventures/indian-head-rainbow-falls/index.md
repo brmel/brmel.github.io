@@ -9,6 +9,9 @@ rating: 4.7
 goBack: "Yes, top of the list."
 bestFor: "A long but easy-graded day with three viewpoints."
 con: "Mostly flat, but a long day on your feet."
+cover:
+  image: "cover.jpg"
+  alt: "Illustration: a long lake between autumn slopes seen from a rocky ledge, with a waterfall on the far side"
 ---
 
 Eleven miles, almost no scrambling, and it ends at a cliff over a lake shaped like a Norwegian fjord. Indian Head & Rainbow Falls is the most bang-for-effort hike I've done in the Adirondacks.

@@ -8,9 +8,6 @@ cover:
     image: "01-kmeans-bug-repro.jpg"
     alt: "Scatter plot of the failing case, with input data points and cluster centres marked"
 lastmod: 2026-10-20
-updates:
-  - date: 2026-10-20
-    text: "Added how the bug was fixed and which release shipped the fix."
 ---
 
 An implementation can be correct on every well-behaved input and still have a

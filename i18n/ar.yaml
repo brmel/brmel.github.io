@@ -104,7 +104,6 @@ topics_count:
   many: "{{ .Count }} صفحة"
   other: "{{ .Count }} صفحة"
 featured_heading: "ابدأ من هنا"
-updated: "حُدّث في"
 toc: "المحتويات"
 code_copy: "نسخ"
 code_copied: "تم النسخ"

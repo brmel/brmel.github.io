@@ -8,6 +8,9 @@ pitch: "Un pronostiqueur de football publie ses pronostics. Je les enregistre to
 description: "Chaque pronostic publié par un pronostiqueur de football, enregistré à mise fixe et confronté au résultat réel. Rien d’inféré, source anonymisée."
 stack: ["Hugo", "JSON", "Python"]
 tags: ["Data Analysis"]
+cover:
+  image: "cover.jpg"
+  alt: "Illustration : un terrain de football traversé par une courbe de résultats ascendante"
 ---
 
 J'observe un influenceur qui fait la promotion d'une application de paris et partage des pronostics de football, pour répondre à une seule question : le suivre fait-il gagner de l'argent, ou en perdre ?

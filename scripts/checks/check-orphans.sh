@@ -6,7 +6,7 @@ cd "$(dirname "$0")/../.."
 SEARCH_PATHS="content layouts config.toml assets data"
 
 stray=$(find static -type f \( -name '*.jpg' -o -name '*.jpeg' -o -name '*.png' -o -name '*.webp' -o -name '*.gif' \) \
-        ! -name 'favicon*' ! -name 'apple-touch-icon.png' ! -path 'static/og/*' | sort)
+        ! -name 'apple-touch-icon.png' ! -path 'static/og/*' | sort)
 if [ -n "$stray" ]; then
   echo "❌ image(s) under static/, which bypasses the image pipeline:"
   echo "$stray" | sed 's/^/   /'

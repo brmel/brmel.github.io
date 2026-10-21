@@ -2,7 +2,7 @@
 <article class="post-single">
   {{ partial "page-head/header.html" (dict "page" .) }}
   {{- if ge .ReadingTime 5 }}{{ partial "article/toc.html" . }}{{ end }}
-  {{- partial "article/origin.html" . }}
+  {{- partial "article/series.html" . }}
   {{- partial "adventures/verdict.html" . }}
   <div class="post-content">
     {{- .Content | replaceRE `(<span class="katex"><math(?:[^<]|<[^/]|</[^s]|</s[^p])*</span>)([,.;:])` `<span class="math-nobr">$1$2</span>` | safeHTML }}

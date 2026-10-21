@@ -11,8 +11,6 @@ metrics:
   - value: "1 command"
     label: "build, deploy, publish or roll back, with automatic rollback when a health check fails"
 stack: ["Flutter", "Firebase Functions", "TypeScript", "React", "Firestore"]
-links:
-  live: ""
 lede: |
   A group planning app built around the one thing a chat thread can’t do:
   end the conversation. A squad nominates options, everyone votes in real time,

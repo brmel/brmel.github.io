@@ -11,6 +11,6 @@ src.resize((180, 180), Image.LANCZOS).convert("RGB").save("static/apple-touch-ic
 
 src.resize((256, 256), Image.LANCZOS).save(
     "static/favicon.ico",
-    sizes=[(16, 16), (32, 32), (48, 48), (64, 64), (128, 128), (256, 256)],
+    sizes=[(16, 16), (32, 32), (48, 48)],
 )
 print("wrote static/favicon.ico and static/apple-touch-icon.png")

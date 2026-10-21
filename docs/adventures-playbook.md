@@ -1,8 +1,7 @@
 # Adventures playbook
 
-How to publish a field note: a written review of a place with photos, a map link and a verdict,
-paired with a short vertical video posted to YouTube, Instagram and TikTok. Every field note has the
-same structure so readers learn the format once.
+How to publish a field note: a written review of a place with photos, a map link and a verdict.
+Every field note has the same structure so readers learn the format once.
 
 ## The page
 
@@ -77,11 +76,11 @@ Recommendations, same shape every time:
 - **Getting there:** metro / parking
 ```
 
-Voice: [voice.md](voice.md) and, for field notes and social formats, [voice-tone](brand-kit/01-guides/voice-tone.md).
+Voice: [voice.md](voice.md).
 
 ## 4. Photos and map
 
-Photos are your own and show the place. Grade and crops: [photography](brand-kit/01-guides/photography.md).
+Photos are your own and show the place.
 
 - `cover.jpg` plus three to six in-body photos, alternating wide scene and close detail.
 - Before committing: long edge ≤ 1600px, about 300 KB or less, EXIF stripped
@@ -91,37 +90,14 @@ Photos are your own and show the place. Grade and crops: [photography](brand-kit
 - Map: `{{< gmap q="Place name, City" title="…" >}}` renders a link to a Google Maps search.
 - Styling goes in `assets/css/44-adventures.css` from tokens; no inline `<style>`.
 
-## 5. The video
-
-One shoot for YouTube Shorts, Instagram Reels and TikTok, narrating the same story as the article.
-
-| | |
-|---|---|
-| Format | 9:16, 1080×1920, 30 fps (60 with fast motion), phone locked vertical |
-| Length | 15–45 s, about 25 s |
-| Structure | the five beats in [voice-tone](brand-kit/01-guides/voice-tone.md#reel-beats) |
-| Face and voice | a face in the first frame; close mic, quiet spot, or voice-over recorded indoors |
-| Captions | burned in, corrected after auto-captioning |
-| Safe zone | faces and text in the centre 80%; platform UI covers the top 10% and bottom 20% |
-| Export | H.264, 10–15 Mbps, the same preset every time |
-
-- Film five to ten clips per place: wide establishing shot, signage, medium, close detail, a moving
-  shot, your reaction. Stabilise with both hands or a gimbal; shoot towards the light.
-- Cut within the first 1.5 s, 1.5–3 s per shot, no dead air. Music under the voice at −18 to −12 dB.
-- Put the hook on screen as text too. Same caption style and end card every time.
-- Post the same hook line on all three platforms with three to five hashtags, and link the clips from
-  the article body.
-- Thumbnail: one clear subject, three to five words, site palette and fonts, about 1080px wide.
-
-## 6. Translations
+## 5. Translations
 
 `index.fr.md` and `index.ar.md` in the same bundle share its images; only the prose and the
 front-matter strings change. Each needs its own `title` and `description`.
 
-## 7. Checklist
+## 6. Checklist
 
-- [ ] Video: 9:16, hook in the first seconds, five beats, captions, posted to all three platforms.
 - [ ] Front matter complete; `rating`, `goBack`, `bestFor`, `con` agree with the prose.
 - [ ] `cover.jpg` and three to six photos, resized, stripped, with `alt`.
-- [ ] Map link and recommendations in the fixed shape; clips linked.
+- [ ] Map link and recommendations in the fixed shape.
 - [ ] `draft` removed, `./scripts/check.sh` passes, and the page is checked with the `verify-site` skill.

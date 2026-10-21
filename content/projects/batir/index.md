@@ -11,9 +11,6 @@ metrics:
   - value: "5 stages"
     label: "fetch, promote, deploy, re-ingest, verify"
 stack: ["Python", "FastAPI", "Next.js", "Postgres + pgvector", "LlamaIndex", "Gemini"]
-links:
-  live: ""
-  repo: ""
 lede: |
   A construction assistant for Algeria. It answers questions on seismic rules,
   concrete mixes, rebar spacing and permits in the language you asked in (Arabic,
@@ -26,6 +23,9 @@ lessons:
   - "**One schema for both sides.** The frontend response types are generated from the API’s OpenAPI schema instead of written twice. It removes the bug where the backend renames a field and the UI renders `undefined` for three weeks."
   - "**Three languages is a retrieval problem, not a translation pass.** Right-to-left layout is the small half. The hard half is that a question arrives in one language while the regulation that answers it was written in another."
 tags: ["AI", "Python", "RAG", "Algeria"]
+cover:
+  image: "cover.jpg"
+  alt: "Illustration: a building frame under construction, a tower crane and a speech bubble with a cited answer"
 ---
 
 ## The story

@@ -4,8 +4,8 @@ date: 2024-09-03
 description: "A RAG chatbot over Montréal’s indoor pool schedules: how retrieval over your own documents works, and where it still gets answers wrong."
 tags: ["Python", "LLM", "AI"]
 cover:
-    image: "05-chatbot-demo.jpg"
-    alt: "The finished chatbot answering a question about pool availability, citing the pool’s page as its source"
+    image: "cover.jpg"
+    alt: "Illustration: pool schedules turned into a search index that feeds a chatbot’s cited answer"
 ---
 
 In this article, I use a Large Language Model (LLM) to build a chatbot that

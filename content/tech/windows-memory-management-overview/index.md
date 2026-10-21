@@ -5,9 +5,6 @@ date: 2023-11-29
 description: "An introduction to how the Windows Memory Manager separates virtual from physical memory, and a C++ tool for tracking a process’s usage over time."
 tags: ["C++", "Windows"]
 lastmod: 2026-10-20
-updates:
-  - date: 2026-10-20
-    text: "Corrected the size of a 64-bit address space (about 18.4 million TB, not 17.4 million) and the x64 Windows limit (128 TB per process since Windows 8.1, not 16 TB), and spelled MemoryTracer the same way throughout."
 series: "Windows Memory Management"
 seriesPart: 1
 cover:
@@ -128,11 +125,11 @@ int PeriodT = 2;
 MyMemTracer.Export(Duration, PeriodT);
 ```
 
-{{< figure src="04-memorytracker-virtual-by-type.jpg" alt="Exported table of virtual memory usage grouped by memory type" caption="Virtual memory usage exported using MemoryTracer, regrouped by type." >}}
+{{< figure src="04-memorytracer-virtual-by-type.jpg" alt="Exported table of virtual memory usage grouped by memory type" caption="Virtual memory usage exported using MemoryTracer, regrouped by type." >}}
 
-{{< figure src="05-memorytracker-virtual-timeline.jpg" alt="Exported chart of virtual memory usage over time, grouped by memory type" caption="The same export over time, which VMMap's snapshots can't give you." >}}
+{{< figure src="05-memorytracer-virtual-timeline.jpg" alt="Exported chart of virtual memory usage over time, grouped by memory type" caption="The same export over time, which VMMap's snapshots can't give you." >}}
 
-{{< figure src="06-memorytracker-private-bytes.jpg" alt="Exported chart of the process's private bytes grouped by memory type" caption="Private bytes of process usage exported using MemoryTracer, regrouped by memory type." >}}
+{{< figure src="06-memorytracer-private-bytes.jpg" alt="Exported chart of the process's private bytes grouped by memory type" caption="Private bytes of process usage exported using MemoryTracer, regrouped by memory type." >}}
 
 ## Sources
 

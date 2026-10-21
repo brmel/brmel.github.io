@@ -7,8 +7,5 @@
   {{- end }}
   <h1>{{ .title | default $p.Title }}</h1>
   {{- with or $p.Params.pitch $p.Params.role $p.Description }}<p class="page-header__description">{{ . }}</p>{{ end }}
-  {{- range $p.Params.updates }}
-  <p class="page-header__update">{{ i18n "updated" }} <time datetime="{{ (time .date).Format "2006-01-02" }}">{{ time.Format ":date_long" .date }}</time>. {{ .text | markdownify }}</p>
-  {{- end }}
   {{- with .extra }}{{ . }}{{ end }}
 </header>
