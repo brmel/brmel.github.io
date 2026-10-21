@@ -5,8 +5,8 @@ layout: "tracker"
 projectNo: 11
 domain: "data"
 status: "active"
-pitch: "A public football tipster posts their picks. This records every one of them, flat-staked, and grades it against what actually happened."
-description: "Every pick a public football tipster posts, recorded flat-staked and graded against what actually happened. Nothing inferred, kept anonymous."
+pitch: "A public football tipster posts their picks. I record every one of them at a fixed stake and grade it against what actually happened."
+description: "Every pick a public football tipster posts, recorded at a fixed stake and graded against what actually happened. Nothing inferred, kept anonymous."
 stack: ["Hugo", "JSON", "Python"]
 tags: ["Data Analysis"]
 ---

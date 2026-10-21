@@ -1,4 +1,4 @@
 ---
 title: "Topics"
-description: "Everything here grouped by subject. C++ and low-level systems are the through-line; machine vision is where most of it gets applied."
+description: "Every page on the site, grouped by subject: C++ and systems, machine vision, AI, data, and places worth the trip."
 ---

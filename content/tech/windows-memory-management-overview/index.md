@@ -2,15 +2,17 @@
 title: "Windows Memory Management: Virtual vs Physical, and How to Measure It"
 featured: 1
 date: 2023-11-29
-description: "An introduction to how the Windows Memory Manager separates virtual from physical memory, and a C++ tool for tracking a process's usage over time."
+description: "An introduction to how the Windows Memory Manager separates virtual from physical memory, and a C++ tool for tracking a process’s usage over time."
 tags: ["C++", "Windows", "Systems"]
+lastmod: 2026-10-20
+updates:
+  - date: 2026-10-20
+    text: "Corrected the size of a 64-bit address space (about 18.4 million TB, not 17.4 million) and the x64 Windows limit (128 TB per process since Windows 8.1, not 16 TB), and spelled MemoryTracer the same way throughout."
 series: "Windows Memory Management"
 seriesPart: 1
 cover:
     image: "02-virtual-vs-physical-memory.jpg"
     alt: "Diagram of virtual memory mapped onto physical memory and the page file"
-canonicalOriginal: "https://www.linkedin.com/pulse/very-shallow-overview-windows-memory-management-mellah-thzse"
-canonicalOriginalName: "LinkedIn"
 ---
 
 Even the people who build Windows don't agree on how much memory a process is
@@ -49,20 +51,19 @@ memory is purely **virtual**.
 
 ## Virtual and physical memory
 
-**Virtual** and **physical** memory are important keywords. Let's try to define
-them:
+**Virtual** and **physical** memory are important terms. Let's define them:
 
 - **Physical memory**, often referred to as RAM (Random Access Memory), is the
   actual hardware component in a computer that stores data that is actively
   being used or processed by the CPU.
 - **Virtual memory** refers to the address space that applications can use. In a
   64-bit system, the virtual memory address space can theoretically address up to
-  2^64 (~17.4 million TB of memory). However, Windows 64-bit currently supports
-  only ~16 TB.
+  2^64 bytes (about 18.4 million TB). In practice, a 64-bit process on x64
+  Windows gets 128 TB of user-mode address space (8 TB before Windows 8.1).
 
 This separation gives more flexibility to Windows and the Memory Manager. When
 Windows runs out of RAM, it uses your storage drive as extra space, allowing it
-to smoothly handle multiple tasks and big programs without getting overwhelmed.
+to handle multiple tasks and big programs.
 
 {{< figure src="02-virtual-vs-physical-memory.jpg" alt="Diagram of virtual memory mapped onto physical memory and the page file" caption="Virtual address space, mapped by the Memory Manager onto physical RAM and the page file." >}}
 
@@ -78,8 +79,7 @@ be **private** or **shared**. **Private** memory is accessed only by the owner
 process, while **shared** memory is like a common area where different processes
 can share and exchange information.
 
-Windows offers highly useful tools for monitoring both virtual and physical
-memory through Sysinternals tools:
+Sysinternals provides tools for monitoring both virtual and physical memory:
 [VMMap](https://learn.microsoft.com/en-us/sysinternals/downloads/vmmap) for
 virtual memory and
 [RAMMap](https://learn.microsoft.com/en-us/sysinternals/downloads/rammap) for
@@ -89,8 +89,7 @@ the videos mentioned at the beginning of this article.
 {{< figure src="03-vmmap-sysinternals.jpg" alt="VMMap showing the virtual memory breakdown of a running process" caption="VMMap by Sysinternals." >}}
 
 In the next article, I will discuss in detail every memory type, and how they can
-be used in real applications, with examples. Your feedback and inputs are very
-welcome.
+be used in real applications, with examples.
 
 ## Debug virtual and physical memory usage
 
@@ -100,10 +99,10 @@ watching that state change: you can't set the sampling interval, and getting
 the numbers out in a form you can plot is awkward. A leak that only shows up
 over an hour is invisible to a snapshot.
 
-### Introducing MemoryTracker
+### Introducing MemoryTracer
 
-Memory Tracker is a C++ open-source project designed to assist you in monitoring
-the virtual memory of a specific process over time. It allows you to display data
+MemoryTracer is an open-source C++ project that monitors the virtual memory of
+a specific process over time. It allows you to display data
 on the screen, export well-formatted data to a file, and provides control over
 the snapshot frequency.
 
@@ -118,7 +117,7 @@ This is an example of tracking virtual memory usage of the process with id
 // Process id you want to track
 int Pid = 32404;
 
-// Create MemoryTracker instance
+// Create MemoryTracer instance
 CSnapshotMngr MyMemTracer(Pid);
 
 // Specify the total duration and frequency, in seconds
@@ -129,15 +128,11 @@ int PeriodT = 2;
 MyMemTracer.Export(Duration, PeriodT);
 ```
 
-{{< figure src="04-memorytracker-virtual-by-type.jpg" alt="Exported table of virtual memory usage grouped by memory type" caption="Virtual memory usage exported using MemoryTracker, regrouped by type." >}}
+{{< figure src="04-memorytracker-virtual-by-type.jpg" alt="Exported table of virtual memory usage grouped by memory type" caption="Virtual memory usage exported using MemoryTracer, regrouped by type." >}}
 
 {{< figure src="05-memorytracker-virtual-timeline.jpg" alt="Exported chart of virtual memory usage over time, grouped by memory type" caption="The same export over time, which VMMap's snapshots can't give you." >}}
 
-{{< figure src="06-memorytracker-private-bytes.jpg" alt="Exported chart of the process's private bytes grouped by memory type" caption="Private bytes of process usage exported using MemoryTracker, regrouped by memory type." >}}
-
-I am very open to all your feedback and inputs. Thank you!
-
-— Brahim
+{{< figure src="06-memorytracker-private-bytes.jpg" alt="Exported chart of the process's private bytes grouped by memory type" caption="Private bytes of process usage exported using MemoryTracer, regrouped by memory type." >}}
 
 ## Sources
 

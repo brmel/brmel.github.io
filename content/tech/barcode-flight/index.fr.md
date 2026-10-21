@@ -1,8 +1,8 @@
 ---
-title: "Pourquoi une carte d'embarquement en mode sombre ne se scanne pas : codes-barres et couleur de premier plan"
+title: "Pourquoi une carte d’embarquement en mode sombre ne se scanne pas : codes-barres et couleur de premier plan"
 date: 2025-12-03
 tags: ["Machine Vision"]
-description: "Pourquoi un lecteur de codes-barres a besoin d'un réglage de couleur de premier plan, et ce qui se passe à une porte d'embarquement quand il ne l'a pas."
+description: "Pourquoi un lecteur de codes-barres a besoin d’un réglage de couleur de premier plan, et ce qui se passe à une porte d’embarquement quand il ne l’a pas."
 cover:
     image: "01-boarding-pass-dark.jpeg"
     alt: "Code-barres en mode sombre"
@@ -19,7 +19,7 @@ Puis je me suis rendu compte que mon téléphone était en mode sombre, et que l
 
 {{< figure src="02-boarding-pass-read.jpeg" alt="Code-barres en mode clair" >}}
 
-J'espère vraiment que l'aéroport de Düsseldorf et tous les aéroports amélioreront leur lecteur de code-barres.
+J'espère que l'aéroport de Düsseldorf et les autres amélioreront leurs lecteurs de codes-barres.
 
 Un lecteur qui suppose des barres sombres sur fond clair fonctionne partout
 sauf sur un téléphone en soirée, et c'est justement sur le téléphone qu'on a
@@ -28,4 +28,4 @@ toute bibliothèque d'imagerie sérieuse, dont l'[Aurora Imaging
 Library](https://www.zebra.com/us/en/software/machine-vision-and-fixed-industrial-scanning-software/aurora-imaging-library.html)
 sur laquelle je travaille, et il ne coûte rien de le régler correctement.
 
-Je passe encore en mode clair avant chaque porte d'embarquement.
+Je passe toujours en mode clair avant chaque porte d'embarquement.

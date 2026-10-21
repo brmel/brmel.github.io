@@ -8,7 +8,7 @@ pitch: "Answers Algerian construction questions in Arabic, French or English, an
 description: "Answers Algerian construction questions in Arabic, French or English, and shows the building rule behind each answer."
 metrics:
   - value: "3 languages"
-    label: "Arabic, French and English, answered from one corpus"
+    label: "Arabic, French and English, answered from the same documents"
   - value: "Cited"
     label: "every answer points back to the document it came from"
   - value: "5 stages"
@@ -18,26 +18,25 @@ links:
   live: ""
   repo: ""
 lede: |
-  A construction assistant for Algeria. It answers in the language you asked in
-  (Arabic, French or English) on seismic rules, concrete mixes, rebar spacing
-  and permits, and cites the code each answer came from. Operators change the
-  prompts, the retrieval settings and the corpus itself from an admin console,
-  with no deploy.
+  A construction assistant for Algeria. It answers questions on seismic rules,
+  concrete mixes, rebar spacing and permits in the language you asked in (Arabic,
+  French or English), and cites the building code each answer came from.
+  Operators change the prompts, the retrieval settings and the corpus itself from
+  an admin console, with no deploy.
 lessons:
-  - "**Every answer is retrieved and cited.** Someone asking about rebar spacing will act on the reply, so nothing is generated ungrounded. Each answer comes from an Algerian-codes corpus and links back to the document it came from, which makes corpus quality the thing to work on rather than model quality."
+  - "**Every answer is retrieved and cited.** Someone asking about rebar spacing will act on the reply, so nothing is generated without a source. Each answer comes from an Algerian-codes corpus and links back to the document it came from, which makes corpus quality the thing to work on rather than model quality."
   - "**Everything an operator tunes lives in `data/`, outside the code.** Prompts, retrieval parameters and corpus documents are all editable from an admin console. If fixing one line of a prompt needs a pull request and a deploy, the bad answer stays in production."
   - "**I publish the corpus in stages, like a release.** Fetch, promote dev to prod, deploy the markdown, rebuild the index, verify. A retrieval index can regress silently, and the staging step is what catches it before a user gets a wrong citation."
-  - "**One schema, generated both ways.** The frontend response types are generated from the API OpenAPI schema instead of written twice. It removes the bug where the backend renames a field and the UI renders `undefined` for three weeks."
+  - "**One schema for both sides.** The frontend response types are generated from the API’s OpenAPI schema instead of written twice. It removes the bug where the backend renames a field and the UI renders `undefined` for three weeks."
   - "**Three languages is a retrieval problem, not a translation pass.** Right-to-left layout is the small half. The hard half is that a question arrives in one language while the regulation that answers it was written in another."
 tags: ["AI", "Python", "RAG", "Algeria"]
 ---
 
 ## The story
 
-Algerian building codes exist. The problem is that
-finding the clause covering your slab means knowing which document to open, in a
-corpus written across two languages, and then reading it in a third if that is
-the one you think in.
+Algerian building codes exist. But finding the clause that covers your slab
+means knowing which document to open, in a corpus written across two languages,
+and then reading it in a third if that is the one you think in.
 
 So people ask a colleague instead, and the answer is whatever that person
 remembers. For seismic rules and rebar spacing, "whatever someone remembers" is
@@ -45,7 +44,7 @@ holding up the building.
 
 ## The product
 
-You ask in Arabic, French or English and get an answer grounded in the corpus,
+You ask in Arabic, French or English and get an answer drawn from those codes,
 with the source attached. I put three surfaces on one API: the chat itself, an
 operator console, and the service underneath.
 

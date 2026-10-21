@@ -6,12 +6,12 @@
 <title>Intersection of Two Rotated Ellipses</title>
 <style>
 :root{
-  --ink:#181715;--ink-2:#4a4843;--muted:#6e6c65;--border:#d9d6cb;--grid:#e8e5da;
+  --ink:#181715;--ink-2:#4a4843;--muted:#6e6c65;--border:#d9d6cb;
   --bg:#faf9f6;--surface:#f2f0e9;--series-1:#a8431a;--cool:#0a4fd0;color-scheme:light dark;
 }
 @media (prefers-color-scheme:dark){
   :root:not([data-theme="light"]){
-    --ink:#ece8dc;--ink-2:#b8b3a2;--muted:#888477;--border:#2c2a23;--grid:#1f1e18;
+    --ink:#ece8dc;--ink-2:#b8b3a2;--muted:#888477;--border:#2c2a23;
     --bg:#14130f;--surface:#1c1b16;--series-1:#d97757;--cool:#58a9ff;
   }
 }
@@ -29,9 +29,9 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--ink);outline-of
 .views{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px 16px;align-items:start}
 figure,.side{display:grid;gap:6px}
 .side{gap:10px}
-.plane{width:100%;aspect-ratio:1;display:block;background:var(--bg);border:1px solid var(--border);border-radius:8px}
-.grid line{stroke:var(--grid);stroke-width:1}
-.grid .axis{stroke:var(--border)}
+.plane{width:100%;aspect-ratio:1;display:block;background:var(--surface);border-radius:8px}
+.grid line{stroke:var(--border);stroke-width:1}
+.grid .axis{stroke:var(--muted)}
 .e1{fill:none;stroke:var(--series-1);stroke-width:2}
 .e2{fill:none;stroke:var(--cool);stroke-width:2;stroke-dasharray:6 4}
 .hit{fill:var(--ink);stroke:var(--bg);stroke-width:2}
@@ -41,7 +41,7 @@ figure,.side{display:grid;gap:6px}
 .keys{display:flex;flex-wrap:wrap;justify-content:center;gap:4px 14px;font-size:.8125rem;color:var(--ink-2)}
 .keys span{display:inline-flex;align-items:center;gap:5px}
 .keys svg,legend svg{width:24px;height:12px}
-.strip{width:100%;display:block;background:var(--bg);border:1px solid var(--border);border-radius:8px}
+.strip{width:100%;display:block;background:var(--surface);border-radius:8px}
 .zero{stroke:var(--ink-2);stroke-width:1;stroke-dasharray:3 3}
 .curve{fill:none;stroke:var(--series-1);stroke-width:2}
 .cursor{stroke:var(--ink);stroke-width:1}
@@ -58,8 +58,8 @@ th,td{text-align:end;padding:3px 8px;border-block-end:1px solid var(--border)}
 th:first-child,td:first-child,th:last-child,td:last-child{text-align:start}
 th{font-weight:500;color:var(--muted);font-size:.75rem}
 .controls{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px 16px}
-fieldset{border:1px solid var(--border);border-radius:8px;padding:4px 12px 8px;display:grid}
-legend{padding-inline:4px;font-weight:600;font-size:.875rem;display:inline-flex;align-items:center;gap:6px}
+fieldset{border:0;border-radius:8px;padding:10px 12px;display:grid;background:var(--surface)}
+legend{float:inline-start;font-weight:600;font-size:.875rem;display:inline-flex;align-items:center;gap:6px}
 .row{display:grid;grid-template-columns:6.5em 1fr 3em;align-items:center;gap:8px;font-size:.8125rem}
 .row output{text-align:end;font-variant-numeric:tabular-nums}
 input[type=range]{width:100%;height:26px;accent-color:var(--series-1)}

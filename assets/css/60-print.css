@@ -1,0 +1,11 @@
+@media print{
+  @page{margin:12mm 14mm;}
+  .header,.footer,.resume__print,.video-thumb,.copy-code,.toc,.paridata-toggle,.paridata-pager{display:none!important;}
+  .highlight{background:none;}
+  .chroma,.chroma *{color:var(--ink)!important;}
+  .main{padding:0;}
+  a{text-decoration:none;color:inherit;border:0!important;background:none!important;}
+  .timeline-work--media{display:block;}
+  .timeline-item,.resume__skillgroup,.resume__record{break-inside:avoid;}
+  .u-heading{break-after:avoid;}
+}

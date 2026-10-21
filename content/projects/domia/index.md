@@ -4,11 +4,11 @@ date: 2026-07-26
 projectNo: 7
 domain: "infra"
 status: "active"
-pitch: "An agent that tests applications by reading the accessibility tree and driving them the way a person would."
-description: "An agent that tests applications by reading the accessibility tree and driving them the way a person would."
+pitch: "An agent that tests applications by reading the screen as a screen reader does, and using them the way a person would."
+description: "An agent that tests applications by reading the screen as a screen reader does, and using them the way a person would."
 metrics:
   - value: "~200 ms"
-    label: "for 20 verified findings, before a model is involved"
+    label: "for 20 verified findings, before any AI model is involved"
   - value: "1 loop"
     label: "drives web and desktop alike, with no scripted steps"
   - value: "40"
@@ -19,13 +19,13 @@ links:
   repo: "https://github.com/brmel/Domia"
 lede: |
   An agent that tests an application by reading the screen instead of the source.
-  It works from the accessibility tree, acts on what is actually there, checks
+  It works from the accessibility tree, acts on what it finds, checks
   what changed, and keeps going until the task is done or it has a question.
 lessons:
-  - "**The provider defaults were the bug.** With a 2,661-character persona prompt, 32 tools and a 6,337-character page snapshot, Gemini started returning empty responses (no text, no tool call), and the loop read that as a finished task. The model thinking budget was consuming the output budget before it reached the answer. The fix is one line of provider config plus a retry, in the adapter where provider quirks belong."
-  - "**The deterministic pass runs first.** Twenty verified findings on a real site in 215 ms, in pure functions, with no model and no browser. The agent is only spent on what that pass leaves open, and the tool can be demonstrated with no API key at all."
+  - "**The bug was in the AI provider’s default settings.** With a 2,661-character persona prompt, 32 tools and a 6,337-character page snapshot, Gemini started returning empty responses (no text, no tool call), and the loop read that as a finished task. The model’s thinking budget was consuming the output budget before it reached the answer. The fix is one line of provider config plus a retry, in the adapter where provider quirks belong."
+  - "**The rule-based pass runs first.** Twenty verified findings on a real site in 215 ms, in pure functions, with no model and no browser. The agent is only spent on what that pass leaves open, and the tool can be demonstrated with no API key at all."
   - "**Two false positives were worth more than the findings.** The first audit of a real site reported `Server: AmazonS3` as a version leak because the check accepted any digit, and called a 456-byte document uncompressed. Both are regression tests now, and the fixture suite asserts that a clean origin reports exactly one thing."
-  - "**Recording everything by default cost a third of every session.** Video and trace capture ran on every run: about 1.0s of a 1.7s startup, and video was the largest thing on disk. Video is off by default now, and a one-turn run went from 2.8s to 2.0s with half the bytes."
+  - "**Recording everything by default cost a third of every session.** Video and trace capture were on for every run: about 1.0s of a 1.7s startup, and video was the largest thing on disk. Video is off by default now, and a one-turn run went from 2.8s to 2.0s with half the bytes."
   - "**I rewrote version one deliberately.** The Python agent the [article](/tech/ai-agents-software-testing-domia/) describes became a TypeScript monorepo. I audited the old version feature by feature, wrote down what had no equivalent yet, closed that list, and only then deleted it."
 tags: ["AI", "TypeScript", "Testing"]
 ---
@@ -53,7 +53,7 @@ over any LLM provider, a Playwright tool layer, SQLite persistence, a tracing
 system, an Electron desktop app and a CLI, all behind one API.
 
 Calling the model is the expensive part, so it happens last. A deterministic pass over
-an origin's files, headers and HTML settles whatever it can in pure functions:
+a site's files, headers and HTML settles whatever it can in pure functions:
 twenty findings in about a fifth of a second, with no model and no browser at
 all. The agent only picks up what is left. Every run is recorded as a tree and
 replays from its own tape without calling the model again.

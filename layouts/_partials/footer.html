@@ -1,0 +1,31 @@
+<footer class="footer">&copy; {{ now.Year }} {{ site.Title }}</footer>
+
+<script>
+  const toggle = document.getElementById("theme-toggle");
+  const sync = () => {
+    toggle.setAttribute("aria-pressed", document.documentElement.classList.contains("dark"));
+    document.querySelector('meta[name="theme-color"]').setAttribute("content", getComputedStyle(document.documentElement).getPropertyValue("--bg").trim());
+  };
+  toggle.hidden = false;
+  sync();
+  toggle.addEventListener("click", () => {
+    localStorage.setItem("pref-theme", document.documentElement.classList.toggle("dark") ? "dark" : "light");
+    sync();
+  });
+</script>
+
+{{- if and (eq .Kind "page") (strings.Contains .Content "<pre") }}
+<script>
+  document.querySelectorAll("pre > code").forEach((code) => {
+    const btn = document.createElement("button");
+    btn.className = "copy-code";
+    btn.textContent = "{{ i18n "code_copy" }}";
+    btn.onclick = () => {
+      navigator.clipboard.writeText(code.textContent);
+      btn.textContent = "{{ i18n "code_copied" }}";
+      setTimeout(() => { btn.textContent = "{{ i18n "code_copy" }}"; }, 2000);
+    };
+    (code.closest(".highlight") || code.parentNode).appendChild(btn);
+  });
+</script>
+{{- end }}

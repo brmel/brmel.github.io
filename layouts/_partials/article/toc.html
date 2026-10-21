@@ -1,0 +1,6 @@
+{{- with .TableOfContents }}{{ if findRE "<li>" . 1 }}
+<details class="u-card toc">
+  <summary>{{ i18n "toc" }}</summary>
+  {{ . }}
+</details>
+{{- end }}{{ end }}

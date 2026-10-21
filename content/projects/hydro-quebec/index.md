@@ -17,14 +17,14 @@ stack: ["Python", "pandas", "Plotly", "KMZ", "Firebase Storage"]
 links:
   live: "/tech/hydro-quebec-outage-analysis/"
 lede: |
-  Two months of Hydro-Québec's outage map, recorded every minute and turned into
-  the reliability report the utility doesn't publish: where outages concentrate,
+  Two months of Hydro-Québec’s outage map, recorded every minute and turned into
+  the reliability report the utility doesn’t publish: where outages concentrate,
   how long they really last, and how often the announced restoration time holds.
 lessons:
-  - "**Announced restoration times land within the hour about 5% of the time.** That's the headline number across 16,561 outages, and the utility doesn't publish it."
-  - "**I collected first and decided the question later.** I started polling before I knew what I was looking for. ETA accuracy, regional spread and the 611-outage peak were all questions I couldn't have asked on day one, and could only answer because the data was already on disk."
-  - "**Hourly files with a close-then-upload rule made the collector restartable.** Snapshots land in the open hour JSONL file and only closed hours upload, so a crash loses at most one minute. It crashed more than once over 56 days."
-  - "**The public data wasn't tidy.** The outage map ships KMZ geometry meant for rendering. Turning those polygons into per-municipality attribution was most of the work, and it's why the borough map exists at all."
+  - "**Announced restoration times land within the hour about 5% of the time.** That’s the headline number across 16,561 outages, and the utility doesn’t publish it."
+  - "**I collected first and decided the question later.** I started polling before I knew what I was looking for. ETA accuracy, regional spread and the 611-outage peak were all questions I couldn’t have asked on day one, and could only answer because the data was already on disk."
+  - "**Hourly files made the collector safe to restart.** Snapshots land in the open hour’s JSONL file and only closed hours upload, so a crash loses at most one minute. It crashed more than once over 56 days."
+  - "**The public data wasn’t tidy.** The outage map ships KMZ geometry meant for rendering. Turning those polygons into per-municipality attribution was most of the work, and it’s why the borough map exists at all."
 tags: ["Python", "Data Analysis", "Québec"]
 ---
 
@@ -50,6 +50,6 @@ The collector is deliberately dull. Snapshots append to the open hour's file and
 only closed hours upload, so it can die at any moment and lose at most one
 minute. It died more than once over eight weeks.
 
-I started polling before I knew the question. Every result worth having came
+I started recording before I knew the question. Every result worth having came
 from something I could not have thought to ask on day one, and could only ask
 because the data was already on disk.

@@ -1,0 +1,12 @@
+{{- $pages := partial "func/section-pages.html" . }}
+{{- $seen := dict }}
+{{- range $pages }}{{ range .GetTerms "tags" }}{{ if ne (lower .Data.Term) (lower $.Data.Term) }}
+  {{- $t := . }}{{ with where .AllTranslations "Lang" $.Lang }}{{ $t = index . 0 }}{{ end }}
+  {{- $n := add (index $seen $t.RelPermalink "n" | default 0) 1 }}
+  {{- $seen = merge $seen (dict $t.RelPermalink (dict "n" $n "title" $t.LinkTitle "url" $t.RelPermalink)) }}
+{{- end }}{{ end }}{{ end }}
+{{- $related := slice }}{{ range $seen }}{{ $related = $related | append . }}{{ end }}
+<p class="topic-related">
+  {{- i18n "topics_count" (len $pages) }}
+  {{- with first 4 (sort (sort $related "title") "n" "desc") }} <b class="u-dot" aria-hidden="true">·</b> {{ i18n "topics_related" }}{{ range $i, $t := . }}{{ if $i }}{{ i18n "list_comma" }}{{ end }} <a class="u-link" href="{{ $t.url }}" dir="auto">{{ $t.title }}</a>{{ end }}{{ end -}}
+</p>

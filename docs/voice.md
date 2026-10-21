@@ -41,6 +41,8 @@ where the tells below collect.
   merge bullets.
 - If more than about a quarter of a paragraph's sentences have changed, it is a rewrite: back off.
 - Rename a heading only when it is clearly a tell, and grep for links to its anchor first.
+- Apostrophes: straight `'` in Markdown bodies, which the typographer curls; `’` in front matter and
+  `i18n/*.yaml`, which render as typed.
 
 ### Never touch
 
@@ -155,7 +157,6 @@ Typography:
 
 - A non-breaking space (U+00A0) before `:`, `;`, `?` and `!`. Never a plain space, never none.
 - Quotes are « » with U+00A0 inside.
-- Apostrophes match the file being edited (straight `'` in content); do not mass-convert.
 - Numbers: "15 000", "3,87/4", "1 %", with U+00A0 as the separator and before `%` and units.
 - Dashes are " — " with spaces, and rare.
 
@@ -201,7 +202,7 @@ Punctuation, numbers and direction:
 - Digits stay Western (2019, 15,000, 3.87/4).
 - Every `C++` in Arabic text, titles, descriptions and `.ar.md` lists (`stack`, `tools`, `items`) is
   written `‎C++‎` with U+200E marks. Without them the trailing "+" signs take the Arabic direction and
-  display as "++C". Lists need it too: `layouts/partials/func/dots.html` joins them into one RTL line.
+  display as "++C". Lists need it too: `layouts/_partials/func/dots.html` joins them into one RTL line.
   Other tokens need it only when they start or end with punctuation (`C#`, `.NET`). Never add marks
   inside URLs, code or shortcodes; count them with `grep -c $'\xe2\x80\x8e'`.
 

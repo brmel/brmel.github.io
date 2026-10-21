@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="{{ site.Language }}" dir="{{ .Language.Direction | default "ltr" }}">
+<head>
+  {{- partial "head.html" . }}
+</head>
+<body>
+  {{- partial "header.html" . }}
+  <main class="main{{ block "main-width" . }}{{ end }}" id="main">
+    {{- block "main" . }}{{ end }}
+  </main>
+  {{- partialCached "footer.html" . .Kind (strings.Contains .Content "<pre") }}
+</body>
+</html>

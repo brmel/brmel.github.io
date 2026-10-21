@@ -1,4 +1,4 @@
 ---
 title: "Sujets"
-description: "Tout le contenu, regroupé par sujet. Le C++ et les systèmes bas niveau en sont le fil conducteur ; la vision industrielle en est le domaine d'application."
+description: "Toutes les pages du site, regroupées par sujet : C++ et systèmes, vision industrielle, IA, données, et lieux qui valent le détour."
 ---

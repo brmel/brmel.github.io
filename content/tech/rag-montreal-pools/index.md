@@ -1,34 +1,31 @@
 ---
 title: "Building a Chatbot That Answers From Your Own Documents"
 date: 2024-09-03
-relatedProject: "batir"
-description: "A RAG chatbot over Montréal's indoor pool schedules: how retrieval over your own documents works, and where it still gets answers wrong."
+description: "A RAG chatbot over Montréal’s indoor pool schedules: how retrieval over your own documents works, and where it still gets answers wrong."
 tags: ["Python", "LLM", "AI"]
 cover:
     image: "05-chatbot-demo.jpg"
-    alt: "The finished chatbot answering a question about pool availability, citing the pool's page as its source"
-canonicalOriginal: "https://www.linkedin.com/pulse/how-i-used-generative-ai-llamaindex-rag-chainlit-create-mellah--ffmre"
-canonicalOriginalName: "LinkedIn"
+    alt: "The finished chatbot answering a question about pool availability, citing the pool’s page as its source"
 ---
 
-In this article, I will demonstrate how to use a Large Language Model (LLM) to
-create a chatbot that can answer questions about pool availability in Montréal.
+In this article, I use a Large Language Model (LLM) to build a chatbot that
+answers questions about pool availability in Montréal.
 
 Using LLMs in a business can be highly beneficial, but allowing an LLM to operate
 unchecked and make decisions can be risky, potentially leading to significant
-issues and financial losses. For example, you can read about how Air Canada was
-compelled to pay compensation due to a misleading response from an LLM:
+issues and financial losses. For example, Air Canada had to pay compensation because of a
+misleading response from an LLM:
 [Washington Post article](https://www.washingtonpost.com/travel/2024/02/18/air-canada-airline-chatbot-ruling/).
 
-This article is intended only for educational purposes, showcasing the power of
-AI, generative models, and the tools that are developed very quickly.
+This article is for educational purposes only, to show what AI, generative
+models and the fast-developing tools around them can do.
 
 I understand that this solution may seem overly engineered, and I agree. A
 simpler, less expensive solution could address this problem. However, with more
-advanced LLMs available, implementing a solution using an LLM can be achieved
-with just a few lines of code, allowing the LLM to analyse all the data.
+advanced LLMs available, an LLM-based solution takes just a few lines of code,
+and the LLM can analyse all the data.
 
-I truly felt this while tackling this challenge:
+I felt this while working on the problem:
 
 > Software ate the world. Now AI is eating software.
 
@@ -55,8 +52,7 @@ time-consuming and very manual.
 
 ## II — Large language models
 
-I decided to use a Large Language Model (LLM) like ChatGPT to address this
-problem. LLMs excel at understanding complex text, such as pool schedules, and
+I decided to use an LLM like ChatGPT to address this problem. LLMs excel at understanding complex text, such as pool schedules, and
 grasping concepts related to time and space, like pool opening and closing times,
 or pools nearest to a particular address.
 
@@ -78,13 +74,13 @@ Here are three possible solutions:
   limited portion of the prompt and will only consider the most recent part.
 - **Use retrieval-augmented generation.** RAG enhances the capabilities of LLMs
   by integrating them with specific knowledge databases, without the need for
-  retraining the model. This approach is cost-effective and helps maintain the
-  relevance, accuracy, and usefulness of the LLM's output in various contexts.
+  retraining the model. This approach is cost-effective and helps keep the LLM's
+  output relevant and accurate.
   RAG works by first searching through a large database to find relevant
   information related to a query. Then, it uses this information to generate a
   more accurate and informative response.
 
-{{< figure src="01-rag-pipeline-diagram.jpg" alt="Diagram of an advanced RAG pipeline, from documents through indexing and retrieval to the language model" caption="An advanced RAG pipeline. Source: [DeepLearning.AI — Building and Evaluating Advanced RAG](https://learn.deeplearning.ai/courses/building-evaluating-advanced-rag/lesson/2/advanced-rag-pipeline)." >}}
+{{< figure src="01-rag-pipeline-diagram.jpg" alt="Diagram of a basic RAG pipeline, from documents through indexing and retrieval to the language model" caption="A basic RAG pipeline. Source: [DeepLearning.AI — Building and Evaluating Advanced RAG](https://learn.deeplearning.ai/courses/building-evaluating-advanced-rag/lesson/2/advanced-rag-pipeline)." >}}
 
 ## III — The design and implementation
 
@@ -92,7 +88,6 @@ The pipeline has two halves that run at different times. Everything on the left
 happens once, offline, when the schedules are collected. Everything on the right
 happens per question:
 
-{{< rawhtml >}}
 <svg class="workflow" viewBox="0 0 860 300" role="img"
      aria-label="Workflow diagram. Offline: Montréal pool pages are scraped into one text file per pool, embedded with an embedding model, and stored as vectors. Per query: the user question is embedded with the same model, matched against the stored vectors by semantic search, the retrieved schedules are combined with the question into a prompt, and the LLM answers with a link to the source page.">
   <defs>
@@ -105,39 +100,31 @@ happens per question:
     <rect x="20" y="40" width="170" height="56" rx="8"/>
     <text x="105" y="63" class="wf-t">Montréal pool pages</text>
     <text x="105" y="82" class="wf-s">HTML tables · Facebook</text>
-
     <rect x="20" y="126" width="170" height="56" rx="8"/>
     <text x="105" y="149" class="wf-t">One text file per pool</text>
     <text x="105" y="168" class="wf-s">schedule · address · closures</text>
-
     <rect x="20" y="212" width="170" height="56" rx="8"/>
     <text x="105" y="235" class="wf-t">Embedding model</text>
     <text x="105" y="254" class="wf-s">text → vectors</text>
   </g>
-
   <rect x="250" y="126" width="150" height="56" rx="8" class="wf-store"/>
   <text x="325" y="149" class="wf-t">Vector store</text>
   <text x="325" y="168" class="wf-s">LlamaIndex</text>
-
   <g class="wf-lane">
     <text x="460" y="26" class="wf-lane-label">PER QUESTION</text>
     <rect x="460" y="40" width="170" height="56" rx="8"/>
     <text x="545" y="63" class="wf-t">User question</text>
     <text x="545" y="82" class="wf-s">ChainLit chat UI</text>
-
     <rect x="460" y="126" width="170" height="56" rx="8"/>
     <text x="545" y="149" class="wf-t">Same embedding model</text>
     <text x="545" y="168" class="wf-s">semantic search</text>
-
     <rect x="460" y="212" width="170" height="56" rx="8"/>
     <text x="545" y="235" class="wf-t">Prompt = context + question</text>
     <text x="545" y="254" class="wf-s">retrieved schedules</text>
   </g>
-
   <rect x="690" y="212" width="150" height="56" rx="8" class="wf-out"/>
   <text x="765" y="235" class="wf-t">LLM answer</text>
   <text x="765" y="254" class="wf-s">+ link to the source</text>
-
   <g class="wf-edge" marker-end="url(#wf-arrow)">
     <path d="M105 96 L105 126"/>
     <path d="M105 182 L105 212"/>
@@ -148,7 +135,6 @@ happens per question:
     <path d="M630 240 L690 240"/>
   </g>
 </svg>
-{{< /rawhtml >}}
 
 ### A. Prepare the dataset
 
@@ -156,8 +142,8 @@ We need to collect data on all the indoor pools. I tried to automate this proces
 as much as possible, but there is room for improvement to handle more complex
 websites.
 
-Using some Python packages, I was able to successfully create a text that
-contains the pool schedule for each pool:
+Using some Python packages, I created a text file with the schedule of each
+pool:
 
 {{< figure src="02-pools-dataset.jpg" alt="Directory listing of one text file per Montréal indoor pool" caption="Montréal indoor pools dataset: one file per pool." >}}
 
@@ -186,7 +172,7 @@ Semantic search finds data based on the intent and contextual meaning of a query
 rather than an exact match on query words.
 
 So, once the dataset of text files is ready, we need to represent each word or
-phrase with a special vector in a high-dimensional vector space, where words with
+phrase with a vector in a high-dimensional vector space, where words with
 similar meanings will be close to each other.
 
 I used [LlamaIndex](https://www.llamaindex.ai/) to handle data preprocessing.
@@ -208,7 +194,7 @@ parsing, and more.
 
 ## IV — Demo
 
-I won't say anything here, and let you see this beauty of an LLM alive:
+I won't say anything here. Here's the chatbot running:
 
 {{< figure src="05-chatbot-demo.jpg" alt="The chatbot answering a question about which pool is open next, and linking to the pool's page on the city website" caption="ChatGPT used in a RAG system to answer questions about Montréal pools." >}}
 
@@ -222,9 +208,7 @@ I won't say anything here, and let you see this beauty of an LLM alive:
   provide reliable results. This is why in my demo I provide the URL to the pool
   website as a source.
 - Due to the AI boom, there are countless tools available, with many attempting
-  to achieve similar objectives. The internet is flooded with numerous tools that
-  often overlap in functionality, making it challenging to navigate all the
-  technologies. Standards and interfaces are not yet well defined, and code that
+  to achieve similar objectives. Standards and interfaces are not yet well defined, and code that
   works today may become obsolete in a few months. However, this rapid evolution
   might be a natural part of progress.
 - The whole thing took an afternoon, with an LLM as a coding partner, to build

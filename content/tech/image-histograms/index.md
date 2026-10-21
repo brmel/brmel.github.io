@@ -2,13 +2,12 @@
 title: "Edge Measurement in Industrial Vision: Counting Saw Blade Teeth"
 featured: 2
 date: 2025-01-08
-draft: false
 tags: ["Machine Vision"]
 aliases: ["/posts/image-histograms/"]
-description: "How edge measurement counts the teeth on a saw blade, and why it works on real images where thresholding does not."
+description: "How edge measurement counts the teeth on a saw blade, and why it works on real images where thresholding doesn’t."
 cover:
     image: "01-saw-blade.png"
-    alt: "A circular saw blade"
+    alt: "A circular saw blade with the arbor hole at its centre"
 ---
 
 A saw blade is a good way to explain edge measurement, because counting its
@@ -29,8 +28,7 @@ the arbor hole, at a radius that passes through every tooth, and read the image
 along that circle. A closed path through all the teeth turns a two-dimensional
 counting problem into a one-dimensional signal with one feature per tooth.
 
-That's the idea, and the rest follows from it. A signal that
-should be periodic is a signal you can check.
+That signal should be periodic, which means you can check it.
 
 ## The origin comes from the part
 
@@ -52,7 +50,7 @@ Counting stripes rather than edges is what makes this reliable. An edge
 is a place where the intensity moved, and plenty of things move it: a glint on
 ground steel, a scratch, the seam of the background. A stripe additionally has
 a width, and a width is something you can reject on. Noise readily produces one
-transition. It much less readily produces a matched pair of the right polarity,
+transition. It's much less likely to produce a matched pair of the right polarity,
 of roughly the right width, at roughly the right spacing.
 
 So the parameters that matter are the ones that describe the tooth as an
@@ -77,7 +75,7 @@ something twice.
 A system that
 reports 71 teeth is useless, because nobody can tell whether it is right. A
 system that reports 72 and can say the angular spacing was uniform to within a
-fraction of a degree has actually measured something, and can be trusted to
+fraction of a degree has measured something, and can be trusted to
 say when it shouldn't be.
 
 ## What actually breaks
@@ -116,10 +114,10 @@ locate.
 
 Here is the whole thing running on the blade at the top of this article:
 
-{{< youtube uJoLyFe7R1g >}}
+{{< youtube id="uJoLyFe7R1g" poster="02-tooth-count-demo.jpg" title="The tooth count running on the saw blade, on YouTube." >}}
 
-The one thing I'd carry out of this into any measurement problem is the
-last section rather than the first. Getting the count is ordinary work. Being
+The one thing I'd carry from this into any measurement problem is the
+check at the end. Getting the count is ordinary work. Being
 able to say why the count is right, from evidence in the same image, is what
 separates a demo from something you can put in front of a machine that acts on
 the answer.

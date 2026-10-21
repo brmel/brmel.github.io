@@ -8,18 +8,15 @@ same structure so readers learn the format once.
 
 ```
 ┌───────────────────────────────────────┐
-│ Home · Adventures                      │ breadcrumbs (auto)
-│ FIELD NOTE № 004 · HIKE · ADIRONDACKS  │ eyebrow from fieldNote, category, place (auto)
+│ Hike · Adirondacks · date · N min      │ category, place, date (auto)
 │ Title                                  │
 │ description                            │
-│ date · N min                           │ (auto)
+│ VERDICT  go back · best for · con · ★  │ from front matter (auto)
 │ hook sentence                          │
 │ ## The place          + photo          │
 │ ## What I did         + photo          │
-│ map link (gmap)                        │
 │ ## Recommendations    fixed list       │
-├───────────────────────────────────────┤
-│ VERDICT  go back · best for · con · ★  │ from front matter (auto)
+│ map link (gmap)                        │
 └───────────────────────────────────────┘
 ```
 
@@ -44,7 +41,6 @@ cover:
   image: "cover.jpg"
   alt: "Old Port of Montréal at sunset"
 category: "city"
-fieldNote: 5
 place: "Old Port, Montréal"
 rating: 4.2
 goBack: "Yes, on a first evening in town."
@@ -56,8 +52,7 @@ con: "Touristy: skip the terraces on the square."
 |---|---|
 | `description` | 50–160 characters, unique per language. |
 | `cover` | `image` must be a file in the bundle (the build fails otherwise); `alt` is required (`check-og.py`). It is the list thumbnail and the social card. |
-| `category` | `restaurant`, `hike`, `spa`, `event` or `city`; printed as the eyebrow label. |
-| `fieldNote` | The note's number, shown as `№ 005`. |
+| `category` | `restaurant`, `hike`, `spa`, `event` or `city`; printed capitalised as the eyebrow label. |
 | `place` | A real, locatable place; the eyebrow's last part and the JSON-LD `contentLocation`. |
 | `rating` | Out of 5, one decimal, consistent with the prose. The verdict block renders only when it is set. |
 | `goBack`, `bestFor`, `con` | The verdict rows. `con` is one genuine drawback. |
@@ -94,7 +89,7 @@ Photos are your own and show the place. Grade and crops: [photography](brand-kit
 - In the body: `{{< figure src="photo-1.jpg" alt="…" caption="…" >}}`. Captions name the moment and
   the time. The first figure loads with high priority, the rest lazily.
 - Map: `{{< gmap q="Place name, City" title="…" >}}` renders a link to a Google Maps search.
-- Styling goes in `assets/css/extended/44-adventures.css` from tokens; no inline `<style>`.
+- Styling goes in `assets/css/44-adventures.css` from tokens; no inline `<style>`.
 
 ## 5. The video
 
@@ -129,4 +124,4 @@ front-matter strings change. Each needs its own `title` and `description`.
 - [ ] Front matter complete; `rating`, `goBack`, `bestFor`, `con` agree with the prose.
 - [ ] `cover.jpg` and three to six photos, resized, stripped, with `alt`.
 - [ ] Map link and recommendations in the fixed shape; clips linked.
-- [ ] `draft: false`, `./scripts/check.sh` passes, and the page is checked with the `verify-site` skill.
+- [ ] `draft` removed, `./scripts/check.sh` passes, and the page is checked with the `verify-site` skill.

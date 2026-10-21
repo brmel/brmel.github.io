@@ -1,0 +1,3 @@
+{{- $title := .Title -}}
+{{- if .IsHome }}{{ $title = site.Params.name }}{{ else if eq .Kind "404" }}{{ $title = i18n "notfound_title" }}{{ end -}}
+{{- return ($title | plainify) -}}

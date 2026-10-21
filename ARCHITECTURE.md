@@ -4,8 +4,9 @@ How the templates, stylesheets, content and scripts fit together. Rules for chan
 [AGENTS.md](AGENTS.md); the reasons behind them are in [docs/decisions.md](docs/decisions.md).
 
 Chrome renders from front matter and from a page's place in the site: eyebrows, stack chips, status,
-gallery, lessons, verdict, series box, original-source credit, page header and page ending. Authors
-write prose; consistency comes from the templates.
+gallery, lessons, verdict, series box, page header and list cards. Pages end with their content: no
+author card, topic chips, social links or previous/next. Authors write prose; consistency comes from
+the templates.
 
 ## Repository
 
@@ -15,97 +16,86 @@ write prose; consistency comes from the templates.
 | `data/` | `data/paridata/` (PariData tickets, matches, profile) and `data/topics.yaml` (topic groups) |
 | `archetypes/` | scaffolds for `hugo new`: projects, tech, adventures, default |
 | `layouts/` | templates (below) |
-| `assets/` | everything that goes through Hugo Pipes: `assets/css/extended/`, `assets/js/` (`timeline.js` resume video dialog, `paridata.js` ledger controls), `assets/images/` (profile photo, resume video posters named by YouTube ID), `assets/paridata/flags/`, `assets/reports/` (generated report pages) |
+| `assets/` | everything that goes through Hugo Pipes: `assets/css/`, `assets/js/` (`search.js` search, `timeline.js` resume video dialog, `paridata.js` ledger controls), `assets/images/` (profile photo, resume video posters named by YouTube ID), `assets/paridata/flags/`, `assets/reports/` (generated report pages) |
 | `i18n/` | UI strings in `i18n/en.yaml`, `i18n/fr.yaml`, `i18n/ar.yaml` |
 | `static/` | files served verbatim: favicons, `static/fonts/`, social cards in `static/og/`, `static/robots.txt`, `static/CNAME` |
 | `scripts/` | build entry points, gates, audit and generators (below) |
-| `themes/PaperMod/` | the vendored theme, unmodified |
 | `.github/workflows/site.yml` | CI and deployment |
 | `docs/` | brand, voice, playbooks, decisions, backlog, brand kit |
 | `.claude/skills/` | agent skills; see [AGENTS.md](AGENTS.md) |
 
 ## Templates
 
+Hugo's current layout, with no theme: page templates at the root of `layouts/`, partials in
+`layouts/_partials/`, shortcodes in `layouts/_shortcodes/`, render hooks in `layouts/_markup/`.
+
 | Path | Renders |
 |---|---|
-| `layouts/_default/baseof.html` | the page shell; a layout widens `<main>` to the frame with `{{ define "main-width" }} main--wide{{ end }}` |
-| `layouts/_default/list.html` | the home page (profile, intro, career, featured, section cards, latest) and section indexes (featured, then every page) |
-| `layouts/_default/single.html` | Tech articles and field notes |
-| `layouts/_default/term.html` | one topic: every page carrying the tag, newest first, with its section named |
-| `layouts/_default/terms.html` | `/tags/`: topics in the groups and order of `data/topics.yaml`, with page counts; tags in no group land in a trailing "More" group sorted by count |
-| `layouts/_default/resume.html` | the resume, from front matter |
-| `layouts/_default/search.html`, `layouts/_default/index.json` | the search page and its index |
-| `layouts/_default/rss.xml` | feeds |
-| `layouts/_default/single.markdown.md` | the markdown twin of every Tech and Adventures page |
-| `layouts/_default/_markup/render-link.html` | external links open in a new tab |
-| `layouts/_default/_markup/render-passthrough.html` | LaTeX between `$$ … $$` (block) or `\( … \)` (inline) becomes MathML at build time through `transform.ToMath`; the markdown twin keeps the LaTeX |
-| `layouts/projects/list.html` | the project index: one grid, highest `projectNo` first |
+| `layouts/baseof.html` | the page shell; a layout widens `<main>` to the frame with `{{ define "main-width" }} main--wide{{ end }}` |
+| `layouts/list.html` | the home page (profile, intro, four featured cards, four latest cards), section indexes and topic pages: a card grid of every page, newest first (projects by highest `projectNo`; topic cards name their section) |
+| `layouts/single.html` | Tech articles and field notes; punctuation right after an inline formula stays on the formula's line |
+| `layouts/taxonomy.html` | `/tags/`: topics in the groups and order of `data/topics.yaml`, with page counts, each linking to its page in the reader's language when one exists; tags in no group land in a trailing "More" group sorted by count |
+| `layouts/resume.html` | the resume, from front matter |
+| `layouts/search.html`, `layouts/home.json` | the search page (`assets/js/search.js`) and its index: title, description, section, date and the first 2,000 characters of each page |
+| `layouts/rss.xml` | feeds |
+| `layouts/single.markdown.md` | the markdown twin of every Tech and Adventures page |
+| `layouts/_markup/render-link.html` | external links open in a new tab |
+| `layouts/_markup/render-passthrough.html` | LaTeX between `$$ … $$` (block) or `\( … \)` (inline) becomes MathML at build time through `transform.ToMath`; the markdown twin keeps the LaTeX |
 | `layouts/projects/single.html` | a project page |
 | `layouts/projects/tracker.html` | PariData, from `data/paridata/` |
 | `layouts/404.html` | the only 404 GitHub Pages serves, so it links the French and Arabic homes |
 | `layouts/sitemap.xml` | indexable pages only, with `hreflang` and `x-default` |
-| `layouts/index.llms.txt`, `layouts/index.llmsfull.txt` | `/llms.txt` and `/llms-full.txt` |
-| `layouts/shortcodes/` | `figure` (a bundle image through the pipeline, with `srcset` and dimensions; a missing file fails the build), `gmap` (a link to a Google Maps search for `q`), `reportframe` (a report from `assets/reports/` rendered in place); the `*.markdown.md` files render these and `youtube` as links in the markdown output |
+| `layouts/home.llms.txt`, `layouts/home.llmsfull.txt` | `/llms.txt` and `/llms-full.txt` |
+| `layouts/_shortcodes/` | `figure` (a bundle image through the pipeline, with `srcset` and dimensions; a missing file fails the build), `gmap` (a link to a Google Maps search for `q`), `reportframe` (a report from `assets/reports/` rendered in place), `youtube` (a self-hosted poster from the bundle linking to the video, so nothing loads from YouTube until the reader clicks; takes `id`, `poster`, `title`); the `*.markdown.md` files render these as links in the markdown output |
 
 ### Partials
 
-A partial at the root of `layouts/partials/` has a name PaperMod or Hugo calls; everything written
-for this site lives in the folder for its domain.
+`head.html`, `header.html` and `footer.html` sit at the root of `layouts/_partials/` because
+`baseof.html` calls them; everything else lives in the folder for its domain.
 
 | Path | Holds |
 |---|---|
-| `layouts/partials/` (root) | `header.html` (menu skips sections with no pages; language switcher goes to the translation, else that language's home), `footer.html`, `index_profile.html`, `post_meta.html` (date, and read length from 2 minutes), `social_icons.html`; `extend_head.html` (CSP, `x-default`, fonts, JSON-LD), `extend_footer.html` (footer mark), `google_analytics.html` (GA4 after idle) |
-| `layouts/partials/templates/` | Open Graph, Twitter card and `schema_json` (breadcrumb JSON-LD) |
-| `layouts/partials/func/` | partials that `return` a value; call with `partial` and use the result |
-| `layouts/partials/page-head/` | `header.html`, every page header: breadcrumbs, eyebrow, title, one description line (`pitch`, `role` or `description`), date line on field notes, optional `extra` block; called with `(dict "page" . "title" … "extra" …)` |
-| `layouts/partials/page-end/` | `footer.html`, the one page ending: topic chips, "discuss this page" link, social icons, author card, section navigation |
-| `layouts/partials/article/` | `entry.html` (a list card; takes `(dict "page" . "showSection" true)`), `cover.html` (list thumbnail; a missing cover fails the build), `origin.html` (series box), `original.html` (first-published credit), `related-project.html` |
-| `layouts/partials/home/` | `career.html`, `sections.html`, and `featured.html` / `latest.html`, which take a list of pages |
-| `layouts/partials/project/meta.html` | project links and stack chips |
-| `layouts/partials/adventures/verdict.html` | the verdict block, rendered when `rating` is set |
-| `layouts/partials/resume/` | `timeline.html`, `contact.html` (an icon shows only when the URL is also in `socialIcons`), `video-thumb.html` |
-| `layouts/partials/paridata/` | dashboard, curve, ledger, amount, about |
-| `layouts/partials/head/` | `fonts.html` (preloads), `schema.html` (JSON-LD per section) |
-| `layouts/partials/brand/` | `mark.html` (the compass mark, the only implementation), `social-icon.html` |
-| `layouts/partials/lang/en-only.html` | the "in English" label on an untranslated page listed in French or Arabic |
+| `layouts/_partials/head.html` | the CSP (first, since a meta CSP only covers what follows it), the dark-theme switch before first paint, title, description, canonical, the stylesheet bundle, icons, feeds, `hreflang` and Speculation Rules (prefetch same-site links on hover, except `/reports/`) |
+| `layouts/_partials/head/` | `fonts.html` (preloads), `social.html` (Open Graph and the X card), `schema.html` (one JSON-LD `@graph` per page: the full `Person` on home and resume, a reference elsewhere, the page's own type and its breadcrumb), `analytics.html` (GA4 after idle, production only) |
+| `layouts/_partials/header.html`, `footer.html` | the nav (theme toggle, shown only once its script runs; menu marks the current page and section with `aria-current` and skips sections with no pages; the language switch goes to the translation, else that language's index of the same section, else its home) and the footer, whose scripts drive the toggle and the browser-chrome colour and add the code copy button |
+| `layouts/_partials/func/` | partials that `return` a value; call with `partial` and use the result |
+| `layouts/_partials/page-head/` | `header.html`, every page header: one meta line (eyebrow, plus the date on Tech and Adventures pages), title, one description line (`pitch`, `role` or `description`), dated `updates` lines, optional `extra` block; called with `(dict "page" . "title" … "extra" …)` |
+| `layouts/_partials/article/` | `grid.html` (the card grid every list uses; takes `(dict "pages" … "showSection" true "level" 3 "eager" true)`, `level` the card heading level (2 by default), `eager` loading the first thumbnail with high priority), `entry.html` (one card, the same for articles, field notes and projects; an untranslated English page listed in French or Arabic keeps `lang`/`dir` and shows the "in English" label), `cover.html` (the 16:9 thumbnail from `func/cover.html`, else the compass mark), `meta.html` (date, and read length from 2 minutes), `toc.html` (the table of contents from 5 minutes, a `<details>` card), `origin.html` (series box) |
+| `layouts/_partials/home/` | `profile.html` (photo as AVIF with a WebP fallback, name, role line), `cards.html` (a headed card grid; takes `(dict "id" … "title" … "pages" …)`) |
+| `layouts/_partials/project/meta.html` | project links and stack chips |
+| `layouts/_partials/adventures/verdict.html` | the verdict block above the body, rendered when `rating` is set |
+| `layouts/_partials/topic/related.html` | a topic page's header line: its page count and the four other topics its pages share most, translated when a translation exists |
+| `layouts/_partials/resume/` | `timeline.html`, `video-thumb.html` |
+| `layouts/_partials/paridata/` | dashboard, curve, ledger, amount, about |
+| `layouts/_partials/brand/` | `mark.html` (the compass mark, the only implementation) |
 
-| `layouts/partials/func/` | Returns |
+| `layouts/_partials/func/` | Returns |
 |---|---|
 | `section-pages.html` | the pages a section or topic lists: this language's pages plus default-language pages with no translation here, matched by `.Path` |
 | `main-pages.html` | `section-pages.html` over every section in `mainSections`, for the home page |
 | `eyebrow.html` | a page's eyebrow line, by section |
+| `title.html` | a page's display title: the owner's name on the home page, the not-found title on the 404, else the page title; used by `<title>`, `og:title` and the social image's alt |
 | `dots.html` | a slice joined into one escaped string with the accent dot, each item in its own `<bdi>` so mixed-direction lists keep their order |
-| `lang-attrs.html` | `lang`/`dir` attributes for a page listed in another language |
-| `og-image.html`, `og-src.html` | the social card a page shares (cover, else first gallery image, else `static/og/<section>.jpg`, else the home card) and its file |
+| `cover.html` | a page's picture and its alt text: the cover (a missing file fails the build), else the first gallery image ("<title> screenshot"), else nothing |
+| `og-image.html` | the social card a page shares, with its real size: `cover.html` resized to at most 1200px, else `static/og/<section>.jpg`, else the home card |
 | `paridata-ledger.html` | the PariData tickets settled from match results; bad data fails the build |
-
-### Theme forks
-
-Fifteen files are forks of PaperMod, each with a one-line header naming the upstream path and commit
-(`@2d2f2c6`): `layouts/404.html`, `layouts/_default/` `baseof.html` `list.html` `single.html`
-`search.html` `index.json` `rss.xml`, `layouts/partials/` `header.html` `footer.html`
-`index_profile.html` `post_meta.html` `social_icons.html`, and the three files in
-`layouts/partials/templates/`. Diff each against the theme before upgrading it.
-
-These share a theme or Hugo name, are written here from scratch, and carry no header:
-`extend_head.html`, `extend_footer.html`, `google_analytics.html`, `shortcodes/figure.html`,
-`_default/terms.html`, `_markup/render-link.html`, `_markup/render-passthrough.html`, `sitemap.xml`.
 
 ## Stylesheets
 
-PaperMod concatenates `assets/css/extended/*.css` in lexical order, so the number prefix is the
-cascade. Every page loads the one bundle.
+`layouts/_partials/head.html` concatenates the syntax colours (generated at build by
+`css.ChromaStyles`, Catppuccin Macchiato) and `assets/css/*.css` in lexical order, so the number
+prefix is the cascade, then minifies and fingerprints one bundle that every page loads.
 
 | File | Holds |
 |---|---|
 | `00-tokens` | design tokens, the only place a colour is defined; dark values under `.dark`; print and phone overrides |
 | `05-fonts` | self-hosted `@font-face` declarations |
-| `10-base` | theme variable remap, page frame and measure, page header, type, links, tables, code |
-| `20-components` | shared primitives (`.u-card`, `.u-bar`, `.u-tile`, `.u-eyebrow`, `.u-meta`, `.u-dot`, `.u-link`, `.u-rule-link`, `.u-chip`, `.u-rows`, `.u-label-row`, `.u-rule-heading`, `.u-frame`, `.u-sr-only`) and anything a shared partial or shortcode renders |
-| `30-chrome` | nav, mark, footers, section nav, page end |
+| `10-base` | reset, page frame and measure, page header, type, links, tables, code |
+| `20-components` | shared primitives (`.u-card`, `.u-eyebrow`, `.u-dot`, `.u-heading`, `.u-link`, `.u-chip`, `.u-label-row`, `.u-frame`, `.u-sr-only`) and anything a shared partial or shortcode renders, including the list card and its grid |
+| `30-chrome` | nav, mark, footer, series box, 404 |
 | `31-toc`, `32-search` | table of contents, search box |
-| `40-home` … `47-topics` | one section each: home, resume, timeline and video dialog, projects, adventures, PariData, project page, topics |
-| `50-content` | article body: figures, diagrams, embedded reports |
+| `40-home` … `47-topics` | one section each: home, resume, timeline and video dialog, adventures, PariData, project page, topics |
+| `50-content` | article body: type scale, figures, diagrams, code |
 | `60-print` | print, last in the cascade |
 
 Section files compose the primitives and never redeclare them. `scripts/checks/check-css.py` fails
@@ -119,12 +109,12 @@ Header, footer and `<main>` share the 1200px frame (`--container-content`). Ever
 sits at that page's measure:
 
 - by default the text measure, 900px (`--container-text`); grids reflow to it with `auto-fit`/`minmax`.
-- the 1200px frame on pages whose body is a grid or a table, set with `main--wide`: the project index,
-  the resume and PariData.
+- the 1200px frame on pages whose body is a table or a timeline, set with `main--wide`: the resume
+  and PariData. Card grids stay at the text measure, two cards a row.
 
-No block sets its own `max-width` or `margin-inline:auto`, nothing is sized from `100vw`, and space
+No block sets its own `max-width` or `margin-inline:auto` (a single paragraph may cap its line length in `ch`), nothing is sized from `100vw`, and space
 between blocks is `margin-block` from `--flow-tight`, `--flow-block` and `--flow-section`. Rules sit
-under section headings (`.u-rule-heading`) and at the page end, never in a page header.
+inside cards and tables, never under a heading or in a page header.
 
 ## Content
 
@@ -132,8 +122,7 @@ One page bundle per project, article or field note, so images travel with the pa
 Hugo's image pipeline. Section front matter is documented in the playbooks:
 [projects](docs/projects-playbook.md), [field notes](docs/adventures-playbook.md),
 [PariData](docs/paridata-playbook.md). Any project, article or field note can take `featured: N`, which
-lists it under "Start here" on the home page (and on the Tech or Adventures index), lowest number
-first.
+lists it under "Start here" on the home page; the four lowest numbers show.
 
 A Tech or Adventures article declares `title`, `description`, `tags` and a `cover` (`image`, a file in
 the bundle, and `alt`). `description` is the one line a reader sees on the list card, the home feed,
@@ -142,29 +131,31 @@ search, the meta description and JSON-LD. Optional fields:
 | Field | Renders, in |
 |---|---|
 | `series`, `seriesPart` | the series box listing every part (`article/origin.html`) |
-| `canonicalOriginal`, `canonicalOriginalName` | the "first published on" credit (`article/original.html`), inside the series box when there is one |
-| `relatedProject` | a project card at the foot (`article/related-project.html`), by project slug |
+| `findings`, `methods` | a report article's key findings (a list) and its data and method (markdown), rendered after the report under their own headings and in the markdown twin, so the report's facts are crawlable text |
+| `lastmod`, `updates` | `lastmod` is the date of the latest real revision (sitemap, `dateModified`, `article:modified_time`); each `updates` entry (`date`, `text`) renders as a dated line under the page header. Without `lastmod` a page counts as unchanged since `date`. |
 
-The resume is front matter: `role`, `location`, `contact`, then `experience:` periods (`period`,
+The resume is front matter: `role`, `location`, `sameAs` (profile URLs, read only by the JSON-LD
+`Person`), then `experience:` periods (`period`,
 `role`, `org`, `url`, `note`, `kind: education` for degrees, `work` items with `title`, `url`, `text`,
-`video`, `videoAlt`, then `built`, `stack`, `tools` and a markdown `learned` list), `skills` and
-`certifications`. `layouts/partials/resume/timeline.html` renders the periods; the home career strip
-and `llms.txt` read the same data.
+`video`, `videoAlt`, then `stack` and a markdown `learned` list), `skills` and
+`certifications`. `layouts/_partials/resume/timeline.html` renders the periods; `llms.txt` reads the same
+data. The page header is the name, the "Save as PDF" button, the `role` line and "As of <month year>" from `lastmod` (printed too); the markdown body, a short list of what the work involves, opens the page in two columns.
 
-A report is a Tech article: prose with every figure, then
-`{{< reportframe src="reports/<file>.html" title="…" >}}`. The frame loads lazily; on load its
-script sizes the frame to the report, maps the page's tokens onto the report's CSS variables (both themes), loads the site fonts,
-hides the report's own nav and title, and patches its accessibility gaps. Report files and their
+A report is a Tech article whose body is the report alone:
+`{{< reportframe src="reports/<file>.html" title="…" >}}`, with no introduction above it. The
+frame loads lazily and has no border, so the report reads as the article; on load its script sizes
+the frame to the report, maps the page's tokens onto the report's CSS variables (both themes), loads
+the site font, hides the report's own nav and header, drops its side padding so it sits on the text
+column, and patches its accessibility gaps. Report files and their
 generators stay untouched.
 
 ### Topics
 
-Each tag is a topic page at `/tags/<tag>/`, rendered by `layouts/_default/term.html` from
-`layouts/partials/func/section-pages.html`. `content/tags/<tag>/_index.md` gives it a title and a
+Each tag is a topic page at `/tags/<tag>/`, rendered by `layouts/list.html` from
+`layouts/_partials/func/section-pages.html`. `content/tags/<tag>/_index.md` gives it a title and a
 description (and `url:` where the tag is not URL-safe: `C++` is `/tags/cpp/`). `/tags/` groups topics
 by `data/topics.yaml`: the order of `groups` is the order on the page, each group's heading is the i18n
 key `topics_group_<key>`, and any tag not listed falls into the trailing "More" group automatically.
-Topic chips at the foot of each page link the topic pages.
 
 ## Languages
 
@@ -196,8 +187,8 @@ translated, by adding `index.fr.md` or `index.ar.md` to the bundle.
 ## Configuration
 
 `config.toml` holds languages, menus, `mainSections` (the sections the nav, home page, `llms.txt` and
-gates treat as content), `socialIcons`, GA4, output formats and the markdown cascade. `socialIcons`
-and every other plain `[params]` key stay above the first `[params.*]` sub-table: TOML assigns keys
+gates treat as content), GA4, output formats and the markdown cascade. Every plain `[params]` key
+stays above the first `[params.*]` sub-table: TOML assigns keys
 written after a sub-table header to that sub-table.
 
 ## Scripts
@@ -216,6 +207,6 @@ Generators run by hand and need Pillow; serve the HTML templates from the site r
 
 ## Deployment
 
-`.github/workflows/site.yml` pins Hugo 0.148.0 extended, runs `scripts/check.sh` and an internal link
+`.github/workflows/site.yml` pins Hugo 0.168.0 extended, runs `scripts/check.sh` and an internal link
 crawl on every pull request (plus an advisory external crawl), and on a push to `main` does the same,
 then publishes `public/` to GitHub Pages.

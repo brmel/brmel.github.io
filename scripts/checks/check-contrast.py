@@ -2,7 +2,7 @@
 import glob, os, re
 from gate import ROOT, finish
 
-TOKENS = os.path.join(ROOT, "assets", "css", "extended", "00-tokens.css")
+TOKENS = os.path.join(ROOT, "assets", "css", "00-tokens.css")
 AA = 4.5
 
 def lum(h):
@@ -30,13 +30,14 @@ for theme, t in (("light", light_tokens), ("dark", dark_tokens)):
             checked += 1
             if r < AA: fails.append(f"{theme}: --{fg} ({t[fg]}) on {bgname} ({bg}) = {r:.2f}:1")
 
-THEME = os.path.join(ROOT, "themes", "PaperMod", "assets", "css")
-syntax = {cls: col for cls, col in re.findall(
-    r"\.chroma \.([\w-]+)\s*\{[^}]*?(?<![-\w])color:\s*(#[0-9a-fA-F]{6})",
-    open(os.path.join(THEME, "includes", "chroma-styles.css")).read()) if cls not in ("ln", "lnt", "hl")}
-for f in glob.glob(os.path.join(ROOT, "assets", "css", "extended", "*.css")):
+built = "".join(open(f).read() for f in glob.glob(os.path.join(ROOT, "public", "css", "site.*.css")))
+hex6 = lambda c: c if len(c) == 7 else "#" + "".join(ch * 2 for ch in c[1:])
+syntax = {cls: hex6(col) for cls, col in re.findall(
+    r"\.chroma \.([\w-]+)\s*\{[^}]*?(?<![-\w])color:\s*(#[0-9a-fA-F]{6}|#[0-9a-fA-F]{3})\b", built) if cls not in ("ln", "lnt", "hl")}
+for f in glob.glob(os.path.join(ROOT, "assets", "css", "*.css")):
     for classes, token in re.findall(r"\.chroma\s*:is\(([^)]*)\)\s*\{[^}]*?color:\s*var\(--([\w-]+)\)", open(f).read()):
         for cls in re.findall(r"\.([\w-]+)", classes): syntax[cls] = light_tokens[token]
+if not syntax: fails.append("no syntax colours found in the built stylesheet")
 
 code_bgs = [light_tokens["code-ground"], dark_tokens["code-ground"]]
 for cls, col in sorted(syntax.items()):

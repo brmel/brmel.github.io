@@ -1,0 +1,10 @@
+{{- $parts := slice -}}
+{{- if .IsPage -}}
+  {{- if eq .Section "projects" -}}
+    {{- $parts = slice (string .Date.Year) (i18n (printf "project_domain_%s" .Params.domain)) (i18n (printf "project_status_%s" .Params.status)) -}}
+  {{- else if eq .Section "adventures" -}}
+    {{- with .Params.category }}{{ $parts = $parts | append (humanize .) }}{{ end -}}
+    {{- with .Params.place }}{{ $parts = $parts | append . }}{{ end -}}
+  {{- end -}}
+{{- end -}}
+{{- return (partial "func/dots.html" $parts) -}}

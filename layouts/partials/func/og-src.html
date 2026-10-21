@@ -1,3 +1,0 @@
-{{- $img := . -}}
-{{- if and (in (slice "png" "jpeg" "webp") .MediaType.SubType) (gt .Width 1200) }}{{ $img = .Resize "1200x jpg q82" }}{{ end -}}
-{{- return $img.Permalink -}}

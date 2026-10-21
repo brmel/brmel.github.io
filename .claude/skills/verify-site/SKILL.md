@@ -53,12 +53,12 @@ for pixels. Look at:
 
 | Area | Correct when |
 |---|---|
-| Arabic (RTL) | `<html dir="rtl">`; nav, breadcrumbs, eyebrows, card bars, timeline rail and previous/next arrows mirror; `C++` reads "C++"; numbers and dates read left to right inside Arabic text |
-| Dark theme | every surface is the dark paper, text and code legible, the report frame follows the theme, no light flash on load |
+| Arabic (RTL) | `<html dir="rtl">`; nav, eyebrows, card grids and the resume timeline mirror; `C++` reads "C++"; numbers and dates read left to right inside Arabic text |
+| Dark theme | every surface is the dark background, text and code legible, the report frame follows the theme, no light flash on load |
 | Phone header (320–390) | the menu wraps into balanced rows with nothing clipped; logo, theme toggle and language switch fit on one line |
-| Cards | project tiles, list cards, home section cards and the PariData dashboard sit on the same two edges as the text; no stranded single card |
+| Cards | every list card has the same 16:9 thumbnail (cover, first gallery image or the compass mark), sits on the same two edges as the text and the PariData dashboard; no stranded single card |
 | Code blocks | long lines scroll inside the `pre`, which takes keyboard focus; the copy button sits inside the block; the page itself does not scroll sideways |
-| Page frame | headings, figures, galleries and report frames align with the text column (1200px on project index, resume, PariData) |
+| Page frame | headings, figures, galleries, card grids and report content align with the text column (1200px on resume and PariData) |
 
 ## Done when
 

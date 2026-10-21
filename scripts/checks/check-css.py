@@ -2,17 +2,16 @@
 import glob, os, re
 from gate import PUB, ROOT, finish
 
-EXT = os.path.join(ROOT, "assets", "css", "extended")
+CSS_DIR = os.path.join(ROOT, "assets", "css")
 MAX_LINES = 260
 TOKENS = "00-tokens.css"
 COMPONENTS = "20-components.css"
 PRIMITIVES = {
-    "card surface": re.compile(r"background:var\(--bg-alt\);\s*\n?\s*border:var\(--hairline\) solid var\(--rule\)"),
-    "hover lift": re.compile(r"transform:translateY\(-2px\)"),
+    "card surface": re.compile(r"background:var\(--bg-alt\);border-radius:var\(--radius-md\)"),
 }
 
 fails = []
-files = sorted(glob.glob(os.path.join(EXT, "*.css")))
+files = sorted(glob.glob(os.path.join(CSS_DIR, "*.css")))
 declared = set()
 
 for f in files:
@@ -35,10 +34,12 @@ for f in files:
 markup = "".join(open(f, encoding="utf-8", errors="ignore").read()
                  for p in ("**/*.html", "**/*.js") for f in glob.glob(os.path.join(PUB, p), recursive=True))
 markup += "".join(open(f, encoding="utf-8", errors="ignore").read()
-                  for p in ("assets/js/*.js", "layouts/**/*.html", "themes/PaperMod/assets/css/includes/chroma-styles.css")
+                  for p in ("assets/js/*.js", "layouts/**/*.html")
                   for f in glob.glob(os.path.join(ROOT, p), recursive=True))
 
-for c in sorted(c for c in declared if c not in markup):
+present = set(re.findall(r"[\w-]+", markup))
+present |= {c for f in glob.glob(os.path.join(PUB, "css", "site.*.css")) for c in re.findall(r"\.chroma \.([\w-]+)", open(f).read())}
+for c in sorted(declared - present):
     fails.append(f"class .{c} is declared in CSS but appears on no published page or script")
 
 print(f"checked {len(files)} stylesheets, {len(declared)} classes")
