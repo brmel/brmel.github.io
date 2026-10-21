@@ -1,0 +1,2 @@
+{{- with .Date }}<time datetime="{{ .Format "2006-01-02" }}">{{ time.Format ":date_long" . }}</time>{{ end }}
+{{- if and (ge .ReadingTime 2) (not (.HasShortcode "reportframe")) }} <b class="u-dot" aria-hidden="true">·</b> <span>{{ i18n "read_time" .ReadingTime }}</span>{{ end }}

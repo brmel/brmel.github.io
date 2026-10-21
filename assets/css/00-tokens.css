@@ -1,0 +1,73 @@
+:root{
+  color-scheme:light;
+
+  --font-sans:"Inter Tight","IBM Plex Sans Arabic",ui-sans-serif,system-ui,-apple-system,"Segoe UI","Helvetica Neue",Arial,sans-serif;
+  --font-mono:"JetBrains Mono","IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+
+  --bg:#ffffff; --bg-alt:#f1f3f4; --ink:#1f1f1f; --ink-soft:#444746;
+  --ink-mute:#5f6368; --rule:#dadce0; --rule-soft:#e8eaed;
+  --media-ground:#000000; --media-ink:#ffffff; --code-comment:#9399b2; --code-ground:#202124;
+
+  --accent:#a8431a;
+
+  --ink-gain:#0a4fd0; --ink-loss:#c1121f;
+
+  --t-display-s:2.125rem;
+  --t-heading:1.5rem; --t-subhead:1.25rem; --t-body-l:1.125rem; --t-body:1rem;
+  --t-caption:0.875rem; --t-eyebrow:0.75rem;
+  --lh-body:1.6;
+
+  --fl-display-m:clamp(1.875rem,1.35rem + 2.6vw,3rem);
+
+  --space-1:4px; --space-2:8px; --space-3:12px; --space-4:16px; --space-5:24px;
+  --space-6:32px; --space-7:48px; --space-8:64px;
+
+  --flow-tight:var(--space-3); --flow-block:var(--space-6); --flow-section:var(--space-8);
+
+  --container-text:900px; --container-content:1200px;
+  --gap:var(--space-5); --header-height:60px;
+
+  --prose-size:clamp(1.125rem, 1.017rem + 0.462vw, 1.3125rem);
+  --label-col:150px;
+
+  --radius-xs:4px; --radius-sm:8px; --radius-md:16px; --radius-pill:999px;
+
+  --hairline:1px; --hairline-strong:1.5px; --category-bar:4px;
+
+  --shadow-pop:0 4px 12px rgba(60,64,67,.15),0 12px 32px rgba(60,64,67,.15);
+
+  --dur-1:120ms; --dur-2:200ms;
+  --ease-standard:cubic-bezier(.2,0,0,1);
+  --ease-spring:cubic-bezier(.34,1.36,.64,1);
+}
+
+@media screen{
+.dark{
+  --bg:#131314; --bg-alt:#1e1f20; --ink:#e3e3e3; --ink-soft:#c4c7c5;
+  --ink-mute:#9aa0a6; --rule:#3c4043; --rule-soft:#282a2c;
+  --accent:#e2876a;
+  --code-ground:#1e1f20;
+  color-scheme:dark;
+  --ink-gain:#58a9ff; --ink-loss:#ff5c5c;
+  --shadow-pop:0 4px 12px rgba(0,0,0,.5),0 12px 32px rgba(0,0,0,.5);
+}
+}
+
+@media print{
+  html{font-size:8.5pt;}
+  :root{
+    --space-1:2px; --space-2:3px; --space-3:5px; --space-4:7px; --space-5:9px;
+    --space-6:12px; --space-7:14px; --space-8:16px;
+    --prose-size:1rem; --fl-display-m:2rem; --t-display-s:1.5rem; --label-col:110px;
+  }
+}
+
+@media screen and (max-width:600px){
+  :root{--flow-block:var(--space-5); --flow-section:var(--space-7); --gap:var(--space-4);}
+}
+
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition-duration:.01ms!important}
+}
+
+[lang="ar"]{--t-eyebrow:0.875rem;}

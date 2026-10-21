@@ -1,0 +1,39 @@
+{{- $src := .Get "src" -}}
+{{- with resources.Get $src -}}
+<iframe class="report-frame" title="{{ $.Get "title" }}" src="{{ .RelPermalink }}" loading="lazy"></iframe>
+<script>
+document.querySelectorAll('.report-frame').forEach((frame) => {
+  const fit = () => { frame.style.minHeight = 0; frame.style.height = frame.contentDocument.body.scrollHeight + 'px'; };
+  const brand = () => {
+    const page = getComputedStyle(document.documentElement), root = frame.contentDocument.documentElement;
+    root.dataset.theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+    Object.entries({
+      '--ink': '--ink', '--ink-2': '--ink-soft', '--muted': '--ink-mute', '--subtle': '--ink-mute',
+      '--border': '--rule', '--line': '--rule', '--grid': '--rule-soft',
+      '--bg': '--bg', '--white': '--bg', '--surface': '--bg-alt', '--raise': '--bg-alt', '--blue-bg': '--bg-alt',
+      '--blue': '--accent', '--accent-fill': '--accent', '--series-1': '--accent', '--label-1': '--accent',
+      '--series-2': '--ink-soft', '--label-2': '--ink-soft', '--cool': '--ink-gain'
+    }).forEach(([name, token]) => root.style.setProperty(name, page.getPropertyValue(token).trim()));
+  };
+  const dress = () => {
+    const doc = frame.contentDocument;
+    const style = doc.createElement('style');
+    style.textContent = "@font-face{font-family:'Inter Tight';font-weight:400 600;src:url(/fonts/inter-tight-400-latin.woff2) format('woff2')}"
+      + "html{overflow:hidden}body,h2,h3{font-family:'Inter Tight',system-ui,sans-serif}body,body>main{padding-inline:0!important;padding-top:0!important}"
+      + "body>nav,body>header,.wrap>header,#theme-toggle{display:none}";
+    doc.head.appendChild(style);
+    doc.querySelectorAll('footer').forEach((el) => el.setAttribute('role', 'none'));
+    doc.querySelectorAll('iframe:not([title])').forEach((el) => { el.title = frame.title; });
+    doc.querySelectorAll('.table-wrap').forEach((el) => { el.tabIndex = 0; el.setAttribute('role', 'region'); el.setAttribute('aria-label', frame.title); });
+    brand();
+    new MutationObserver(brand).observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+    new ResizeObserver(fit).observe(doc.body);
+    fit();
+  };
+  frame.addEventListener('load', dress);
+  if (frame.contentDocument?.readyState === 'complete' && frame.contentDocument.body.children.length) dress();
+});
+</script>
+{{- else -}}
+{{- errorf "reportframe: %q is not in assets/" $src -}}
+{{- end -}}

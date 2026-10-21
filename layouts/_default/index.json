@@ -1,8 +1,0 @@
-{{- /* Fork of themes/PaperMod/_default/index.json @2d2f2c6 — diff before upgrading. */ -}}
-{{- $pages := partial "func/main-pages.html" . }}
-{{- with site.GetPage "/resume" }}{{ $pages = $pages | append . }}{{ end }}
-{{- $index := slice }}
-{{- range $pages }}
-{{- $index = $index | append (dict "title" (.Title | htmlUnescape) "content" (.Plain | htmlUnescape) "permalink" .Permalink "summary" (.Description | plainify | htmlUnescape)) }}
-{{- end }}
-{{- $index | jsonify -}}

@@ -10,22 +10,22 @@ metrics:
   - value: "4 layers"
     label: "domain, application, infrastructure and presentation, cleanly separated"
   - value: "3 languages"
-    label: "English, French and Arabic, right-to-left aware"
+    label: "English, French and Arabic, with right-to-left layout"
   - value: "20 months"
-    label: "of design, build and iteration on a real marketplace"
+    label: "of design, build and iteration"
 stack: ["Flutter", "Dart", "Firebase", "BLoC", "Clean Architecture", "get_it"]
 links:
   live: ""
 lede: |
   A marketplace for something Algerian families abroad already do informally:
-  matching someone who needs a parcel moved with a traveller who has spare
-  luggage. Twenty months of design and build, across three languages. It was
+  matching someone who needs a parcel moved with a traveller who has room in
+  their luggage. Twenty months of design and build, across three languages. It was
   never released.
 lessons:
-  - "**I rewrote two months of work and it was the right call.** The commit is still there: *Restart from a very clean project. Only login files are added*, with 1,134 deletions against 45 insertions. The first version worked and couldn't be extended; everything lived in widgets. What replaced it was Domain / Application / Infrastructure / Presentation with value objects and validators, and the fourth feature cost about what the second did."
+  - "**I rewrote two months of work and it was the right call.** The commit is still there: *Restart from a very clean project. Only login files are added*, with 1,134 deletions against 45 insertions. The first version worked and couldn’t be extended; everything lived in widgets. What replaced it was Domain / Application / Infrastructure / Presentation with value objects and validators, and the fourth feature cost about what the second did."
   - "**Layer discipline is measurable, and mine was lopsided.** 19 domain files against 159 presentation files. The business rules were small and isolated, but I wrote eight test files, all for identification, and none for matching, trips or contracts. I tested the layer that was easy to test, not the one carrying the risk."
-  - "**What people needed was trust, and I built the marketplace instead.** Listings, chat, contracts and matching all shipped. Identity verification, escrow, dispute handling and what happens when a package does not arrive did not. For a stranger to hand another stranger a laptop at an airport, the trust layer is the app, and I treated it as a later phase."
-  - "**The gap between the last feature commit and the last commit of any kind is a translation pass.** Twenty months, three languages and store screenshots, and what was missing at the end was never another feature."
+  - "**What people needed was trust, and I built the marketplace instead.** Listings, chat, contracts and matching were all built. Identity verification, escrow, dispute handling and what happens when a package doesn’t arrive did not. For a stranger to hand another stranger a laptop at an airport, the trust layer is the app, and I treated it as a later phase."
+  - "**After the last feature commit, all that was left was a translation pass.** Twenty months, three languages and store screenshots, and what was missing at the end was never another feature."
 tags: ["Flutter", "Firebase", "Mobile", "Clean Architecture"]
 ---
 
@@ -42,9 +42,9 @@ travellers post their route and spare kilos, and the app matches them.
 
 ## The product
 
-I shipped listings, chat, contracts and matching, in three languages, with the
+I built listings, chat, contracts and matching, in three languages, with the
 store screenshots ready. Identity verification, escrow and what happens when a
-package does not arrive: none of it.
+package doesn't arrive: none of it.
 
 Two months in I deleted the working version and started again. The commit says
 *restart from a very clean project*, 1,134 deletions against 45 insertions. The

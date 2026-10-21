@@ -3,16 +3,18 @@ title: "Windows Memory Management in Depth: Private Data, Stack, Heap and Mapped
 date: 2024-01-10
 description: "Windows memory states and types (private data, stack, heap, mapped files, images), with VirtualAlloc, file-mapping and std::vector examples."
 tags: ["C++", "Windows", "Systems"]
+lastmod: 2026-10-20
+updates:
+  - date: 2026-10-20
+    text: "Corrected the size of a 64-bit address space (about 18.4 million TB, not 17.4 million), the names of two Win32 constants (`MEM_IMAGE`, `PAGE_READONLY`) and the spelling of MemoryTracer."
 series: "Windows Memory Management"
 seriesPart: 2
 cover:
     image: "02-vmmap-snapshot.jpg"
     alt: "VMMap snapshot showing memory states as columns and memory types as rows"
-canonicalOriginal: "https://www.linkedin.com/pulse/delving-deep-windows-memory-management-brahim-redouane-mellah--uzaee"
-canonicalOriginalName: "LinkedIn"
 ---
 
-If you don't want to be embarrassed due to your program running out of virtual
+If you don't want to be embarrassed by your program running out of virtual
 memory (which could cause many passengers to miss their flights), perhaps you
 should take a 5-minute break and read this article on how Windows manages
 virtual memory for processes, and the tools you can use to monitor it.
@@ -23,27 +25,24 @@ Before reading this article, I strongly recommend reading the first article that
 discusses the basics of Windows virtual memory management:
 [Windows Memory Management: Virtual vs Physical, and How to Measure It]({{< relref "windows-memory-management-overview" >}}).
 
-I need to mention again that this is a very complex subject, extending even
-beyond my knowledge. For those who are curious and want to understand every bit,
+This is a very complex subject, and parts of it go beyond my knowledge. For those who are curious and want to understand every bit,
 I recommend reading the book
 [Windows Internals](https://learn.microsoft.com/en-us/sysinternals/resources/windows-internals)
 by [Mark Russinovich](https://www.linkedin.com/in/markrussinovich/).
 
-When you use the [VMMap](https://learn.microsoft.com/en-us/sysinternals/downloads/vmmap)
-tool from Windows Sysinternals, you can take a snapshot that shows the usage of
-virtual memory within a process to a fine level of detail:
+With the [VMMap](https://learn.microsoft.com/en-us/sysinternals/downloads/vmmap)
+tool from Windows Sysinternals, you can take a snapshot of a process's virtual
+memory usage in fine detail:
 
 {{< figure src="02-vmmap-snapshot.jpg" alt="VMMap snapshot with memory states as columns and memory types as rows" caption="Windows VMMap snapshot." >}}
 
 Let's refer to each column as a **memory state** and each row as a **memory
-type**. In this article, I will first provide a brief introduction to the
-different memory states, and then I will explain each memory type in detail with
-examples.
+type**. I'll start with a short introduction to the memory states, then go
+through each memory type in detail with examples.
 
 ## Memory states
 
-Each page in a process virtual address space can be in different states. Let's
-try to define each one of them briefly:
+Each page in a process virtual address space can be in different states. Briefly:
 
 - **Size, Reserved** — total amount of memory reserved by the memory manager for
   the process.
@@ -52,15 +51,15 @@ try to define each one of them briefly:
   paging file).
 - **Private** — committed memory that is private, meaning it is only used by the
   owner process. This is what we refer to when we talk about *private bytes*.
-- **Total Workspace (WS)** — committed memory that is in physical RAM.
+- **Total Working Set (WS)** — committed memory that is in physical RAM.
 - **Private WS** — memory that is in RAM and only used by the owner process. In
   Windows each process has its own private working set.
 - **Shareable WS** — memory that is in RAM and can be shared between processes.
 - **Shared WS** — memory that is in RAM and currently being shared between
   processes.
 
-Note that memory that is committed but not in the working set means that it is in
-the paging file (on disk), and the Memory Manager will copy it into RAM if a
+Memory that is committed but not in the working set is in the paging file (on
+disk), and the Memory Manager will copy it into RAM if a
 process needs it.
 
 ## Memory types
@@ -77,8 +76,7 @@ reason for most memory leaks and fragmentation. You can allocate it using the
 **VirtualAlloc API**, which is the lowest-level memory allocation API available
 with the Windows Memory Manager.
 
-In this example, we demonstrate how to use the `VirtualAlloc` function to reserve
-and commit memory:
+This example uses the `VirtualAlloc` function to reserve and commit memory:
 
 ```cpp
 // Example 1 : Allocate memory without specifying the base address
@@ -124,8 +122,8 @@ for (int i = 0; i < 200000000; i++)
     *((int*)(MemPtr) + i) = i;
 ```
 
-After each `for` loop (1, 2, and 3), we observe the growth of the working set
-(and consequently the used RAM) of the process each time we access more memory.
+After each `for` loop (1, 2, and 3), the working set of the process (and so the
+RAM it uses) grows, because we access more memory each time.
 Reserved and committed memory don't move, because both were allocated and
 committed in advance. Only the working set grows.
 
@@ -147,9 +145,9 @@ predetermined amount of virtual memory, typically 1 MB by default. This amount
 can be configured when creating the thread.
 
 When the Memory Manager allocates the stack, memory is initially only reserved,
-and it is later committed only when needed. To illustrate stack memory
-committing, in this example we allocate a static array with different sizes in
-each case (1, 2, and 3).
+and it is later committed only when needed. To show how stack memory gets
+committed, this example allocates a static array of a different size in each
+case (1, 2, and 3).
 
 ```cpp
 // 1
@@ -169,12 +167,12 @@ We can observe how the committed memory size of the stack increases:
 
 {{< figure src="05-stack-commit-growth.jpg" alt="VMMap showing stack committed memory increasing with larger local arrays" caption="Stack committed memory grows only when needed." >}}
 
-When you allocate a thread dynamically at run time, its stack is also created at
-runtime.
+When you create a thread dynamically at run time, its stack is also created at
+run time.
 
 **Query stack memory.** To determine if a specific virtual address is in the
 stack, you can start by checking if the address is `MEM_PRIVATE` (refer to
-private memory above). If it is the case, you can then collect the base address
+private memory above). If so, you can then collect the base address
 for each stack of each thread using Windows functions such as `OpenThread` and
 `GetThreadContext`. Next, you can check whether it belongs to one of the thread's
 stacks.
@@ -209,8 +207,7 @@ specified heap.
 
 **Example with C++ STL containers.** When you call the `reserve` memory function
 of a `std::vector` container, memory is both reserved and committed in the heap.
-In this example, we can observe how both the `reserve` and `resize` functions
-reserve and commit memory.
+This example calls both `reserve` and `resize`:
 
 ```cpp
 // 1
@@ -226,8 +223,8 @@ std::vector<int> Vector3;
 Vector3.resize(10000000);
 ```
 
-We can observe that both `reserve` and `resize` functions of a `std::vector` are
-reserving and committing memory:
+Both the `reserve` and `resize` functions of a `std::vector` reserve and commit
+memory:
 
 {{< figure src="07-vector-reserve-resize.jpg" alt="VMMap showing heap reserved and committed memory growing with vector reserve and resize" caption="Both reserve and resize functions of std::vector commit memory." >}}
 
@@ -261,7 +258,7 @@ to modify the content of this file:
 
 {{< figure src="09-file-before-mapping.jpg" alt="Text file contents before the memory mapping example runs" caption="Text file before file memory mapping." >}}
 
-The algorithm steps are easy to follow:
+The steps are easy to follow:
 
 ```cpp
 HANDLE hFile = CreateFile(
@@ -307,7 +304,7 @@ CloseHandle(hMapping);
 CloseHandle(hFile);
 ```
 
-After running this code, the text file is successfully modified:
+After running this code, the text file is modified:
 
 {{< figure src="10-file-after-mapping.jpg" alt="Text file contents after the memory mapping example has written to it" caption="Text file after file memory mapping." >}}
 
@@ -330,7 +327,7 @@ accessed only by **Process B** and marks it as *read-write*.
 
 {{< figure src="12-copy-on-write.jpg" alt="Diagram of two processes sharing pages, with one page copied on write for the second process" caption="Pages marked as copy-on-write are copied only when modified by the process, to optimise memory." >}}
 
-**A mystery.** It remains unclear to me how to explain why certain pages of an
+**A mystery.** It remains unclear to me why certain pages of an
 image that are marked as *read* end up in the private working set and are
 effectively added to the private bytes counter. I couldn't find a definitive
 answer to this question, even after consulting the book.
@@ -344,9 +341,9 @@ rounded down to the nearest multiple of the allocation granularity, which is
 currently 64 KB on Windows. This results in some regions that cannot be used.
 
 For 32-bit machines, unused regions caused a significant issue as an application
-could potentially run out of virtual memory due to memory fragmentation. However,
+could run out of virtual memory due to memory fragmentation. However,
 for 64-bit machines this is no longer a concern, because the virtual memory space
-is very large, approximately 17.4 million terabytes of memory.
+is very large, approximately 18.4 million terabytes of memory.
 
 ### 7 — Managed heap
 
@@ -354,36 +351,31 @@ Managed heap is memory allocated and managed by
 [.NET's garbage collector](https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/fundamentals).
 I won't cover it in this article.
 
-## Memory Tracer
+## MemoryTracer
 
-I introduced in the
-[previous article]({{< relref "windows-memory-management-overview" >}}) the
-[Memory Tracer project](https://github.com/brmel/MemoryTracer), an open-source
-C++ library designed to assist you in monitoring the virtual memory of a specific
-process over time. It allows you to display data on the screen, export
+In the
+[previous article]({{< relref "windows-memory-management-overview" >}}) I introduced the
+[MemoryTracer project](https://github.com/brmel/MemoryTracer), an open-source
+C++ library that monitors the virtual memory of a specific process over time. It allows you to display data on the screen, export
 well-formatted data to a file, and provides control over the snapshot frequency.
 
-{{< figure src="14-memory-tracer-vs-vmmap.jpg" alt="Memory Tracer output side by side with a VMMap snapshot showing matching figures" caption="Memory Tracer showing the same results as VMMap." >}}
+{{< figure src="14-memory-tracer-vs-vmmap.jpg" alt="MemoryTracer output side by side with a VMMap snapshot showing matching figures" caption="MemoryTracer showing the same results as VMMap." >}}
 
-Memory Tracer attempts to reproduce the exact results as VMMap. However, there is
+MemoryTracer tries to reproduce VMMap's results exactly. However, there is
 **no guarantee of accuracy**: VMMap appears to query virtual memory through
 interfaces that are not public, so the two won't always agree.
 
 **Future improvements:**
 
 - There is no heap tracing, so all data in the heap will be in the *private data*
-  row. If you know an efficient way to traverse the heap and determine if a
-  virtual address is within the heap, we can discuss it, because I'm very
-  curious.
+  row. An efficient way to traverse the heap and tell whether a virtual address
+  falls within it is still open.
 - We should avoid allocating memory when taking a snapshot and exporting data, to
   prevent influencing the process being examined.
 - There are some pages marked as private data in VMMap, but the reasons are
-  unclear. For instance, there are pages in DLLs with the `M_IMAGE` flag and
-  protection `M_READ`, suggesting they should be shareable, but they appear as
+  unclear. For instance, there are pages in DLLs with the `MEM_IMAGE` flag and
+  protection `PAGE_READONLY`, suggesting they should be shareable, but they appear as
   private.
-
-If you have any suggestions, or just want to chat about memory or C++, please
-feel free to reach out to me.
 
 ## Sources
 

@@ -10,20 +10,20 @@ metrics:
   - value: "3 surfaces"
     label: "one Flutter app, an admin console and a marketing site on one backend"
   - value: "Real time"
-    label: "votes propagate live, with every write validated server-side"
+    label: "votes appear live, and every write is checked on the server"
   - value: "1 command"
-    label: "build, deploy, publish or roll back, with health-checked rollback"
+    label: "build, deploy, publish or roll back, with automatic rollback when a health check fails"
 stack: ["Flutter", "Firebase Functions", "TypeScript", "React", "Firestore"]
 links:
   live: ""
 lede: |
-  A group planning app built around the one thing a chat thread can't do:
+  A group planning app built around the one thing a chat thread can’t do:
   end the conversation. A squad nominates options, everyone votes in real time,
   and one person locks the winner in.
 lessons:
   - "**The control plane was the best decision on the project.** Two web properties, two audiences, two visibility rules, and deploys were hand-run CLI commands. `Operator/` turned build → deploy → publish → rollback into one model across Firebase Hosting, this machine and any server, with an audit trail and health-check auto-rollback. It cost a fortnight and paid for itself the first time a bad deploy needed reverting."
   - "**Every write goes through Cloud Functions, and that constraint aged well.** No client writes straight to Firestore. It felt heavy while building the first screen and stopped being negotiable the moment real-time voting arrived: the vote rules live in one place, not in every client version anyone has installed."
-  - "**Both hosting sites are 404 today, and I found out writing this page.** Nothing monitors them, because the app never launched and I stopped deploying. The control plane has an audit trail and no uptime check."
+  - "**Both hosting sites return 404 today, and I found out while writing this page.** Nothing monitors them, because the app never launched and I stopped deploying. The control plane has an audit trail and no uptime check."
   - "**Onboarding got built twice.** The first version explained the app; the second shows you the button. Four coach-mark steps replaced a tour nobody finished."
 tags: ["Flutter", "Firebase", "Mobile"]
 ---
@@ -32,12 +32,11 @@ tags: ["Flutter", "Firebase", "Mobile"]
 
 Five friends picking a restaurant will fill a group chat with links, three
 thumbs-up reactions and no decision, and two days later nobody has booked
-anything. The problem was never a shortage of options. It was that nobody ever decided.
+anything.
 
 ## The product
 
-A squad nominates options, everyone votes in real time, and one person locks the
-winner in. The app opens on a curated list of what is on in Montréal this week,
+The app opens on a curated list of what is on in Montréal this week,
 so the first screen is useful before you have a single friend on the platform.
 
 I made two decisions that shaped the rest. **Every write goes through a server function**
@@ -47,7 +46,6 @@ through a small control plane instead of hand-run commands: build, deploy,
 publish, roll back, with an audit trail and a health check that reverts a bad
 release on its own.
 
-It hasn't launched. The honest reading of that is on the page below: the
-tooling around the product got further than the product did, and the day I
-wrote this page I found both of its sites returning 404 because nothing was
-watching them.
+It hasn't launched. The tooling around the product got further than the
+product did, and the day I wrote this page I found both of its sites returning
+404 because nothing was watching them.

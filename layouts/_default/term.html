@@ -1,6 +1,0 @@
-{{- define "main" }}
-{{ partial "page-head/header.html" (dict "page" .) }}
-{{- range sort (partial "func/section-pages.html" .) "Date" "desc" }}
-{{- partial "article/entry.html" (dict "page" . "showSection" true) }}
-{{- end }}
-{{- end }}

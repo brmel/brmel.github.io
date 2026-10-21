@@ -1,3 +1,0 @@
-{{- $attrs := "" -}}
-{{- if ne .Lang site.Language.Lang }}{{ $attrs = printf ` lang="%s" dir="%s"` .Lang (.Language.LanguageDirection | default "ltr") }}{{ end -}}
-{{- return ($attrs | safeHTMLAttr) -}}

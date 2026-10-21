@@ -1,4 +1,0 @@
-{{- $pages := or .RegularPages .Pages -}}
-{{- $have := slice }}{{ range $pages }}{{ $have = $have | append .Path }}{{ end -}}
-{{- with (index site.Sites 0).GetPage .Path }}{{ $pages = $pages | append (where (or .RegularPages .Pages) "Path" "not in" $have) }}{{ end -}}
-{{- return $pages -}}

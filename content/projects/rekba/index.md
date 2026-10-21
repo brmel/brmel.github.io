@@ -10,7 +10,7 @@ metrics:
   - value: "281 stations"
     label: "and 374 connections, built from open map data"
   - value: "3 locales"
-    label: "French, Arabic and English, right-to-left aware"
+    label: "French, Arabic and English, with right-to-left layout"
   - value: "1 pipeline"
     label: "three triggers: a service, a CLI and scheduled flows"
 stack: ["Python", "FastAPI", "Prefect", "Typer", "GTFS", "Flutter"]
@@ -18,13 +18,14 @@ links:
   live: "https://rekba-landing.web.app"
 lede: |
   Public transit for Algeria, in a country where no agency publishes a usable
-  timetable. Two halves in order: a pipeline that manufactures a transit network
-  out of open map data and estimates, and the rider app that makes it useful.
+  timetable. Two halves, built in that order: a pipeline that manufactures a
+  transit network out of open map data and estimates, and the rider app that
+  makes it useful.
 lessons:
   - "**I surveyed riders before writing the app, and it changed what I built.** The mapped rail network and the station-level survey came first. What people wanted was not a journey planner. It was knowing whether the vehicle they are standing at the stop for is actually coming."
-  - "**One implementation, three triggers.** The business logic sits behind a FastAPI service, a Typer CLI and Prefect flows, over a provider-agnostic data layer. Every rule has one home and the trigger is a detail. This is the decision I'd keep on any project of this shape."
-  - "**Transit feeds break constantly, so diffing became a product surface.** A feed refresh classifies every change by severity (4 blocking, 4 critical, 24 high, 641 medium in one run across 281 stations and 374 edges), because publishing a broken timetable is worse than publishing a stale one. That screen exists because I shipped a bad feed once."
-  - "**The hard part is that the data doesn't exist.** No Algerian agency publishes usable GTFS. Most of the work is producing a feed at all (merging OpenStreetMap geometry, timetable estimates and coarse town-centre positions into something a router can use), and then defending it from its own upstreams."
+  - "**One set of rules, three ways to run it.** The business logic sits behind a FastAPI service, a Typer CLI and Prefect flows, over a provider-agnostic data layer. Every rule has one home and the trigger is a detail. This is the decision I’d keep on any project of this shape."
+  - "**Transit feeds break constantly, so reviewing every change became part of the product.** A feed refresh classifies every change by severity (4 blocking, 4 critical, 24 high, 641 medium in one run across 281 stations and 374 edges), because publishing a broken timetable is worse than publishing a stale one. That screen exists because I shipped a bad feed once."
+  - "**The hard part is that the data doesn’t exist.** No Algerian agency publishes usable GTFS. Most of the work is producing a feed at all (merging OpenStreetMap geometry, timetable estimates and coarse town-centre positions into something a router can use), and then defending it from its own upstreams."
 tags: ["Python", "Transit", "Algeria"]
 ---
 

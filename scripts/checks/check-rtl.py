@@ -5,7 +5,7 @@ from gate import ROOT, finish
 PHYS = re.compile(r'(?<![-\w])(margin-left|margin-right|padding-left|padding-right|'
                   r'border-left|border-right|text-align\s*:\s*(?:left|right)|(?<![\w-])left|(?<![\w-])right)\s*:')
 
-sheets = sorted(glob.glob(os.path.join(ROOT, "assets/css/**/*.css"), recursive=True))
+sheets = sorted(glob.glob(os.path.join(ROOT, "assets", "css", "*.css")))
 fails = []
 for f in sheets:
     src = re.sub(r"/\*.*?\*/", "", open(f, encoding="utf-8").read(), flags=re.S)

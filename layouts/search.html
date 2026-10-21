@@ -1,0 +1,9 @@
+{{- define "main" }}
+{{ partial "page-head/header.html" (dict "page" .) }}
+<div class="search">
+  <input id="search-input" type="search" autofocus autocomplete="off" maxlength="64" placeholder="{{ .Params.placeholder }}" aria-label="{{ i18n "search_label" }}" data-index="{{ "index.json" | relLangURL }}">
+  <p id="search-status" class="u-eyebrow" aria-live="polite" data-count="{{ i18n "search_count" }}"></p>
+  <ul id="search-results" aria-label="{{ i18n "search_results" }}"></ul>
+</div>
+{{ with resources.Get "js/search.js" | minify | fingerprint }}<script src="{{ .RelPermalink }}" defer></script>{{ end }}
+{{- end }}

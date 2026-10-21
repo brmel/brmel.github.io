@@ -1,23 +1,19 @@
 ---
 title: "Building an AI Agent That Tests a Live Website End to End"
 date: 2026-04-07
-relatedProject: "domia"
-description: "What an AI agent is, and DOMIA: an autonomous end-to-end testing agent built on Google ADK and Gemini."
+description: "What an AI agent is, and DOMIA, the autonomous end-to-end testing agent I built on Google ADK and Gemini."
 tags: ["AI", "Testing", "Python"]
 cover:
     image: "04-domia-architecture.jpg"
     alt: "DOMIA architecture: the agent loop, its tools, and the drivers for web, mobile and desktop"
-canonicalOriginal: "https://www.linkedin.com/pulse/concrete-example-how-ai-replace-software-testers-tnv-mellah--9vbxe"
-canonicalOriginalName: "LinkedIn"
 ---
 
-*A practical guide for engineers, QA leads, and managers who want to understand
-what AI agents are and how they are changing the way we test and
-validate software.*
+*For engineers, QA leads, and managers who want to understand what AI agents
+are and how they are changing software testing.*
 
 This article is split into two parts. The first part is short, just enough to
-understand the building blocks. The second part is where things get interesting:
-a real-world example of an AI agent that tests software autonomously. I built it,
+understand the building blocks. The second part is a
+real-world example: an AI agent that tests software autonomously. I built it,
 it's working well, and I called it **DOMIA**.
 
 ## Part 1 — The building blocks
@@ -30,7 +26,7 @@ it.
 {{< figure src="01-chat.jpg" alt="Diagram of a chat exchange: a prompt goes into the model, a reply comes out" caption="Chat: text in, text out." >}}
 
 The model reads your text, predicts the most likely useful response, and sends it
-back. In this code snippet, we see how you can create a chat model using Gemini:
+back. Here's how to call a chat model with Gemini:
 
 ```python
 import os
@@ -57,7 +53,7 @@ the model a list of tools it can use, and it decides *when* to call them and
 
 {{< figure src="02-function-calling.jpg" alt="Diagram of function calling: the model returns a tool request, your code executes it and returns the result" caption="The model asks; your code runs the tool and hands back the result." >}}
 
-The key thing that needs to be understood: **the model does not run the tool.**
+The key point is that **the model does not run the tool.**
 It returns a request: a JSON object saying "call this function with these args".
 Your code runs the actual function and feeds the result back. **The model asks;
 your code decides whether to comply.**
@@ -141,7 +137,7 @@ session = session_service.create_session_sync(app_name="demo", user_id="user1")
 
 ## Part 2 — DOMIA: an agent that tests your software
 
-This is the part that matters. Let's talk about a real problem:
+Let's talk about a real problem:
 **end-to-end (E2E) test automation** across web, mobile, and desktop apps.
 
 ### Why test automation is hard
@@ -172,8 +168,8 @@ breaking.
 Three capabilities make this possible:
 
 - **Visual perception** — the agent reads screenshots the way a human tester
-  would, catching visual regressions and layout issues that pure DOM and output
-  text data inspection misses.
+  would, catching visual regressions and layout issues that inspecting only the DOM
+  and text output misses.
 - **Natural language acceptance criteria** — you describe *what* the
   system-under-test should do, not *how* to drive the browser step by step.
 - **Built-in test oracle** — the model itself can judge whether the observed
@@ -212,7 +208,7 @@ at least 3 languages — English, French, and one other."*
 No selectors. No hardcoded text comparisons. DOMIA navigates the site, finds the
 language switcher, cycles through options, and checks that the content
 changes. A traditional regression test would break every time the language menu
-is redesigned. DOMIA doesn't care. It reads the UI the way a human tester would.
+is redesigned. DOMIA doesn't care.
 
 {{< figure src="05-demo-multilingual.jpg" alt="Still from the recording of DOMIA cycling through the site's languages and returning PASS" caption="Recording: DOMIA opens ibraverse.ca, cycles through languages and returns PASS. [Watch the recording on LinkedIn](https://www.linkedin.com/pulse/concrete-example-how-ai-replace-software-testers-tnv-mellah--9vbxe)." >}}
 
@@ -223,8 +219,7 @@ profile photo of Brahim on the page and verify he is smiling."*
 
 No DOM element can answer that. A traditional E2E test has no way to pass. But
 DOMIA, running with a vision-capable model, takes a screenshot, looks at the
-image, and judges the expression, the same way a human QA reviewer would during
-a visual review.
+image, and judges the expression.
 
 This scenario **passes only when vision is enabled**. With a text-only model,
 DOMIA correctly returns FAIL: it can read the alt text, but can't verify the
@@ -241,7 +236,7 @@ folder."*
 This passes **only when the shell tool is enabled**. Without it, DOMIA can see the
 article count on screen but has no way to write it to disk. With the shell tool
 active, the agent reads the count from the page and calls
-`echo "2" > article_count.txt` on its own, no human needed.
+`echo "2" > article_count.txt` on its own.
 
 This illustrates a broader class of tests: scenarios where the verdict requires
 acting on the environment as well as reading it. Think of it as **agentic
@@ -275,7 +270,7 @@ goal syntax works everywhere, and only the driver changes:
 - **Plugins** — drop a JS file into `~/.domia/plugins/` and the agent gets a new
   tool automatically. No recompile needed.
 
-### It's worth being honest about the limits
+### The limits
 
 - **It's not magic.** Complex screens with heavy dynamic content, unusual
   gestures, or non-standard UI patterns can confuse the
@@ -285,7 +280,7 @@ goal syntax works everywhere, and only the driver changes:
   model option (Example 2) helps bring cost and latency down for any platform.
 - **It's best for high-value, complex scenarios.** For simple happy-path smoke
   tests on web, mobile, or desktop, use scripted automation, which is faster and
-  cheaper. DOMIA shines on long, stateful user journeys: the UAT scenarios and
+  cheaper. DOMIA is most useful on long, stateful user journeys: the UAT scenarios and
   cross-layer regression tests that are too expensive to maintain with
   traditional selector-based automation.
 
@@ -293,13 +288,9 @@ goal syntax works everywhere, and only the driver changes:
 
 I learned how agents work by building DOMIA from scratch and writing every
 line of Python: the tool definitions, the
-session loop, the perception pipeline, the failure handling. You only
-understand the limitations when you hit them yourself. If you want to learn
+session loop, the perception pipeline, the failure handling. If you want to learn
 agents, build one. Pick a problem you know well, give the model one tool, and see
 what happens.
-
-If you have ideas on how to improve DOMIA (better tools, smarter perception, new
-platforms), reach out. I'm always happy to talk.
 
 ## Sources
 

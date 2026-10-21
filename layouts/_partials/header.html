@@ -1,0 +1,39 @@
+<a class="skip-link" href="#main">{{ i18n "skip_to_content" }}</a>
+<header class="header">
+  <nav class="nav">
+    <div class="logo">
+      <a href="{{ "" | absLangURL }}">
+        {{- partial "brand/mark.html" (dict "size" 22 "class" "brand-mark") }}
+        {{- site.Title -}}
+      </a>
+      <div class="tools">
+        <button id="theme-toggle" type="button" aria-label="{{ i18n "toggle_theme" }}" aria-pressed="false" hidden>
+          <svg class="icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+        </button>
+        {{- with site.Home.Translations }}
+        <ul class="lang-switch">
+          {{- range . }}
+          {{- $lang := .Lang }}
+          {{- $to := . }}
+          {{- if ne $.Kind "404" }}
+          {{- with where $.Translations "Lang" $lang }}{{ $to = index . 0 }}
+          {{- else }}{{ with where $.FirstSection.AllTranslations "Lang" $lang }}{{ $to = index . 0 }}{{ end }}{{ end }}
+          {{- end }}
+          <li><a href="{{ $to.Permalink }}" lang="{{ $lang }}" hreflang="{{ $lang }}" title="{{ if ne $to.Kind "home" }}{{ $to.Title }} · {{ end }}{{ .Language.Label }}">{{ $lang | upper }}</a></li>
+          {{- end }}
+        </ul>
+        {{- end }}
+      </div>
+    </div>
+    <ul class="menu">
+      {{- range site.Menus.main }}
+      {{- with site.GetPage .URL }}{{ if and (eq .Kind "section") (not (partial "func/section-pages.html" .)) }}{{ continue }}{{ end }}{{ end }}
+      {{- $url := .URL | absLangURL }}
+      {{- $current := "" }}
+      {{- if eq $url $.Permalink }}{{ $current = "page" }}{{ else if and (not $.FirstSection.IsHome) (eq $url $.FirstSection.Permalink) }}{{ $current = "true" }}{{ end }}
+      <li><a href="{{ $url }}"{{ with $current }} aria-current="{{ . }}"{{ end }}>{{ .Name }}</a></li>
+      {{- end }}
+    </ul>
+  </nav>
+</header>

@@ -1,11 +1,9 @@
 ---
-title: "Auberge Estonia: A Nordic Spa Cabin Escape in Rawdon, One Hour from Montréal"
+title: "Auberge Estonia: Nordic Spa Cabins in Rawdon, One Hour from Montréal"
 date: 2026-05-31
-draft: false
 description: "Eight rooms and a few chalets in the Rawdon woods, an hour from Montréal, where the Nordic spa is free for guests and dinner is whatever you brought."
 tags: ["Québec", "Spa", "Getaway"]
 category: "spa"
-fieldNote: 3
 place: "Rawdon, Lanaudière"
 rating: 4.5
 goBack: "Yes, easy yes."
@@ -13,7 +11,7 @@ bestFor: "A low-key Nordic-spa weekend for a couple or small group."
 con: "You self-cater, so bring groceries; restaurants are ~10 min away."
 ---
 
-An hour from Montréal, tucked in the Rawdon woods: two Nordic hot tubs steaming under the trees, a Finnish sauna, a lake to cold-plunge into, and a BBQ cabin to come back to. Auberge Estonia is the low-key spa weekend that doesn't cost spa-resort money.
+An hour from Montréal, in the Rawdon woods: two Nordic hot tubs steaming under the trees, a Finnish sauna, a lake to cold-plunge into, and a BBQ cabin to come back to. Auberge Estonia is the low-key spa weekend that doesn't cost spa-resort money.
 
 ## The place
 
@@ -38,10 +36,6 @@ out.
 
 It's a do-nothing-on-purpose kind of place: quiet, wooded, no crowds.
 
-## Map
-
-{{< gmap q="Estonia Hébergement Nature, 4333 Chemin du Lac Brennan, Rawdon, QC" title="Auberge Estonia — Rawdon" >}}
-
 ## Recommendations
 
 - **Go for:** the free Nordic spa in the forest (hot tubs, Finnish sauna,
@@ -61,3 +55,4 @@ It's a do-nothing-on-purpose kind of place: quiet, wooded, no crowds.
 - **Book direct:** reserve ahead (it's small and fills up on weekends);
   estoniahebergement.com / 450-712-6337.
 
+{{< gmap q="Estonia Hébergement Nature, 4333 Chemin du Lac Brennan, Rawdon, QC" title="Auberge Estonia — Rawdon" >}}

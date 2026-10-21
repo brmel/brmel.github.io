@@ -1,14 +1,16 @@
 ---
-title: "Finding an Infinite Loop in Scikit-Learn's K-Means"
+title: "Finding an Infinite Loop in Scikit-Learn’s K-Means"
 featured: 3
 date: 2024-04-29
-description: "An input that makes scikit-learn's K-means loop forever: the bug in its empty-cluster handling, the report I filed, and the fix."
+description: "An input that makes scikit-learn’s K-means loop forever: the bug in its empty-cluster handling, the report I filed, and the fix."
 tags: ["Machine Learning", "Python"]
 cover:
     image: "01-kmeans-bug-repro.jpg"
     alt: "Scatter plot of the failing case, with input data points and cluster centres marked"
-canonicalOriginal: "https://www.linkedin.com/pulse/how-i-fixed-ia-algorithm-scikit-learn-library-brahim-redouane-mellah--ne59e"
-canonicalOriginalName: "LinkedIn"
+lastmod: 2026-10-20
+updates:
+  - date: 2026-10-20
+    text: "Added how the bug was fixed and which release shipped the fix."
 ---
 
 An implementation can be correct on every well-behaved input and still have a
@@ -21,8 +23,6 @@ and found one: an input that makes it loop forever. Three conditions have to
 line up, and the last of them is the interesting part: the code that handles
 empty clusters creates the empty cluster it's handling.
 
-I'll go through what K-means does, how the loop happens, and what came of reporting it.
-
 > **Personal opinion.** I think everyone should help make open source better
 > however they can, as long as it doesn't hurt their business. Open source is a
 > great idea and has had a big impact on our world. Leaders of big tech companies
@@ -31,7 +31,7 @@ I'll go through what K-means does, how the loop happens, and what came of report
 ## K-means
 
 The k-means algorithm is a popular unsupervised machine learning technique used
-for clustering data. The goal of the k-means algorithm is to partition a set of
+for clustering data. Its goal is to partition a set of
 data points into *k* clusters where each data point belongs to the cluster with
 the nearest mean. The standard algorithm was first proposed by Stuart Lloyd of
 [Bell Labs](https://en.wikipedia.org/wiki/Bell_Labs) in 1957.
@@ -96,18 +96,20 @@ issue in their GitHub repo. Scikit-learn did a good job documenting how you
 should do it:
 [scikit-learn contributing](https://scikit-learn.org/stable/developers/contributing.html).
 I followed the steps, and I opened an issue that was resolved quickly, in my
-opinion.
+opinion. The fix, [scikit-learn#28165](https://github.com/scikit-learn/scikit-learn/pull/28165)
+by Jérémie du Boisberranger, shipped in scikit-learn 1.4.1 in February 2024.
 
 ## The lessons
 
 - The dangerous edge case was the repair code itself, which had never been run
   against the situation it creates.
 - Reporting a bug well is most of the contribution. A reproducible case and the
-  three conditions that produce it is what let someone else fix this in days.
+  three conditions that produce it are what let someone else fix this in days.
 
 ## Sources
 
 - scikit-learn — [`KMeans` documentation](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html)
 - scikit-learn — [issue #28055](https://github.com/scikit-learn/scikit-learn/issues/28055), the bug and its discussion
+- scikit-learn — [pull request #28165](https://github.com/scikit-learn/scikit-learn/pull/28165), the fix, in the [1.4.1 release notes](https://scikit-learn.org/stable/whats_new/v1.4.html)
 - scikit-learn — [contributing guide](https://scikit-learn.org/stable/developers/contributing.html)
 - Wikipedia — [Bell Labs](https://en.wikipedia.org/wiki/Bell_Labs), where Lloyd proposed the algorithm in 1957

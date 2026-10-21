@@ -1,0 +1,10 @@
+{{- $img := false -}}
+{{- $alt := .Params.cover.alt -}}
+{{- with .Params.cover.image }}
+  {{- $img = $.Resources.GetMatch . }}
+  {{- if not $img }}{{ errorf "cover %q is not in the bundle of %s" . $.File.Path }}{{ end }}
+{{- else }}{{ with $.Resources.Match "gallery/*" }}
+  {{- $img = index . 0 }}
+  {{- $alt = printf (i18n "project_screenshot") $.Title }}
+{{- end }}{{ end -}}
+{{- return dict "image" $img "alt" $alt -}}

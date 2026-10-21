@@ -19,13 +19,13 @@
   {{- end }}
 
 
-  <div class="post-content project-body">
-    {{- partial "anchored_headings.html" .Content -}}
+  <div class="post-content">
+    {{- .Content -}}
   </div>
 
   {{- with .Resources.Match "gallery/*" }}
   <section class="project-gallery" aria-labelledby="project-gallery-h">
-    <h2 class="u-rule-heading" id="project-gallery-h">{{ i18n "project_gallery" }}</h2>
+    <h2 class="u-heading" id="project-gallery-h">{{ i18n "project_gallery" }}</h2>
     <div class="project-gallery__grid">
       {{- range . }}
       {{- $small := .Resize "640x webp q82" }}
@@ -36,8 +36,8 @@
              sizes="(max-width: 768px) 100vw, 290px"
              width="{{ $large.Width }}" height="{{ $large.Height }}"
              loading="lazy" decoding="async"
-             alt="{{ .Title | default (printf (i18n "project_screenshot") $.Title) }}">
-        {{- with .Params.caption }}<figcaption>{{ . }}</figcaption>{{ end }}
+             alt="{{ printf (i18n "project_screenshot") $.Title }}">
+        {{- with .Params.caption }}<figcaption>{{ . | markdownify }}</figcaption>{{ end }}
       </figure>
       {{- end }}
     </div>
@@ -46,13 +46,11 @@
 
   {{- with .Params.lessons }}
   <section class="project-lessons" aria-labelledby="project-lessons-h">
-    <h2 class="u-rule-heading" id="project-lessons-h">{{ i18n "project_lessons" }}</h2>
+    <h2 class="u-heading" id="project-lessons-h">{{ i18n "project_lessons" }}</h2>
     <ul class="project-lessons__list">
       {{- range . }}<li>{{ . | markdownify }}</li>{{ end }}
     </ul>
   </section>
   {{- end }}
-
-  {{- partial "page-end/footer.html" . }}
 </article>
 {{- end }}

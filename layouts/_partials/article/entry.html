@@ -1,0 +1,18 @@
+{{- $p := .page -}}
+{{- $foreign := ne $p.Lang site.Language.Lang -}}
+{{- $lang := cond $foreign (printf ` lang="%s" dir="%s"` $p.Lang ($p.Language.Direction | default "ltr")) "" | safeHTMLAttr }}
+<article class="post-entry">
+  {{- partial "article/cover.html" . }}
+  <div class="entry-text">
+    <p class="u-eyebrow entry-eyebrow">
+      {{- if eq $p.Section "projects" }}{{ partial "func/eyebrow.html" $p }}{{ else }}{{ partial "article/meta.html" $p }}{{ end -}}
+      {{- if .showSection }} <b class="u-dot" aria-hidden="true">·</b> {{ (site.GetPage $p.Section).Title }}{{ end -}}
+    </p>
+    <h{{ .level | default 2 }} class="entry-title"{{ $lang }}>{{ $p.Title }}</h{{ .level | default 2 }}>
+    {{- with or $p.Params.pitch $p.Description }}<p class="entry-content"{{ $lang }}>{{ . }}</p>{{ end }}
+    {{- if $foreign }}
+    <span class="entry-lang" title="{{ i18n "lang_en_only_title" }}">{{ i18n "lang_en_only" }}</span>
+    {{- end }}
+  </div>
+  <a class="entry-link" aria-label="{{ $p.Title | plainify }}" href="{{ $p.Permalink }}"></a>
+</article>

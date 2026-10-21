@@ -8,7 +8,7 @@ pitch: "A numbered queue on a waiting-room screen for small clinics, so patients
 description: "A numbered queue on a waiting-room screen for small clinics, so patients stop asking who is next."
 metrics:
   - value: "1 PC"
-    label: "runs reception, the waiting-room board and every doctor"
+    label: "runs reception, the waiting-room board and every doctor’s queue"
   - value: "3 languages"
     label: "French, Arabic and English, switched mid-sentence"
   - value: "Offline"
@@ -18,7 +18,7 @@ links:
   live: "https://tikipro.web.app"
 lede: |
   Clinic queue management that runs entirely on the one PC already sitting at
-  reception: the desk view, the waiting-room screen and each doctor's queue, with
+  reception: the desk view, the waiting-room screen and each doctor’s queue, with
   no server, no per-seat licence and no patient record leaving the building.
 lessons:
   - "**For the first ten minutes, all anyone sees is the installer.** The app refuses to start without a licence file, and the installer is not code-signed, so Windows SmartScreen blocks it: two dead ends before anyone sees a feature. I now write the onboarding email before the release, because every warning it has to explain is a design failure I could have removed."

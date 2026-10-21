@@ -7,25 +7,24 @@ How to publish a project page. Every project page has the same structure, render
 
 ```
 ┌──────────────────────────────────────────┐
-│ Home · Projects                           │ breadcrumbs (auto)
-│ PROJECT № 01 · SAAS · SHIPPED             │ eyebrow from projectNo, domain, status (auto)
+│ 2025 · SaaS · Shipped                     │ eyebrow from date, domain, status (auto)
 │ TikiPro                                   │ title
 │ One line a non-engineer understands.      │ pitch
-│ LIVE ↗  REPO ↗  [Electron][TypeScript]    │ links and stack chips (auto)
+│ Live ↗  Repo ↗  [Electron][TypeScript]    │ links and stack chips (auto)
 │ lede                                      │ three sentences
 │ 1 PC · … · …                              │ metrics row
 ├──────────────────────────────────────────┤
 │ ## The story                              │ prose
 │ ## The product                            │ prose
 ├──────────────────────────────────────────┤
-│ GALLERY                                   │ gallery/ images (auto)
-│ LESSONS                                   │ lessons (auto)
-│ topics · discuss · author · back/next     │ page end (auto)
+│ Gallery                                   │ gallery/ images (auto)
+│ What it taught me                         │ lessons (auto)
 └──────────────────────────────────────────┘
 ```
 
-The project index card shows `№ {nn} · {year} · {domain} · {status}`, the title, the pitch, a "Live"
-marker when `links.live` is set, and the first four `stack` entries.
+The project index card is the same card as every list on the site: the first gallery image as a 16:9
+thumbnail (the compass mark when there is none), `{year} · {domain} · {status}`, the title and the
+pitch.
 
 ## 1. Scaffold
 
@@ -44,19 +43,19 @@ grep -h '^projectNo:' content/projects/*/index.md | sort -n -k2 | tail -1
 | Field | Rule |
 |---|---|
 | `title`, `date` | The year of `date` shows on the index card. |
-| `projectNo` | Unique and permanent. The index lists the highest first; previous/next follow the number. |
+| `projectNo` | Unique and permanent. The index lists the highest first. |
 | `domain` | `saas`, `data`, `infra` or `mobile`, shown through `project_domain_<domain>` in `i18n/*.yaml`. A new domain needs that key in all three files. |
 | `status` | `shipped`, `active` (shown as "In progress") or `archived`, through `project_status_<status>`. |
-| `pitch` | One sentence a non-engineer can parse. It is the header line, the index card text, the related-project card and the JSON-LD abstract. |
+| `pitch` | One sentence a non-engineer can parse. It is the header line, the index card text and the JSON-LD abstract. |
 | `description` | 50–160 characters, unique per language; the meta description, search and `llms.txt`. Usually identical to `pitch`. |
 | `lede` | Markdown, three sentences: the problem, what the project does, what changed. |
-| `stack` | Chips on the page; the index card shows the first four, so order by importance. |
-| `links` | `live` renders as a localised "Live ↗"; any other key (`repo`) renders title-cased. Empty values are skipped. |
+| `stack` | Chips under the page header, in order of importance. |
+| `links` | `live` and `repo`, each rendered through the `project_link_<key>` string in the three `i18n/*.yaml` files; a new key needs that string first. Empty values are skipped. |
 | `metrics` | Three `value` + `label` pairs above the body. Every figure also appears, sourced, in the body. They feed the "Project facts" in `llms.txt`. A project with no honest numbers has no metrics. |
 | `lessons` | Three to five markdown strings, each with a bold lead, at least one a real failure. |
 | `tags` | Topic pages; see [publishing a new tag](#new-tags). |
-| `featured` | Optional. `featured: N` lists the project under "Start here" on the home page, lowest number first. |
-| `resources` | Optional `title` (alt text) and `params.caption` per gallery image. |
+| `featured` | Optional. `featured: N` lists the project under "Start here" on the home page, lowest number first; four show. |
+| `resources` | Optional `params.caption` per gallery image. Alt text is "<title> screenshot"; the first image is the index-card thumbnail. |
 
 ## 3. The prose
 
@@ -83,13 +82,11 @@ content/projects/<slug>/
 ```
 
 They render after the body at 640px and 1280px in WebP, and the first one is the page's social card.
-Give each a `title` under `resources:`; it becomes the alt text, and without it the alt is the file
-path.
+Their alt text is "<title> screenshot"; describe the image in `params.caption`.
 
 ```yaml
 resources:
   - src: "gallery/01-waiting-room-board.png"
-    title: "The waiting-room board showing three called tickets"
     params:
       caption: "The board in the clinic's waiting room."
 ```
@@ -112,7 +109,7 @@ there too.
 
 ## 6. Publish
 
-- [ ] `draft: false`
+- [ ] `draft` removed
 - [ ] `./scripts/check.sh` passes.
 - [ ] The page and the `/projects/` grid checked with the `verify-site` skill, in EN, FR and AR.
 - [ ] Every external link resolves.

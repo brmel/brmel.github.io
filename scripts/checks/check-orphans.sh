@@ -16,7 +16,7 @@ fi
 
 orphans=""
 while IFS= read -r asset; do
-  case "$asset" in assets/css/extended/*.css) continue ;; esac
+  case "$asset" in assets/css/*.css) continue ;; esac
   base=$(basename "$asset")
   for needle in "$base" "${asset#assets/}" "${base%.*}"; do
     grep -rqIF --exclude="$base" -- "$needle" $SEARCH_PATHS && continue 2

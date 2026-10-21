@@ -1,0 +1,13 @@
+{{- $id := .Get "id" }}
+{{- $title := .Get "title" }}
+{{- with .Page.Resources.GetMatch (.Get "poster") }}
+{{- $img := .Resize "960x webp q75" }}
+<figure>
+  <a class="u-card video-thumb" href="https://www.youtube.com/watch?v={{ $id }}" target="_blank" rel="noopener noreferrer" aria-label="{{ $title }}">
+    <img src="{{ $img.RelPermalink }}" width="{{ $img.Width }}" height="{{ $img.Height }}" loading="lazy" decoding="async" alt="">
+    <span class="video-thumb__play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z"/></svg></span>
+  </a>
+  <figcaption>{{ $title }}</figcaption>
+</figure>
+{{- else }}{{ errorf "youtube: poster %q is not in the bundle of %s" (.Get "poster") .Page.File.Path }}
+{{- end }}

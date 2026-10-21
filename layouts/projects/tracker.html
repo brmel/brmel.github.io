@@ -27,8 +27,6 @@
   {{ partial "paridata/ledger.html" $l }}
   {{ partial "paridata/about.html" . }}
 
-  {{- partial "page-end/footer.html" . }}
-
-  {{ with resources.Get "js/paridata.js" | resources.Minify | resources.Fingerprint }}<script src="{{ .RelPermalink }}" defer></script>{{ end }}
+  {{ with resources.Get "js/paridata.js" | minify | fingerprint }}<script src="{{ .RelPermalink }}" defer></script>{{ end }}
 </article>
 {{- end }}

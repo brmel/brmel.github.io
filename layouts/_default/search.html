@@ -1,8 +1,0 @@
-{{- /* Fork of themes/PaperMod/_default/search.html @2d2f2c6 — diff before upgrading. */ -}}
-{{- define "main" }}
-{{ partial "page-head/header.html" (dict "page" .) }}
-<div id="searchbox">
-  <input id="searchInput" autofocus placeholder="{{ .Params.placeholder }}" aria-label="{{ i18n "search_label" }}" type="search" autocomplete="off" maxlength="64">
-  <ul id="searchResults" aria-label="{{ i18n "search_results" }}"></ul>
-</div>
-{{- end }}

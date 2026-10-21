@@ -1,0 +1,5 @@
+<div class="card-grid">
+  {{- range $i, $p := .pages }}
+  {{- partial "article/entry.html" (dict "page" $p "showSection" $.showSection "level" $.level "first" (and $.eager (eq $i 0))) }}
+  {{- end }}
+</div>

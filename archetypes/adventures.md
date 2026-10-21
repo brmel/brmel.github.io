@@ -3,12 +3,11 @@ title: "{{ replace .File.ContentBaseName `-` ` ` | title }}"
 date: {{ .Date }}
 draft: true
 description: ""
-tags: ["Montreal", "Adventure"]
+tags: []
 cover:
     image: "cover.jpg"
     alt: ""
 category: "restaurant"
-fieldNote: 0
 place: ""
 rating: 0
 goBack: ""
@@ -20,13 +19,17 @@ One or two sentences that hook the reader and say where we are.
 
 {{</* figure src="photo-1.jpg" alt="" caption="" */>}}
 
+## The place
+
 Set the scene — what it is, why you went, the vibe.
+
+## What I did
 
 Walk through the experience. Keep it personal and specific.
 
 {{</* figure src="photo-2.jpg" alt="" caption="" */>}}
 
-{{</* gmap q="PLACE NAME, Montreal" title="PLACE NAME" */>}}
+## Recommendations
 
 - **Go for:** what this place is best at
 - **Order / try:** the specific thing to get
@@ -35,3 +38,4 @@ Walk through the experience. Keep it personal and specific.
 - **Best time:** when to go to avoid crowds
 - **Getting there:** metro/parking notes
 
+{{</* gmap q="PLACE NAME, Montreal" title="PLACE NAME" */>}}

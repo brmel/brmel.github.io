@@ -1,14 +1,14 @@
 ---
-title: "Why a Dark-Mode Boarding Pass Will Not Scan: Barcodes and Foreground Colour"
+title: "Why a Dark-Mode Boarding Pass Won’t Scan: Barcodes and Foreground Colour"
 date: 2025-12-03
 tags: ["Machine Vision"]
-description: "Why barcode readers need a foreground-colour setting, and what happens at an airport gate when they do not have one."
+description: "Why barcode readers need a foreground-colour setting, and what happens at an airport gate when they don’t have one."
 cover:
     image: "01-boarding-pass-dark.jpeg"
     alt: "Boarding pass barcode in dark mode: white bars on a black background"
 ---
 
-One day I was in Düsseldorf airport to take a flight. I had already checked-in online and only had the barcode on my phone.
+One day I was in Düsseldorf airport to take a flight. I had already checked in online and only had the barcode on my phone.
 
 {{< figure src="01-boarding-pass-dark.jpeg" alt="Boarding pass barcode in dark mode: white bars on a black background" >}}
 

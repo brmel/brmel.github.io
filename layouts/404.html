@@ -1,4 +1,3 @@
-{{- /* Fork of themes/PaperMod/404.html @2d2f2c6 — diff before upgrading */ -}}
 {{- define "main" }}
 <article class="page-404">
   <p class="u-eyebrow" aria-hidden="true">404</p>
@@ -7,13 +6,13 @@
   {{- with site.Menus.main }}
   <nav class="page-404__routes" aria-label="{{ i18n "notfound_title" }}">
     <ul>
-      {{- range . }}<li><a class="u-eyebrow u-rule-link" href="{{ .URL | relLangURL }}">{{ .Name }}</a></li>{{ end }}
+      {{- range . }}<li><a class="u-link" href="{{ .URL | relLangURL }}">{{ .Name }}</a></li>{{ end }}
     </ul>
   </nav>
   {{- end }}
   {{- with site.Home.Translations }}
   <p class="page-404__langs">
-    {{- range . }}<a class="u-eyebrow u-link" href="{{ .Permalink }}" lang="{{ .Lang }}" hreflang="{{ .Lang }}">{{ .Language.LanguageName }}</a>{{ end }}
+    {{- range . }}<a class="u-link" href="{{ .Permalink }}" lang="{{ .Lang }}" hreflang="{{ .Lang }}">{{ .Language.Label }}</a>{{ end }}
   </p>
   {{- end }}
 </article>

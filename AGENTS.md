@@ -4,9 +4,9 @@
 
 ## The site
 
-Personal site of Brahim Redouane Mellah, senior C++ engineer in Montréal: resume, projects, technical
-articles, field notes and the PariData ledger, in English, French and Arabic (RTL). Hugo 0.148.0
-extended on the vendored PaperMod theme, deployed to GitHub Pages at https://ibraverse.ca.
+Personal site of Brahim Redouane Mellah, senior software developer in Montréal: resume, projects, technical
+articles, field notes and the PariData ledger, in English, French and Arabic (RTL). Hugo 0.168.0
+extended with the site's own templates (no theme), deployed to GitHub Pages at https://ibraverse.ca.
 
 ## Commands
 
@@ -25,32 +25,35 @@ Each rule names the gate that enforces it; the rest are enforced in review.
 
 **Code**
 - Less code is the goal: a change that removes more than it adds and still works is the better change.
-- No comments in templates, CSS, JS or scripts. Exceptions: the one-line header on PaperMod forks and
-  the `# vN` tag on SHA-pinned actions.
+- No comments in templates, CSS, JS or scripts. Exception: the `# vN` tag on SHA-pinned actions.
 - No dead code. Every partial, token, i18n key and front-matter field has a reader; unused classes
   (`check-css`), unloaded scripts and missing selectors (`check-js`) and unreferenced assets
   (`check-orphans`) fail the build.
 - Hugo features and plain CSS first. JavaScript only where a page cannot work without it: theme
-  toggle, search, resume video dialog, PariData controls, report frame, code copy button, analytics.
+  toggle, search, resume video dialog and print button, PariData controls, report frame, code copy
+  button, analytics. The Speculation Rules block in `layouts/_partials/head.html` is JSON, not script.
 - No third-party runtime requests except Google Analytics 4. Fonts, scripts and images are
-  self-hosted; the CSP in `layouts/partials/extend_head.html` blocks the rest.
+  self-hosted; the CSP at the top of `layouts/_partials/head.html` blocks the rest.
 - No new dependencies. Tools run from `npx` or are pinned inside the script that uses them.
 
 **CSS**
-- Colours exist only in `assets/css/extended/00-tokens.css` (`check-css`); every text token clears
+- Colours exist only in `assets/css/00-tokens.css` (`check-css`); every text token clears
   4.5:1 on both backgrounds in both themes, syntax colours included (`check-contrast`).
 - Files are `NN-name.css`, the number is the cascade, 260 lines at most; shared primitives live in
   `20-components.css` and are never redeclared (`check-css`).
 - Logical properties only, never `left`/`right` (`check-rtl`).
 - Breakpoints are 600px and 768px (960px for the PariData ledger); a grid that can size itself uses
-  `auto-fit`/`minmax`. No block sets its own `max-width` or uses `100vw`; a page widens with `main--wide`.
+  `auto-fit`/`minmax`. No block sets its own `max-width` (a paragraph may cap its line length in `ch`) or
+  uses `100vw`; a page widens with `main--wide`.
 
 **Templates**
 - Chrome renders from front matter; content files never carry layout markup.
-- PaperMod forks keep the upstream name and the fork header. Site templates live in a domain folder
-  and never take a theme name. Partials that return a value live in `layouts/partials/func/`.
-- Every page has one `h1`, a skip link and sized images; every section page ends with
-  `layouts/partials/page-end/footer.html` (`check-chrome`) and is linked from its index (`check-listings`).
+- Templates use Hugo's current layout: page templates at the root of `layouts/`, partials in
+  `layouts/_partials/<domain>/`, shortcodes in `layouts/_shortcodes/`, render hooks in
+  `layouts/_markup/`. Partials that return a value live in `layouts/_partials/func/`.
+- Every page has one `h1`, a skip link and sized images (`check-chrome`); every section page is linked
+  from its index (`check-listings`). A page ends with its content: no author card, social or contact
+  links, topic chips or previous/next.
 
 **Content and images**
 - One page bundle per page. Images live in the bundle or `assets/`, never `static/` (`check-orphans`).
@@ -63,7 +66,7 @@ Each rule names the gate that enforces it; the rest are enforced in review.
 **Languages**
 - Structural pages (home, resume, section indexes, search) exist in EN, FR and AR, each with its own
   title and description. A new UI string goes into all three `i18n/*.yaml` files at once.
-- Lists merge through `layouts/partials/func/section-pages.html`; nothing filters by language.
+- Lists merge through `layouts/_partials/func/section-pages.html`; nothing filters by language.
 - Arabic is checked on screen: mirroring, `‎C++‎` with direction marks, `<bdi>` around mixed text.
 
 **Accessibility**: WCAG 2.2 AA. Targets at least 24px, scrollable regions keyboard-focusable, named
@@ -88,11 +91,11 @@ only `/reports/`. Every Tech and Adventures page has an `index.md` twin.
 | Path | |
 |---|---|
 | `content/` | page bundles; `content/tags/` topic pages |
-| `layouts/` | templates; `layouts/partials/<domain>/`, theme names at the partials root |
-| `assets/css/extended/` | the stylesheet, cascade by file number |
+| `layouts/` | templates; `layouts/_partials/<domain>/`, `layouts/_shortcodes/`, `layouts/_markup/` |
+| `assets/css/` | the stylesheet, cascade by file number |
 | `i18n/`, `data/` | UI strings; PariData and topic groups |
 | `scripts/` | `check.sh`, `gates.sh`, `scripts/checks/`, `audit.py`, `scripts/generate/` |
-| `docs/` | brand, voice, playbooks, `docs/decisions.md`, `docs/backlog.md` |
+| `docs/` | brand, voice, playbooks, `docs/decisions.md`, `docs/backlog.md`, `docs/roadmap.md` |
 
 The full map, every template and partial, the stylesheet table and the content model are in
 [ARCHITECTURE.md](ARCHITECTURE.md).
@@ -127,5 +130,4 @@ cause is unknown; `playwright-cli` for ad-hoc browser automation.
 
 ## MCP
 
-Playwright is the only MCP server this repo uses (`verify-site`). The dart, artemis and mobile-mcp
-servers are Flutter and Android tools; disable them for this project with `/mcp`.
+Playwright is the only MCP server this repo uses (`verify-site`).

@@ -40,7 +40,7 @@ New pages start as `draft: true`; preview with `hugo server -M -D`, and remove `
 | figure or cover file missing from the bundle | the Hugo build |
 | page not linked from its section index | `check-listings` |
 | description too short, too long or duplicated; missing `hreflang`/canonical | `check-seo` |
-| missing `h1`, unsized image, page without the common ending | `check-chrome` |
+| missing `h1`, unsized image, no skip link | `check-chrome` |
 | dead internal link, link to itself, unlinked page | `check-pages` |
 | invalid HTML from raw markup in Markdown | `check-html` |
 | PariData coupon pointing at an unknown or undated match, incoherent odds | `check-paridata` and the build |

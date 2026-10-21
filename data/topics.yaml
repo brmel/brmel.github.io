@@ -8,6 +8,6 @@ groups:
   - key: "data"
     tags: ["Data Analysis", "Québec"]
   - key: "platforms"
-    tags: ["Python", "TypeScript", "Flutter", "Firebase", "Mobile", "Desktop", "Clean Architecture"]
+    tags: ["Python", "TypeScript", "Flutter", "Firebase", "Mobile", "Desktop", "Web", "Clean Architecture"]
   - key: "places"
     tags: ["Algeria", "Transit", "Adirondacks", "Hiking", "Spa", "Getaway"]

@@ -1,0 +1,19 @@
+{{- define "main" }}
+<article class="post-single">
+  {{ partial "page-head/header.html" (dict "page" .) }}
+  {{- if ge .ReadingTime 5 }}{{ partial "article/toc.html" . }}{{ end }}
+  {{- partial "article/origin.html" . }}
+  {{- partial "adventures/verdict.html" . }}
+  <div class="post-content">
+    {{- .Content | replaceRE `(<span class="katex"><math(?:[^<]|<[^/]|</[^s]|</s[^p])*</span>)([,.;:])` `<span class="math-nobr">$1$2</span>` | safeHTML }}
+    {{- with .Params.findings }}
+    <h2 id="findings">{{ i18n "report_findings" }}</h2>
+    <ul>{{ range . }}<li>{{ . | markdownify }}</li>{{ end }}</ul>
+    {{- end }}
+    {{- with .Params.methods }}
+    <h2 id="methods">{{ i18n "report_methods" }}</h2>
+    {{ . | markdownify }}
+    {{- end }}
+  </div>
+</article>
+{{- end }}
