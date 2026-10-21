@@ -16,7 +16,7 @@ Add a row in the same change that makes a decision.
 | 2026-09-16 | One page header partial for every layout. | Four layouts each built their own header. |
 | 2026-10-20 | A page ends with its content. No topic chips, issue link, social icons, author card, related project or previous/next; the site footer is the copyright line. | The owner found the ending noisy: it repeated the resume, the nav and the social links on every page. |
 | 2026-10-20 | No breadcrumbs; the nav marks the section the page belongs to. | Breadcrumbs repeated the nav as one more row above every title. |
-| 2026-10-20 | The home page is the profile, the intro, four featured cards and four latest cards. | The career strip repeated the resume, the section cards repeated the nav, and a fifth card sat alone on a row. |
+| 2026-10-21 | The home page is the profile, the intro and the "Start here" cards the owner picks with `featured`. | The career strip repeated the resume, the section cards repeated the nav, and a "Latest" list repeated the section indexes. |
 | 2026-09-18 | `layouts/_partials/func/dots.html` is the only list separator. | Eleven hand-written copies drifted, one to an element that never got the accent. |
 | 2026-09-18 | Every block sits at its page's measure; there is no per-block wide opt-out. | Home cards, galleries and report frames that escaped the text column read as bulges. The measure rule names `.post-content` twice so that no element rule inside an article can override it. |
 | 2026-09-22 | Tags are topic pages under `/tags/`, grouped by `data/topics.yaml`. | The site had no way to answer "show me the C++ work". |

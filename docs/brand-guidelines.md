@@ -97,7 +97,7 @@ Every list (section index, project index, topic, home) uses the same card.
 
 | Section | Exists to | Chrome |
 |---|---|---|
-| Home | say who this is, route into the work | profile, intro, "Start here" cards, latest cards |
+| Home | say who this is, route into the work | profile, intro, "Start here" cards |
 | Resume | the career on one page | career timeline, skills, certifications |
 | Projects | things built end to end, with what went wrong | eyebrow, stack chips, status, metrics, gallery, lessons |
 | Tech | explain something learned by doing it | article layout, figures, series box |

@@ -1,6 +1,5 @@
 ---
 title: "RoboNode"
-featured: 5
 date: 2026-08-01
 projectNo: 8
 status: "active"

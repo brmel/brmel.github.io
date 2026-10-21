@@ -32,7 +32,7 @@ Hugo's current layout, with no theme: page templates at the root of `layouts/`, 
 | Path | Renders |
 |---|---|
 | `layouts/baseof.html` | the page shell; a layout widens `<main>` to the frame with `{{ define "main-width" }} main--wide{{ end }}` |
-| `layouts/list.html` | the home page (profile, intro, four featured cards, four latest cards), section indexes and topic pages: a card grid of every page, newest first (projects by highest `projectNo`; topic cards name their section) |
+| `layouts/list.html` | the home page (profile, intro, the `featured` cards), section indexes and topic pages: a card grid of every page, newest first (projects by highest `projectNo`; topic cards name their section) |
 | `layouts/single.html` | Tech articles and field notes; punctuation right after an inline formula stays on the formula's line |
 | `layouts/taxonomy.html` | `/tags/`: topics in the groups and order of `data/topics.yaml`, with page counts, each linking to its page in the reader's language when one exists; tags in no group land in a trailing "More" group sorted by count |
 | `layouts/resume.html` | the resume, from front matter |
@@ -122,7 +122,7 @@ One page bundle per project, article or field note, so images travel with the pa
 Hugo's image pipeline. Section front matter is documented in the playbooks:
 [projects](docs/projects-playbook.md), [field notes](docs/adventures-playbook.md),
 [PariData](docs/paridata-playbook.md). Any project, article or field note can take `featured: N`, which
-lists it under "Start here" on the home page; the four lowest numbers show.
+lists it under "Start here" on the home page, lowest number first.
 
 A Tech or Adventures article declares `title`, `description`, `tags` and a `cover` (`image`, a file in
 the bundle, and `alt`). `description` is the one line a reader sees on the list card, the home feed,

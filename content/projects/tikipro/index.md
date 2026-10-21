@@ -1,5 +1,6 @@
 ---
 title: "TikiPro"
+featured: 6
 date: 2025-08-04
 projectNo: 1
 status: "shipped"

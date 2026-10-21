@@ -1,6 +1,6 @@
 ---
 title: "Finding an Infinite Loop in Scikit-Learn’s K-Means"
-featured: 3
+featured: 5
 date: 2024-04-29
 description: "An input that makes scikit-learn’s K-means loop forever: the bug in its empty-cluster handling, the report I filed, and the fix."
 tags: ["Machine Learning", "Python"]

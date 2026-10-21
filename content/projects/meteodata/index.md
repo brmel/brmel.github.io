@@ -1,5 +1,6 @@
 ---
 title: "MeteoData"
+featured: 2
 date: 2026-08-20
 projectNo: 10
 status: "shipped"

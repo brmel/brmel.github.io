@@ -53,7 +53,7 @@ grep -h '^projectNo:' content/projects/*/index.md | sort -n -k2 | tail -1
 | `metrics` | Up to three `value` + `label` pairs above the body; a value is a number, never a word ("Offline", "Cited"). Every figure also appears, sourced, in the body. They feed the "Project facts" in `llms.txt`. A project with no honest numbers has no metrics. |
 | `lessons` | Three to five markdown strings, each with a bold lead, at least one a real failure. A lesson never repeats a paragraph of the prose or a metric: each fact lives in one place. |
 | `tags` | Topic pages; see [publishing a new tag](#new-tags). |
-| `featured` | Optional. `featured: N` lists the project under "Start here" on the home page, lowest number first; four show. |
+| `featured` | Optional. `featured: N` lists the project under "Start here" on the home page, lowest number first. |
 | `resources` | Optional `params.caption` per gallery image. Alt text is "<title> screenshot"; the first image is the index-card thumbnail. |
 
 ## 3. The prose

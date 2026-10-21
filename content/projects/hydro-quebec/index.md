@@ -1,5 +1,6 @@
 ---
 title: "HydroData"
+featured: 3
 date: 2026-06-01
 projectNo: 5
 status: "shipped"
