@@ -3,7 +3,6 @@ title: "Edge Measurement in Industrial Vision: Counting Saw Blade Teeth"
 featured: 2
 date: 2025-01-08
 tags: ["Machine Vision"]
-aliases: ["/posts/image-histograms/"]
 description: "How edge measurement counts the teeth on a saw blade, and why it works on real images where thresholding doesn’t."
 cover:
     image: "01-saw-blade.png"

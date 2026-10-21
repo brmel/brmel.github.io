@@ -4,9 +4,6 @@ date: 2024-01-10
 description: "Windows memory states and types (private data, stack, heap, mapped files, images), with VirtualAlloc, file-mapping and std::vector examples."
 tags: ["C++", "Windows"]
 lastmod: 2026-10-20
-updates:
-  - date: 2026-10-20
-    text: "Corrected the size of a 64-bit address space (about 18.4 million TB, not 17.4 million), the names of two Win32 constants (`MEM_IMAGE`, `PAGE_READONLY`) and the spelling of MemoryTracer."
 series: "Windows Memory Management"
 seriesPart: 2
 cover:

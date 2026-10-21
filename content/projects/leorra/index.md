@@ -13,8 +13,6 @@ metrics:
   - value: "20 months"
     label: "of design, build and iteration"
 stack: ["Flutter", "Dart", "Firebase", "BLoC", "Clean Architecture", "get_it"]
-links:
-  live: ""
 lede: |
   A marketplace for something Algerian families abroad already do informally:
   matching someone who needs a parcel moved with a traveller who has room in

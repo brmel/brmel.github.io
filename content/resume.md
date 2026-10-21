@@ -3,7 +3,6 @@ title: "Resume"
 layout: "resume"
 lastmod: 2026-10-21
 description: "Senior Software Developer, seven years on 2D and 3D machine vision algorithms in modern C++: real-time image processing, numerical optimisation and memory."
-aliases: ["/timeline/", "/about/"]
 role: "Senior Software Developer in Montréal, building machine vision and image processing algorithms in modern C++"
 location: "Montréal, Québec"
 sameAs:

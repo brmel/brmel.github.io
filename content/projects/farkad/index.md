@@ -22,7 +22,7 @@ lede: |
   entry editable next to the words it came from.
 lessons:
   - "**I kept a decisions log with expiry dates.** `DECISIONS.md` records every locked decision and what no longer holds. It exists because one navigation tab drifted three times in a single session, twice from reasoning off screens that were still only drawn. A test now reads the spec table and fails when the code disagrees."
-  - "**I cut the brief down to one loop.** Coach, widgets, Siri and Assistant capture, Back Tap, push, share cards, custom pillars, image capture — all closed unbuilt on the same day, each with a written reason. The shipped version does one loop: speak, structure, correct, see."
+  - "**I cut the brief down to one loop.** Coach, widgets, Siri and Assistant capture, Back Tap, push, share cards, custom areas, image capture — all closed unbuilt on the same day, each with a written reason. The shipped version does one loop: speak, structure, correct, see."
   - "**One engine for every combination.** Users pick which of six areas they track. The naive design is a parser per area; instead one pipeline handles any combination, so adding an area is data rather than code. Getting there meant rewriting the first two passes after they already worked."
   - "**Free-text input fails silently.** The model doesn’t refuse. It returns a confidently wrong number. Every generated field stays editable next to the sentence it came from, because showing someone their own words back is the only correction UI that works."
 tags: ["Flutter", "Python", "AI", "Firebase"]

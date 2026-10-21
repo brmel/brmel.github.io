@@ -59,8 +59,8 @@ Hugo's current layout, with no theme: page templates at the root of `layouts/`, 
 | `layouts/_partials/head/` | `fonts.html` (preloads), `social.html` (Open Graph and the X card), `schema.html` (one JSON-LD `@graph` per page: the full `Person` on home and resume, a reference elsewhere, the page's own type and its breadcrumb), `analytics.html` (GA4 after idle, production only) |
 | `layouts/_partials/header.html`, `footer.html` | the nav (theme toggle, shown only once its script runs; menu marks the current page and section with `aria-current` and skips sections with no pages; the language switch goes to the translation, else that language's index of the same section, else its home) and the footer, whose scripts drive the toggle and the browser-chrome colour and add the code copy button |
 | `layouts/_partials/func/` | partials that `return` a value; call with `partial` and use the result |
-| `layouts/_partials/page-head/` | `header.html`, every page header: one meta line (eyebrow, plus the date on Tech and Adventures pages), title, one description line (`pitch`, `role` or `description`), dated `updates` lines, optional `extra` block; called with `(dict "page" . "title" … "extra" …)` |
-| `layouts/_partials/article/` | `grid.html` (the card grid every list uses; takes `(dict "pages" … "showSection" true "level" 3 "eager" true)`, `level` the card heading level (2 by default), `eager` loading the first thumbnail with high priority), `entry.html` (one card, the same for articles, field notes and projects; an untranslated English page listed in French or Arabic keeps `lang`/`dir` and shows the "in English" label), `cover.html` (the 16:9 thumbnail from `func/cover.html`, else the compass mark), `meta.html` (date, and read length from 2 minutes), `toc.html` (the table of contents from 5 minutes, a `<details>` card), `origin.html` (series box) |
+| `layouts/_partials/page-head/` | `header.html`, every page header: one meta line (eyebrow, plus the date on Tech and Adventures pages), title, one description line (`pitch`, `role` or `description`), optional `extra` block; called with `(dict "page" . "title" … "extra" …)` |
+| `layouts/_partials/article/` | `grid.html` (the card grid every list uses; takes `(dict "pages" … "showSection" true "level" 3 "eager" true)`, `level` the card heading level (2 by default), `eager` loading the first thumbnail with high priority), `entry.html` (one card, the same for articles, field notes and projects; an untranslated English page listed in French or Arabic keeps `lang`/`dir` and shows the "in English" label), `cover.html` (the 16:9 thumbnail from `func/cover.html`, else the compass mark), `meta.html` (date, and read length from 2 minutes), `toc.html` (the table of contents from 5 minutes, a `<details>` card), `series.html` (series box) |
 | `layouts/_partials/home/` | `profile.html` (photo as AVIF with a WebP fallback, name, role line), `cards.html` (a headed card grid; takes `(dict "id" … "title" … "pages" …)`) |
 | `layouts/_partials/project/meta.html` | project links and stack chips |
 | `layouts/_partials/adventures/verdict.html` | the verdict block above the body, rendered when `rating` is set |
@@ -130,9 +130,9 @@ search, the meta description and JSON-LD. Optional fields:
 
 | Field | Renders, in |
 |---|---|
-| `series`, `seriesPart` | the series box listing every part (`article/origin.html`) |
+| `series`, `seriesPart` | the series box listing every part (`article/series.html`) |
 | `findings`, `methods` | a report article's key findings (a list) and its data and method (markdown), rendered after the report under their own headings and in the markdown twin, so the report's facts are crawlable text |
-| `lastmod`, `updates` | `lastmod` is the date of the latest real revision (sitemap, `dateModified`, `article:modified_time`); each `updates` entry (`date`, `text`) renders as a dated line under the page header. Without `lastmod` a page counts as unchanged since `date`. |
+| `lastmod` | The date of the latest real revision (sitemap, `dateModified`, `article:modified_time`). Without it a page counts as unchanged since `date`. |
 
 The resume is front matter: `role`, `location`, `sameAs` (profile URLs, read only by the JSON-LD
 `Person`), then `experience:` periods (`period`,

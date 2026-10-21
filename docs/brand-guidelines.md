@@ -24,7 +24,7 @@ Three elements appear on every asset.
    |---|---|---|
    | Nav logo, every page | 22px | `--accent` |
    | List card with no image | 64px, centred on a `--bg-alt` thumbnail | `--accent` |
-   | Social cards, end-cards | large, centred | `--accent` |
+   | Social cards | large, centred | `--accent` |
 
    Never inside body copy, as a bullet or spinner, or in another colour.
 
@@ -34,7 +34,7 @@ Three elements appear on every asset.
    | Where | Grammar | Example |
    |---|---|---|
    | Field note | `{Category} · {Place} · {Date} · {Read length}` | `Hike · Adirondacks · June 1, 2026 · 6 min` |
-   | Project page and card | `{Year} · {Domain} · {Status}` | `2026 · Data · In progress` |
+   | Project page and card | `{Year} · {Status}` | `2026 · In progress` |
    | Article page and card | `{Date} · {Read length}` | `June 1, 2026 · 6 min` |
    | Career period | `{Years}` | `2024 — Present` |
 
@@ -57,7 +57,6 @@ Neutral surfaces, near-black ink and one accent. Light is the default theme.
 | `--ink-mute` | `#5f6368` | `#9aa0a6` | captions, eyebrows |
 | `--rule` | `#dadce0` | `#3c4043` | hairlines, card outlines |
 | `--accent` | `#a8431a` | `#e2876a` | mark, links, buttons |
-| `--accent-soft` | `#c96b3e` | `#eda58c` | hovers |
 | `--ink-gain` / `--ink-loss` | `#0a4fd0` / `#c1121f` | `#58a9ff` / `#ff5c5c` | PariData results only |
 
 - Browser chrome (`theme_color`) is white, `#ffffff`.
@@ -112,7 +111,6 @@ A page that fits none of these has no home yet. The nav skips a section with no 
 | Element | Rule |
 |---|---|
 | Mark | `layouts/_partials/brand/mark.html` only, in `--accent` |
-| Handle | `@ibraverse` on YouTube, Instagram and TikTok, all linking to ibraverse.ca |
 | Eyebrow | the grammar in §2 |
 | Fonts | the faces in §4 |
 | Colour | defined in `00-tokens.css` only; one accent |
@@ -132,9 +130,10 @@ assumed. The mechanics are in [ARCHITECTURE.md](../ARCHITECTURE.md#languages).
 ## 8. Social cards and assets
 
 - **Article cover** (`cover.jpg`, horizontal, about 1200px): one clear subject, no text in the image.
-  It is the list thumbnail and the page's social card.
+  It is the list thumbnail and the page's social card. A page with no photo of its own gets a flat
+  illustration of its subject: a neutral or muted ground, the accent for the one thing that matters,
+  no text, and an `alt` that starts with "Illustration:".
 - **Open Graph cards** (`static/og/<section>.jpg`, 1200×630) come from one template,
   `scripts/generate/og-cards.html`, cut by `scripts/generate/gen-og-cards.py`. A page shares its
   cover, else its first gallery image, else its section card, else the home card
   (`layouts/_partials/func/og-image.html`); `scripts/checks/check-og.py` fails a page without one.
-- **Social formats** (thumbnails, reels, carousels, channel art) are in [brand-kit/](brand-kit/00-README.md).

@@ -8,6 +8,9 @@ pitch: "A public football tipster posts their picks. I record every one of them 
 description: "Every pick a public football tipster posts, recorded at a fixed stake and graded against what actually happened. Nothing inferred, kept anonymous."
 stack: ["Hugo", "JSON", "Python"]
 tags: ["Data Analysis"]
+cover:
+  image: "cover.jpg"
+  alt: "Illustration: a football pitch with a rising line of results drawn across it"
 ---
 
 I follow an influencer who promotes a betting app and posts football picks, to answer one question: would following them make you money, or lose it?

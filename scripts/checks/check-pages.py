@@ -54,7 +54,7 @@ for t, n in broken.items():
     fails.append(f"link to {t} resolves to nothing ({n} pages)")
 for url in pages:
     u = url.rstrip("/") or "/"
-    if u not in linked and not u.startswith(("/en", "/404")) and u != "/":
+    if u not in linked and not u.startswith("/404") and u != "/":
         fails.append(f"{url}: nothing on the site links here")
 
 print(f"checked {len(pages)} pages")

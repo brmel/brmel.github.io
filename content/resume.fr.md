@@ -3,7 +3,6 @@ title: "CV"
 layout: "resume"
 lastmod: 2026-10-21
 description: "Développeur logiciel senior, sept ans sur des algorithmes de vision industrielle 2D et 3D en C++ moderne : traitement d’images temps réel et optimisation."
-aliases: ["/timeline/"]
 role: "Développeur logiciel senior à Montréal : algorithmes de vision industrielle et de traitement d’images en C++ moderne"
 location: "Montréal, Québec"
 sameAs:

@@ -49,7 +49,7 @@ where the tells below collect.
 Front-matter keys and YAML structure (`>-`, `|-`, nesting, quoting); code blocks and inline code;
 shortcodes; URLs, link targets and image paths; product and module names (Aurora Imaging Library,
 Model Finder, MemoryTracer, VMMap, GTest, UR10e); resume `period` ranges (`2024 — Present`);
-`Author — [Title](url)` source lines; metric `value`s, `rating`, `date`, `aliases`; the Markdown
+`Author — [Title](url)` source lines; metric `value`s, `rating`, `date`; the Markdown
 structure (headings, lists, bold lesson leads).
 
 - When `pitch` and `description` are identical, keep them identical.
@@ -92,7 +92,7 @@ diff <(git show HEAD:FILE | grep -oE '[0-9]+([.,][0-9]+)*|https?://[^ )"]+') \
 | Home, resume | States verifiable facts in the first person. No adjective that would not survive an interview. |
 | Projects | Says what problem, for whom, why it was built and what it became, for a reader who has never heard of it. README prose is written for contributors and is never reused. Lessons include at least one real failure. |
 | Tech | Teaches one thing with the real image, measurement and code. |
-| Adventures | Gives one genuine con per piece and a verdict. Field-note and social formats: [voice-tone](brand-kit/01-guides/voice-tone.md). |
+| Adventures | Gives one genuine con per piece and a verdict. |
 
 ## 3. English
 

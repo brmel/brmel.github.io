@@ -28,7 +28,7 @@ Add a row in the same change that makes a decision.
 |---|---|---|
 | 2026-09-13 | Field notes are `BlogPosting` with `contentLocation`, not `Review`. | No front-matter field names the reviewed venue. |
 | 2026-10-20 | Every title is "<page> \| Ibraverse"; the home page's is the owner's name. Titles may run past 60 characters. | One rule for every page; the home title was "Ibraverse" alone in every language. |
-| 2026-10-20 | A page's modified date comes from `lastmod` in front matter, never from git; a correction or real update adds a dated `updates` line under the header. | Git dates moved on every typo fix and rename, so `dateModified` said nothing; readers trust a dated, stated change (Bruce Dawson, Lilian Weng). |
+| 2026-10-21 | A page's modified date comes from `lastmod` in front matter, never from git. Pages carry no notes about earlier versions, corrections or old URLs. | Git dates moved on every typo fix and rename, so `dateModified` said nothing. The site has no returning readers who need a change history, so it shows only the current version. |
 | 2026-09-18 | `description` is the only summary line of a page. | Articles also carried a `summary` that said the same thing in other words and rendered nowhere. |
 | 2026-10-20 | A report article is the report alone: no introduction above it, no border or shadow around the frame, the report's own header hidden and its side padding removed so it sits on the text column. `/reports/` stays disallowed in `static/robots.txt`. | An introduction that repeated the report's numbers, then a boxed report with its own title, read as two articles. The cost: the crawlable text of those pages is the title and the description. |
 | 2026-10-11 | Maths is LaTeX in the markdown, rendered to MathML at build time, with no script or maths font. | Hugo ships KaTeX, so the page gets real equations with no third-party request and no JavaScript; browsers render MathML natively. A thin space follows `\cos` and `\sin` because Chrome drops the function-application gap. |
@@ -61,9 +61,8 @@ Add a row in the same change that makes a decision.
 | 2026-10-20 | The compass mark is the nav logo and the thumbnail of a card with no image, nowhere else. | A card needs a picture; the mark is the brand rather than a stock image. |
 | 2026-10-21 | One size for every section heading: article `h2`s and the `.u-heading` sections ("Experience", "Gallery", "Start here") share `--t-section`, 1.3 × the prose size. Sections sit 48px apart (40px on phones). | A project page mixed 36px and 24px headings for the same level, and article `h2`s were as big as the page title on phones. The owner found the gaps between sections too large. |
 | 2026-10-21 | A project's eyebrow is year · status; there is no domain. | Several domains were wrong (TikiPro as SaaS, three different projects as Infrastructure), and the stack chips already say what a project is. |
-| 2026-10-21 | No two topics list the same pages. Systems, Mobile, Simulation, Adirondacks and Getaway were merged into C++, Flutter, Robotics, Hiking and Spa. | Five pairs of topic pages were identical. |
+| 2026-10-21 | No two topics list the same pages. | Five pairs of topic pages were identical. |
 | 2026-10-21 | The 404 page is its title and one sentence. | It repeated the header's menu and language links. |
-| 2026-10-21 | "How This Site Is Built" is removed. | The owner's call: it was about the site rather than the work. |
 | — | Social cards come from one HTML template; a page shares its cover, else its first gallery image, else its section card, else the home card. | Hand-drawn cards drift. A real product screenshot says more than a generated card. `og:` and `twitter:` read the same resolver so they cannot disagree. |
 
 ## Hosting and privacy

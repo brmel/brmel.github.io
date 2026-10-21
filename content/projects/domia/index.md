@@ -14,7 +14,6 @@ metrics:
     label: "design decisions recorded, each with the problem it fixed"
 stack: ["TypeScript", "Playwright", "Electron", "AI SDK", "MCP", "SQLite"]
 links:
-  live: ""
   repo: "https://github.com/brmel/Domia"
 lede: |
   Domia works from the accessibility tree, acts on what it finds, checks
@@ -25,6 +24,9 @@ lessons:
   - "**Recording everything by default cost a third of every session.** Video and trace capture were on for every run: about 1.0s of a 1.7s startup, and video was the largest thing on disk. Video is off by default now, and a one-turn run went from 2.8s to 2.0s with half the bytes."
   - "**I rewrote version one deliberately.** The Python agent the [article](/tech/ai-agents-software-testing-domia/) describes became a TypeScript monorepo. I audited the old version feature by feature, wrote down what had no equivalent yet, closed that list, and only then deleted it."
 tags: ["AI", "TypeScript", "Testing"]
+cover:
+  image: "cover.jpg"
+  alt: "Illustration: a web page beside its accessibility tree, with the matching button highlighted and clicked"
 ---
 
 ## The story

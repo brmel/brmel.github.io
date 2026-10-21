@@ -1,5 +1,5 @@
 ---
-title: "Why a Dark-Mode Boarding Pass Won’t Scan: Barcodes and Foreground Colour"
+title: "Why a Dark-Mode Boarding Pass Won’t Scan"
 date: 2025-12-03
 tags: ["Machine Vision"]
 description: "Why barcode readers need a foreground-colour setting, and what happens at an airport gate when they don’t have one."
