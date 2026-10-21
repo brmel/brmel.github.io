@@ -3,15 +3,12 @@ title: "MemoryTracer"
 featured: 4
 date: 2024-01-09
 projectNo: 12
-domain: "infra"
 status: "shipped"
 pitch: "A C++ library that records where a Windows process’s virtual memory goes, at an interval you choose (every 2 seconds, every minute), and writes it to CSV."
 description: "A C++ library that records where a Windows process’s virtual memory goes, at an interval you choose (every 2 seconds, every minute), and writes it to CSV."
 metrics:
   - value: "3 CSVs"
     label: "per run: memory by type, by state, and private bytes"
-  - value: "VMMap"
-    label: "checked against Sysinternals, column for column"
   - value: "2 articles"
     label: "on Windows memory, written from what it measured"
 stack: ["C++", "Windows API", "VirtualQuery", "Tool Help API", "Visual Studio"]
@@ -27,11 +24,11 @@ lessons:
   - "**The tracer was moving the number it measured.** Taking a snapshot allocated memory, which then showed up in the snapshot. So reducing allocation on the snapshot path was a correctness fix."
   - "**64-bit broke the assumptions.** The approach I started from computed the process memory maximum in a way that was wrong for 64-bit processes, and reported unused regions incorrectly. Both only show up when you plot the total and it doesn’t add up."
   - "**Writing it up taught me more than building it.** Turning the measurements into [two articles](/tech/windows-memory-management-overview/) forced me to explain copy-on-write, private bytes and working set precisely enough for someone else to follow."
-tags: ["C++", "Windows", "Systems"]
+tags: ["C++", "Windows"]
 resources:
   - src: "gallery/01-tracer-vs-vmmap.jpg"
     params:
-      caption: "MemoryTracer’s own output beside a VMMap snapshot. The figures match column for column."
+      caption: "MemoryTracer’s own output beside a VMMap snapshot."
   - src: "gallery/02-virtual-by-type.jpg"
     params:
       caption: "Plotted from the exported CSV: virtual memory split by type across a process’s life. A leak is the band that never comes back down."
@@ -60,12 +57,10 @@ tracer.PrintNow();          // one snapshot to the console
 tracer.Export(120, 2);      // every 2s for 120s, to CSV
 ```
 
-It writes three files (memory by type, memory by state, and private bytes) and
-you plot them. It reads the Windows memory APIs directly (`VirtualQuery`, the
+You plot the files it writes. It reads the Windows memory APIs directly (`VirtualQuery`, the
 Tool Help API, section objects) rather than calling an external tool, so it can run
 inside the process being measured and snapshot exactly when you want it to.
 
 It grew out of [a VMMap reimplementation](https://james-ross.co.uk/projects/vmmap)
-that I fixed and extended: a private-bytes counter it didn't have, a corrected
-maximum for 64-bit processes, a corrected unused-region count, fewer allocations
-while snapshotting, CSV export, and control over when snapshots start.
+that I fixed and extended: a private-bytes counter it didn't have, CSV export,
+and control over when snapshots start.

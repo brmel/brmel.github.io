@@ -1,13 +1,13 @@
 groups:
   - key: "systems"
-    tags: ["C++", "Systems", "Windows"]
+    tags: ["C++", "Windows"]
   - key: "vision"
-    tags: ["Machine Vision", "Robotics", "Simulation", "Machine Learning", "Mathematics"]
+    tags: ["Machine Vision", "Robotics", "Machine Learning", "Mathematics"]
   - key: "ai"
     tags: ["AI", "LLM", "RAG", "Testing"]
   - key: "data"
     tags: ["Data Analysis", "Québec"]
   - key: "platforms"
-    tags: ["Python", "TypeScript", "Flutter", "Firebase", "Mobile", "Desktop", "Web", "Clean Architecture"]
+    tags: ["Python", "TypeScript", "Flutter", "Firebase", "Desktop", "Clean Architecture"]
   - key: "places"
-    tags: ["Algeria", "Transit", "Adirondacks", "Hiking", "Spa", "Getaway"]
+    tags: ["Algeria", "Transit", "Hiking", "Spa"]

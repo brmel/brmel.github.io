@@ -36,7 +36,14 @@ in Hugo's current layout, byte-identical output. Key findings and data and metho
 reports; the K-means article ends with the fix that shipped; field-note verdicts first; a shorter
 home, the "in practice" list on the resume and a dated resume. The language switch keeps the
 section on untranslated pages; topic pages name their related topics; prefetch and view
-transitions; "How This Site Is Built".
+transitions.
+
+## Shipped on 2026-10-21
+
+A six-point resume summary and a home intro that name machine learning from prototype to production,
+deep learning evaluation and constrained camera hardware. Tighter, uniform spacing and one
+section-heading size; a shorter phone header; each project fact in one place; five duplicate topics
+merged; a one-sentence 404; French and Arabic wording made consistent.
 
 ## Still open (owner)
 

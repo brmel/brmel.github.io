@@ -2,7 +2,6 @@
 title: "TikiPro"
 date: 2025-08-04
 projectNo: 1
-domain: "saas"
 status: "shipped"
 pitch: "A numbered queue on a waiting-room screen for small clinics, so patients stop asking who is next."
 description: "A numbered queue on a waiting-room screen for small clinics, so patients stop asking who is next."
@@ -11,8 +10,6 @@ metrics:
     label: "runs reception, the waiting-room board and every doctor’s queue"
   - value: "3 languages"
     label: "French, Arabic and English, switched mid-sentence"
-  - value: "Offline"
-    label: "Ed25519 licences verified locally, no phone-home"
 stack: ["Electron", "TypeScript", "Firebase", "Ed25519", "Turborepo"]
 links:
   live: "https://tikipro.web.app"
@@ -24,7 +21,6 @@ lessons:
   - "**For the first ten minutes, all anyone sees is the installer.** The app refuses to start without a licence file, and the installer is not code-signed, so Windows SmartScreen blocks it: two dead ends before anyone sees a feature. I now write the onboarding email before the release, because every warning it has to explain is a design failure I could have removed."
   - "**Licensing is manual, because the volume is low.** There is no automated licensing email anywhere. A request writes to Firestore, a function sends me a Telegram message, and I reply by hand. The automated flow would have taken a week to serve maybe one clinic a month."
   - "**Nothing says when the download cap is hit.** Installer downloads are capped at 3 a day and 10 a week across *all* visitors, not per person. Obvious in the code, invisible from outside: onboarding several clinics in one afternoon hits the cap and looks like an outage."
-  - "**Offline licensing removed a whole class of support calls.** Ed25519-signed licence keys are verified locally with no phone-home, so a clinic with a dead internet connection still opens the app. Clinics lose connectivity often enough that this stopped being optional."
 tags: ["Desktop", "TypeScript", "Firebase"]
 ---
 
@@ -42,8 +38,7 @@ one PC at reception, and a television on the wall.
 
 ## The product
 
-I made reception, the waiting-room board and each doctor's queue three views of
-one application running on that single machine. The board is only a browser page
+Everything runs as one application on that single machine. The board is only a browser page
 on the second screen, so there is no second machine and no second licence, and
 patients can scan a QR code to follow the same live list on their phone.
 

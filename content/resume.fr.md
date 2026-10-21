@@ -1,7 +1,7 @@
 ---
 title: "CV"
 layout: "resume"
-lastmod: 2026-10-20
+lastmod: 2026-10-21
 description: "Développeur logiciel senior, sept ans sur des algorithmes de vision industrielle 2D et 3D en C++ moderne : traitement d’images temps réel et optimisation."
 aliases: ["/timeline/"]
 role: "Développeur logiciel senior à Montréal : algorithmes de vision industrielle et de traitement d’images en C++ moderne"
@@ -60,7 +60,6 @@ experience:
       - Un modèle qui gagne sur un jeu de test peut échouer sur le terrain, parce que les échecs d’un client sont les images que personne n’a pensé à mettre dans le jeu de test. Ce qui compte, c’est comment il échoue, plus que combien de fois.
       - Faire tourner l’inférence dans un pipeline temps réel est d’abord un problème de mémoire et de débit, ensuite un problème d’apprentissage. Le prétraitement, les allocations et la localité de cache décident si un modèle tient dans le budget d’une image.
       - Sur la caméra intelligente, ce sont les contraintes qui dictent toute la conception. Le working set, les allocations sur le chemin critique et la marge processeur éliminent des approches bien avant la précision.
-      - L’essentiel du métier se joue autour de l’algorithme : la documentation de référence, les exemples livrés, le contrat d’API convenu avec les équipes UI et QA, et les applications clientes qui révèlent les bogues qu’une suite de tests ne voit pas.
 
   - period: "2022 — 2024"
     role: "Développeur logiciel II"
@@ -137,14 +136,13 @@ experience:
       - L’optimisation non linéaire ne vaut que par son estimation initiale et son critère d’arrêt. Levenberg–Marquardt converge proprement dans un article et oscille sur des données réelles tant que ces deux points ne sont pas réglés.
       - La précision sous-pixel est un problème de stabilité numérique. L’ordre des opérations, le conditionnement de la matrice et la tolérance de comparaison décident des deux dernières décimales.
       - Dans une base de code C++ vieille de plusieurs décennies, les bogues mémoire qui coûtent du temps sont les références pendantes et la propriété des objets que personne n’a documentée. Les fuites, au moins, se signalent.
-      - Construire la suite de régression avant de toucher à l’algorithme. C’est la seule chose qui permette de modifier du code numérique hérité.
 
   - period: "2017 — 2019"
     role: "M.Ing., génie électrique — automatique"
     kind: "education"
     org: "Polytechnique Montréal"
     url: "https://www.polymtl.ca/"
-    note: "Maîtrise professionnelle avec stage industriel · Moyenne 3,87/4 · Bourse de la Fondation Al Ghurair — 1 sur 100 parmi plus de 15 000 candidatures."
+    note: "Maîtrise professionnelle avec stage industriel · Moyenne 3,87/4 · Bourse de la Fondation Al Ghurair — 1 sur 100 parmi plus de 15 000 candidatures."
     work:
       - title: "Comment je suis arrivé au Canada"
         video: "BPkj-VETeX0"
@@ -179,18 +177,18 @@ experience:
       - Faire tourner des algorithmes de consensus sur la flotte réelle du Robotarium plutôt qu’en simulation m’a montré quelle part d’un algorithme distribué tient à ce qui se passe quand un robot cesse de répondre.
 
   - period: "2012 — 2017"
-    role: "Ingénieur d’État, génie électrique — systèmes de contrôle"
+    role: "Ingénieur d’État, génie électrique — automatique"
     kind: "education"
     org: "École Nationale Polytechnique, Alger"
     url: "https://www.enp.edu.dz/en/"
-    note: "Moyenne 17,5/20 · 5e sur 1 400 — top 1 % national."
+    note: "Moyenne 17,5/20 · 5e sur 1 400 — top 1 % national."
     work:
       - title: "Deux années de classes préparatoires d’abord"
         video: "VjwIGG7Lbt0"
         videoAlt: "Les années de classes préparatoires à Alger"
         text: >-
           Deux années intensives de mathématiques, de physique et de
-          programmation, de 9 h à 18 h, six jours par semaine. Le
+          programmation, de 9 h à 18 h, six jours par semaine. Le
           classement national final décide de l’école d’ingénieurs où l’on
           entre.
       - title: "Systèmes de commande sur du vrai matériel"
@@ -209,30 +207,31 @@ experience:
 
 skills:
   - group: "Langages"
-    items: ["C++ (17/20)", "C", "Python", "TypeScript", "Dart / Flutter", "MATLAB", "VHDL", "SQL"]
+    items: ["C++17 / C++20", "C", "Python", "TypeScript", "Dart / Flutter", "MATLAB", "VHDL", "SQL"]
   - group: "Vision industrielle"
     items: ["Aurora Imaging Library (anciennement Matrox Imaging Library)", "OpenCV", "appariement géométrique", "appariement de motifs", "calibration", "métrologie", "mesure de contours", "SIFT", "homographie", "transformations 2D et 3D"]
   - group: "Maths & algorithmes"
-    items: ["optimisation non linéaire", "Levenberg–Marquardt", "moindres carrés non linéaires", "algèbre linéaire", "stabilité numérique", "théorie du contrôle", "apprentissage classique", "apprentissage profond"]
+    items: ["optimisation non linéaire", "Levenberg–Marquardt", "moindres carrés non linéaires", "algèbre linéaire", "stabilité numérique", "théorie de la commande", "apprentissage classique", "apprentissage profond"]
   - group: "C++ & systèmes"
-    items: ["C++ moderne (templates, STL)", "multithreading et concurrence", "traitement d’images temps réel", "mémoire virtuelle et working set", "CMake", "GTest", "Clang / LLVM", "ASan / MSan", "Valgrind", "gdb", "multiplateforme Windows et Linux", "QNX", "ROS", "Docker"]
+    items: ["C++ moderne (templates, STL)", "multithreading et concurrence", "traitement d’images temps réel", "mémoire virtuelle et working set", "CMake", "GTest", "Clang / LLVM", "ASan / MSan", "Valgrind", "gdb", "multiplateforme Windows et Linux", "QNX", "ROS", "Docker"]
   - group: "Infonuagique & backend"
     items: ["Google Cloud", "Firebase", "Cloud Functions", "Firestore", "Cloud Storage", "FastAPI", "Prefect"]
   - group: "Outils & pratiques"
-    items: ["Visual Studio", "Git / GitHub", "SVN", "CI/CD", "revue de code", "clang-tidy / clang-format", "SonarQube", "JIRA", "Confluence", "Agile / Scrum", "Simulink", "LabVIEW", "Unity-Pro (Schneider)", "Simatic-Manager (Siemens)"]
+    items: ["Visual Studio", "Git / GitHub", "SVN", "CI/CD", "revue de code", "clang-tidy / clang-format", "SonarQube", "JIRA", "Confluence", "Agile / Scrum", "Simulink", "LabVIEW", "Unity-Pro (Schneider)", "Simatic-Manager (Siemens)"]
   - group: "Langues"
     items: ["français", "anglais", "arabe"]
 certifications:
   - year: "2023"
-    name: "Neural Networks and Deep Learning · Convolutional Neural Networks"
+    name: "Neural Networks and Deep Learning · Convolutional Neural Networks"
     issuer: "DeepLearning.AI"
   - year: "2023"
     name: "Machine Learning: Classification"
     issuer: "University of Washington"
 ---
 
+- **Vision industrielle** — algorithmes 2D et 3D qui localisent, mesurent et inspectent des pièces dans des images prises en usine : appariement de motifs, détection de contours, calibration et métrologie
+- **Apprentissage automatique, du prototype à la production** — faire passer un modèle d'un premier prototype à une fonctionnalité testée et documentée d'une bibliothèque C++ livrée aux clients
+- **Évaluation de modèles d'apprentissage profond** — tester des modèles de détection d'objets et de texte, y compris sur des codes abîmés, flous ou peu contrastés
+- **Matériel à ressources limitées** — optimiser des algorithmes de vision pour qu'ils respectent les limites de mémoire et de puissance de calcul des caméras intelligentes
 - **Algorithmes numériques** — optimisation non linéaire pour une précision sous-pixel, avec des tests de régression qui protègent chaque résultat numérique
-- **Mémoire et performance** — la façon dont Windows gère la mémoire d'un programme. J'ai écrit [MemoryTracer](/projects/memorytracer/) pour la mesurer et [deux articles](/tech/windows-memory-management-overview/) pour l'expliquer
-- **Concurrence** — garder le code multithread fiable dans une bibliothèque dont dépendent des milliers d'applications installées
-- **Vision industrielle** — trouver, mesurer et lire des objets dans des images : appariement de motifs, détection de contours, métrologie, et apprentissage profond pour les codes-barres abîmés ou mal éclairés
-- **Pratiques d'ingénierie** — revue de code, tests automatisés et vérifications mémoire avec CMake, GTest, sanitizers et Valgrind
+- **C++ moderne** — code multithread fiable, mémoire mesurée avec [MemoryTracer](/projects/memorytracer/) et expliquée dans [deux articles](/tech/windows-memory-management-overview/), revue de code, tests automatisés et sanitizers

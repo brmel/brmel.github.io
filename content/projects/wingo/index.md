@@ -2,15 +2,12 @@
 title: "Wingo"
 date: 2026-08-04
 projectNo: 2
-domain: "mobile"
 status: "active"
 pitch: "Lets a group of friends nominate places, vote in real time, and lock in a decision instead of a chat that never ends."
 description: "Lets a group of friends nominate places, vote in real time, and lock in a decision instead of a chat that never ends."
 metrics:
   - value: "3 surfaces"
     label: "one Flutter app, an admin console and a marketing site on one backend"
-  - value: "Real time"
-    label: "votes appear live, and every write is checked on the server"
   - value: "1 command"
     label: "build, deploy, publish or roll back, with automatic rollback when a health check fails"
 stack: ["Flutter", "Firebase Functions", "TypeScript", "React", "Firestore"]
@@ -25,7 +22,7 @@ lessons:
   - "**Every write goes through Cloud Functions, and that constraint aged well.** No client writes straight to Firestore. It felt heavy while building the first screen and stopped being negotiable the moment real-time voting arrived: the vote rules live in one place, not in every client version anyone has installed."
   - "**Both hosting sites return 404 today, and I found out while writing this page.** Nothing monitors them, because the app never launched and I stopped deploying. The control plane has an audit trail and no uptime check."
   - "**Onboarding got built twice.** The first version explained the app; the second shows you the button. Four coach-mark steps replaced a tour nobody finished."
-tags: ["Flutter", "Firebase", "Mobile"]
+tags: ["Flutter", "Firebase"]
 ---
 
 ## The story
@@ -38,14 +35,3 @@ anything.
 
 The app opens on a curated list of what is on in Montréal this week,
 so the first screen is useful before you have a single friend on the platform.
-
-I made two decisions that shaped the rest. **Every write goes through a server function**
-(no client touches the database directly), so the voting rules live in one place
-rather than in whichever app version someone still has installed. And deploys go
-through a small control plane instead of hand-run commands: build, deploy,
-publish, roll back, with an audit trail and a health check that reverts a bad
-release on its own.
-
-It hasn't launched. The tooling around the product got further than the
-product did, and the day I wrote this page I found both of its sites returning
-404 because nothing was watching them.

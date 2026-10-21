@@ -2,7 +2,7 @@
 title: "Windows Memory Management in Depth: Private Data, Stack, Heap and Mapped Files"
 date: 2024-01-10
 description: "Windows memory states and types (private data, stack, heap, mapped files, images), with VirtualAlloc, file-mapping and std::vector examples."
-tags: ["C++", "Windows", "Systems"]
+tags: ["C++", "Windows"]
 lastmod: 2026-10-20
 updates:
   - date: 2026-10-20
@@ -16,14 +16,10 @@ cover:
 
 If you don't want to be embarrassed by your program running out of virtual
 memory (which could cause many passengers to miss their flights), perhaps you
-should take a 5-minute break and read this article on how Windows manages
+should read this article on how Windows manages
 virtual memory for processes, and the tools you can use to monitor it.
 
 {{< figure src="01-hero.jpg" alt="Airport departure board" caption="Running out of virtual memory isn't always a quiet failure." >}}
-
-Before reading this article, I strongly recommend reading the first article that
-discusses the basics of Windows virtual memory management:
-[Windows Memory Management: Virtual vs Physical, and How to Measure It]({{< relref "windows-memory-management-overview" >}}).
 
 This is a very complex subject, and parts of it go beyond my knowledge. For those who are curious and want to understand every bit,
 I recommend reading the book
@@ -133,8 +129,6 @@ committed in advance. Only the working set grows.
 using the `VirtualQuery` function and checking if the data member `type` of the
 output structure `MEMORY_BASIC_INFORMATION` is equal to `MEM_PRIVATE`.
 
-Code available on GitHub: <https://github.com/brmel/MemoryTracer>
-
 ### 2 — Stack
 
 The stack is a special private memory allocated by the Memory Manager for each
@@ -176,8 +170,6 @@ private memory above). If so, you can then collect the base address
 for each stack of each thread using Windows functions such as `OpenThread` and
 `GetThreadContext`. Next, you can check whether it belongs to one of the thread's
 stacks.
-
-Code available on GitHub: <https://github.com/brmel/MemoryTracer>
 
 ### 3 — Heap
 
@@ -370,8 +362,6 @@ interfaces that are not public, so the two won't always agree.
 - There is no heap tracing, so all data in the heap will be in the *private data*
   row. An efficient way to traverse the heap and tell whether a virtual address
   falls within it is still open.
-- We should avoid allocating memory when taking a snapshot and exporting data, to
-  prevent influencing the process being examined.
 - There are some pages marked as private data in VMMap, but the reasons are
   unclear. For instance, there are pages in DLLs with the `MEM_IMAGE` flag and
   protection `PAGE_READONLY`, suggesting they should be shareable, but they appear as

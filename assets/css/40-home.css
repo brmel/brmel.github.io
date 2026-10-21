@@ -9,13 +9,15 @@
 
 .home-intro{margin-block:var(--flow-section);}
 .home-intro p{color:var(--ink-soft);}
-.home-intro > :first-child{margin-top:0;}
 
 .home-cards{margin-block:0 var(--flow-section);}
+.home-cards:last-child{margin-block-end:0;}
 
 @media (max-width:600px){
   .profile{grid-template-columns:1fr;justify-items:center;text-align:center;}
   .profile picture{grid-row:auto;order:-1;}
-  .profile__photo{width:160px;}
+  .profile__photo{width:128px;}
+  .profile__role{font-size:var(--t-body-l);}
+  .home-intro{--prose-size:var(--t-body);}
   .profile h1,.profile__role{grid-column:1;}
 }

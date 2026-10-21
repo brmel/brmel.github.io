@@ -59,6 +59,11 @@ Add a row in the same change that makes a decision.
 | 2026-10-20 | A Google-like interface: white and neutral grey surfaces, Inter Tight for every heading, sentence-case labels, list cards with no outline (a rounded 16:9 picture over the text), filled grey panels instead of borders and dividers, one 16px radius. The accent and the mark stay. | The owner asked for a calmer, uniform look; serif titles and mono uppercase labels read as a magazine and added noise. |
 | 2026-10-20 | The resume header is one row (the name and "Save as PDF") over the role line. | Location, contact links and breadcrumbs made four rows above the career; the location stays in the JSON-LD. |
 | 2026-10-20 | The compass mark is the nav logo and the thumbnail of a card with no image, nowhere else. | A card needs a picture; the mark is the brand rather than a stock image. |
+| 2026-10-21 | One size for every section heading: article `h2`s and the `.u-heading` sections ("Experience", "Gallery", "Start here") share `--t-section`, 1.3 × the prose size. Sections sit 48px apart (40px on phones). | A project page mixed 36px and 24px headings for the same level, and article `h2`s were as big as the page title on phones. The owner found the gaps between sections too large. |
+| 2026-10-21 | A project's eyebrow is year · status; there is no domain. | Several domains were wrong (TikiPro as SaaS, three different projects as Infrastructure), and the stack chips already say what a project is. |
+| 2026-10-21 | No two topics list the same pages. Systems, Mobile, Simulation, Adirondacks and Getaway were merged into C++, Flutter, Robotics, Hiking and Spa. | Five pairs of topic pages were identical. |
+| 2026-10-21 | The 404 page is its title and one sentence. | It repeated the header's menu and language links. |
+| 2026-10-21 | "How This Site Is Built" is removed. | The owner's call: it was about the site rather than the work. |
 | — | Social cards come from one HTML template; a page shares its cover, else its first gallery image, else its section card, else the home card. | Hand-drawn cards drift. A real product screenshot says more than a generated card. `og:` and `twitter:` read the same resolver so they cannot disagree. |
 
 ## Hosting and privacy

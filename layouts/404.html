@@ -1,19 +1,7 @@
 {{- define "main" }}
-<article class="page-404">
+<article class="page-header">
   <p class="u-eyebrow" aria-hidden="true">404</p>
   <h1>{{ i18n "notfound_title" }}</h1>
-  <p class="page-404__lede">{{ i18n "notfound_lede" }}</p>
-  {{- with site.Menus.main }}
-  <nav class="page-404__routes" aria-label="{{ i18n "notfound_title" }}">
-    <ul>
-      {{- range . }}<li><a class="u-link" href="{{ .URL | relLangURL }}">{{ .Name }}</a></li>{{ end }}
-    </ul>
-  </nav>
-  {{- end }}
-  {{- with site.Home.Translations }}
-  <p class="page-404__langs">
-    {{- range . }}<a class="u-link" href="{{ .Permalink }}" lang="{{ .Lang }}" hreflang="{{ .Lang }}">{{ .Language.Label }}</a>{{ end }}
-  </p>
-  {{- end }}
+  <p class="page-header__description">{{ i18n "notfound_lede" }}</p>
 </article>
 {{- end }}

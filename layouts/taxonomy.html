@@ -1,10 +1,6 @@
 {{- define "main" }}
 {{ partial "page-head/header.html" (dict "page" .) }}
 
-{{- with .Content }}
-<div class="post-content">{{ . }}</div>
-{{- end }}
-
 {{- $terms := slice -}}
 {{- with hugo.Sites.Default.GetPage "/tags" }}
   {{- range .Pages }}{{ $t := . }}{{ with where .AllTranslations "Lang" $.Lang }}{{ $t = index . 0 }}{{ end }}{{ $terms = $terms | append (dict "key" (lower .Title) "title" $t.Title "url" $t.RelPermalink "count" (len .Pages)) }}{{ end }}

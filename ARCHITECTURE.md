@@ -43,7 +43,7 @@ Hugo's current layout, with no theme: page templates at the root of `layouts/`, 
 | `layouts/_markup/render-passthrough.html` | LaTeX between `$$ … $$` (block) or `\( … \)` (inline) becomes MathML at build time through `transform.ToMath`; the markdown twin keeps the LaTeX |
 | `layouts/projects/single.html` | a project page |
 | `layouts/projects/tracker.html` | PariData, from `data/paridata/` |
-| `layouts/404.html` | the only 404 GitHub Pages serves, so it links the French and Arabic homes |
+| `layouts/404.html` | the only 404 GitHub Pages serves: a title and one sentence; the header's language switch links the French and Arabic homes |
 | `layouts/sitemap.xml` | indexable pages only, with `hreflang` and `x-default` |
 | `layouts/home.llms.txt`, `layouts/home.llmsfull.txt` | `/llms.txt` and `/llms-full.txt` |
 | `layouts/_shortcodes/` | `figure` (a bundle image through the pipeline, with `srcset` and dimensions; a missing file fails the build), `gmap` (a link to a Google Maps search for `q`), `reportframe` (a report from `assets/reports/` rendered in place), `youtube` (a self-hosted poster from the bundle linking to the video, so nothing loads from YouTube until the reader clicks; takes `id`, `poster`, `title`); the `*.markdown.md` files render these as links in the markdown output |
@@ -90,10 +90,10 @@ prefix is the cascade, then minifies and fingerprints one bundle that every page
 |---|---|
 | `00-tokens` | design tokens, the only place a colour is defined; dark values under `.dark`; print and phone overrides |
 | `05-fonts` | self-hosted `@font-face` declarations |
-| `10-base` | reset, page frame and measure, page header, type, links, tables, code |
+| `10-base` | reset, page frame and measure, page header, type, links, code |
 | `20-components` | shared primitives (`.u-card`, `.u-eyebrow`, `.u-dot`, `.u-heading`, `.u-link`, `.u-chip`, `.u-label-row`, `.u-frame`, `.u-sr-only`) and anything a shared partial or shortcode renders, including the list card and its grid |
-| `30-chrome` | nav, mark, footer, series box, 404 |
-| `31-toc`, `32-search` | table of contents, search box |
+| `30-chrome` | nav, mark, footer, series box, table of contents |
+| `32-search` | search box |
 | `40-home` … `47-topics` | one section each: home, resume, timeline and video dialog, adventures, PariData, project page, topics |
 | `50-content` | article body: type scale, figures, diagrams, code |
 | `60-print` | print, last in the cascade |

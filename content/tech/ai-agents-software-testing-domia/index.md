@@ -8,17 +8,14 @@ cover:
     alt: "DOMIA architecture: the agent loop, its tools, and the drivers for web, mobile and desktop"
 ---
 
-*For engineers, QA leads, and managers who want to understand what AI agents
-are and how they are changing software testing.*
-
 This article is split into two parts. The first part is short, just enough to
 understand the building blocks. The second part is a
 real-world example: an AI agent that tests software autonomously. I built it,
 it's working well, and I called it **DOMIA**.
 
-## Part 1 — The building blocks
+## The building blocks
 
-### 1. Chat: the foundation
+### Chat: the foundation
 
 Everyone has used a chatbot by now. You type something, the model replies. That's
 it.
@@ -44,7 +41,7 @@ print(response.text)
 # Paris
 ```
 
-### 2. Function calling: the AI picks up tools
+### Function calling: the AI picks up tools
 
 Chat alone can't look up today's weather, query a database, or click a button. It
 only knows what was in its training data. Function calling fixes that. You give
@@ -83,7 +80,7 @@ response = chat.send_message("What's the weather like in Paris right now?")
 # Tool result : {'temp': '18°C', 'condition': 'Cloudy'}
 ```
 
-### 3. AI agent frameworks: closing the loop
+### AI agent frameworks: closing the loop
 
 A single tool call is useful. But what if the task requires 10 steps? What if the
 model needs to look at the result, decide what to do next, call another tool, and
@@ -135,7 +132,7 @@ session = session_service.create_session_sync(app_name="demo", user_id="user1")
 # → "I navigated to example.com and clicked the first link."
 ```
 
-## Part 2 — DOMIA: an agent that tests your software
+## DOMIA: an agent that tests your software
 
 Let's talk about a real problem:
 **end-to-end (E2E) test automation** across web, mobile, and desktop apps.

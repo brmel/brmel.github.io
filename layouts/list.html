@@ -15,10 +15,6 @@
 
 {{ partial "page-head/header.html" (dict "page" . "extra" (cond (eq .Kind "term") (partial "topic/related.html" .) "")) }}
 
-{{- with .Content }}
-<div class="post-content">{{ . }}</div>
-{{- end }}
-
 {{- $order := cond (eq .Section "projects") "Params.projectNo" "Date" }}
 {{- partial "article/grid.html" (dict "pages" (sort (partial "func/section-pages.html" .) $order "desc") "showSection" (eq .Kind "term") "eager" true) }}
 

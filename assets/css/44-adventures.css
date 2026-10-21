@@ -12,7 +12,8 @@
 .verdict .rating dd{font-size:var(--t-display-s)}
 .verdict .of5{font-size:var(--t-body);color:var(--ink-mute)}
 @media (max-width:600px){
+  .verdict{padding:var(--space-2) var(--space-5) var(--space-4);}
   .verdict dl{grid-template-columns:1fr}
   .verdict dt{padding-bottom:0}
-  .verdict dd{padding-block:var(--space-1) var(--space-4);padding-inline-start:0}
+  .verdict dd{padding-block:0 var(--space-3);padding-inline-start:0}
 }

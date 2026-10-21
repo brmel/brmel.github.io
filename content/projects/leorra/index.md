@@ -2,7 +2,6 @@
 title: "Leorra"
 date: 2021-08-29
 projectNo: 6
-domain: "mobile"
 status: "archived"
 pitch: "An app for sending a parcel abroad with a traveller who has room in their suitcase."
 description: "An app for sending a parcel abroad with a traveller who has room in their suitcase."
@@ -26,7 +25,7 @@ lessons:
   - "**Layer discipline is measurable, and mine was lopsided.** 19 domain files against 159 presentation files. The business rules were small and isolated, but I wrote eight test files, all for identification, and none for matching, trips or contracts. I tested the layer that was easy to test, not the one carrying the risk."
   - "**What people needed was trust, and I built the marketplace instead.** Listings, chat, contracts and matching were all built. Identity verification, escrow, dispute handling and what happens when a package doesn’t arrive did not. For a stranger to hand another stranger a laptop at an airport, the trust layer is the app, and I treated it as a later phase."
   - "**After the last feature commit, all that was left was a translation pass.** Twenty months, three languages and store screenshots, and what was missing at the end was never another feature."
-tags: ["Flutter", "Firebase", "Mobile", "Clean Architecture"]
+tags: ["Flutter", "Firebase", "Clean Architecture"]
 ---
 
 ## The story
@@ -39,18 +38,3 @@ does.
 
 I tried to turn that into a marketplace: senders post what needs moving,
 travellers post their route and spare kilos, and the app matches them.
-
-## The product
-
-I built listings, chat, contracts and matching, in three languages, with the
-store screenshots ready. Identity verification, escrow and what happens when a
-package doesn't arrive: none of it.
-
-Two months in I deleted the working version and started again. The commit says
-*restart from a very clean project*, 1,134 deletions against 45 insertions. The
-first build worked and could not be extended; everything lived in the widgets.
-What replaced it separated domain from application from interface, and the
-fourth feature cost about what the second had.
-
-That was the right call and I'd make it again. It's also not why the
-project stopped.

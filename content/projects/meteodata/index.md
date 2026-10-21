@@ -2,7 +2,6 @@
 title: "MeteoData"
 date: 2026-08-20
 projectNo: 10
-domain: "data"
 status: "shipped"
 pitch: "I graded three weather services against the station next door, to find out which parts of a forecast you can believe."
 description: "I graded three weather services against the station next door, to find out which parts of a forecast you can believe."
@@ -27,7 +26,6 @@ lessons:
   - "**A forecast only counts if it was on record before the hour it describes.** Services quietly restate values for hours that have already passed, so a scorer reading the current file is grading hindsight and reports suspiciously good numbers. Only forecasts published strictly before the hour they describe are scored, and that rule is written into the report’s method section rather than left in the code."
   - "**\"The truth\" had to be defined before anything could be graded.** The station reports every minute; the forecast describes an hour. I match the instant within ±5 minutes and leave a forecast ungraded rather than score it against the wrong time. Rain is the exception, compared against the hour it fell in, because that is the hour the station attributes it to."
   - "**Cloud cover couldn’t be measured, and the report says so.** No station here reports cloud cover. Sunshine stands in for it, and that row reads \"not measurable\" rather than printing a number that looks like the others."
-  - "**The collector saves on change, not on schedule.** Reading three services every five minutes would have stored mostly duplicates. A snapshot is saved only when a service revises its forecast, which is why a month of three forecasters fits in a file you can open, and why the record shows when each service changed its mind as well as what it settled on."
 resources:
   - src: "gallery/01-forecast-report.png"
     params:
@@ -65,8 +63,6 @@ published after the moment it describes, and emits a single self-contained HTML
 file (inline SVG, no chart library, no network calls once it's open). The
 horizon control at the top re-grades every measure on the page: the same data
 asked a different question.
-
-[Read the report →](/tech/montreal-forecast-reliability/)
 
 A month is short, and one late summer in one city is not a verdict on
 forecasting. It's enough to separate the measures that hold from the one that

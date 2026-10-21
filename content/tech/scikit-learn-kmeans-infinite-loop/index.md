@@ -23,11 +23,6 @@ and found one: an input that makes it loop forever. Three conditions have to
 line up, and the last of them is the interesting part: the code that handles
 empty clusters creates the empty cluster it's handling.
 
-> **Personal opinion.** I think everyone should help make open source better
-> however they can, as long as it doesn't hurt their business. Open source is a
-> great idea and has had a big impact on our world. Leaders of big tech companies
-> should support it more.
-
 ## K-means
 
 The k-means algorithm is a popular unsupervised machine learning technique used
