@@ -81,7 +81,7 @@ Loaded once from `layouts/_partials/head/fonts.html`. Never add a family.
 | `--fl-display-m` | 30–48px, fluid | every page title |
 | `--t-display-s` | 34px | big numbers: project metrics, field-note rating |
 | `--t-heading` | 24px | section headings, career roles |
-| `--t-subhead` | 20px | page descriptions, card and search-result titles |
+| `--t-subhead` | 20px | page descriptions and card titles |
 | `--prose-size` | 18–21px, fluid | article body |
 | `--t-body-l` | 18px | body text outside articles |
 | `--t-body` | 16px | card descriptions, UI text |
@@ -93,16 +93,15 @@ Every size is in `rem`, so a reader's browser font size scales the whole page. N
 
 ## 5. Sections
 
-Every list (section index, project index, topic, home) uses the same card.
+Every list (section index, project index, home) uses the same card.
 
 | Section | Exists to | Chrome |
 |---|---|---|
 | Home | say who this is, route into the work | profile, intro, "Start here" cards |
 | Resume | the career on one page | career timeline, skills, certifications |
-| Projects | things built end to end, with what went wrong | eyebrow, stack chips, status, metrics, gallery, lessons |
+| Projects | things built end to end, with what went wrong | eyebrow, stack chips, status, metrics, gallery |
 | Tech | explain something learned by doing it | article layout, figures, series box |
 | Adventures | honest first-person notes on places | eyebrow, verdict block |
-| Topics | every page on one subject | grouped topic list, cards |
 
 A page that fits none of these has no home yet. The nav skips a section with no published pages.
 
@@ -120,7 +119,7 @@ A page that fits none of these has no home yet. The nav skips a section with no 
 
 | Tier | Pages | Languages |
 |---|---|---|
-| Structural | home, resume, section indexes, search, nav, UI strings | English, French, Arabic, always |
+| Structural | home, resume, section indexes, nav, UI strings | English, French, Arabic, always |
 | Long-form | projects, articles, field notes | English; translated one page at a time |
 
 A reader never sees less because of their language: lists merge untranslated English pages in,

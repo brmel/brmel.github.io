@@ -30,7 +30,7 @@ Each rule names the gate that enforces it; the rest are enforced in review.
   (`check-css`), unloaded scripts and missing selectors (`check-js`) and unreferenced assets
   (`check-orphans`) fail the build.
 - Hugo features and plain CSS first. JavaScript only where a page cannot work without it: theme
-  toggle, search, resume video dialog and print button, PariData controls, report frame, code copy
+  toggle, resume video dialog and print button, PariData controls, report frame, code copy
   button, analytics. The Speculation Rules block in `layouts/_partials/head.html` is JSON, not script.
 - No third-party runtime requests except Google Analytics 4. Fonts, scripts and images are
   self-hosted; the CSP at the top of `layouts/_partials/head.html` blocks the rest.
@@ -53,7 +53,7 @@ Each rule names the gate that enforces it; the rest are enforced in review.
   `layouts/_markup/`. Partials that return a value live in `layouts/_partials/func/`.
 - Every page has one `h1`, a skip link and sized images (`check-chrome`); every section page is linked
   from its index (`check-listings`). A page ends with its content: no author card, social or contact
-  links, topic chips or previous/next.
+  links or previous/next.
 
 **Content and images**
 - One page bundle per page. Images live in the bundle or `assets/`, never `static/` (`check-orphans`).
@@ -64,7 +64,7 @@ Each rule names the gate that enforces it; the rest are enforced in review.
 - Copy follows [docs/voice.md](docs/voice.md). Facts, numbers and links are never changed in an edit.
 
 **Languages**
-- Structural pages (home, resume, section indexes, search) exist in EN, FR and AR, each with its own
+- Structural pages (home, resume, section indexes) exist in EN, FR and AR, each with its own
   title and description. A new UI string goes into all three `i18n/*.yaml` files at once.
 - Lists merge through `layouts/_partials/func/section-pages.html`; nothing filters by language.
 - Arabic is checked on screen: mirroring, `‎C++‎` with direction marks, `<bdi>` around mixed text.
@@ -90,10 +90,10 @@ only `/reports/`. Every Tech and Adventures page has an `index.md` twin.
 
 | Path | |
 |---|---|
-| `content/` | page bundles; `content/tags/` topic pages |
+| `content/` | page bundles |
 | `layouts/` | templates; `layouts/_partials/<domain>/`, `layouts/_shortcodes/`, `layouts/_markup/` |
 | `assets/css/` | the stylesheet, cascade by file number |
-| `i18n/`, `data/` | UI strings; PariData and topic groups |
+| `i18n/`, `data/` | UI strings; PariData |
 | `scripts/` | `check.sh`, `gates.sh`, `scripts/checks/`, `audit.py`, `scripts/generate/` |
 | `docs/` | brand, voice, playbooks, `docs/decisions.md`, `docs/backlog.md`, `docs/roadmap.md` |
 
@@ -122,7 +122,7 @@ Repo skills in `.claude/skills/`; read the `SKILL.md` before relying on it.
 | Skill | Load when |
 |---|---|
 | `verify-site` | any change to layouts, CSS, content or i18n, before calling it done |
-| `publish-content` | adding a project, Tech article, field note, PariData ticket or result, topic, or translation |
+| `publish-content` | adding a project, Tech article, field note, PariData ticket or result, or translation |
 | `voice` | writing or editing any user-facing copy in EN, FR or AR |
 
 Global skills: `karpathy-guidelines` before writing code; `diagnosing-bugs` before fixing a bug whose

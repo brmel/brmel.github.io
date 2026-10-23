@@ -10,9 +10,7 @@ PAGES = [
     ("article", "/tech/windows-memory-management-deep-dive/"),
     ("report", "/tech/montreal-forecast-reliability/"),
     ("adventure", "/adventures/auberge-estonia-rawdon/"),
-    ("search", "/search/"),
 ]
-NOINDEX = {"search"}
 CATEGORIES = ("performance", "accessibility", "best-practices", "seo")
 BUDGET = {"performance": 98, "accessibility": 100, "best-practices": 100, "seo": 100}
 METRICS = ("largest-contentful-paint", "cumulative-layout-shift", "total-blocking-time")
@@ -53,7 +51,7 @@ with tempfile.TemporaryDirectory() as tmp:
                   + "  " + " ".join(f"{m:8}" for m in metrics))
             failing_audits.update(failing)
             for c, floor in BUDGET.items():
-                if scores[c] < floor and not (c == "seo" and name in NOINDEX):
+                if scores[c] < floor:
                     over.append(f"{name} {preset}: {c} {scores[c]} < {floor}")
 
 checked, broken = broken_links()

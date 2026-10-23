@@ -19,12 +19,6 @@ lede: |
   A small static library that snapshots the memory of a live Windows process
   (committed, reserved, private, working set, broken down by heap, stack, image
   and mapped file) on a schedule you control, and exports the result as CSV.
-lessons:
-  - "**The tracer needed checking too.** I checked every counter against Sysinternals VMMap, column for column, before trusting any of it, and found two I had wrong."
-  - "**The tracer was moving the number it measured.** Taking a snapshot allocated memory, which then showed up in the snapshot. So reducing allocation on the snapshot path was a correctness fix."
-  - "**64-bit broke the assumptions.** The approach I started from computed the process memory maximum in a way that was wrong for 64-bit processes, and reported unused regions incorrectly. Both only show up when you plot the total and it doesn’t add up."
-  - "**Writing it up taught me more than building it.** Turning the measurements into [two articles](/tech/windows-memory-management-overview/) forced me to explain copy-on-write, private bytes and working set precisely enough for someone else to follow."
-tags: ["C++", "Windows"]
 resources:
   - src: "gallery/01-tracer-vs-vmmap.jpg"
     params:

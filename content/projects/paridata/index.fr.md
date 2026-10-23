@@ -7,7 +7,6 @@ status: "active"
 pitch: "Un pronostiqueur de football publie ses pronostics. Je les enregistre tous, à mise fixe, et je les confronte à ce qui s’est réellement passé."
 description: "Chaque pronostic publié par un pronostiqueur de football, enregistré à mise fixe et confronté au résultat réel. Rien d’inféré, source anonymisée."
 stack: ["Hugo", "JSON", "Python"]
-tags: ["Data Analysis"]
 cover:
   image: "cover.jpg"
   alt: "Illustration : un terrain de football traversé par une courbe de résultats ascendante"

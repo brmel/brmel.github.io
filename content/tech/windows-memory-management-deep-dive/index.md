@@ -2,7 +2,6 @@
 title: "Windows Memory Management in Depth: Private Data, Stack, Heap and Mapped Files"
 date: 2024-01-10
 description: "Windows memory states and types (private data, stack, heap, mapped files, images), with VirtualAlloc, file-mapping and std::vector examples."
-tags: ["C++", "Windows"]
 lastmod: 2026-10-20
 series: "Windows Memory Management"
 seriesPart: 2

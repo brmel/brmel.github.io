@@ -7,7 +7,6 @@ status: "active"
 pitch: "A public football tipster posts their picks. I record every one of them at a fixed stake and grade it against what actually happened."
 description: "Every pick a public football tipster posts, recorded at a fixed stake and graded against what actually happened. Nothing inferred, kept anonymous."
 stack: ["Hugo", "JSON", "Python"]
-tags: ["Data Analysis"]
 cover:
   image: "cover.jpg"
   alt: "Illustration: a football pitch with a rising line of results drawn across it"

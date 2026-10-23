@@ -17,12 +17,6 @@ lede: |
   French or English), and cites the building code each answer came from.
   Operators change the prompts, the retrieval settings and the corpus itself from
   an admin console, with no deploy.
-lessons:
-  - "**Every answer is retrieved and cited.** Someone asking about rebar spacing will act on the reply, so nothing is generated without a source. Each answer comes from an Algerian-codes corpus and links back to the document it came from, which makes corpus quality the thing to work on rather than model quality."
-  - "**I publish the corpus in stages, like a release.** Fetch, promote dev to prod, deploy the markdown, rebuild the index, verify. A retrieval index can regress silently, and the staging step is what catches it before a user gets a wrong citation."
-  - "**One schema for both sides.** The frontend response types are generated from the API’s OpenAPI schema instead of written twice. It removes the bug where the backend renames a field and the UI renders `undefined` for three weeks."
-  - "**Three languages is a retrieval problem, not a translation pass.** Right-to-left layout is the small half. The hard half is that a question arrives in one language while the regulation that answers it was written in another."
-tags: ["AI", "Python", "RAG", "Algeria"]
 cover:
   image: "cover.jpg"
   alt: "Illustration: a building frame under construction, a tower crane and a speech bubble with a cited answer"

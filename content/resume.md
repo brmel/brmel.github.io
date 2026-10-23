@@ -48,11 +48,6 @@ experience:
           processing pipeline, and keep them within the same speed and
           memory limits the classical path already meets.
     stack: ["C++", "machine vision algorithms", "deep learning", "OCR", "machine learning", "embedded / edge imaging"]
-    learned: |-
-      - Deep learning earns its place where the classical decoders stop (damaged, blurred and low-contrast codes) and loses to them everywhere else on latency and predictability. Choosing which half of the problem goes to a model is most of the design work.
-      - A model that wins on a benchmark can still lose in the field, because a customer’s failures are the images nobody thought to put in the test set. How it fails tells you more than how often it fails.
-      - Running inference inside a real-time pipeline is a memory and throughput problem before it’s a machine learning one. Preprocessing, allocation and cache locality decide whether a model fits the frame budget at all.
-      - On the smart camera, the constraints drive the whole design. Working set, allocation on the hot path and CPU headroom rule out approaches on the desktop build long before accuracy does.
 
   - period: "2022 — 2024"
     role: "Software Developer II"
@@ -78,18 +73,12 @@ experience:
           interns and junior developers on modern C++, multithreading and code
           review.
     stack: ["C++", "geometric matching", "metrology", "non-linear optimisation", "classical ML"]
-    learned: |-
-      - Writing the documentation and the examples is how an API design gets tested. Almost every question that came back from customers was about the interface rather than the algorithm.
-      - Once a C++ API is public, you can’t take it back. Naming, parameter order, default behaviour and how errors are reported outlive every implementation detail behind them.
-      - Classical machine learning inside a geometric library has to stay diagnosable. A Random Forest that classifies a pattern must fail in a way a support engineer can explain to a customer, which ruled out models I couldn’t inspect.
-      - Stateful API bugs and floating-point differences are the two failures that regression tests catch and code review doesn’t. Both look like nothing in a diff.
-      - Mentoring interns made me say why and not just what, and that’s where I found the habits I couldn’t defend.
 
   - period: "2019 — 2022"
     role: "Software Developer"
     org: "Matrox Imaging"
     url: "https://www.zebra.com/us/en/software/machine-vision-and-fixed-industrial-scanning-software/aurora-imaging-library.html"
-    note: "Matrox Imaging became part of Zebra Technologies in 2022; the work continued without a break."
+    note: "Matrox Imaging became part of Zebra Technologies in 2022."
     work:
       - title: "Calibration, measurement and metrology"
         video: "LcoPNbyuhZU"
@@ -121,11 +110,6 @@ experience:
           and automated benchmarks that measured the classifiers’
           precision and speed on every change.
     stack: ["C++", "non-linear optimisation", "Levenberg–Marquardt", "numerical stability", "classical ML"]
-    learned: |-
-      - Writing a better algorithm is the easy half. Shipping it into a library thousands of applications already depend on, without changing an answer they rely on, is the hard half.
-      - Non-linear optimisation is only as good as its initial guess and its stopping rule. Levenberg–Marquardt converges cleanly in a paper and oscillates on real data until both of those are right.
-      - Sub-pixel accuracy is a numerical-stability problem. The order of operations, the conditioning of the matrix and the tolerance you compare against decide the last two decimals.
-      - In a multi-decade C++ codebase the memory bugs that cost time are dangling references and ownership nobody wrote down. Leaks at least announce themselves.
 
   - period: "2017 — 2019"
     role: "M.Eng., Electrical Engineering — Control Systems"
@@ -157,11 +141,6 @@ experience:
           consensus algorithms in Python and ran formation tracking on the
           real multi-robot fleet at the Georgia Tech Robotarium.
     stack: ["C++", "SIFT", "homography", "digital control", "detection and estimation", "stochastic and robust control", "image processing"]
-    learned: |-
-      - A control law can be correct on paper and still be wrong if it arrives ten milliseconds late.
-      - Geometry is the cheap part of feature matching. SIFT produces candidates; everything that makes a panorama or a part-locator work is the outlier rejection afterwards.
-      - State estimation is where I learned to weigh a model against a measurement in proportion to how much each one lies.
-      - Running consensus algorithms on the real Robotarium fleet instead of in simulation showed how much of a distributed algorithm is about what happens when one robot stops answering.
 
   - period: "2012 — 2017"
     role: "B.Eng., Electrical Engineering — Control Systems"
@@ -186,10 +165,6 @@ experience:
           vehicle, and a PLC program driving an industrial assembly
           machine.
     stack: ["C", "MATLAB", "VHDL", "control design", "process identification", "optimal control"]
-    learned: |-
-      - The first assembly machine I programmed failed on sensors and wiring, not on the control logic I had spent the whole term on.
-      - A PLC program is written for whoever debugs it at three in the morning on a factory floor.
-      - Identifying a process from real measurements is harder than designing the controller that follows it. The error lives in the model.
 
 skills:
   - group: "Languages"

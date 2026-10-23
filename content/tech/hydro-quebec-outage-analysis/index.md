@@ -1,8 +1,8 @@
 ---
 title: "Hydro-Québec Outage Analysis: Two Months of Grid Reliability Data"
+featured: 3
 date: 2026-06-01
 description: "Two months of Hydro-Québec’s public outage feed, graded: regional reliability, Montréal boroughs, ETA accuracy and causes. Interactive charts and map."
-tags: ["Data Analysis", "Québec"]
 cover:
     image: "cover.jpg"
     alt: "Montréal outage statistics from the Hydro-Québec reliability report"

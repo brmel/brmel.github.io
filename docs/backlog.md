@@ -9,7 +9,6 @@ that closes it; record any decision it took in [decisions](decisions.md).
 | B7 | `https://www.ibraverse.ca` fails TLS: the certificate does not cover `www`. Point the `www` CNAME at `brmel.github.io` so Pages issues one. | DNS. |
 | B8 | Report generators: `assets/reports/hydro-quebec-outage.html` loads full Plotly 2.32.0 from `cdn.plot.ly` (self-host `plotly-cartesian`), repeats the default template per chart, carries thousands of long decimals, and its two folium maps load Leaflet, jQuery and Bootstrap from three CDNs. The forecast heatmap caption says "darker" while every cell is one blue. One structure for both report articles. | The generators live outside this repo. |
 | B9 | Consent: Québec Law 25 expects tracking that can profile a visitor to be off by default; analytics loads for everyone. | Owner decision on a consent choice. |
-| B13 | Resume video posters read as stock; 7 of 12 projects are `active` ("In progress"), including ones with a live link. | Content, and a definition of `active`. |
+| B13 | Resume video posters read as stock; 7 of 10 projects are `active` ("In progress"), including ones with a live link. | Content, and a definition of `active`. |
 | B15 | Facts to confirm in the copy: "local model option (Example 2)" and the undefined "TNV" in the Domia article; "dark as foreground colour" in barcode-flight while the image shows light bars. | Owner. |
-| B16 | Topics other than Data Analysis and Machine Vision have no French or Arabic page, so `/fr/tags/`, `/ar/tags/` and the related-topic lines show their English names. | Decide whether to translate the remaining topics (two pages each). |
 | B17 | The RAG workflow SVG in `content/tech/rag-montreal-pools/index.md` scales its labels to about 6px on phones. | Content. |

@@ -2,7 +2,7 @@
 
 How the site's copy sounds in English, French and Arabic, for writing new copy and for editing
 existing copy. It covers page bodies, front-matter strings (`title`, `description`, `pitch`, `lede`,
-`lessons`, resume entries), `i18n/*.yaml` and the descriptions in `config.toml`.
+resume entries), `i18n/*.yaml` and the descriptions in `config.toml`.
 
 ## 1. Who is writing
 
@@ -20,8 +20,8 @@ existing copy. It covers page bodies, front-matter strings (`title`, `descriptio
 Models in the repo: the body of `content/tech/scikit-learn-kmeans-infinite-loop/index.md` ("I
 noticed that a weird behaviour happens…", "resolved quickly, in my opinion"), the story in
 `content/tech/barcode-flight/index.md` ("The security guy told me…") and the middle of
-`content/tech/windows-memory-management-overview/index.md`. Openers, closers and lesson leads are
-where the tells below collect.
+`content/tech/windows-memory-management-overview/index.md`. Openers and closers are where the
+tells below collect.
 
 ## 2. Rules for every language
 
@@ -50,10 +50,10 @@ Front-matter keys and YAML structure (`>-`, `|-`, nesting, quoting); code blocks
 shortcodes; URLs, link targets and image paths; product and module names (Aurora Imaging Library,
 Model Finder, MemoryTracer, VMMap, GTest, UR10e); resume `period` ranges (`2024 — Present`);
 `Author — [Title](url)` source lines; metric `value`s, `rating`, `date`; the Markdown
-structure (headings, lists, bold lesson leads).
+structure (headings, lists).
 
 - When `pitch` and `description` are identical, keep them identical.
-- Inside double-quoted YAML strings (`lessons`), escape any inner `"`. Never introduce an unquoted
+- Inside double-quoted YAML strings, escape any inner `"`. Never introduce an unquoted
   `: ` in a plain scalar.
 - After each file, digits and URLs must be unchanged; this prints nothing when they are:
 
@@ -66,7 +66,7 @@ diff <(git show HEAD:FILE | grep -oE '[0-9]+([.,][0-9]+)*|https?://[^ )"]+') \
 
 | Tell | Example | Fix |
 |---|---|---|
-| An aphorism closing a paragraph or lesson | "A memory tool that has never been compared to a known-good one is a number generator." | Delete it when the sentence before already proved the point; otherwise state the concrete consequence. |
+| An aphorism closing a paragraph | "A memory tool that has never been compared to a known-good one is a number generator." | Delete it when the sentence before already proved the point; otherwise state the concrete consequence. |
 | "X, not Y" antithesis | "a correctness fix, not an optimisation" | At most one per page. Say the X plainly. |
 | Em dash as all-purpose glue | "— and found two I had wrong." | At most one per paragraph. Use a comma, colon, parentheses or a full stop. |
 | "The X is the point / the product" | "The failure case is the point." | Say what is meant: "is what I wanted to show". |
@@ -90,7 +90,7 @@ diff <(git show HEAD:FILE | grep -oE '[0-9]+([.,][0-9]+)*|https?://[^ )"]+') \
 | Section | What the copy does |
 |---|---|
 | Home, resume | States verifiable facts in the first person. No adjective that would not survive an interview. |
-| Projects | Says what problem, for whom, why it was built and what it became, for a reader who has never heard of it. README prose is written for contributors and is never reused. Lessons include at least one real failure. |
+| Projects | Says what problem, for whom, why it was built and what it became, for a reader who has never heard of it. README prose is written for contributors and is never reused. |
 | Tech | Teaches one thing with the real image, measurement and code. |
 | Adventures | Gives one genuine con per piece and a verdict. |
 

@@ -30,8 +30,7 @@
       "@type" "SoftwareSourceCode" "name" .Title "url" .Permalink
       "description" .Description "abstract" .Params.pitch
       "author" (dict "@id" $authorId) "programmingLanguage" (.Params.stack | default slice)
-      "image" $og.url "inLanguage" .Lang "dateCreated" (.Date.Format "2006-01-02")
-      "keywords" (delimit (.Params.tags | default slice) ", ") -}}
+      "image" $og.url "inLanguage" .Lang "dateCreated" (.Date.Format "2006-01-02") -}}
 {{- with .Params.links.repo }}{{ $work = merge $work (dict "codeRepository" .) }}{{ end }}
 {{- $graph = $graph | append $work }}
 {{- end }}
@@ -42,7 +41,7 @@
       "@type" (cond (eq .Section "tech") "TechArticle" "BlogPosting") "headline" .Title "url" .Permalink
       "description" (.Description | default .Summary | plainify | chomp) "image" $og.url "inLanguage" .Lang
       "datePublished" (.Date.Format "2006-01-02") "dateModified" ((.Lastmod | default .Date).Format "2006-01-02")
-      "wordCount" .WordCount "keywords" (delimit (.Params.tags | default slice) ", ")
+      "wordCount" .WordCount
       "author" (dict "@id" $authorId) "publisher" (dict "@id" $authorId)
       "mainEntityOfPage" (dict "@type" "WebPage" "@id" .Permalink) }}
 {{- with .Params.place }}{{ $article = merge $article (dict "contentLocation" (dict "@type" "Place" "name" .)) }}{{ end }}

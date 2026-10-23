@@ -1,4 +1,4 @@
 ---
 title: "Projects"
-description: "Software I built end to end: robotics simulation, AI agents, data pipelines, desktop and mobile apps, and what each one taught me."
+description: "Software I built end to end: AI agents, mobile and desktop apps, data tools and a C++ library."
 ---

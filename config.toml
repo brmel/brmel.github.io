@@ -1,9 +1,7 @@
 baseURL = "https://ibraverse.ca"
 defaultContentLanguage = "en"
 title = "Ibraverse"
-
-[taxonomies]
-  tag = "tags"
+disableKinds = ["taxonomy", "term"]
 
 [languages.en]
   locale = "en-CA"
@@ -19,8 +17,6 @@ title = "Ibraverse"
       { identifier = "projects", name = "Projects", url = "/projects/", weight = 3 },
       { identifier = "tech", name = "Tech", url = "/tech/", weight = 4 },
       { identifier = "adventures", name = "Adventures", url = "/adventures/", weight = 5 },
-      { identifier = "topics", name = "Topics", url = "/tags/", weight = 6 },
-      { identifier = "search", name = "Search", url = "/search/", weight = 7 },
     ]
 
 [languages.fr]
@@ -37,8 +33,6 @@ title = "Ibraverse"
       { identifier = "projects", name = "Projets", url = "/projects/", weight = 3 },
       { identifier = "tech", name = "Tech", url = "/tech/", weight = 4 },
       { identifier = "adventures", name = "Aventures", url = "/adventures/", weight = 5 },
-      { identifier = "topics", name = "Sujets", url = "/tags/", weight = 6 },
-      { identifier = "search", name = "Recherche", url = "/search/", weight = 7 },
     ]
 
 [languages.ar]
@@ -56,8 +50,6 @@ title = "Ibraverse"
       { identifier = "projects", name = "المشاريع", url = "/projects/", weight = 3 },
       { identifier = "tech", name = "تقنية", url = "/tech/", weight = 4 },
       { identifier = "adventures", name = "مغامرات", url = "/adventures/", weight = 5 },
-      { identifier = "topics", name = "المواضيع", url = "/tags/", weight = 6 },
-      { identifier = "search", name = "بحث", url = "/search/", weight = 7 },
     ]
 
 [frontmatter]
@@ -102,8 +94,7 @@ title = "Ibraverse"
   isPlainText = true
 
 [outputs]
-  home = ["HTML", "RSS", "JSON", "LLMS", "LLMSFULL"]
-  taxonomy = ["HTML"]
+  home = ["HTML", "RSS", "LLMS", "LLMSFULL"]
 
 [[cascade]]
   [cascade.build]

@@ -33,22 +33,14 @@
   </div>
   {{- end }}
 
-  {{- if or $p.stack $p.learned }}
+  {{- with $p.stack }}
   <dl class="timeline-facts">
-    {{- with $p.stack }}
     <div class="u-label-row timeline-facts__row">
       <dt class="u-eyebrow timeline-facts__label">{{ i18n "project_stack" }}</dt>
       <dd class="timeline-facts__value">
         {{- partial "func/dots.html" . -}}
       </dd>
     </div>
-    {{- end }}
-    {{- with $p.learned }}
-    <div class="u-label-row timeline-facts__row timeline-facts__row--learned">
-      <dt class="u-eyebrow timeline-facts__label">{{ i18n "career_learned" }}</dt>
-      <dd class="timeline-facts__value">{{ . | markdownify }}</dd>
-    </div>
-    {{- end }}
   </dl>
   {{- end }}
 </article>

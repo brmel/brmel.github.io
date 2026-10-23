@@ -1,7 +1,7 @@
 # Projects playbook
 
 How to publish a project page. Every project page has the same structure, rendered by
-`layouts/projects/single.html`; the author writes front matter, two prose sections and the lessons.
+`layouts/projects/single.html`; the author writes front matter and two prose sections.
 
 ## The page
 
@@ -18,7 +18,6 @@ How to publish a project page. Every project page has the same structure, render
 │ ## The product                            │ prose
 ├──────────────────────────────────────────┤
 │ Gallery                                   │ gallery/ images (auto)
-│ What it taught me                         │ lessons (auto)
 └──────────────────────────────────────────┘
 ```
 
@@ -46,24 +45,22 @@ grep -h '^projectNo:' content/projects/*/index.md | sort -n -k2 | tail -1
 | `projectNo` | Unique and permanent. The index lists the highest first. |
 | `status` | `shipped`, `active` (shown as "In progress") or `archived`, through `project_status_<status>`. |
 | `pitch` | One sentence a non-engineer can parse. It is the header line, the index card text and the JSON-LD abstract. |
-| `description` | 50–160 characters, unique per language; the meta description, search and `llms.txt`. Usually identical to `pitch`. |
+| `description` | 50–160 characters, unique per language; the meta description and `llms.txt`. Usually identical to `pitch`. |
 | `lede` | Markdown, three sentences: the problem, what the project does, what changed. It must add to the pitch, not restate it. |
 | `stack` | Chips under the page header, in order of importance. |
 | `links` | `live` and `repo`, each rendered through the `project_link_<key>` string in the three `i18n/*.yaml` files; a new key needs that string first. A link that starts with `/` points at a page on this site: it shows as "Write-up" (`project_link_writeup`) and opens in the same tab. Empty values are skipped. |
 | `metrics` | Up to three `value` + `label` pairs above the body; a value is a number, never a word ("Offline", "Cited"). Every figure also appears, sourced, in the body. They feed the "Project facts" in `llms.txt`. A project with no honest numbers has no metrics. |
-| `lessons` | Three to five markdown strings, each with a bold lead, at least one a real failure. A lesson never repeats a paragraph of the prose or a metric: each fact lives in one place. |
-| `tags` | Topic pages; see [publishing a new tag](#new-tags). |
 | `featured` | Optional. `featured: N` lists the project under "Start here" on the home page, lowest number first. |
 | `resources` | Optional `params.caption` per gallery image. Alt text is "<title> screenshot"; the first image is the index-card thumbnail. |
 
 ## 3. The prose
 
-Two sections, both for a reader who has never heard of the project. Aim for about 220 words: the lede,
-metrics and lessons carry the rest. Never reuse README prose.
+Two sections, both for a reader who has never heard of the project. Aim for about 220 words: the lede and
+metrics carry the rest. Never reuse README prose.
 
 - `## The story`: why it existed. The problem, for whom, and why it was built instead of using
   something that already worked. Lead with the situation.
-- `## The product`: what it became; left out when the lede and lessons already say it. Screens, flows, the one or two decisions that made it work,
+- `## The product`: what it became; left out when the lede already says it. Screens, flows, the one or two decisions that made it work,
   numbers where they exist.
 
 Voice: [voice.md](voice.md).
@@ -99,14 +96,7 @@ Before committing an image:
 
 Three to six images.
 
-## 5. New tags
-
-A tag is a topic page. A tag no page used before needs `content/tags/<tag>/_index.md` with a `title`
-and a 50–160 character `description`, and a place in a group in `data/topics.yaml` (otherwise it is
-listed under "More"). A French or Arabic page carrying the tag needs `_index.fr.md` / `_index.ar.md`
-there too.
-
-## 6. Publish
+## 5. Publish
 
 - [ ] `draft` removed
 - [ ] `./scripts/check.sh` passes.

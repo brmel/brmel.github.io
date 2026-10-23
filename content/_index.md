@@ -10,9 +10,3 @@ library, evaluate deep learning models for object and text detection, and
 optimise the algorithms to run on Zebra's smart cameras, where memory and
 processing power are limited. Modern C++ on Windows and Linux, seven years on
 the same codebase: Matrox Imaging first, then Zebra after the acquisition.
-
-Outside work: [a robot cell in a physics engine](/projects/robonode/), [an agent
-that tests web applications](/projects/domia/), and [write-ups](/tech/) of what
-each one taught me.
-
-This is a personal site; the opinions here are mine, not Zebra's.

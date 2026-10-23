@@ -2,7 +2,6 @@
 title: "Building a Chatbot That Answers From Your Own Documents"
 date: 2024-09-03
 description: "A RAG chatbot over Montréal’s indoor pool schedules: how retrieval over your own documents works, and where it still gets answers wrong."
-tags: ["Python", "LLM", "AI"]
 cover:
     image: "cover.jpg"
     alt: "Illustration: pool schedules turned into a search index that feeds a chatbot’s cited answer"

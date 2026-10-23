@@ -33,7 +33,7 @@ BASE=http://127.0.0.1:1320 node .claude/skills/verify-site/responsive.mjs
 | Variable | Default | |
 |---|---|---|
 | `BASE` | `http://127.0.0.1:1313` | server root |
-| `PAGES` | 20 pages: home, resume, project, PariData, Tech, report, field note, topics, search, 404, in EN/FR/AR | comma-separated paths; add every page the change touches |
+| `PAGES` | 17 pages: home, resume, project, PariData, Tech, report, field note, 404, in EN/FR/AR | comma-separated paths; add every page the change touches |
 | `VIEWPORTS` | `320,360,390,768,1024,1440` | widths, or `WxH` |
 | `THEMES` | `light,dark` | |
 | `SHOOT` | none | widths to screenshot full-page, e.g. `390,1440` |
@@ -47,7 +47,7 @@ prose are exempt; anything else is a finding. Playwright comes from the project 
 ## 3. Screenshots
 
 Run again with `SHOOT=390,1440` on the affected pages and open the PNGs. For interaction (theme
-toggle, phone menu, resume video dialog, PariData stake controls, search), use the Playwright MCP:
+toggle, phone menu, resume video dialog, PariData stake controls), use the Playwright MCP:
 `browser_snapshot` for structure, `browser_evaluate` for computed values, `browser_take_screenshot`
 for pixels. Look at:
 

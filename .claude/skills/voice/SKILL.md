@@ -1,6 +1,6 @@
 ---
 name: voice
-description: Write or edit user-facing copy on the Ibraverse site in English, French or Arabic so it sounds like Brahim, a senior C++ developer talking about his own work, rather than polished AI copy. Use for page bodies, titles, descriptions, pitches, ledes, lessons, resume entries, captions, alt text, i18n strings and the descriptions in config.toml.
+description: Write or edit user-facing copy on the Ibraverse site in English, French or Arabic so it sounds like Brahim, a senior C++ developer talking about his own work, rather than polished AI copy. Use for page bodies, titles, descriptions, pitches, ledes, resume entries, captions, alt text, i18n strings and the descriptions in config.toml.
 ---
 
 # Voice

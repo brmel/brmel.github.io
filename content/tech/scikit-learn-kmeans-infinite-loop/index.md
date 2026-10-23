@@ -3,7 +3,6 @@ title: "Finding an Infinite Loop in Scikit-Learn’s K-Means"
 featured: 5
 date: 2024-04-29
 description: "An input that makes scikit-learn’s K-means loop forever: the bug in its empty-cluster handling, the report I filed, and the fix."
-tags: ["Machine Learning", "Python"]
 cover:
     image: "01-kmeans-bug-repro.jpg"
     alt: "Scatter plot of the failing case, with input data points and cluster centres marked"
@@ -90,13 +89,6 @@ should do it:
 I followed the steps, and I opened an issue that was resolved quickly, in my
 opinion. The fix, [scikit-learn#28165](https://github.com/scikit-learn/scikit-learn/pull/28165)
 by Jérémie du Boisberranger, shipped in scikit-learn 1.4.1 in February 2024.
-
-## The lessons
-
-- The dangerous edge case was the repair code itself, which had never been run
-  against the situation it creates.
-- Reporting a bug well is most of the contribution. A reproducible case and the
-  three conditions that produce it are what let someone else fix this in days.
 
 ## Sources
 

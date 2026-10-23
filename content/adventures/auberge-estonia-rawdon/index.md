@@ -2,7 +2,6 @@
 title: "Auberge Estonia: Nordic Spa Cabins in Rawdon, One Hour from Montréal"
 date: 2026-05-31
 description: "Eight rooms and a few chalets in the Rawdon woods, an hour from Montréal, where the Nordic spa is free for guests and dinner is whatever you brought."
-tags: ["Québec", "Spa"]
 category: "spa"
 place: "Rawdon, Lanaudière"
 rating: 4.5

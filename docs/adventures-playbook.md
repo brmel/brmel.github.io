@@ -34,8 +34,7 @@ This copies `archetypes/adventures.md` (front matter, figures, map, recommendati
 title: "A Walk Through the Old Port"
 date: 2026-06-01
 draft: true
-description: "The reel's hook in one line: list card, home feed, search, Google and social cards."
-tags: ["Montréal", "Walking"]
+description: "The reel's hook in one line: list card, home feed, Google and social cards."
 cover:
   image: "cover.jpg"
   alt: "Old Port of Montréal at sunset"
@@ -55,7 +54,6 @@ con: "Touristy: skip the terraces on the square."
 | `place` | A real, locatable place; the eyebrow's last part and the JSON-LD `contentLocation`. |
 | `rating` | Out of 5, one decimal, consistent with the prose. The verdict block renders only when it is set. |
 | `goBack`, `bestFor`, `con` | The verdict rows. `con` is one genuine drawback. |
-| `tags` | Topic pages; a new tag needs a topic page, as in the [projects playbook](projects-playbook.md#5-new-tags). |
 
 ## 3. The text
 

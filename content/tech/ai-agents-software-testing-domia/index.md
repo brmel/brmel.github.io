@@ -2,7 +2,6 @@
 title: "Building an AI Agent That Tests a Live Website End to End"
 date: 2026-04-07
 description: "What an AI agent is, and DOMIA, the autonomous end-to-end testing agent I built on Google ADK and Gemini."
-tags: ["AI", "Testing", "Python"]
 cover:
     image: "04-domia-architecture.jpg"
     alt: "DOMIA architecture: the agent loop, its tools, and the drivers for web, mobile and desktop"
@@ -280,14 +279,6 @@ goal syntax works everywhere, and only the driver changes:
   cheaper. DOMIA is most useful on long, stateful user journeys: the UAT scenarios and
   cross-layer regression tests that are too expensive to maintain with
   traditional selector-based automation.
-
-## Conclusion
-
-I learned how agents work by building DOMIA from scratch and writing every
-line of Python: the tool definitions, the
-session loop, the perception pipeline, the failure handling. If you want to learn
-agents, build one. Pick a problem you know well, give the model one tool, and see
-what happens.
 
 ## Sources
 

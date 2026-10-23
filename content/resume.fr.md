@@ -54,11 +54,6 @@ experience:
           de traitement C++, et je les garde dans les mêmes limites de
           vitesse et de mémoire que la voie classique.
     stack: ["C++", "algorithmes de vision industrielle", "apprentissage profond", "OCR", "apprentissage automatique", "imagerie embarquée"]
-    learned: |-
-      - L’apprentissage profond prend tout son sens là où les décodeurs classiques s’arrêtent (codes abîmés, flous, peu contrastés) et leur cède partout ailleurs sur la latence et la prévisibilité. Choisir quelle moitié du problème confier à un modèle, c’est l’essentiel de la conception.
-      - Un modèle qui gagne sur un jeu de test peut échouer sur le terrain, parce que les échecs d’un client sont les images que personne n’a pensé à mettre dans le jeu de test. Ce qui compte, c’est comment il échoue, plus que combien de fois.
-      - Faire tourner l’inférence dans un pipeline temps réel est d’abord un problème de mémoire et de débit, ensuite un problème d’apprentissage. Le prétraitement, les allocations et la localité de cache décident si un modèle tient dans le budget d’une image.
-      - Sur la caméra intelligente, ce sont les contraintes qui dictent toute la conception. Le working set, les allocations sur le chemin critique et la marge processeur éliminent des approches bien avant la précision.
 
   - period: "2022 — 2024"
     role: "Développeur logiciel II"
@@ -85,18 +80,12 @@ experience:
           développeurs juniors sur le C++ moderne, le multithreading et la
           revue de code.
     stack: ["C++", "appariement géométrique", "métrologie", "optimisation non linéaire", "apprentissage classique"]
-    learned: |-
-      - C’est en écrivant la documentation et les exemples qu’une API est vraiment mise à l’épreuve. Presque toutes les questions des clients portaient sur l’interface, pas sur l’algorithme.
-      - Une API C++ publique, une fois livrée, on ne peut plus revenir dessus. Le nommage, l’ordre des paramètres, le comportement par défaut et la remontée des erreurs survivent à tous les détails d’implémentation derrière eux.
-      - L’apprentissage automatique classique dans une bibliothèque géométrique doit pouvoir se diagnostiquer. Une forêt aléatoire qui classe un motif doit échouer d’une manière qu’un ingénieur support peut expliquer à un client, ce qui a écarté des modèles que je ne pouvais pas inspecter.
-      - Les bogues d’API à état et les écarts en virgule flottante sont les deux défauts que les tests de régression attrapent et que la revue de code laisse passer. Dans un diff, les deux passent inaperçus.
-      - Encadrer des stagiaires m’a obligé à dire pourquoi et pas seulement quoi, et c’est là que j’ai trouvé les habitudes que je ne savais pas défendre.
 
   - period: "2019 — 2022"
     role: "Développeur logiciel"
     org: "Matrox Imaging"
     url: "https://www.zebra.com/us/en/software/machine-vision-and-fixed-industrial-scanning-software/aurora-imaging-library.html"
-    note: "Matrox Imaging a rejoint Zebra Technologies en 2022 ; le travail s’est poursuivi sans interruption."
+    note: "Matrox Imaging a rejoint Zebra Technologies en 2022."
     work:
       - title: "Calibration, mesure et métrologie"
         video: "LcoPNbyuhZU"
@@ -130,11 +119,6 @@ experience:
           bancs d’essai automatisés qui mesuraient la précision et la
           vitesse des classifieurs à chaque changement.
     stack: ["C++", "optimisation non linéaire", "Levenberg–Marquardt", "stabilité numérique", "apprentissage classique"]
-    learned: |-
-      - Écrire un meilleur algorithme, c’est la partie facile. Le livrer dans une bibliothèque dont des milliers d’applications dépendent déjà, sans changer une réponse sur laquelle elles comptent, c’est la partie difficile.
-      - L’optimisation non linéaire ne vaut que par son estimation initiale et son critère d’arrêt. Levenberg–Marquardt converge proprement dans un article et oscille sur des données réelles tant que ces deux points ne sont pas réglés.
-      - La précision sous-pixel est un problème de stabilité numérique. L’ordre des opérations, le conditionnement de la matrice et la tolérance de comparaison décident des deux dernières décimales.
-      - Dans une base de code C++ vieille de plusieurs décennies, les bogues mémoire qui coûtent du temps sont les références pendantes et la propriété des objets que personne n’a documentée. Les fuites, au moins, se signalent.
 
   - period: "2017 — 2019"
     role: "M.Ing., génie électrique — automatique"
@@ -169,11 +153,6 @@ experience:
           de formation sur la flotte multi-robots réelle du Georgia Tech
           Robotarium.
     stack: ["C++", "SIFT", "homographie", "commande numérique", "détection et estimation", "commande stochastique et robuste", "traitement d’images"]
-    learned: |-
-      - Une loi de commande peut être juste sur le papier et rester fausse si elle arrive dix millisecondes trop tard. L’échéance fait partie du cahier des charges.
-      - La géométrie est la partie facile de l’appariement de caractéristiques. SIFT produit des candidats ; tout ce qui fait fonctionner un panorama ou un localisateur de pièces, c’est le rejet des points aberrants qui suit.
-      - C’est en estimation d’état que j’ai appris à pondérer un modèle et une mesure selon à quel point chacun ment.
-      - Faire tourner des algorithmes de consensus sur la flotte réelle du Robotarium plutôt qu’en simulation m’a montré quelle part d’un algorithme distribué tient à ce qui se passe quand un robot cesse de répondre.
 
   - period: "2012 — 2017"
     role: "Ingénieur d’État, génie électrique — automatique"
@@ -199,10 +178,6 @@ experience:
           véhicule autonome, et un programme d’automate qui pilote une
           machine d’assemblage industrielle.
     stack: ["C", "MATLAB", "VHDL", "conception de commande", "identification de procédés", "commande optimale"]
-    learned: |-
-      - La première machine d’assemblage que j’ai programmée tombait en panne à cause des capteurs et du câblage, pas de la logique de commande sur laquelle j’avais passé tout le semestre.
-      - Un programme d’automate s’écrit pour celui qui le déboguera à trois heures du matin sur un plancher d’usine.
-      - Identifier un procédé à partir de mesures réelles est plus difficile que concevoir le régulateur qui suit. L’erreur est dans le modèle.
 
 skills:
   - group: "Langages"

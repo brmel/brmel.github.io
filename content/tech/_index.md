@@ -1,4 +1,4 @@
 ---
 title: "Tech"
-description: "Write-ups on what I learned by building: Windows memory and C++, machine vision algorithms, numerical maths, and AI agents."
+description: "Articles on Windows memory and C++, machine vision algorithms, numerical maths, public data and AI agents."
 ---

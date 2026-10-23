@@ -4,19 +4,19 @@ How the templates, stylesheets, content and scripts fit together. Rules for chan
 [AGENTS.md](AGENTS.md); the reasons behind them are in [docs/decisions.md](docs/decisions.md).
 
 Chrome renders from front matter and from a page's place in the site: eyebrows, stack chips, status,
-gallery, lessons, verdict, series box, page header and list cards. Pages end with their content: no
-author card, topic chips, social links or previous/next. Authors write prose; consistency comes from
+gallery, verdict, series box, page header and list cards. Pages end with their content: no
+author card, social links or previous/next. Authors write prose; consistency comes from
 the templates.
 
 ## Repository
 
 | Path | Holds |
 |---|---|
-| `content/` | one page bundle (markdown plus its images) per project, article and field note; `content/resume.md` and `content/search.md` with `.fr.md`/`.ar.md` twins; topic pages in `content/tags/` |
-| `data/` | `data/paridata/` (PariData tickets, matches, profile) and `data/topics.yaml` (topic groups) |
+| `content/` | one page bundle (markdown plus its images) per project, article and field note; `content/resume.md` with `.fr.md`/`.ar.md` twins |
+| `data/` | `data/paridata/` (PariData tickets, matches, profile) |
 | `archetypes/` | scaffolds for `hugo new`: projects, tech, adventures, default |
 | `layouts/` | templates (below) |
-| `assets/` | everything that goes through Hugo Pipes: `assets/css/`, `assets/js/` (`search.js` search, `timeline.js` resume video dialog, `paridata.js` ledger controls), `assets/images/` (profile photo, resume video posters named by YouTube ID), `assets/paridata/flags/`, `assets/reports/` (generated report pages) |
+| `assets/` | everything that goes through Hugo Pipes: `assets/css/`, `assets/js/` (`timeline.js` resume video dialog, `paridata.js` ledger controls), `assets/images/` (profile photo, resume video posters named by YouTube ID), `assets/paridata/flags/`, `assets/reports/` (generated report pages) |
 | `i18n/` | UI strings in `i18n/en.yaml`, `i18n/fr.yaml`, `i18n/ar.yaml` |
 | `static/` | files served verbatim: favicons, `static/fonts/`, social cards in `static/og/`, `static/robots.txt`, `static/CNAME` |
 | `scripts/` | build entry points, gates, audit and generators (below) |
@@ -32,11 +32,9 @@ Hugo's current layout, with no theme: page templates at the root of `layouts/`, 
 | Path | Renders |
 |---|---|
 | `layouts/baseof.html` | the page shell; a layout widens `<main>` to the frame with `{{ define "main-width" }} main--wide{{ end }}` |
-| `layouts/list.html` | the home page (profile, intro, the `featured` cards), section indexes and topic pages: a card grid of every page, newest first (projects by highest `projectNo`; topic cards name their section) |
+| `layouts/list.html` | the home page (profile, intro, the `featured` cards) and section indexes: a card grid of every page, newest first (projects by highest `projectNo`) |
 | `layouts/single.html` | Tech articles and field notes; punctuation right after an inline formula stays on the formula's line |
-| `layouts/taxonomy.html` | `/tags/`: topics in the groups and order of `data/topics.yaml`, with page counts, each linking to its page in the reader's language when one exists; tags in no group land in a trailing "More" group sorted by count |
 | `layouts/resume.html` | the resume, from front matter |
-| `layouts/search.html`, `layouts/home.json` | the search page (`assets/js/search.js`) and its index: title, description, section, date and the first 2,000 characters of each page |
 | `layouts/rss.xml` | feeds |
 | `layouts/single.markdown.md` | the markdown twin of every Tech and Adventures page |
 | `layouts/_markup/render-link.html` | external links open in a new tab |
@@ -64,14 +62,13 @@ Hugo's current layout, with no theme: page templates at the root of `layouts/`, 
 | `layouts/_partials/home/` | `profile.html` (photo as AVIF with a WebP fallback, name, role line), `cards.html` (a headed card grid; takes `(dict "id" … "title" … "pages" …)`) |
 | `layouts/_partials/project/meta.html` | project links and stack chips |
 | `layouts/_partials/adventures/verdict.html` | the verdict block above the body, rendered when `rating` is set |
-| `layouts/_partials/topic/related.html` | a topic page's header line: its page count and the four other topics its pages share most, translated when a translation exists |
 | `layouts/_partials/resume/` | `timeline.html`, `video-thumb.html` |
 | `layouts/_partials/paridata/` | dashboard, curve, ledger, amount, about |
 | `layouts/_partials/brand/` | `mark.html` (the compass mark, the only implementation) |
 
 | `layouts/_partials/func/` | Returns |
 |---|---|
-| `section-pages.html` | the pages a section or topic lists: this language's pages plus default-language pages with no translation here, matched by `.Path` |
+| `section-pages.html` | the pages a section lists: this language's pages plus default-language pages with no translation here, matched by `.Path` |
 | `main-pages.html` | `section-pages.html` over every section in `mainSections`, for the home page |
 | `eyebrow.html` | a page's eyebrow line, by section |
 | `title.html` | a page's display title: the owner's name on the home page, the not-found title on the 404, else the page title; used by `<title>`, `og:title` and the social image's alt |
@@ -91,10 +88,9 @@ prefix is the cascade, then minifies and fingerprints one bundle that every page
 | `00-tokens` | design tokens, the only place a colour is defined; dark values under `.dark`; print and phone overrides |
 | `05-fonts` | self-hosted `@font-face` declarations |
 | `10-base` | reset, page frame and measure, page header, type, links, code |
-| `20-components` | shared primitives (`.u-card`, `.u-eyebrow`, `.u-dot`, `.u-heading`, `.u-link`, `.u-chip`, `.u-label-row`, `.u-frame`, `.u-sr-only`) and anything a shared partial or shortcode renders, including the list card and its grid |
+| `20-components` | shared primitives (`.u-card`, `.u-eyebrow`, `.u-dot`, `.u-heading`, `.u-link`, `.u-chip`, `.u-label-row`, `.u-frame`) and anything a shared partial or shortcode renders, including the list card and its grid |
 | `30-chrome` | nav, mark, footer, series box, table of contents |
-| `32-search` | search box |
-| `40-home` … `47-topics` | one section each: home, resume, timeline and video dialog, adventures, PariData, project page, topics |
+| `40-home` … `46-project-page` | one section each: home, resume, timeline and video dialog, adventures, PariData, project page |
 | `50-content` | article body: type scale, figures, diagrams, code |
 | `60-print` | print, last in the cascade |
 
@@ -124,9 +120,9 @@ Hugo's image pipeline. Section front matter is documented in the playbooks:
 [PariData](docs/paridata-playbook.md). Any project, article or field note can take `featured: N`, which
 lists it under "Start here" on the home page, lowest number first.
 
-A Tech or Adventures article declares `title`, `description`, `tags` and a `cover` (`image`, a file in
+A Tech or Adventures article declares `title`, `description` and a `cover` (`image`, a file in
 the bundle, and `alt`). `description` is the one line a reader sees on the list card, the home feed,
-search, the meta description and JSON-LD. Optional fields:
+the meta description and JSON-LD. Optional fields:
 
 | Field | Renders, in |
 |---|---|
@@ -137,7 +133,7 @@ search, the meta description and JSON-LD. Optional fields:
 The resume is front matter: `role`, `location`, `sameAs` (profile URLs, read only by the JSON-LD
 `Person`), then `experience:` periods (`period`,
 `role`, `org`, `url`, `note`, `kind: education` for degrees, `work` items with `title`, `url`, `text`,
-`video`, `videoAlt`, then `stack` and a markdown `learned` list), `skills` and
+`video`, `videoAlt`, then `stack`), `skills` and
 `certifications`. `layouts/_partials/resume/timeline.html` renders the periods; `llms.txt` reads the same
 data. The page header is the name, the "Save as PDF" button, the `role` line and "As of <month year>" from `lastmod` (printed too); the markdown body, a short list of what the work involves, opens the page in two columns.
 
@@ -149,24 +145,15 @@ the site font, hides the report's own nav and header, drops its side padding so 
 column, and patches its accessibility gaps. Report files and their
 generators stay untouched.
 
-### Topics
-
-Each tag is a topic page at `/tags/<tag>/`, rendered by `layouts/list.html` from
-`layouts/_partials/func/section-pages.html`. `content/tags/<tag>/_index.md` gives it a title and a
-description (and `url:` where the tag is not URL-safe: `C++` is `/tags/cpp/`). `/tags/` groups topics
-by `data/topics.yaml`: the order of `groups` is the order on the page, each group's heading is the i18n
-key `topics_group_<key>`, and any tag not listed falls into the trailing "More" group automatically.
-
 ## Languages
 
 English lives at the root, French under `/fr/`, Arabic (RTL) under `/ar/`. Structural pages (home,
-resume, section indexes, search, UI strings) exist in all three; long-form pages are English unless
+resume, section indexes, UI strings) exist in all three; long-form pages are English unless
 translated, by adding `index.fr.md` or `index.ar.md` to the bundle.
 
 - Lists merge: `func/section-pages.html` returns this language's pages plus untranslated English
   ones, which keep their English URL, carry `lang="en"` and their own direction, and show the "in
-  English" label. Section indexes, home feeds, section feeds, search, topic pages and `llms.txt` all
-  use it.
+  English" label. Section indexes, home feeds, section feeds and `llms.txt` all use it.
 - UI strings exist in all three `i18n/*.yaml` files at once. Plain strings are flat `key: "value"`;
   counted strings use plural forms (`one`/`other`, plus `zero`/`two`/`few`/`many` in Arabic).
 - Numbers, currency placement and plurals come from i18n (`number_locale`, `currency_pattern`), and

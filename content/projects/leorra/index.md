@@ -18,12 +18,6 @@ lede: |
   matching someone who needs a parcel moved with a traveller who has room in
   their luggage. Twenty months of design and build, across three languages. It was
   never released.
-lessons:
-  - "**I rewrote two months of work and it was the right call.** The commit is still there: *Restart from a very clean project. Only login files are added*, with 1,134 deletions against 45 insertions. The first version worked and couldn’t be extended; everything lived in widgets. What replaced it was Domain / Application / Infrastructure / Presentation with value objects and validators, and the fourth feature cost about what the second did."
-  - "**Layer discipline is measurable, and mine was lopsided.** 19 domain files against 159 presentation files. The business rules were small and isolated, but I wrote eight test files, all for identification, and none for matching, trips or contracts. I tested the layer that was easy to test, not the one carrying the risk."
-  - "**What people needed was trust, and I built the marketplace instead.** Listings, chat, contracts and matching were all built. Identity verification, escrow, dispute handling and what happens when a package doesn’t arrive did not. For a stranger to hand another stranger a laptop at an airport, the trust layer is the app, and I treated it as a later phase."
-  - "**After the last feature commit, all that was left was a translation pass.** Twenty months, three languages and store screenshots, and what was missing at the end was never another feature."
-tags: ["Flutter", "Firebase", "Clean Architecture"]
 ---
 
 ## The story

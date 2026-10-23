@@ -6,7 +6,7 @@ import { pathToFileURL } from 'node:url';
 
 const list = (name, fallback) => (process.env[name] || fallback).split(',').filter(Boolean);
 const base = (process.env.BASE || 'http://127.0.0.1:1313').replace(/\/$/, '');
-const pages = list('PAGES', '/,/fr/,/ar/,/resume/,/ar/resume/,/projects/,/projects/memorytracer/,/projects/paridata/,/ar/projects/paridata/,/tech/,/tech/windows-memory-management-deep-dive/,/tech/montreal-forecast-reliability/,/adventures/,/adventures/indian-head-rainbow-falls/,/tags/,/tags/cpp/,/search/,/fr/tech/barcode-flight/,/ar/tech/barcode-flight/,/404.html');
+const pages = list('PAGES', '/,/fr/,/ar/,/resume/,/ar/resume/,/projects/,/projects/memorytracer/,/projects/paridata/,/ar/projects/paridata/,/tech/,/tech/windows-memory-management-deep-dive/,/tech/montreal-forecast-reliability/,/adventures/,/adventures/indian-head-rainbow-falls/,/fr/tech/barcode-flight/,/ar/tech/barcode-flight/,/404.html');
 const viewports = list('VIEWPORTS', '320,360,390,768,1024,1440').map(v => v.includes('x') ? v.split('x').map(Number) : [Number(v), 900]);
 const themes = list('THEMES', 'light,dark');
 const shoot = list('SHOOT', '').map(Number);

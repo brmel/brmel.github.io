@@ -12,10 +12,10 @@
 {{- partial "home/cards.html" (dict "id" "featured" "title" (i18n "featured_heading") "pages" (sort (where $pages "Params.featured" "!=" nil) "Params.featured")) }}
 {{- else }}
 
-{{ partial "page-head/header.html" (dict "page" . "extra" (cond (eq .Kind "term") (partial "topic/related.html" .) "")) }}
+{{ partial "page-head/header.html" (dict "page" .) }}
 
 {{- $order := cond (eq .Section "projects") "Params.projectNo" "Date" }}
-{{- partial "article/grid.html" (dict "pages" (sort (partial "func/section-pages.html" .) $order "desc") "showSection" (eq .Kind "term") "eager" true) }}
+{{- partial "article/grid.html" (dict "pages" (sort (partial "func/section-pages.html" .) $order "desc") "eager" true) }}
 
 {{- end }}
 

@@ -15,13 +15,6 @@ stack: []
 links:
   live: ""
   repo: ""
-
-lessons:
-  - ""
-  - ""
-  - ""
-
-tags: []
 ---
 
 ## The story

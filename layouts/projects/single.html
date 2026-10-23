@@ -18,7 +18,6 @@
   </dl>
   {{- end }}
 
-
   <div class="post-content">
     {{- .Content -}}
   </div>
@@ -41,15 +40,6 @@
       </figure>
       {{- end }}
     </div>
-  </section>
-  {{- end }}
-
-  {{- with .Params.lessons }}
-  <section class="project-lessons" aria-labelledby="project-lessons-h">
-    <h2 class="u-heading" id="project-lessons-h">{{ i18n "project_lessons" }}</h2>
-    <ul class="project-lessons__list">
-      {{- range . }}<li>{{ . | markdownify }}</li>{{ end }}
-    </ul>
   </section>
   {{- end }}
 </article>

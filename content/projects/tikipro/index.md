@@ -18,11 +18,6 @@ lede: |
   Clinic queue management that runs entirely on the one PC already sitting at
   reception: the desk view, the waiting-room screen and each doctor’s queue, with
   no server, no per-seat licence and no patient record leaving the building.
-lessons:
-  - "**For the first ten minutes, all anyone sees is the installer.** The app refuses to start without a licence file, and the installer is not code-signed, so Windows SmartScreen blocks it: two dead ends before anyone sees a feature. I now write the onboarding email before the release, because every warning it has to explain is a design failure I could have removed."
-  - "**Licensing is manual, because the volume is low.** There is no automated licensing email anywhere. A request writes to Firestore, a function sends me a Telegram message, and I reply by hand. The automated flow would have taken a week to serve maybe one clinic a month."
-  - "**Nothing says when the download cap is hit.** Installer downloads are capped at 3 a day and 10 a week across *all* visitors, not per person. Obvious in the code, invisible from outside: onboarding several clinics in one afternoon hits the cap and looks like an outage."
-tags: ["Desktop", "TypeScript", "Firebase"]
 ---
 
 ## The story

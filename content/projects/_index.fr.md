@@ -1,4 +1,4 @@
 ---
 title: "Projets"
-description: "Des logiciels menés de bout en bout : simulation robotique, agents IA, pipelines de données, applications de bureau et mobiles, et ce qu’ils m’ont appris."
+description: "Des logiciels menés de bout en bout : agents IA, applications mobiles et de bureau, outils de données et une bibliothèque C++."
 ---

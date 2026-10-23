@@ -45,10 +45,6 @@
 .timeline-facts__label{padding-top:2px;}
 .timeline-facts__value{margin:0;font-size:var(--t-caption);color:var(--ink-soft);}
 
-.timeline-facts__row--learned ul{padding-inline-start:var(--space-5);columns:2 360px;column-gap:var(--space-7);}
-.timeline-facts__row--learned li{padding-block:var(--space-1);break-inside:avoid;}
-.timeline-facts__row--learned li > p{margin:0;}
-
 .video-thumb{position:relative;display:block;margin:0;line-height:0;overflow:hidden;}
 .video-thumb img{width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;}
 .video-thumb__play{
