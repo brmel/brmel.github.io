@@ -1,9 +1,9 @@
 ---
 title: "Resume"
 layout: "resume"
-lastmod: 2026-10-21
-description: "Senior Software Developer, seven years on 2D and 3D machine vision algorithms in modern C++: real-time image processing, numerical optimisation and memory."
-role: "Senior Software Developer in Montréal, building machine vision and image processing algorithms in modern C++"
+lastmod: 2026-10-25
+description: "Senior Software Developer with seven years of production C++: 2D and 3D machine vision, machine learning and deep learning, and today generative AI."
+role: "Senior Software Developer in Montréal: production C++ for machine vision and machine learning, and today generative AI"
 location: "Montréal, Québec"
 sameAs:
   - "https://www.linkedin.com/in/brahim-redouane-mellah/"
@@ -11,8 +11,27 @@ sameAs:
   - "https://x.com/BrmelB"
 
 experience:
-  - period: "2024 — Present"
-    role: "Senior Software Developer"
+  - period: "Aug 2026 — Present"
+    role: "Senior Software Developer, Generative AI"
+    org: "Zebra Technologies"
+    url: "https://www.zebra.com/us/en.html"
+    work:
+      - title: "Agentic workflows and RAG"
+        text: >-
+          I implement agentic workflows end to end with Google ADK and
+          LlamaIndex: the agent loop, the tools each agent can call, its
+          memory, and the context it receives, sized for small models. I
+          build retrieval-augmented generation (RAG) with grounded answers,
+          and run small models locally.
+      - title: "Agent evaluation"
+        text: >-
+          I build the evaluation sets and metrics that decide whether an
+          agent is good enough to ship, the same discipline I used for deep
+          learning models.
+    stack: ["Google ADK", "LlamaIndex", "agentic workflows", "RAG", "agent evaluation", "small local models"]
+
+  - period: "Jul 2024 — Aug 2026"
+    role: "Senior Software Developer, Aurora Imaging Library"
     org: "Zebra Technologies"
     url: "https://www.zebra.com/us/en.html"
     work:
@@ -21,64 +40,69 @@ experience:
         video: "m7KKRmOxRT0"
         videoAlt: "Walkthrough of the Aurora Imaging Library in Aurora Vision Studio"
         text: >-
-          I develop and maintain the 2D and 3D algorithms in the Aurora
-          Imaging Library, Zebra’s machine vision SDK. I add features, fix
-          bugs, and support customers directly when their applications
-          fail in production. I write the API documentation and the code
-          examples that ship with each release, agree API behaviour and
+          I owned vision algorithms in the Aurora Imaging Library, Zebra’s
+          machine vision SDK (Edge Finder, Geometric Matcher and
+          Calibration), from feature to release. I designed their APIs, fixed
+          bugs, and supported customers directly when their applications
+          failed in production. I wrote the API documentation and the code
+          examples that ship with each release, agreed API behaviour and
           backward compatibility with the UI, documentation and QA teams
-          before it goes out, and help plan the release roadmap.
+          before it went out, and helped plan the release roadmap.
       - title: "Image processing on smart cameras"
         url: "https://www.zebra.com/us/en/products/industrial-machine-vision-fixed-scanners/smart-sensors-and-cameras.html"
         video: "N2DfQzTPwog"
         videoAlt: "A Zebra smart camera inspecting parts on a bench"
         text: >-
-          I bring the library’s image processing to Zebra’s smart cameras,
-          writing algorithms that fit the camera’s limited memory and
-          processing power. I work across the whole product, from the user
-          interface to the backend: I fix multithreading and concurrency
-          bugs, reproduce and validate fixes with the QA team, and build
-          features that make the camera easier to configure.
-      - title: "Deep learning for OCR and barcode reading"
+          I brought the library’s image processing to Zebra’s Aurora Focus
+          smart cameras, writing algorithms that fit the camera’s limited
+          memory and processing power. I worked across the whole product,
+          from the user interface to the backend: I fixed multithreading and
+          concurrency bugs, reproduced and validated fixes with the QA team,
+          and built features that make the camera easier to configure.
+      - title: "Classical machine learning in C++"
         text: >-
-          I work on the library’s deep learning models for reading text
-          and codes that the classical decoders can’t: damaged, blurred,
-          low-contrast, or printed on curved and reflective surfaces. I
-          train and evaluate the models, integrate them into the C++
-          processing pipeline, and keep them within the same speed and
-          memory limits the classical path already meets.
+          I implemented decision trees, random forests and k-means in the
+          library’s C++: multithreaded, thread-safe, and with early stopping.
+      - title: "Deep learning for OCR and object detection"
+        text: >-
+          I benchmarked deep learning models for object detection, OCR and
+          text detection on CPU and GPU, tuned their hyperparameters, and
+          designed the metrics that decide whether a model ships. Then I took
+          the accepted ones to production.
     stack: ["C++", "machine vision algorithms", "deep learning", "OCR", "machine learning", "embedded / edge imaging"]
 
-  - period: "2022 — 2024"
-    role: "Software Developer II"
+  - period: "Jun 2022 — Jun 2024"
+    role: "Software Developer II, Image Processing"
     org: "Zebra Technologies"
     url: "https://www.zebra.com/us/en.html"
     work:
-      - title: "Geometry and solvers behind the 2D modules"
+      - title: "The Advanced Geometric Matcher, from research to production"
         text: >-
-          I maintained and extended the library’s 2D tools for locating,
-          measuring and inspecting parts (Model Finder, Edge Finder,
-          Measurement, Metrology, Calibration and Bead), including the
-          geometry, linear algebra and non-linear optimisation they run
-          on. I fixed numerical and API bugs and extended their regression
-          tests.
+          I took the Advanced Geometric Matcher (AGM), a new pattern-matching
+          tool, from research and prototype to production. I designed its
+          public C++ API with the team, and it ships today in Zebra’s Aurora
+          Imaging Library.
       - title: "Machine learning inside a geometric library"
         video: "CS4cs9xVecg"
         videoAlt: "Notes from the deep learning specialisation"
         text: >-
           I integrated classical machine learning (Random Forests and SVMs)
           into modules that had been purely geometric, to classify patterns in
-          complex scenes. I wrote the new APIs, their reference documentation
+          cluttered scenes. I wrote the new APIs, their reference documentation
           and the customer examples that shipped with them, and mentored
           interns and junior developers on modern C++, multithreading and code
           review.
-    stack: ["C++", "geometric matching", "metrology", "non-linear optimisation", "classical ML"]
+      - title: "Numerical bugs and regression tests"
+        text: >-
+          I fixed numerical bugs and API regressions, and added unit,
+          integration and randomised tests to the regression suites.
+    stack: ["C++", "geometric matching", "public API design", "classical ML", "regression testing"]
 
-  - period: "2019 — 2022"
-    role: "Software Developer"
+  - period: "Jun 2019 — Jun 2022"
+    role: "Software Developer, Image Processing"
     org: "Matrox Imaging"
     url: "https://www.zebra.com/us/en/software/machine-vision-and-fixed-industrial-scanning-software/aurora-imaging-library.html"
-    note: "Matrox Imaging became part of Zebra Technologies in 2022."
+    note: "Matrox Imaging, in Dorval, became part of Zebra Technologies in 2022."
     work:
       - title: "Calibration, measurement and metrology"
         video: "LcoPNbyuhZU"
@@ -86,10 +110,10 @@ experience:
         text: >-
           My first role after the master’s was on the library’s
           measurement modules: Calibration, Measurement and Metrology. I
-          implemented and debugged their algorithms, wrote their tests and
-          customer examples, designed the Advanced Geometric Matcher and
-          co-designed its public C++ API. It ships today in Zebra’s Aurora
-          Imaging Library.
+          implemented and debugged their algorithms, wrote their tests,
+          documentation and customer examples, and supported the customers
+          who used them. I also maintained Model Finder, Edge Finder and
+          Bead.
       - title: "Non-linear solvers in a legacy C++ codebase"
         video: "sfLZ7v9gEnc"
         videoAlt: "Working through the Matrox Imaging Library codebase"
@@ -101,22 +125,29 @@ experience:
           and dangling references, and built regression suites that
           protect the behaviour thousands of installed applications depend
           on.
+    stack: ["C++", "calibration", "metrology", "non-linear optimisation", "Levenberg–Marquardt", "numerical stability"]
+
+  - period: "Jan 2019 — May 2019"
+    role: "Software Development Intern"
+    org: "Matrox Imaging"
+    url: "https://www.zebra.com/us/en/software/machine-vision-and-fixed-industrial-scanning-software/aurora-imaging-library.html"
+    work:
       - title: "Machine learning in the imaging library"
         text: >-
-          I joined as an intern in early 2019 and built Random Forest
-          classifiers into the Matrox Imaging Library (today Zebra’s
-          Aurora Imaging Library), so that production lines could sort
-          defects in real time. I also built synthetic dataset generators
-          and automated benchmarks that measured the classifiers’
-          precision and speed on every change.
-    stack: ["C++", "non-linear optimisation", "Levenberg–Marquardt", "numerical stability", "classical ML"]
+          I built a random forest classifier into the Matrox Imaging Library
+          (today Zebra’s Aurora Imaging Library), with multithreaded training
+          and warm start, so that production lines could sort defects in real
+          time. I also built synthetic dataset generators and automated
+          benchmarks that measured the classifier’s precision and speed on
+          every change.
+    stack: ["C++", "random forests", "multithreading", "benchmarking"]
 
   - period: "2017 — 2019"
-    role: "M.Eng., Electrical Engineering — Control Systems"
+    role: "Master of Engineering (M.Eng.), Electrical Engineering — Control Systems"
     kind: "education"
     org: "Polytechnique Montréal"
     url: "https://www.polymtl.ca/"
-    note: "Professional master’s with an industrial internship · GPA 3.87/4 · Al Ghurair Foundation Scholarship — 1 of 100 selected from more than 15,000 applicants."
+    note: "Professional master’s with an industrial internship · GPA 3.87/4 · Al Ghurair Foundation Scholarship — 1 of about 100 recipients from more than 15,000 applicants."
     work:
       - title: "How I got to Canada"
         video: "BPkj-VETeX0"
@@ -143,11 +174,11 @@ experience:
     stack: ["C++", "SIFT", "homography", "digital control", "detection and estimation", "stochastic and robust control", "image processing"]
 
   - period: "2012 — 2017"
-    role: "B.Eng., Electrical Engineering — Control Systems"
+    role: "Engineering degree (Diplôme d’ingénieur d’État), Electrical Engineering — Control Systems"
     kind: "education"
     org: "École Nationale Polytechnique, Algiers"
     url: "https://www.enp.edu.dz/en/"
-    note: "GPA 17.5/20 · graduated 5th of 1,400 — top 1% nationally."
+    note: "GPA 17.5/20 · ranked 5th of 1,400 in the national entrance exam after the preparatory classes (top 1%)."
     work:
       - title: "Two years of preparatory classes first"
         video: "VjwIGG7Lbt0"
@@ -175,6 +206,8 @@ skills:
     items: ["non-linear optimisation", "Levenberg–Marquardt", "non-linear least squares", "linear algebra", "numerical stability", "control theory", "classical ML", "deep learning"]
   - group: "C++ & systems"
     items: ["modern C++ (templates, STL)", "multithreading and concurrency", "real-time image processing", "virtual memory and working set", "CMake", "GTest", "Clang / LLVM", "ASan / MSan", "Valgrind", "gdb", "cross-platform Windows and Linux", "QNX", "ROS", "Docker"]
+  - group: "Generative AI"
+    items: ["agentic workflows", "RAG", "agent evaluation", "small local models", "Google ADK", "LlamaIndex", "Gemini", "MCP"]
   - group: "Cloud & backend"
     items: ["Google Cloud", "Firebase", "Cloud Functions", "Firestore", "Cloud Storage", "FastAPI", "Prefect"]
   - group: "Tools & practice"
@@ -192,7 +225,8 @@ certifications:
 
 - **Machine vision** — 2D and 3D algorithms that find, measure and inspect parts in factory images: pattern matching, edge detection, calibration and metrology
 - **Machine learning, prototype to production** — taking a model from a first prototype to a tested, documented feature of a C++ library that ships to customers
-- **Deep learning evaluation** — testing deep learning models for object detection and text detection, including damaged, blurred and low-contrast codes
+- **Deep learning evaluation** — benchmarking deep learning models for object detection, OCR and text detection on CPU and GPU, and designing the metrics that decide whether a model ships
 - **Constrained hardware** — optimising vision algorithms to fit the memory and processing limits of smart cameras
 - **Numerical algorithms** — non-linear optimisation for sub-pixel accuracy, with regression tests that guard every numerical result
 - **Modern C++** — safe multithreaded code, memory measured with [MemoryTracer](/projects/memorytracer/) and explained in [two articles](/tech/windows-memory-management-overview/), code review, automated tests and sanitizers
+- **Generative AI** — my current work: agentic workflows with Google ADK and LlamaIndex, RAG, and the evaluations that decide when an agent is ready to ship

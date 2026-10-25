@@ -36,7 +36,7 @@ Three elements appear on every asset.
    | Field note | `{Category} · {Place} · {Date} · {Read length}` | `Hike · Adirondacks · June 1, 2026 · 6 min` |
    | Project page and card | `{Year} · {Status}` | `2026 · In progress` |
    | Article page and card | `{Date} · {Read length}` | `June 1, 2026 · 6 min` |
-   | Career period | `{Years}` | `2024 — Present` |
+   | Career period | `{Month Year} — {Month Year}`; years alone for a degree | `Aug 2026 — Present` |
 
    Every label is translated. Dates render through `time.Format ":date_long"`, so month names
    follow the language. Read length shows only from 2 minutes.

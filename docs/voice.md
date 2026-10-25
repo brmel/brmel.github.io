@@ -48,7 +48,7 @@ tells below collect.
 
 Front-matter keys and YAML structure (`>-`, `|-`, nesting, quoting); code blocks and inline code;
 shortcodes; URLs, link targets and image paths; product and module names (Aurora Imaging Library,
-Model Finder, MemoryTracer, VMMap, GTest, UR10e); resume `period` ranges (`2024 — Present`);
+Model Finder, MemoryTracer, VMMap, GTest, UR10e); resume `period` ranges (`Aug 2026 — Present`);
 `Author — [Title](url)` source lines; metric `value`s, `rating`, `date`; the Markdown
 structure (headings, lists).
 
