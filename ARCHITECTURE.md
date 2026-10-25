@@ -22,6 +22,7 @@ the templates.
 | `scripts/` | build entry points, gates, audit and generators (below) |
 | `.github/workflows/site.yml` | CI and deployment |
 | `docs/` | brand, voice, playbooks, decisions, backlog, brand kit |
+| `resume/` | the resume sent to employers: `Brahim-Redouane-Mellah-Resume.html` and the PDF printed from it with headless Chrome; not part of the site build |
 | `.claude/skills/` | agent skills; see [AGENTS.md](AGENTS.md) |
 
 ## Templates
