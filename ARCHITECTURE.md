@@ -14,14 +14,14 @@ the templates.
 |---|---|
 | `content/` | one page bundle (markdown plus its images) per project, article and field note; `content/resume.md` with `.fr.md`/`.ar.md` twins |
 | `data/` | `data/paridata/` (PariData tickets, matches, profile) |
-| `archetypes/` | scaffolds for `hugo new`: projects, tech, adventures, default |
+| `archetypes/` | scaffolds for `hugo new`: projects, tech, adventures |
 | `layouts/` | templates (below) |
 | `assets/` | everything that goes through Hugo Pipes: `assets/css/`, `assets/js/` (`timeline.js` resume video dialog, `paridata.js` ledger controls), `assets/images/` (profile photo, resume video posters named by YouTube ID), `assets/paridata/flags/`, `assets/reports/` (generated report pages) |
 | `i18n/` | UI strings in `i18n/en.yaml`, `i18n/fr.yaml`, `i18n/ar.yaml` |
 | `static/` | files served verbatim: favicons, `static/fonts/`, social cards in `static/og/`, `static/robots.txt`, `static/CNAME` |
 | `scripts/` | build entry points, gates, audit and generators (below) |
 | `.github/workflows/site.yml` | CI and deployment |
-| `docs/` | brand, voice, playbooks, decisions, backlog, brand kit |
+| `docs/` | brand, voice, playbooks, decisions, backlog, roadmap |
 | `resume/` | the resume sent to employers: `Brahim-Redouane-Mellah-Resume.html` and the PDF printed from it with headless Chrome; not part of the site build |
 | `.claude/skills/` | agent skills; see [AGENTS.md](AGENTS.md) |
 
@@ -33,7 +33,7 @@ Hugo's current layout, with no theme: page templates at the root of `layouts/`, 
 | Path | Renders |
 |---|---|
 | `layouts/baseof.html` | the page shell; a layout widens `<main>` to the frame with `{{ define "main-width" }} main--wide{{ end }}` |
-| `layouts/list.html` | the home page (profile, intro, the `featured` cards) and section indexes: a card grid of every page, newest first (projects by highest `projectNo`) |
+| `layouts/list.html` | the home page (the profile card, then the `featured` cards) and section indexes: a card grid of every page, newest first (projects by highest `projectNo`); both on the 1200px frame |
 | `layouts/single.html` | Tech articles and field notes; punctuation right after an inline formula stays on the formula's line |
 | `layouts/resume.html` | the resume, from front matter |
 | `layouts/rss.xml` | feeds |
@@ -60,10 +60,10 @@ Hugo's current layout, with no theme: page templates at the root of `layouts/`, 
 | `layouts/_partials/func/` | partials that `return` a value; call with `partial` and use the result |
 | `layouts/_partials/page-head/` | `header.html`, every page header: one meta line (eyebrow, plus the date on Tech and Adventures pages), title, one description line (`pitch`, `role` or `description`), optional `extra` block; called with `(dict "page" . "title" … "extra" …)` |
 | `layouts/_partials/article/` | `grid.html` (the card grid every list uses; takes `(dict "pages" … "showSection" true "level" 3 "eager" true)`, `level` the card heading level (2 by default), `eager` loading the first thumbnail with high priority), `entry.html` (one card, the same for articles, field notes and projects; an untranslated English page listed in French or Arabic keeps `lang`/`dir` and shows the "in English" label), `cover.html` (the 16:9 thumbnail from `func/cover.html`, else the compass mark), `meta.html` (date, and read length from 2 minutes), `toc.html` (the table of contents from 5 minutes, a `<details>` card), `series.html` (series box) |
-| `layouts/_partials/home/` | `profile.html` (photo as AVIF with a WebP fallback, name, role line), `cards.html` (a headed card grid; takes `(dict "id" … "title" … "pages" …)`) |
+| `layouts/_partials/home/` | `profile.html` (one card: name, role line, the home page body as the intro, and the photo as AVIF with a WebP fallback), `cards.html` (a headed card grid; takes `(dict "id" … "title" … "pages" …)`) |
 | `layouts/_partials/project/meta.html` | project links and stack chips |
 | `layouts/_partials/adventures/verdict.html` | the verdict block above the body, rendered when `rating` is set |
-| `layouts/_partials/resume/` | `timeline.html`, `video-thumb.html` |
+| `layouts/_partials/resume/` | `timeline.html` (each period as a rail with the dates and employer beside the role, work items and stack chips), `video-thumb.html` |
 | `layouts/_partials/paridata/` | dashboard, curve, ledger, amount, about |
 | `layouts/_partials/brand/` | `mark.html` (the compass mark, the only implementation) |
 
@@ -89,7 +89,7 @@ prefix is the cascade, then minifies and fingerprints one bundle that every page
 | `00-tokens` | design tokens, the only place a colour is defined; dark values under `.dark`; print and phone overrides |
 | `05-fonts` | self-hosted `@font-face` declarations |
 | `10-base` | reset, page frame and measure, page header, type, links, code |
-| `20-components` | shared primitives (`.u-card`, `.u-eyebrow`, `.u-dot`, `.u-heading`, `.u-link`, `.u-chip`, `.u-label-row`, `.u-frame`) and anything a shared partial or shortcode renders, including the list card and its grid |
+| `20-components` | shared primitives (`.u-card`, `.u-eyebrow`, `.u-dot`, `.u-heading`, `.u-link`, `.u-chip`, `.u-chips`, `.u-label-row`, `.u-frame`) and anything a shared partial or shortcode renders, including the list card and its grid |
 | `30-chrome` | nav, mark, footer, series box, table of contents |
 | `40-home` … `46-project-page` | one section each: home, resume, timeline and video dialog, adventures, PariData, project page |
 | `50-content` | article body: type scale, figures, diagrams, code |
@@ -106,8 +106,8 @@ Header, footer and `<main>` share the 1200px frame (`--container-content`). Ever
 sits at that page's measure:
 
 - by default the text measure, 900px (`--container-text`); grids reflow to it with `auto-fit`/`minmax`.
-- the 1200px frame on pages whose body is a table or a timeline, set with `main--wide`: the resume
-  and PariData. Card grids stay at the text measure, two cards a row.
+- the 1200px frame, set with `main--wide`, on the home page and section indexes (card grids, two
+  cards a row, one under 720px), the resume and PariData.
 
 No block sets its own `max-width` or `margin-inline:auto` (a single paragraph may cap its line length in `ch`), nothing is sized from `100vw`, and space
 between blocks is `margin-block` from `--flow-tight`, `--flow-block` and `--flow-section`. Rules sit
@@ -122,7 +122,7 @@ Hugo's image pipeline. Section front matter is documented in the playbooks:
 lists it under "Start here" on the home page, lowest number first.
 
 A Tech or Adventures article declares `title`, `description` and a `cover` (`image`, a file in
-the bundle, and `alt`). `description` is the one line a reader sees on the list card, the home feed,
+the bundle, and `alt`). `description` is the one line a reader sees on the list card,
 the meta description and JSON-LD. Optional fields:
 
 | Field | Renders, in |
@@ -132,11 +132,11 @@ the meta description and JSON-LD. Optional fields:
 | `lastmod` | The date of the latest real revision (sitemap, `dateModified`, `article:modified_time`). Without it a page counts as unchanged since `date`. |
 
 The resume is front matter: `role`, `location`, `sameAs` (profile URLs, read only by the JSON-LD
-`Person`), then `experience:` periods (`period`,
+`Person`), `highlights` (`title` and `text` cards under the header), then `experience:` periods (`period`,
 `role`, `org`, `url`, `note`, `kind: education` for degrees, `work` items with `title`, `url`, `text`,
-`video`, `videoAlt`, then `stack`), `skills` and
+`video`, `videoAlt`, then `stack`; an item with a video takes a full row), `skills` and
 `certifications`. `layouts/_partials/resume/timeline.html` renders the periods; `llms.txt` reads the same
-data. The page header is the name, the "Save as PDF" button, the `role` line and "As of <month year>" from `lastmod` (printed too); the markdown body, a short list of what the work involves, opens the page in two columns.
+data. The page header is the name, the "Save as PDF" button, the `role` line and "As of <month year>" from `lastmod` (printed too). An employer or product URL is linked once on the page.
 
 A report is a Tech article whose body is the report alone:
 `{{< reportframe src="reports/<file>.html" title="…" >}}`, with no introduction above it. The
@@ -154,7 +154,7 @@ translated, by adding `index.fr.md` or `index.ar.md` to the bundle.
 
 - Lists merge: `func/section-pages.html` returns this language's pages plus untranslated English
   ones, which keep their English URL, carry `lang="en"` and their own direction, and show the "in
-  English" label. Section indexes, home feeds, section feeds and `llms.txt` all use it.
+  English" label. Section indexes, the home page, section feeds and `llms.txt` all use it.
 - UI strings exist in all three `i18n/*.yaml` files at once. Plain strings are flat `key: "value"`;
   counted strings use plural forms (`one`/`other`, plus `zero`/`two`/`few`/`many` in Arabic).
 - Numbers, currency placement and plurals come from i18n (`number_locale`, `currency_pattern`), and
@@ -175,9 +175,7 @@ translated, by adding `index.fr.md` or `index.ar.md` to the bundle.
 ## Configuration
 
 `config.toml` holds languages, menus, `mainSections` (the sections the nav, home page, `llms.txt` and
-gates treat as content), GA4, output formats and the markdown cascade. Every plain `[params]` key
-stays above the first `[params.*]` sub-table: TOML assigns keys
-written after a sub-table header to that sub-table.
+gates treat as content), GA4, output formats and the markdown cascade.
 
 ## Scripts
 
@@ -186,7 +184,7 @@ written after a sub-table header to that sub-table.
 | `scripts/check.sh` | builds into `public/` and runs `scripts/gates.sh` |
 | `scripts/gates.sh` | the list of gates; each prints what it asserts |
 | `scripts/checks/` | `gate.py` (paths, `config.toml`, page iterator, pass/fail) and one file per gate |
-| `scripts/audit.py` | Lighthouse (11 pages, mobile and desktop) and a link crawl against a live or local site; fails under budget |
+| `scripts/audit.py` | Lighthouse (11 pages, mobile and desktop) and a link crawl against a live or local site; fails under the score budgets |
 | `scripts/generate/gen-favicons.py` | favicons and `apple-touch-icon.png` from a 512px screenshot of `scripts/generate/favicon-src.html` |
 | `scripts/generate/gen-og-cards.py` | `static/og/*.jpg` from a full-page screenshot of `scripts/generate/og-cards.html` at width 1200, one card per entry in its `SECTIONS` |
 
@@ -195,6 +193,6 @@ Generators run by hand and need Pillow; serve the HTML templates from the site r
 
 ## Deployment
 
-`.github/workflows/site.yml` pins Hugo 0.168.0 extended, runs `scripts/check.sh` and an internal link
-crawl on every pull request (plus an advisory external crawl), and on a push to `main` does the same,
+`.github/workflows/site.yml` pins Hugo extended, runs `scripts/check.sh` and an internal link
+crawl on every pull request (plus an advisory external crawl), and on `main` does the same,
 then publishes `public/` to GitHub Pages.

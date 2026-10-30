@@ -35,7 +35,6 @@
 .post-content > :is(h2,h3):first-child{margin-block-start:0;}
 .post-content math[display="block"]{margin-block:var(--flow-tight);}
 .math-nobr{white-space:nowrap;}
-.post-content .video-thumb__play svg{width:56px;height:56px;padding:14px;border-radius:50%;background:color-mix(in srgb,var(--media-ground) 60%,transparent);}
 .post-content .highlight{margin-block:var(--flow-block);}
 .post-content pre{margin:0;overflow-x:auto;}
 .post-content pre code{display:grid;padding:var(--space-3);font-size:.75em;width:max-content;min-width:100%;}

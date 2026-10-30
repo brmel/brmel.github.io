@@ -1,14 +1,19 @@
-<div class="profile">
-  <h1>{{ site.Params.name }}</h1>
+<div class="u-card profile">
+  <div class="profile__text">
+    <h1>{{ site.Params.name }}</h1>
+    <p class="profile__role">{{ site.Params.tagline }}</p>
+    {{- with .Content }}
+    <div class="profile__intro">{{ . }}</div>
+    {{- end }}
+  </div>
   {{- with resources.Get site.Params.photo }}
-  {{- $src := .Fill "400x400 webp q60 Smart" }}
+  {{- $src := .Fill "480x480 webp q60 Smart" }}
   <picture>
-    <source type="image/avif" srcset="{{ (.Fill "200x200 avif Smart").RelPermalink }} 200w, {{ (.Fill "400x400 avif Smart").RelPermalink }} 400w" sizes="(max-width: 600px) 128px, 200px">
-    <img class="profile__photo" src="{{ $src.RelPermalink }}" srcset="{{ (.Fill "200x200 webp q60 Smart").RelPermalink }} 200w, {{ $src.RelPermalink }} 400w"
-         sizes="(max-width: 600px) 128px, 200px" width="{{ $src.Width }}" height="{{ $src.Height }}"
+    <source type="image/avif" srcset="{{ (.Fill "240x240 avif Smart").RelPermalink }} 240w, {{ (.Fill "480x480 avif Smart").RelPermalink }} 480w" sizes="(max-width: 768px) 128px, 240px">
+    <img class="profile__photo" src="{{ $src.RelPermalink }}" srcset="{{ (.Fill "240x240 webp q60 Smart").RelPermalink }} 240w, {{ $src.RelPermalink }} 480w"
+         sizes="(max-width: 768px) 128px, 240px" width="{{ $src.Width }}" height="{{ $src.Height }}"
          fetchpriority="high" decoding="async" alt="{{ site.Params.name }}">
   </picture>
   {{- else }}{{ errorf "params.photo %q is not in assets/" site.Params.photo }}
   {{- end }}
-  <p class="profile__role">{{ site.Params.tagline }}</p>
 </div>

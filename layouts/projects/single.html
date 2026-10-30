@@ -29,10 +29,11 @@
       {{- range . }}
       {{- $small := .Resize "640x webp q82" }}
       {{- $large := .Resize "1280x webp q82" }}
-      <figure class="project-shot">
+      {{- $wide := gt .Width .Height }}
+      <figure class="project-shot{{ if $wide }} project-shot--wide{{ end }}">
         <img class="u-frame" src="{{ $small.RelPermalink }}"
              srcset="{{ $small.RelPermalink }} 640w, {{ $large.RelPermalink }} 1280w"
-             sizes="(max-width: 768px) 100vw, 290px"
+             sizes="{{ if $wide }}(max-width: 948px) calc(100vw - 48px), 900px{{ else }}(max-width: 600px) calc(100vw - 32px), 290px{{ end }}"
              width="{{ $large.Width }}" height="{{ $large.Height }}"
              loading="lazy" decoding="async"
              alt="{{ printf (i18n "project_screenshot") $.Title }}">

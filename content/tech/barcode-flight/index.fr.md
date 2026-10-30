@@ -1,5 +1,6 @@
 ---
 title: "Pourquoi une carte d’embarquement en mode sombre ne se scanne pas"
+featured: 4
 date: 2025-12-03
 description: "Pourquoi un lecteur de codes-barres a besoin d’un réglage de couleur de premier plan, et ce qui se passe à une porte d’embarquement quand il ne l’a pas."
 cover:

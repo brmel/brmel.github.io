@@ -10,7 +10,7 @@ disableKinds = ["taxonomy", "term"]
   [languages.en.params]
     description = "Senior Software Developer at Zebra Technologies: 2D and 3D machine vision algorithms in C++, numerical methods, low-level systems and concurrency."
     name = "Brahim Redouane Mellah"
-    tagline = "Senior Software Developer at Zebra Technologies · machine vision in C++ · Montréal"
+    tagline = "Senior Software Developer at Zebra Technologies · machine vision and machine learning in C++ · Montréal"
   [languages.en.menu]
     main = [
       { identifier = "resume", name = "Resume", url = "/resume/", weight = 2 },
@@ -26,7 +26,7 @@ disableKinds = ["taxonomy", "term"]
   [languages.fr.params]
     description = "Développeur logiciel senior chez Zebra Technologies : algorithmes de vision industrielle 2D et 3D en C++, méthodes numériques, systèmes bas niveau et concurrence."
     name = "Brahim Redouane Mellah"
-    tagline = "Développeur logiciel senior chez Zebra Technologies · vision industrielle en C++ · Montréal"
+    tagline = "Développeur logiciel senior chez Zebra Technologies · vision industrielle et apprentissage automatique en C++ · Montréal"
   [languages.fr.menu]
     main = [
       { identifier = "resume", name = "CV", url = "/resume/", weight = 2 },
@@ -43,7 +43,7 @@ disableKinds = ["taxonomy", "term"]
   [languages.ar.params]
     description = "مطور برمجيات أول في Zebra Technologies: خوارزميات الرؤية الآلية ثنائية وثلاثية الأبعاد بلغة ‎C++‎، والطرق العددية، والأنظمة منخفضة المستوى، والتزامن."
     name = "إبراهيم رضوان ملاح"
-    tagline = "مطور برمجيات أول في Zebra Technologies · الرؤية الآلية بلغة ‎C++‎ · مونتريال"
+    tagline = "مطور برمجيات أول في Zebra Technologies · الرؤية الآلية وتعلّم الآلة بلغة ‎C++‎ · مونتريال"
   [languages.ar.menu]
     main = [
       { identifier = "resume", name = "السيرة الذاتية", url = "/resume/", weight = 2 },

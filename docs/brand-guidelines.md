@@ -18,7 +18,8 @@ article, an Algerian transit app and a hike all sit on the same site.
 Three elements appear on every asset.
 
 1. **The compass-aperture mark**: concentric circles and four N/S/E/W ticks. One implementation,
-   `layouts/_partials/brand/mark.html`; never inline or redraw it.
+   `layouts/_partials/brand/mark.html`; never inline or redraw it (the standalone generator pages in
+   `scripts/generate/` are the one exception).
 
    | Placement | Size | Colour |
    |---|---|---|
@@ -78,7 +79,8 @@ Loaded once from `layouts/_partials/head/fonts.html`. Never add a family.
 
 | Token | Size | Use |
 |---|---|---|
-| `--fl-display-m` | 30–48px, fluid | every page title |
+| `--fl-display-l` | 36–64px, fluid | the owner's name on the home page |
+| `--fl-display-m` | 30–48px, fluid | every other page title |
 | `--t-display-s` | 34px | big numbers: project metrics, field-note rating |
 | `--t-heading` | 24px | section headings, career roles |
 | `--t-subhead` | 20px | page descriptions and card titles |
@@ -97,7 +99,7 @@ Every list (section index, project index, home) uses the same card.
 
 | Section | Exists to | Chrome |
 |---|---|---|
-| Home | say who this is, route into the work | profile, intro, "Start here" cards |
+| Home | say who this is, route into the work | one profile card (name, role, intro, photo), "Start here" cards |
 | Resume | the career on one page | career timeline, skills, certifications |
 | Projects | things built end to end, with what went wrong | eyebrow, stack chips, status, metrics, gallery |
 | Tech | explain something learned by doing it | article layout, figures, series box |

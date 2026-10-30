@@ -1,48 +1,39 @@
 {{- range .Params.experience }}
 {{- $p := . }}
 <article class="timeline-item">
-  <p class="u-eyebrow timeline-date"><bdi>{{ $p.period }}</bdi></p>
-
-  <h3 class="timeline-title">
-    {{ $p.role }}
-    {{- with $p.org }}
-    <span class="timeline-org">
+  <div class="timeline-when">
+    <p class="u-eyebrow"><bdi>{{ $p.period }}</bdi></p>
+    <p class="timeline-org">
       {{- with $p.url }}<a href="{{ . }}" target="_blank" rel="noopener noreferrer">{{ $p.org }}</a>
-      {{- else }}{{ . }}{{ end -}}
-    </span>
-    {{- end }}
-  </h3>
-  {{- with $p.note }}<p class="timeline-note">{{ . | markdownify }}</p>{{ end }}
-
-  {{- with $p.work }}
-  <div class="timeline-body">
-    {{- range . }}
-    {{- $w := . }}
-
-    <div class="timeline-work{{ with $w.video }} timeline-work--media{{ end }}">
-      {{- with $w.video }}
-      {{- partial "resume/video-thumb.html" (dict "id" . "alt" ($w.videoAlt | default $w.title)) }}
+      {{- else }}{{ $p.org }}{{ end -}}
+    </p>
+  </div>
+  <div>
+    <h3 class="timeline-title">{{ $p.role }}</h3>
+    {{- with $p.note }}<p class="timeline-note">{{ . | markdownify }}</p>{{ end }}
+    {{- with $p.work }}
+    <div class="timeline-body">
+      {{- range . }}
+      {{- $w := . }}
+      <div class="timeline-work{{ with $w.video }} timeline-work--media{{ end }}">
+        {{- with $w.video }}
+        {{- partial "resume/video-thumb.html" (dict "id" . "alt" ($w.videoAlt | default $w.title)) }}
+        {{- end }}
+        <h4 class="timeline-work__title">
+          {{- with $w.url }}<a href="{{ . }}" target="_blank" rel="noopener noreferrer">{{ $w.title }}</a>
+          {{- else }}{{ $w.title }}{{ end -}}
+        </h4>
+        {{- with $w.text }}<p class="timeline-work__text">{{ . | markdownify }}</p>{{ end }}
+      </div>
       {{- end }}
-      <h4 class="timeline-work__title">
-        {{- with $w.url }}<a href="{{ . }}" target="_blank" rel="noopener noreferrer">{{ $w.title }}</a>
-        {{- else }}{{ $w.title }}{{ end -}}
-      </h4>
-      {{- with $w.text }}<p class="timeline-work__text">{{ . | markdownify }}</p>{{ end }}
     </div>
+    {{- end }}
+    {{- with $p.stack }}
+    <ul class="u-chips timeline-stack" aria-label="{{ i18n "project_stack" }}">
+      {{- range . }}<li class="u-chip">{{ . }}</li>{{ end }}
+    </ul>
     {{- end }}
   </div>
-  {{- end }}
-
-  {{- with $p.stack }}
-  <dl class="timeline-facts">
-    <div class="u-label-row timeline-facts__row">
-      <dt class="u-eyebrow timeline-facts__label">{{ i18n "project_stack" }}</dt>
-      <dd class="timeline-facts__value">
-        {{- partial "func/dots.html" . -}}
-      </dd>
-    </div>
-  </dl>
-  {{- end }}
 </article>
 {{- end }}
 <dialog class="lightbox" id="lightbox" aria-label="{{ i18n "career_video" }}">

@@ -1,36 +1,26 @@
-:root{--tl-thumb:180px;}
+:root{--tl-rail:220px;--tl-thumb:320px;}
 
+.timeline-item{display:grid;grid-template-columns:var(--tl-rail) minmax(0,1fr);gap:var(--space-2) var(--space-6);}
 .timeline-item + .timeline-item{margin-block-start:var(--flow-section);}
-.timeline-date{margin:0 0 var(--space-2);}
+.timeline-when{display:flex;flex-direction:column;gap:var(--space-1);padding-block-start:var(--space-1);}
+.timeline-org{font-size:var(--t-body);line-height:1.4;color:var(--ink-soft);}
+.timeline-org a{color:var(--accent);}
+.timeline-org a:hover{text-decoration:underline;text-underline-offset:3px;}
 
 .timeline-title{font-weight:500;font-size:var(--t-heading);line-height:1.25;}
-.timeline-org{
-  display:block;font-weight:400;font-size:var(--t-body);
-  color:var(--ink-soft);margin-top:var(--space-1);
-}
-.timeline-org a{
-  padding-block:2px;color:var(--accent);
-  border-bottom:var(--hairline) solid color-mix(in srgb,var(--accent) 35%,transparent);
-  transition:border-color var(--dur-1) var(--ease-standard);
-}
-.timeline-org a:hover{border-bottom-color:var(--accent);}
-
 .timeline-note{margin:var(--space-2) 0 0;font-size:var(--t-caption);line-height:1.5;color:var(--ink-mute);}
 
 .timeline-body{
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,400px),1fr));gap:var(--space-5) var(--space-6);margin-top:var(--space-5);
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:var(--space-5) var(--space-6);margin-top:var(--space-5);
 }
-
+.timeline-work:not(.timeline-work--media):last-child:nth-child(odd of :not(.timeline-work--media)){grid-column:1 / -1;}
 .timeline-work--media{
-  display:grid;grid-template-columns:var(--tl-thumb) 1fr;grid-template-rows:auto 1fr;
-  column-gap:var(--space-4);align-items:start;
+  grid-column:1 / -1;display:grid;grid-template-columns:var(--tl-thumb) minmax(0,1fr);grid-template-rows:auto 1fr;
+  column-gap:var(--space-5);align-items:start;
 }
 .timeline-work--media > .video-thumb{grid-row:span 2;width:100%;}
 
-.timeline-work__title{
-  font-size:var(--t-body-l);font-weight:500;
-  line-height:1.3;margin:0 0 var(--space-2);
-}
+.timeline-work__title{font-size:var(--t-body-l);font-weight:500;line-height:1.3;margin:0 0 var(--space-2);}
 .timeline-work__title a{
   padding-block:2px;
   background:linear-gradient(var(--accent),var(--accent)) 0 100% / 100% 1px no-repeat;
@@ -38,12 +28,8 @@
 }
 .timeline-work__title a:hover{color:var(--accent);}
 .timeline-work__text{max-inline-size:75ch;font-size:var(--t-body);color:var(--ink-soft);}
-.timeline-work:last-child:nth-child(odd){grid-column:1 / -1;}
 
-.timeline-facts{margin:var(--space-5) 0 0;}
-.timeline-facts__row{padding:var(--space-2) 0;}
-.timeline-facts__label{padding-top:2px;}
-.timeline-facts__value{margin:0;font-size:var(--t-caption);color:var(--ink-soft);}
+.timeline-stack{margin-block-start:var(--space-5);}
 
 .video-thumb{position:relative;display:block;margin:0;line-height:0;overflow:hidden;}
 .video-thumb img{width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;}
@@ -53,7 +39,8 @@
   transition:background var(--dur-2) var(--ease-standard);
 }
 .video-thumb__play svg{
-  width:28px;height:28px;fill:var(--media-ink);filter:drop-shadow(0 1px 3px color-mix(in srgb,var(--media-ground) 45%,transparent));
+  width:56px;height:56px;padding:14px;border-radius:50%;fill:var(--media-ink);
+  background:color-mix(in srgb,var(--media-ground) 60%,transparent);
   transform:translateX(1px);transition:transform var(--dur-2) var(--ease-spring);
 }
 .video-thumb:hover .video-thumb__play{background:color-mix(in srgb,var(--media-ground) 18%,transparent);}
@@ -78,10 +65,8 @@
 .lightbox__close svg{inline-size:22px;block-size:22px;}
 
 @media (max-width:768px){
-  :root{--tl-thumb:104px;}
-  .timeline-work--media{column-gap:var(--space-3);align-items:center;}
-  .timeline-work--media > .video-thumb{grid-row:1;}
-  .timeline-work--media > .timeline-work__text{grid-column:1 / -1;margin-top:var(--space-2);}
+  .timeline-item,.timeline-work--media{grid-template-columns:minmax(0,1fr);}
+  .timeline-work--media > .video-thumb{grid-row:auto;margin-block-end:var(--space-4);}
 }
 
 @media (prefers-reduced-motion:reduce){

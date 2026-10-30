@@ -21,7 +21,7 @@ How to publish a project page. Every project page has the same structure, render
 └──────────────────────────────────────────┘
 ```
 
-The project index card is the same card as every list on the site: the first gallery image as a 16:9
+The project index card is the same card as every list on the site: the `cover`, else the first gallery image, as a 16:9
 thumbnail (the compass mark when there is none), `{year} · {status}`, the title and the
 pitch.
 
@@ -51,6 +51,7 @@ grep -h '^projectNo:' content/projects/*/index.md | sort -n -k2 | tail -1
 | `links` | `live` and `repo`, each rendered through the `project_link_<key>` string in the three `i18n/*.yaml` files; a new key needs that string first. A link that starts with `/` points at a page on this site: it shows as "Write-up" (`project_link_writeup`) and opens in the same tab. Empty values are skipped. |
 | `metrics` | Up to three `value` + `label` pairs above the body; a value is a number, never a word ("Offline", "Cited"). Every figure also appears, sourced, in the body. They feed the "Project facts" in `llms.txt`. A project with no honest numbers has no metrics. |
 | `featured` | Optional. `featured: N` lists the project under "Start here" on the home page, lowest number first. |
+| `cover` | Optional `image` (a file in the bundle) and `alt` (starting "Illustration:" for a drawing): the card thumbnail and social card when the project has no screenshot worth leading with. |
 | `resources` | Optional `params.caption` per gallery image. Alt text is "<title> screenshot"; the first image is the index-card thumbnail. |
 
 ## 3. The prose
@@ -77,7 +78,8 @@ content/projects/<slug>/
     └── 02-marketing-site.png
 ```
 
-They render after the body at 640px and 1280px in WebP, and the first one is the page's social card.
+They render after the body at 640px and 1280px in WebP: a landscape shot takes the full column, portrait
+shots sit three to a row. Without a `cover`, the first one is the page's social card.
 Their alt text is "<title> screenshot"; describe the image in `params.caption`.
 
 ```yaml

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import collections, os, re
 from urllib.parse import unquote
-from gate import BASE, PUB, finish, pages as built, url_of
+from gate import BASE, PUB, clean_parts, finish, pages as built, url_of
 
 SELF_HOST = re.compile(r"^https?://(?:www\.)?" + re.escape(BASE.split("//", 1)[-1]), re.I)
 HREF = re.compile(r'href=(?:"([^"]*)"|([^\s>]+))')
@@ -27,6 +27,8 @@ for url, html in pages.items():
     body = re.search(r"<main\b.*?</main>", html, re.S)
     body_text = body.group(0) if body else html
     seen = collections.defaultdict(list)
+    parts = clean_parts(url)
+    article = len(parts) == 2 and parts[0] in ("tech", "adventures")
 
     for attrs, inner in ANCHOR.findall(body_text):
         href = HREF.search(attrs)
@@ -43,7 +45,9 @@ for url, html in pages.items():
     for target, uses in seen.items():
         if target.rstrip("/") == url.rstrip("/") and target:
             fails.append(f"{url}: links to itself ({len(uses)}x)")
-        if len(uses) >= 2 and len({u[1] for u in uses}) > 1:
+        if len(uses) >= 2 and not article:
+            fails.append(f"{url}: links to {target[:44]} {len(uses)} times")
+        elif len(uses) >= 2 and len({u[1] for u in uses}) > 1:
             fails.append(f"{url}: {target[:44]} appears as text and as an icon")
 
     for t in internal_targets(html):
@@ -58,5 +62,5 @@ for url in pages:
         fails.append(f"{url}: nothing on the site links here")
 
 print(f"checked {len(pages)} pages")
-finish(fails, "no mixed text/icon duplicates, self-links, unnamed controls, dead internal links or unlinked pages")
+finish(fails, "no duplicate links outside articles, self-links, unnamed controls, dead internal links or unlinked pages")
 

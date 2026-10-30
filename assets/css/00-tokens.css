@@ -18,6 +18,7 @@
   --lh-body:1.6;
 
   --fl-display-m:clamp(1.875rem,1.35rem + 2.6vw,3rem);
+  --fl-display-l:clamp(2.25rem,1.5rem + 3.2vw,4rem);
 
   --space-1:4px; --space-2:8px; --space-3:12px; --space-4:16px; --space-5:24px;
   --space-6:32px; --space-7:48px;
@@ -58,7 +59,7 @@
   :root{
     --space-1:2px; --space-2:3px; --space-3:5px; --space-4:7px; --space-5:9px;
     --space-6:12px; --space-7:14px;
-    --prose-size:1rem; --fl-display-m:2rem; --t-display-s:1.5rem; --label-col:110px;
+    --prose-size:1rem; --fl-display-m:2rem; --fl-display-l:2rem; --t-display-s:1.5rem; --label-col:110px;
   }
 }
 

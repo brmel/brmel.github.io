@@ -4,7 +4,7 @@
   {{- $s := .Fill "480x270 webp q72 Smart" }}{{ $m := .Fill "720x405 webp q72 Smart" }}
   <img src="{{ $s.RelPermalink }}"
        srcset="{{ $s.RelPermalink }} 480w, {{ $m.RelPermalink }} 720w, {{ (.Fill "960x540 webp q72 Smart").RelPermalink }} 960w"
-       sizes="(max-width: 768px) calc(100vw - 32px), 440px" width="{{ $s.Width }}" height="{{ $s.Height }}"
+       sizes="(max-width: 719px) calc(100vw - 32px), (max-width: 1247px) calc(50vw - 40px), 584px" width="{{ $s.Width }}" height="{{ $s.Height }}"
        {{ if $.first }}fetchpriority="high"{{ else }}loading="lazy"{{ end }} decoding="async" alt="{{ $c.alt }}">
   {{- else }}
   {{ partial "brand/mark.html" (dict "size" 64 "class" "brand-mark") }}

@@ -1,5 +1,5 @@
 {{- with .pages }}
-<section class="home-cards" aria-labelledby="home-{{ $.id }}">
+<section aria-labelledby="home-{{ $.id }}">
   <h2 class="u-heading" id="home-{{ $.id }}">{{ $.title }}</h2>
   {{- partial "article/grid.html" (dict "pages" . "showSection" true "level" 3) }}
 </section>

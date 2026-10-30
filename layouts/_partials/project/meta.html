@@ -14,7 +14,7 @@
   </ul>
   {{- end }}
   {{- with .Params.stack }}
-  <ul class="project-stack" aria-label="{{ i18n "project_stack" }}">
+  <ul class="u-chips" aria-label="{{ i18n "project_stack" }}">
     {{- range . }}<li class="u-chip">{{ . }}</li>{{ end }}
   </ul>
   {{- end }}

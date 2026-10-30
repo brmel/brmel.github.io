@@ -1,6 +1,5 @@
 ---
 title: "Farkad"
-featured: 4
 date: 2026-08-01
 projectNo: 4
 status: "active"

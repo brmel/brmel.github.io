@@ -5,8 +5,15 @@
   {{- $extra := printf `<button type="button" class="resume__print" onclick="window.print()">%s</button><p class="resume__asof">%s</p>` (i18n "resume_print") (printf (i18n "as_of") (time.Format "January 2006" .Lastmod)) | safeHTML }}
   {{ partial "page-head/header.html" (dict "page" . "title" site.Params.name "extra" $extra) }}
 
-  {{- with .Content }}
-  <div class="post-content">{{ . }}</div>
+  {{- with .Params.highlights }}
+  <ul class="resume__highlights">
+    {{- range . }}
+    <li class="u-card resume__highlight">
+      <p class="resume__highlight-title">{{ .title }}</p>
+      <p>{{ .text | markdownify }}</p>
+    </li>
+    {{- end }}
+  </ul>
   {{- end }}
 
   {{- with .Params.experience }}

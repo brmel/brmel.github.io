@@ -1,15 +1,9 @@
+{{- define "main-width" }} main--wide{{ end }}
 {{- define "main" }}
 
 {{- if .IsHome }}
-{{- $pages := partial "func/main-pages.html" . }}
-
 {{- partial "home/profile.html" . }}
-{{- with .Content }}
-<div class="post-content home-intro">
-  {{ . }}
-</div>
-{{- end }}
-{{- partial "home/cards.html" (dict "id" "featured" "title" (i18n "featured_heading") "pages" (sort (where $pages "Params.featured" "!=" nil) "Params.featured")) }}
+{{- partial "home/cards.html" (dict "id" "featured" "title" (i18n "featured_heading") "pages" (sort (where (partial "func/main-pages.html" .) "Params.featured" "!=" nil) "Params.featured")) }}
 {{- else }}
 
 {{ partial "page-head/header.html" (dict "page" .) }}

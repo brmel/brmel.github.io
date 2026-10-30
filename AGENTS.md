@@ -16,7 +16,7 @@ extended with the site's own templates (no theme), deployed to GitHub Pages at h
 | `./scripts/check.sh` | build and every gate, exactly what CI runs; needs Python 3 and Java |
 | `./scripts/gates.sh` | the gates alone, on an existing `public/` |
 | `python3 scripts/checks/check-css.py` | one gate (each file in `scripts/checks/` is one) |
-| `python3 scripts/audit.py [base-url]` | Lighthouse on 11 pages, mobile and desktop, plus a link crawl, against the budgets below; defaults to the live site; needs Node and Chrome |
+| `python3 scripts/audit.py [base-url]` | Lighthouse on 11 pages, mobile and desktop, plus a link crawl; fails under the score budgets below; defaults to the live site; needs Node and Chrome |
 | `node .claude/skills/verify-site/responsive.mjs` | page overflow across pages × viewports × themes; see the `verify-site` skill |
 
 ## Hard rules
@@ -32,8 +32,9 @@ Each rule names the gate that enforces it; the rest are enforced in review.
 - Hugo features and plain CSS first. JavaScript only where a page cannot work without it: theme
   toggle, resume video dialog and print button, PariData controls, report frame, code copy
   button, analytics. The Speculation Rules block in `layouts/_partials/head.html` is JSON, not script.
-- No third-party runtime requests except Google Analytics 4. Fonts, scripts and images are
-  self-hosted; the CSP at the top of `layouts/_partials/head.html` blocks the rest.
+- No third-party runtime requests except Google Analytics 4 and the YouTube player a reader opens
+  from the resume. Fonts, scripts and images are self-hosted; the CSP at the top of
+  `layouts/_partials/head.html` blocks the rest.
 - No new dependencies. Tools run from `npx` or are pinned inside the script that uses them.
 
 **CSS**
@@ -74,8 +75,9 @@ controls (`check-pages`), valid HTML (`check-html`).
 
 **SEO**: descriptions 50–160 characters, titles and descriptions unique per language, canonical and
 `x-default` on every page, JSON-LD type per section, sitemap equal to the indexable pages
-(`check-seo`); no dead internal links, self-links, unlinked pages or text-and-icon duplicates
-(`check-pages`); every page has an absolute `og:image` with alt (`check-og`).
+(`check-seo`); no dead internal links, self-links, unlinked pages, or a URL linked twice on a page
+other than a Tech or Adventures article (`check-pages`); every page has an absolute `og:image` with
+alt (`check-og`).
 
 **Agents**: `static/robots.txt`, `/llms.txt` and `/llms-full.txt` describe the real site and block
 only `/reports/`. Every Tech and Adventures page has an `index.md` twin.
@@ -125,8 +127,8 @@ Repo skills in `.claude/skills/`; read the `SKILL.md` before relying on it.
 | `publish-content` | adding a project, Tech article, field note, PariData ticket or result, or translation |
 | `voice` | writing or editing any user-facing copy in EN, FR or AR |
 
-Global skills: `karpathy-guidelines` before writing code; `diagnosing-bugs` before fixing a bug whose
-cause is unknown; `playwright-cli` for ad-hoc browser automation.
+Global skills: `diagnosing-bugs` before fixing a bug whose cause is unknown; `playwright-cli` for
+ad-hoc browser automation.
 
 ## MCP
 
