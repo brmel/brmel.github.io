@@ -8,7 +8,7 @@ A Hugo static site with its own templates (no theme), built and deployed to GitH
 
 ## Run it
 
-Needs Hugo 0.168.0 extended; the checks also need Python 3 and Java.
+Needs Hugo extended (the version CI pins in the workflow); the checks also need Python 3 and Java.
 
 ```bash
 hugo server -M         # http://localhost:1313

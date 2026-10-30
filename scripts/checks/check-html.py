@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-import base64, glob, hashlib, io, json, os, subprocess, sys, tarfile, urllib.request
-from gate import PUB, finish
+import base64, hashlib, io, json, os, subprocess, sys, tarfile, urllib.request
+from gate import PUB, finish, pages as built
 VERSION = "26.9.7"
 INTEGRITY = "sha512-ZwoNfGQQBWCAEFMtz1fokv4PBC+WhF13QQA+Q/AFNyqnb57aAApnsyquMT+9dK8H96jzuGz9eydYMeaSisyYow=="
 JAR = os.path.join(os.path.expanduser("~"), ".cache", "ibraverse", f"vnu-{VERSION}.jar")
@@ -14,8 +14,7 @@ if not os.path.exists(JAR):
     with tarfile.open(fileobj=io.BytesIO(tgz)) as t:
         open(JAR, "wb").write(t.extractfile("package/build/dist/vnu.jar").read())
 
-pages = sorted(f for f in glob.glob(os.path.join(PUB, "**", "*.html"), recursive=True)
-               if not os.path.relpath(f, PUB).startswith("reports" + os.sep))
+pages = [os.path.join(PUB, rel) for rel, _ in built()]
 run = subprocess.run(["java", "-jar", JAR, "--errors-only", "--format", "json", *pages],
                      capture_output=True, text=True)
 errors = [m for m in json.loads(run.stderr)["messages"] if m.get("type") == "error"]

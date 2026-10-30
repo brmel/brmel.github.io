@@ -2,7 +2,7 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://*.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' https://*.google-analytics.com https://*.googletagmanager.com; font-src 'self'; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; frame-src 'self' https://www.youtube.com; object-src 'none'; base-uri 'self'; form-action 'self'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <script>if (localStorage.getItem("pref-theme") === "dark") document.documentElement.classList.add("dark");</script>
-{{- if or .Params.robotsNoIndex (eq .Kind "404") (not hugo.IsProduction) }}
+{{- if or (eq .Kind "404") (not hugo.IsProduction) }}
 <meta name="robots" content="noindex, nofollow">
 {{- end }}
 <title>{{ partial "func/title.html" . }} | {{ site.Title }}</title>

@@ -6,7 +6,8 @@ LIGHTHOUSE = "lighthouse@12.8.2"
 LINKINATOR = "linkinator@8.1.0"
 PAGES = [
     ("home", "/"), ("home-fr", "/fr/"), ("home-ar", "/ar/"), ("resume", "/resume/"),
-    ("projects", "/projects/"), ("project", "/projects/meteodata/"), ("tech", "/tech/"),
+    ("projects", "/projects/"), ("project", "/projects/memorytracer/"), ("tracker", "/projects/paridata/"),
+    ("tech", "/tech/"),
     ("article", "/tech/windows-memory-management-deep-dive/"),
     ("report", "/tech/montreal-forecast-reliability/"),
     ("adventure", "/adventures/auberge-estonia-rawdon/"),

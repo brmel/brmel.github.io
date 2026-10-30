@@ -34,7 +34,7 @@ This copies `archetypes/adventures.md` (front matter, figures, map, recommendati
 title: "A Walk Through the Old Port"
 date: 2026-06-01
 draft: true
-description: "The reel's hook in one line: list card, home feed, Google and social cards."
+description: "The hook in one line: list card, Google and social cards."
 cover:
   image: "cover.jpg"
   alt: "Old Port of Montréal at sunset"
@@ -57,7 +57,7 @@ con: "Touristy: skip the terraces on the square."
 
 ## 3. The text
 
-- First person, the way the reel talks. The first sentence is the reel's hook.
+- First person, the way you would tell it. The first sentence is the hook.
 - 300–700 words, `##` headings, paragraphs of two or three sentences.
 - Name the dish, the price, the street, the trail junction, the metro. One genuine con.
 - Place name and city in the title, the first sentence and one heading.

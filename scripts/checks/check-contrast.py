@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 import glob, os, re
-from gate import ROOT, finish
+from gate import PUB, ROOT, finish
 
 TOKENS = os.path.join(ROOT, "assets", "css", "00-tokens.css")
 AA = 4.5
@@ -30,7 +30,7 @@ for theme, t in (("light", light_tokens), ("dark", dark_tokens)):
             checked += 1
             if r < AA: fails.append(f"{theme}: --{fg} ({t[fg]}) on {bgname} ({bg}) = {r:.2f}:1")
 
-built = "".join(open(f).read() for f in glob.glob(os.path.join(ROOT, "public", "css", "site.*.css")))
+built = "".join(open(f).read() for f in glob.glob(os.path.join(PUB, "css", "site.*.css")))
 hex6 = lambda c: c if len(c) == 7 else "#" + "".join(ch * 2 for ch in c[1:])
 syntax = {cls: hex6(col) for cls, col in re.findall(
     r"\.chroma \.([\w-]+)\s*\{[^}]*?(?<![-\w])color:\s*(#[0-9a-fA-F]{6}|#[0-9a-fA-F]{3})\b", built) if cls not in ("ln", "lnt", "hl")}
