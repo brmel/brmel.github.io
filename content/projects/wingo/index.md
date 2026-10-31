@@ -5,16 +5,7 @@ projectNo: 2
 status: "active"
 pitch: "Lets a group of friends nominate places, vote in real time, and lock in a decision instead of a chat that never ends."
 description: "Lets a group of friends nominate places, vote in real time, and lock in a decision instead of a chat that never ends."
-metrics:
-  - value: "3 surfaces"
-    label: "one Flutter app, an admin console and a marketing site on one backend"
-  - value: "1 command"
-    label: "build, deploy, publish or roll back, with automatic rollback when a health check fails"
 stack: ["Flutter", "Firebase Functions", "TypeScript", "React", "Firestore"]
-lede: |
-  A group planning app built around the one thing a chat thread can’t do:
-  end the conversation. A squad nominates options, everyone votes in real time,
-  and one person locks the winner in.
 ---
 
 ## The story

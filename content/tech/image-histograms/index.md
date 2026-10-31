@@ -1,16 +1,15 @@
 ---
-title: "Edge Measurement in Industrial Vision: Counting Saw Blade Teeth"
+title: "Counting Saw Blade Teeth with Edge Measurement"
 date: 2025-01-08
-description: "How edge measurement counts the teeth on a saw blade, and why it works on real images where thresholding doesn’t."
+description: "Why scanning a circle around the arbor hole works on real images where thresholding doesn’t, and how the tooth spacing checks the count."
 cover:
     image: "01-saw-blade.png"
     alt: "A circular saw blade with the arbor hole at its centre"
 ---
 
-A saw blade is a good way to explain edge measurement, because counting its
-teeth looks trivial and isn't. You can see the teeth. A vision system can't:
-it has a grid of intensities, and everything you want to know has to come out
-of where those intensities change.
+Counting the teeth on a saw blade looks trivial and isn't. You can see the
+teeth. A vision system can't: it has a grid of intensities, and everything you
+want to know has to come out of where those intensities change.
 
 {{< figure src="01-saw-blade.png" alt="A circular saw blade with the arbor hole at its centre" caption="Every number below comes from the arbor hole and one circle drawn through the teeth." >}}
 
@@ -20,12 +19,9 @@ The instinct is to find the blade's outline and count the bumps on it. That
 means separating blade from background, which means picking a threshold, and a
 threshold assumes the lighting stays the same, which it won't.
 
-The better move is to segment nothing. Put a circle on the image, centred on
-the arbor hole, at a radius that passes through every tooth, and read the image
-along that circle. A closed path through all the teeth turns a two-dimensional
+Instead, put a circle on the image, centred on the arbor hole, at a radius that
+passes through every tooth, and read the image along that circle. A closed path through all the teeth turns a two-dimensional
 counting problem into a one-dimensional signal with one feature per tooth.
-
-That signal should be periodic, which means you can check it.
 
 ## The origin comes from the part
 
@@ -34,19 +30,18 @@ rather than a position in the frame. The arbor hole is the obvious candidate:
 fit a circle to it and every measurement afterwards is expressed relative to
 the part.
 
-This is what makes the method hold up in a real cell. The blade is
-never placed the same way twice. If the origin travels with the blade, that
-stops being a problem instead of becoming a calibration ritual.
+The blade is never placed the same way twice. If the origin travels with the
+blade, that stops being a problem.
 
-## Stripes, not edges
+## Count stripes
 
 An edge is a single transition. A stripe is a pair of them: a rising edge and
 a falling edge, of a stated polarity, with a width between them.
 
-Counting stripes rather than edges is what makes this reliable. An edge
+Counting stripes rather than edges makes this reliable. An edge
 is a place where the intensity moved, and plenty of things move it: a glint on
-ground steel, a scratch, the seam of the background. A stripe additionally has
-a width, and a width is something you can reject on. Noise readily produces one
+ground steel, a scratch, the seam of the background. A stripe has a width,
+and a width is something you can reject on. Noise readily produces one
 transition. It's much less likely to produce a matched pair of the right polarity,
 of roughly the right width, at roughly the right spacing.
 
@@ -54,11 +49,10 @@ So the parameters that matter are the ones that describe the tooth as an
 object: polarity, taken from which way the tooth is darker than what surrounds
 it; a width range, taken from the blade specification rather than from the
 image; and a contrast threshold set high enough that a soft gradient isn't
-allowed to be a tooth. Edge positions themselves come out at sub-pixel
-precision from the shape of the intensity gradient, which is why this is a
-measurement rather than a pixel count.
+allowed to be a tooth. Edge positions come out at sub-pixel precision from the
+shape of the intensity gradient.
 
-## The check that costs nothing
+## Check the spacing
 
 If the count is right, the teeth are evenly spaced in angle. That's a
 property of the part you're already holding, so it's free.
@@ -72,15 +66,14 @@ something twice.
 A system that
 reports 71 teeth is useless, because nobody can tell whether it is right. A
 system that reports 72 and can say the angular spacing was uniform to within a
-fraction of a degree has measured something, and can be trusted to
-say when it shouldn't be.
+fraction of a degree has measured something.
 
-## What actually breaks
+## What breaks
 
 Three things, in my experience, and none of them is the algorithm.
 
 **Reflection.** Ground steel is close to a mirror. A specular highlight
-crossing the scan path is high-contrast and looks exactly like the transition
+crossing the scan path is high-contrast and looks like the transition
 you are hunting for. This is a lighting problem, and the fix is diffuse,
 off-axis lighting. Lowering a threshold until the highlight goes
 away also removes the teeth.
@@ -100,21 +93,8 @@ recipe covers a family of blade sizes.
 
 ## Where this generalises
 
-None of this is specific to saw blades. The method is: find a feature on the part
-that defines a coordinate system, scan a path the features of interest must
-cross, measure pairs rather than transitions, and verify the result against the
-regularity you already expect.
-
-That applies to gear teeth, holes in a perforated sheet, splines on a shaft,
-threads, connector pins, or anything repetitive arranged around something you can
-locate.
-
-Here is the whole thing running on the blade at the top of this article:
+None of this is specific to saw blades. It applies to gear teeth, holes in a
+perforated sheet, splines on a shaft, threads, connector pins, or anything
+repetitive arranged around something you can locate.
 
 {{< youtube id="uJoLyFe7R1g" poster="02-tooth-count-demo.jpg" title="The tooth count running on the saw blade, on YouTube." >}}
-
-The one thing I'd carry from this into any measurement problem is the
-check at the end. Getting the count is ordinary work. Being
-able to say why the count is right, from evidence in the same image, is what
-separates a demo from something you can put in front of a machine that acts on
-the answer.

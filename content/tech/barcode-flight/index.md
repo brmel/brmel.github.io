@@ -23,6 +23,6 @@ A reader that assumes dark bars on a light background works everywhere except on
 a phone at night, and that's where boarding passes are these days. Foreground
 colour is a setting in every serious imaging library, including the
 [Aurora Imaging Library](https://www.zebra.com/us/en/software/machine-vision-and-fixed-industrial-scanning-software/aurora-imaging-library.html)
-I work on, and it costs nothing to set it correctly.
+I work on.
 
 I still switch to light mode before every gate.

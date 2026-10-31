@@ -1,6 +1,6 @@
 ---
 title: "Finding an Infinite Loop in Scikit-Learn’s K-Means"
-featured: 5
+featured: 1
 date: 2024-04-29
 description: "An input that makes scikit-learn’s K-means loop forever: the bug in its empty-cluster handling, the report I filed, and the fix."
 cover:
@@ -9,15 +9,10 @@ cover:
 lastmod: 2026-10-20
 ---
 
-An implementation can be correct on every well-behaved input and still have a
-state it can't get out of, and the only way to find that state is to go looking for
-it.
-
 I went looking in
 [scikit-learn's K-means](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html)
-and found one: an input that makes it loop forever. Three conditions have to
-line up, and the last of them is the interesting part: the code that handles
-empty clusters creates the empty cluster it's handling.
+and found a state it can't get out of: the code that handles empty clusters
+creates the empty cluster it's handling.
 
 ## K-means
 
@@ -46,9 +41,7 @@ steps:
 ## The bug
 
 I noticed that a weird behaviour happens if we encounter an empty cluster in a
-very particular condition. If a cluster becomes empty during the execution of the
-k-means algorithm, it typically indicates a scenario where no data points are
-assigned to that cluster. This situation can occur due to several reasons, but
+very particular condition. An empty cluster can occur due to several reasons, but
 mainly poor initialization and data distribution.
 
 In scikit-learn, to solve the problem of empty clusters, they decided to
@@ -66,7 +59,7 @@ loop:
 
 Here is a minimal example that reproduced the bug:
 
-{{< figure src="01-kmeans-bug-repro.jpg" alt="Scatter plot of the failing case: green input data points, several of them duplicated at the same coordinates, and blue cluster centres" caption="An example that reproduced the bug. Green marks the input data, blue the cluster centres. Note the duplicated points sharing coordinates." >}}
+{{< figure src="01-kmeans-bug-repro.jpg" alt="Scatter plot of the failing case: green input data points, several of them duplicated at the same coordinates, and blue cluster centres" caption="Green marks the input data, blue the cluster centres. Note the duplicated points sharing coordinates." >}}
 
 ## The fix
 

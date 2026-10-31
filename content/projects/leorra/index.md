@@ -5,19 +5,10 @@ projectNo: 6
 status: "archived"
 pitch: "An app for sending a parcel abroad with a traveller who has room in their suitcase."
 description: "An app for sending a parcel abroad with a traveller who has room in their suitcase."
-metrics:
-  - value: "4 layers"
-    label: "domain, application, infrastructure and presentation, cleanly separated"
-  - value: "3 languages"
-    label: "English, French and Arabic, with right-to-left layout"
-  - value: "20 months"
-    label: "of design, build and iteration"
 stack: ["Flutter", "Dart", "Firebase", "BLoC", "Clean Architecture", "get_it"]
 lede: |
-  A marketplace for something Algerian families abroad already do informally:
-  matching someone who needs a parcel moved with a traveller who has room in
-  their luggage. Twenty months of design and build, across three languages. It was
-  never released.
+  Twenty months of design and build, across three languages. It was never
+  released.
 ---
 
 ## The story

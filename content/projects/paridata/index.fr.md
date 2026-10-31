@@ -16,4 +16,4 @@ J'observe un influenceur qui fait la promotion d'une application de paris et par
 
 - Chaque pronostic est enregistré sous forme de données dès sa publication et vérifié automatiquement avant la mise en ligne. L'influenceur et l'application restent anonymes.
 - Un combiné n'est gagnant que si tous ses matchs le sont. Un match annulé est retiré du combiné.
-- Tous les montants sont simulés avec une mise fixe. Aucun vrai pari n'a été placé. 18+.
+- Tous les montants sont simulés. Aucun vrai pari n'a été placé. 18+.

@@ -1,25 +1,23 @@
 ---
-title: "Building an AI Agent That Tests a Live Website End to End"
+title: "Building an AI Agent for End-to-End Testing"
 date: 2026-04-07
-description: "What an AI agent is, and DOMIA, the autonomous end-to-end testing agent I built on Google ADK and Gemini."
+description: "Chat, function calling and the agent loop in Python, then DOMIA, the testing agent I built on Google ADK and Gemini, in three recorded runs."
 cover:
     image: "04-domia-architecture.jpg"
     alt: "DOMIA architecture: the agent loop, its tools, and the drivers for web, mobile and desktop"
 ---
 
-This article is split into two parts. The first part is short, just enough to
-understand the building blocks. The second part is a
-real-world example: an AI agent that tests software autonomously. I built it,
-it's working well, and I called it **DOMIA**.
+I built an AI agent that tests software autonomously. It's working well, and I
+called it **DOMIA**. The first part below is short, just enough to understand
+the building blocks.
 
 ## The building blocks
 
-### Chat: the foundation
+### Chat
 
-Everyone has used a chatbot by now. You type something, the model replies. That's
-it.
+Everyone has used a chatbot by now.
 
-{{< figure src="01-chat.jpg" alt="Diagram of a chat exchange: a prompt goes into the model, a reply comes out" caption="Chat: text in, text out." >}}
+{{< figure src="01-chat.jpg" alt="Diagram of a chat exchange: a prompt goes into the model, a reply comes out" caption="Text in, text out." >}}
 
 The model reads your text, predicts the most likely useful response, and sends it
 back. Here's how to call a chat model with Gemini:
@@ -40,19 +38,18 @@ print(response.text)
 # Paris
 ```
 
-### Function calling: the AI picks up tools
+### Function calling
 
 Chat alone can't look up today's weather, query a database, or click a button. It
 only knows what was in its training data. Function calling fixes that. You give
 the model a list of tools it can use, and it decides *when* to call them and
-*with which arguments*. You don't have to route it manually.
+*with which arguments*.
 
 {{< figure src="02-function-calling.jpg" alt="Diagram of function calling: the model returns a tool request, your code executes it and returns the result" caption="The model asks; your code runs the tool and hands back the result." >}}
 
-The key point is that **the model does not run the tool.**
+**The model doesn't run the tool.**
 It returns a request: a JSON object saying "call this function with these args".
-Your code runs the actual function and feeds the result back. **The model asks;
-your code decides whether to comply.**
+Your code runs the actual function and feeds the result back.
 
 ```python
 import os
@@ -79,7 +76,7 @@ response = chat.send_message("What's the weather like in Paris right now?")
 # Tool result : {'temp': '18°C', 'condition': 'Cloudy'}
 ```
 
-### AI agent frameworks: closing the loop
+### AI agent frameworks
 
 A single tool call is useful. But what if the task requires 10 steps? What if the
 model needs to look at the result, decide what to do next, call another tool, and
@@ -88,14 +85,12 @@ keeps acting until it reaches a goal.
 
 {{< figure src="03-agent-loop.jpg" alt="Diagram of the agent loop: plan, act, observe, repeat until the goal is reached" caption="The agent loop: plan, act, observe, repeat." >}}
 
-A few frameworks that make building agents practical today: **Google ADK** (great
-for Gemini-based and multi-agent systems), **OpenAI Agents SDK** (built around
-GPT and agent handoffs), **LangChain** (for custom control flow), **Claude Agent
-SDK**, and others.
+A few frameworks that make building agents practical today: **Google ADK** (for
+Gemini-based and multi-agent systems), **OpenAI Agents SDK** (built around GPT
+and agent handoffs), **LangChain** (for custom control flow) and **Claude Agent
+SDK**.
 
-The agent loop handles everything: inject the state, let the model pick the next
-tool, run it, feed results back, repeat. You write the tools; the framework runs
-the loop.
+You write the tools; the framework runs the loop.
 
 ```python
 from google.adk.agents import LlmAgent
@@ -131,10 +126,10 @@ session = session_service.create_session_sync(app_name="demo", user_id="user1")
 # → "I navigated to example.com and clicked the first link."
 ```
 
-## DOMIA: an agent that tests your software
+## DOMIA
 
-Let's talk about a real problem:
-**end-to-end (E2E) test automation** across web, mobile, and desktop apps.
+The problem is **end-to-end (E2E) test automation** across web, mobile, and
+desktop apps.
 
 ### Why test automation is hard
 
@@ -163,15 +158,15 @@ breaking.
 
 Three capabilities make this possible:
 
-- **Visual perception** — the agent reads screenshots the way a human tester
-  would, catching visual regressions and layout issues that inspecting only the DOM
-  and text output misses.
+- **Visual perception** — the agent reads screenshots, catching visual
+  regressions and layout issues that inspecting only the DOM and text output
+  misses.
 - **Natural language acceptance criteria** — you describe *what* the
   system-under-test should do, not *how* to drive the browser step by step.
 - **Built-in test oracle** — the model itself can judge whether the observed
   state matches the expected outcome, without you hardcoding every assertion.
 
-### Introducing DOMIA
+### How it works
 
 **DOMIA** is an autonomous QA agent. You give it a target system (a URL for web
 apps, a mobile app, an Electron window) and a plain-English goal expressed as
@@ -179,67 +174,54 @@ acceptance criteria. It navigates, clicks, types, scrolls, and reads, then retur
 structured verdict: PASS, FAIL, or UNCERTAIN, with a full execution trace as
 evidence.
 
-We'll show three concrete runs: a multilingual UI regression, a visual assertion
-that requires a vision-capable model (VLLM), and a cross-layer test that writes a
-file to disk using a shell tool.
-
 {{< figure src="04-domia-architecture.jpg" alt="DOMIA architecture: Google ADK agent loop, Gemini with vision, and drivers for Playwright, Appium and Electron" caption="DOMIA under the hood." >}}
 
-Under the hood:
-
-- **Google ADK** manages the agent loop (plan → act → observe → repeat).
-- **Gemini** is the model, vision enabled: it sees screenshots, videos, and more.
+- **Google ADK** manages the agent loop.
+- **Gemini** is the model, vision enabled: it sees screenshots and videos.
 - The underlying driver (Playwright for web, Appium for mobile, or Electron APIs
-  for desktop) controls the actual app, the same SUT your users hit.
+  for desktop) controls the actual app.
 - Every action (click, type, navigate, shell command) is a tool the model can
   call.
-- Results are stored with full observability: every step, tool call, screenshot,
-  and verdict is recorded, so failures are reproducible and debuggable.
+- Every step, tool call, screenshot, and verdict is recorded, so failures are
+  reproducible and debuggable.
 
-### Example 1 — Multilingual UI regression (ibraverse.ca)
+### Example 1 — Multilingual UI regression
 
 **Acceptance criterion:** *"Open ibraverse.ca and verify that the website supports
 at least 3 languages — English, French, and one other."*
 
 No selectors. No hardcoded text comparisons. DOMIA navigates the site, finds the
 language switcher, cycles through options, and checks that the content
-changes. A traditional regression test would break every time the language menu
-is redesigned. DOMIA doesn't care.
+changes.
 
-{{< figure src="05-demo-multilingual.jpg" alt="Still from the recording of DOMIA cycling through the site's languages and returning PASS" caption="Recording: DOMIA opens ibraverse.ca, cycles through languages and returns PASS. [Watch the recording on LinkedIn](https://www.linkedin.com/pulse/concrete-example-how-ai-replace-software-testers-tnv-mellah--9vbxe)." >}}
+{{< figure src="05-demo-multilingual.jpg" alt="Still from the recording of DOMIA cycling through the site's languages and returning PASS" caption="DOMIA opens ibraverse.ca, cycles through languages and returns PASS. [Watch the recording on LinkedIn](https://www.linkedin.com/pulse/concrete-example-how-ai-replace-software-testers-tnv-mellah--9vbxe)." >}}
 
-### Example 2 — Visual understanding with a VLLM (is Brahim smiling?)
+### Example 2 — Visual understanding
 
 This one can't be done without vision. The acceptance criterion is: *"Look at the
 profile photo of Brahim on the page and verify he is smiling."*
 
-No DOM element can answer that. A traditional E2E test has no way to pass. But
-DOMIA, running with a vision-capable model, takes a screenshot, looks at the
-image, and judges the expression.
+No DOM element can answer that. But DOMIA, running with a vision-capable model,
+takes a screenshot, looks at the image, and judges the expression.
 
-This scenario **passes only when vision is enabled**. With a text-only model,
-DOMIA correctly returns FAIL: it can read the alt text, but can't verify the
-actual image content.
+With a text-only model, DOMIA correctly returns FAIL: it can read the alt text,
+but can't verify the actual image content.
 
-{{< figure src="06-demo-vision.jpg" alt="Still from the recording of DOMIA judging a photo with a vision model and returning PASS" caption="Recording: DOMIA with a vision model navigates to the page, captures the photo, and returns PASS with the model's reasoning as evidence. [Watch the recording on LinkedIn](https://www.linkedin.com/pulse/concrete-example-how-ai-replace-software-testers-tnv-mellah--9vbxe)." >}}
+{{< figure src="06-demo-vision.jpg" alt="Still from the recording of DOMIA judging a photo with a vision model and returning PASS" caption="DOMIA with a vision model navigates to the page, captures the photo, and returns PASS with the model's reasoning as evidence. [Watch the recording on LinkedIn](https://www.linkedin.com/pulse/concrete-example-how-ai-replace-software-testers-tnv-mellah--9vbxe)." >}}
 
-### Example 3 — Cross-layer test with shell tools (counting articles)
+### Example 3 — Cross-layer test with shell tools
 
 **Acceptance criterion:** *"Count how many articles are published on the website
 and write the result into a local file called `article_count.txt` in the desktop
 folder."*
 
-This passes **only when the shell tool is enabled**. Without it, DOMIA can see the
-article count on screen but has no way to write it to disk. With the shell tool
-active, the agent reads the count from the page and calls
-`echo "2" > article_count.txt` on its own.
+This passes **only when the shell tool is enabled**. The agent reads the count
+from the page and calls `echo "2" > article_count.txt` on its own.
 
 This illustrates a broader class of tests: scenarios where the verdict requires
-acting on the environment as well as reading it. Think of it as **agentic
-reporting**: the agent verifies a condition and leaves behind the artifact
-that proves it.
+acting on the environment as well as reading it.
 
-{{< figure src="07-demo-shell.jpg" alt="Still from the recording of DOMIA running a shell command and the evidence file appearing on disk" caption="Recording: DOMIA navigates, counts, runs the shell command, and the article_count.txt file appears on disk in real time. [Watch the recording on LinkedIn](https://www.linkedin.com/pulse/concrete-example-how-ai-replace-software-testers-tnv-mellah--9vbxe)." >}}
+{{< figure src="07-demo-shell.jpg" alt="Still from the recording of DOMIA running a shell command and the evidence file appearing on disk" caption="DOMIA navigates, counts, runs the shell command, and the article_count.txt file appears on disk in real time. [Watch the recording on LinkedIn](https://www.linkedin.com/pulse/concrete-example-how-ai-replace-software-testers-tnv-mellah--9vbxe)." >}}
 
 ### The bigger picture
 
@@ -247,37 +229,31 @@ DOMIA is built for E2E and TNV testing across every major app type. The same
 goal syntax works everywhere, and only the driver changes:
 
 - **Perception** — after every action, DOMIA captures a screenshot (and video)
-  and the data, and feeds both to the model. This is what makes self-healing
-  work: the agent sees the app the way a human tester does, without
-  hardcoded selectors.
+  and the data, and feeds both to the model.
 - **Shell tool** — the agent can run terminal commands mid-test: `curl` an API,
-  query a database, check a file, write evidence to disk. This is what makes
-  cross-layer TNV possible in a single run.
-- **Vision** — `--vision` switches the model to multimodal mode. The agent sees
-  real screenshots on top of the DOM and text. That's useful for visual regression,
-  image checks, and UI states that aren't exposed in the accessibility tree.
+  query a database, check a file, write evidence to disk.
+- **Vision** — `--vision` switches the model to multimodal mode. That's useful
+  for visual regression, image checks, and UI states that aren't exposed in the
+  accessibility tree.
 - **Workflows** — define a sequence of test goals in a file and run them as a
-  batch. Each step is plain English. Steps can continue on failure so the full
-  suite runs even when something breaks.
+  batch. Steps can continue on failure.
 - **Reports** — `--report html` for a human-readable summary, `--report junit`
-  for CI (Jenkins, GitHub Actions, GitLab CI). Every run is also persisted in a
-  local SQLite database, so you can re-inspect any step, re-run any scenario, and track trends
-  over time.
+  for CI. Every run is also persisted in a local SQLite database, so you can
+  re-inspect any step, re-run any scenario, and track trends over time.
 - **Plugins** — drop a JS file into `~/.domia/plugins/` and the agent gets a new
-  tool automatically. No recompile needed.
+  tool automatically.
 
 ### The limits
 
 - **It's not magic.** Complex screens with heavy dynamic content, unusual
-  gestures, or non-standard UI patterns can confuse the
-  agent, on any platform.
+  gestures, or non-standard UI patterns can confuse the agent.
 - **It's not free.** Every LLM call costs tokens. Running a full TNV campaign
   with hundreds of test cases against a cloud model gets expensive. The local
-  model option (Example 2) helps bring cost and latency down for any platform.
+  model option (Example 2) helps bring cost and latency down.
 - **It's best for high-value, complex scenarios.** For simple happy-path smoke
-  tests on web, mobile, or desktop, use scripted automation, which is faster and
-  cheaper. DOMIA is most useful on long, stateful user journeys: the UAT scenarios and
-  cross-layer regression tests that are too expensive to maintain with
+  tests, use scripted automation, which is faster and cheaper. DOMIA is most
+  useful on long, stateful user journeys: the UAT scenarios and cross-layer
+  regression tests that are too expensive to maintain with
   traditional selector-based automation.
 
 ## Sources

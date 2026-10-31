@@ -1,18 +1,16 @@
 ---
 title: "Building a Chatbot That Answers From Your Own Documents"
 date: 2024-09-03
-description: "A RAG chatbot over Montréal’s indoor pool schedules: how retrieval over your own documents works, and where it still gets answers wrong."
+description: "A RAG chatbot over Montréal’s indoor pool schedules: one text file per pool, embeddings with LlamaIndex, a ChainLit chat and a link to the source."
 cover:
     image: "cover.jpg"
     alt: "Illustration: pool schedules turned into a search index that feeds a chatbot’s cited answer"
 ---
 
-In this article, I use a Large Language Model (LLM) to build a chatbot that
-answers questions about pool availability in Montréal.
+I built a chatbot that uses a Large Language Model (LLM) to answer questions
+about pool availability in Montréal.
 
-Using LLMs in a business can be highly beneficial, but allowing an LLM to operate
-unchecked and make decisions can be risky, potentially leading to significant
-issues and financial losses. For example, Air Canada had to pay compensation because of a
+Allowing an LLM to operate unchecked and make decisions can be risky. For example, Air Canada had to pay compensation because of a
 misleading response from an LLM:
 [Washington Post article](https://www.washingtonpost.com/travel/2024/02/18/air-canada-airline-chatbot-ruling/).
 
@@ -34,8 +32,7 @@ to see the pool's schedule:
 [Complexe Sportif de Saint-Laurent](https://montreal.ca/en/places/pools-complexe-sportif-de-saint-laurent).
 
 Since I didn't have a fixed time to go to the pool, I found myself constantly
-navigating through pool websites to find the next available slot, which was
-time-consuming and very manual.
+navigating through pool websites to find the next available slot.
 
 ## Large language models
 
@@ -44,7 +41,7 @@ grasping concepts related to time and space, like pool opening and closing times
 or pools nearest to a particular address.
 
 One challenge is that pool schedules change frequently, and recent schedules weren't
-included in the LLMs' training data. So, how can we solve this problem?
+included in the LLMs' training data.
 
 Here are three possible solutions:
 
@@ -53,19 +50,16 @@ Here are three possible solutions:
   have a large, "static" dataset that was not available during the initial
   training of the LLM. By *static*, I mean data that doesn't change over time.
   However, this approach can be costly and resource-intensive.
-- **Provide the entire database alongside the user's query.** This technique
-  involves including the entire database with the user's query as a prompt,
-  rather than retraining the model. It works well if the dataset is relatively
-  small. Current LLMs support a large context window, but if the dataset is too
+- **Provide the entire database alongside the user's query.** It works well if
+  the dataset is relatively small. Current LLMs support a large context window, but if the dataset is too
   large, this approach becomes impractical because the LLM can only process a
   limited portion of the prompt and will only consider the most recent part.
-- **Use retrieval-augmented generation.** RAG enhances the capabilities of LLMs
-  by integrating them with specific knowledge databases, without the need for
-  retraining the model. This approach is cost-effective and helps keep the LLM's
+- **Use retrieval-augmented generation.** RAG integrates LLMs with specific
+  knowledge databases, without the need for retraining the model. This approach is cost-effective and helps keep the LLM's
   output relevant and accurate.
   RAG works by first searching through a large database to find relevant
   information related to a query. Then, it uses this information to generate a
-  more accurate and informative response.
+  response.
 
 {{< figure src="01-rag-pipeline-diagram.jpg" alt="Diagram of a basic RAG pipeline, from documents through indexing and retrieval to the language model" caption="A basic RAG pipeline. Source: [DeepLearning.AI — Building and Evaluating Advanced RAG](https://learn.deeplearning.ai/courses/building-evaluating-advanced-rag/lesson/2/advanced-rag-pipeline)." >}}
 
@@ -142,15 +136,11 @@ readers. See
 [data connectors](https://docs.llamaindex.ai/en/stable/module_guides/loading/connector/)
 and the [web reader package](https://llamahub.ai/l/readers/llama-index-readers-web).
 
-Each pool has its own file with a schedule that looks something like this:
+Each schedule looks something like this:
 
 {{< figure src="03-pool-schedule-example.jpg" alt="Extracted pool schedule as plain text, with days, times and activity types" caption="Example of a pool schedule after extraction." >}}
 
 ### Create the embeddings
-
-When a user asks a question about a specific pool, we need to search the database
-for relevant information, combine this information (also known as context) with
-the user's query, and then use the LLM to generate a response.
 
 To find relevant information in the database, we can use various search methods,
 such as semantic search or keyword search.
@@ -164,11 +154,10 @@ similar meanings will be close to each other.
 
 I used [LlamaIndex](https://www.llamaindex.ai/) to handle data preprocessing.
 
-{{< figure src="04-embeddings.jpg" alt="Diagram of text being converted into vectors in a high-dimensional embedding space" caption="Text becomes vectors; similar meanings land close together." >}}
+{{< figure src="04-embeddings.jpg" alt="Diagram of text being converted into vectors in a high-dimensional embedding space" caption="Text becomes vectors." >}}
 
 To create an embedding, we need an embedding model, which is an LLM used to
-convert text into vectors. This same model will later be used to embed the user's
-query and search the database. It's important to use the same model for both the
+convert text into vectors. It's important to use the same model for both the
 user query and the database embeddings.
 
 ### Prepare the prompt
@@ -181,7 +170,7 @@ parsing, and more.
 
 ## Demo
 
-I won't say anything here. Here's the chatbot running:
+Here's the chatbot running:
 
 {{< figure src="05-chatbot-demo.jpg" alt="The chatbot answering a question about which pool is open next, and linking to the pool's page on the city website" caption="ChatGPT used in a RAG system to answer questions about Montréal pools." >}}
 
@@ -191,13 +180,11 @@ I won't say anything here. Here's the chatbot running:
   deterministic and proven through mathematics, physics, and science. Working
   with LLMs made me uncomfortable because I couldn't fully trust them, even
   though the responses were accurate in my case. As far as I know, there's no
-  guarantee that the model will consistently perform well and continue to
-  provide reliable results. This is why in my demo I provide the URL to the pool
+  guarantee that the model will consistently perform well. This is why in my demo I provide the URL to the pool
   website as a source.
 - Due to the AI boom, there are countless tools available, with many attempting
   to achieve similar objectives. Standards and interfaces are not yet well defined, and code that
-  works today may become obsolete in a few months. However, this rapid evolution
-  might be a natural part of progress.
+  works today may become obsolete in a few months.
 - The whole thing took an afternoon, with an LLM as a coding partner, to build
   an app that answers questions with an LLM.
 - I was occasionally banned from accessing pool websites due to intensive data

@@ -7,11 +7,7 @@ pitch: "An agent that tests applications by reading the screen as a screen reade
 description: "An agent that tests applications by reading the screen as a screen reader does, and using them the way a person would."
 metrics:
   - value: "~200 ms"
-    label: "for 20 verified findings, before any AI model is involved"
-  - value: "1 loop"
-    label: "drives web and desktop alike, with no scripted steps"
-  - value: "40"
-    label: "design decisions recorded, each with the problem it fixed"
+    label: "for 20 verified findings, with no AI model"
 stack: ["TypeScript", "Playwright", "Electron", "AI SDK", "MCP", "SQLite"]
 links:
   repo: "https://github.com/brmel/Domia"
@@ -37,23 +33,20 @@ that problem, because a person reads the screen.
 
 ## The product
 
-You ask Domia for something in plain language and it drives the application
-until it's done. It reads the accessibility tree (the same structure a screen
-reader uses), picks an action, acts on what is really there, checks what
-changed, and decides again. One loop, no recorded steps, and the same loop for a
-web page or an Electron app. I built it as a TypeScript monorepo: an agent layer
-over any LLM provider, a Playwright tool layer, SQLite persistence, a tracing
-system, an Electron desktop app and a CLI, all behind one API.
+You ask Domia for something in plain language and it drives the application.
+There are no recorded steps, and it's the same loop for a web page or an
+Electron app. I built it as a TypeScript monorepo: an agent layer over any LLM provider,
+a Playwright tool layer, an Electron desktop app and a CLI.
 
 Calling the model is the expensive part, so it happens last. A deterministic pass over
 a site's files, headers and HTML settles whatever it can in pure functions:
-twenty findings in about a fifth of a second, with no model and no browser at
-all. The agent only picks up what is left. Every run is recorded as a tree and
+twenty findings in about a fifth of a second, with no model and no browser.
+The agent only picks up what is left. Every run is recorded as a tree and
 replays from its own tape without calling the model again.
 
 ## What it prints
 
-The sweep runs on a clean checkout with no API key at all:
+The sweep runs on a clean checkout with no API key:
 
 ```console
 $ domia audit https://example.com --sweep-only

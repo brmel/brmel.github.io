@@ -46,10 +46,10 @@ grep -h '^projectNo:' content/projects/*/index.md | sort -n -k2 | tail -1
 | `status` | `shipped`, `active` (shown as "In progress") or `archived`, through `project_status_<status>`. |
 | `pitch` | One sentence a non-engineer can parse. It is the header line, the index card text and the JSON-LD abstract. |
 | `description` | 50–160 characters, unique per language; the meta description and `llms.txt`. Usually identical to `pitch`. |
-| `lede` | Markdown, three sentences: the problem, what the project does, what changed. It must add to the pitch, not restate it. |
+| `lede` | Optional markdown, at most three sentences, only for what the pitch doesn't say. A lede that restates the pitch is cut. |
 | `stack` | Chips under the page header, in order of importance. |
 | `links` | `live` and `repo`, each rendered through the `project_link_<key>` string in the three `i18n/*.yaml` files; a new key needs that string first. A link that starts with `/` points at a page on this site: it shows as "Write-up" (`project_link_writeup`) and opens in the same tab. Empty values are skipped. |
-| `metrics` | Up to three `value` + `label` pairs above the body; a value is a number, never a word ("Offline", "Cited"). Every figure also appears, sourced, in the body. They feed the "Project facts" in `llms.txt`. A project with no honest numbers has no metrics. |
+| `metrics` | Up to three `value` + `label` pairs above the body; a value is a number, never a word ("Offline", "Cited"). Every figure also appears, sourced, in the body. A count of parts ("1 pipeline", "3 surfaces", "40 decisions") is not a metric. A project with no honest numbers has no metrics. |
 | `featured` | Optional. `featured: N` lists the project under "Start here" on the home page, lowest number first. |
 | `cover` | Optional `image` (a file in the bundle) and `alt` (starting "Illustration:" for a drawing): the card thumbnail and social card when the project has no screenshot worth leading with. |
 | `resources` | Optional `params.caption` per gallery image. Alt text is "<title> screenshot"; the first image is the index-card thumbnail. |

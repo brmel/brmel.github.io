@@ -1,7 +1,7 @@
 ---
-title: "Windows Memory Management in Depth: Private Data, Stack, Heap and Mapped Files"
+title: "Windows Memory Management: Private Data, Stack, Heap and Mapped Files"
 date: 2024-01-10
-description: "Windows memory states and types (private data, stack, heap, mapped files, images), with VirtualAlloc, file-mapping and std::vector examples."
+description: "Each memory state and type in a VMMap snapshot of a Windows process, with VirtualAlloc, file-mapping and std::vector examples."
 lastmod: 2026-10-20
 series: "Windows Memory Management"
 seriesPart: 2
@@ -10,12 +10,10 @@ cover:
     alt: "VMMap snapshot showing memory states as columns and memory types as rows"
 ---
 
-If you don't want to be embarrassed by your program running out of virtual
-memory (which could cause many passengers to miss their flights), perhaps you
-should read this article on how Windows manages
-virtual memory for processes, and the tools you can use to monitor it.
+A program running out of virtual memory could cause many passengers to miss
+their flights.
 
-{{< figure src="01-hero.jpg" alt="Airport departure board" caption="Running out of virtual memory isn't always a quiet failure." >}}
+{{< figure src="01-hero.jpg" alt="Airport departure board" >}}
 
 This is a very complex subject, and parts of it go beyond my knowledge. For those who are curious and want to understand every bit,
 I recommend reading the book
@@ -29,8 +27,7 @@ memory usage in fine detail:
 {{< figure src="02-vmmap-snapshot.jpg" alt="VMMap snapshot with memory states as columns and memory types as rows" caption="Windows VMMap snapshot." >}}
 
 Let's refer to each column as a **memory state** and each row as a **memory
-type**. I'll start with a short introduction to the memory states, then go
-through each memory type in detail with examples.
+type**.
 
 ## Memory states
 
@@ -56,13 +53,9 @@ process needs it.
 
 ## Memory types
 
-Each row of the VMMap snapshot above is a type of memory. The rest of this
-article takes them one at a time: what each one represents, and how it gets
-allocated.
-
 ### 1 — Private data
 
-We start with **private data** because it is the memory allocated and used only
+**Private data** is the memory allocated and used only
 by the owner process and cannot be shared between processes. It is also the main
 reason for most memory leaks and fragmentation. You can allocate it using the
 **VirtualAlloc API**, which is the lowest-level memory allocation API available
@@ -114,10 +107,10 @@ for (int i = 0; i < 200000000; i++)
     *((int*)(MemPtr) + i) = i;
 ```
 
-After each `for` loop (1, 2, and 3), the working set of the process (and so the
+After each `for` loop, the working set of the process (and so the
 RAM it uses) grows, because we access more memory each time.
 Reserved and committed memory don't move, because both were allocated and
-committed in advance. Only the working set grows.
+committed in advance.
 
 {{< figure src="04-working-set-growth.jpg" alt="VMMap showing the working set growing across three runs while reserved and committed stay constant" caption="The process working set grows when memory is used." >}}
 
@@ -137,7 +130,7 @@ can be configured when creating the thread.
 When the Memory Manager allocates the stack, memory is initially only reserved,
 and it is later committed only when needed. To show how stack memory gets
 committed, this example allocates a static array of a different size in each
-case (1, 2, and 3).
+case.
 
 ```cpp
 // 1
@@ -180,8 +173,7 @@ a memory usage and performance standpoint. To address this, Windows provides a
 component called the heap manager, which manages allocations inside larger memory
 areas reserved using the page-granularity memory-allocation functions. The
 allocation granularity in the heap manager is relatively small: 8 bytes on 32-bit
-systems, and 16 bytes on 64-bit systems. The heap manager has been designed to
-optimise memory usage and performance in the case of these smaller allocations.
+systems, and 16 bytes on 64-bit systems.
 
 {{< figure src="06-heap-api-layer.jpg" alt="Diagram of the Windows heap API layers above the virtual memory allocator" caption="Heap API layer." >}}
 
@@ -210,9 +202,6 @@ Vector2.reserve(10000000);
 std::vector<int> Vector3;
 Vector3.resize(10000000);
 ```
-
-Both the `reserve` and `resize` functions of a `std::vector` reserve and commit
-memory:
 
 {{< figure src="07-vector-reserve-resize.jpg" alt="VMMap showing heap reserved and committed memory growing with vector reserve and resize" caption="Both reserve and resize functions of std::vector commit memory." >}}
 
@@ -245,8 +234,6 @@ In this example I will use the
 to modify the content of this file:
 
 {{< figure src="09-file-before-mapping.jpg" alt="Text file contents before the memory mapping example runs" caption="Text file before file memory mapping." >}}
-
-The steps are easy to follow:
 
 ```cpp
 HANDLE hFile = CreateFile(
@@ -344,8 +331,7 @@ I won't cover it in this article.
 In the
 [previous article]({{< relref "windows-memory-management-overview" >}}) I introduced the
 [MemoryTracer project](https://github.com/brmel/MemoryTracer), an open-source
-C++ library that monitors the virtual memory of a specific process over time. It allows you to display data on the screen, export
-well-formatted data to a file, and provides control over the snapshot frequency.
+C++ library that records where a process's virtual memory goes over time.
 
 {{< figure src="14-memory-tracer-vs-vmmap.jpg" alt="MemoryTracer output side by side with a VMMap snapshot showing matching figures" caption="MemoryTracer showing the same results as VMMap." >}}
 

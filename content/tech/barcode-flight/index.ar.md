@@ -25,6 +25,6 @@ cover:
 ليلًا، وبطاقات الصعود اليوم على الهواتف تحديدًا. لون المقدمة إعداد موجود في
 كل مكتبة تصوير جادّة، ومنها [Aurora Imaging
 Library](https://www.zebra.com/us/en/software/machine-vision-and-fixed-industrial-scanning-software/aurora-imaging-library.html)
-التي أعمل عليها، وضبطه كما ينبغي لا يكلّف شيئًا.
+التي أعمل عليها.
 
 ما زلت أُبدّل إلى الوضع الفاتح قبل كل بوابة.

@@ -26,6 +26,6 @@ sauf sur un téléphone en soirée, et c'est justement sur le téléphone qu'on 
 sa carte d'embarquement aujourd'hui. La couleur de premier plan est un paramètre dans
 toute bibliothèque d'imagerie sérieuse, dont l'[Aurora Imaging
 Library](https://www.zebra.com/us/en/software/machine-vision-and-fixed-industrial-scanning-software/aurora-imaging-library.html)
-sur laquelle je travaille, et il ne coûte rien de le régler correctement.
+sur laquelle je travaille.
 
 Je passe toujours en mode clair avant chaque porte d'embarquement.

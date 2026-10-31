@@ -29,8 +29,6 @@
 .timeline-work__title a:hover{color:var(--accent);}
 .timeline-work__text{max-inline-size:75ch;font-size:var(--t-body);color:var(--ink-soft);}
 
-.timeline-stack{margin-block-start:var(--space-5);}
-
 .video-thumb{position:relative;display:block;margin:0;line-height:0;overflow:hidden;}
 .video-thumb img{width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;}
 .video-thumb__play{

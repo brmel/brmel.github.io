@@ -22,7 +22,6 @@ the templates.
 | `scripts/` | build entry points, gates, audit and generators (below) |
 | `.github/workflows/site.yml` | CI and deployment |
 | `docs/` | brand, voice, playbooks, decisions, backlog, roadmap |
-| `resume/` | the resume sent to employers: `Brahim-Redouane-Mellah-Resume.html` and the PDF printed from it with headless Chrome; not part of the site build |
 | `.claude/skills/` | agent skills; see [AGENTS.md](AGENTS.md) |
 
 ## Templates
@@ -63,7 +62,7 @@ Hugo's current layout, with no theme: page templates at the root of `layouts/`, 
 | `layouts/_partials/home/` | `profile.html` (one card: name, role line, the home page body as the intro, and the photo as AVIF with a WebP fallback), `cards.html` (a headed card grid; takes `(dict "id" … "title" … "pages" …)`) |
 | `layouts/_partials/project/meta.html` | project links and stack chips |
 | `layouts/_partials/adventures/verdict.html` | the verdict block above the body, rendered when `rating` is set |
-| `layouts/_partials/resume/` | `timeline.html` (each period as a rail with the dates and employer beside the role, work items and stack chips), `video-thumb.html` |
+| `layouts/_partials/resume/` | `timeline.html` (each period as a rail with the dates and employer beside the role and its work items), `video-thumb.html` |
 | `layouts/_partials/paridata/` | dashboard, curve, ledger, amount, about |
 | `layouts/_partials/brand/` | `mark.html` (the compass mark, the only implementation) |
 
@@ -134,7 +133,7 @@ the meta description and JSON-LD. Optional fields:
 The resume is front matter: `role`, `location`, `sameAs` (profile URLs, read only by the JSON-LD
 `Person`), `highlights` (`title` and `text` cards under the header), then `experience:` periods (`period`,
 `role`, `org`, `url`, `note`, `kind: education` for degrees, `work` items with `title`, `url`, `text`,
-`video`, `videoAlt`, then `stack`; an item with a video takes a full row), `skills` and
+`video`, `videoAlt`; an item with a video takes a full row), `skills` and
 `certifications`. `layouts/_partials/resume/timeline.html` renders the periods; `llms.txt` reads the same
 data. The page header is the name, the "Save as PDF" button, the `role` line and "As of <month year>" from `lastmod` (printed too). An employer or product URL is linked once on the page.
 

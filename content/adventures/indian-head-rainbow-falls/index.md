@@ -1,31 +1,30 @@
 ---
-title: "Indian Head & Rainbow Falls: The Adirondacks’ Best Day Hike"
+title: "Indian Head & Rainbow Falls Hike in the Adirondacks"
 date: 2026-05-31
-description: "An 11-mile loop to a fjord-like vista over Lower Ausable Lake and a 150-foot waterfall — the most rewarding easy-graded hike in the Adirondack High Peaks."
+description: "An 11-mile loop in the Adirondack High Peaks: Gill Brook up to the Indian Head ledge over Lower Ausable Lake, Fish Hawk Cliffs and the 150-foot Rainbow Falls."
 category: "hike"
 place: "Adirondacks, NY"
 rating: 4.7
 goBack: "Yes, top of the list."
-bestFor: "A long but easy-graded day with three viewpoints."
+bestFor: "An easy-graded day with three viewpoints."
 con: "Mostly flat, but a long day on your feet."
 cover:
   image: "cover.jpg"
   alt: "Illustration: a long lake between autumn slopes seen from a rocky ledge, with a waterfall on the far side"
 ---
 
-Eleven miles, almost no scrambling, and it ends at a cliff over a lake shaped like a Norwegian fjord. Indian Head & Rainbow Falls is the most bang-for-effort hike I've done in the Adirondacks.
+Almost no scrambling, and it ends at a cliff over a lake shaped like a Norwegian fjord. Indian Head & Rainbow Falls is the most bang-for-effort hike I've done in the Adirondacks.
 
 ## The place
 
 Indian Head is a rock ledge high above Lower Ausable Lake, deep in the
 Adirondack High Peaks near Keene Valley, NY. The lake below is long, narrow,
-and walled by mountains on both sides. From the top it looks like a fjord. Add
-Rainbow Falls, a ~150-foot cascade in a mossy gorge, and a side trip to
-Fish Hawk Cliffs, and you get three viewpoints in one loop.
+and walled by mountains on both sides. Add Rainbow Falls, a ~150-foot cascade in
+a mossy gorge, and a side trip to Fish Hawk Cliffs, and you get three viewpoints
+in one loop.
 
 The land is the Adirondack Mountain Reserve (AMR): private, but open to
-hikers through a conservation easement. That comes with rules (below), so read them
-before you go.
+hikers through a conservation easement. That comes with rules (below).
 
 ## What I did
 
@@ -39,17 +38,16 @@ to Rainbow Falls before the long, easy walk back on Lake Road.
 
 ## Recommendations
 
-- **Go for:** the Indian Head vista over Lower Ausable Lake, one of the best
-  views in the Northeast for relatively little climbing.
+- **Go for:** the Indian Head vista over Lower Ausable Lake, for relatively
+  little climbing.
 - **Do the loop:** up via Gill Brook (waterfalls), down via the steep Indian
   Head trail to Lake Road. Add Fish Hawk Cliffs, which is 5 minutes away.
-- **Reservation (important):** AMR requires a free reservation to park/hike
+- **Reservation:** AMR requires a free reservation to park/hike
   May 1 – Oct 31. Book ahead at hikeamr.org: no reservation, no entry.
 - **No dogs.** Strictly enforced on AMR land.
-- **Distance / time:** ~10.8–11 mi (about 17.5 km) loop, 6–7 hours with breaks. Long but
-  mostly flat, so start early.
-- **Budget:** free (reservation is free; bring your own food/water: no services
-  on trail).
+- **Distance / time:** ~10.8–11 mi (about 17.5 km) loop, 6–7 hours with breaks,
+  so start early.
+- **Budget:** free (bring your own food/water: no services on trail).
 - **Best time:** late spring to mid-October. Fall for the foliage.
 - **Getting there:** trailhead parking at St. Huberts / Ausable Club, Keene
   Valley, NY. ~2h from Montréal, ~2h from Albany.

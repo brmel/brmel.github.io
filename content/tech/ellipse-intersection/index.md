@@ -1,5 +1,5 @@
 ---
-title: "How to Solve the Intersection of Two Rotated Ellipses"
+title: "Intersection of Two Rotated Ellipses"
 date: 2026-10-11
 description: "Move two rotated ellipses and see where they cross, then the exact solution: from the ellipse equation to a quartic, solved with Ferrari’s method."
 cover:

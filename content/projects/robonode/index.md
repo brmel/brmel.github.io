@@ -5,27 +5,19 @@ projectNo: 0
 status: "active"
 pitch: "A robot arm you drive from your browser, to test robotics code against real physics before touching hardware."
 description: "A robot arm you drive from your browser, to test robotics code against real physics before touching hardware."
-metrics:
-  - value: "4 nodes"
-    label: "vision, tracking, trajectory and control, swappable while running"
-  - value: "1 command"
-    label: "docker compose up, then a robot cell in the browser"
 stack: ["C++", "MuJoCo", "OpenCV", "Ruckig", "three.js", "Docker"]
 links:
   repo: "https://github.com/brmel/robonode"
 lede: |
-  An open platform for testing robotics algorithms in real physics. Pick an
-  application, swap the node that finds the part or plans the motion, and watch a
-  UR10e on a rail try it in a physics engine that doesn’t flatter anybody.
-  Everything you can change is data, and everything you can replace sits behind
-  one interface.
+  Pick an application, swap the node that finds the part or plans the motion,
+  and watch a UR10e try it.
 resources:
   - src: "gallery/01-dashboard.png"
     params:
-      caption: "Mid-place. The Contacts card is reading the physics (`pallet ↔ wrist_2_link`), and every card on the right is an algorithm that can be swapped while the cell runs."
+      caption: "The Contacts card is reading the physics (`pallet ↔ wrist_2_link`), and every card on the right is an algorithm that can be swapped while the cell runs."
   - src: "gallery/02-grasp-in-physics.png"
     params:
-      caption: "A grasp is a constraint the model closes on the part it actually caught, not an animation of a successful pick."
+      caption: "A grasp is a constraint the model closes on the part it caught, not an animation of a successful pick."
   - src: "gallery/03-real-ur10e.png"
     params:
       caption: "The same contract driving a real UR10e."

@@ -10,11 +10,10 @@ Every Tech and Adventures article is also served as markdown at its URL followed
 
 {{ with site.GetPage "/resume" }}{{ range .Params.experience -}}
 - {{ .period }} — {{ .role }}{{ with .org }}, {{ . }}{{ end }}{{ with .note }}. {{ . }}{{ end }}
-{{ with .stack }}  - Stack: {{ delimit . ", " }}
-{{ end }}{{ end }}{{ end }}
+{{ end }}{{ end }}
 **Project facts**, taken from each project page:
 
-{{ range (sort (where (site.GetPage "/projects").Pages "Params.metrics" "!=" nil) "Date" "desc") -}}
+{{ range (sort (site.GetPage "/projects").Pages "Date" "desc") -}}
 - {{ .Title }} ({{ .Permalink }})
 {{ range .Params.metrics }}  - {{ .value }}: {{ .label }}
 {{ end }}{{ with .Params.stack }}  - Built with: {{ delimit . ", " }}
