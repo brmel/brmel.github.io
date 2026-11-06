@@ -130,8 +130,8 @@ the meta description and JSON-LD. Optional fields:
 | `findings`, `methods` | a report article's key findings (a list) and its data and method (markdown), rendered after the report under their own headings and in the markdown twin, so the report's facts are crawlable text |
 | `lastmod` | The date of the latest real revision (sitemap, `dateModified`, `article:modified_time`). Without it a page counts as unchanged since `date`. |
 
-The resume is front matter: `role`, `location`, `sameAs` (profile URLs, read only by the JSON-LD
-`Person`), `highlights` (`title` and `text` cards under the header), then `experience:` periods (`period`,
+The resume's email is `email` in the `[params]` of `config.toml`. The rest is front matter: `role`,
+`location`, `sameAs` (profile URLs, read only by the JSON-LD `Person`), `highlights` (`title` and `text` cards under the header), then `experience:` periods (`period`,
 `role`, `org`, `url`, `note`, `kind: education` for degrees, `work` items with `title`, `url`, `text`,
 `video`, `videoAlt`; an item with a video takes a full row), `skills` and
 `certifications`. `layouts/_partials/resume/timeline.html` renders the periods; `llms.txt` reads the same

@@ -63,6 +63,7 @@ disableKinds = ["taxonomy", "term"]
   minifyOutput = true
 
 [params]
+  email = "mellah.brahim.redouane@gmail.com"
   photo = "images/profile.jpg"
   mainSections = ["projects", "tech", "adventures"]
   themeColor = "#ffffff"

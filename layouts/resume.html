@@ -2,7 +2,7 @@
 {{- define "main" }}
 
 <article class="post-single resume">
-  {{- $extra := printf `<button type="button" class="resume__print" onclick="window.print()">%s</button><p class="resume__asof">%s</p>` (i18n "resume_print") (printf (i18n "as_of") (time.Format "January 2006" .Lastmod)) | safeHTML }}
+  {{- $extra := printf `<p class="resume__email"><a href="mailto:%[1]s"><bdi>%[1]s</bdi></a></p><button type="button" class="resume__print" onclick="window.print()">%[2]s</button><p class="resume__asof">%[3]s</p>` site.Params.email (i18n "resume_print") (printf (i18n "as_of") (time.Format "January 2006" .Lastmod)) | safeHTML }}
   {{ partial "page-head/header.html" (dict "page" . "title" site.Params.name "extra" $extra) }}
 
   {{- with .Params.highlights }}

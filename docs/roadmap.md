@@ -23,8 +23,6 @@ step, run `./scripts/check.sh` and the `verify-site` skill, record any decision 
 
 | Choice | Trade-off |
 |---|---|
-| One quiet way to reach you (email on the resume, or an issue link) | every site above has one; without it nobody can report an error |
-| A visible feed link (footer or Tech index) | the one subscription channel that needs no social account |
 | Tech as a dated title list instead of cards, once it passes about 20 articles | how Karpathy, Sanglard, Luu and Aras list writing |
 | A licence line for code snippets | the copy button invites copying; say whether readers may |
 | An AI-assistance note on pages an LLM helped edit | Matt Godbolt's one-line form |

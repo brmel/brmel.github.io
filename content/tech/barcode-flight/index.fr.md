@@ -15,7 +15,7 @@ Un jour, j'étais à l'aéroport de Düsseldorf pour prendre un vol. Je m'étais
 Quand je suis arrivé au contrôle de sécurité pour scanner mon code-barres, ça n'a pas marché. J'étais déjà en retard. J'ai essayé tous les zooms, toutes les rotations… rien.
 L'agent de sécurité m'a dit que je devais retourner au comptoir d'enregistrement et espérer qu'ils soient encore là pour imprimer une carte d'embarquement papier.
 
-Puis je me suis rendu compte que mon téléphone était en mode sombre, et que le code-barres s'affichait avec une couleur de premier plan sombre. J'ai donc simplement basculé en mode clair… et ça m'a fait gagner du temps, ça a sauvé mon vol et ça m'a épargné beaucoup de stress.
+Puis je me suis rendu compte que mon téléphone était en mode sombre, et que le code-barres s'affichait en barres claires sur fond sombre. J'ai donc simplement basculé en mode clair… et ça m'a fait gagner du temps, ça a sauvé mon vol et ça m'a épargné beaucoup de stress.
 
 {{< figure src="02-boarding-pass-read.jpeg" alt="Code-barres en mode clair" >}}
 

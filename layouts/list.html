@@ -6,7 +6,9 @@
 {{- partial "home/cards.html" (dict "id" "featured" "title" (i18n "featured_heading") "pages" (sort (where (partial "func/main-pages.html" .) "Params.featured" "!=" nil) "Params.featured")) }}
 {{- else }}
 
-{{ partial "page-head/header.html" (dict "page" .) }}
+{{- $feed := "" }}
+{{- if eq .Section "tech" }}{{ $feed = printf `<a class="page-header__feed" rel="alternate" type="application/rss+xml" href="%s">%s</a>` (.OutputFormats.Get "RSS").RelPermalink (i18n "feed_link") | safeHTML }}{{ end }}
+{{ partial "page-head/header.html" (dict "page" . "extra" $feed) }}
 
 {{- $order := cond (eq .Section "projects") "Params.projectNo" "Date" }}
 {{- partial "article/grid.html" (dict "pages" (sort (partial "func/section-pages.html" .) $order "desc") "eager" true) }}

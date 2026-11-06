@@ -15,7 +15,7 @@ One day I was in Düsseldorf airport to take a flight. I had already checked in 
 When I arrived at the security checkpoint to scan my barcode, it didn’t work. I was already late. I tried every zoom, rotation… nothing.
 The security guy told me I needed to go back to the check-in gate and hope they were still there to print a paper boarding pass.
 
-But then I realised: my phone was in dark mode, and the barcode was shown with dark as foreground colour. So I just switched to light mode… and it saved me time, my flight, and a lot of stress.
+But then I realised: my phone was in dark mode, and the barcode was shown with light bars on a dark background. So I just switched to light mode… and it saved me time, my flight, and a lot of stress.
 
 {{< figure src="02-boarding-pass-read.jpeg" alt="The same boarding pass barcode in light mode: black bars on a white background" >}}
 
