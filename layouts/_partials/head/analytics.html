@@ -3,7 +3,11 @@
 window.dataLayer = window.dataLayer || [];
 function gtag() { dataLayer.push(arguments); }
 gtag('js', new Date());
-gtag('config', '{{ . }}');
+gtag('config', '{{ . }}', { allow_google_signals: false, allow_ad_personalization_signals: false });
+addEventListener('click', (event) => {
+  const link = event.target.closest?.('a[href^="mailto:"], .page-header__feed');
+  if (link) gtag('event', link.protocol === 'mailto:' ? 'contact_click' : 'feed_click');
+});
 addEventListener('load', () => (window.requestIdleCallback || setTimeout)(() => {
   const tag = document.createElement('script');
   tag.async = true;

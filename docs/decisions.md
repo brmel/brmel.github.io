@@ -20,6 +20,7 @@ Add a row in the same change that makes a decision.
 | 2026-09-18 | `layouts/_partials/func/dots.html` is the only list separator. | Eleven hand-written copies drifted, one to an element that never got the accent. |
 | 2026-09-18 | Every block sits at its page's measure; there is no per-block wide opt-out. | Home cards, galleries and report frames that escaped the text column read as bulges. The measure rule names `.post-content` twice so that no element rule inside an article can override it. |
 | 2026-10-30 | The home page and section indexes use the 1200px frame (`main--wide`): cards two to a row with 584px pictures, the home profile is one card. | On the 900px measure the pictures were 434px wide and the content sat on different edges from the nav; the owner asked for bigger visuals and less text. |
+| 2026-11-06 | The home page shows its cards three to a row with 384px pictures; section indexes keep two. | The owner found the home cards too large: six cards took 1,400px of height. |
 | 2026-10-30 | Outside Tech and Adventures articles, a page links a URL once (`check-pages`). | The resume linked zebra.com and the Aurora Imaging Library page three times each. An article keeps an inline link and its reference at the end. |
 | — | Duplication kept on purpose: PariData validated both in `layouts/_partials/func/paridata-ledger.html` and `scripts/checks/check-paridata.py`; the compass mark inlined in the generator templates; the figure shortcode and the project gallery each building their own responsive image. | The build-time check fails the build where the page is rendered, the gate explains the data. Generator templates are standalone pages. One image partial for both cases would be a parameter bag. |
 
@@ -79,5 +80,6 @@ Add a row in the same change that makes a decision.
 |---|---|---|
 | 2026-09-13 | The Content-Security-Policy is a `<meta>` tag. | GitHub Pages cannot set response headers; the meta policy still blocks third-party requests in the browser. |
 | 2026-09-16 | Google Analytics 4 (`G-CHFGS2DHF6`) is the one third-party runtime request, loaded after the page is idle, with no consent banner. | The owner asked for it back. Loading after idle keeps it off the critical path. Consent is open in [backlog](backlog.md). |
+| 2026-11-06 | No consent banner. Google signals and ad personalization are off, and email and feed clicks are the key events. | The owner wants no added chrome. A banner would add it to every first visit and lose most of the data. This is the owner's call on Québec Law 25, not legal advice. |
 | 2026-09-16 | PariData is anonymous: no links, handles, account names or screenshots of the tipster. | The repository is public. |
 | 2026-10-20 | The Hydro-Québec report maps have no basemap: the regions are drawn on the page background. | CARTO's free tiles now print "API key required" across the map, and the tiles were one more third-party request. |

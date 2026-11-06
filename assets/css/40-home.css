@@ -8,6 +8,8 @@
 .profile__role{font-size:var(--t-subhead);line-height:1.45;color:var(--ink-soft);text-wrap:balance;}
 .profile__intro{max-width:62ch;font-size:var(--t-body-l);color:var(--ink-soft);}
 .profile__photo{width:240px;height:auto;border-radius:var(--radius-pill);}
+.home-cards .card-grid{grid-template-columns:repeat(auto-fill,minmax(min(100%,340px),1fr));}
+.home-cards .entry-title{font-size:var(--t-subhead);}
 
 @media (max-width:768px){
   .profile{grid-template-columns:minmax(0,1fr);}

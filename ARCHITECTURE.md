@@ -105,8 +105,8 @@ Header, footer and `<main>` share the 1200px frame (`--container-content`). Ever
 sits at that page's measure:
 
 - by default the text measure, 900px (`--container-text`); grids reflow to it with `auto-fit`/`minmax`.
-- the 1200px frame, set with `main--wide`, on the home page and section indexes (card grids, two
-  cards a row, one under 720px), the resume and PariData.
+- the 1200px frame, set with `main--wide`, on the home page (three cards a row), section indexes (two cards a
+  row, one under 720px), the resume and PariData.
 
 No block sets its own `max-width` or `margin-inline:auto` (a single paragraph may cap its line length in `ch`), nothing is sized from `100vw`, and space
 between blocks is `margin-block` from `--flow-tight`, `--flow-block` and `--flow-section`. Rules sit
