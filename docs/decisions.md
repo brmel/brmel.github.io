@@ -57,6 +57,7 @@ Add a row in the same change that makes a decision.
 | 2026-10-20 | The menu has no Home item. | The logo already links home, and four items fit the phone menu on one row. |
 | 2026-10-20 | A field note's verdict sits above the body. | Readers come for the answer first (The Infatuation, Wirecutter); the practical list at the end keeps the details. |
 | 2026-10-20 | A report article lists its key findings and its data and method after the report, from front matter. | The report frame is invisible to search engines and screen readers; the facts belong in text (The Pudding, Our World in Data). This does not bring back an introduction above the report. |
+| 2026-11-06 | A report with large charts can take the 1200px frame with `wide: true`; the LinkedIn study does. | The owner reads large charts more easily, and asked for them. Its findings and methods stay at the text measure. |
 | 2026-10-20 | A video in an article is a self-hosted poster linking to YouTube, never an embedded player. | An embed loads YouTube's scripts and cookies for every reader; the poster costs one local image. |
 | 2026-10-20 | No back-to-top button. | It needed a scroll listener outside the allowed JavaScript, and pages end with their content. |
 | 2026-10-30 | On phones the four menu items sit on one row under the logo. | Two rows of two made the header three lines tall before any content; the four labels fit at 320px in all three languages. |

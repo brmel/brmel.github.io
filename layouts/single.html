@@ -1,3 +1,4 @@
+{{- define "main-width" }}{{ if .Params.wide }} main--wide{{ end }}{{ end }}
 {{- define "main" }}
 <article class="post-single">
   {{ partial "page-head/header.html" (dict "page" .) }}

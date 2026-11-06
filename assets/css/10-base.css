@@ -24,6 +24,7 @@ img{display:block;max-width:100%;}
   padding:var(--flow-block) var(--gap) var(--flow-section);
 }
 .main--wide{--measure:var(--container-content);}
+.main--wide .post-content > :not(.report-frame){margin-inline:0;max-inline-size:var(--container-text);}
 .main > :not(.post-single),
 .post-single > :not(.post-content),
 .post-content.post-content > *{max-inline-size:var(--measure);margin-inline:auto;}

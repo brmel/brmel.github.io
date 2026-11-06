@@ -127,6 +127,7 @@ the meta description and JSON-LD. Optional fields:
 | Field | Renders, in |
 |---|---|
 | `series`, `seriesPart` | the series box listing every part (`article/series.html`) |
+| `wide` | `true` on a report whose charts need the 1200px frame; its findings and methods stay at the 900px measure. |
 | `findings`, `methods` | a report article's key findings (a list) and its data and method (markdown), rendered after the report under their own headings and in the markdown twin, so the report's facts are crawlable text |
 | `lastmod` | The date of the latest real revision (sitemap, `dateModified`, `article:modified_time`). Without it a page counts as unchanged since `date`. |
 
