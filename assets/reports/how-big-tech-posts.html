@@ -1,0 +1,1437 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How Big Tech Posts on LinkedIn</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    --bg: light-dark(#ffffff, #131314);
+    --surface: light-dark(#f1f3f4, #1e1f20);
+    --line: light-dark(#dadce0, #3c4043);
+    --ink: light-dark(#1f1f1f, #e3e3e3);
+    --ink-2: light-dark(#444746, #c4c7c5);
+    --muted: light-dark(#5f6368, #9aa0a6);
+    --series-1: light-dark(#a8431a, #e2876a);
+    --quiet: color-mix(in srgb, var(--muted) 45%, var(--bg));
+  }
+  :root[data-theme="light"] { color-scheme: light; }
+  :root[data-theme="dark"] { color-scheme: dark; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 32px 16px 48px; background: var(--bg); color: var(--ink);
+    font: 400 1.0625rem/1.6 "Inter Tight", system-ui, sans-serif;
+    font-variant-numeric: tabular-nums; -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-inline-size: 900px; margin-inline: auto; }
+  header { margin-block-end: 32px; }
+  h1 { font-size: 2.5rem; font-weight: 500; line-height: 1.15; letter-spacing: -.02em; margin: 0 0 8px; }
+  .period { color: var(--muted); font-size: .875rem; }
+  h2 { font-size: 1.5rem; font-weight: 500; line-height: 1.25; letter-spacing: -.01em; margin: 0 0 12px; }
+  p { margin: 0 0 12px; color: var(--ink-2); max-inline-size: 70ch; }
+  section { margin-block-end: 56px; }
+  .after { margin-block-start: 24px; }
+  figure { margin: 24px 0 0; }
+  figcaption, .note { color: var(--muted); font-size: .875rem; line-height: 1.45; margin-block-start: 12px; max-inline-size: 70ch; }
+
+  .hook .q { font-size: 1.25rem; color: var(--ink-2); margin: 0 0 4px; }
+  .hook .a { font-size: clamp(3rem, 2rem + 5vw, 4.5rem); font-weight: 500; line-height: 1.05; letter-spacing: -.03em; color: var(--ink); margin: 0 0 12px; }
+
+  .stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin: 24px 0 0; }
+  .stats div { margin: 0; }
+  .stats dt { color: var(--muted); font-size: .875rem; line-height: 1.35; }
+  .stats dd { margin: 0 0 2px; font-size: 2.125rem; font-weight: 500; line-height: 1.15; letter-spacing: -.01em; color: var(--ink); }
+  .stats div { display: flex; flex-direction: column-reverse; justify-content: flex-end; }
+
+  .tick { color: var(--muted); font-size: .75rem; line-height: 1.2; }
+  [data-tip] { position: relative; }
+  [data-tip]:hover::after {
+    content: attr(data-tip); position: absolute; z-index: 2; inset-block-end: calc(100% + 6px); inset-inline-start: 50%;
+    translate: -50% 0; padding: 4px 8px; border-radius: 4px; background: var(--ink); color: var(--bg);
+    font-size: .75rem; font-style: normal; font-weight: 400; line-height: 1.3; white-space: nowrap; pointer-events: none;
+  }
+  .tip-start:hover::after { inset-inline-start: 0; translate: none; }
+  .tip-end:hover::after { inset-inline: auto 0; translate: none; }
+
+  .heat { display: grid; grid-template-columns: 2.25rem repeat(24, minmax(0, 1fr)); gap: 2px; align-items: center; }
+  .heat .tick:not([style]) { align-self: center; }
+  .cell { display: block; aspect-ratio: 1; border-radius: 2px; background: color-mix(in srgb, var(--series-1) var(--mix), var(--surface)); }
+  .cell:hover { outline: 2px solid var(--ink); outline-offset: 1px; }
+
+  .cols { display: grid; grid-template-columns: repeat(60, minmax(0, 1fr)); gap: 1px; align-items: end; block-size: 14rem; padding-block-start: 1.25rem; grid-template-rows: 1fr auto; }
+  .col { display: block; block-size: var(--h); min-block-size: 1px; background: var(--quiet); border-radius: 1px 1px 0 0; }
+  .col-mark { background: var(--series-1); }
+  .col b { position: absolute; inset-block-end: 100%; inset-inline-start: 0; font-size: .75rem; font-style: normal; font-weight: 500; color: var(--ink); }
+  .cols > .tick { grid-row: 2; padding-block-start: 6px; }
+
+  .rel { display: grid; gap: 6px; }
+  .rel-row { display: grid; grid-template-columns: clamp(6.5rem, 30%, 11rem) minmax(0, 1fr) 2.75rem; gap: 12px; align-items: center; }
+  .rel-name { font-size: .9375rem; line-height: 1.25; }
+  .rel-name small { display: block; color: var(--muted); font-size: .75rem; }
+  .rel-track { position: relative; block-size: 2rem; background: linear-gradient(var(--muted), var(--muted)) var(--one) 0 / 1px 100% no-repeat; }
+  .rel-range { position: absolute; inset-block-start: calc(50% - 1.5px); block-size: 3px; background: var(--quiet); border-radius: 2px; }
+  .rel-dot { position: absolute; inset-block-start: calc(50% - 6px); inline-size: 12px; block-size: 12px; margin-inline-start: -6px; border-radius: 50%; background: var(--series-1); }
+  .rel-value { font-weight: 500; text-align: end; }
+  .rel-ticks { position: relative; block-size: 1.1rem; }
+  .rel-ticks i { position: absolute; translate: -50% 0; color: var(--muted); font-size: .75rem; font-style: normal; }
+
+  .scatter { padding-inline-start: 2.75rem; padding-block-end: 1.75rem; }
+  .plot { position: relative; block-size: clamp(20rem, 52vw, 28rem); border-inline-start: 1px solid var(--line); border-block-end: 1px solid var(--line); }
+  .plot > .tick { position: absolute; }
+  .plot > .tick[style*="inset-inline-start"] { inset-block-start: calc(100% + 6px); translate: -50% 0; }
+  .plot > .tick[style*="inset-block-end"] { inset-inline-end: calc(100% + 8px); translate: 0 50%; }
+  .dot { position: absolute; inline-size: 9px; block-size: 9px; margin-inline-start: -4.5px; margin-block-end: -4.5px; border-radius: 50%; background: var(--quiet); }
+  .dot-heavy { inline-size: 11px; block-size: 11px; margin-inline-start: -5.5px; margin-block-end: -5.5px; background: var(--series-1); z-index: 1; }
+  .dot:hover { outline: 2px solid var(--ink); z-index: 2; }
+  .dot b { position: absolute; inset-block-end: 12px; inset-inline-start: 50%; translate: -50% 0; font-size: .75rem; font-style: normal; font-weight: 500; color: var(--ink); white-space: nowrap; }
+  .dot.tip-end b { inset-inline: auto 0; translate: none; }
+  .dot.tip-start b { inset-inline-start: 0; translate: none; }
+  .legend { display: flex; flex-wrap: wrap; gap: 4px 16px; color: var(--muted); font-size: .875rem; margin-block-start: 12px; }
+  .legend i { display: inline-block; inline-size: 9px; block-size: 9px; border-radius: 50%; background: var(--quiet); margin-inline-end: 6px; }
+  .legend .key-heavy { background: var(--series-1); }
+
+  .table-wrap { overflow: auto; margin-block-start: 24px; }
+  table { border-collapse: separate; border-spacing: 0; inline-size: 100%; font-size: .9375rem; }
+  th, td { padding: 8px 10px; border-block-end: 1px solid var(--line); text-align: end; white-space: nowrap; }
+  th { color: var(--muted); font-size: .875rem; font-weight: 400; background: var(--bg); vertical-align: bottom; }
+  .tiers th { white-space: normal; }
+  .tiers th, .tiers td { padding-inline: 6px; }
+  th:first-child, td:first-child { text-align: start; padding-inline-start: 0; }
+  td:first-child { font-weight: 500; }
+  #companies .table-wrap { max-block-size: 36rem; }
+  #companies thead th { position: sticky; inset-block-start: 0; z-index: 2; }
+  #companies th:first-child, #companies td:first-child { position: sticky; inset-inline-start: 0; background: var(--bg); }
+  #companies thead th:first-child { z-index: 3; }
+  th button { all: unset; cursor: pointer; display: inline-block; min-block-size: 24px; }
+  th button:hover { color: var(--ink); }
+  th button:focus-visible, input:focus-visible, .table-wrap:focus-visible { outline: 2px solid var(--series-1); outline-offset: 1px; }
+  th[aria-sort] button { color: var(--ink); font-weight: 500; }
+  th[aria-sort="ascending"] button::after { content: " ↑"; }
+  th[aria-sort="descending"] button::after { content: " ↓"; }
+  .filter { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; margin-block-start: 16px; }
+  .filter label { color: var(--muted); font-size: .875rem; }
+  .filter input { font: inherit; color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 6px 14px; inline-size: min(100%, 16rem); }
+  .filter output { color: var(--muted); font-size: .875rem; }
+</style>
+</head>
+<body>
+<main class="wrap">
+  <header>
+    <h1>How Big Tech Posts on LinkedIn</h1>
+    <p class="period">6 Oct 2026 to 4 Nov 2026 · 99 companies · 2,585 posts</p>
+  </header>
+
+  <section class="hook">
+    <p class="q">Does the hour a company posts change how the post does?</p>
+    <p class="a">±3%</p>
+    <p>Across five parts of the day, a post earns 0.97 to 1.02 times what the same company's usual post earns. For 30 days I read the LinkedIn page of 99 tech companies to see when they post, how often and in what format, and whether any of it moves engagement.</p>
+  </section>
+
+  <section data-scene>
+    <h2>When they post</h2>
+    <p>Mostly in office hours, read on the clock of each company's head office. The busiest hour is a tie, Tuesday and Wednesday at 2 p.m., with 48 posts each, under 2% of the total.</p>
+    <figure>
+      <div class="heat" role="img" aria-label="2,585 posts by weekday and head-office hour, densest on weekdays during office hours"><span></span><span class="tick" style="grid-column:span 6">00:00</span><span class="tick" style="grid-column:span 6">06:00</span><span class="tick" style="grid-column:span 6">12:00</span><span class="tick" style="grid-column:span 6">18:00</span><span class="tick">Mon</span><i class="cell tip-start" data-tip="Mon 00:00, 1 post" style="--mix:10%"></i><i class="cell tip-start" data-tip="Mon 01:00, 2 posts" style="--mix:12%"></i><i class="cell tip-start" data-tip="Mon 02:00, 0 posts" style="--mix:0%"></i><i class="cell tip-start" data-tip="Mon 03:00, 1 post" style="--mix:10%"></i><i class="cell tip-start" data-tip="Mon 04:00, 1 post" style="--mix:10%"></i><i class="cell" data-tip="Mon 05:00, 3 posts" style="--mix:14%"></i><i class="cell" data-tip="Mon 06:00, 5 posts" style="--mix:18%"></i><i class="cell" data-tip="Mon 07:00, 11 posts" style="--mix:29%"></i><i class="cell" data-tip="Mon 08:00, 13 posts" style="--mix:33%"></i><i class="cell" data-tip="Mon 09:00, 25 posts" style="--mix:56%"></i><i class="cell" data-tip="Mon 10:00, 29 posts" style="--mix:64%"></i><i class="cell" data-tip="Mon 11:00, 20 posts" style="--mix:46%"></i><i class="cell" data-tip="Mon 12:00, 22 posts" style="--mix:50%"></i><i class="cell" data-tip="Mon 13:00, 25 posts" style="--mix:56%"></i><i class="cell" data-tip="Mon 14:00, 39 posts" style="--mix:83%"></i><i class="cell" data-tip="Mon 15:00, 31 posts" style="--mix:67%"></i><i class="cell" data-tip="Mon 16:00, 25 posts" style="--mix:56%"></i><i class="cell" data-tip="Mon 17:00, 29 posts" style="--mix:64%"></i><i class="cell" data-tip="Mon 18:00, 20 posts" style="--mix:46%"></i><i class="cell" data-tip="Mon 19:00, 8 posts" style="--mix:23%"></i><i class="cell tip-end" data-tip="Mon 20:00, 8 posts" style="--mix:23%"></i><i class="cell tip-end" data-tip="Mon 21:00, 9 posts" style="--mix:25%"></i><i class="cell tip-end" data-tip="Mon 22:00, 6 posts" style="--mix:20%"></i><i class="cell tip-end" data-tip="Mon 23:00, 5 posts" style="--mix:18%"></i><span class="tick">Tue</span><i class="cell tip-start" data-tip="Tue 00:00, 8 posts" style="--mix:23%"></i><i class="cell tip-start" data-tip="Tue 01:00, 6 posts" style="--mix:20%"></i><i class="cell tip-start" data-tip="Tue 02:00, 7 posts" style="--mix:21%"></i><i class="cell tip-start" data-tip="Tue 03:00, 4 posts" style="--mix:16%"></i><i class="cell tip-start" data-tip="Tue 04:00, 3 posts" style="--mix:14%"></i><i class="cell" data-tip="Tue 05:00, 6 posts" style="--mix:20%"></i><i class="cell" data-tip="Tue 06:00, 20 posts" style="--mix:46%"></i><i class="cell" data-tip="Tue 07:00, 31 posts" style="--mix:67%"></i><i class="cell" data-tip="Tue 08:00, 30 posts" style="--mix:66%"></i><i class="cell" data-tip="Tue 09:00, 35 posts" style="--mix:75%"></i><i class="cell" data-tip="Tue 10:00, 41 posts" style="--mix:87%"></i><i class="cell" data-tip="Tue 11:00, 33 posts" style="--mix:71%"></i><i class="cell" data-tip="Tue 12:00, 43 posts" style="--mix:90%"></i><i class="cell" data-tip="Tue 13:00, 36 posts" style="--mix:77%"></i><i class="cell" data-tip="Tue 14:00, 48 posts" style="--mix:100%"></i><i class="cell" data-tip="Tue 15:00, 38 posts" style="--mix:81%"></i><i class="cell" data-tip="Tue 16:00, 31 posts" style="--mix:67%"></i><i class="cell" data-tip="Tue 17:00, 33 posts" style="--mix:71%"></i><i class="cell" data-tip="Tue 18:00, 24 posts" style="--mix:54%"></i><i class="cell" data-tip="Tue 19:00, 18 posts" style="--mix:42%"></i><i class="cell tip-end" data-tip="Tue 20:00, 17 posts" style="--mix:41%"></i><i class="cell tip-end" data-tip="Tue 21:00, 13 posts" style="--mix:33%"></i><i class="cell tip-end" data-tip="Tue 22:00, 5 posts" style="--mix:18%"></i><i class="cell tip-end" data-tip="Tue 23:00, 7 posts" style="--mix:21%"></i><span class="tick">Wed</span><i class="cell tip-start" data-tip="Wed 00:00, 6 posts" style="--mix:20%"></i><i class="cell tip-start" data-tip="Wed 01:00, 6 posts" style="--mix:20%"></i><i class="cell tip-start" data-tip="Wed 02:00, 10 posts" style="--mix:27%"></i><i class="cell tip-start" data-tip="Wed 03:00, 3 posts" style="--mix:14%"></i><i class="cell tip-start" data-tip="Wed 04:00, 8 posts" style="--mix:23%"></i><i class="cell" data-tip="Wed 05:00, 8 posts" style="--mix:23%"></i><i class="cell" data-tip="Wed 06:00, 21 posts" style="--mix:48%"></i><i class="cell" data-tip="Wed 07:00, 26 posts" style="--mix:58%"></i><i class="cell" data-tip="Wed 08:00, 26 posts" style="--mix:58%"></i><i class="cell" data-tip="Wed 09:00, 45 posts" style="--mix:94%"></i><i class="cell" data-tip="Wed 10:00, 43 posts" style="--mix:90%"></i><i class="cell" data-tip="Wed 11:00, 37 posts" style="--mix:79%"></i><i class="cell" data-tip="Wed 12:00, 40 posts" style="--mix:85%"></i><i class="cell" data-tip="Wed 13:00, 33 posts" style="--mix:71%"></i><i class="cell" data-tip="Wed 14:00, 48 posts" style="--mix:100%"></i><i class="cell" data-tip="Wed 15:00, 40 posts" style="--mix:85%"></i><i class="cell" data-tip="Wed 16:00, 43 posts" style="--mix:90%"></i><i class="cell" data-tip="Wed 17:00, 37 posts" style="--mix:79%"></i><i class="cell" data-tip="Wed 18:00, 40 posts" style="--mix:85%"></i><i class="cell" data-tip="Wed 19:00, 16 posts" style="--mix:39%"></i><i class="cell tip-end" data-tip="Wed 20:00, 18 posts" style="--mix:42%"></i><i class="cell tip-end" data-tip="Wed 21:00, 7 posts" style="--mix:21%"></i><i class="cell tip-end" data-tip="Wed 22:00, 9 posts" style="--mix:25%"></i><i class="cell tip-end" data-tip="Wed 23:00, 14 posts" style="--mix:35%"></i><span class="tick">Thu</span><i class="cell tip-start" data-tip="Thu 00:00, 8 posts" style="--mix:23%"></i><i class="cell tip-start" data-tip="Thu 01:00, 9 posts" style="--mix:25%"></i><i class="cell tip-start" data-tip="Thu 02:00, 4 posts" style="--mix:16%"></i><i class="cell tip-start" data-tip="Thu 03:00, 7 posts" style="--mix:21%"></i><i class="cell tip-start" data-tip="Thu 04:00, 5 posts" style="--mix:18%"></i><i class="cell" data-tip="Thu 05:00, 1 post" style="--mix:10%"></i><i class="cell" data-tip="Thu 06:00, 14 posts" style="--mix:35%"></i><i class="cell" data-tip="Thu 07:00, 21 posts" style="--mix:48%"></i><i class="cell" data-tip="Thu 08:00, 24 posts" style="--mix:54%"></i><i class="cell" data-tip="Thu 09:00, 33 posts" style="--mix:71%"></i><i class="cell" data-tip="Thu 10:00, 39 posts" style="--mix:83%"></i><i class="cell" data-tip="Thu 11:00, 37 posts" style="--mix:79%"></i><i class="cell" data-tip="Thu 12:00, 31 posts" style="--mix:67%"></i><i class="cell" data-tip="Thu 13:00, 36 posts" style="--mix:77%"></i><i class="cell" data-tip="Thu 14:00, 34 posts" style="--mix:73%"></i><i class="cell" data-tip="Thu 15:00, 47 posts" style="--mix:98%"></i><i class="cell" data-tip="Thu 16:00, 34 posts" style="--mix:73%"></i><i class="cell" data-tip="Thu 17:00, 39 posts" style="--mix:83%"></i><i class="cell" data-tip="Thu 18:00, 24 posts" style="--mix:54%"></i><i class="cell" data-tip="Thu 19:00, 22 posts" style="--mix:50%"></i><i class="cell tip-end" data-tip="Thu 20:00, 17 posts" style="--mix:41%"></i><i class="cell tip-end" data-tip="Thu 21:00, 14 posts" style="--mix:35%"></i><i class="cell tip-end" data-tip="Thu 22:00, 7 posts" style="--mix:21%"></i><i class="cell tip-end" data-tip="Thu 23:00, 7 posts" style="--mix:21%"></i><span class="tick">Fri</span><i class="cell tip-start" data-tip="Fri 00:00, 8 posts" style="--mix:23%"></i><i class="cell tip-start" data-tip="Fri 01:00, 9 posts" style="--mix:25%"></i><i class="cell tip-start" data-tip="Fri 02:00, 10 posts" style="--mix:27%"></i><i class="cell tip-start" data-tip="Fri 03:00, 2 posts" style="--mix:12%"></i><i class="cell tip-start" data-tip="Fri 04:00, 1 post" style="--mix:10%"></i><i class="cell" data-tip="Fri 05:00, 6 posts" style="--mix:20%"></i><i class="cell" data-tip="Fri 06:00, 10 posts" style="--mix:27%"></i><i class="cell" data-tip="Fri 07:00, 20 posts" style="--mix:46%"></i><i class="cell" data-tip="Fri 08:00, 29 posts" style="--mix:64%"></i><i class="cell" data-tip="Fri 09:00, 33 posts" style="--mix:71%"></i><i class="cell" data-tip="Fri 10:00, 36 posts" style="--mix:77%"></i><i class="cell" data-tip="Fri 11:00, 39 posts" style="--mix:83%"></i><i class="cell" data-tip="Fri 12:00, 30 posts" style="--mix:66%"></i><i class="cell" data-tip="Fri 13:00, 16 posts" style="--mix:39%"></i><i class="cell" data-tip="Fri 14:00, 27 posts" style="--mix:60%"></i><i class="cell" data-tip="Fri 15:00, 40 posts" style="--mix:85%"></i><i class="cell" data-tip="Fri 16:00, 37 posts" style="--mix:79%"></i><i class="cell" data-tip="Fri 17:00, 31 posts" style="--mix:67%"></i><i class="cell" data-tip="Fri 18:00, 16 posts" style="--mix:39%"></i><i class="cell" data-tip="Fri 19:00, 15 posts" style="--mix:37%"></i><i class="cell tip-end" data-tip="Fri 20:00, 7 posts" style="--mix:21%"></i><i class="cell tip-end" data-tip="Fri 21:00, 8 posts" style="--mix:23%"></i><i class="cell tip-end" data-tip="Fri 22:00, 11 posts" style="--mix:29%"></i><i class="cell tip-end" data-tip="Fri 23:00, 5 posts" style="--mix:18%"></i><span class="tick">Sat</span><i class="cell tip-start" data-tip="Sat 00:00, 7 posts" style="--mix:21%"></i><i class="cell tip-start" data-tip="Sat 01:00, 5 posts" style="--mix:18%"></i><i class="cell tip-start" data-tip="Sat 02:00, 5 posts" style="--mix:18%"></i><i class="cell tip-start" data-tip="Sat 03:00, 5 posts" style="--mix:18%"></i><i class="cell tip-start" data-tip="Sat 04:00, 4 posts" style="--mix:16%"></i><i class="cell" data-tip="Sat 05:00, 4 posts" style="--mix:16%"></i><i class="cell" data-tip="Sat 06:00, 5 posts" style="--mix:18%"></i><i class="cell" data-tip="Sat 07:00, 4 posts" style="--mix:16%"></i><i class="cell" data-tip="Sat 08:00, 11 posts" style="--mix:29%"></i><i class="cell" data-tip="Sat 09:00, 2 posts" style="--mix:12%"></i><i class="cell" data-tip="Sat 10:00, 9 posts" style="--mix:25%"></i><i class="cell" data-tip="Sat 11:00, 5 posts" style="--mix:18%"></i><i class="cell" data-tip="Sat 12:00, 3 posts" style="--mix:14%"></i><i class="cell" data-tip="Sat 13:00, 6 posts" style="--mix:20%"></i><i class="cell" data-tip="Sat 14:00, 6 posts" style="--mix:20%"></i><i class="cell" data-tip="Sat 15:00, 8 posts" style="--mix:23%"></i><i class="cell" data-tip="Sat 16:00, 2 posts" style="--mix:12%"></i><i class="cell" data-tip="Sat 17:00, 2 posts" style="--mix:12%"></i><i class="cell" data-tip="Sat 18:00, 5 posts" style="--mix:18%"></i><i class="cell" data-tip="Sat 19:00, 4 posts" style="--mix:16%"></i><i class="cell tip-end" data-tip="Sat 20:00, 1 post" style="--mix:10%"></i><i class="cell tip-end" data-tip="Sat 21:00, 1 post" style="--mix:10%"></i><i class="cell tip-end" data-tip="Sat 22:00, 0 posts" style="--mix:0%"></i><i class="cell tip-end" data-tip="Sat 23:00, 0 posts" style="--mix:0%"></i><span class="tick">Sun</span><i class="cell tip-start" data-tip="Sun 00:00, 2 posts" style="--mix:12%"></i><i class="cell tip-start" data-tip="Sun 01:00, 1 post" style="--mix:10%"></i><i class="cell tip-start" data-tip="Sun 02:00, 1 post" style="--mix:10%"></i><i class="cell tip-start" data-tip="Sun 03:00, 0 posts" style="--mix:0%"></i><i class="cell tip-start" data-tip="Sun 04:00, 0 posts" style="--mix:0%"></i><i class="cell" data-tip="Sun 05:00, 4 posts" style="--mix:16%"></i><i class="cell" data-tip="Sun 06:00, 2 posts" style="--mix:12%"></i><i class="cell" data-tip="Sun 07:00, 1 post" style="--mix:10%"></i><i class="cell" data-tip="Sun 08:00, 8 posts" style="--mix:23%"></i><i class="cell" data-tip="Sun 09:00, 1 post" style="--mix:10%"></i><i class="cell" data-tip="Sun 10:00, 6 posts" style="--mix:20%"></i><i class="cell" data-tip="Sun 11:00, 4 posts" style="--mix:16%"></i><i class="cell" data-tip="Sun 12:00, 3 posts" style="--mix:14%"></i><i class="cell" data-tip="Sun 13:00, 1 post" style="--mix:10%"></i><i class="cell" data-tip="Sun 14:00, 4 posts" style="--mix:16%"></i><i class="cell" data-tip="Sun 15:00, 9 posts" style="--mix:25%"></i><i class="cell" data-tip="Sun 16:00, 0 posts" style="--mix:0%"></i><i class="cell" data-tip="Sun 17:00, 3 posts" style="--mix:14%"></i><i class="cell" data-tip="Sun 18:00, 4 posts" style="--mix:16%"></i><i class="cell" data-tip="Sun 19:00, 0 posts" style="--mix:0%"></i><i class="cell tip-end" data-tip="Sun 20:00, 4 posts" style="--mix:16%"></i><i class="cell tip-end" data-tip="Sun 21:00, 0 posts" style="--mix:0%"></i><i class="cell tip-end" data-tip="Sun 22:00, 3 posts" style="--mix:14%"></i><i class="cell tip-end" data-tip="Sun 23:00, 1 post" style="--mix:10%"></i></div>
+      <dl class="stats">
+        <div><dt>on a weekday, 9 a.m. to 5 p.m.</dt><dd>54%</dd></div>
+        <div><dt>Tuesday to Thursday</dt><dd>63%</dd></div>
+        <div><dt>on a weekend</dt><dd>6%</dd></div>
+      </dl>
+      <figcaption>Head-office time isn't always the poster's time: Atlassian's usual hour is 3 a.m. in Sydney.</figcaption>
+    </figure>
+  </section>
+
+  <section data-scene>
+    <h2>The hour</h2>
+    <p>Busy hours don't earn more. To take page size out, I compared every post with the median post of its own company, so 1.00 is a usual post for that company. Days run from 0.89 on Saturday to 1.11 on Tuesday, and the part of the day barely shows.</p>
+    <figure><div class="rel" style="--one:46.1%"><div class="rel-row"><span class="rel-name">Mon<small>265 posts</small></span><span class="rel-track"><i class="rel-range" style="inset-inline-start:46.1%;inline-size:8.5%"></i><i class="rel-dot" style="inset-inline-start:47.5%"></i></span><span class="rel-value">1.02</span></div><div class="rel-row"><span class="rel-name">Tue<small>439 posts</small></span><span class="rel-track"><i class="rel-range" style="inset-inline-start:46.7%;inline-size:11.5%"></i><i class="rel-dot" style="inset-inline-start:53.1%"></i></span><span class="rel-value">1.11</span></div><div class="rel-row"><span class="rel-name">Wed<small>483 posts</small></span><span class="rel-track"><i class="rel-range" style="inset-inline-start:43.4%;inline-size:6.9%"></i><i class="rel-dot" style="inset-inline-start:46.3%"></i></span><span class="rel-value">1.00</span></div><div class="rel-row"><span class="rel-name">Thu<small>506 posts</small></span><span class="rel-track"><i class="rel-range" style="inset-inline-start:42.8%;inline-size:5.2%"></i><i class="rel-dot" style="inset-inline-start:46.1%"></i></span><span class="rel-value">1.00</span></div><div class="rel-row"><span class="rel-name">Fri<small>444 posts</small></span><span class="rel-track"><i class="rel-range" style="inset-inline-start:34.5%;inline-size:10.8%"></i><i class="rel-dot" style="inset-inline-start:42.2%"></i></span><span class="rel-value">0.94</span></div><div class="rel-row"><span class="rel-name">Sat<small>104 posts</small></span><span class="rel-track"><i class="rel-range" style="inset-inline-start:23.9%;inline-size:22.2%"></i><i class="rel-dot" style="inset-inline-start:38.4%"></i></span><span class="rel-value">0.89</span></div><div class="rel-row"><span class="rel-name">Sun<small>62 posts</small></span><span class="rel-track"><i class="rel-range" style="inset-inline-start:37.8%;inline-size:21.1%"></i><i class="rel-dot" style="inset-inline-start:46.5%"></i></span><span class="rel-value">1.01</span></div><div class="rel-row rel-axis"><span></span><span class="rel-ticks"><i style="inset-inline-start:0.0%">0.5</i><i style="inset-inline-start:46.1%">1</i><i style="inset-inline-start:92.2%">2</i></span><span></span></div></div></figure>
+    <figure><div class="rel" style="--one:46.1%"><div class="rel-row"><span class="rel-name">Before 9 a.m.<small>467 posts</small></span><span class="rel-track"><i class="rel-range" style="inset-inline-start:39.1%;inline-size:12.6%"></i><i class="rel-dot" style="inset-inline-start:46.1%"></i></span><span class="rel-value">1.00</span></div><div class="rel-row"><span class="rel-name">9 a.m. to noon<small>489 posts</small></span><span class="rel-track"><i class="rel-range" style="inset-inline-start:40.6%;inline-size:7.2%"></i><i class="rel-dot" style="inset-inline-start:46.1%"></i></span><span class="rel-value">1.00</span></div><div class="rel-row"><span class="rel-name">Noon to 3 p.m.<small>470 posts</small></span><span class="rel-track"><i class="rel-range" style="inset-inline-start:44.7%;inline-size:8.5%"></i><i class="rel-dot" style="inset-inline-start:47.4%"></i></span><span class="rel-value">1.02</span></div><div class="rel-row"><span class="rel-name">3 to 6 p.m.<small>506 posts</small></span><span class="rel-track"><i class="rel-range" style="inset-inline-start:41.8%;inline-size:5.3%"></i><i class="rel-dot" style="inset-inline-start:44.3%"></i></span><span class="rel-value">0.97</span></div><div class="rel-row"><span class="rel-name">After 6 p.m.<small>371 posts</small></span><span class="rel-track"><i class="rel-range" style="inset-inline-start:40.6%;inline-size:12.0%"></i><i class="rel-dot" style="inset-inline-start:46.4%"></i></span><span class="rel-value">1.01</span></div><div class="rel-row rel-axis"><span></span><span class="rel-ticks"><i style="inset-inline-start:0.0%">0.5</i><i style="inset-inline-start:46.1%">1</i><i style="inset-inline-start:92.2%">2</i></span><span></span></div></div>
+      <figcaption>Engagement (reactions, comments and reposts) against the company's median post, on 2,303 posts from 89 companies. The dot is the median. The line is a 95% range from resampling the companies.</figcaption>
+    </figure>
+  </section>
+
+  <section data-scene>
+    <h2>The minute</h2>
+    <p>20% of posts went out at exactly :00 and 29% on a quarter-hour, where chance would give 2% and 7%. I can't see what tool a company uses, but a round minute looks like a scheduler. It's the habit of a few pages: 7 companies published 51% of the :00 posts, and 27 of the 81 companies with at least 10 posts never used it. A post at :00 earns 0.97 times the company's usual.</p>
+    <figure><div class="cols" role="img" aria-label="Posts by minute of the hour, with sharp peaks at :00, :15, :30 and :45"><i class="col col-mark tip-start" data-tip=":00, 516 posts" style="--h:100.0%"><b>516</b></i><i class="col tip-start" data-tip=":01, 106 posts" style="--h:20.5%"></i><i class="col tip-start" data-tip=":02, 55 posts" style="--h:10.7%"></i><i class="col tip-start" data-tip=":03, 32 posts" style="--h:6.2%"></i><i class="col tip-start" data-tip=":04, 34 posts" style="--h:6.6%"></i><i class="col tip-start" data-tip=":05, 63 posts" style="--h:12.2%"></i><i class="col tip-start" data-tip=":06, 35 posts" style="--h:6.8%"></i><i class="col tip-start" data-tip=":07, 41 posts" style="--h:7.9%"></i><i class="col tip-start" data-tip=":08, 51 posts" style="--h:9.9%"></i><i class="col tip-start" data-tip=":09, 40 posts" style="--h:7.8%"></i><i class="col tip-start" data-tip=":10, 37 posts" style="--h:7.2%"></i><i class="col" data-tip=":11, 29 posts" style="--h:5.6%"></i><i class="col" data-tip=":12, 33 posts" style="--h:6.4%"></i><i class="col" data-tip=":13, 27 posts" style="--h:5.2%"></i><i class="col" data-tip=":14, 27 posts" style="--h:5.2%"></i><i class="col col-mark" data-tip=":15, 65 posts" style="--h:12.6%"><b>65</b></i><i class="col" data-tip=":16, 42 posts" style="--h:8.1%"></i><i class="col" data-tip=":17, 27 posts" style="--h:5.2%"></i><i class="col" data-tip=":18, 31 posts" style="--h:6.0%"></i><i class="col" data-tip=":19, 22 posts" style="--h:4.3%"></i><i class="col" data-tip=":20, 29 posts" style="--h:5.6%"></i><i class="col" data-tip=":21, 28 posts" style="--h:5.4%"></i><i class="col" data-tip=":22, 33 posts" style="--h:6.4%"></i><i class="col" data-tip=":23, 21 posts" style="--h:4.1%"></i><i class="col" data-tip=":24, 29 posts" style="--h:5.6%"></i><i class="col" data-tip=":25, 39 posts" style="--h:7.6%"></i><i class="col" data-tip=":26, 24 posts" style="--h:4.7%"></i><i class="col" data-tip=":27, 31 posts" style="--h:6.0%"></i><i class="col" data-tip=":28, 26 posts" style="--h:5.0%"></i><i class="col" data-tip=":29, 31 posts" style="--h:6.0%"></i><i class="col col-mark" data-tip=":30, 140 posts" style="--h:27.1%"><b>140</b></i><i class="col" data-tip=":31, 27 posts" style="--h:5.2%"></i><i class="col" data-tip=":32, 23 posts" style="--h:4.5%"></i><i class="col" data-tip=":33, 29 posts" style="--h:5.6%"></i><i class="col" data-tip=":34, 20 posts" style="--h:3.9%"></i><i class="col" data-tip=":35, 43 posts" style="--h:8.3%"></i><i class="col" data-tip=":36, 22 posts" style="--h:4.3%"></i><i class="col" data-tip=":37, 35 posts" style="--h:6.8%"></i><i class="col" data-tip=":38, 25 posts" style="--h:4.8%"></i><i class="col" data-tip=":39, 30 posts" style="--h:5.8%"></i><i class="col" data-tip=":40, 36 posts" style="--h:7.0%"></i><i class="col" data-tip=":41, 33 posts" style="--h:6.4%"></i><i class="col" data-tip=":42, 27 posts" style="--h:5.2%"></i><i class="col" data-tip=":43, 31 posts" style="--h:6.0%"></i><i class="col" data-tip=":44, 23 posts" style="--h:4.5%"></i><i class="col col-mark" data-tip=":45, 29 posts" style="--h:5.6%"><b>29</b></i><i class="col" data-tip=":46, 40 posts" style="--h:7.8%"></i><i class="col" data-tip=":47, 34 posts" style="--h:6.6%"></i><i class="col" data-tip=":48, 27 posts" style="--h:5.2%"></i><i class="col" data-tip=":49, 31 posts" style="--h:6.0%"></i><i class="col tip-end" data-tip=":50, 29 posts" style="--h:5.6%"></i><i class="col tip-end" data-tip=":51, 29 posts" style="--h:5.6%"></i><i class="col tip-end" data-tip=":52, 23 posts" style="--h:4.5%"></i><i class="col tip-end" data-tip=":53, 28 posts" style="--h:5.4%"></i><i class="col tip-end" data-tip=":54, 29 posts" style="--h:5.6%"></i><i class="col tip-end" data-tip=":55, 26 posts" style="--h:5.0%"></i><i class="col tip-end" data-tip=":56, 35 posts" style="--h:6.8%"></i><i class="col tip-end" data-tip=":57, 27 posts" style="--h:5.2%"></i><i class="col tip-end" data-tip=":58, 23 posts" style="--h:4.5%"></i><i class="col tip-end" data-tip=":59, 27 posts" style="--h:5.2%"></i><span class="tick" style="grid-column:span 15">:00</span><span class="tick" style="grid-column:span 15">:15</span><span class="tick" style="grid-column:span 15">:30</span><span class="tick" style="grid-column:span 15">:45</span></div></figure>
+  </section>
+
+  <section data-scene>
+    <h2>How often</h2>
+    <p>The median company posts 4.7 times a week, Schneider Electric 32, and Apple and Tesla posted nothing. Pages that post more earn less per follower, but that figure follows page size far more closely: its rank correlation is −0.78 with followers and −0.32 with posts per week. A page with ten times the followers gets about 2 times the reactions.</p>
+    <figure>
+      <div class="scatter" role="img" aria-label="Engagement per 1,000 followers falls steadily as page followers grow, and pages posting 12 or more times a week sit among the others"><div class="plot"><span class="tick" style="inset-block-end:7.5%">0.001</span><span class="tick" style="inset-block-end:32.5%">0.01</span><span class="tick" style="inset-block-end:57.5%">0.1</span><span class="tick" style="inset-block-end:82.5%">1</span><span class="tick" style="inset-inline-start:16.2%">100K</span><span class="tick" style="inset-inline-start:47.3%">1M</span><span class="tick" style="inset-inline-start:78.3%">10M</span><i class="dot dot-heavy" data-tip="Schneider Electric: 32 a week, 0.02 per 1,000" style="inset-inline-start:71.2%;inset-block-end:38.0%"></i><i class="dot dot-heavy" data-tip="Salesforce: 25 a week, 0.02 per 1,000" style="inset-inline-start:73.3%;inset-block-end:38.9%"></i><i class="dot dot-heavy" data-tip="HCLTech: 20.1 a week, 0.01 per 1,000" style="inset-inline-start:78.2%;inset-block-end:34.0%"></i><i class="dot dot-heavy" data-tip="ASUS: 18.2 a week, 0.04 per 1,000" style="inset-inline-start:49.7%;inset-block-end:47.6%"></i><i class="dot dot-heavy" data-tip="Huawei: 16.8 a week, 0.01 per 1,000" style="inset-inline-start:70.2%;inset-block-end:36.2%"></i><i class="dot dot-heavy" data-tip="Arm: 16.3 a week, 0.10 per 1,000" style="inset-inline-start:43.6%;inset-block-end:57.4%"></i><i class="dot dot-heavy" data-tip="Cisco: 15.6 a week, 0.02 per 1,000" style="inset-inline-start:75.1%;inset-block-end:38.9%"></i><i class="dot dot-heavy" data-tip="Snowflake: 14.7 a week, 0.07 per 1,000" style="inset-inline-start:51.8%;inset-block-end:53.3%"></i><i class="dot dot-heavy" data-tip="Databricks: 14.2 a week, 0.20 per 1,000" style="inset-inline-start:51.8%;inset-block-end:65.3%"></i><i class="dot dot-heavy" data-tip="Fujitsu: 13.8 a week, 0.02 per 1,000" style="inset-inline-start:50.8%;inset-block-end:38.9%"></i><i class="dot dot-heavy" data-tip="Atlassian: 13.5 a week, 0.06 per 1,000" style="inset-inline-start:60.7%;inset-block-end:52.3%"></i><i class="dot dot-heavy" data-tip="Safaricom: 13.1 a week, 0.11 per 1,000" style="inset-inline-start:40.3%;inset-block-end:58.5%"></i><i class="dot" data-tip="OpenText: 11 a week, 0.16 per 1,000" style="inset-inline-start:39.5%;inset-block-end:62.4%"></i><i class="dot" data-tip="Celonis: 10.5 a week, 0.11 per 1,000" style="inset-inline-start:33.7%;inset-block-end:58.1%"></i><i class="dot" data-tip="NVIDIA: 9.6 a week, 0.18 per 1,000" style="inset-inline-start:73.5%;inset-block-end:64.2%"></i><i class="dot" data-tip="Check Point: 9.3 a week, 0.20 per 1,000" style="inset-inline-start:37.6%;inset-block-end:65.2%"></i><i class="dot" data-tip="Intel: 9.3 a week, 0.04 per 1,000" style="inset-inline-start:67.2%;inset-block-end:48.4%"></i><i class="dot tip-end" data-tip="Google: 9.1 a week, 0.02 per 1,000" style="inset-inline-start:98.0%;inset-block-end:38.9%"><b>Google</b></i><i class="dot" data-tip="ServiceNow: 9.1 a week, 0.14 per 1,000" style="inset-inline-start:54.4%;inset-block-end:60.8%"></i><i class="dot" data-tip="Wise: 8.9 a week, 0.14 per 1,000" style="inset-inline-start:42.9%;inset-block-end:61.5%"></i><i class="dot" data-tip="Flipkart: 8.4 a week, 0.01 per 1,000" style="inset-inline-start:71.6%;inset-block-end:36.2%"></i><i class="dot" data-tip="Infineon: 8.2 a week, 0.18 per 1,000" style="inset-inline-start:48.6%;inset-block-end:63.9%"></i><i class="dot tip-end" data-tip="Microsoft: 8.2 a week, 0.00 per 1,000" style="inset-inline-start:92.7%;inset-block-end:7.5%"><b>Microsoft</b></i><i class="dot" data-tip="Adobe: 7.9 a week, 0.02 per 1,000" style="inset-inline-start:70.2%;inset-block-end:39.5%"></i><i class="dot tip-end" data-tip="IBM: 7.9 a week, 0.02 per 1,000" style="inset-inline-start:87.6%;inset-block-end:38.9%"></i><i class="dot" data-tip="Infosys: 7.9 a week, 0.01 per 1,000" style="inset-inline-start:80.8%;inset-block-end:30.1%"></i><i class="dot" data-tip="MediaTek: 7.7 a week, 0.15 per 1,000" style="inset-inline-start:39.8%;inset-block-end:62.3%"></i><i class="dot tip-end" data-tip="TCS: 7.7 a week, 0.01 per 1,000" style="inset-inline-start:87.6%;inset-block-end:31.4%"></i><i class="dot" data-tip="Ericsson: 7.5 a week, 0.04 per 1,000" style="inset-inline-start:59.1%;inset-block-end:48.0%"></i><i class="dot" data-tip="monday.com: 7.5 a week, 0.19 per 1,000" style="inset-inline-start:33.5%;inset-block-end:64.7%"></i><i class="dot" data-tip="Klarna: 7.2 a week, 0.13 per 1,000" style="inset-inline-start:35.9%;inset-block-end:60.7%"></i><i class="dot" data-tip="LG Electronics: 7.2 a week, 0.06 per 1,000" style="inset-inline-start:52.7%;inset-block-end:51.5%"></i><i class="dot" data-tip="Oracle: 7.2 a week, 0.02 per 1,000" style="inset-inline-start:80.8%;inset-block-end:39.5%"></i><i class="dot" data-tip="STMicroelectronics: 7.2 a week, 0.11 per 1,000" style="inset-inline-start:46.8%;inset-block-end:58.8%"></i><i class="dot" data-tip="Nokia: 6.8 a week, 0.08 per 1,000" style="inset-inline-start:56.6%;inset-block-end:55.1%"></i><i class="dot" data-tip="Cohere: 6.5 a week, 0.69 per 1,000" style="inset-inline-start:31.3%;inset-block-end:78.5%"></i><i class="dot" data-tip="Grab: 6.5 a week, 0.05 per 1,000" style="inset-inline-start:48.6%;inset-block-end:50.1%"></i><i class="dot" data-tip="Dassault Systèmes: 6.3 a week, 0.25 per 1,000" style="inset-inline-start:48.6%;inset-block-end:67.5%"></i><i class="dot" data-tip="Adyen: 6.1 a week, 0.16 per 1,000" style="inset-inline-start:36.0%;inset-block-end:62.8%"></i><i class="dot tip-start" data-tip="Coveo: 6.1 a week, 0.52 per 1,000" style="inset-inline-start:9.8%;inset-block-end:75.3%"></i><i class="dot" data-tip="Philips: 6.1 a week, 0.03 per 1,000" style="inset-inline-start:62.5%;inset-block-end:43.7%"></i><i class="dot" data-tip="Siemens: 5.8 a week, 0.04 per 1,000" style="inset-inline-start:77.8%;inset-block-end:48.6%"></i><i class="dot" data-tip="Foxconn: 5.6 a week, 0.13 per 1,000" style="inset-inline-start:37.9%;inset-block-end:60.0%"></i><i class="dot" data-tip="SAP: 5.6 a week, 0.09 per 1,000" style="inset-inline-start:69.5%;inset-block-end:56.1%"></i><i class="dot" data-tip="AMD: 6.7 a week, 0.08 per 1,000" style="inset-inline-start:60.7%;inset-block-end:55.5%"></i><i class="dot" data-tip="Flutterwave: 4.9 a week, 0.37 per 1,000" style="inset-inline-start:28.8%;inset-block-end:71.7%"></i><i class="dot" data-tip="Alibaba: 4.7 a week, 0.03 per 1,000" style="inset-inline-start:52.7%;inset-block-end:44.1%"></i><i class="dot" data-tip="Hitachi: 4.7 a week, 0.06 per 1,000" style="inset-inline-start:54.4%;inset-block-end:52.0%"></i><i class="dot" data-tip="Jio: 4.7 a week, 0.22 per 1,000" style="inset-inline-start:55.2%;inset-block-end:66.0%"></i><i class="dot" data-tip="G42: 4.4 a week, 0.29 per 1,000" style="inset-inline-start:32.7%;inset-block-end:69.2%"></i><i class="dot" data-tip="OVHcloud: 4.4 a week, 0.13 per 1,000" style="inset-inline-start:31.9%;inset-block-end:60.1%"></i><i class="dot" data-tip="Stripe: 4.4 a week, 0.18 per 1,000" style="inset-inline-start:55.2%;inset-block-end:64.0%"></i><i class="dot tip-start" data-tip="Matrox Video: 4.2 a week, 0.59 per 1,000" style="inset-inline-start:3.5%;inset-block-end:76.8%"></i><i class="dot" data-tip="Capgemini: 4 a week, 0.02 per 1,000" style="inset-inline-start:77.8%;inset-block-end:39.2%"></i><i class="dot" data-tip="Revolut: 4 a week, 0.18 per 1,000" style="inset-inline-start:59.1%;inset-block-end:63.7%"></i><i class="dot" data-tip="Baidu: 3.7 a week, 0.09 per 1,000" style="inset-inline-start:31.1%;inset-block-end:56.4%"></i><i class="dot" data-tip="Canva: 3.7 a week, 0.06 per 1,000" style="inset-inline-start:61.6%;inset-block-end:51.3%"></i><i class="dot" data-tip="Lenovo: 3.7 a week, 0.10 per 1,000" style="inset-inline-start:51.8%;inset-block-end:57.3%"></i><i class="dot" data-tip="Uber: 3.7 a week, 0.06 per 1,000" style="inset-inline-start:64.9%;inset-block-end:51.9%"></i><i class="dot" data-tip="Tencent: 3.5 a week, 0.05 per 1,000" style="inset-inline-start:51.8%;inset-block-end:49.8%"></i><i class="dot" data-tip="Wipro: 3.5 a week, 0.01 per 1,000" style="inset-inline-start:80.8%;inset-block-end:32.5%"></i><i class="dot" data-tip="Zebra Technologies: 3.5 a week, 0.11 per 1,000" style="inset-inline-start:36.1%;inset-block-end:58.6%"></i><i class="dot" data-tip="Sony: 3.3 a week, 0.07 per 1,000" style="inset-inline-start:51.8%;inset-block-end:53.7%"></i><i class="dot" data-tip="Xero: 3.3 a week, 0.09 per 1,000" style="inset-inline-start:36.7%;inset-block-end:55.8%"></i><i class="dot" data-tip="Zalando: 3.3 a week, 0.21 per 1,000" style="inset-inline-start:36.0%;inset-block-end:65.5%"></i><i class="dot" data-tip="Zoho: 3.3 a week, 0.09 per 1,000" style="inset-inline-start:61.6%;inset-block-end:56.3%"></i><i class="dot" data-tip="Dell Technologies: 11.4 a week, 0.02 per 1,000" style="inset-inline-start:70.7%;inset-block-end:41.6%"></i><i class="dot" data-tip="Netflix: 3 a week, 0.02 per 1,000" style="inset-inline-start:80.8%;inset-block-end:41.6%"></i><i class="dot" data-tip="Mistral AI: 2.8 a week, 3.34 per 1,000" style="inset-inline-start:43.6%;inset-block-end:95.6%"><b>Mistral AI</b></i><i class="dot" data-tip="Qualcomm: 10.5 a week, 0.03 per 1,000" style="inset-inline-start:59.6%;inset-block-end:45.2%"></i><i class="dot" data-tip="Rakuten: 2.8 a week, 0.49 per 1,000" style="inset-inline-start:34.1%;inset-block-end:74.9%"></i><i class="dot" data-tip="Shopify: 2.8 a week, 0.30 per 1,000" style="inset-inline-start:48.6%;inset-block-end:69.6%"></i><i class="dot" data-tip="ASML: 2.6 a week, 0.42 per 1,000" style="inset-inline-start:48.6%;inset-block-end:73.0%"></i><i class="dot" data-tip="CGI: 2.6 a week, 0.02 per 1,000" style="inset-inline-start:57.3%;inset-block-end:41.1%"></i><i class="dot" data-tip="HP: 5.9 a week, 0.04 per 1,000" style="inset-inline-start:69.7%;inset-block-end:48.9%"></i><i class="dot" data-tip="OpenAI: 2.6 a week, 0.11 per 1,000" style="inset-inline-start:80.8%;inset-block-end:58.9%"></i><i class="dot" data-tip="Bolt: 2.3 a week, 1.00 per 1,000" style="inset-inline-start:33.4%;inset-block-end:82.5%"><b>Bolt</b></i><i class="dot" data-tip="Booking.com: 2.3 a week, 0.12 per 1,000" style="inset-inline-start:49.7%;inset-block-end:59.5%"></i><i class="dot" data-tip="DeepL: 2.3 a week, 0.45 per 1,000" style="inset-inline-start:21.0%;inset-block-end:73.9%"></i><i class="dot" data-tip="Meta: 2.3 a week, 0.02 per 1,000" style="inset-inline-start:80.8%;inset-block-end:41.1%"></i><i class="dot" data-tip="SK hynix: 2.3 a week, 0.76 per 1,000" style="inset-inline-start:28.4%;inset-block-end:79.5%"></i><i class="dot tip-end" data-tip="Amazon: 2.1 a week, 0.02 per 1,000" style="inset-inline-start:96.3%;inset-block-end:38.0%"></i><i class="dot" data-tip="Anthropic: 2.1 a week, 0.73 per 1,000" style="inset-inline-start:70.0%;inset-block-end:79.1%"><b>Anthropic</b></i><i class="dot" data-tip="GoTo: 1.6 a week, 0.08 per 1,000" style="inset-inline-start:47.3%;inset-block-end:55.4%"></i><i class="dot" data-tip="TSMC: 1.6 a week, 0.41 per 1,000" style="inset-inline-start:46.6%;inset-block-end:72.9%"></i><i class="dot" data-tip="SoftBank: 1.4 a week, 0.92 per 1,000" style="inset-inline-start:29.6%;inset-block-end:81.6%"></i><i class="dot" data-tip="Wix: 1.4 a week, 0.10 per 1,000" style="inset-inline-start:34.9%;inset-block-end:57.0%"></i><i class="dot" data-tip="ByteDance: 1.2 a week, 0.05 per 1,000" style="inset-inline-start:53.6%;inset-block-end:50.6%"></i><i class="dot" data-tip="Naspers: 1.2 a week, 0.33 per 1,000" style="inset-inline-start:18.6%;inset-block-end:70.4%"></i><i class="dot" data-tip="Hugging Face: 0.9 a week, 0.17 per 1,000" style="inset-inline-start:50.8%;inset-block-end:63.0%"></i><i class="dot" data-tip="NAVER: 0.7 a week, 0.54 per 1,000" style="inset-inline-start:19.1%;inset-block-end:75.8%"></i><i class="dot" data-tip="Nubank: 0.7 a week, 0.04 per 1,000" style="inset-inline-start:71.6%;inset-block-end:48.6%"></i><i class="dot" data-tip="Spotify: 0.7 a week, 0.04 per 1,000" style="inset-inline-start:68.4%;inset-block-end:48.1%"></i><i class="dot" data-tip="Rappi: 0.5 a week, 0.11 per 1,000" style="inset-inline-start:44.0%;inset-block-end:58.7%"></i><i class="dot" data-tip="Samsung Electronics: 0.2 a week, 0.03 per 1,000" style="inset-inline-start:69.5%;inset-block-end:42.9%"></i><i class="dot" data-tip="Xiaomi: 0.2 a week, 0.04 per 1,000" style="inset-inline-start:54.4%;inset-block-end:47.8%"></i></div></div>
+      <div class="legend"><span><i class="key-heavy"></i>12 or more posts a week</span><span><i></i>fewer</span><span>Across: followers. Up: median engagement per 1,000 followers. Both on a log scale.</span></div>
+    </figure>
+    <div class="table-wrap">
+      <table class="tiers">
+        <thead><tr><th scope="col">Posts a week</th><th scope="col">Companies</th><th scope="col">Followers</th><th scope="col">Reactions</th><th scope="col">Per 1,000</th></tr></thead>
+        <tbody>
+          <tr><td>Under 3</td><td>27</td><td>1.1M</td><td>172</td><td>0.14</td></tr>
+          <tr><td>3 to 6</td><td>26</td><td>1.6M</td><td>104</td><td>0.09</td></tr>
+          <tr><td>6 to 12</td><td>32</td><td>1.9M</td><td>92</td><td>0.08</td></tr>
+          <tr><td>12 or more</td><td>12</td><td>2M</td><td>83</td><td>0.03</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">The median company in each row, per post and per 1,000 followers.</p>
+    <p class="after">These are different companies, so the table can't say that posting less would earn more. Inside one company I can test it: if posts ate into each other, a post soon after the previous one would do worse. A post under 3 hours after the last one earns 1.01 times the company's usual.</p>
+    <figure><div class="rel" style="--one:46.1%"><div class="rel-row"><span class="rel-name">Under 3 hours<small>670 posts</small></span><span class="rel-track"><i class="rel-range" style="inset-inline-start:43.6%;inline-size:7.4%"></i><i class="rel-dot" style="inset-inline-start:46.6%"></i></span><span class="rel-value">1.01</span></div><div class="rel-row"><span class="rel-name">3 to 24 hours<small>995 posts</small></span><span class="rel-track"><i class="rel-range" style="inset-inline-start:43.4%;inline-size:3.6%"></i><i class="rel-dot" style="inset-inline-start:46.1%"></i></span><span class="rel-value">1.00</span></div><div class="rel-row"><span class="rel-name">1 to 3 days<small>389 posts</small></span><span class="rel-track"><i class="rel-range" style="inset-inline-start:42.4%;inline-size:6.0%"></i><i class="rel-dot" style="inset-inline-start:46.1%"></i></span><span class="rel-value">1.00</span></div><div class="rel-row"><span class="rel-name">Over 3 days<small>160 posts</small></span><span class="rel-track"><i class="rel-range" style="inset-inline-start:42.5%;inline-size:10.5%"></i><i class="rel-dot" style="inset-inline-start:46.3%"></i></span><span class="rel-value">1.00</span></div><div class="rel-row rel-axis"><span></span><span class="rel-ticks"><i style="inset-inline-start:0.0%">0.5</i><i style="inset-inline-start:46.1%">1</i><i style="inset-inline-start:92.2%">2</i></span><span></span></div></div>
+      <figcaption>Time since the same company's previous post.</figcaption>
+    </figure>
+  </section>
+
+  <section data-scene>
+    <h2>The format</h2>
+    <p>92% of posts carry an image, a video or a document, and video is the most common at 37%. Against the company's usual post, several images earn 1.35 and document carousels 0.75. One image (1.03) and video (1.00) are about usual. Articles read 1.37, but on 48 posts and with a wide range.</p>
+    <figure><div class="rel" style="--one:46.1%"><div class="rel-row"><span class="rel-name">Article or newsletter<small>48 posts</small></span><span class="rel-track"><i class="rel-range" style="inset-inline-start:46.6%;inline-size:50.3%"></i><i class="rel-dot" style="inset-inline-start:67.0%"></i></span><span class="rel-value">1.37</span></div><div class="rel-row"><span class="rel-name">Several images<small>280 posts</small></span><span class="rel-track"><i class="rel-range" style="inset-inline-start:55.9%;inline-size:19.9%"></i><i class="rel-dot" style="inset-inline-start:65.8%"></i></span><span class="rel-value">1.35</span></div><div class="rel-row"><span class="rel-name">One image<small>676 posts</small></span><span class="rel-track"><i class="rel-range" style="inset-inline-start:46.1%;inline-size:6.9%"></i><i class="rel-dot" style="inset-inline-start:48.1%"></i></span><span class="rel-value">1.03</span></div><div class="rel-row"><span class="rel-name">Video<small>857 posts</small></span><span class="rel-track"><i class="rel-range" style="inset-inline-start:44.3%;inline-size:5.0%"></i><i class="rel-dot" style="inset-inline-start:46.1%"></i></span><span class="rel-value">1.00</span></div><div class="rel-row"><span class="rel-name">Event<small>35 posts</small></span><span class="rel-track"><i class="rel-range" style="inset-inline-start:9.8%;inline-size:77.6%"></i><i class="rel-dot" style="inset-inline-start:41.4%"></i></span><span class="rel-value">0.93</span></div><div class="rel-row"><span class="rel-name">Text only<small>69 posts</small></span><span class="rel-track"><i class="rel-range" style="inset-inline-start:27.5%;inline-size:21.0%"></i><i class="rel-dot" style="inset-inline-start:40.0%"></i></span><span class="rel-value">0.91</span></div><div class="rel-row"><span class="rel-name">Document carousel<small>318 posts</small></span><span class="rel-track"><i class="rel-range" style="inset-inline-start:21.0%;inline-size:11.8%"></i><i class="rel-dot" style="inset-inline-start:26.7%"></i></span><span class="rel-value">0.75</span></div><div class="rel-row rel-axis"><span></span><span class="rel-ticks"><i style="inset-inline-start:0.0%">0.5</i><i style="inset-inline-start:46.1%">1</i><i style="inset-inline-start:92.2%">2</i></span><span></span></div></div>
+      <figcaption>Pooled across companies, several images look twice as good as video (0.11 against 0.05 per 1,000 followers). Inside one company the gap is smaller. Formats under 30 posts are left out.</figcaption>
+    </figure>
+    <p class="after">49% of posts name AI (or GenAI, LLMs, agentic, machine learning), and 50% carry a hashtag. Posts that name it earn 1.00 times the company's usual, and those that don't 1.00.</p>
+  </section>
+
+  <section id="companies">
+    <h2>All 99 companies</h2>
+    <div class="filter">
+      <label for="company-search">Find a company</label>
+      <input id="company-search" type="search" autocomplete="off">
+      <output id="company-count" for="company-search">99 companies</output>
+    </div>
+    <div class="table-wrap">
+      <table id="companies-table">
+        <thead>
+          <tr>
+            <th scope="col"><button type="button">Company</button></th>
+            <th scope="col"><button type="button">Followers</button></th>
+            <th scope="col" aria-sort="descending"><button type="button">Posts</button></th>
+            <th scope="col"><button type="button">A week</button></th>
+            <th scope="col"><button type="button">Reposts</button></th>
+            <th scope="col"><button type="button">Reactions</button></th>
+            <th scope="col"><button type="button">Per 1,000</button></th>
+            <th scope="col"><button type="button">At :00</button></th>
+            <th scope="col"><button type="button">Name AI</button></th>
+            <th scope="col"><button type="button">Usual hour</button></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Schneider Electric</td>
+            <td data-v="5900000">5.9M</td>
+            <td>137</td>
+            <td>32.0</td>
+            <td>0</td>
+            <td data-v="87.0">87</td>
+            <td data-v="0.0165">0.02</td>
+            <td data-v="68.61313868613139">69%</td>
+            <td data-v="32.846715328467155">33%</td>
+            <td data-v="15">15:00</td>
+          </tr>
+          <tr>
+            <td>Salesforce</td>
+            <td data-v="6900000">6.9M</td>
+            <td>107</td>
+            <td>25.0</td>
+            <td>12</td>
+            <td data-v="107">107</td>
+            <td data-v="0.018">0.02</td>
+            <td data-v="46.728971962616825">47%</td>
+            <td data-v="46.728971962616825">47%</td>
+            <td data-v="8">08:00</td>
+          </tr>
+          <tr>
+            <td>HCLTech</td>
+            <td data-v="9900000">9.9M</td>
+            <td>86</td>
+            <td>20.1</td>
+            <td>1</td>
+            <td data-v="103.0">103</td>
+            <td data-v="0.0115">0.01</td>
+            <td data-v="3.488372093023256">3%</td>
+            <td data-v="66.27906976744185">66%</td>
+            <td data-v="15">15:00</td>
+          </tr>
+          <tr>
+            <td>ASUS</td>
+            <td data-v="1200000">1.2M</td>
+            <td>78</td>
+            <td>18.2</td>
+            <td>7</td>
+            <td data-v="44">44</td>
+            <td data-v="0.04">0.04</td>
+            <td data-v="11.538461538461538">12%</td>
+            <td data-v="46.15384615384615">46%</td>
+            <td data-v="15">15:00</td>
+          </tr>
+          <tr>
+            <td>Huawei</td>
+            <td data-v="5500000">5.5M</td>
+            <td>72</td>
+            <td>16.8</td>
+            <td>17</td>
+            <td data-v="68">68</td>
+            <td data-v="0.014">0.01</td>
+            <td data-v="4.166666666666667">4%</td>
+            <td data-v="54.166666666666664">54%</td>
+            <td data-v="16">16:00</td>
+          </tr>
+          <tr>
+            <td>Arm</td>
+            <td data-v="759000">759K</td>
+            <td>70</td>
+            <td>16.3</td>
+            <td>3</td>
+            <td data-v="70">70</td>
+            <td data-v="0.099">0.10</td>
+            <td data-v="7.142857142857143">7%</td>
+            <td data-v="77.14285714285714">77%</td>
+            <td data-v="19">19:00</td>
+          </tr>
+          <tr>
+            <td>Cisco</td>
+            <td data-v="7900000">7.9M</td>
+            <td>67</td>
+            <td>15.6</td>
+            <td>9</td>
+            <td data-v="129">129</td>
+            <td data-v="0.018">0.02</td>
+            <td data-v="5.970149253731344">6%</td>
+            <td data-v="47.76119402985075">48%</td>
+            <td data-v="6">06:00</td>
+          </tr>
+          <tr>
+            <td>Snowflake</td>
+            <td data-v="1400000">1.4M</td>
+            <td>63</td>
+            <td>14.7</td>
+            <td>0</td>
+            <td data-v="78.5">78</td>
+            <td data-v="0.0675">0.07</td>
+            <td data-v="36.507936507936506">37%</td>
+            <td data-v="80.95238095238095">81%</td>
+            <td data-v="10">10:00</td>
+          </tr>
+          <tr>
+            <td>Databricks</td>
+            <td data-v="1400000">1.4M</td>
+            <td>61</td>
+            <td>14.2</td>
+            <td>0</td>
+            <td data-v="238">238</td>
+            <td data-v="0.205">0.20</td>
+            <td data-v="9.836065573770492">10%</td>
+            <td data-v="59.01639344262295">59%</td>
+            <td data-v="7">07:00</td>
+          </tr>
+          <tr>
+            <td>Fujitsu</td>
+            <td data-v="1300000">1.3M</td>
+            <td>59</td>
+            <td>13.8</td>
+            <td>0</td>
+            <td data-v="21">21</td>
+            <td data-v="0.018">0.02</td>
+            <td data-v="64.40677966101696">64%</td>
+            <td data-v="62.71186440677966">63%</td>
+            <td data-v="18">18:00</td>
+          </tr>
+          <tr>
+            <td>Atlassian</td>
+            <td data-v="2700000">2.7M</td>
+            <td>58</td>
+            <td>13.5</td>
+            <td>3</td>
+            <td data-v="125">125</td>
+            <td data-v="0.062">0.06</td>
+            <td data-v="18.96551724137931">19%</td>
+            <td data-v="58.62068965517241">59%</td>
+            <td data-v="3">03:00</td>
+          </tr>
+          <tr>
+            <td>Safaricom</td>
+            <td data-v="595000">595K</td>
+            <td>56</td>
+            <td>13.1</td>
+            <td>22</td>
+            <td data-v="56">56</td>
+            <td data-v="0.109">0.11</td>
+            <td data-v="3.5714285714285716">4%</td>
+            <td data-v="35.714285714285715">36%</td>
+            <td data-v="16">16:00</td>
+          </tr>
+          <tr>
+            <td>OpenText</td>
+            <td data-v="564000">564K</td>
+            <td>47</td>
+            <td>11.0</td>
+            <td>0</td>
+            <td data-v="79">79</td>
+            <td data-v="0.156">0.16</td>
+            <td data-v="21.27659574468085">21%</td>
+            <td data-v="44.680851063829785">45%</td>
+            <td data-v="11">11:00</td>
+          </tr>
+          <tr>
+            <td>Celonis</td>
+            <td data-v="366000">366K</td>
+            <td>45</td>
+            <td>10.5</td>
+            <td>0</td>
+            <td data-v="33.0">33</td>
+            <td data-v="0.10500000000000001">0.11</td>
+            <td data-v="20.0">20%</td>
+            <td data-v="82.22222222222223">82%</td>
+            <td data-v="14">14:00</td>
+          </tr>
+          <tr>
+            <td>NVIDIA</td>
+            <td data-v="7000000">7M</td>
+            <td>41</td>
+            <td>9.6</td>
+            <td>2</td>
+            <td data-v="1111">1111</td>
+            <td data-v="0.185">0.18</td>
+            <td data-v="2.4390243902439024">2%</td>
+            <td data-v="70.73170731707317">71%</td>
+            <td data-v="8">08:00</td>
+          </tr>
+          <tr>
+            <td>Check Point</td>
+            <td data-v="487000">487K</td>
+            <td>40</td>
+            <td>9.3</td>
+            <td>0</td>
+            <td data-v="82.5">82</td>
+            <td data-v="0.202">0.20</td>
+            <td data-v="20.0">20%</td>
+            <td data-v="72.5">72%</td>
+            <td data-v="17">17:00</td>
+          </tr>
+          <tr>
+            <td>Intel</td>
+            <td data-v="4400000">4.4M</td>
+            <td>40</td>
+            <td>9.3</td>
+            <td>3</td>
+            <td data-v="160.0">160</td>
+            <td data-v="0.043">0.04</td>
+            <td data-v="42.5">42%</td>
+            <td data-v="37.5">38%</td>
+            <td data-v="7">07:00</td>
+          </tr>
+          <tr>
+            <td>Google</td>
+            <td data-v="43000000">43M</td>
+            <td>39</td>
+            <td>9.1</td>
+            <td>3</td>
+            <td data-v="708">708</td>
+            <td data-v="0.018">0.02</td>
+            <td data-v="0.0">0%</td>
+            <td data-v="61.53846153846154">62%</td>
+            <td data-v="7">07:00</td>
+          </tr>
+          <tr>
+            <td>ServiceNow</td>
+            <td data-v="1700000">1.7M</td>
+            <td>39</td>
+            <td>9.1</td>
+            <td>9</td>
+            <td data-v="196">196</td>
+            <td data-v="0.135">0.14</td>
+            <td data-v="23.076923076923077">23%</td>
+            <td data-v="74.35897435897436">74%</td>
+            <td data-v="6">06:00</td>
+          </tr>
+          <tr>
+            <td>Wise</td>
+            <td data-v="721000">721K</td>
+            <td>38</td>
+            <td>8.9</td>
+            <td>3</td>
+            <td data-v="101">101</td>
+            <td data-v="0.144">0.14</td>
+            <td data-v="0.0">0%</td>
+            <td data-v="5.2631578947368425">5%</td>
+            <td data-v="12">12:00</td>
+          </tr>
+          <tr>
+            <td>Flipkart</td>
+            <td data-v="6100000">6.1M</td>
+            <td>36</td>
+            <td>8.4</td>
+            <td>0</td>
+            <td data-v="81">81</td>
+            <td data-v="0.014">0.01</td>
+            <td data-v="0.0">0%</td>
+            <td data-v="8.333333333333334">8%</td>
+            <td data-v="17">17:00</td>
+          </tr>
+          <tr>
+            <td>Infineon</td>
+            <td data-v="1100000">1.1M</td>
+            <td>35</td>
+            <td>8.2</td>
+            <td>0</td>
+            <td data-v="176.5">176</td>
+            <td data-v="0.1805">0.18</td>
+            <td data-v="20.0">20%</td>
+            <td data-v="57.142857142857146">57%</td>
+            <td data-v="9">09:00</td>
+          </tr>
+          <tr>
+            <td>Microsoft</td>
+            <td data-v="29000000">29M</td>
+            <td>35</td>
+            <td>8.2</td>
+            <td>21</td>
+            <td data-v="17">17</td>
+            <td data-v="0.001">&lt;0.01</td>
+            <td data-v="37.142857142857146">37%</td>
+            <td data-v="48.57142857142857">49%</td>
+            <td data-v="7">07:00</td>
+          </tr>
+          <tr>
+            <td>Adobe</td>
+            <td data-v="5500000">5.5M</td>
+            <td>34</td>
+            <td>7.9</td>
+            <td>1</td>
+            <td data-v="91">91</td>
+            <td data-v="0.019">0.02</td>
+            <td data-v="32.35294117647059">32%</td>
+            <td data-v="38.23529411764706">38%</td>
+            <td data-v="11">11:00</td>
+          </tr>
+          <tr>
+            <td>IBM</td>
+            <td data-v="20000000">20M</td>
+            <td>34</td>
+            <td>7.9</td>
+            <td>3</td>
+            <td data-v="317">317</td>
+            <td data-v="0.018">0.02</td>
+            <td data-v="29.41176470588235">29%</td>
+            <td data-v="38.23529411764706">38%</td>
+            <td data-v="8">08:00</td>
+          </tr>
+          <tr>
+            <td>Infosys</td>
+            <td data-v="12000000">12M</td>
+            <td>34</td>
+            <td>7.9</td>
+            <td>23</td>
+            <td data-v="92">92</td>
+            <td data-v="0.008">&lt;0.01</td>
+            <td data-v="32.35294117647059">32%</td>
+            <td data-v="64.70588235294117">65%</td>
+            <td data-v="16">16:00</td>
+          </tr>
+          <tr>
+            <td>MediaTek</td>
+            <td data-v="574000">574K</td>
+            <td>33</td>
+            <td>7.7</td>
+            <td>0</td>
+            <td data-v="83.5">84</td>
+            <td data-v="0.155">0.15</td>
+            <td data-v="6.0606060606060606">6%</td>
+            <td data-v="69.6969696969697">70%</td>
+            <td data-v="21">21:00</td>
+          </tr>
+          <tr>
+            <td>TCS</td>
+            <td data-v="20000000">20M</td>
+            <td>33</td>
+            <td>7.7</td>
+            <td>10</td>
+            <td data-v="159.5">160</td>
+            <td data-v="0.009">&lt;0.01</td>
+            <td data-v="6.0606060606060606">6%</td>
+            <td data-v="18.181818181818183">18%</td>
+            <td data-v="16">16:00</td>
+          </tr>
+          <tr>
+            <td>Ericsson</td>
+            <td data-v="2400000">2.4M</td>
+            <td>32</td>
+            <td>7.5</td>
+            <td>0</td>
+            <td data-v="91.0">91</td>
+            <td data-v="0.041499999999999995">0.04</td>
+            <td data-v="9.375">9%</td>
+            <td data-v="46.875">47%</td>
+            <td data-v="16">16:00</td>
+          </tr>
+          <tr>
+            <td>monday.com</td>
+            <td data-v="360000">360K</td>
+            <td>32</td>
+            <td>7.5</td>
+            <td>21</td>
+            <td data-v="63.0">63</td>
+            <td data-v="0.1945">0.19</td>
+            <td data-v="0.0">0%</td>
+            <td data-v="21.875">22%</td>
+            <td data-v="17">17:00</td>
+          </tr>
+          <tr>
+            <td>Klarna</td>
+            <td data-v="429000">429K</td>
+            <td>31</td>
+            <td>7.2</td>
+            <td>1</td>
+            <td data-v="50.0">50</td>
+            <td data-v="0.1345">0.13</td>
+            <td data-v="0.0">0%</td>
+            <td data-v="29.032258064516128">29%</td>
+            <td data-v="16">16:00</td>
+          </tr>
+          <tr>
+            <td>LG Electronics</td>
+            <td data-v="1500000">1.5M</td>
+            <td>31</td>
+            <td>7.2</td>
+            <td>0</td>
+            <td data-v="79.5">80</td>
+            <td data-v="0.057499999999999996">0.06</td>
+            <td data-v="3.225806451612903">3%</td>
+            <td data-v="48.38709677419355">48%</td>
+            <td data-v="10">10:00</td>
+          </tr>
+          <tr>
+            <td>Oracle</td>
+            <td data-v="12000000">12M</td>
+            <td>31</td>
+            <td>7.2</td>
+            <td>24</td>
+            <td data-v="187">187</td>
+            <td data-v="0.019">0.02</td>
+            <td data-v="16.129032258064516">16%</td>
+            <td data-v="45.16129032258065">45%</td>
+            <td data-v="14">14:00</td>
+          </tr>
+          <tr>
+            <td>STMicroelectronics</td>
+            <td data-v="965000">965K</td>
+            <td>31</td>
+            <td>7.2</td>
+            <td>0</td>
+            <td data-v="96.5">96</td>
+            <td data-v="0.112">0.11</td>
+            <td data-v="67.74193548387096">68%</td>
+            <td data-v="35.483870967741936">35%</td>
+            <td data-v="10">10:00</td>
+          </tr>
+          <tr>
+            <td>Nokia</td>
+            <td data-v="2000000">2M</td>
+            <td>29</td>
+            <td>6.8</td>
+            <td>1</td>
+            <td data-v="144.5">144</td>
+            <td data-v="0.07999999999999999">0.08</td>
+            <td data-v="6.896551724137931">7%</td>
+            <td data-v="89.65517241379311">90%</td>
+            <td data-v="12">12:00</td>
+          </tr>
+          <tr>
+            <td>Cohere</td>
+            <td data-v="306000">306K</td>
+            <td>28</td>
+            <td>6.5</td>
+            <td>3</td>
+            <td data-v="199.5">200</td>
+            <td data-v="0.6910000000000001">0.69</td>
+            <td data-v="0.0">0%</td>
+            <td data-v="46.42857142857143">46%</td>
+            <td data-v="14">14:00</td>
+          </tr>
+          <tr>
+            <td>Grab</td>
+            <td data-v="1100000">1.1M</td>
+            <td>28</td>
+            <td>6.5</td>
+            <td>0</td>
+            <td data-v="49.5">50</td>
+            <td data-v="0.0505">0.05</td>
+            <td data-v="3.5714285714285716">4%</td>
+            <td data-v="50.0">50%</td>
+            <td data-v="17">17:00</td>
+          </tr>
+          <tr>
+            <td>Dassault Systèmes</td>
+            <td data-v="1100000">1.1M</td>
+            <td>27</td>
+            <td>6.3</td>
+            <td>0</td>
+            <td data-v="268">268</td>
+            <td data-v="0.25">0.25</td>
+            <td data-v="70.37037037037037">70%</td>
+            <td data-v="25.925925925925927">26%</td>
+            <td data-v="10">10:00</td>
+          </tr>
+          <tr>
+            <td>Adyen</td>
+            <td data-v="432000">432K</td>
+            <td>26</td>
+            <td>6.1</td>
+            <td>3</td>
+            <td data-v="64">64</td>
+            <td data-v="0.162">0.16</td>
+            <td data-v="26.923076923076923">27%</td>
+            <td data-v="23.076923076923077">23%</td>
+            <td data-v="15">15:00</td>
+          </tr>
+          <tr>
+            <td>Coveo</td>
+            <td data-v="62000">62K</td>
+            <td>26</td>
+            <td>6.1</td>
+            <td>0</td>
+            <td data-v="29.0">29</td>
+            <td data-v="0.516">0.52</td>
+            <td data-v="0.0">0%</td>
+            <td data-v="80.76923076923077">81%</td>
+            <td data-v="11">11:00</td>
+          </tr>
+          <tr>
+            <td>Philips</td>
+            <td data-v="3100000">3.1M</td>
+            <td>26</td>
+            <td>6.1</td>
+            <td>1</td>
+            <td data-v="80.0">80</td>
+            <td data-v="0.028">0.03</td>
+            <td data-v="11.538461538461538">12%</td>
+            <td data-v="38.46153846153846">38%</td>
+            <td data-v="15">15:00</td>
+          </tr>
+          <tr>
+            <td>Siemens</td>
+            <td data-v="9600000">9.6M</td>
+            <td>25</td>
+            <td>5.8</td>
+            <td>0</td>
+            <td data-v="387">387</td>
+            <td data-v="0.044">0.04</td>
+            <td data-v="56.0">56%</td>
+            <td data-v="44.0">44%</td>
+            <td data-v="10">10:00</td>
+          </tr>
+          <tr>
+            <td>Foxconn</td>
+            <td data-v="500000">500K</td>
+            <td>24</td>
+            <td>5.6</td>
+            <td>0</td>
+            <td data-v="56.0">56</td>
+            <td data-v="0.126">0.13</td>
+            <td data-v="0.0">0%</td>
+            <td data-v="54.166666666666664">54%</td>
+            <td data-v="15">15:00</td>
+          </tr>
+          <tr>
+            <td>SAP</td>
+            <td data-v="5200000">5.2M</td>
+            <td>24</td>
+            <td>5.6</td>
+            <td>0</td>
+            <td data-v="400">400</td>
+            <td data-v="0.088">0.09</td>
+            <td data-v="41.666666666666664">42%</td>
+            <td data-v="79.16666666666667">79%</td>
+            <td data-v="14">14:00</td>
+          </tr>
+          <tr>
+            <td>AMD †</td>
+            <td data-v="2700000">2.7M</td>
+            <td>22</td>
+            <td>6.7</td>
+            <td>0</td>
+            <td data-v="190">190</td>
+            <td data-v="0.083">0.08</td>
+            <td data-v="31.818181818181817">32%</td>
+            <td data-v="45.45454545454545">45%</td>
+            <td data-v="7">07:00</td>
+          </tr>
+          <tr>
+            <td>Flutterwave</td>
+            <td data-v="255000">255K</td>
+            <td>21</td>
+            <td>4.9</td>
+            <td>3</td>
+            <td data-v="90.5">90</td>
+            <td data-v="0.3705">0.37</td>
+            <td data-v="0.0">0%</td>
+            <td data-v="4.761904761904762">5%</td>
+            <td data-v="16">16:00</td>
+          </tr>
+          <tr>
+            <td>Alibaba</td>
+            <td data-v="1500000">1.5M</td>
+            <td>20</td>
+            <td>4.7</td>
+            <td>0</td>
+            <td data-v="39">39</td>
+            <td data-v="0.029">0.03</td>
+            <td data-v="0.0">0%</td>
+            <td data-v="65.0">65%</td>
+            <td data-v="12">12:00</td>
+          </tr>
+          <tr>
+            <td>Hitachi</td>
+            <td data-v="1700000">1.7M</td>
+            <td>20</td>
+            <td>4.7</td>
+            <td>0</td>
+            <td data-v="89">89</td>
+            <td data-v="0.06">0.06</td>
+            <td data-v="25.0">25%</td>
+            <td data-v="60.0">60%</td>
+            <td data-v="17">17:00</td>
+          </tr>
+          <tr>
+            <td>Jio</td>
+            <td data-v="1800000">1.8M</td>
+            <td>20</td>
+            <td>4.7</td>
+            <td>3</td>
+            <td data-v="373.5">374</td>
+            <td data-v="0.219">0.22</td>
+            <td data-v="0.0">0%</td>
+            <td data-v="10.0">10%</td>
+            <td data-v="14">14:00</td>
+          </tr>
+          <tr>
+            <td>G42</td>
+            <td data-v="340000">340K</td>
+            <td>19</td>
+            <td>4.4</td>
+            <td>1</td>
+            <td data-v="96">96</td>
+            <td data-v="0.294">0.29</td>
+            <td data-v="0.0">0%</td>
+            <td data-v="94.73684210526316">95%</td>
+            <td data-v="18">18:00</td>
+          </tr>
+          <tr>
+            <td>OVHcloud</td>
+            <td data-v="320000">320K</td>
+            <td>19</td>
+            <td>4.4</td>
+            <td>0</td>
+            <td data-v="34.0">34</td>
+            <td data-v="0.1265">0.13</td>
+            <td data-v="5.2631578947368425">5%</td>
+            <td data-v="15.789473684210526">16%</td>
+            <td data-v="17">17:00</td>
+          </tr>
+          <tr>
+            <td>Stripe</td>
+            <td data-v="1800000">1.8M</td>
+            <td>19</td>
+            <td>4.4</td>
+            <td>11</td>
+            <td data-v="270.5">270</td>
+            <td data-v="0.181">0.18</td>
+            <td data-v="0.0">0%</td>
+            <td data-v="26.31578947368421">26%</td>
+            <td data-v="9">09:00</td>
+          </tr>
+          <tr>
+            <td>Matrox Video</td>
+            <td data-v="39000">39K</td>
+            <td>18</td>
+            <td>4.2</td>
+            <td>3</td>
+            <td data-v="19.0">19</td>
+            <td data-v="0.59">0.59</td>
+            <td data-v="5.555555555555555">6%</td>
+            <td data-v="0.0">0%</td>
+            <td data-v="9">09:00</td>
+          </tr>
+          <tr>
+            <td>Capgemini</td>
+            <td data-v="9600000">9.6M</td>
+            <td>17</td>
+            <td>4.0</td>
+            <td>0</td>
+            <td data-v="140.0">140</td>
+            <td data-v="0.018500000000000003">0.02</td>
+            <td data-v="35.294117647058826">35%</td>
+            <td data-v="82.3529411764706">82%</td>
+            <td data-v="14">14:00</td>
+          </tr>
+          <tr>
+            <td>Revolut</td>
+            <td data-v="2400000">2.4M</td>
+            <td>17</td>
+            <td>4.0</td>
+            <td>1</td>
+            <td data-v="382">382</td>
+            <td data-v="0.176">0.18</td>
+            <td data-v="5.882352941176471">6%</td>
+            <td data-v="11.764705882352942">12%</td>
+            <td data-v="11">11:00</td>
+          </tr>
+          <tr>
+            <td>Baidu</td>
+            <td data-v="301000">301K</td>
+            <td>16</td>
+            <td>3.7</td>
+            <td>0</td>
+            <td data-v="23">23</td>
+            <td data-v="0.09">0.09</td>
+            <td data-v="0.0">0%</td>
+            <td data-v="37.5">38%</td>
+            <td data-v="19">19:00</td>
+          </tr>
+          <tr>
+            <td>Canva</td>
+            <td data-v="2900000">2.9M</td>
+            <td>16</td>
+            <td>3.7</td>
+            <td>0</td>
+            <td data-v="142.5">142</td>
+            <td data-v="0.0565">0.06</td>
+            <td data-v="37.5">38%</td>
+            <td data-v="18.75">19%</td>
+            <td data-v="23">23:00</td>
+          </tr>
+          <tr>
+            <td>Lenovo</td>
+            <td data-v="1400000">1.4M</td>
+            <td>16</td>
+            <td>3.7</td>
+            <td>0</td>
+            <td data-v="115.0">115</td>
+            <td data-v="0.098">0.10</td>
+            <td data-v="56.25">56%</td>
+            <td data-v="50.0">50%</td>
+            <td data-v="21">21:00</td>
+          </tr>
+          <tr>
+            <td>Uber</td>
+            <td data-v="3700000">3.7M</td>
+            <td>16</td>
+            <td>3.7</td>
+            <td>4</td>
+            <td data-v="198.0">198</td>
+            <td data-v="0.0595">0.06</td>
+            <td data-v="0.0">0%</td>
+            <td data-v="18.75">19%</td>
+            <td data-v="13">13:00</td>
+          </tr>
+          <tr>
+            <td>Tencent</td>
+            <td data-v="1400000">1.4M</td>
+            <td>15</td>
+            <td>3.5</td>
+            <td>0</td>
+            <td data-v="59.0">59</td>
+            <td data-v="0.049">0.05</td>
+            <td data-v="0.0">0%</td>
+            <td data-v="60.0">60%</td>
+            <td data-v="14">14:00</td>
+          </tr>
+          <tr>
+            <td>Wipro</td>
+            <td data-v="12000000">12M</td>
+            <td>15</td>
+            <td>3.5</td>
+            <td>2</td>
+            <td data-v="112">112</td>
+            <td data-v="0.01">0.01</td>
+            <td data-v="6.666666666666667">7%</td>
+            <td data-v="60.0">60%</td>
+            <td data-v="21">21:00</td>
+          </tr>
+          <tr>
+            <td>Zebra Technologies</td>
+            <td data-v="436000">436K</td>
+            <td>15</td>
+            <td>3.5</td>
+            <td>0</td>
+            <td data-v="42">42</td>
+            <td data-v="0.11">0.11</td>
+            <td data-v="80.0">80%</td>
+            <td data-v="13.333333333333334">13%</td>
+            <td data-v="8">08:00</td>
+          </tr>
+          <tr>
+            <td>Sony</td>
+            <td data-v="1400000">1.4M</td>
+            <td>14</td>
+            <td>3.3</td>
+            <td>5</td>
+            <td data-v="87">87</td>
+            <td data-v="0.07">0.07</td>
+            <td data-v="0.0">0%</td>
+            <td data-v="14.285714285714286">14%</td>
+            <td data-v="12">12:00</td>
+          </tr>
+          <tr>
+            <td>Xero</td>
+            <td data-v="457000">457K</td>
+            <td>14</td>
+            <td>3.3</td>
+            <td>2</td>
+            <td data-v="33">33</td>
+            <td data-v="0.085">0.09</td>
+            <td data-v="21.428571428571427">21%</td>
+            <td data-v="42.857142857142854">43%</td>
+            <td data-v="1">01:00</td>
+          </tr>
+          <tr>
+            <td>Zalando</td>
+            <td data-v="432000">432K</td>
+            <td>14</td>
+            <td>3.3</td>
+            <td>0</td>
+            <td data-v="81">81</td>
+            <td data-v="0.208">0.21</td>
+            <td data-v="0.0">0%</td>
+            <td data-v="42.857142857142854">43%</td>
+            <td data-v="14">14:00</td>
+          </tr>
+          <tr>
+            <td>Zoho</td>
+            <td data-v="2900000">2.9M</td>
+            <td>14</td>
+            <td>3.3</td>
+            <td>21</td>
+            <td data-v="233">233</td>
+            <td data-v="0.089">0.09</td>
+            <td data-v="0.0">0%</td>
+            <td data-v="28.571428571428573">29%</td>
+            <td data-v="12">12:00</td>
+          </tr>
+          <tr>
+            <td>Dell Technologies †</td>
+            <td data-v="5700000">5.7M</td>
+            <td>13</td>
+            <td>11.4</td>
+            <td>0</td>
+            <td data-v="112.0">112</td>
+            <td data-v="0.023">0.02</td>
+            <td data-v="7.6923076923076925">8%</td>
+            <td data-v="53.84615384615385">54%</td>
+            <td data-v="14">14:00</td>
+          </tr>
+          <tr>
+            <td>Netflix</td>
+            <td data-v="12000000">12M</td>
+            <td>13</td>
+            <td>3.0</td>
+            <td>3</td>
+            <td data-v="254.5">254</td>
+            <td data-v="0.023">0.02</td>
+            <td data-v="0.0">0%</td>
+            <td data-v="7.6923076923076925">8%</td>
+            <td data-v="10">10:00</td>
+          </tr>
+          <tr>
+            <td>Mistral AI</td>
+            <td data-v="759000">759K</td>
+            <td>12</td>
+            <td>2.8</td>
+            <td>0</td>
+            <td data-v="2379.0">2379</td>
+            <td data-v="3.3449999999999998">3.34</td>
+            <td data-v="8.333333333333334">8%</td>
+            <td data-v="100.0">100%</td>
+            <td data-v="15">15:00</td>
+          </tr>
+          <tr>
+            <td>Qualcomm †</td>
+            <td data-v="2500000">2.5M</td>
+            <td>12</td>
+            <td>10.5</td>
+            <td>1</td>
+            <td data-v="66.5">66</td>
+            <td data-v="0.032">0.03</td>
+            <td data-v="8.333333333333334">8%</td>
+            <td data-v="75.0">75%</td>
+            <td data-v="15">15:00</td>
+          </tr>
+          <tr>
+            <td>Rakuten</td>
+            <td data-v="376000">376K</td>
+            <td>12</td>
+            <td>2.8</td>
+            <td>2</td>
+            <td data-v="171.0">171</td>
+            <td data-v="0.4945">0.49</td>
+            <td data-v="8.333333333333334">8%</td>
+            <td data-v="66.66666666666667">67%</td>
+            <td data-v="17">17:00</td>
+          </tr>
+          <tr>
+            <td>Shopify</td>
+            <td data-v="1100000">1.1M</td>
+            <td>12</td>
+            <td>2.8</td>
+            <td>1</td>
+            <td data-v="264.0">264</td>
+            <td data-v="0.3045">0.30</td>
+            <td data-v="0.0">0%</td>
+            <td data-v="33.333333333333336">33%</td>
+            <td data-v="9">09:00</td>
+          </tr>
+          <tr>
+            <td>ASML</td>
+            <td data-v="1100000">1.1M</td>
+            <td>11</td>
+            <td>2.6</td>
+            <td>0</td>
+            <td data-v="426.5">426</td>
+            <td data-v="0.41700000000000004">0.42</td>
+            <td data-v="45.45454545454545">45%</td>
+            <td data-v="36.36363636363637">36%</td>
+            <td data-v="12">12:00</td>
+          </tr>
+          <tr>
+            <td>CGI</td>
+            <td data-v="2100000">2.1M</td>
+            <td>11</td>
+            <td>2.6</td>
+            <td>0</td>
+            <td data-v="40">40</td>
+            <td data-v="0.022">0.02</td>
+            <td data-v="0.0">0%</td>
+            <td data-v="36.36363636363637">36%</td>
+            <td data-v="10">10:00</td>
+          </tr>
+          <tr>
+            <td>HP †</td>
+            <td data-v="5300000">5.3M</td>
+            <td>11</td>
+            <td>5.9</td>
+            <td>1</td>
+            <td data-v="223.0">223</td>
+            <td data-v="0.045">0.04</td>
+            <td data-v="18.181818181818183">18%</td>
+            <td data-v="36.36363636363637">36%</td>
+            <td data-v="9">09:00</td>
+          </tr>
+          <tr>
+            <td>OpenAI</td>
+            <td data-v="12000000">12M</td>
+            <td>11</td>
+            <td>2.6</td>
+            <td>1</td>
+            <td data-v="1085">1085</td>
+            <td data-v="0.113">0.11</td>
+            <td data-v="0.0">0%</td>
+            <td data-v="54.54545454545455">55%</td>
+            <td data-v="13">13:00</td>
+          </tr>
+          <tr>
+            <td>Bolt</td>
+            <td data-v="358000">358K</td>
+            <td>10</td>
+            <td>2.3</td>
+            <td>0</td>
+            <td data-v="312.5">312</td>
+            <td data-v="0.9989999999999999">1.00</td>
+            <td data-v="0.0">0%</td>
+            <td data-v="50.0">50%</td>
+            <td data-v="14">14:00</td>
+          </tr>
+          <tr>
+            <td>Booking.com</td>
+            <td data-v="1200000">1.2M</td>
+            <td>10</td>
+            <td>2.3</td>
+            <td>0</td>
+            <td data-v="128">128</td>
+            <td data-v="0.12">0.12</td>
+            <td data-v="50.0">50%</td>
+            <td data-v="20.0">20%</td>
+            <td data-v="10">10:00</td>
+          </tr>
+          <tr>
+            <td>DeepL</td>
+            <td data-v="142000">142K</td>
+            <td>10</td>
+            <td>2.3</td>
+            <td>4</td>
+            <td data-v="56.5">56</td>
+            <td data-v="0.4505">0.45</td>
+            <td data-v="0.0">0%</td>
+            <td data-v="60.0">60%</td>
+            <td data-v="17">17:00</td>
+          </tr>
+          <tr>
+            <td>Meta</td>
+            <td data-v="12000000">12M</td>
+            <td>10</td>
+            <td>2.3</td>
+            <td>1</td>
+            <td data-v="191.0">191</td>
+            <td data-v="0.022">0.02</td>
+            <td data-v="0.0">0%</td>
+            <td data-v="70.0">70%</td>
+            <td data-v="7">07:00</td>
+          </tr>
+          <tr>
+            <td>SK hynix</td>
+            <td data-v="246000">246K</td>
+            <td>10</td>
+            <td>2.3</td>
+            <td>0</td>
+            <td data-v="172.0">172</td>
+            <td data-v="0.76">0.76</td>
+            <td data-v="0.0">0%</td>
+            <td data-v="90.0">90%</td>
+            <td data-v="9">09:00</td>
+          </tr>
+          <tr>
+            <td>Amazon</td>
+            <td data-v="38000000">38M</td>
+            <td>9</td>
+            <td>2.1</td>
+            <td>4</td>
+            <td data-v="535.5">536</td>
+            <td data-v="0.0165">0.02</td>
+            <td data-v="44.44444444444444">44%</td>
+            <td data-v="55.55555555555556">56%</td>
+            <td data-v="7">07:00</td>
+          </tr>
+          <tr>
+            <td>Anthropic</td>
+            <td data-v="5400000">5.4M</td>
+            <td>9</td>
+            <td>2.1</td>
+            <td>0</td>
+            <td data-v="3533.5">3534</td>
+            <td data-v="0.7304999999999999">0.73</td>
+            <td data-v="0.0">0%</td>
+            <td data-v="55.55555555555556">56%</td>
+            <td data-v="11">11:00</td>
+          </tr>
+          <tr>
+            <td>GoTo</td>
+            <td data-v="1000000">1M</td>
+            <td>7</td>
+            <td>1.6</td>
+            <td>0</td>
+            <td data-v="75">75</td>
+            <td data-v="0.082">0.08</td>
+            <td data-v="0.0">0%</td>
+            <td data-v="42.857142857142854">43%</td>
+            <td data-v="15">15:00</td>
+          </tr>
+          <tr>
+            <td>TSMC</td>
+            <td data-v="951000">951K</td>
+            <td>7</td>
+            <td>1.6</td>
+            <td>1</td>
+            <td data-v="368">368</td>
+            <td data-v="0.412">0.41</td>
+            <td data-v="0.0">0%</td>
+            <td data-v="57.142857142857146">57%</td>
+            <td data-v="17">17:00</td>
+          </tr>
+          <tr>
+            <td>SoftBank</td>
+            <td data-v="270000">270K</td>
+            <td>6</td>
+            <td>1.4</td>
+            <td>0</td>
+            <td data-v="214.5">214</td>
+            <td data-v="0.9205">0.92</td>
+            <td data-v="0.0">0%</td>
+            <td data-v="66.66666666666667">67%</td>
+            <td data-v="10">10:00</td>
+          </tr>
+          <tr>
+            <td>Wix</td>
+            <td data-v="401000">401K</td>
+            <td>6</td>
+            <td>1.4</td>
+            <td>3</td>
+            <td data-v="32.5">32</td>
+            <td data-v="0.095">0.10</td>
+            <td data-v="0.0">0%</td>
+            <td data-v="50.0">50%</td>
+            <td data-v="14">14:00</td>
+          </tr>
+          <tr>
+            <td>ByteDance</td>
+            <td data-v="1600000">1.6M</td>
+            <td>5</td>
+            <td>1.2</td>
+            <td>0</td>
+            <td data-v="77">77</td>
+            <td data-v="0.053">0.05</td>
+            <td data-v="0.0">0%</td>
+            <td data-v="40.0">40%</td>
+            <td data-v="19">19:00</td>
+          </tr>
+          <tr>
+            <td>Naspers</td>
+            <td data-v="119000">119K</td>
+            <td>5</td>
+            <td>1.2</td>
+            <td>1</td>
+            <td data-v="36">36</td>
+            <td data-v="0.328">0.33</td>
+            <td data-v="0.0">0%</td>
+            <td data-v="60.0">60%</td>
+            <td data-v="9">09:00</td>
+          </tr>
+          <tr>
+            <td>Hugging Face</td>
+            <td data-v="1300000">1.3M</td>
+            <td>4</td>
+            <td>0.9</td>
+            <td>51</td>
+            <td data-v="137.0">137</td>
+            <td data-v="0.165">0.17</td>
+            <td data-v="0.0">0%</td>
+            <td data-v="0.0">0%</td>
+            <td data-v="8">08:00</td>
+          </tr>
+          <tr>
+            <td>NAVER</td>
+            <td data-v="124000">124K</td>
+            <td>3</td>
+            <td>0.7</td>
+            <td>0</td>
+            <td data-v="65">65</td>
+            <td data-v="0.54">0.54</td>
+            <td data-v="0.0">0%</td>
+            <td data-v="66.66666666666667">67%</td>
+            <td data-v="18">18:00</td>
+          </tr>
+          <tr>
+            <td>Nubank</td>
+            <td data-v="6100000">6.1M</td>
+            <td>3</td>
+            <td>0.7</td>
+            <td>0</td>
+            <td data-v="256">256</td>
+            <td data-v="0.044">0.04</td>
+            <td data-v="0.0">0%</td>
+            <td data-v="0.0">0%</td>
+            <td data-v="11">11:00</td>
+          </tr>
+          <tr>
+            <td>Spotify</td>
+            <td data-v="4800000">4.8M</td>
+            <td>3</td>
+            <td>0.7</td>
+            <td>0</td>
+            <td data-v="174">174</td>
+            <td data-v="0.042">0.04</td>
+            <td data-v="0.0">0%</td>
+            <td data-v="0.0">0%</td>
+            <td data-v="19">19:00</td>
+          </tr>
+          <tr>
+            <td>Rappi</td>
+            <td data-v="787000">787K</td>
+            <td>2</td>
+            <td>0.5</td>
+            <td>2</td>
+            <td data-v="75">75</td>
+            <td data-v="0.111">0.11</td>
+            <td data-v="0.0">0%</td>
+            <td data-v="0.0">0%</td>
+            <td data-v="20">20:00</td>
+          </tr>
+          <tr>
+            <td>Mercado Libre</td>
+            <td data-v="3600000">3.6M</td>
+            <td>1</td>
+            <td>0.2</td>
+            <td>0</td>
+            <td data-v="-1">–</td>
+            <td data-v="-1">–</td>
+            <td data-v="0.0">0%</td>
+            <td data-v="0.0">0%</td>
+            <td data-v="18">18:00</td>
+          </tr>
+          <tr>
+            <td>Samsung Electronics</td>
+            <td data-v="5200000">5.2M</td>
+            <td>1</td>
+            <td>0.2</td>
+            <td>0</td>
+            <td data-v="103">103</td>
+            <td data-v="0.026">0.03</td>
+            <td data-v="0.0">0%</td>
+            <td data-v="0.0">0%</td>
+            <td data-v="18">18:00</td>
+          </tr>
+          <tr>
+            <td>Xiaomi</td>
+            <td data-v="1700000">1.7M</td>
+            <td>1</td>
+            <td>0.2</td>
+            <td>0</td>
+            <td data-v="59">59</td>
+            <td data-v="0.041">0.04</td>
+            <td data-v="0.0">0%</td>
+            <td data-v="0.0">0%</td>
+            <td data-v="9">09:00</td>
+          </tr>
+          <tr>
+            <td>Apple</td>
+            <td data-v="19000000">19M</td>
+            <td>0</td>
+            <td>0.0</td>
+            <td>0</td>
+            <td data-v="-1">–</td>
+            <td data-v="-1">–</td>
+            <td data-v="-1">–</td>
+            <td data-v="-1">–</td>
+            <td data-v="-1">–</td>
+          </tr>
+          <tr>
+            <td>Tesla</td>
+            <td data-v="12000000">12M</td>
+            <td>0</td>
+            <td>0.0</td>
+            <td>0</td>
+            <td data-v="-1">–</td>
+            <td data-v="-1">–</td>
+            <td data-v="-1">–</td>
+            <td data-v="-1">–</td>
+            <td data-v="-1">–</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">Reactions and per 1,000 are each company's median on posts at least 72 hours old. Usual hour is on the head-office clock. † The feed stopped loading before the window began, so the rate a week uses only the days read.</p>
+  </section>
+</main>
+<script>
+  const table = document.getElementById('companies-table');
+  const body = table.tBodies[0];
+  const heads = [...table.tHead.rows[0].cells];
+  const value = (row, i) => row.cells[i].dataset.v ?? row.cells[i].textContent.trim();
+  heads.forEach((th, i) => th.querySelector('button').addEventListener('click', () => {
+    const order = th.getAttribute('aria-sort') === 'descending' ? 'ascending' : 'descending';
+    heads.forEach((h) => h.removeAttribute('aria-sort'));
+    th.setAttribute('aria-sort', order);
+    const sign = order === 'ascending' ? 1 : -1;
+    [...body.rows]
+      .sort((a, b) => sign * (i ? value(a, i) - value(b, i) : value(a, i).localeCompare(value(b, i))))
+      .forEach((row) => body.append(row));
+  }));
+  document.getElementById('company-search').addEventListener('input', (event) => {
+    const query = event.target.value.trim().toLowerCase();
+    let shown = 0;
+    for (const row of body.rows) {
+      row.hidden = !row.cells[0].textContent.toLowerCase().includes(query);
+      shown += row.hidden ? 0 : 1;
+    }
+    document.getElementById('company-count').textContent = `${shown} ${shown === 1 ? 'company' : 'companies'}`;
+  });
+</script>
+</body>
+</html>
