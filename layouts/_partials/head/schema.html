@@ -8,7 +8,7 @@
 {{- $person = merge $person (dict
       "description" (.Params.description | default "")
       "address" (dict "@type" "PostalAddress" "addressLocality" (.Params.location | default ""))
-      "sameAs" .Params.sameAs
+      "sameAs" site.Params.sameAs
       "knowsAbout" (first 20 $skills)) }}
 {{- with index .Params.experience 0 }}{{ $person = merge $person (dict "jobTitle" .role "worksFor" (dict "@type" "Organization" "name" .org "url" (.url | default ""))) }}{{ end }}
 {{- with $edu }}{{ $person = merge $person (dict "alumniOf" .) }}{{ end }}
@@ -22,6 +22,13 @@
       "@type" "WebSite" "@id" (printf "%s#website" site.Home.Permalink) "url" site.Home.Permalink
       "name" site.Title "description" site.Params.description "inLanguage" site.Language.Lang
       "publisher" (dict "@id" $authorId)) }}
+{{- end }}
+
+{{- if or .IsHome (eq .Layout "resume") }}
+{{- $graph = $graph | append (dict
+      "@type" "ProfilePage" "@id" (printf "%s#profilepage" .Permalink)
+      "url" .Permalink "inLanguage" site.Language.Lang
+      "mainEntity" (dict "@id" $authorId)) }}
 {{- end }}
 
 {{- if and (eq .Section "projects") .IsPage }}

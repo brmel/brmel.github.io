@@ -2,6 +2,8 @@
 
 > {{ site.Params.description }}
 
+{{ with site.GetPage "/resume" }}**{{ site.Params.name }}** — {{ .Description | plainify | htmlUnescape | chomp }}{{ end }}
+
 {{ site.Home.Plain | plainify | htmlUnescape | chomp }}
 
 Every Tech and Adventures article is also served as markdown at its URL followed by `index.md`.
@@ -11,6 +13,8 @@ Every Tech and Adventures article is also served as markdown at its URL followed
 {{ with site.GetPage "/resume" }}{{ range .Params.experience -}}
 - {{ .period }} — {{ .role }}{{ with .org }}, {{ . }}{{ end }}{{ with .note }}. {{ . }}{{ end }}
 {{ end }}{{ end }}
+{{ with site.GetPage "/resume" }}{{ $skills := slice }}{{ range .Params.skills }}{{ range .items }}{{ $skills = $skills | append . }}{{ end }}{{ end }}**Expertise**: {{ delimit $skills ", " }}
+{{ end }}
 **Project facts**, taken from each project page:
 
 {{ range (sort (site.GetPage "/projects").Pages "Date" "desc") -}}
@@ -35,6 +39,8 @@ Every Tech and Adventures article is also served as markdown at its URL followed
 {{ end -}}
 - [Full text]({{ printf "%sllms-full.txt" site.BaseURL }}): every page above as plain text, in one file.
 - [Sitemap]({{ printf "%ssitemap.xml" site.BaseURL }}): every indexable page.
+{{ range site.Params.sameAs }}- [{{ . }}]({{ . }})
+{{ end }}
 {{ range site.Home.AllTranslations -}}
 - [{{ .Language.Label }}]({{ .Permalink }}): the site in {{ .Language.Label }}.
 {{ end -}}
