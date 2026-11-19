@@ -1,0 +1,10 @@
+# Agent context only — Hugo never reads this file.
+# Generated output and heavy generated payloads stay out of the context window.
+# Read one explicitly when a task truly needs it.
+public/
+resources/
+node_modules/
+.playwright-mcp/
+.hugo_build.lock
+assets/reports/
+static/og/
