@@ -8,7 +8,7 @@
 {{- $person = merge $person (dict
       "description" (.Params.description | default "")
       "address" (dict "@type" "PostalAddress" "addressLocality" (.Params.location | default ""))
-      "sameAs" .Params.sameAs
+      "sameAs" site.Params.sameAs
       "knowsAbout" (first 20 $skills)) }}
 {{- with index .Params.experience 0 }}{{ $person = merge $person (dict "jobTitle" .role "worksFor" (dict "@type" "Organization" "name" .org "url" (.url | default ""))) }}{{ end }}
 {{- with $edu }}{{ $person = merge $person (dict "alumniOf" .) }}{{ end }}

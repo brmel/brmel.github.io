@@ -5,11 +5,6 @@ lastmod: 2026-10-30
 description: "Senior Software Developer with seven years of production C++: 2D and 3D machine vision, machine learning and deep learning, and today generative AI."
 role: "Senior Software Developer in Montréal: production C++ for machine vision, machine learning and deep learning"
 location: "Montréal, Québec"
-sameAs:
-  - "https://www.linkedin.com/in/brahim-redouane-mellah/"
-  - "https://github.com/brmel"
-  - "https://x.com/BrmelB"
-
 highlights:
   - title: "Machine vision"
     text: "2D and 3D algorithms that find, measure and inspect parts: pattern matching, edge detection, calibration and metrology."

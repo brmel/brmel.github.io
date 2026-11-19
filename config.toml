@@ -63,6 +63,7 @@ disableKinds = ["taxonomy", "term"]
   minifyOutput = true
 
 [params]
+  sameAs = ["https://www.linkedin.com/in/brahim-redouane-mellah/", "https://github.com/brmel", "https://x.com/BrmelB"]
   email = "mellah.brahim.redouane@gmail.com"
   photo = "images/profile.jpg"
   mainSections = ["projects", "tech", "adventures"]

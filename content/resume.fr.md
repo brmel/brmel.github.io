@@ -5,11 +5,6 @@ lastmod: 2026-10-30
 description: "Développeur logiciel senior, sept ans de C++ en production : vision industrielle 2D et 3D, apprentissage automatique et profond, aujourd’hui l’IA générative."
 role: "Développeur logiciel senior à Montréal : du C++ en production pour la vision industrielle, l’apprentissage automatique et l’apprentissage profond"
 location: "Montréal, Québec"
-sameAs:
-  - "https://www.linkedin.com/in/brahim-redouane-mellah/"
-  - "https://github.com/brmel"
-  - "https://x.com/BrmelB"
-
 highlights:
   - title: "Vision industrielle"
     text: "Des algorithmes 2D et 3D qui localisent, mesurent et inspectent des pièces : appariement de motifs, détection de contours, calibration et métrologie."

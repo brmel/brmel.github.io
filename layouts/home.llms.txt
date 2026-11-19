@@ -2,6 +2,8 @@
 
 > {{ site.Params.description }}
 
+{{ with site.GetPage "/resume" }}**{{ site.Params.name }}** — {{ .Description | plainify | htmlUnescape | chomp }}{{ end }}
+
 {{ site.Home.Plain | plainify | htmlUnescape | chomp }}
 
 Every Tech and Adventures article is also served as markdown at its URL followed by `index.md`.

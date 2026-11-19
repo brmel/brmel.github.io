@@ -1,0 +1,135 @@
+# Canonical facts for ibraverse.ca — the gold set, after the farkad-ai pattern.
+# Source of truth: the canonical resume. When a fact here changes, change this
+# file first, then every surface that prints it, in the same commit.
+# scripts/checks/check-facts.py validates the built site against this file, so
+# the three languages cannot drift apart unnoticed.
+
+[person]
+name = "Brahim Redouane Mellah"
+name_ar = "إبراهيم رضوان ملاح"
+current_role = "Senior Software Developer, Generative AI"
+current_org = "Zebra Technologies"
+location = "Montréal, Québec"
+same_as = ["https://www.linkedin.com/in/brahim-redouane-mellah/", "https://github.com/brmel", "https://x.com/BrmelB"]
+
+[experience]
+
+[[experience.en]]
+period = "Aug 2026 — Present"
+role = "Senior Software Developer, Generative AI"
+org = "Zebra Technologies"
+
+[[experience.en]]
+period = "Jul 2024 — Aug 2026"
+role = "Senior Software Developer, Aurora Imaging Library"
+org = "Zebra Technologies"
+
+[[experience.en]]
+period = "Jun 2022 — Jun 2024"
+role = "Software Developer II, Image Processing"
+org = "Zebra Technologies"
+
+[[experience.en]]
+period = "Jun 2019 — Jun 2022"
+role = "Software Developer, Image Processing"
+org = "Matrox Imaging"
+
+[[experience.en]]
+period = "Jan 2019 — May 2019"
+role = "Software Development Intern"
+org = "Matrox Imaging"
+
+[[experience.en]]
+period = "2017 — 2019"
+role = "Master of Engineering (M.Eng.), Electrical Engineering — Control Systems"
+org = "Polytechnique Montréal"
+kind = "education"
+
+[[experience.en]]
+period = "2012 — 2017"
+role = "Engineering degree (Diplôme d’ingénieur d’État), Electrical Engineering — Control Systems"
+org = "École Nationale Polytechnique, Algiers"
+kind = "education"
+
+[[experience.fr]]
+period = "Août 2026 — aujourd’hui"
+role = "Développeur logiciel senior, IA générative"
+org = "Zebra Technologies"
+
+[[experience.fr]]
+period = "Juillet 2024 — août 2026"
+role = "Développeur logiciel senior, Aurora Imaging Library"
+org = "Zebra Technologies"
+
+[[experience.fr]]
+period = "Juin 2022 — juin 2024"
+role = "Développeur logiciel II, traitement d’images"
+org = "Zebra Technologies"
+
+[[experience.fr]]
+period = "Juin 2019 — juin 2022"
+role = "Développeur logiciel, traitement d’images"
+org = "Matrox Imaging"
+
+[[experience.fr]]
+period = "Janvier 2019 — mai 2019"
+role = "Stagiaire en développement logiciel"
+org = "Matrox Imaging"
+
+[[experience.fr]]
+period = "2017 — 2019"
+role = "Maîtrise en ingénierie (M.Ing.), génie électrique — automatique"
+org = "Polytechnique Montréal"
+kind = "education"
+
+[[experience.fr]]
+period = "2012 — 2017"
+role = "Diplôme d’ingénieur d’État, génie électrique — automatique"
+org = "École Nationale Polytechnique, Alger"
+kind = "education"
+
+[[experience.ar]]
+period = "أغسطس 2026 — الآن"
+role = "مطور برمجيات أول، الذكاء الاصطناعي التوليدي"
+org = "Zebra Technologies"
+
+[[experience.ar]]
+period = "يوليو 2024 — أغسطس 2026"
+role = "مطور برمجيات أول، Aurora Imaging Library"
+org = "Zebra Technologies"
+
+[[experience.ar]]
+period = "يونيو 2022 — يونيو 2024"
+role = "مطور برمجيات II، معالجة الصور"
+org = "Zebra Technologies"
+
+[[experience.ar]]
+period = "يونيو 2019 — يونيو 2022"
+role = "مطور برمجيات، معالجة الصور"
+org = "Matrox Imaging"
+
+[[experience.ar]]
+period = "يناير 2019 — مايو 2019"
+role = "متدرب في تطوير البرمجيات"
+org = "Matrox Imaging"
+
+[[experience.ar]]
+period = "2017 — 2019"
+role = "ماجستير في الهندسة (M.Ing.‎)، الهندسة الكهربائية — أنظمة التحكم"
+org = "Polytechnique Montréal"
+kind = "education"
+
+[[experience.ar]]
+period = "2012 — 2017"
+role = "شهادة مهندس دولة في الهندسة الكهربائية — أنظمة التحكم"
+org = "المدرسة الوطنية المتعددة التقنيات، الجزائر"
+kind = "education"
+
+# Claims the built site must keep making, word for word.
+[claims.kmeans]
+page = "tech/scikit-learn-kmeans-infinite-loop/index.html"
+contains = ["#28055", "1.4.1"]
+
+# Not checked: the Farkad gold-set result (100% routing and field accuracy on a
+# 15-sentence EN/FR/AR/ES gold set) is on the canonical resume but is not stated
+# anywhere on the site yet — flagged in the Nov 17 sprint, issue #23.
