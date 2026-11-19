@@ -63,6 +63,12 @@ Each rule names the gate that enforces it; the rest are enforced in review.
   its displayed width. The likely LCP image loads eagerly with `fetchpriority="high"`, the rest lazily.
 - A cover or figure file missing from the bundle fails the build; a cover without `alt` fails `check-og`.
 - Copy follows [docs/voice.md](docs/voice.md). Facts, numbers and links are never changed in an edit.
+- The Bridge Rule decides what belongs here: a piece may open on a personal situation, but it
+  stays only if it lands an engineering lesson — a mechanism, a constraint, data, a failure and
+  its diagnosis, or a systems lesson. Everything else is social copy, not site copy. The writing
+  pipeline runs on four pillars — Machine Vision Up Close · Engineering Judgment · Field Notes ·
+  Built in Public, weighted 4/3/2/1 across ten posts — and queued packages live in
+  `docs/content-packages/`.
 
 **Languages**
 - Structural pages (home, resume, section indexes) exist in EN, FR and AR, each with its own
@@ -80,7 +86,9 @@ other than a Tech or Adventures article (`check-pages`); every page has an absol
 alt (`check-og`).
 
 **Agents**: `static/robots.txt`, `/llms.txt` and `/llms-full.txt` describe the real site and block
-only `/reports/`. Every Tech and Adventures page has an `index.md` twin.
+only `/reports/` — those files are the embed payloads of report articles, not pages (decisions,
+2026-10-20). Career facts have one home, `data/facts.toml`; `check-facts` fails when the built
+site drifts from it. Every Tech and Adventures page has an `index.md` twin.
 
 **Performance** (mobile, Lighthouse simulated throttling; `scripts/audit.py` fails on the scores)
 
@@ -95,9 +103,9 @@ only `/reports/`. Every Tech and Adventures page has an `index.md` twin.
 | `content/` | page bundles |
 | `layouts/` | templates; `layouts/_partials/<domain>/`, `layouts/_shortcodes/`, `layouts/_markup/` |
 | `assets/css/` | the stylesheet, cascade by file number |
-| `i18n/`, `data/` | UI strings; PariData |
+| `i18n/`, `data/` | UI strings; PariData; `data/facts.toml`, the canonical career facts |
 | `scripts/` | `check.sh`, `gates.sh`, `scripts/checks/`, `audit.py`, `scripts/generate/` |
-| `docs/` | brand, voice, playbooks, `docs/decisions.md`, `docs/backlog.md`, `docs/roadmap.md` |
+| `docs/` | brand, voice, playbooks, `docs/decisions.md`, `docs/backlog.md`, `docs/roadmap.md`, `docs/content-packages/` |
 
 The full map, every template and partial, the stylesheet table and the content model are in
 [ARCHITECTURE.md](ARCHITECTURE.md).
