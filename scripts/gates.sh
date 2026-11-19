@@ -18,4 +18,5 @@ echo "▸ direction safety";       python3 ./scripts/checks/check-rtl.py
 echo "▸ script selectors";       python3 ./scripts/checks/check-js.py
 echo "▸ html validity";          python3 ./scripts/checks/check-html.py
 echo "▸ search metadata";        python3 ./scripts/checks/check-seo.py
+echo "▸ canonical facts";        python3 ./scripts/checks/check-facts.py
 echo "▸ docs paths";             python3 ./scripts/checks/check-docs.py
