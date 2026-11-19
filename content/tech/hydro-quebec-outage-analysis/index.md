@@ -2,6 +2,8 @@
 title: "Hydro-Québec Outage Analysis"
 featured: 3
 date: 2026-06-01
+aliases:
+  - "/projects/hydro-quebec/"
 description: "Two months of Hydro-Québec’s public outage feed, graded: regional reliability, Montréal boroughs, ETA accuracy and causes. Interactive charts and map."
 cover:
     image: "cover.jpg"

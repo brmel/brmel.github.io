@@ -2,6 +2,8 @@
 title: "Montréal Forecast Reliability"
 featured: 2
 date: 2026-08-20
+aliases:
+  - "/projects/meteodata/"
 description: "Thirty days of Montréal forecasts graded against the station next door. Temperature is 1.3 °C off a day ahead; seven in ten rain calls were false alarms."
 cover:
     image: "cover.jpg"
